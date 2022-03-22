@@ -4,8 +4,10 @@ interface ButtonProps extends MuiButtonProps {
     
 }
 
-const BUTTON_SX = {}
+const BUTTON_SX = {
+    
+}
 
 export default function Button(props: ButtonProps) {
-    return <MuiButton sx={ {...BUTTON_SX, ...props.sx}} {...props} />;
+    return <MuiButton color="primary" sx={ {...BUTTON_SX, ...props.sx}} {...props} />;
 };
