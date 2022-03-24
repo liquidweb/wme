@@ -1,9 +1,50 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from "@mui/material";
 import { pxToRem } from '../utils';
 
-const theme = createTheme();
+declare module '@mui/material/styles' {
+	interface Theme {
 
-export const THEME = {
+	}
+  
+	interface Palette {
+	}
+	interface PaletteOptions {
+		sidebar?: TypeSidebar;
+		todo?: TypeStatus;
+		completed?: TypeStatus;
+	  
+	}
+
+	interface PaletteColor {
+		grey?: string;
+		white?: string;
+	}
+
+	interface SimplePaletteColorOptions {
+		darker?: string;
+		grey?: string;
+		white?: string;
+	}
+
+	interface TypeText {
+		white?: string;
+		heading?: string;
+	}
+
+	interface TypeSidebar {
+		text?: string;
+		background?: string;
+	}
+
+	interface TypeStatus {
+		main?: string;
+		background?: string;
+	}
+
+}
+  
+
+export const theme = createTheme({
 	palette: {
 		primary: {
 			main: '#303F9F',
@@ -51,7 +92,6 @@ export const THEME = {
 			light: '#E9F5FE',
 		},
 	},
-	shadows: [...theme.shadows],
 	typography: {
 		allVariants: {
 			color: '#2A3353',
@@ -198,4 +238,4 @@ export const THEME = {
 	// 		}
 	// 	}
 	// }
-};
+});

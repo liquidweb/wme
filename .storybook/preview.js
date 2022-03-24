@@ -1,7 +1,6 @@
 import React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material';
-import { ThemeProvider as Emotion10ThemeProvider } from '@storybook/theming';
-import { THEME } from '../src/theme';
+import { ThemeProvider } from '@storybook/theming';
+import { theme } from '../src/theme';
 
 export const parameters = {
 	actions: { argTypesRegex: "^on[A-Z].*" },
@@ -13,14 +12,10 @@ export const parameters = {
 	},
 }
 
-const theme = createTheme(THEME);
-
 export const decorators = [
-	Story => (
-		<Emotion10ThemeProvider theme={theme}>
-			<ThemeProvider theme={theme}>
-				<Story />
-			</ThemeProvider>
-		</Emotion10ThemeProvider>
-	),
+  Story => (
+    <ThemeProvider theme={ theme }>
+      <Story />
+    </ThemeProvider>
+  ),
 ];
