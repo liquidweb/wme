@@ -20,7 +20,8 @@
       { "ts": "never", "tsx": "never" }
     ],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
