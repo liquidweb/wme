@@ -5,6 +5,8 @@ import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { MUIStyledCommonProps } from '@mui/system/createStyled';
 
+import { ConditionalWrapper } from '../../utils';
+
 interface TaskButton {
 	label: string;
 	url: string;
@@ -23,12 +25,6 @@ interface Props {
 interface TaskProps extends MUIStyledCommonProps {
 	variant?: 'action' | 'task' | undefined;
 	button?: boolean;
-}
-
-interface ConditionalWrapperProps {
-	condition: boolean;
-	wrapper: any;
-	children?: React.ReactNode;
 }
 
 const Task = styled('div')<TaskProps>(({ variant, theme }) => ({
@@ -91,11 +87,6 @@ const GetStarted = () => (
 		<ChevronRight />
 	</Box>
 );
-
-const ConditionalWrapper = (props: ConditionalWrapperProps) => {
-	const { condition, wrapper, children } = props;
-	return (condition ? wrapper(children) : children);
-};
 
 const SetupCardTask: React.FC<Props> = (props) => {
 	const { title, intro, button, avatarProps, variant } = props;
