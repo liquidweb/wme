@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Box, Button, CardActionArea, Typography } from '@mui/material';
+import { Box, BoxProps, Button, CardActionArea, Typography } from '@mui/material';
 import { Avatar, AvatarProps } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/system';
-import { MUIStyledCommonProps } from '@mui/system/createStyled';
 
 import { ConditionalWrapper } from '../../utils';
 
@@ -13,7 +12,7 @@ interface TaskButton {
 	backgroundColor: string;
 }
 
-interface Props {
+interface Props extends BoxProps {
 	title?: string;
 	intro?: string;
 	children?: React.ReactNode;
@@ -22,12 +21,18 @@ interface Props {
 	variant?: 'action' | 'task' | undefined;
 }
 
-interface TaskProps extends MUIStyledCommonProps {
+interface TaskProps extends BoxProps {
 	variant?: 'action' | 'task' | undefined;
 	button?: boolean;
 }
 
-const Task = styled('div')<TaskProps>(({ variant, theme }) => ({
+const Task = styled(Box, {
+	name: 'WmeTask',
+	slot: 'Root',
+	overridesResolver: (props, styles) => [
+		styles.root,
+	],
+})<TaskProps>(({ variant, theme }) => ({
 	display: 'flex',
 	justifyContent: 'flex-start',
 	alignItems: 'center',
@@ -65,31 +70,16 @@ const Task = styled('div')<TaskProps>(({ variant, theme }) => ({
 	}),
 }));
 
-const GetStarted = () => (
-	<Box className="sb-get-started" sx={ { display: 'flex', alignItems: 'center' } }>
-		<Typography
-			variant="body2"
-			sx={ {
-				fontWeight: 600,
-				letterSpacing: '-0.25px',
-				// lineHeight: pxToRem(26),
-				opacity: 0,
-				transform: 'translateX(-10px)',
-				transition: 'all 0.3s ease-in-out',
-
-				'.sb-task--button:hover &, .Mui-focusVisible &': {
-					opacity: 1,
-					transform: 'translateX(0)',
-				}
-			} }
-			className="sb-get-started__text"
-		>Get Started</Typography>
-		<ChevronRight />
-	</Box>
-);
+const GetStarted = styled(Box, {
+	name: 'WmeGetStarted',
+	slot: 'Root',
+})<BoxProps>(() => ({
+	display: 'flex', 
+	alignItems: 'center',
+}));
 
 const SetupCardTask: React.FC<Props> = (props) => {
-	const { title, intro, button, avatarProps, variant } = props;
+	const { title, intro, button, avatarProps, variant, sx } = props;
 	const variantType = variant === 'action' ? 'action' : 'task';
 
 	return (
@@ -111,7 +101,26 @@ const SetupCardTask: React.FC<Props> = (props) => {
 					variant="contained"
 					href={ button?.url }
 					>{ button?.label }</Button>
-					: <GetStarted />
+					: <GetStarted>
+						<Typography
+							variant="body2"
+							sx={ {
+								fontWeight: 600,
+								letterSpacing: '-0.25px',
+								// lineHeight: pxToRem(26),
+								opacity: 0,
+								transform: 'translateX(-10px)',
+								transition: 'all 0.3s ease-in-out',
+
+								'.MuiButtonBase-root:hover &, .Mui-focusVisible &': {
+									opacity: 1,
+									transform: 'translateX(0)',
+								}
+							} }
+							className="sb-get-started__text"
+						>Get Started</Typography>
+						<ChevronRight />
+					</GetStarted>
 				}
 			</ConditionalWrapper>
 		</Task>

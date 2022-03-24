@@ -3,6 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { SetupCardTask } from '../';
 
+import TaskIcon from './img/task-icon.png';
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/SetupCardTask',
@@ -20,7 +22,9 @@ Task.args = {
 	title: 'Example task title',
 	intro: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
 	variant: 'task',
-	avatarProps: {}
+	avatarProps: {
+		src: TaskIcon,
+	}
 };
 
 export const Action = Template.bind({});
