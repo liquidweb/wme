@@ -1,6 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
-import {THEME} from '../src/theme';
+import { ThemeProvider } from '@storybook/theming';
+import { theme } from '../src/theme';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -16,7 +16,7 @@ export const parameters = {
 
 export const decorators = [
   Story => (
-    <ThemeProvider theme={THEME}>
+    <ThemeProvider theme={ theme }>
       <Story />
     </ThemeProvider>
   ),
