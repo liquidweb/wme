@@ -16,12 +16,18 @@ const Template: ComponentStory<typeof SetupCardTask> = (args) => (
 );
 
 
+const handleTaskClick = (e) => {
+	console.log(e);
+};
+
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Task = Template.bind({});
 Task.args = {
 	title: 'Example task title',
 	intro: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
 	variant: 'task',
+	taskCta: 'Learn More',
+	onClick: (e) => handleTaskClick(e),
 	avatarProps: {
 		src: TaskIcon,
 	}

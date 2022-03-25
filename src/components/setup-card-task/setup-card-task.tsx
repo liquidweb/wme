@@ -12,13 +12,15 @@ interface TaskButton {
 	backgroundColor: string;
 }
 
-interface Props extends BoxProps {
+interface SetupCardProps extends BoxProps {
 	title?: string;
 	intro?: string;
 	children?: React.ReactNode;
 	button?: TaskButton;
+	taskCta?: string;
 	avatarProps?: AvatarProps;
 	variant?: 'action' | 'task' | undefined;
+	onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 interface TaskProps extends BoxProps {
@@ -48,9 +50,15 @@ const Task = styled(Box, {
 	},
 
 	'& .MuiAvatar-root': {
+		position: 'relative',
+		zIndex: 1,
 		marginRight: theme.spacing(2),
 		width: 64,
 		height: 64,
+		backgroundColor: theme.palette.grey[100],
+		transition: theme.transitions.create(['background-color'], {
+			duration: theme.transitions.duration.standard,
+		}),
 	},
 	
 	...(variant === 'task' &&
@@ -66,20 +74,24 @@ const Task = styled(Box, {
 			justifyContent: 'flex-start',
 			alignItems: 'center',
 			borderRadius: 1,
+		},
+
+		'& > button:hover .MuiAvatar-root': {
+			backgroundColor: theme.palette.common.white,
 		}
 	}),
 }));
 
-const GetStarted = styled(Box, {
-	name: 'WmeGetStarted',
+const SetupCardTaskCta = styled(Box, {
+	name: 'WmeTaskCta',
 	slot: 'Root',
 })<BoxProps>(() => ({
 	display: 'flex', 
 	alignItems: 'center',
 }));
 
-const SetupCardTask: React.FC<Props> = (props) => {
-	const { title, intro, button, avatarProps, variant, sx } = props;
+const SetupCardTask: React.FC<SetupCardProps> = (props) => {
+	const { title, intro, button, avatarProps, variant, taskCta, onClick } = props;
 	const variantType = variant === 'action' ? 'action' : 'task';
 
 	return (
@@ -87,7 +99,7 @@ const SetupCardTask: React.FC<Props> = (props) => {
 			<ConditionalWrapper
 				condition={ variantType === 'task' }
 				wrapper={
-					(children: React.ReactNode) => <CardActionArea>{ children }</CardActionArea>
+					(children: React.ReactNode) => <CardActionArea onClick={ onClick }>{ children }</CardActionArea>
 				}
 			>
 				<Avatar { ...avatarProps } />
@@ -101,7 +113,7 @@ const SetupCardTask: React.FC<Props> = (props) => {
 					variant="contained"
 					href={ button?.url }
 					>{ button?.label }</Button>
-					: <GetStarted>
+					: <SetupCardTaskCta>
 						<Typography
 							variant="body2"
 							sx={ {
@@ -118,9 +130,9 @@ const SetupCardTask: React.FC<Props> = (props) => {
 								}
 							} }
 							className="sb-get-started__text"
-						>Get Started</Typography>
+						>{ taskCta }</Typography>
 						<ChevronRight />
-					</GetStarted>
+					</SetupCardTaskCta>
 				}
 			</ConditionalWrapper>
 		</Task>
