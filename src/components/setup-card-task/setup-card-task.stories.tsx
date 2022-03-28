@@ -16,8 +16,8 @@ const Template: ComponentStory<typeof SetupCardTask> = (args) => (
 );
 
 
-const handleTaskClick = (e) => {
-	console.log(e);
+const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+	console.log(event);
 };
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
@@ -27,7 +27,7 @@ Task.args = {
 	intro: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
 	variant: 'task',
 	taskCta: 'Learn More',
-	onClick: (e) => handleTaskClick(e),
+	onClick: (e) => handleClick(e),
 	avatarProps: {
 		src: TaskIcon,
 	}
@@ -42,5 +42,6 @@ Action.args = {
 		label: 'Connect Stripe',
 		url: '#TBD',
 		backgroundColor: '#645FF3',
+		onClick: (e) => handleClick(e),
 	}
 };

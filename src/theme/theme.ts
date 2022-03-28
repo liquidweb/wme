@@ -2,11 +2,6 @@ import { createTheme } from "@mui/material";
 import { pxToRem } from '../utils';
 
 declare module '@mui/material/styles' {
-	interface Theme {
-	}
-  
-	interface Palette {
-	}
 
 	interface PaletteOptions {
 		sidebar?: TypeSidebar;
@@ -39,7 +34,6 @@ declare module '@mui/material/styles' {
 		main?: string;
 		background?: string;
 	}
-
 }
   
 

@@ -2,14 +2,15 @@ import * as React from 'react';
 import { Box, BoxProps, Button, CardActionArea, Typography } from '@mui/material';
 import { Avatar, AvatarProps } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 
-import { ConditionalWrapper } from '../../utils';
+import { ConditionalWrapper, pxToRem } from '../../utils';
 
 interface TaskButton {
 	label: string;
 	url: string;
 	backgroundColor: string;
+	onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 interface SetupCardProps extends BoxProps {
@@ -18,6 +19,7 @@ interface SetupCardProps extends BoxProps {
 	children?: React.ReactNode;
 	button?: TaskButton;
 	taskCta?: string;
+	disabled?: boolean;
 	avatarProps?: AvatarProps;
 	variant?: 'action' | 'task' | undefined;
 	onClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -56,7 +58,7 @@ const Task = styled(Box, {
 		width: 64,
 		height: 64,
 		backgroundColor: theme.palette.grey[100],
-		transition: theme.transitions.create(['background-color'], {
+		transition: theme?.transitions?.create(['background-color'], {
 			duration: theme.transitions.duration.standard,
 		}),
 	},
@@ -91,7 +93,7 @@ const SetupCardTaskCta = styled(Box, {
 }));
 
 const SetupCardTask: React.FC<SetupCardProps> = (props) => {
-	const { title, intro, button, avatarProps, variant, taskCta, onClick } = props;
+	const { title, intro, button, avatarProps, variant, taskCta, onClick, disabled = false } = props;
 	const variantType = variant === 'action' ? 'action' : 'task';
 
 	return (
@@ -109,9 +111,10 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
 					{ props.children }
 				</Box>
 				{ variantType === 'action' ? <Button
-					// disabled={ disabled }
+					disabled={ disabled }
 					variant="contained"
 					href={ button?.url }
+					onClick={ onClick }
 					>{ button?.label }</Button>
 					: <SetupCardTaskCta>
 						<Typography
@@ -119,7 +122,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
 							sx={ {
 								fontWeight: 600,
 								letterSpacing: '-0.25px',
-								// lineHeight: pxToRem(26),
+								lineHeight: pxToRem(26),
 								opacity: 0,
 								transform: 'translateX(-10px)',
 								transition: 'all 0.3s ease-in-out',
