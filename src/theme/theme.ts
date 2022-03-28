@@ -1,9 +1,50 @@
-import { createTheme } from '@mui/material';
-import { pxToRem } from "../utils";
+import { createTheme } from "@mui/material";
+import { pxToRem } from '../utils';
 
-const theme = createTheme();
+declare module '@mui/material/styles' {
+	interface Theme {
 
-export const THEME = {
+	}
+  
+	interface Palette {
+	}
+	interface PaletteOptions {
+		sidebar?: TypeSidebar;
+		todo?: TypeStatus;
+		completed?: TypeStatus;
+	  
+	}
+
+	interface PaletteColor {
+		grey?: string;
+		white?: string;
+	}
+
+	interface SimplePaletteColorOptions {
+		darker?: string;
+		grey?: string;
+		white?: string;
+	}
+
+	interface TypeText {
+		white?: string;
+		heading?: string;
+	}
+
+	interface TypeSidebar {
+		text?: string;
+		background?: string;
+	}
+
+	interface TypeStatus {
+		main?: string;
+		background?: string;
+	}
+
+}
+  
+
+export const theme = createTheme({
 	palette: {
 		primary: {
 			main: '#303F9F',
@@ -31,56 +72,66 @@ export const THEME = {
 			background: '#EDF7ED',
 		},
 		error: {
-			main: '#F44336',
+			main: '#FF0000',
+			dark: '#AA0000',
+			light: '#FF9492',
 		},
 		warning: {
-			main: '#FF9900',
+			main: '#EC6C20',
+			dark: '#AA0000',
+			light: '#FF9492',
 		},
 		success: {
 			main: '#4FB669',
+			dark: '#11772A',
+			light: '#EDF7ED',
+		},
+		info: {
+			main: '#158ACE',
+			dark: '#085796',
+			light: '#E9F5FE',
 		},
 	},
-	// shadows: [...theme.shadows, '0 0 32px rgba(0, 0, 0, 0.1)'], // Additional shadow definition.
-	// typography: {
-	// 	allVariants: {
-	// 		color: '#2A3353',
-	// 	},
-	// 	fontFamily: 'inherit',
-	// 	h1: {
-	// 		fontSize: pxToRem(32),
-	// 		fontWeight: 400,
-	// 		letterSpacing: '-0.05em',
-	// 	},
-	// 	h2: {
-	// 		letterSpacing: '-0.03em',
-	// 	},
-	// 	h3: {
-	// 		fontSize: pxToRem(24),
-	// 		fontWeight: 400,
-	// 		letterSpacing: '-0.03em',
-	// 	},
-	// 	h4: {
-	// 		fontSize: pxToRem(16),
-	// 		fontWeight: 600,
-	// 	},
-	// 	subtitle1: {
-	// 		fontSize: pxToRem(18),
-	// 		fontWeight: 400,
-	// 		letterSpacing: '-0.01em',
-	// 	},
-	// 	body1: {
-	// 		fontSize: '1rem',
-	// 		letterSpacing: '-0.01em',
-	// 	},
-	// 	body2: {
-	// 		fontSize: pxToRem(14),
-	// 		letterSpacing: '-0.01em',
-	// 	},
-	// 	overline: {
-	// 		display: 'inline-block',
-	// 		textTransform: 'none',
-	// 	},
-	// },
+	typography: {
+		allVariants: {
+			color: '#2A3353',
+		},
+		fontFamily: 'sans-serif',
+		h1: {
+			fontSize: pxToRem(32),
+			fontWeight: 400,
+			letterSpacing: '-0.05em',
+		},
+		h2: {
+			letterSpacing: '-0.03em',
+		},
+		h3: {
+			fontSize: pxToRem(24),
+			fontWeight: 400,
+			letterSpacing: '-0.03em',
+		},
+		h4: {
+			fontSize: pxToRem(16),
+			fontWeight: 600,
+		},
+		subtitle1: {
+			fontSize: pxToRem(18),
+			fontWeight: 400,
+			letterSpacing: '-0.01em',
+		},
+		body1: {
+			fontSize: '1rem',
+			letterSpacing: '-0.01em',
+		},
+		body2: {
+			fontSize: pxToRem(14),
+			letterSpacing: '-0.01em',
+		},
+		overline: {
+			display: 'inline-block',
+			textTransform: 'none',
+		},
+	},
 	// components: {
 	// 	MuiChip: {
 	// 		styleOverrides: {
@@ -187,4 +238,4 @@ export const THEME = {
 	// 		}
 	// 	}
 	// }
-};
+});
