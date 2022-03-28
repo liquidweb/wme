@@ -1,18 +1,18 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { SetupCardTask } from '../';
+import { SetupCardTask } from '..';
 
 import TaskIcon from './img/task-icon.png';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/SetupCardTask',
-  component: SetupCardTask,
+	title: 'Components/SetupCardTask',
+	component: SetupCardTask,
 } as ComponentMeta<typeof SetupCardTask>;
 
 const Template: ComponentStory<typeof SetupCardTask> = (args) => (
-	<SetupCardTask { ...args }/>
+	<SetupCardTask {...args} />
 );
 
 

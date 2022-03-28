@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Button } from '../';
+import { Button } from '..';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -17,24 +17,24 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 const commonArgs = {
-    children: 'Button',
-}
+  children: 'Button',
+};
 
 export const Text = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Text.args = {
-    ...commonArgs,
-    variant: 'text',
+  ...commonArgs,
+  variant: 'text',
 };
 
 export const Contained = Template.bind({});
 Contained.args = {
-    ...commonArgs,
-    variant: 'contained',
+  ...commonArgs,
+  variant: 'contained',
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-    ...commonArgs,
-    variant: 'outlined',
+  ...commonArgs,
+  variant: 'outlined',
 };

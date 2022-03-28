@@ -1,12 +1,13 @@
-import { createTheme } from "@mui/material";
+/* eslint-disable no-unused-vars */
+import { createTheme } from '@mui/material';
 import { pxToRem } from '../utils';
 
 declare module '@mui/material/styles' {
+	interface Theme {
 
-	interface PaletteOptions {
-		sidebar?: TypeSidebar;
-		todo?: TypeStatus;
-		completed?: TypeStatus;
+	}
+
+	interface Palette {
 	}
 
 	interface PaletteColor {
@@ -34,8 +35,13 @@ declare module '@mui/material/styles' {
 		main?: string;
 		background?: string;
 	}
+
+	interface PaletteOptions {
+		sidebar?: TypeSidebar;
+		todo?: TypeStatus;
+		completed?: TypeStatus;
+	}
 }
-  
 
 export const theme = createTheme({
 	palette: {
