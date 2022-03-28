@@ -14,7 +14,7 @@ export default {
 	    control: 'radio',
 	  },
 		startIcon: {
-			control: false,
+			control: 'boolean',
 			mapping: {
 				true: <DownhillSkiingIcon />
 			}
