@@ -27,7 +27,10 @@
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
-    "react/jsx-props-no-spreading": 0
+    "no-restricted-exports": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": 0,
+    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }]
   },
   "settings": {
     "import/resolver": {
