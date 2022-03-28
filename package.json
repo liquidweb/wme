@@ -26,9 +26,9 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=3df297442054",
-    "lint": "eslint src/*",
-    "lint:fix": "eslint src/* --fix",
-    "lint:quiet": "eslint src/* --quiet"
+    "lint": "eslint ./src --ext .tsx --ext .ts",
+    "lint:fix": "yarn lint --fix",
+    "lint:quiet": "yarn lint --quiet"
   },
   "browserslist": {
     "production": [
