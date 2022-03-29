@@ -1,15 +1,30 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
 
 import { Button } from '..';
-
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Components/Button',
   component: Button,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    color: {
+      options: ['primary', 'secondary', 'inherit'],
+      control: 'radio',
+    },
+    startIcon: {
+      control: 'boolean',
+      mapping: {
+        true: <DownhillSkiingIcon />,
+      },
+    },
+    endIcon: {
+      control: 'boolean',
+      mapping: {
+        true: <DownhillSkiingIcon />,
+      },
+    },
   },
 } as ComponentMeta<typeof Button>;
 
@@ -18,23 +33,33 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 const commonArgs = {
   children: 'Button',
+  disabled: false,
 };
 
-export const Text = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Text.args = {
-  ...commonArgs,
-  variant: 'text',
-};
-
-export const Contained = Template.bind({});
-Contained.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   ...commonArgs,
   variant: 'contained',
+  color: 'primary',
 };
 
-export const Outlined = Template.bind({});
-Outlined.args = {
+export const Secondary = Template.bind({});
+Secondary.args = {
+  ...commonArgs,
+  variant: 'contained',
+  color: 'secondary',
+};
+
+export const Stroked = Template.bind({});
+Stroked.args = {
   ...commonArgs,
   variant: 'outlined',
+  color: 'primary',
+};
+
+export const NoContainer = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+NoContainer.args = {
+  ...commonArgs,
+  variant: 'text',
 };

@@ -30,7 +30,16 @@
     "no-restricted-exports": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": 0,
-    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }]
+    "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+    "no-tabs": "warn",
+    "no-trailing-spaces": "warn",
+    "import/no-useless-path-segments": "warn",
+    "indent": "warn",
+    "no-mixed-spaces-and-tabs": "warn",
+    "comma-dangle": "warn",
+    "arrow-body-style": "warn",
+    "react/react-in-jsx-scope": "warn",
+    "quotes": "warn"
   },
   "settings": {
     "import/resolver": {
