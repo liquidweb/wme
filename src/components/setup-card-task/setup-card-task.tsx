@@ -95,6 +95,8 @@ const SetupCardTaskCta = styled(Box, {
 })<BoxProps>(() => ({
   display: 'flex',
   alignItems: 'center',
+  marginLeft: 'auto',
+  flex: '0 0 auto',
 }));
 
 const SetupCardTask: React.FC<SetupCardProps> = (props) => {
@@ -114,7 +116,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         }
       >
         <Avatar {...avatarProps} />
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ mr: 2 }}>
           {title && <Typography component="h3" variant="h4" mb={1}>{title}</Typography>}
           {intro && <Typography variant="body2">{intro}</Typography>}
           {children}
@@ -125,6 +127,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
             variant="contained"
             href={button?.url}
             onClick={onClick}
+            sx={{ marginLeft: 'auto', flex: '0 0 auto' }}
           >
             {button?.label}
           </Button>
