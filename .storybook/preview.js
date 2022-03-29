@@ -1,5 +1,6 @@
+import { ThemeProvider } from '@mui/system';
 import React from 'react';
-import { ThemeProvider } from '@storybook/theming';
+// import { ThemeProvider } from '@storybook/theming';
 import { theme } from '../src/theme';
 
 export const parameters = {

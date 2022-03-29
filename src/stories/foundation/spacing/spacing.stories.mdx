@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/addon-docs";
+import { Box } from "@mui/material";
+import Spacing from "./spacing";
+
+<Meta title="Foundation/Spacing" />
+
+## Overview
+
+Positioning UI should be with taught including the empty space between components.
+This is what creates relationships and hierarchy withing the visual controls.
+
+## Spacing sizes
+
+Using the right sizes will create consistency and hierarchy in user interface.
+
+- Official MUI Spacing documantion: https://mui.com/system/spacing/
+
+## Usage and examples
+
+<Box sx={{ mt: 2 }}>
+  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((size) => (
+    <Spacing key={size} size={size} />
+  ))}
+</Box>
