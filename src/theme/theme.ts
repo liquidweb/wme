@@ -3,44 +3,44 @@ import { createTheme } from '@mui/material';
 import { pxToRem } from '../utils';
 
 declare module '@mui/material/styles' {
- interface Theme {
+  interface Theme {
 
- }
+  }
 
- interface Palette {
- }
+  interface Palette {
+  }
 
- interface PaletteColor {
-  grey?: string;
-  white?: string;
- }
+  interface PaletteColor {
+    grey?: string;
+    white?: string;
+  }
 
- interface SimplePaletteColorOptions {
-  darker?: string;
-  grey?: string;
-  white?: string;
- }
+  interface SimplePaletteColorOptions {
+    darker?: string;
+    grey?: string;
+    white?: string;
+  }
 
- interface TypeText {
-  white?: string;
-  heading?: string;
- }
+  interface TypeText {
+    white?: string;
+    heading?: string;
+  }
 
- interface TypeSidebar {
-  text?: string;
-  background?: string;
- }
+  interface TypeSidebar {
+    text?: string;
+    background?: string;
+  }
 
- interface TypeStatus {
-  main?: string;
-  background?: string;
- }
+  interface TypeStatus {
+    main?: string;
+    background?: string;
+  }
 
- interface PaletteOptions {
-  sidebar?: TypeSidebar;
-  todo?: TypeStatus;
-  completed?: TypeStatus;
- }
+  interface PaletteOptions {
+    sidebar?: TypeSidebar;
+    todo?: TypeStatus;
+    completed?: TypeStatus;
+  }
 }
 
 export const theme = createTheme({
@@ -131,111 +131,4 @@ export const theme = createTheme({
       textTransform: 'none',
     },
   },
-  // components: {
-  //  MuiChip: {
-  //   styleOverrides: {
-  //    icon: {
-  //     color: 'currentColor',
-  //    }
-  //   }
-  //  },
-  //  MuiStep: {
-  //   styleOverrides: {
-  //    root: {
-  //     paddingRight: pxToRem(12),
-  //     paddingLeft: pxToRem(12),
-  //    }
-  //   }
-  //  },
-  //  MuiStepLabel: {
-  //   styleOverrides: {
-  //    root: {
-  //     whiteSpace: 'nowrap',
-  //    }
-  //   }
-  //  },
-  //  MuiStepIcon: {
-  //   styleOverrides: {
-  //    root: {
-  //     width: pxToRem(18),
-  //    }
-  //   }
-  //  },
-  //  MuiButton: {
-  //   styleOverrides: {
-  //    root: {
-  //     textTransform: 'none',
-  //     boxShadow: 'none',
-
-  //     '&:hover': {
-  //      boxShadow: 'none',
-  //     }
-  //    }
-  //   }
-  //  },
-  //  MuiFormLabel: {
-  //   styleOverrides: {
-  //    root: {
-  //     color: '#2A3353',
-  //     fontSize: pxToRem(14),
-  //     fontWeight: 600,
-
-  //     '&.Mui-focused': {
-  //      color: '#2A3353',
-  //     }
-  //    }
-  //   }
-  //  },
-  //  MuiFormHelperText: {
-  //   styleOverrides: {
-  //    root: {
-  //     fontSize: pxToRem(10),
-  //     lineHeight: pxToRem(16),
-  //     letterSpacing: -0.15,
-  //     margin: 0,
-  //    }
-  //   }
-  //  },
-  //  MuiOutlinedInput: {
-  //   styleOverrides: {
-  //    root: {
-  //     '& .MuiOutlinedInput-input': {
-  //      padding: '4px 12px',
-  //      border: 'none',
-
-  //      '& ~ .MuiOutlinedInput-notchedOutline': {
-  //       borderWidth: '1px',
-  //      },
-
-  //      '&:focus, &:focus-visible': {
-  //       outline: 'none',
-  //       boxShadow: 'none',
-  //      },
-
-  //      '&:focus ~ .MuiOutlinedInput-notchedOutline,' +
-  //      '&: focus - visible ~ .MuiOutlinedInput - notchedOutline': {
-  //       borderColor: 'primary.dark',
-  //      },
-
-  //      '&.Mui-disabled': {
-  //       backgroundColor: 'transparent',
-  //       borderColor: 'transparent',
-
-  //       '& ~ .MuiOutlinedInput-notchedOutline': {
-  //        backgroundColor: 'rgba(63, 81, 181, 0.08)',
-  //        borderColor: 'transparent',
-  //       },
-  //      },
-  //     },
-
-  //     '& ~ .MuiFormHelperText-root.Mui-error': {
-  //      position: 'absolute',
-  //      top: '-25px',
-  //      right: 0,
-  //      marginTop: 0,
-  //     }
-  //    }
-  //   }
-  //  }
-  // }
 });
