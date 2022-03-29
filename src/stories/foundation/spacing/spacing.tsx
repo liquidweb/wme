@@ -1,5 +1,6 @@
 import React from 'react';
-import { useTheme, Box } from '@mui/system';
+import { useTheme } from '@mui/material/styles';
+import { Box } from '@mui/material';
 
 const Spacing = ({ size = 1 }: {size: number}) => {
   const theme = useTheme();
