@@ -8,11 +8,12 @@ import { styled } from '@mui/material/styles';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
 
+/* eslint-disable no-unused-vars */
 interface TaskButton {
   label: string;
   url: string;
   backgroundColor: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 interface SetupCardProps extends BoxProps {
@@ -24,8 +25,9 @@ interface SetupCardProps extends BoxProps {
   disabled?: boolean;
   avatarProps?: AvatarProps;
   variant?: 'action' | 'task' | undefined;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
+/* eslint-enable no-unused-vars */
 
 interface TaskProps extends BoxProps {
   variant?: 'action' | 'task' | undefined;

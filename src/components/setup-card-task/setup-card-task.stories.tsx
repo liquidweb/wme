@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { SetupCardTask } from '..';
 
+// @ts-ignore
 import TaskIcon from './img/task-icon.png';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -27,7 +28,7 @@ Task.args = {
   intro: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
   variant: 'task',
   taskCta: 'Learn More',
-  onClick: (e) => handleClick(e),
+  onClick: (e: React.MouseEvent<HTMLElement>) => handleClick(e),
   avatarProps: {
     src: TaskIcon,
   },
