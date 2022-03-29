@@ -6,21 +6,12 @@ declare module '@mui/material/styles' {
   interface Theme {
 
   }
+
   // eslint-disable-next-line no-unused-vars
   interface Palette {
 
   }
-  // eslint-disable-next-line no-unused-vars
-  interface PaletteColor {
-    grey?: string;
-    white?: string;
-  }
-  // eslint-disable-next-line no-unused-vars
-  interface SimplePaletteColorOptions {
-    darker?: string;
-    grey?: string;
-    white?: string;
-  }
+
   // eslint-disable-next-line no-unused-vars
   interface TypeText {
     white?: string;
@@ -32,10 +23,12 @@ declare module '@mui/material/styles' {
     ui?: string;
     layout?: string;
   }
+
   // eslint-disable-next-line no-unused-vars
   interface PaletteOptions {
     border?: TypeBorder;
   }
+
   // eslint-disable-next-line no-unused-vars
   interface TypeBackground {
     primary?: string;
@@ -44,8 +37,7 @@ declare module '@mui/material/styles' {
     dark?: string;
     grey?: string;
   }
-
-  }
+}
 
 export const theme = createTheme({
   palette: {
