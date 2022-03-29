@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { pxToRem } from '../utils';
 
 declare module '@mui/material/styles' {
