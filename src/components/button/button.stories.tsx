@@ -9,10 +9,10 @@ export default {
 	component: Button,
 	// More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 	argTypes: {
-	  color: {
-	    options: ['primary', 'secondary', 'inherit'],
-	    control: 'radio',
-	  },
+		color: {
+	    	options: ['primary', 'secondary', 'inherit'],
+	    	control: 'radio',
+	  	},
 		startIcon: {
 			control: 'boolean',
 			mapping: {
@@ -53,7 +53,7 @@ Secondary.args = {
 export const Stroked = Template.bind({});
 Stroked.args = {
     ...commonArgs,
-    variant: 'outlined',
+	variant: 'outlined',
     color: 'primary',
 };
 
