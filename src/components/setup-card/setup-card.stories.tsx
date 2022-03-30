@@ -1,8 +1,18 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CardContent } from '@mui/material';
+import {
+  Grid,
+  CardContent,
+  Link,
+  Typography,
+} from '@mui/material';
 
-import { SetupCard, SetupCardHeader, SetupCardTask } from '..';
+import {
+  SetupCard,
+  SetupCardHeader,
+  SetupCardTask,
+  SetupCardFooter,
+} from '..';
 import * as SetupCardHeaderStories from '../setup-card-header/setup-card-header.stories';
 import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories';
 
@@ -19,6 +29,22 @@ const Template: ComponentStory<typeof SetupCard> = (args) => (
       <SetupCardTask {...SetupCardTaskStories.Task.args} />
       <SetupCardTask {...SetupCardTaskStories.Action.args} />
     </CardContent>
+    <SetupCardFooter>
+      <Grid container sx={{ alignItems: 'center' }}>
+        <Grid item>
+          <Typography fontWeight={600}>Footer Message?</Typography>
+        </Grid>
+        <Grid item>
+          <Link href="#link-one" variant="body2">Link One</Link>
+        </Grid>
+        <Grid item>
+          <Link href="#link-two" variant="body2">Link Two</Link>
+        </Grid>
+        <Grid item>
+          <Link href="#link-three" variant="body2">Link Three</Link>
+        </Grid>
+      </Grid>
+    </SetupCardFooter>
   </SetupCard>
 );
 
