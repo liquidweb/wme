@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof SetupCard> = (args) => (
     <SetupCardFooter>
       <Grid container sx={{ alignItems: 'center' }}>
         <Grid item>
-          <Typography fontWeight={600}>Footer Message?</Typography>
+          <Typography fontWeight={600} variant="body2">Footer Message?</Typography>
         </Grid>
         <Grid item>
           <Link href="#link-one" variant="body2">Link One</Link>

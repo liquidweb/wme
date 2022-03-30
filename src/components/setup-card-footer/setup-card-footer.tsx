@@ -9,7 +9,8 @@ const SetupCardFooterWrapper = styled(Box, {
     styles.root,
   ],
 })<BoxProps>(({ theme }) => ({
-  borderTop: `1px dashed ${theme.palette.grey[500]}`,
+  borderTop: `1px dashed ${theme.palette.border.ui}`,
+  marginTop: theme.spacing(3),
   paddingTop: theme.spacing(3),
   paddingRight: theme.spacing(4),
   paddingLeft: theme.spacing(4),
