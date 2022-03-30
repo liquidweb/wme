@@ -1,74 +1,72 @@
-/* eslint-disable no-unused-vars */
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { pxToRem } from '../utils';
 
 declare module '@mui/material/styles' {
+  // eslint-disable-next-line no-unused-vars
   interface Theme {
 
   }
 
+  // eslint-disable-next-line no-unused-vars
   interface Palette {
+
   }
 
-  interface PaletteColor {
-    grey?: string;
-    white?: string;
-  }
-
-  interface SimplePaletteColorOptions {
-    darker?: string;
-    grey?: string;
-    white?: string;
-  }
-
+  // eslint-disable-next-line no-unused-vars
   interface TypeText {
     white?: string;
-    heading?: string;
+    placeholder?: string;
+    link?: string;
   }
 
-  interface TypeSidebar {
-    text?: string;
-    background?: string;
+  interface TypeBorder {
+    ui?: string;
+    layout?: string;
   }
 
-  interface TypeStatus {
-    main?: string;
-    background?: string;
-  }
-
+  // eslint-disable-next-line no-unused-vars
   interface PaletteOptions {
-    sidebar?: TypeSidebar;
-    todo?: TypeStatus;
-    completed?: TypeStatus;
+    border?: TypeBorder;
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  interface TypeBackground {
+    primary?: string;
+    secondary?: string;
+    hover?: string;
+    dark?: string;
+    grey?: string;
   }
 }
 
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#303F9F',
-      dark: '#2A3353',
-      grey: '#949494',
-      white: '#FFF',
+      main: '#0047FF',
+      dark: '#0033B8',
+      light: '#7A9FFF',
+    },
+    secondary: {
+      main: '#A91CFF',
+      dark: '#6E08AD',
+      light: '#D99CFF',
+    },
+    success: {
+      main: '#4FB669',
+      dark: '#11772A',
+      light: '#EDF7ED',
     },
     text: {
-      primary: '#2A3353',
-      secondary: '#2A3353',
+      primary: '#000000',
+      secondary: '#4E4E4E',
       disabled: '#757575',
       white: '#FFFFFF',
-      heading: '#293254',
+      placeholder: '#757575',
+      link: '#0047FF',
     },
-    sidebar: {
-      text: '#252D48',
-      background: '#FAFAFA',
-    },
-    todo: {
-      main: '#0071BC',
-      background: '#E9F5FE',
-    },
-    completed: {
-      main: '#204522',
-      background: '#EDF7ED',
+    border: {
+      ui: '#C4C4C4',
+      layout: '#C4C4C4',
     },
     error: {
       main: '#FF0000',
@@ -77,18 +75,20 @@ export const theme = createTheme({
     },
     warning: {
       main: '#EC6C20',
-      dark: '#AA0000',
-      light: '#FF9492',
-    },
-    success: {
-      main: '#4FB669',
-      dark: '#11772A',
-      light: '#EDF7ED',
+      dark: '#E3521B',
+      light: '#FD9826',
     },
     info: {
       main: '#158ACE',
       dark: '#085796',
       light: '#E9F5FE',
+    },
+    background: {
+      primary: '#FFFFFF',
+      secondary: '#FAFAFA',
+      hover: '#F5F5F5',
+      dark: '#2A3353',
+      grey: '#F5F5F5',
     },
   },
   typography: {
