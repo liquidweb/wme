@@ -12,7 +12,6 @@ export default {
         type: 'number',
         min: 1,
         max: 4,
-        default: 2,
       },
     },
   },
@@ -51,4 +50,5 @@ const Template: ComponentStory<typeof ToggleButtonGroup> = (args) => {
 export const ButtonsGroup = Template.bind({});
 ButtonsGroup.args = {
   children: 'Option',
+  numbuttons: 2,
 };
