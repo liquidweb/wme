@@ -1,17 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { pxToRem } from '../utils';
 
-declare module '@mui/material/styles' {
-  // eslint-disable-next-line no-unused-vars
-  interface Theme {
-
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  interface Palette {
-
-  }
-
+declare module '@mui/material/styles/createPalette' {
   // eslint-disable-next-line no-unused-vars
   interface TypeText {
     white?: string;
@@ -27,6 +17,11 @@ declare module '@mui/material/styles' {
   // eslint-disable-next-line no-unused-vars
   interface PaletteOptions {
     border?: TypeBorder;
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  interface Palette {
+    border: TypeBorder;
   }
 
   // eslint-disable-next-line no-unused-vars
