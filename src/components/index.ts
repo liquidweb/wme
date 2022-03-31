@@ -1,6 +1,9 @@
 export { default as Button } from './button';
 export * from './button';
 
+export { default as ToggleButtonGroup } from './toggle-button-group';
+export * from './toggle-button-group';
+
 export { default as SetupCard } from './setup-card';
 export * from './setup-card';
 
