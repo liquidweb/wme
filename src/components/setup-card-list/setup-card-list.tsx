@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import List, { ListProps } from '@mui/material/List';
 
 const StyledSetupCardList = styled(List, {
-  name: 'WmeSeupCardList',
+  name: 'WmeSetupCardList',
   slot: 'Root',
 })<ListProps>(({ theme }) => ({
   '& .MuiListItemIcon-root': {
