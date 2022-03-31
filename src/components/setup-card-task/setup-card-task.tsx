@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
-  Box, BoxProps, Button, CardActionArea, Typography,
+  Box, BoxProps, CardActionArea, Typography,
   Avatar, AvatarProps,
 } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
+import Button from '../button';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
 
