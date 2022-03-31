@@ -7,7 +7,7 @@ export default {
   title: 'Buttons/ToggleButtonGroup',
   component: ToggleButtonGroup,
   argTypes: {
-    numbuttons: {
+    numOfButtons: {
       control: {
         type: 'number',
         min: 1,
@@ -20,7 +20,7 @@ export default {
 const Template: ComponentStory<typeof ToggleButtonGroup> = (args) => {
   const [selected, setSelected] = useState<string | null>('');
   const buttonsArr = [];
-  const { children, numbuttons } = args;
+  const { children, numOfButtons } = args;
 
   const handleSelected = (
     event: React.MouseEvent<HTMLElement>,
@@ -30,7 +30,7 @@ const Template: ComponentStory<typeof ToggleButtonGroup> = (args) => {
   };
 
   // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < numbuttons; i++) {
+  for (let i = 0; i < numOfButtons; i++) {
     buttonsArr.push(<ToggleButton value={`option${i}`} key={i}>{children}</ToggleButton>);
   }
 
@@ -40,7 +40,7 @@ const Template: ComponentStory<typeof ToggleButtonGroup> = (args) => {
       onChange={handleSelected}
       exclusive
       aria-label="toggle button group"
-      numbuttons={numbuttons}
+      numOfButtons={numOfButtons}
     >
       { buttonsArr.map((button) => button) }
     </ToggleButtonGroup>
@@ -50,5 +50,5 @@ const Template: ComponentStory<typeof ToggleButtonGroup> = (args) => {
 export const ButtonsGroup = Template.bind({});
 ButtonsGroup.args = {
   children: 'Option',
-  numbuttons: 2,
+  numOfButtons: 2,
 };

@@ -4,11 +4,15 @@ import { styled } from '@mui/material/styles';
 
 interface ToggleButtonGroupProps extends MuiToggleButtonGroupProps {
   variant?: 'outlined';
-  numbuttons: number;
+  numOfButtons: number;
 }
 
 // eslint-disable-next-line max-len
-const StyledToggleButtonGroup = styled(MuiToggleButtonGroup)<ToggleButtonGroupProps>(({ theme }) => ({
+const StyledToggleButtonGroup = styled(MuiToggleButtonGroup, {
+  shouldForwardProp: (props) => props !== 'numOfButtons',
+  name: 'WmeToggleButtonGroup',
+  slot: 'Root',
+})<ToggleButtonGroupProps>(({ theme }) => ({
   '.MuiToggleButton-root': {
     border: `1px solid ${theme.palette.text.primary}`,
     color: theme.palette.text.primary,
