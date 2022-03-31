@@ -16,5 +16,8 @@ export * from './setup-card-chip';
 export { default as SetupCardTask } from './setup-card-task';
 export * from './setup-card-task';
 
+export { default as SetupCardList } from './setup-card-list';
+export * from './setup-card-list';
+
 export { default as TextField } from './text-field';
 export * from './text-field';
