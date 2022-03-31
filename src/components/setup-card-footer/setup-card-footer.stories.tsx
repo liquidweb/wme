@@ -3,14 +3,18 @@ import { ComponentMeta } from '@storybook/react';
 import {
   Grid,
   Link,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Typography,
   Accordion,
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ExpandMore, Visibility } from '@mui/icons-material';
+import { theme } from '../../theme';
 
-import { SetupCardFooter } from '..';
+import { SetupCardFooter, SetupCardList } from '..';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -47,7 +51,7 @@ export const FooterWithAccordion = () => (
   <SetupCardFooter>
     <Accordion>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMore />}
         aria-controls="footer-accordion"
         id="footer-accordion"
       >
@@ -56,13 +60,108 @@ export const FooterWithAccordion = () => (
       <AccordionDetails>
         <Grid container spacing={6}>
           <Grid item xs={6}>
-            <img src="https://picsum.photos/600/250" alt="Test" />
+            <img
+              style={{ width: '100%', height: 'auto', borderRadius: theme.shape.borderRadius }}
+              src="https://picsum.photos/600/250"
+              alt="Test"
+            />
           </Grid>
           <Grid item xs={6}>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <Typography variant="overline">3 Minutes</Typography>
+            <Typography variant="h3" mb={1}>
+              Lorem ipsum dolor sit ametconsectetur adipiscing elit
             </Typography>
+            <Typography>
+              Duis mollis, est non commodo luctus, nisi erat porttitor 
+              ligula, eget lacinia odio sem nec elit. Cras justo odio, 
+              dapibus ac facilisis in, egestas eget quam.
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid container rowSpacing={3} columnSpacing={8} mt={0}>
+          <Grid item md={4}>
+            <SetupCardList>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+            </SetupCardList>
+          </Grid>
+          <Grid item md={4}>
+            <SetupCardList>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+            </SetupCardList>
+          </Grid>
+          <Grid item md={4}>
+            <SetupCardList>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <Visibility />
+                </ListItemIcon>
+                <ListItemText>
+                  List item text
+                </ListItemText>
+              </ListItem>
+            </SetupCardList>
           </Grid>
         </Grid>
       </AccordionDetails>
