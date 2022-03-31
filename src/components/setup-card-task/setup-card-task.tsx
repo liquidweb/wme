@@ -37,9 +37,9 @@ interface TaskProps extends BoxProps {
 const Task = styled(Box, {
   name: 'WmeTask',
   slot: 'Root',
-  overridesResolver: (props, styles) => [
-    styles.root,
-  ],
+  // overridesResolver: (props, styles) => [
+  //   styles.root,
+  // ],
 })<TaskProps>(({ variant, theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
@@ -48,7 +48,7 @@ const Task = styled(Box, {
   marginBottom: theme.spacing(3),
 
   '&:first-of-type': {
-    marginTop: theme.spacing(4),
+    marginTop: 0,
   },
 
   '&:last-of-type': {

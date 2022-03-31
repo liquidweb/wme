@@ -1,6 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CardContent } from '@mui/material';
+import { ComponentMeta } from '@storybook/react';
+import {
+  CardContent,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography
+} from '@mui/material';
+import { Visibility } from '@mui/icons-material';
 
 import { SetupCard, SetupCardHeader, SetupCardTask } from '..';
 import * as SetupCardHeaderStories from '../setup-card-header/setup-card-header.stories';
@@ -12,8 +21,8 @@ export default {
   component: SetupCard,
 } as ComponentMeta<typeof SetupCard>;
 
-const Template: ComponentStory<typeof SetupCard> = (args) => (
-  <SetupCard {...args}>
+export const Card = () => (
+  <SetupCard>
     <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
     <CardContent>
       <SetupCardTask {...SetupCardTaskStories.Task.args} />
@@ -22,6 +31,111 @@ const Template: ComponentStory<typeof SetupCard> = (args) => (
   </SetupCard>
 );
 
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const Card = Template.bind({});
-Card.args = {};
+export const CardWithColumnContent = () => (
+  <SetupCard>
+    <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+    <CardContent>
+      <Grid container>
+        <Grid item xs={4}>
+          <Typography fontWeight={600}>Column One</Typography>
+          <List dense>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+          </List>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography fontWeight={600}>Column Two</Typography>
+          <List dense>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+          </List>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography fontWeight={600}>Column Three</Typography>
+          <List>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary="List item text" />
+            </ListItem>
+          </List>
+        </Grid>
+      </Grid>
+    </CardContent>
+  </SetupCard>
+);
