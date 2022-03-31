@@ -16,24 +16,16 @@ const SetupCardFooterWrapper = styled(Box, {
   paddingLeft: theme.spacing(4),
   paddingBottom: theme.spacing(3),
   fontSize: theme.typography.pxToRem(14),
-
-  // '& > .MuiGrid-root > .MuiGrid-item': {
-  //   marginRight: theme.spacing(2),
-  // },
-
   '& .MuiAccordion-root': {
     boxShadow: 'none',
   },
-
   '& .MuiAccordionSummary-root': {
     padding: 0,
   },
-
   '& .MuiAccordionDetails-root': {
     paddingRight: 0,
     paddingLeft: 0,
-  }
-
+  },
 }));
 
 const SetupCardFooter: React.FC<BoxProps> = (props) => {
