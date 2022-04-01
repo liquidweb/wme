@@ -2,7 +2,10 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Card, { CardProps } from '@mui/material/Card';
 
-const StyledSetupCard = styled(Card)<CardProps>(({ theme }) => ({
+const StyledSetupCard = styled(Card, {
+  name: 'WmeSetupCard',
+  slot: 'Root',
+})<CardProps>(({ theme }) => ({
   marginRight: 'auto',
   marginLeft: 'auto',
   maxWidth: theme.spacing(100),
@@ -12,6 +15,7 @@ const StyledSetupCard = styled(Card)<CardProps>(({ theme }) => ({
     marginTop: theme.spacing(4),
     paddingTop: 0,
     paddingRight: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
     paddingLeft: theme.spacing(4),
 
     '& .MuiListItemIcon-root': {
