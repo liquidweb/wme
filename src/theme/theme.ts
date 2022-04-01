@@ -8,11 +8,6 @@ declare module '@mui/material/styles' {
   }
 
   // eslint-disable-next-line no-unused-vars
-  interface Palette {
-
-  }
-
-  // eslint-disable-next-line no-unused-vars
   interface TypeText {
     white?: string;
     placeholder?: string;
@@ -22,11 +17,17 @@ declare module '@mui/material/styles' {
   interface TypeBorder {
     ui?: string;
     layout?: string;
+    dark?: string;
   }
 
   // eslint-disable-next-line no-unused-vars
   interface PaletteOptions {
     border?: TypeBorder;
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  interface Palette {
+    border: TypeBorder;
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -67,6 +68,7 @@ export const theme = createTheme({
     border: {
       ui: '#C4C4C4',
       layout: '#C4C4C4',
+      dark: '#000000',
     },
     error: {
       main: '#FF0000',
