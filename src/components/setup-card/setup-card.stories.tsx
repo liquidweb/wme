@@ -3,15 +3,23 @@ import { ComponentMeta } from '@storybook/react';
 import {
   CardContent,
   Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography
+  Typography,
 } from '@mui/material';
-import { Visibility } from '@mui/icons-material';
+import {
+  Visibility,
+  Abc,
+  School,
+  LibraryAdd,
+} from '@mui/icons-material';
 
-import { SetupCard, SetupCardHeader, SetupCardTask } from '..';
+import {
+  SetupCard,
+  SetupCardHeader,
+  SetupCardTask,
+  SetupCardList,
+  SetupCardListItem,
+} from '..';
+
 import * as SetupCardHeaderStories from '../setup-card-header/setup-card-header.stories';
 import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories';
 
@@ -35,105 +43,31 @@ export const CardWithColumnContent = () => (
   <SetupCard>
     <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
     <CardContent>
-      <Grid container>
+      <Grid container columnSpacing={6}>
         <Grid item xs={4}>
-          <Typography fontWeight={600}>Column One</Typography>
-          <List dense>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-          </List>
+          <Typography fontWeight={600} mb={2}>Column One</Typography>
+          <SetupCardList>
+            <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Abc />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
+          </SetupCardList>
         </Grid>
         <Grid item xs={4}>
-          <Typography fontWeight={600}>Column Two</Typography>
-          <List dense>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-          </List>
+          <Typography fontWeight={600} mb={2}>Column Two</Typography>
+          <SetupCardList>
+            <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Abc />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
+          </SetupCardList>
         </Grid>
         <Grid item xs={4}>
-          <Typography fontWeight={600}>Column Three</Typography>
-          <List>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <Visibility />
-              </ListItemIcon>
-              <ListItemText primary="List item text" />
-            </ListItem>
-          </List>
+          <Typography fontWeight={600} mb={2}>Column Three</Typography>
+          <SetupCardList>
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
+          </SetupCardList>
         </Grid>
       </Grid>
     </CardContent>
