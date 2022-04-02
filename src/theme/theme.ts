@@ -1,18 +1,20 @@
-import { createTheme } from '@mui/material/styles';
-import { pxToRem } from '../utils';
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { TypographyOptions, TypographyStyleOptions } from '@mui/material/styles/createTypography';
 
 declare module '@mui/material/styles' {
-  // eslint-disable-next-line no-unused-vars
+  interface TypographyStyleOptionsExtended extends TypographyStyleOptions {
+    pxToRem: (px: number) => number;
+  }
   interface Theme {
-
+    typography: TypographyStyleOptionsExtended;
   }
 
-  // eslint-disable-next-line no-unused-vars
   interface Palette {
 
   }
 
-  // eslint-disable-next-line no-unused-vars
   interface TypeText {
     white?: string;
     placeholder?: string;
@@ -24,12 +26,10 @@ declare module '@mui/material/styles' {
     layout?: string;
   }
 
-  // eslint-disable-next-line no-unused-vars
   interface PaletteOptions {
     border?: TypeBorder;
   }
 
-  // eslint-disable-next-line no-unused-vars
   interface TypeBackground {
     primary?: string;
     secondary?: string;
@@ -39,7 +39,101 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const theme = createTheme({
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    body: React.CSSProperties;
+    subtext: React.CSSProperties;
+    link: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    body?: React.CSSProperties;
+    subtext?: React.CSSProperties;
+    link?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    body: true;
+    subtext: true;
+    link: true;
+    // Remove unused variants
+    body1: false;
+    body2: false;
+    subtitle1: false;
+    subtitle2: false;
+  }
+}
+
+const typography: TypographyOptions = {
+  fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+  allVariants: {
+    color: '#2A3353',
+  },
+  h1: {
+    fontSize: '3rem', // 48px
+    // lineHeight: '3.625rem', // 58px
+    fontWeight: 400,
+    letterSpacing: '-2%',
+  },
+  h2: {
+    fontSize: '2rem', // 32px
+    // lineHeight: '2.5rem', // 58px
+    fontWeight: 400,
+    letterSpacing: '-2%',
+  },
+  h3: {
+    fontSize: '1.5rem', // 24px
+    // lineHeight: '1.75rem', // 28px
+    fontWeight: 400,
+    letterSpacing: '-2%',
+  },
+  h4: {
+    fontSize: '1.125rem', // 18px
+    // lineHeight: '1.5rem', // 24px
+    fontWeight: 400,
+    letterSpacing: '-2%',
+  },
+  h5: {
+    fontSize: '0.875rem', // 14px
+    // lineHeight: '1.125rem', // 18px
+    fontWeight: 600,
+    letterSpacing: '-2%',
+  },
+  body: {
+    fontSize: '0.875rem', // 14px
+    // lineHeight: '1.125rem', // 18px
+    fontWeight: 400,
+    letterSpacing: '-2%',
+  },
+  subtext: {
+    fontSize: '0.625rem', // 10px
+    // lineHeight: '1rem', // 16px
+    fontWeight: 400,
+    letterSpacing: '0%',
+  },
+  link: {
+    fontSize: '0.875rem', // 14px
+    // lineHeight: '1.5rem', // 24px
+    fontWeight: 400,
+    letterSpacing: '0%',
+  },
+
+};
+
+export type WMEVariants = keyof TypographyOptions | 'inherit';
+
+export const theme = responsiveFontSizes(createTheme({
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        fontFamily: 'sans-serif',
+      },
+    },
+  },
   palette: {
     primary: {
       main: '#0047FF',
@@ -91,44 +185,5 @@ export const theme = createTheme({
       grey: '#F5F5F5',
     },
   },
-  typography: {
-    allVariants: {
-      color: '#2A3353',
-    },
-    fontFamily: 'sans-serif',
-    h1: {
-      fontSize: pxToRem(32),
-      fontWeight: 400,
-      letterSpacing: '-0.05em',
-    },
-    h2: {
-      letterSpacing: '-0.03em',
-    },
-    h3: {
-      fontSize: pxToRem(24),
-      fontWeight: 400,
-      letterSpacing: '-0.03em',
-    },
-    h4: {
-      fontSize: pxToRem(16),
-      fontWeight: 600,
-    },
-    subtitle1: {
-      fontSize: pxToRem(18),
-      fontWeight: 400,
-      letterSpacing: '-0.01em',
-    },
-    body1: {
-      fontSize: '1rem',
-      letterSpacing: '-0.01em',
-    },
-    body2: {
-      fontSize: pxToRem(14),
-      letterSpacing: '-0.01em',
-    },
-    overline: {
-      display: 'inline-block',
-      textTransform: 'none',
-    },
-  },
-});
+  typography,
+}));

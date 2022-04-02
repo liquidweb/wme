@@ -118,7 +118,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         <Avatar {...avatarProps} />
         <Box sx={{ mr: 2 }}>
           {title && <Typography component="h3" variant="h4" mb={1}>{title}</Typography>}
-          {intro && <Typography variant="body2">{intro}</Typography>}
+          {intro && <Typography variant="body">{intro}</Typography>}
           {children}
         </Box>
         {variantType === 'action' ? (
@@ -135,7 +135,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
           : (
             <SetupCardTaskCta>
               <Typography
-                variant="body2"
+                variant="body"
                 sx={{
                   fontWeight: 600,
                   letterSpacing: '-0.25px',
