@@ -9,6 +9,8 @@ import Button from '../button';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
 
+type TaskVariant = 'action' | 'task' | undefined;
+
 /* eslint-disable no-unused-vars */
 interface TaskButton {
   label: string;
@@ -25,13 +27,13 @@ interface SetupCardProps extends BoxProps {
   taskCta?: string;
   disabled?: boolean;
   avatarProps?: AvatarProps;
-  variant?: 'action' | 'task' | undefined;
+  variant?: TaskVariant;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 /* eslint-enable no-unused-vars */
 
 interface TaskProps extends BoxProps {
-  variant?: 'action' | 'task' | undefined;
+  variant?: TaskVariant;
   button?: boolean;
 }
 
