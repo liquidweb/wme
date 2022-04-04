@@ -17,10 +17,6 @@ const StyledSetupCard = styled(Card, {
     paddingRight: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     paddingLeft: theme.spacing(4),
-
-    '& .MuiListItemIcon-root': {
-      minWidth: theme.spacing(3.5),
-    },
   },
 }));
 
