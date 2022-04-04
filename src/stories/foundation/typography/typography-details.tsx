@@ -12,12 +12,13 @@ const VARIANT_INFO_LIST: [keyof CSSProperties, string][] = [
   ['letterSpacing', 'Letter Spacing'],
 ];
 
+function remStringToPx(remString: string): number {
+  return parseFloat(remString.replace('rem', '')) * 16;
+}
+
 const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
   const theme = useTheme();
   const variantInfo = theme.typography[variant] as { [key: string]: string };
-  console.log('theme.typography', theme.typography);
-  console.log('variant', variant);
-  console.log('variantInfo', variantInfo);
   if (!variantInfo) {
     return (
       <Typography variant={variant as any}>
@@ -25,6 +26,9 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
       </Typography>
     );
   }
+  const fontSizePx = variantInfo.fontSize.includes('rem') && remStringToPx(variantInfo.fontSize);
+  const lineHeightPx = fontSizePx && typeof variantInfo.lineHeight === 'number' && variantInfo.lineHeight * fontSizePx;
+
   return (
     <Box sx={{
       flexDirection: 'column',
@@ -38,10 +42,14 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
       {
        VARIANT_INFO_LIST.map(([key, label]) => (
          <Box key={key}>
-           <Typography sx={{ fontWeight: 'bold' }} variant="body">
+           <Typography sx={{ fontWeight: '600' }} variant="body">
              {`${label}: `}
            </Typography>
-           <Typography variant="body">{`${variantInfo[key]}`}</Typography>
+           <Typography variant="body">
+             {`${variantInfo[key]}`}
+             {key === 'fontSize' && fontSizePx && ` (${fontSizePx}px)`}
+             {key === 'lineHeight' && lineHeightPx && ` (${lineHeightPx}px)`}
+           </Typography>
          </Box>
        ))
       }

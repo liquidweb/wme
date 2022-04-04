@@ -68,57 +68,64 @@ declare module '@mui/material/Typography' {
   }
 }
 
+const fontFamily = [
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Arial',
+  'sans-serif',
+].join(',');
+
 const typography: TypographyOptions = {
-  fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+  fontFamily,
   allVariants: {
-    color: '#2A3353',
+    color: '#000000',
   },
   h1: {
     fontSize: '3rem', // 48px
-    // lineHeight: '3.625rem', // 58px
+    lineHeight: 58 / 48, // '58px', // '3.625rem'
     fontWeight: 400,
     letterSpacing: '-2%',
   },
   h2: {
     fontSize: '2rem', // 32px
-    // lineHeight: '2.5rem', // 58px
+    lineHeight: 1.25, // '40px', // '2.5rem'
     fontWeight: 400,
     letterSpacing: '-2%',
   },
   h3: {
     fontSize: '1.5rem', // 24px
-    // lineHeight: '1.75rem', // 28px
+    lineHeight: 28 / 24, // '28px', // '1.75rem'
     fontWeight: 400,
     letterSpacing: '-2%',
   },
   h4: {
     fontSize: '1.125rem', // 18px
-    // lineHeight: '1.5rem', // 24px
+    lineHeight: 1.33, // '24px', // '1.5rem'
     fontWeight: 400,
     letterSpacing: '-2%',
   },
   h5: {
     fontSize: '0.875rem', // 14px
-    // lineHeight: '1.125rem', // 18px
+    lineHeight: 1.285, // '18px', // '1.125rem'
     fontWeight: 600,
     letterSpacing: '-2%',
   },
   body: {
     fontSize: '0.875rem', // 14px
-    // lineHeight: '1.125rem', // 18px
+    lineHeight: 1.285, // '18px', // '1.125rem'
     fontWeight: 400,
     letterSpacing: '-2%',
   },
   subtext: {
     fontSize: '0.625rem', // 10px
-    // lineHeight: '1rem', // 16px
+    lineHeight: 1.6, // '16px', // '1rem'
     fontWeight: 400,
     letterSpacing: '0%',
   },
   link: {
     fontSize: '0.875rem', // 14px
-    // lineHeight: '1.5rem', // 24px
-    fontWeight: 400,
+    lineHeight: 1.71, // '24px', // '1.5rem'
+    fontWeight: 500,
     letterSpacing: '0%',
   },
 
@@ -126,11 +133,11 @@ const typography: TypographyOptions = {
 
 export type WMEVariants = keyof TypographyOptions | 'inherit';
 
-export const theme = responsiveFontSizes(createTheme({
+export const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {
-        fontFamily: 'sans-serif',
+        fontFamily,
       },
     },
   },
@@ -186,4 +193,4 @@ export const theme = responsiveFontSizes(createTheme({
     },
   },
   typography,
-}));
+});
