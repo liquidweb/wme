@@ -1,17 +1,19 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Link } from '@mui/material';
+import { Link, LinkProps } from '@mui/material';
 
 interface SetupCardListItemProps {
   icon?: React.ReactNode;
-  title?: string;
+  title: string;
   href?: string;
   target?: string;
+  linkProps?: LinkProps;
 }
 
 const StyledSetupCardIconWrapper = styled('div', {
   name: 'WmeSetupCardListItem',
   slot: 'WmeIconWrapper',
+  shouldForwardProp: (prop) => prop !== 'linkProps',
 })(({ theme }) => ({
   display: 'flex',
   minWidth: theme.spacing(3.5),
@@ -49,15 +51,17 @@ export default function SetupCardListItem(props: SetupCardListItemProps) {
     title,
     href,
     target = '_self',
+    linkProps = {},
   } = props;
 
   return (
-    <StyledSetupCardListItem>
+    <StyledSetupCardListItem {...props}>
       <Link
         href={href}
         target={target}
         variant="body2"
         underline="none"
+        {...linkProps}
       >
         { icon && <StyledSetupCardIconWrapper>{icon}</StyledSetupCardIconWrapper> }
         <StyledSetupCardTextWrapper>{title}</StyledSetupCardTextWrapper>
