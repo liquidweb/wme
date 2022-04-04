@@ -12,6 +12,18 @@ const VARIANT_INFO_LIST: [keyof CSSProperties, string][] = [
   ['letterSpacing', 'Letter Spacing'],
 ];
 
+const DESCRIPTIONS = {
+  h1: 'Use as a main header on a page',
+  h2: 'Use as a secondary header on a page',
+  h3: 'Use as after headings and on set up cards',
+  h4: 'Use as after headings and on set up cards',
+  h5: 'Use as Labels for Inputs, Footers',
+  body: 'Body copy',
+  subtext: 'Use for helper text, captions, and tool tips',
+  link: 'Use for links, Call To Actions',
+// eslint-disable-next-line no-unused-vars
+} as { [_ in WMEVariants]: string };
+
 function remStringToPx(remString: string): number {
   return parseFloat(remString.replace('rem', '')) * 16;
 }
@@ -42,7 +54,7 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
       {
        VARIANT_INFO_LIST.map(([key, label]) => (
          <Box key={key}>
-           <Typography sx={{ fontWeight: '600' }} variant="body">
+           <Typography sx={{ lineHeight: '24px', fontWeight: '600' }} variant="body">
              {`${label}: `}
            </Typography>
            <Typography variant="body">
@@ -53,6 +65,13 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
          </Box>
        ))
       }
+      {DESCRIPTIONS[variant] && (
+      <Box>
+        <Typography sx={{ color: '#757575' }} variant="subtext">
+          {DESCRIPTIONS[variant]}
+        </Typography>
+      </Box>
+      )}
     </Box>
   );
 };
