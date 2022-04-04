@@ -13,7 +13,6 @@ interface SetupCardListItemProps {
 const StyledSetupCardIconWrapper = styled('div', {
   name: 'WmeSetupCardListItem',
   slot: 'WmeIconWrapper',
-  shouldForwardProp: (prop) => prop !== 'linkProps',
 })(({ theme }) => ({
   display: 'flex',
   minWidth: theme.spacing(3.5),
@@ -33,6 +32,7 @@ const StyledSetupCardTextWrapper = styled('div', {
 const StyledSetupCardListItem = styled('li', {
   name: 'WmeSetupCardListItem',
   slot: 'Root',
+  shouldForwardProp: (prop) => prop !== 'linkProps' && prop !== 'icon' && prop !== 'title' && prop !== 'href',
 })<SetupCardListItemProps>(({ theme }) => ({
   '& .MuiLink-root': {
     display: 'flex',
