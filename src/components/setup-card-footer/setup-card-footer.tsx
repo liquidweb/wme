@@ -21,8 +21,16 @@ const SetupCardFooterWrapper = styled(Box, {
   },
   '& .MuiAccordionSummary-root': {
     padding: 0,
+    minHeight: 0,
+    '&.Mui-expanded': {
+      minHeight: 0,
+    },
+    '& .MuiAccordionSummary-content': {
+      margin: 0,
+    },
   },
   '& .MuiAccordionDetails-root': {
+    paddingTop: theme.spacing(3),
     paddingRight: 0,
     paddingLeft: 0,
   },

@@ -3,9 +3,6 @@ import { ComponentMeta } from '@storybook/react';
 import {
   Grid,
   Link,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Typography,
   Accordion,
   AccordionSummary,
@@ -14,7 +11,7 @@ import {
 import { ExpandMore, Visibility } from '@mui/icons-material';
 import { theme } from '../../theme';
 
-import { SetupCardFooter, SetupCardList } from '..';
+import { SetupCardFooter, SetupCardList, SetupCardListItem } from '..';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -80,92 +77,32 @@ export const FooterWithAccordion = () => (
         </Grid>
         <Grid container rowSpacing={3} columnSpacing={8} mt={0}>
           <Grid item md={4}>
+            <Typography fontWeight={600} mb={2}>Column One</Typography>
             <SetupCardList>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
+              <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
             </SetupCardList>
           </Grid>
           <Grid item md={4}>
+            <Typography fontWeight={600} mb={2}>Column Two</Typography>
             <SetupCardList>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
+              <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
             </SetupCardList>
           </Grid>
           <Grid item md={4}>
+            <Typography fontWeight={600} mb={2}>Column Three</Typography>
             <SetupCardList>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <Visibility />
-                </ListItemIcon>
-                <ListItemText>
-                  List item text
-                </ListItemText>
-              </ListItem>
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
             </SetupCardList>
           </Grid>
         </Grid>
       </AccordionDetails>
     </Accordion>
-
   </SetupCardFooter>
 );
