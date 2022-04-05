@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
-import { MenuItem } from '@mui/material';
+import { MenuItem as MuiMenuItem } from '@mui/material';
 
 interface WmeMenuItemProps {
   value: string,
@@ -9,7 +9,7 @@ interface WmeMenuItemProps {
   id?: string,
 }
 
-const StyledMenuItem = styled(MenuItem, {
+const StyledMenuItem = styled(MuiMenuItem, {
   name: 'WmeMenuItem',
   slot: 'Root',
 })(({ theme }) => ({
@@ -24,7 +24,7 @@ const StyledMenuItem = styled(MenuItem, {
   },
 }));
 
-const WmeMenuItem: React.FC<WmeMenuItemProps> = (props) => {
+const MenuItem: React.FC<WmeMenuItemProps> = (props) => {
   const { children, icon } = props;
   return (
     <StyledMenuItem {...props}>
@@ -39,4 +39,4 @@ const WmeMenuItem: React.FC<WmeMenuItemProps> = (props) => {
   );
 };
 
-export default WmeMenuItem;
+export default MenuItem;

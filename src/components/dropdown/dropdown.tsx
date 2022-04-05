@@ -10,7 +10,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import InputTitle from '../input-title';
 
 /**
- * Dropdown should use WmeMenuItem to allow for custom styling and icons.
+ * Dropdown should use the WME version of MenuItem to allow for custom styling and icons.
  */
 
 interface WmeDropdownProps {

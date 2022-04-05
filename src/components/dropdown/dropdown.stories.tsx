@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { SelectChangeEvent } from '@mui/material';
-import WmeMenuItem from '../menu-item';
+import MenuItem from '../menu-item';
 
 import { Dropdown } from '..';
 
@@ -45,9 +45,9 @@ export const DropdownBase = (args:any) => {
       onChange={handleChange}
       {...args}
     >
-      <WmeMenuItem id="item1" key="1" value="Item 1">Item 1</WmeMenuItem>
-      <WmeMenuItem id="item2" key="2" value="Item 2">Item 2</WmeMenuItem>
-      <WmeMenuItem id="item3" key="3" value="Item 3">Item 3</WmeMenuItem>
+      <MenuItem id="item1" key="1" value="Item 1">Item 1</MenuItem>
+      <MenuItem id="item2" key="2" value="Item 2">Item 2</MenuItem>
+      <MenuItem id="item3" key="3" value="Item 3">Item 3</MenuItem>
     </Dropdown>
   );
 };
