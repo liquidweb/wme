@@ -1,14 +1,15 @@
 import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import {
-  Link,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material';
-import { Visibility } from '@mui/icons-material';
+  Visibility,
+  Abc,
+  School,
+  LibraryAdd,
+} from '@mui/icons-material';
 
 import { SetupCardList } from '..';
+
+import SetupCardListItem from '../setup-card-list-item/setup-card-list-item';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,110 +19,36 @@ export default {
 
 export const ListWithIcons = () => (
   <SetupCardList>
-    <ListItem>
-      <ListItemIcon>
-        <Visibility />
-      </ListItemIcon>
-      <ListItemText>
-        List item text
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemIcon>
-        <Visibility />
-      </ListItemIcon>
-      <ListItemText>
-        List item text
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemIcon>
-        <Visibility />
-      </ListItemIcon>
-      <ListItemText>
-        List item text
-      </ListItemText>
-    </ListItem>
+    <SetupCardListItem title="Testing with icon title" icon={<Visibility />} />
+    <SetupCardListItem title="Testing with icon title" icon={<Abc />} />
+    <SetupCardListItem title="Testing with icon title" icon={<LibraryAdd />} />
+    <SetupCardListItem title="Testing with icon title" icon={<School />} />
   </SetupCardList>
 );
 
 export const ListWithIconsAndLinks = () => (
   <SetupCardList>
-    <ListItem>
-      <ListItemIcon>
-        <Visibility />
-      </ListItemIcon>
-      <ListItemText>
-        <Link href="#test">
-          List item text
-        </Link>
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemIcon>
-        <Visibility />
-      </ListItemIcon>
-      <ListItemText>
-        <Link href="#test">
-          List item text
-        </Link>
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemIcon>
-        <Visibility />
-      </ListItemIcon>
-      <ListItemText>
-        <Link href="#test">
-          List item text
-        </Link>
-      </ListItemText>
-    </ListItem>
+    <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+    <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Abc />} />
+    <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+    <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
   </SetupCardList>
 );
 
 export const ListWithLinks = () => (
   <SetupCardList>
-    <ListItem>
-      <ListItemText>
-        <Link href="#test">
-          List item text
-        </Link>
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemText>
-        <Link href="#test">
-          List item text
-        </Link>
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemText>
-        <Link href="#test">
-          List item text
-        </Link>
-      </ListItemText>
-    </ListItem>
+    <SetupCardListItem title="Testing with icon title" href="#testing-link" />
+    <SetupCardListItem title="Testing with icon title" href="#test-two" />
+    <SetupCardListItem title="Testing with icon title" href="#test-two" />
+    <SetupCardListItem title="Testing with icon title" href="#test-two" />
   </SetupCardList>
 );
 
 export const List = () => (
   <SetupCardList>
-    <ListItem>
-      <ListItemText>
-        List item text
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemText>
-        List item text
-      </ListItemText>
-    </ListItem>
-    <ListItem>
-      <ListItemText>
-        List item text
-      </ListItemText>
-    </ListItem>
+    <SetupCardListItem title="Testing with icon title" />
+    <SetupCardListItem title="Testing with icon title" />
+    <SetupCardListItem title="Testing with icon title" />
+    <SetupCardListItem title="Testing with icon title" />
   </SetupCardList>
 );

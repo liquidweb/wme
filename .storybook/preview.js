@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from '@storybook/theming';
+import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../src/theme';
 
 export const parameters = {
