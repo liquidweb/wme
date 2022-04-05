@@ -3,9 +3,11 @@ import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import {
   FormControl,
+  FormHelperText,
   OutlinedInput,
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import InputTitle from '../input-title';
 
 /**
  * Dropdown should use WmeMenuItem to allow for custom styling and icons.
@@ -16,15 +18,23 @@ interface WmeDropdownProps {
   value?: (string | number)[],
   onChange?: any,
   selectValue?: string,
+  helperText?: string,
+  labelText?: string,
 }
 
 const WmeSelect = styled(Select, {
   name: 'WmeSelect',
   slot: 'Root',
 })(({ theme }) => ({
+  color: theme.palette.text.disabled,
+  '& .MuiSelect-select': {
+    '& .Wme-selected-text': {
+      color: theme.palette.text.primary,
+    },
+  },
   '&.Mui-focused': {
     '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.border.dark,
+      borderColor: theme.palette.text.primary,
       borderWidth: 1,
     },
   },
@@ -49,6 +59,8 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
     value,
     onChange,
     selectValue,
+    helperText,
+    labelText,
   } = props;
 
   const childrenWithIcons = children.map((child: any) => {
@@ -60,6 +72,14 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
 
   return (
     <FormControl sx={{ m: 1, width: 415, mt: 3 }}>
+      {
+        labelText
+        && (
+          <InputTitle>
+            {labelText}
+          </InputTitle>
+        )
+      }
       <WmeSelect
         multiple
         displayEmpty
@@ -71,13 +91,20 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
             return selectValue;
           }
 
-          return selected.join(', ');
+          return <span className="Wme-selected-text">{selected.join(', ')}</span>;
         }}
         MenuProps={MenuProps}
-        inputProps={{ 'aria-label': 'Without label' }}
       >
         {childrenWithIcons}
       </WmeSelect>
+      {
+        helperText
+        && (
+          <FormHelperText sx={{ fontSize: 10, marginLeft: 0 }}>
+            {helperText}
+          </FormHelperText>
+        )
+      }
     </FormControl>
   );
 };

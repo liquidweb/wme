@@ -31,5 +31,8 @@ export * from './dropdown';
 export { default as WmeMenuItem } from './menu-item';
 export * from './menu-item';
 
+export { default as InputTitle } from './input-title';
+export * from './input-title';
+
 export { default as SetupCardListItem } from './setup-card-list-item';
 export * from './setup-card-list-item';

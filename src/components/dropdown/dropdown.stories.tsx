@@ -15,9 +15,17 @@ export default {
       },
     },
   },
+  argTypes: {
+    helperText: {
+      control: { type: 'text' },
+    },
+    labelText: {
+      control: { type: 'text' },
+    },
+  },
 } as ComponentMeta<typeof Dropdown>;
 
-export const DropdownBase = () => {
+export const DropdownBase = (args:any) => {
   const [item, setItem] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof item>) => {
@@ -35,6 +43,7 @@ export const DropdownBase = () => {
       value={item}
       selectValue="Select"
       onChange={handleChange}
+      {...args}
     >
       <WmeMenuItem id="item1" key="1" value="Item 1">Item 1</WmeMenuItem>
       <WmeMenuItem id="item2" key="2" value="Item 2">Item 2</WmeMenuItem>
