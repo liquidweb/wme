@@ -3,16 +3,12 @@ import React from 'react';
 import { createTheme } from '@mui/material/styles';
 import { TypographyOptions, TypographyStyleOptions } from '@mui/material/styles/createTypography';
 
-declare module '@mui/material/styles' {
+declare module '@mui/material/styles/createPalette' {
   interface TypographyStyleOptionsExtended extends TypographyStyleOptions {
     pxToRem: (px: number) => number;
   }
   interface Theme {
     typography: TypographyStyleOptionsExtended;
-  }
-
-  interface Palette {
-
   }
 
   interface TypeText {
@@ -28,6 +24,10 @@ declare module '@mui/material/styles' {
 
   interface PaletteOptions {
     border?: TypeBorder;
+  }
+
+  interface Palette {
+    border: TypeBorder;
   }
 
   interface TypeBackground {
