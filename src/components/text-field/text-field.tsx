@@ -50,7 +50,7 @@ const WmeInputBase = styled(InputBase, {
     borderRadius: 4,
     position: 'relative',
     border: `1px solid ${theme.palette.border.ui}`,
-    width: 'auto',
+    width: '415px',
     padding: '5px 6px',
     paddingRight: '35px',
     '&:focus': {

@@ -9,6 +9,13 @@ import { TextField } from '..';
 export default {
   title: 'Input/TextField',
   component: TextField,
+  parameters: {
+    docs: {
+      description: {
+        component: 'An input field can include a label, text field users can type into, and helper text.',
+      },
+    },
+  },
   argTypes: {
     endAdornment: {
       control: 'boolean',
