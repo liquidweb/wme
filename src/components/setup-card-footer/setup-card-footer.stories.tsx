@@ -17,6 +17,7 @@ import { SetupCardFooter, SetupCardList, SetupCardListItem } from '..';
 export default {
   title: 'Components/SetupCardFooter',
   component: SetupCardFooter,
+  decorators: [(story) => <div style={{ maxWidth: 800, margin: '0 auto' }}>{story()}</div>],
 } as ComponentMeta<typeof SetupCardFooter>;
 
 export const FooterWithLinks = () => (
