@@ -1,12 +1,15 @@
 import * as React from 'react';
 import {
-  Box, BoxProps, Button, CardActionArea, Typography,
+  Box, BoxProps, CardActionArea, Typography,
   Avatar, AvatarProps,
 } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
+import Button from '../button';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
+
+type TaskVariant = 'action' | 'task' | undefined;
 
 /* eslint-disable no-unused-vars */
 interface TaskButton {
@@ -24,22 +27,19 @@ interface SetupCardProps extends BoxProps {
   taskCta?: string;
   disabled?: boolean;
   avatarProps?: AvatarProps;
-  variant?: 'action' | 'task' | undefined;
+  variant?: TaskVariant;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 /* eslint-enable no-unused-vars */
 
 interface TaskProps extends BoxProps {
-  variant?: 'action' | 'task' | undefined;
+  variant?: TaskVariant;
   button?: boolean;
 }
 
 const Task = styled(Box, {
   name: 'WmeTask',
   slot: 'Root',
-  overridesResolver: (props, styles) => [
-    styles.root,
-  ],
 })<TaskProps>(({ variant, theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
@@ -48,7 +48,7 @@ const Task = styled(Box, {
   marginBottom: theme.spacing(3),
 
   '&:first-of-type': {
-    marginTop: theme.spacing(4),
+    marginTop: 0,
   },
 
   '&:last-of-type': {
@@ -118,7 +118,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         <Avatar {...avatarProps} />
         <Box sx={{ mr: 2 }}>
           {title && <Typography component="h3" variant="h4" mb={1}>{title}</Typography>}
-          {intro && <Typography variant="body2">{intro}</Typography>}
+          {intro && <Typography variant="body">{intro}</Typography>}
           {children}
         </Box>
         {variantType === 'action' ? (
@@ -135,7 +135,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
           : (
             <SetupCardTaskCta>
               <Typography
-                variant="body2"
+                variant="body"
                 sx={{
                   fontWeight: 600,
                   letterSpacing: '-0.25px',
