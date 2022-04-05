@@ -23,16 +23,16 @@ export const FooterWithLinks = () => (
   <SetupCardFooter>
     <Grid container spacing={2} sx={{ alignItems: 'center' }}>
       <Grid item>
-        <Typography fontWeight={600} variant="body2">Footer Message?</Typography>
+        <Typography fontWeight={600} variant="body">Footer Message?</Typography>
       </Grid>
       <Grid item>
-        <Link href="#link-one" variant="body2">Link One</Link>
+        <Link href="#link-one" variant="body">Link One</Link>
       </Grid>
       <Grid item>
-        <Link href="#link-two" variant="body2">Link Two</Link>
+        <Link href="#link-two" variant="body">Link Two</Link>
       </Grid>
       <Grid item>
-        <Link href="#link-three" variant="body2">Link Three</Link>
+        <Link href="#link-three" variant="body">Link Three</Link>
       </Grid>
     </Grid>
   </SetupCardFooter>
@@ -40,7 +40,7 @@ export const FooterWithLinks = () => (
 
 export const FooterWithText = () => (
   <SetupCardFooter>
-    <Typography fontWeight={600} variant="body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.</Typography>
+    <Typography fontWeight={600} variant="body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.</Typography>
   </SetupCardFooter>
 );
 
@@ -52,7 +52,7 @@ export const FooterWithAccordion = () => (
         aria-controls="footer-accordion"
         id="footer-accordion"
       >
-        <Typography fontWeight={600} variant="body2">Expand This Section</Typography>
+        <Typography fontWeight={600} variant="body">Expand This Section</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Grid container spacing={6}>
