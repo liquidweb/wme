@@ -59,7 +59,7 @@ export default function SetupCardListItem(props: SetupCardListItemProps) {
       <Link
         href={href}
         target={target}
-        variant="body2"
+        variant="body"
         underline="none"
         {...linkProps}
       >
