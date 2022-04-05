@@ -1,0 +1,190 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import { Box } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  CardContent,
+  Grid,
+  Link,
+  Typography,
+} from '@mui/material';
+
+import {
+  ExpandMore,
+  Visibility,
+  Abc,
+  School,
+  LibraryAdd,
+} from '@mui/icons-material';
+
+import {
+  SetupCard,
+  SetupCardHeader,
+  SetupCardTask,
+  SetupCardList,
+  SetupCardListItem,
+  SetupCardFooter,
+} from '..';
+
+import * as SetupCardHeaderStories from '../setup-card-header/setup-card-header.stories';
+import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories';
+
+import { theme } from '../../theme';
+
+<Meta title="Components/SetupCard" component={SetupCard} />
+
+# SetupCard
+Various setup tasks are set within cards on the WME Set Up page.
+
+## SetupCard with Tasks
+- SetupCard layout with SetupCardTask using the `task` variant.
+- Footer with message and links.
+
+<Canvas>
+  <Story name="Tasks">
+    <SetupCard>
+      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <CardContent>
+        <SetupCardTask {...SetupCardTaskStories.Task.args} />
+        <SetupCardTask {...SetupCardTaskStories.Task.args} />
+      </CardContent>
+      <SetupCardFooter>
+        <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+          <Grid item>
+            <Typography fontWeight={600} variant="body2">Footer Message?</Typography>
+          </Grid>
+          <Grid item>
+            <Link href="#link-one" variant="body2">Link One</Link>
+          </Grid>
+          <Grid item>
+            <Link href="#link-two" variant="body2">Link Two</Link>
+          </Grid>
+          <Grid item>
+            <Link href="#link-three" variant="body2">Link Three</Link>
+          </Grid>
+        </Grid>
+      </SetupCardFooter>
+    </SetupCard>
+  </Story>
+</Canvas>
+
+## SetupCard with Actions
+- SetupCard layout with SetupCardTask using the `action` variant.
+- Footer with message.
+
+<Canvas>
+  <Story name="Actions">
+    <SetupCard>
+      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <CardContent>
+        <SetupCardTask {...SetupCardTaskStories.Action.args} />
+        <SetupCardTask {...SetupCardTaskStories.Action.args} />
+      </CardContent>
+      <SetupCardFooter>
+        <Typography fontWeight={600} variant="body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.</Typography>
+      </SetupCardFooter>
+    </SetupCard>
+  </Story>
+</Canvas>
+
+## SetupCard with Column Links
+- SetupCard layout with SetupCardList.
+- Footer with Accordion.
+
+<Canvas>
+  <Story name="Column Links">
+    <SetupCard>
+      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <CardContent>
+        <Grid container columnSpacing={6}>
+          <Grid item xs={4}>
+            <Typography fontWeight={600} mb={2}>Column One</Typography>
+            <SetupCardList>
+              <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Abc />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
+            </SetupCardList>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography fontWeight={600} mb={2}>Column Two</Typography>
+            <SetupCardList>
+              <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Abc />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
+            </SetupCardList>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography fontWeight={600} mb={2}>Column Three</Typography>
+            <SetupCardList>
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
+              <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
+            </SetupCardList>
+          </Grid>
+        </Grid>
+      </CardContent>
+      <SetupCardFooter>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMore />}
+            aria-controls="footer-accordion"
+            id="footer-accordion"
+          >
+            <Typography fontWeight={600} variant="body2">Expand This Section</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Grid container spacing={6}>
+              <Grid item xs={6}>
+                <img
+                  style={{ width: '100%', height: 'auto', borderRadius: theme.shape.borderRadius }}
+                  src="https://picsum.photos/600/250"
+                  alt="Test"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="overline">3 Minutes</Typography>
+                <Typography variant="h3" mb={1}>
+                  Lorem ipsum dolor sit ametconsectetur adipiscing elit
+                </Typography>
+                <Typography>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula, eget lacinia odio sem nec elit. Cras justo odio,
+                  dapibus ac facilisis in, egestas eget quam.
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container rowSpacing={3} columnSpacing={8} mt={0}>
+              <Grid item md={4}>
+                <Typography fontWeight={600} mb={2}>Column One</Typography>
+                <SetupCardList>
+                  <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                </SetupCardList>
+              </Grid>
+              <Grid item md={4}>
+                <Typography fontWeight={600} mb={2}>Column Two</Typography>
+                <SetupCardList>
+                  <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                </SetupCardList>
+              </Grid>
+              <Grid item md={4}>
+                <Typography fontWeight={600} mb={2}>Column Three</Typography>
+                <SetupCardList>
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
+                </SetupCardList>
+              </Grid>
+            </Grid>
+          </AccordionDetails>
+        </Accordion>
+      </SetupCardFooter>
+    </SetupCard>
+  </Story>
+</Canvas>
