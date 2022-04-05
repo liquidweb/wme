@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { createTheme } from '@mui/material/styles';
-import { TypographyOptions, TypographyStyleOptions } from '@mui/material/styles/createTypography';
+import { TypographyStyleOptions } from '@mui/material/styles/createTypography';
 
 declare module '@mui/material/styles/createPalette' {
   interface TypographyStyleOptionsExtended extends TypographyStyleOptions {
@@ -75,11 +75,7 @@ const fontFamily = [
   'sans-serif',
 ].join(',');
 
-const typography: TypographyOptions = {
-  fontFamily,
-  allVariants: {
-    color: '#000000',
-  },
+const typographyVariants = {
   h1: {
     fontSize: '3rem', // 48px
     lineHeight: 58 / 48, // '58px', // '3.625rem'
@@ -131,7 +127,7 @@ const typography: TypographyOptions = {
 
 };
 
-export type WMEVariants = keyof TypographyOptions | 'inherit';
+export type WMEVariants = keyof typeof typographyVariants;
 
 export const theme = createTheme({
   components: {
@@ -192,5 +188,11 @@ export const theme = createTheme({
       grey: '#F5F5F5',
     },
   },
-  typography,
+  typography: {
+    fontFamily,
+    allVariants: {
+      color: '#000000',
+    },
+    ...typographyVariants,
+  },
 });
