@@ -6,7 +6,9 @@ const StyledSetupCard = styled(Card, {
   name: 'WmeSetupCard',
   slot: 'Root',
 })<CardProps>(({ theme }) => ({
+  marginTop: theme.spacing(4),
   marginRight: 'auto',
+  marginBottom: theme.spacing(4),
   marginLeft: 'auto',
   maxWidth: theme.spacing(100),
   boxShadow: '0 0 32px rgba(0, 0, 0, 0.1)',
@@ -17,10 +19,6 @@ const StyledSetupCard = styled(Card, {
     paddingRight: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     paddingLeft: theme.spacing(4),
-
-    '& .MuiListItemIcon-root': {
-      minWidth: theme.spacing(3.5),
-    },
   },
 }));
 

@@ -9,6 +9,7 @@ import * as SetupCardChipStories from '../setup-card-chip/setup-card-chip.storie
 export default {
   title: 'Components/SetupCardHeader',
   component: SetupCardHeader,
+  decorators: [(story) => <div style={{ maxWidth: 800, margin: '0 auto' }}>{story()}</div>],
 } as ComponentMeta<typeof SetupCardHeader>;
 
 const Template: ComponentStory<typeof SetupCardHeader> = (args) => (
