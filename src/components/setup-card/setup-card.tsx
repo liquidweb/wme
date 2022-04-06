@@ -6,7 +6,9 @@ const StyledSetupCard = styled(Card, {
   name: 'WmeSetupCard',
   slot: 'Root',
 })<CardProps>(({ theme }) => ({
+  marginTop: theme.spacing(4),
   marginRight: 'auto',
+  marginBottom: theme.spacing(4),
   marginLeft: 'auto',
   maxWidth: theme.spacing(100),
   boxShadow: '0 0 32px rgba(0, 0, 0, 0.1)',
