@@ -17,6 +17,7 @@ import { SetupCardFooter, SetupCardList, SetupCardListItem } from '..';
 export default {
   title: 'Components/SetupCardFooter',
   component: SetupCardFooter,
+  decorators: [(story) => <div style={{ maxWidth: 800, margin: '0 auto' }}>{story()}</div>],
 } as ComponentMeta<typeof SetupCardFooter>;
 
 export const FooterWithLinks = () => (
@@ -68,7 +69,7 @@ export const FooterWithAccordion = () => (
             <Typography variant="h3" mb={1}>
               Lorem ipsum dolor sit ametconsectetur adipiscing elit
             </Typography>
-            <Typography>
+            <Typography variant="caption">
               Duis mollis, est non commodo luctus, nisi erat porttitor
               ligula, eget lacinia odio sem nec elit. Cras justo odio,
               dapibus ac facilisis in, egestas eget quam.

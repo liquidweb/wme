@@ -10,6 +10,13 @@ import TaskIcon from './img/task-icon.png';
 export default {
   title: 'Components/SetupCardTask',
   component: SetupCardTask,
+  decorators: [(story) => <div style={{ maxWidth: 800, margin: '0 auto' }}>{story()}</div>],
+  argTypes: {
+    variant: {
+      options: ['task', 'action'],
+      control: 'radio',
+    },
+  },
 } as ComponentMeta<typeof SetupCardTask>;
 
 const Template: ComponentStory<typeof SetupCardTask> = (args) => (
