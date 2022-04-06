@@ -40,6 +40,21 @@ const StyledSelect = styled(Select, {
   },
 }));
 
+const StyledFormControl = styled(FormControl, {
+  name: 'WmeFormControl',
+  slot: 'Root',
+})({
+  width: 415,
+});
+
+const StyledFormHelperText = styled(FormHelperText, {
+  name: 'WmeFormHelperText',
+  slot: 'Root',
+})({
+  fontSize: 10,
+  marginLeft: 0,
+});
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 24;
 
@@ -71,7 +86,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
   });
 
   return (
-    <FormControl sx={{ m: 1, width: 415, mt: 3 }}>
+    <StyledFormControl>
       {
         labelText
         && (
@@ -100,12 +115,12 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
       {
         helperText
         && (
-          <FormHelperText sx={{ fontSize: 10, marginLeft: 0 }}>
+          <StyledFormHelperText>
             {helperText}
-          </FormHelperText>
+          </StyledFormHelperText>
         )
       }
-    </FormControl>
+    </StyledFormControl>
   );
 };
 

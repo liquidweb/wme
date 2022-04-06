@@ -51,6 +51,13 @@ const StyledInputBase = styled(InputBase, {
   },
 }));
 
+const StyledFormHelperText = styled(FormHelperText, {
+  name: 'WmeFormHelperText',
+  slot: 'Root',
+})({
+  fontSize: 10,
+});
+
 const TextField: React.FC<WmeTextFieldProps> = (props) => {
   const { label, helperText, ...rest } = props;
 
@@ -63,9 +70,9 @@ const TextField: React.FC<WmeTextFieldProps> = (props) => {
       {
         helperText
         && (
-          <FormHelperText sx={{ fontSize: 10 }}>
+          <StyledFormHelperText>
             {helperText}
-          </FormHelperText>
+          </StyledFormHelperText>
         )
       }
       <FormHelperText />
