@@ -2,9 +2,22 @@
   "name": "@moderntribe/wme",
   "version": "0.1.0",
   "private": false,
+  "author": "Moderntribe Incubator Team",
+  "description": "Components and hooks to build the best UX/UI admin wizards",
+  "keywords": [
+    "react",
+    "react-component",
+    "wme",
+    "moderntribe",
+    "wizard"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moderntribe/wme.git"
+  },
+  "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "license": "MIT",
   "dependencies": {
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
@@ -84,5 +97,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0"
-  }
+  },
+  "sideEffects": false
 }
