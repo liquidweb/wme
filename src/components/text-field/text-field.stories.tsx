@@ -2,10 +2,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-
 import { TextField } from '..';
-// import { IconButton } from '@mui/material';
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+
 export default {
   title: 'Input/TextField',
   component: TextField,
@@ -30,7 +28,6 @@ export default {
   },
 } as ComponentMeta<typeof TextField>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof TextField> = (args) => <TextField {...args} />;
 
 const commonArgs = {
