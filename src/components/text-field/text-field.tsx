@@ -19,12 +19,11 @@ interface WmeTextFieldProps {
   placeholder?: string,
   defaultValue?: string,
   label?: string,
-  startAdornment?: ReactNode,
+  endAdornment?: ReactNode,
   helperText?: string,
 }
 
 const StyledInputBase = styled(InputBase, {
-  shouldForwardProp: (props) => props !== 'helperText',
   name: 'WmeInputBase',
   slot: 'Root',
 })(({ theme }) => ({
@@ -56,11 +55,11 @@ const TextField: React.FC<WmeTextFieldProps> = (props) => {
   const { label, helperText, ...rest } = props;
 
   return (
-    <FormControl variant="standard" {...rest}>
+    <FormControl variant="standard">
       <InputTitle>
         {label}
       </InputTitle>
-      <StyledInputBase {...props} />
+      <StyledInputBase {...rest} />
       {
         helperText
         && (
