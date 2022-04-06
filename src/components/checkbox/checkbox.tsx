@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Checkbox as MuiCheckbox, FormControlLabel, FormGroup } from '@mui/material';
+import { Checkbox as MuiCheckbox, FormGroup } from '@mui/material';
+import FormControlLabel from '../form-control-label';
 
 interface CheckboxProps {
   label: string,
@@ -25,18 +26,9 @@ const WmeCheckbox = styled(MuiCheckbox, {
   },
 }));
 
-const WmeFormControlLabel = styled(FormControlLabel, {
-  name: 'WmeFormControlLabel',
-  slot: 'Root',
-})(() => ({
-  '& .MuiTypography-root': {
-    fontSize: 14,
-  },
-}));
-
 const Checkbox: React.FC<CheckboxProps> = (props) => (
   <FormGroup>
-    <WmeFormControlLabel control={<WmeCheckbox />} {...props} />
+    <FormControlLabel control={<WmeCheckbox />} {...props} />
   </FormGroup>
 );
 

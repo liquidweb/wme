@@ -34,8 +34,14 @@ export * from './menu-item';
 export { default as InputTitle } from './input-title';
 export * from './input-title';
 
+export { default as FormControlLabel } from './form-control-label';
+export * from './form-control-label';
+
 export { default as SetupCardListItem } from './setup-card-list-item';
 export * from './setup-card-list-item';
 
 export { default as Checkbox } from './checkbox';
 export * from './checkbox';
+
+export { default as RadioButtonGroup } from './radio-button-group';
+export * from './radio-button-group';
