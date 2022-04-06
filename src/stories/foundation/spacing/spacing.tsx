@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const Spacing = ({ size = 1 }: {size: number}) => {
   const theme = useTheme();
@@ -10,13 +10,12 @@ const Spacing = ({ size = 1 }: {size: number}) => {
       display: 'flex',
       alignItems: 'center',
       flex: 1,
-      mb: 2,
-
+      mb: 1,
     }}
     >
-      <Box sx={{ minWidth: 90 }}>
-        {`(${size}) / ${theme.spacing(size)}`}
-      </Box>
+      <Typography variant="subtext" sx={{ minWidth: 28 }}>
+        {theme.spacing(size)}
+      </Typography>
 
       <Box
         sx={{

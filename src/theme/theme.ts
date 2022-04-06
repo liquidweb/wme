@@ -78,7 +78,7 @@ const fontFamily = [
 const typographyVariants = {
   h1: {
     fontSize: '3rem',
-    lineHeight: 58 / 48,
+    lineHeight: 1.20833,
     fontWeight: 400,
     letterSpacing: '-2%',
   },
@@ -90,7 +90,7 @@ const typographyVariants = {
   },
   h3: {
     fontSize: '1.5rem',
-    lineHeight: 28 / 24,
+    lineHeight: 1.16667,
     fontWeight: 400,
     letterSpacing: '-2%',
   },
@@ -121,7 +121,7 @@ const typographyVariants = {
   link: {
     fontSize: '0.875rem',
     lineHeight: 1.71,
-    fontWeight: 500,
+    fontWeight: 400,
     letterSpacing: '0%',
   },
 
