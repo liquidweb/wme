@@ -1,9 +1,6 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 import { Box } from "@mui/material";
 import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   CardContent,
   Grid,
   Link,
@@ -24,11 +21,11 @@ import {
   SetupCardTask,
   SetupCardList,
   SetupCardListItem,
-  SetupCardFooter,
 } from '..';
 
 import * as SetupCardHeaderStories from '../setup-card-header/setup-card-header.stories';
 import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories';
+import * as SetupCardFooterStories from '../setup-card-footer/setup-card-footer.stories';
 
 import { theme } from '../../theme';
 
@@ -36,38 +33,6 @@ import { theme } from '../../theme';
 
 # SetupCard
 Various setup tasks are set within cards on the WME Set Up page.
-
-## SetupCard with Tasks
-- SetupCard layout with SetupCardTask using the `task` variant.
-- Footer with message and links.
-
-<Canvas>
-  <Story name="Tasks">
-    <SetupCard>
-      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
-      <CardContent>
-        <SetupCardTask {...SetupCardTaskStories.Task.args} />
-        <SetupCardTask {...SetupCardTaskStories.Task.args} />
-      </CardContent>
-      <SetupCardFooter>
-        <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-          <Grid item>
-            <Typography fontWeight={600} variant="body">Footer Message?</Typography>
-          </Grid>
-          <Grid item>
-            <Link href="#link-one" variant="body">Link One</Link>
-          </Grid>
-          <Grid item>
-            <Link href="#link-two" variant="body">Link Two</Link>
-          </Grid>
-          <Grid item>
-            <Link href="#link-three" variant="body">Link Three</Link>
-          </Grid>
-        </Grid>
-      </SetupCardFooter>
-    </SetupCard>
-  </Story>
-</Canvas>
 
 ## SetupCard with Actions
 - SetupCard layout with SetupCardTask using the `action` variant.
@@ -81,9 +46,8 @@ Various setup tasks are set within cards on the WME Set Up page.
         <SetupCardTask {...SetupCardTaskStories.Action.args} />
         <SetupCardTask {...SetupCardTaskStories.Action.args} />
       </CardContent>
-      <SetupCardFooter>
-        <Typography fontWeight={600} variant="body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.</Typography>
-      </SetupCardFooter>
+      {/* @see SetupCardFooter > Footer With Text Story */}
+      <SetupCardFooterStories.FooterWithText />
     </SetupCard>
   </Story>
 </Canvas>
@@ -97,8 +61,8 @@ Various setup tasks are set within cards on the WME Set Up page.
     <SetupCard>
       <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
       <CardContent>
-        <Grid container columnSpacing={6}>
-          <Grid item xs={4}>
+        <Grid container rowSpacing={3} columnSpacing={8}>
+          <Grid item md={4}>
             <Typography fontWeight={600} mb={2}>Column One</Typography>
             <SetupCardList>
               <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
@@ -107,7 +71,7 @@ Various setup tasks are set within cards on the WME Set Up page.
               <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
             </SetupCardList>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4}>
             <Typography fontWeight={600} mb={2}>Column Two</Typography>
             <SetupCardList>
               <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
@@ -116,7 +80,7 @@ Various setup tasks are set within cards on the WME Set Up page.
               <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<School />} />
             </SetupCardList>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4}>
             <Typography fontWeight={600} mb={2}>Column Three</Typography>
             <SetupCardList>
               <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<LibraryAdd />} />
@@ -125,66 +89,83 @@ Various setup tasks are set within cards on the WME Set Up page.
           </Grid>
         </Grid>
       </CardContent>
-      <SetupCardFooter>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
-            aria-controls="footer-accordion"
-            id="footer-accordion"
-          >
-            <Typography fontWeight={600} variant="body">Expand This Section</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Grid container spacing={6}>
-              <Grid item xs={6}>
-                <img
-                  style={{ width: '100%', height: 'auto', borderRadius: theme.shape.borderRadius }}
-                  src="https://picsum.photos/600/250"
-                  alt="Test"
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="overline">3 Minutes</Typography>
-                <Typography variant="h3" mb={1}>
-                  Lorem ipsum dolor sit ametconsectetur adipiscing elit
-                </Typography>
-                <Typography variant="caption">
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula, eget lacinia odio sem nec elit. Cras justo odio,
-                  dapibus ac facilisis in, egestas eget quam.
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container rowSpacing={3} columnSpacing={8} mt={0}>
-              <Grid item md={4}>
-                <Typography fontWeight={600} mb={2}>Column One</Typography>
-                <SetupCardList>
-                  <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                </SetupCardList>
-              </Grid>
-              <Grid item md={4}>
-                <Typography fontWeight={600} mb={2}>Column Two</Typography>
-                <SetupCardList>
-                  <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                </SetupCardList>
-              </Grid>
-              <Grid item md={4}>
-                <Typography fontWeight={600} mb={2}>Column Three</Typography>
-                <SetupCardList>
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                  <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-                </SetupCardList>
-              </Grid>
-            </Grid>
-          </AccordionDetails>
-        </Accordion>
-      </SetupCardFooter>
+      {/* @see SetupCardFooter > Footer With Accordion Story */}
+      <SetupCardFooterStories.FooterWithAccordion />
+    </SetupCard>
+  </Story>
+</Canvas>
+
+## SetupCard with Media & Text
+
+<Canvas>
+  <Story name="Media & Text">
+    <SetupCard>
+      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <CardContent>
+        <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center">
+          <Grid item xs={12} sm={6}>
+            <img
+              style={{ width: '100%', height: 'auto', borderRadius: theme.shape.borderRadius }}
+              src="https://picsum.photos/684/360"
+              alt="Test"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="overline">3 Minutes</Typography>
+            <Typography variant="h3" mb={1}>
+              Lorem ipsum dolor sit ametconsectetur adipiscing elit
+            </Typography>
+            <Typography variant="caption">
+              Duis mollis, est non commodo luctus, nisi erat porttitor
+              ligula, eget lacinia odio sem nec elit. Cras justo odio,
+              dapibus ac facilisis in, egestas eget quam.
+            </Typography>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </SetupCard>
+    <SetupCard>
+      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <CardContent>
+        <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center" direction={{xs: 'column-reverse', sm: 'row'}}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="overline">3 Minutes</Typography>
+            <Typography variant="h3" mb={1}>
+              Lorem ipsum dolor sit ametconsectetur adipiscing elit
+            </Typography>
+            <Typography variant="caption">
+              Duis mollis, est non commodo luctus, nisi erat porttitor
+              ligula, eget lacinia odio sem nec elit. Cras justo odio,
+              dapibus ac facilisis in, egestas eget quam.
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <img
+              style={{ width: '100%', height: 'auto', borderRadius: theme.shape.borderRadius }}
+              src="https://picsum.photos/684/360"
+              alt="Test"
+            />
+          </Grid>
+        </Grid>
+      </CardContent>
+    </SetupCard>
+  </Story>
+</Canvas>
+
+## SetupCard with Tasks
+- SetupCard layout with SetupCardTask using the `task` variant.
+- Footer with message and links.
+
+<Canvas>
+  <Story name="Tasks">
+    <SetupCard>
+      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <CardContent>
+        <SetupCardTask {...SetupCardTaskStories.Task.args} />
+        <SetupCardTask {...SetupCardTaskStories.Task.args} />
+      </CardContent>
+      {/* @see SetupCardFooter > Footer With Links Story */}
+      <SetupCardFooterStories.FooterWithLinks />
     </SetupCard>
   </Story>
 </Canvas>
