@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   InputBase,
   FormControl,
@@ -19,11 +19,11 @@ interface WmeTextFieldProps {
   placeholder?: string,
   defaultValue?: string,
   label?: string,
-  startAdornment?: any,
+  startAdornment?: ReactNode,
   helperText?: string,
 }
 
-const WmeInputBase = styled(InputBase, {
+const StyledInputBase = styled(InputBase, {
   shouldForwardProp: (props) => props !== 'helperText',
   name: 'WmeInputBase',
   slot: 'Root',
@@ -60,7 +60,7 @@ const TextField: React.FC<WmeTextFieldProps> = (props) => {
       <InputTitle>
         {label}
       </InputTitle>
-      <WmeInputBase {...props} />
+      <StyledInputBase {...props} />
       {
         helperText
         && (

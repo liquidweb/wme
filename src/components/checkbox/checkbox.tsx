@@ -7,7 +7,7 @@ interface CheckboxProps {
   label: string,
 }
 
-const WmeCheckbox = styled(MuiCheckbox, {
+const StyledCheckbox = styled(MuiCheckbox, {
   name: 'WmeCheckbox',
   slot: 'Root',
 })(({ theme }) => ({
@@ -28,7 +28,7 @@ const WmeCheckbox = styled(MuiCheckbox, {
 
 const Checkbox: React.FC<CheckboxProps> = (props) => (
   <FormGroup>
-    <FormControlLabel control={<WmeCheckbox />} {...props} />
+    <FormControlLabel control={<StyledCheckbox />} {...props} />
   </FormGroup>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 
-const WmeInputTitle = styled(Typography, {
+const StyledInputTitle = styled(Typography, {
   name: 'WmeInputTitle',
   slot: 'Root',
 })(({ theme }) => ({
@@ -15,9 +15,9 @@ const WmeInputTitle = styled(Typography, {
 const InputTitle: React.FC = (props) => {
   const { children } = props;
   return (
-    <WmeInputTitle>
+    <StyledInputTitle>
       {children}
-    </WmeInputTitle>
+    </StyledInputTitle>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import {
@@ -14,15 +14,15 @@ import InputTitle from '../input-title';
  */
 
 interface WmeDropdownProps {
-  children: any,
+  children: Array<ReactNode>,
   value?: (string | number)[],
-  onChange?: any,
+  onChange: any,
   selectValue?: string,
   helperText?: string,
   labelText?: string,
 }
 
-const WmeSelect = styled(Select, {
+const StyledSelect = styled(Select, {
   name: 'WmeSelect',
   slot: 'Root',
 })(({ theme }) => ({
@@ -63,7 +63,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
     labelText,
   } = props;
 
-  const childrenWithIcons = children.map((child: any) => {
+  const childrenWithIcons = children?.map((child: any) => {
     if (value?.includes(child.props.value)) {
       return React.cloneElement(child, { icon: <CheckIcon /> });
     }
@@ -80,7 +80,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
           </InputTitle>
         )
       }
-      <WmeSelect
+      <StyledSelect
         multiple
         displayEmpty
         value={value}
@@ -96,7 +96,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
         MenuProps={MenuProps}
       >
         {childrenWithIcons}
-      </WmeSelect>
+      </StyledSelect>
       {
         helperText
         && (

@@ -8,7 +8,7 @@ import {
 interface RadioButtonGroupProps {
   name: string,
   ariaLabelledby?:string,
-  onChange?: any,
+  onChange: any,
   value: string,
 }
 
