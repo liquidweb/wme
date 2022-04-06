@@ -129,7 +129,7 @@ const typographyVariants = {
 
 export type WMEVariants = keyof typeof typographyVariants;
 
-export const theme = createTheme({
+export const themeWME = {
   components: {
     MuiTypography: {
       defaultProps: {
@@ -195,4 +195,6 @@ export const theme = createTheme({
     },
     ...typographyVariants,
   },
-});
+};
+
+export const theme = createTheme(themeWME);
