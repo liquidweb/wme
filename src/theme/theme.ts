@@ -20,6 +20,7 @@ declare module '@mui/material/styles/createPalette' {
   interface TypeBorder {
     ui?: string;
     layout?: string;
+    dark?: string;
   }
 
   interface PaletteOptions {
@@ -164,6 +165,7 @@ export const themeWME = {
     border: {
       ui: '#C4C4C4',
       layout: '#C4C4C4',
+      dark: '#000000',
     },
     error: {
       main: '#FF0000',
