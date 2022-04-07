@@ -43,6 +43,9 @@ export * from './form-control-label';
 export { default as SetupCardListItem } from './setup-card-list-item';
 export * from './setup-card-list-item';
 
+export { default as ProgressBar } from './progress-bar';
+export * from './progress-bar';
+
 export { default as Checkbox } from './checkbox';
 export * from './checkbox';
 

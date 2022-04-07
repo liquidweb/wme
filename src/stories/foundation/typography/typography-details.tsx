@@ -39,7 +39,7 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
     );
   }
   const fontSizePx = variantInfo.fontSize.includes('rem') && remStringToPx(variantInfo.fontSize);
-  const lineHeightPx = fontSizePx && typeof variantInfo.lineHeight === 'number' && variantInfo.lineHeight * fontSizePx;
+  const lineHeightPx = fontSizePx && typeof variantInfo.lineHeight === 'number' && Math.round(variantInfo.lineHeight * fontSizePx);
 
   return (
     <Box sx={{
@@ -52,18 +52,18 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
     }}
     >
       {
-       VARIANT_INFO_LIST.map(([key, label]) => (
-         <Box key={key}>
-           <Typography sx={{ lineHeight: '24px', fontWeight: '600' }} variant="body">
-             {`${label}: `}
-           </Typography>
-           <Typography variant="body">
-             {`${variantInfo[key]}`}
-             {key === 'fontSize' && fontSizePx && ` (${fontSizePx}px)`}
-             {key === 'lineHeight' && lineHeightPx && ` (${lineHeightPx}px)`}
-           </Typography>
-         </Box>
-       ))
+        VARIANT_INFO_LIST.map(([key, label]) => key in variantInfo && (
+          <Box key={key}>
+            <Typography sx={{ lineHeight: '24px', fontWeight: '600' }} variant="body">
+              {`${label}: `}
+            </Typography>
+            <Typography variant="body">
+              {`${variantInfo[key]}`}
+              {key === 'fontSize' && fontSizePx && ` (${fontSizePx}px)`}
+              {key === 'lineHeight' && lineHeightPx && ` (${lineHeightPx}px)`}
+            </Typography>
+          </Box>
+        ))
       }
       {DESCRIPTIONS[variant] && (
       <Box>

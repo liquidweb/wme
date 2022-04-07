@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/addon-docs";
 import { Box } from "@mui/material";
 import Spacing from "./spacing";
+import { WMEProvider } from "../../../theme";
 
 <Meta title="Foundation/Spacing" />
 
@@ -12,8 +13,10 @@ The WME Framework works on increments of 8px.
 
 ## Usage and examples
 
-<Box sx={{ mt: 2 }}>
-  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((size) => (
-    <Spacing key={size} size={size} />
-  ))}
-</Box>
+<WMEProvider>
+  <Box sx={{ mt: 2 }}>
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((size) => (
+      <Spacing key={size} size={size} />
+    ))}
+  </Box>
+</WMEProvider>
