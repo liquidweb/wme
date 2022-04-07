@@ -54,3 +54,6 @@ export * from './radio-button-group';
 
 export { default as PasswordField } from './password-field';
 export * from './password-field';
+
+export { default as FileUpload } from './file-upload';
+export * from './file-upload';
