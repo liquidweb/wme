@@ -3,11 +3,11 @@ import { styled } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import {
   FormControl,
-  FormHelperText,
   OutlinedInput,
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import InputTitle from '../input-title';
+import FormHelperText from '../form-helper-text';
 
 /**
  * Dropdown should use the WME version of MenuItem to allow for custom styling and icons.
@@ -45,14 +45,6 @@ const StyledFormControl = styled(FormControl, {
   slot: 'Root',
 })({
   width: 415,
-});
-
-const StyledFormHelperText = styled(FormHelperText, {
-  name: 'WmeFormHelperText',
-  slot: 'Root',
-})({
-  fontSize: 10,
-  marginLeft: 0,
 });
 
 const ITEM_HEIGHT = 48;
@@ -115,9 +107,9 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
       {
         helperText
         && (
-          <StyledFormHelperText>
+          <FormHelperText>
             {helperText}
-          </StyledFormHelperText>
+          </FormHelperText>
         )
       }
     </StyledFormControl>

@@ -34,6 +34,9 @@ export * from './menu-item';
 export { default as InputTitle } from './input-title';
 export * from './input-title';
 
+export { default as FormHelperText } from './form-helper-text';
+export * from './form-helper-text';
+
 export { default as FormControlLabel } from './form-control-label';
 export * from './form-control-label';
 
@@ -45,3 +48,6 @@ export * from './checkbox';
 
 export { default as RadioButtonGroup } from './radio-button-group';
 export * from './radio-button-group';
+
+export { default as PasswordField } from './password-field';
+export * from './password-field';
