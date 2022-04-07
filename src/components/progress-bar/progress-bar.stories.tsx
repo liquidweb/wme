@@ -34,7 +34,6 @@ Progress.args = {
 };
 
 export const ProgressComplete = Template.bind({});
-
 ProgressComplete.args = {
   value: 100,
   color: 'success',
