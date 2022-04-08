@@ -48,3 +48,15 @@ export * from './checkbox';
 
 export { default as RadioButtonGroup } from './radio-button-group';
 export * from './radio-button-group';
+
+export { default as Wizard } from './wizard';
+export * from './wizard';
+
+export { default as WizardContent } from './wizard-content';
+export * from './wizard-content';
+
+export { default as WizardHeader } from './wizard-header';
+export * from './wizard-header';
+
+export { default as WizardFooter } from './wizard-footer';
+export * from './wizard-footer';
