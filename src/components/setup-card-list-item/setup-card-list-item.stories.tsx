@@ -12,6 +12,7 @@ export default {
   argTypes: {
     icon: {
       control: 'boolean',
+      defaultValue: true,
       mapping: {
         true: <DownhillSkiingIcon />,
       },
