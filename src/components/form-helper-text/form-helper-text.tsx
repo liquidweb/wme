@@ -1,6 +1,10 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { FormHelperText as MuiFormHelperText } from '@mui/material';
+import { FormHelperText as MuiFormHelperText, FormHelperTextProps as MuiFormHelperTextProps } from '@mui/material';
+
+interface FormHelperTextProps extends MuiFormHelperTextProps{
+  onClick?: any,
+}
 
 const StyledFormHelperText = styled(MuiFormHelperText, {
   name: 'WmeFormHelperText',
@@ -10,10 +14,10 @@ const StyledFormHelperText = styled(MuiFormHelperText, {
   marginLeft: 0,
 });
 
-const FormHelperText: React.FC = (props) => {
+const FormHelperText: React.FC<FormHelperTextProps> = (props) => {
   const { children } = props;
   return (
-    <StyledFormHelperText>
+    <StyledFormHelperText {...props}>
       {children}
     </StyledFormHelperText>
   );
