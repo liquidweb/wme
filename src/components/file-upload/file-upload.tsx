@@ -12,6 +12,15 @@ import Button from '../button';
 import FormHelperText from '../form-helper-text';
 import InputTitle from '../input-title';
 
+/**
+ * FileUpload also contains two other components, TitleContainer and UploadedFile.
+ *
+ * These components should not be used independently, however. They're broken up to improve
+ * the developer experience.
+ *
+ * All actions should be built out on an individual basis per component.
+*/
+
 interface FileUploadProps {
   label?: string,
   image?: string,
@@ -164,15 +173,6 @@ const TitleContainer: React.FC<TitleContainerProps> = (props) => {
     </StyledTitleContainer>
   );
 };
-
-/*
-* FileUpload also contains two other components, TitleContainer and UploadedFile.
-*
-* These components should not be used independently, however. They're broken up to improve
-* the developer experience.
-*
-* All actions should be built out on an individual basis per component.
-*/
 
 const FileUpload: React.FC<FileUploadProps> = (props) => {
   const {
