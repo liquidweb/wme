@@ -66,3 +66,8 @@ export const WizardBasic = Template.bind({});
 WizardBasic.args = {
   open: false,
 };
+
+export const WizardWithSidebar = Template.bind({});
+WizardWithSidebar.args = {
+  open: false,
+};
