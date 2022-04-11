@@ -4,6 +4,9 @@ export * from './button';
 export { default as ToggleButtonGroup } from './toggle-button-group';
 export * from './toggle-button-group';
 
+export { default as SplitButton } from './split-button';
+export * from './split-button';
+
 export { default as SetupCard } from './setup-card';
 export * from './setup-card';
 
