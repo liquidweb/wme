@@ -17,7 +17,7 @@ export default {
       options: ['determinate', 'indeterminate', 'buffer', 'query'],
       control: 'select',
     },
-  }
+  },
 } as ComponentMeta<typeof ProgressBar>;
 
 const Template: ComponentStory<typeof ProgressBar> = (args) => (

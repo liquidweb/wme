@@ -41,6 +41,13 @@ Task.args = {
   },
 };
 
+export const TaskDisabled = Template.bind({});
+TaskDisabled.args = {
+  ...Task.args,
+  title: 'Example disabled task',
+  disabled: true,
+};
+
 export const Action = Template.bind({});
 Action.args = {
   ...Task.args,
@@ -52,4 +59,11 @@ Action.args = {
     backgroundColor: '#645FF3',
     onClick: (e) => handleClick(e),
   },
+};
+
+export const ActionDisabled = Template.bind({});
+ActionDisabled.args = {
+  ...Action.args,
+  title: 'Example task with disabled Action',
+  disabled: true,
 };

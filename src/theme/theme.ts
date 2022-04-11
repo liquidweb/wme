@@ -45,6 +45,7 @@ declare module '@mui/material/styles' {
     body: React.CSSProperties;
     subtext: React.CSSProperties;
     link: React.CSSProperties;
+    taskTitle: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -52,6 +53,7 @@ declare module '@mui/material/styles' {
     body?: React.CSSProperties;
     subtext?: React.CSSProperties;
     link?: React.CSSProperties;
+    taskTitle?: React.CSSProperties;
   }
 }
 
@@ -61,6 +63,7 @@ declare module '@mui/material/Typography' {
     body: true;
     subtext: true;
     link: true;
+    taskTitle: true;
     // Remove unused variants
     body1: false;
     body2: false;
@@ -125,7 +128,12 @@ const typographyVariants = {
     fontWeight: 400,
     letterSpacing: '0%',
   },
-
+  taskTitle: {
+    fontSize: '1rem',
+    lineHeight: 1.19,
+    fontWeight: 600,
+    letterSpacing: '-3%',
+  },
 };
 
 export type WMEVariants = keyof typeof typographyVariants;
