@@ -64,7 +64,6 @@ ImageUploaded.args = {
 };
 
 export const FileUploaded: ComponentStory<typeof FileUpload> = Template.bind({});
-
 FileUploaded.args = {
   ...commonArgs,
   file: 'your-file.doc',
