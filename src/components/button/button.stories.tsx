@@ -43,6 +43,12 @@ Primary.args = {
   color: 'primary',
 };
 
+export const PrimaryDisabled = Template.bind({});
+PrimaryDisabled.args = {
+  ...Primary.args,
+  disabled: true,
+};
+
 export const Secondary = Template.bind({});
 Secondary.args = {
   ...commonArgs,
