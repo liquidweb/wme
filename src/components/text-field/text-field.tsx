@@ -2,10 +2,10 @@ import React, { ReactNode } from 'react';
 import {
   InputBase,
   FormControl,
-  FormHelperText,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import InputTitle from '../input-title';
+import FormHelperText from '../form-helper-text';
 
 /**
  * MUI's Text Field component is a wrapper for inputs.
@@ -13,7 +13,7 @@ import InputTitle from '../input-title';
  * Label should come from InputTitle.
  */
 
-interface WmeTextFieldProps {
+export interface WmeTextFieldProps {
   disabled?: boolean,
   error?: boolean,
   placeholder?: string,
@@ -21,6 +21,9 @@ interface WmeTextFieldProps {
   label?: string,
   endAdornment?: ReactNode,
   helperText?: string,
+  type?: string,
+  value?: string,
+  onChange?: any,
 }
 
 const StyledInputBase = styled(InputBase, {
@@ -29,7 +32,8 @@ const StyledInputBase = styled(InputBase, {
 })(({ theme }) => ({
   '&.MuiInputBase-root': {
     '& .MuiInputAdornment-root': {
-      marginLeft: '-35px',
+      position: 'absolute',
+      right: 15,
     },
   },
   '& .MuiInputBase-input': {
@@ -51,13 +55,6 @@ const StyledInputBase = styled(InputBase, {
   },
 }));
 
-const StyledFormHelperText = styled(FormHelperText, {
-  name: 'WmeFormHelperText',
-  slot: 'Root',
-})({
-  fontSize: 10,
-});
-
 const TextField: React.FC<WmeTextFieldProps> = (props) => {
   const { label, helperText, ...rest } = props;
 
@@ -70,12 +67,11 @@ const TextField: React.FC<WmeTextFieldProps> = (props) => {
       {
         helperText
         && (
-          <StyledFormHelperText>
+          <FormHelperText>
             {helperText}
-          </StyledFormHelperText>
+          </FormHelperText>
         )
       }
-      <FormHelperText />
     </FormControl>
   );
 };

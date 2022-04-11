@@ -2,14 +2,12 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import {
   RadioGroup,
+  RadioGroupProps,
   FormControl,
 } from '@mui/material';
 
-interface RadioButtonGroupProps {
-  name: string,
+export interface RadioButtonGroupProps extends RadioGroupProps {
   ariaLabelledby?:string,
-  onChange: any,
-  value: string,
 }
 
 const StyledRadioGroup = styled(RadioGroup, {

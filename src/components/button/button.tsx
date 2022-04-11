@@ -1,13 +1,8 @@
 import React from 'react';
-import { Button as MuiButton, ButtonProps as MuiButtonProps } from '@mui/material';
+import { Button as MuiButton, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-interface ButtonProps extends MuiButtonProps {
-    color?: 'primary' | 'secondary'| 'inherit';
-    variant?: 'outlined' | 'contained' | 'text';
-}
-
-const StyledButton = styled(MuiButton)<ButtonProps>(({ theme }) => ({
+const StyledButton = styled(MuiButton)(({ theme }) => ({
   textTransform: 'none',
   padding: '6px 12px',
   boxShadow: 'none',
