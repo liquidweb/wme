@@ -1,7 +1,13 @@
 import * as React from 'react';
 import {
-  Box, BoxProps, CardActionArea, Typography,
-  Avatar, AvatarProps,
+  Box,
+  BoxProps,
+  CardActionArea,
+  Typography,
+  TypographyProps,
+  Avatar,
+  AvatarProps,
+  ButtonProps,
 } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
@@ -12,7 +18,7 @@ import { ConditionalWrapper, pxToRem } from '../../utils';
 type TaskVariant = 'action' | 'task' | undefined;
 
 /* eslint-disable no-unused-vars */
-interface TaskButton {
+interface TaskButton extends ButtonProps {
   label: string;
   url: string;
   backgroundColor: string;
@@ -99,6 +105,23 @@ const SetupCardTaskCta = styled(Box, {
   flex: '0 0 auto',
 }));
 
+const CtaAction = styled(Typography, {
+  name: 'WmeTaskCta',
+  slot: 'Action',
+})<TypographyProps>(() => ({
+  fontWeight: 600,
+  letterSpacing: '-0.25px',
+  lineHeight: pxToRem(26),
+  opacity: 0,
+  transform: 'translateX(-10px)',
+  transition: 'all 0.3s ease-in-out',
+
+  '.MuiButtonBase-root:hover &, .Mui-focusVisible &': {
+    opacity: 1,
+    transform: 'translateX(0)',
+  },
+}));
+
 const SetupCardTask: React.FC<SetupCardProps> = (props) => {
   const {
     title, intro, button, avatarProps, variant, taskCta, onClick, children, disabled = false,
@@ -111,19 +134,19 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         condition={variantType === 'task'}
         wrapper={
           (child: React.ReactNode) => (
-            <CardActionArea onClick={onClick}>{child}</CardActionArea>
+            <CardActionArea onClick={onClick} disabled={disabled}>{child}</CardActionArea>
           )
         }
       >
         <Avatar {...avatarProps} />
         <Box sx={{ mr: 2 }}>
-          {title && <Typography component="h3" variant="h4" mb={1}>{title}</Typography>}
+          {title && <Typography component="h3" variant="taskTitle" mb={1}>{title}</Typography>}
           {intro && <Typography variant="body">{intro}</Typography>}
           {children}
         </Box>
         {variantType === 'action' ? (
           <Button
-            disabled={disabled}
+            disabled={button?.disabled || disabled}
             variant="contained"
             href={button?.url}
             onClick={onClick}
@@ -134,25 +157,9 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         )
           : (
             <SetupCardTaskCta>
-              <Typography
-                variant="body"
-                sx={{
-                  fontWeight: 600,
-                  letterSpacing: '-0.25px',
-                  lineHeight: pxToRem(26),
-                  opacity: 0,
-                  transform: 'translateX(-10px)',
-                  transition: 'all 0.3s ease-in-out',
-
-                  '.MuiButtonBase-root:hover &, .Mui-focusVisible &': {
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                  },
-                }}
-                className="sb-get-started__text"
-              >
+              <CtaAction variant="body">
                 {taskCta}
-              </Typography>
+              </CtaAction>
               <ChevronRight />
             </SetupCardTaskCta>
           )}
