@@ -27,6 +27,12 @@ const StyledButton = styled(MuiButton)(({ theme }) => ({
     backgroundColor: 'transparent',
     color: theme.palette.text.placeholder,
   },
+  '&.MuiButton-outlinedPrimary': {
+    '&:focus, &:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.text.white,
+    },
+  },
 }));
 
 const Button: React.FC<ButtonProps> = (props) => <StyledButton {...props} />;

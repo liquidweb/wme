@@ -3,32 +3,28 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
 
 import { Button } from '..';
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+
 export default {
   title: 'Buttons/Button',
   component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    color: {
-      options: ['primary', 'secondary', 'inherit'],
-      control: 'radio',
-    },
     startIcon: {
       control: 'boolean',
       mapping: {
         true: <DownhillSkiingIcon />,
       },
+      defaultValue: false,
     },
     endIcon: {
       control: 'boolean',
       mapping: {
         true: <DownhillSkiingIcon />,
       },
+      defaultValue: false,
     },
   },
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 const commonArgs = {
@@ -43,12 +39,16 @@ Primary.args = {
   color: 'primary',
 };
 
+Primary.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
+
 export const Secondary = Template.bind({});
 Secondary.args = {
   ...commonArgs,
   variant: 'contained',
   color: 'secondary',
 };
+
+Secondary.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
 
 export const Stroked = Template.bind({});
 Stroked.args = {
@@ -57,9 +57,13 @@ Stroked.args = {
   color: 'primary',
 };
 
+Stroked.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
+
 export const NoContainer = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 NoContainer.args = {
   ...commonArgs,
   variant: 'text',
+  color: 'inherit',
 };
+
+NoContainer.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
