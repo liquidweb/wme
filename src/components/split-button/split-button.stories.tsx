@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import SplitButton from './split-button';
 
@@ -7,54 +8,31 @@ export default {
   component: SplitButton,
 } as ComponentMeta<typeof SplitButton>;
 
-const Template: ComponentStory<typeof SplitButton> = (args:any) => {
-  const [open, setOpen] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(1);
-  const anchorRef = React.useRef<HTMLDivElement>(null);
+const Template: ComponentStory<typeof SplitButton> = (args:any) => (
+  <SplitButton
+    handleClick={action('button-click')}
+    {...args}
+  />
+);
 
-  const handleClick = () => {
-    console.log('clicked');
-  };
-
-  const handleMenuItemClick = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    index: number,
-  ) => {
-    setSelectedIndex(index);
-    setOpen(false);
-  };
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event: Event) => {
-    if (
-      anchorRef.current
-      && anchorRef.current.contains(event.target as HTMLElement)
-    ) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return (
-    <SplitButton
-      handleClick={handleClick}
-      selectedIndex={selectedIndex}
-      handleMenuItemClick={handleMenuItemClick}
-      handleToggle={handleToggle}
-      handleClose={handleClose}
-      open={open}
-      anchorRef={anchorRef}
-      {...args}
-    />
-  );
-};
-
-export const SplitButtonDefault = Template.bind({});
-SplitButtonDefault.args = {
+const commonArgs = {
   options: ['Create a merge commit', 'Squash and merge', 'Rebase and merge'],
-  ariaLabel: 'split button example',
+  ariaLabelGroup: 'split button example',
+  disabled: false,
 };
+
+export const Primary = Template.bind({});
+Primary.args = {
+  ...commonArgs,
+  color: 'primary',
+};
+
+Primary.parameters = { controls: { include: ['disabled', 'options'] } };
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  ...commonArgs,
+  color: 'secondary',
+};
+
+Secondary.parameters = { controls: { include: ['disabled', 'options'] } };
