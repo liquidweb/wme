@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import SplitButton from './split-button';
@@ -8,12 +8,23 @@ export default {
   component: SplitButton,
 } as ComponentMeta<typeof SplitButton>;
 
-const Template: ComponentStory<typeof SplitButton> = (args:any) => (
-  <SplitButton
-    handleClick={action('button-click')}
-    {...args}
-  />
-);
+const Template: ComponentStory<typeof SplitButton> = (args:any) => {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const { options } = args;
+
+  const handleIndexChange = (index:number) => {
+    setSelectedIndex(index);
+  };
+
+  return (
+    <SplitButton
+      selectedIndex={selectedIndex}
+      handleIndexChange={handleIndexChange}
+      handleClick={action(`${options[selectedIndex]} was clicked`)}
+      {...args}
+    />
+  );
+};
 
 const commonArgs = {
   options: ['Create a merge commit', 'Squash and merge', 'Rebase and merge'],

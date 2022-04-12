@@ -14,15 +14,17 @@ import Button from '../button';
 
 /**
  * All the logic for the dropdown is handled in the component, but the developer will need to
- * pass in a click handler for when the actual button is clicked.
+ * pass in a click handler and keep track of the selected index for when the button is clicked.
 */
 
 interface SplitButtonProps {
   options: Array<string>;
   handleClick: () => void,
+  handleIndexChange: (arg:number) => void,
   ariaLabelGroup: string,
   color: 'primary' | 'secondary',
   disabled: boolean,
+  selectedIndex: number,
 }
 
 const StyledMenuItem = styled(MenuItem, {
@@ -61,12 +63,13 @@ const StyledList = styled(MenuList, {
 const SplitButton: React.FC<SplitButtonProps> = (props) => {
   const anchorRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const {
     options,
     handleClick,
     ariaLabelGroup,
+    selectedIndex,
+    handleIndexChange,
     ...rest
   } = props;
 
@@ -89,7 +92,7 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
     index: number,
   ) => {
-    setSelectedIndex(index);
+    handleIndexChange(index);
     setOpen(false);
   };
 
