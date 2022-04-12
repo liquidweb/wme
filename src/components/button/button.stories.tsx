@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
+import { action } from '@storybook/addon-actions';
 
 import { Button } from '..';
 
@@ -25,7 +26,7 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = (args) => <Button onClick={action('button clicked')} {...args} />;
 
 const commonArgs = {
   children: 'Button',
