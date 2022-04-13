@@ -145,6 +145,17 @@ export const themeWME = {
         fontFamily,
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: '#2A3353',
+          padding: '8px',
+          '& .MuiTooltip-arrow': {
+            color: '#2A3353',
+          },
+        },
+      },
+    },
   },
   palette: {
     primary: {

@@ -49,6 +49,9 @@ export * from './setup-card-list-item';
 export { default as ProgressBar } from './progress-bar';
 export * from './progress-bar';
 
+export { default as Tooltip } from './tooltip';
+export * from './tooltip';
+
 export { default as Checkbox } from './checkbox';
 export * from './checkbox';
 
