@@ -9,13 +9,8 @@ import { styled } from '@mui/material/styles';
 const StyledTooltip = styled(MuiTooltip, {
   name: 'WmeTooltip',
   slot: 'Root',
-})(({ theme }) => ({
+})(() => ({
   padding: '2px 4px',
-  transition: 'background 600ms, color 600ms',
-  '&:hover': {
-    background: theme.palette.primary.main,
-    color: theme.palette.text.white,
-  },
 }));
 
 const Tooltip: React.FC<TooltipProps> = (props) => {
