@@ -19,7 +19,7 @@ const StyledBox = styled(Box, {
 }));
 
 export default {
-  title: 'DataDisplay/Tooltip',
+  title: 'Data Display/Tooltip',
   component: Tooltip,
   argTypes: {
     placement: {

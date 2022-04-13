@@ -1,14 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { SetupCardTask } from '..';
-
-// @ts-ignore
 import TaskIcon from './img/task-icon.png';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/SetupCardTask',
+  title: 'Setup Cards/SetupCardTask',
   component: SetupCardTask,
   decorators: [(story) => <div style={{ maxWidth: 800, margin: '0 auto' }}>{story()}</div>],
   argTypes: {
@@ -28,7 +24,6 @@ const handleClick = (event: React.MouseEvent<HTMLElement>) => {
   console.log(event);
 };
 
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Task = Template.bind({});
 Task.args = {
   title: 'Example task title',

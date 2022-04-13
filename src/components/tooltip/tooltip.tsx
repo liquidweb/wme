@@ -11,8 +11,9 @@ const StyledTooltip = styled(MuiTooltip, {
   slot: 'Root',
 })(({ theme }) => ({
   padding: '2px 4px',
+  transition: 'background 600ms, color 600ms',
   '&:hover': {
-    backgroundColor: theme.palette.primary.main,
+    background: theme.palette.primary.main,
     color: theme.palette.text.white,
   },
 }));

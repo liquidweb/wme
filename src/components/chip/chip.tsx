@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import Chip, { ChipProps } from '@mui/material/Chip';
+import { Chip as MuiChip, ChipProps } from '@mui/material';
 
-const StyledSetupCardChip = styled(Chip)<ChipProps>(({ color, size, theme }) => ({
+const StyledChip = styled(MuiChip)<ChipProps>(({ color, size, theme }) => ({
   flexDirection: 'row-reverse',
   backgroundColor: theme.palette.info.light,
   color: theme.palette.info.dark,
@@ -28,6 +28,6 @@ const StyledSetupCardChip = styled(Chip)<ChipProps>(({ color, size, theme }) => 
 
 }));
 
-export default function SetupCardChip(props: ChipProps) {
-  return <StyledSetupCardChip {...props} />;
+export default function Chip(props: ChipProps) {
+  return <StyledChip {...props} />;
 }

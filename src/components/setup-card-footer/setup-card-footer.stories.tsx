@@ -10,12 +10,10 @@ import {
 } from '@mui/material';
 import { ExpandMore, Visibility } from '@mui/icons-material';
 import { theme } from '../../theme';
-
 import { SetupCardFooter, SetupCardList, SetupCardListItem } from '..';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/SetupCardFooter',
+  title: 'Setup Cards/SetupCardFooter',
   component: SetupCardFooter,
   decorators: [(story) => <div style={{ maxWidth: 800, margin: '0 auto' }}>{story()}</div>],
 } as ComponentMeta<typeof SetupCardFooter>;
