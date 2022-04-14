@@ -5,7 +5,7 @@ import { ProgressBar } from '..';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/ProgressBar',
+  title: 'Data Display/ProgressBar',
   component: ProgressBar,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

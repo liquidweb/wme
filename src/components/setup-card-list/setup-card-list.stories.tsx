@@ -6,14 +6,11 @@ import {
   School,
   LibraryAdd,
 } from '@mui/icons-material';
-
 import { SetupCardList } from '..';
-
 import SetupCardListItem from '../setup-card-list-item/setup-card-list-item';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/SetupCardList',
+  title: 'Setup Cards/SetupCardList',
   component: SetupCardList,
 } as ComponentMeta<typeof SetupCardList>;
 

@@ -138,14 +138,7 @@ const typographyVariants = {
 
 export type WMEVariants = keyof typeof typographyVariants;
 
-export const themeWME = {
-  components: {
-    MuiTypography: {
-      defaultProps: {
-        fontFamily,
-      },
-    },
-  },
+let themeWME = createTheme({
   palette: {
     primary: {
       main: '#0047FF',
@@ -205,6 +198,27 @@ export const themeWME = {
     },
     ...typographyVariants,
   },
-};
+});
 
-export const theme = createTheme(themeWME);
+themeWME = createTheme(themeWME, {
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        fontFamily,
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: themeWME.palette.background.dark,
+          padding: themeWME.spacing(1),
+          '& .MuiTooltip-arrow': {
+            color: themeWME.palette.background.dark,
+          },
+        },
+      },
+    },
+  },
+});
+
+export const theme = themeWME;

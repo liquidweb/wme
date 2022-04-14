@@ -1,14 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { CheckCircleOutline, AccessTime } from '@mui/icons-material';
+import { Chip } from '..';
 
-import { SetupCardChip } from '..';
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/SetupCardChip',
-  component: SetupCardChip,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  title: 'Data Display/Chip',
+  component: Chip,
   argTypes: {
     color: {
       options: ['success', 'info'],
@@ -20,13 +17,12 @@ export default {
       control: 'radio',
     },
   },
-} as ComponentMeta<typeof SetupCardChip>;
+} as ComponentMeta<typeof Chip>;
 
-const Template: ComponentStory<typeof SetupCardChip> = (args) => (
-  <SetupCardChip {...args} />
+const Template: ComponentStory<typeof Chip> = (args) => (
+  <Chip {...args} />
 );
 
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Todo = Template.bind({});
 Todo.args = {
   label: '5 mins',
