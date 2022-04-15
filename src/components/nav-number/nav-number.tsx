@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
@@ -66,9 +65,12 @@ const NavNumber: React.FC<NavNumberProps> = (props) => {
   return (
     <StyledNavBlock {...rest}>
       <StyledCircle>
-        { props.isComplete
-          ? <CheckIcon sx={{ width: '14px' }} />
-          : number }
+        {
+          // eslint-disable-next-line react/destructuring-assignment
+          props.isComplete
+            ? <CheckIcon sx={{ width: '14px' }} />
+            : number
+        }
       </StyledCircle>
       <StyledText>
         {text}
