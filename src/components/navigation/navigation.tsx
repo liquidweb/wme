@@ -12,7 +12,7 @@ const StyledNavigation = styled(Box)<NavigationProps>(({ width }) => ({
   width: !width ? 'auto' : `${width}px`,
 }));
 
-const Navigation: React.FC<NavigationProps> = (props) => {
+export const Navigation: React.FC<NavigationProps> = (props) => {
   const { children, ...rest } = props;
 
   return (
@@ -23,5 +23,3 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     </div>
   );
 };
-
-export default Navigation;
