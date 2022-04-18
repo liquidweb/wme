@@ -27,6 +27,17 @@ interface SplitButtonProps {
   selectedIndex: number,
 }
 
+const StyledButtonGroup = styled(ButtonGroup, {
+  name: 'WmeButtonGroup',
+  slot: 'Root',
+})(({ theme }) => ({
+  '& .MuiButtonGroup-grouped': {
+    '&:not(:last-of-type)': {
+      borderColor: theme.palette.text.white,
+    },
+  },
+}));
+
 const StyledMenuItem = styled(MenuItem, {
   name: 'WmeMenuItem',
   slot: 'Root',
@@ -98,7 +109,7 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
 
   return (
     <>
-      <ButtonGroup variant="contained" ref={anchorRef} aria-label={ariaLabelGroup} {...rest}>
+      <StyledButtonGroup variant="contained" ref={anchorRef} aria-label={ariaLabelGroup} {...rest}>
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
           onClick={handleToggle}
@@ -109,7 +120,7 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
         >
           <ArrowDropDownIcon />
         </Button>
-      </ButtonGroup>
+      </StyledButtonGroup>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
