@@ -53,6 +53,9 @@ const StyledInputBase = styled(InputBase, {
       borderColor: theme.palette.error.main,
     },
   },
+  '&.Mui-disabled': {
+    backgroundColor: theme.palette.background.disabled,
+  },
 }));
 
 const TextField: React.FC<WmeTextFieldProps> = (props) => {

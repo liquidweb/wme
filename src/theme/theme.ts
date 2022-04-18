@@ -11,6 +11,12 @@ declare module '@mui/material/styles/createPalette' {
     typography: TypographyStyleOptionsExtended;
   }
 
+  interface ThemeOptions {
+    globalStyles?: {
+      menuListItemHeight?: number,
+    }
+  }
+
   interface TypeText {
     white?: string;
     placeholder?: string;
@@ -37,6 +43,7 @@ declare module '@mui/material/styles/createPalette' {
     hover?: string;
     dark?: string;
     grey?: string;
+    disabled?: string;
   }
 }
 
@@ -54,6 +61,22 @@ declare module '@mui/material/styles' {
     subtext?: React.CSSProperties;
     link?: React.CSSProperties;
     taskTitle?: React.CSSProperties;
+  }
+
+  interface Theme {
+    globalStyles: {
+      menuListItemHeight: number;
+      menuListItemPadding: number;
+      menuPaperWidth: number;
+    };
+  }
+
+  interface ThemeOptions {
+    globalStyles?: {
+      menuListItemHeight?: number;
+      menuListItemPadding?: number;
+      menuPaperWidth?: number;
+    };
   }
 }
 
@@ -189,6 +212,7 @@ let themeWME = createTheme({
       hover: '#F5F5F5',
       dark: '#2A3353',
       grey: '#F5F5F5',
+      disabled: '#F0F1F9',
     },
   },
   typography: {
@@ -197,6 +221,11 @@ let themeWME = createTheme({
       color: '#000000',
     },
     ...typographyVariants,
+  },
+  globalStyles: {
+    menuListItemHeight: 40,
+    menuListItemPadding: 24,
+    menuPaperWidth: 415,
   },
 });
 

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 import {
   FormControl,
@@ -16,7 +16,7 @@ import FormHelperText from '../form-helper-text';
 interface WmeDropdownProps {
   children: Array<ReactNode>,
   value?: (string | number)[],
-  onChange: any,
+  onChange?: any,
   selectValue?: string,
   helperText?: string,
   labelText?: string,
@@ -27,6 +27,7 @@ const StyledSelect = styled(Select, {
   slot: 'Root',
 })(({ theme }) => ({
   color: theme.palette.text.disabled,
+  height: theme.globalStyles.menuListItemHeight,
   '& .MuiSelect-select': {
     '& .Wme-selected-text': {
       color: theme.palette.text.primary,
@@ -43,24 +44,13 @@ const StyledSelect = styled(Select, {
 const StyledFormControl = styled(FormControl, {
   name: 'WmeFormControl',
   slot: 'Root',
-})({
-  width: 415,
-});
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 24;
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 415,
-      top: 96,
-    },
-  },
-};
+})<WmeDropdownProps>(({ theme }) => ({
+  width: theme.globalStyles.menuPaperWidth,
+}));
 
 const Dropdown: React.FC<WmeDropdownProps> = (props) => {
+  const theme = useTheme();
+
   const {
     children,
     value,
@@ -69,6 +59,20 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
     helperText,
     labelText,
   } = props;
+
+  const itemHeight = theme.globalStyles.menuListItemHeight;
+  const itemPaddingTop = theme.globalStyles.menuListItemPadding;
+  const width = theme.globalStyles.menuPaperWidth;
+
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: itemHeight * 4.5 + itemPaddingTop,
+        top: 96,
+        width,
+      },
+    },
+  };
 
   const childrenWithIcons = children?.map((child: any) => {
     if (value?.includes(child.props.value)) {

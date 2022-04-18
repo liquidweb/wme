@@ -182,6 +182,7 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
     selectedFile,
     handleUploadedFile,
     error,
+    subText,
   } = props;
 
   return (
@@ -208,6 +209,10 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
                 >
                   {buttonText}
                 </Button>
+                {
+                  subText
+                  && <FormHelperText>{subText}</FormHelperText>
+                }
               </>
             )
             : (

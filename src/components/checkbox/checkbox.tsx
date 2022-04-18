@@ -16,13 +16,16 @@ const StyledCheckbox = styled(MuiCheckbox, {
       fill: theme.palette.primary.main,
     },
   },
-  '&:focus': {
+  '&:focus, &:hover': {
     '& .MuiSvgIcon-root': {
-      fill: theme.palette.primary.main,
+      fill: theme.palette.primary.dark,
     },
   },
   '& .MuiSvgIcon-root': {
     fill: theme.palette.text.disabled,
+  },
+  '&:hover': {
+    backgroundColor: 'transparent',
   },
 }));
 

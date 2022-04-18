@@ -13,8 +13,12 @@ const StyledMenuItem = styled(MuiMenuItem, {
   name: 'WmeMenuItem',
   slot: 'Root',
 })(({ theme }) => ({
+  height: theme.globalStyles.menuListItemHeight,
   '& .WmeMenuItem-icon': {
     marginLeft: 'auto',
+    '& .MuiSvgIcon-root': {
+      fill: theme.palette.primary.main,
+    },
   },
   '&.Mui-selected': {
     backgroundColor: theme.palette.background.hover,
