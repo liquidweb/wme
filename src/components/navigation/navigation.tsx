@@ -6,10 +6,10 @@ interface NavigationProps {
   width?: string,
 }
 
-const StyledNavigation = styled(Box)<NavigationProps>(({ width }) => ({
+const StyledNavigation = styled(Box)<NavigationProps>(({ width = 'auto' }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  width: !width ? 'auto' : `${width}px`,
+  width,
 }));
 
 export const Navigation: React.FC<NavigationProps> = (props) => {

@@ -9,9 +9,11 @@ import NavNumber from '../nav-number';
   argTypes={{
     width: {
       name: 'width',
-      description: 'width of container for navigation',
+      description: 'Width of container for navigation. <br />Pass complete value, i.e. "500px" or "80%".',
       control: { type: 'text' },
-      default: 'auto',
+      table: {
+        defaultValue: { summary: 'auto'}
+      },
     },
   }}
 />
@@ -65,7 +67,7 @@ Wrapper for the footer navigation in a wizard.
 Steps are used to indicate an expected user flow and to let a user know which part of the flow they are currently on.
 
 ## Props
-<ArgsTable of={ Navigation } />
+<ArgsTable story="." />
 
 ## Child Components
 Navigation encompasses multiple "steps", which are each a `NavNumber` component.
@@ -84,7 +86,7 @@ However, you can use your own logic to determine the `isComplete` state on each 
 <Canvas>
   <Story
     name="Default"
-    args={{ width: '500' }}
+    args={{ width: 'auto' }}
   >
   {Template.bind({})}
   </Story>
