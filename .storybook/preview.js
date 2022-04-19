@@ -10,6 +10,19 @@ export const parameters = {
 			date: /Date$/,
 		},
 	},
+	options: {
+		storySort: {
+			order: [
+				'Documentation',
+				'Foundation',
+				'Buttons',
+				'Data Display',
+				'Input',
+				'Navigation',
+				'Setup Cards',
+			],
+		},
+	},
 }
 
 export const decorators = [

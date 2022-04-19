@@ -9,6 +9,14 @@ export default {
   title: 'Buttons/Button',
   component: Button,
   argTypes: {
+    variant: {
+      control: 'select',
+      options: ['contained', 'outlined', 'text'],
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'inherit'],
+    },
     startIcon: {
       control: 'boolean',
       mapping: {
@@ -40,16 +48,12 @@ Primary.args = {
   color: 'primary',
 };
 
-Primary.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
-
 export const Secondary = Template.bind({});
 Secondary.args = {
   ...commonArgs,
   variant: 'contained',
   color: 'secondary',
 };
-
-Secondary.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
 
 export const Stroked = Template.bind({});
 Stroked.args = {
@@ -58,13 +62,9 @@ Stroked.args = {
   color: 'primary',
 };
 
-Stroked.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
-
 export const NoContainer = Template.bind({});
 NoContainer.args = {
   ...commonArgs,
   variant: 'text',
   color: 'inherit',
 };
-
-NoContainer.parameters = { controls: { include: ['disabled', 'children', 'startIcon', 'endIcon'] } };
