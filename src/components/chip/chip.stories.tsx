@@ -20,7 +20,7 @@ export default {
       control: 'select',
       options: ['none', 'check', 'time'],
       mapping: {
-        none: '',
+        none: null,
         check: <CheckCircleOutline />,
         time: <AccessTime />,
       },

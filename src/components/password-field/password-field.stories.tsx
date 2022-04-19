@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { PasswordField } from '..';
 
@@ -33,7 +33,7 @@ export const PasswordFieldBase = (args: any) => {
     setShowPassword(!showPassword);
   };
 
-  const handleSetPassword = (event:any) => {
+  const handleSetPassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 

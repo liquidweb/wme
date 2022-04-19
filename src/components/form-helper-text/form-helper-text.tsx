@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { FormHelperText as MuiFormHelperText, FormHelperTextProps as MuiFormHelperTextProps } from '@mui/material';
 
 interface FormHelperTextProps extends MuiFormHelperTextProps{
-  onClick?: any,
+  onClick?: () => void,
 }
 
 const StyledFormHelperText = styled(MuiFormHelperText, {
