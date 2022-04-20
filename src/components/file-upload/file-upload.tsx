@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   Box,
   Input,
@@ -28,14 +28,14 @@ interface FileUploadProps {
   imageAlt?: string,
   deleteButtonText?: string,
   showSelectedFileActions?: boolean,
-  handleDeleteFile?: any,
-  handleFileActions?: any,
+  handleDeleteFile?: () => void,
+  handleFileActions?: () => void,
   nevermind?: string,
   buttonText?: string,
   subText?: string,
   helperText?: string,
   selectedFile?: boolean,
-  handleUploadedFile?: any,
+  handleUploadedFile?: (e: React.ChangeEvent<HTMLInputElement>) => void,
   error?: boolean,
   errorMessage?: string,
 }
@@ -45,8 +45,8 @@ interface UploadedFileProps {
   file?: string,
   imageAlt?: string,
   showSelectedFileActions?: boolean,
-  handleDeleteFile?: any,
-  handleFileActions?: any,
+  handleDeleteFile?: () => void,
+  handleFileActions?: () => void,
   nevermind?: string,
   deleteButtonText?: string,
 }
@@ -56,7 +56,7 @@ interface TitleContainerProps {
   error?: boolean,
   errorMessage?: string,
   selectedFile?: boolean,
-  handleFileActions?: any,
+  handleFileActions?: () => void,
   deleteButtonText?: string,
 }
 
@@ -182,6 +182,7 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
     selectedFile,
     handleUploadedFile,
     error,
+    subText,
   } = props;
 
   return (
@@ -208,6 +209,10 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
                 >
                   {buttonText}
                 </Button>
+                {
+                  subText
+                  && <FormHelperText>{subText}</FormHelperText>
+                }
               </>
             )
             : (

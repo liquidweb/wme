@@ -22,6 +22,10 @@ export default {
     labelText: {
       control: { type: 'text' },
     },
+    autoWidth: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof Dropdown>;
 

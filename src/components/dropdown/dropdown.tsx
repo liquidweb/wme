@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react';
-import { styled } from '@mui/material/styles';
-import Select from '@mui/material/Select';
+import React, { ReactElement } from 'react';
+import { styled, useTheme } from '@mui/material/styles';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {
   FormControl,
+  FormControlProps,
   OutlinedInput,
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
@@ -14,12 +15,19 @@ import FormHelperText from '../form-helper-text';
  */
 
 interface WmeDropdownProps {
-  children: Array<ReactNode>,
-  value?: (string | number)[],
-  onChange: any,
-  selectValue?: string,
-  helperText?: string,
-  labelText?: string,
+  children: Array<ReactElement>;
+  value?: (string | number)[];
+  onChange?: (event: SelectChangeEvent<unknown>) => void;
+  selectValue?: string;
+  helperText?: string;
+  labelText?: string;
+  autoWidth?: boolean;
+}
+
+interface WmeFormControlProps extends FormControlProps {
+  helperText?: string;
+  labelText?: string;
+  autoWidth?: boolean;
 }
 
 const StyledSelect = styled(Select, {
@@ -27,6 +35,7 @@ const StyledSelect = styled(Select, {
   slot: 'Root',
 })(({ theme }) => ({
   color: theme.palette.text.disabled,
+  height: theme.globalStyles.menuListItemHeight,
   '& .MuiSelect-select': {
     '& .Wme-selected-text': {
       color: theme.palette.text.primary,
@@ -43,24 +52,14 @@ const StyledSelect = styled(Select, {
 const StyledFormControl = styled(FormControl, {
   name: 'WmeFormControl',
   slot: 'Root',
-})({
-  width: 415,
-});
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 24;
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 415,
-      top: 96,
-    },
-  },
-};
+  shouldForwardProp: (prop) => prop !== 'autoWidth',
+})<WmeFormControlProps>(({ theme, autoWidth }) => ({
+  width: autoWidth ? 'auto' : theme.globalStyles.menuPaperWidth,
+}));
 
 const Dropdown: React.FC<WmeDropdownProps> = (props) => {
+  const theme = useTheme();
+
   const {
     children,
     value,
@@ -68,17 +67,32 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
     selectValue,
     helperText,
     labelText,
+    autoWidth,
   } = props;
 
-  const childrenWithIcons = children?.map((child: any) => {
-    if (value?.includes(child.props.value)) {
+  const itemHeight = theme.globalStyles.menuListItemHeight;
+  const itemPaddingTop = theme.globalStyles.menuListItemPadding;
+  const width = autoWidth ? 'auto' : theme.globalStyles.menuPaperWidth;
+
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: itemHeight * 4.5 + itemPaddingTop,
+        top: 96,
+        width,
+      },
+    },
+  };
+
+  const childrenWithIcons = children?.map((child) => {
+    if (child && value?.includes(child.props.value)) {
       return React.cloneElement(child, { icon: <CheckIcon /> });
     }
     return child;
   });
 
   return (
-    <StyledFormControl>
+    <StyledFormControl autoWidth={autoWidth}>
       {
         labelText
         && (

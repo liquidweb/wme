@@ -16,6 +16,15 @@ export default {
       options: ['small', 'large'],
       control: 'radio',
     },
+    icon: {
+      control: 'select',
+      options: ['none', 'check', 'time'],
+      mapping: {
+        none: null,
+        check: <CheckCircleOutline />,
+        time: <AccessTime />,
+      },
+    },
   },
 } as ComponentMeta<typeof Chip>;
 
@@ -28,7 +37,6 @@ Todo.args = {
   label: '5 mins',
   color: 'info',
   size: 'small',
-  icon: <AccessTime />,
 };
 
 export const Complete = Template.bind({});
@@ -36,5 +44,4 @@ Complete.args = {
   ...Todo.args,
   label: 'Completed',
   color: 'success',
-  icon: <CheckCircleOutline />,
 };

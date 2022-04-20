@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ChangeEvent } from 'react';
 import {
   InputBase,
   FormControl,
@@ -23,7 +23,7 @@ export interface WmeTextFieldProps {
   helperText?: string,
   type?: string,
   value?: string,
-  onChange?: any,
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
 const StyledInputBase = styled(InputBase, {
@@ -52,6 +52,9 @@ const StyledInputBase = styled(InputBase, {
     '& .MuiInputBase-input': {
       borderColor: theme.palette.error.main,
     },
+  },
+  '&.Mui-disabled': {
+    backgroundColor: theme.palette.background.disabled,
   },
 }));
 

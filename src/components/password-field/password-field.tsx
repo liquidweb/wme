@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   IconButton,
   InputAdornment,
   Chip,
+  ChipProps,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -23,17 +24,17 @@ interface PasswordFieldProps {
   type: string,
   value: string,
   placeholder?: string,
-  onChange: any,
-  onClick?: any,
-  onMouseDown?: any,
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
+  onClick?: () => void,
+  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void,
   chipLabel?:string,
-  color?: any,
+  color?: 'default' | 'error' | 'success' | 'warning',
 }
 
 const StyledChip = styled(Chip, {
   name: 'WmePasswordChip',
   slot: 'Root',
-})(({ theme }) => ({
+})<ChipProps>(({ theme }) => ({
   height: 26,
   '&.MuiChip-filledSuccess': {
     backgroundColor: theme.palette.success,

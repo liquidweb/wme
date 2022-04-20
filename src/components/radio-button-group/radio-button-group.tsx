@@ -16,8 +16,9 @@ const StyledRadioGroup = styled(RadioGroup, {
 })(({ theme }) => ({
   '& .MuiFormControlLabel-root': {
     '& .MuiRadio-root': {
-      '&:focus': {
+      '&:focus, &:hover': {
         color: theme.palette.primary.dark,
+        backgroundColor: 'transparent',
       },
     },
   },
