@@ -59,4 +59,6 @@ PasswordFieldBase.args = {
   chipLabel: 'Weak',
   color: 'error',
   placeholder: 'i.e. Mellon',
+  error: false,
+  errorMessage: 'Farewell, my brave Hobbits!',
 };

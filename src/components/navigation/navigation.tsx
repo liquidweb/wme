@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface NavigationProps {
-  width?: string,
+  width?: string;
 }
 
 const StyledNavigation = styled(Box)<NavigationProps>(({ width = 'auto' }) => ({

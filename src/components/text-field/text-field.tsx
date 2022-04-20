@@ -4,8 +4,7 @@ import {
   FormControl,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import InputTitle from '../input-title';
-import FormHelperText from '../form-helper-text';
+import { InputTitle, FormHelperText, ErrorText } from '..';
 
 /**
  * MUI's Text Field component is a wrapper for inputs.
@@ -14,21 +13,23 @@ import FormHelperText from '../form-helper-text';
  */
 
 export interface WmeTextFieldProps {
-  disabled?: boolean,
-  error?: boolean,
-  placeholder?: string,
-  defaultValue?: string,
-  label?: string,
-  endAdornment?: ReactNode,
-  helperText?: string,
-  type?: string,
-  value?: string,
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
+  disabled?: boolean;
+  error?: boolean;
+  errorMessage?: string;
+  placeholder?: string;
+  defaultValue?: string;
+  label?: string;
+  endAdornment?: ReactNode;
+  helperText?: string;
+  type?: string;
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const StyledInputBase = styled(InputBase, {
   name: 'WmeInputBase',
   slot: 'Root',
+  shouldForwardProp: (prop) => prop !== 'errorMessage',
 })(({ theme }) => ({
   '&.MuiInputBase-root': {
     '& .MuiInputAdornment-root': {
@@ -52,6 +53,11 @@ const StyledInputBase = styled(InputBase, {
     '& .MuiInputBase-input': {
       borderColor: theme.palette.error.main,
     },
+    '& .MuiInputAdornment-root': {
+      '& .MuiSvgIcon-root': {
+        color: theme.palette.error.main,
+      },
+    },
   },
   '&.Mui-disabled': {
     backgroundColor: theme.palette.background.disabled,
@@ -59,14 +65,26 @@ const StyledInputBase = styled(InputBase, {
 }));
 
 const TextField: React.FC<WmeTextFieldProps> = (props) => {
-  const { label, helperText, ...rest } = props;
+  const {
+    label,
+    helperText,
+    errorMessage,
+    error,
+    ...rest
+  } = props;
 
   return (
     <FormControl variant="standard">
       <InputTitle>
         {label}
       </InputTitle>
-      <StyledInputBase {...rest} />
+      <StyledInputBase error={error} {...rest} />
+      {
+        error
+        && (
+          <ErrorText>{errorMessage}</ErrorText>
+        )
+      }
       {
         helperText
         && (

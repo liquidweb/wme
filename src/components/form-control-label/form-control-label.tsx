@@ -3,9 +3,9 @@ import { styled } from '@mui/material/styles';
 import { FormControlLabel as MuiFormControlLabel } from '@mui/material';
 
 interface FormControlProps {
-  control: ReactElement,
-  label: string,
-  value?: string,
+  control: ReactElement;
+  label: string;
+  value?: string;
 }
 
 const StyledFormControlLabel = styled(MuiFormControlLabel, {

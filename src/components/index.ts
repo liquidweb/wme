@@ -69,3 +69,6 @@ export * from './navigation';
 
 export { default as NavNumber } from './nav-number';
 export * from './nav-number';
+
+export { default as ErrorText } from './error-text';
+export * from './error-text';

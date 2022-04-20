@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
-import Button from '../button';
+import { Button } from '..';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
 

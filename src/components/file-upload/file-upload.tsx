@@ -1,16 +1,16 @@
 import React, { ChangeEvent } from 'react';
-import {
-  Box,
-  Input,
-} from '@mui/material';
+import { Box, Input } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '../button';
-import FormHelperText from '../form-helper-text';
-import InputTitle from '../input-title';
+import {
+  Button,
+  FormHelperText,
+  InputTitle,
+  ErrorText,
+} from '..';
 
 /**
  * FileUpload also contains two other components, TitleContainer and UploadedFile.
@@ -22,42 +22,40 @@ import InputTitle from '../input-title';
 */
 
 interface FileUploadProps {
-  label?: string,
-  image?: string,
-  file?: string,
-  imageAlt?: string,
-  deleteButtonText?: string,
-  showSelectedFileActions?: boolean,
-  handleDeleteFile?: () => void,
-  handleFileActions?: () => void,
-  nevermind?: string,
-  buttonText?: string,
-  subText?: string,
-  helperText?: string,
-  selectedFile?: boolean,
-  handleUploadedFile?: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  error?: boolean,
-  errorMessage?: string,
+  label?: string;
+  image?: string;
+  file?: string;
+  imageAlt?: string;
+  deleteButtonText?: string;
+  showSelectedFileActions?: boolean;
+  handleDeleteFile?: () => void;
+  handleFileActions?: () => void;
+  nevermind?: string;
+  buttonText?: string;
+  subText?: string;
+  helperText?: string;
+  selectedFile?: boolean;
+  handleUploadedFile?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: boolean;
+  errorMessage?: string;
 }
 
 interface UploadedFileProps {
-  image?: string,
-  file?: string,
-  imageAlt?: string,
-  showSelectedFileActions?: boolean,
-  handleDeleteFile?: () => void,
-  handleFileActions?: () => void,
-  nevermind?: string,
-  deleteButtonText?: string,
+  image?: string;
+  file?: string;
+  imageAlt?: string;
+  showSelectedFileActions?: boolean;
+  handleDeleteFile?: () => void;
+  handleFileActions?: () => void;
+  nevermind?: string;
+  deleteButtonText?: string;
 }
 
 interface TitleContainerProps {
-  label?: string,
-  error?: boolean,
-  errorMessage?: string,
-  selectedFile?: boolean,
-  handleFileActions?: () => void,
-  deleteButtonText?: string,
+  label?: string;
+  selectedFile?: boolean;
+  handleFileActions?: () => void;
+  deleteButtonText?: string;
 }
 
 const Container = styled(Box, {
@@ -73,15 +71,6 @@ const StyledTitleContainer = styled(Box, {
 })(() => ({
   display: 'flex',
   alignItems: 'center',
-}));
-
-const ErrorText = styled(Box, {
-  name: 'WmeErrorText',
-  slot: 'Root',
-})(({ theme }) => ({
-  color: theme.palette.error.main,
-  marginLeft: 'auto',
-  fontSize: 10,
 }));
 
 const FileUploadBox = styled(Box, {
@@ -148,8 +137,6 @@ const UploadedFile: React.FC<UploadedFileProps> = (props) => {
 const TitleContainer: React.FC<TitleContainerProps> = (props) => {
   const {
     label,
-    error,
-    errorMessage,
     selectedFile,
     handleFileActions,
     deleteButtonText = 'Delete',
@@ -159,15 +146,9 @@ const TitleContainer: React.FC<TitleContainerProps> = (props) => {
     <StyledTitleContainer>
       <InputTitle>{label}</InputTitle>
       {
-        error
+        selectedFile
         && (
-          <ErrorText>{errorMessage}</ErrorText>
-        )
-      }
-      {
-        selectedFile && !error
-        && (
-          <ErrorText onClick={handleFileActions} sx={{ cursor: 'pointer' }}>{deleteButtonText}</ErrorText>
+          <ErrorText onClick={handleFileActions} sx={{ cursor: 'pointer', marginLeft: 'auto' }}>{deleteButtonText}</ErrorText>
         )
       }
     </StyledTitleContainer>
@@ -182,6 +163,7 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
     selectedFile,
     handleUploadedFile,
     error,
+    errorMessage,
     subText,
   } = props;
 
@@ -220,6 +202,12 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
             )
         }
       </FileUploadBox>
+      {
+        error
+        && (
+          <ErrorText>{errorMessage}</ErrorText>
+        )
+      }
       {
         helperText
         && <FormHelperText>{helperText}</FormHelperText>

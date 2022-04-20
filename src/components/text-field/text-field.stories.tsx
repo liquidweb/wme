@@ -33,6 +33,8 @@ const Template: ComponentStory<typeof TextField> = (args) => <TextField {...args
 const commonArgs = {
   label: 'Input Field Title',
   helperText: 'Helper text lorem ipsum',
+  error: false,
+  errorMessage: 'Farewell, my brave Hobbits!',
 };
 
 export const TextFieldBase = Template.bind({});

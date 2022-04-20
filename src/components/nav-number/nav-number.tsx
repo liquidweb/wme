@@ -4,11 +4,11 @@ import { Box, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 interface NavNumberProps {
-  number?: number,
-  text?: string,
-  onClick: () => void,
-  active?: boolean,
-  isComplete?: boolean,
+  number?: number;
+  text?: string;
+  onClick: () => void;
+  active?: boolean;
+  isComplete?: boolean;
 }
 
 const StyledNavBlock = styled(Box, {

@@ -12,5 +12,8 @@ const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} 
 export const Base = Template.bind({});
 
 Base.args = {
+  inputLabel: '',
   label: 'Creating an account means you’re okay with our Terms of Service and Privacy Policy.',
+  error: false,
+  errorMessage: 'Error Message',
 };
