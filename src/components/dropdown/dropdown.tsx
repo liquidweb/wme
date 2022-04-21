@@ -118,7 +118,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
         {childrenWithIcons}
       </StyledSelect>
       {
-        error
+        (error && errorMessage)
         && (
           <ErrorText>{errorMessage}</ErrorText>
         )

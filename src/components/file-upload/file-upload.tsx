@@ -203,7 +203,7 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
         }
       </FileUploadBox>
       {
-        error
+        (error && errorMessage)
         && (
           <ErrorText>{errorMessage}</ErrorText>
         )

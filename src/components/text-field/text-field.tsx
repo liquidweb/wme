@@ -80,7 +80,7 @@ const TextField: React.FC<WmeTextFieldProps> = (props) => {
       </InputTitle>
       <StyledInputBase error={error} {...rest} />
       {
-        error
+        (error && errorMessage)
         && (
           <ErrorText>{errorMessage}</ErrorText>
         )

@@ -111,7 +111,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
         )}
       />
       {
-        error
+        (error && errorMessage)
         && (
           <ErrorText>{errorMessage}</ErrorText>
         )

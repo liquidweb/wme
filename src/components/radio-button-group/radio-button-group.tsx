@@ -43,7 +43,7 @@ const RadioButtonGroup: React.FC<RadioButtonGroupProps> = (props) => {
       </StyledRadioGroup>
       <RadioGroup />
       {
-        error
+        (error && errorMessage)
         && (
           <ErrorText sx={{ marginTop: 0 }}>{errorMessage}</ErrorText>
         )
