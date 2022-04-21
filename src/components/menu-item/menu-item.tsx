@@ -3,10 +3,10 @@ import { styled } from '@mui/material/styles';
 import { MenuItem as MuiMenuItem } from '@mui/material';
 
 interface WmeMenuItemProps {
-  value: string,
-  key: number | string,
-  icon?: ReactNode,
-  id?: string,
+  value: string;
+  key: number | string;
+  icon?: ReactNode;
+  id?: string;
 }
 
 const StyledMenuItem = styled(MuiMenuItem, {

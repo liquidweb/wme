@@ -8,27 +8,30 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
-import InputTitle from '../input-title';
-import TextField from '../text-field';
-import FormHelperText from '../form-helper-text';
+import {
+  InputTitle,
+  TextField,
+  FormHelperText,
+  ErrorText,
+} from '..';
 
 /**
- * MUI's Text Field component is a wrapper for inputs.
- * WmeTextField breaks down the different parts to recreate the wrapper.
- * Label should come from InputTitle.
+ * Password field is a WME Text Field component with additional props
  */
 
 interface PasswordFieldProps {
-  label?: string,
-  helperText?: string,
-  type: string,
-  value: string,
-  placeholder?: string,
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
-  onClick?: () => void,
-  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-  chipLabel?:string,
-  color?: 'default' | 'error' | 'success' | 'warning',
+  label?: string;
+  helperText?: string;
+  type: string;
+  value: string;
+  placeholder?: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  chipLabel?:string;
+  color?: 'default' | 'error' | 'success' | 'warning';
+  error?: boolean;
+  errorMessage?: string;
 }
 
 const StyledChip = styled(Chip, {
@@ -70,6 +73,8 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
     onMouseDown,
     chipLabel,
     color,
+    error,
+    errorMessage,
   } = props;
 
   return (
@@ -105,6 +110,12 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
           </StyledInputAdornment>
         )}
       />
+      {
+        (error && errorMessage)
+        && (
+          <ErrorText>{errorMessage}</ErrorText>
+        )
+      }
       {
         helperText
         && <FormHelperText>{helperText}</FormHelperText>

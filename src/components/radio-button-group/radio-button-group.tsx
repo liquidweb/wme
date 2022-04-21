@@ -5,9 +5,12 @@ import {
   RadioGroupProps,
   FormControl,
 } from '@mui/material';
+import { ErrorText } from '..';
 
 export interface RadioButtonGroupProps extends RadioGroupProps {
-  ariaLabelledby?:string,
+  ariaLabelledby?: string;
+  error?: boolean;
+  errorMessage?: string;
 }
 
 const StyledRadioGroup = styled(RadioGroup, {
@@ -25,7 +28,13 @@ const StyledRadioGroup = styled(RadioGroup, {
 }));
 
 const RadioButtonGroup: React.FC<RadioButtonGroupProps> = (props) => {
-  const { children, ariaLabelledby, ...rest } = props;
+  const {
+    children,
+    ariaLabelledby,
+    error,
+    errorMessage,
+    ...rest
+  } = props;
 
   return (
     <FormControl>
@@ -33,6 +42,12 @@ const RadioButtonGroup: React.FC<RadioButtonGroupProps> = (props) => {
         {children}
       </StyledRadioGroup>
       <RadioGroup />
+      {
+        (error && errorMessage)
+        && (
+          <ErrorText sx={{ marginTop: 0 }}>{errorMessage}</ErrorText>
+        )
+      }
     </FormControl>
   );
 };

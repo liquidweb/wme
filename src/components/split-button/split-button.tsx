@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { styled } from '@mui/material/styles';
-import Button from '../button';
+import { Button } from '..';
 
 /**
  * All the logic for the dropdown is handled in the component, but the developer will need to
@@ -19,12 +19,12 @@ import Button from '../button';
 
 interface SplitButtonProps {
   options: Array<string>;
-  handleClick: () => void,
-  handleIndexChange: (arg:number) => void,
-  ariaLabelGroup: string,
-  color: 'primary' | 'secondary',
-  disabled: boolean,
-  selectedIndex: number,
+  handleClick: () => void;
+  handleIndexChange: (arg:number) => void;
+  ariaLabelGroup: string;
+  color: 'primary' | 'secondary';
+  disabled: boolean;
+  selectedIndex: number;
 }
 
 const StyledButtonGroup = styled(ButtonGroup, {

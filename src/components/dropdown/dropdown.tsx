@@ -1,14 +1,9 @@
 import React, { ReactElement } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import {
-  FormControl,
-  FormControlProps,
-  OutlinedInput,
-} from '@mui/material';
+import { FormControl, FormControlProps, OutlinedInput } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
-import InputTitle from '../input-title';
-import FormHelperText from '../form-helper-text';
+import { InputTitle, FormHelperText, ErrorText } from '..';
 
 /**
  * Dropdown should use the WME version of MenuItem to allow for custom styling and icons.
@@ -22,6 +17,8 @@ interface WmeDropdownProps {
   helperText?: string;
   labelText?: string;
   autoWidth?: boolean;
+  error?: boolean;
+  errorMessage?: string;
 }
 
 interface WmeFormControlProps extends FormControlProps {
@@ -68,6 +65,8 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
     helperText,
     labelText,
     autoWidth,
+    error,
+    errorMessage,
   } = props;
 
   const itemHeight = theme.globalStyles.menuListItemHeight;
@@ -118,6 +117,12 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
       >
         {childrenWithIcons}
       </StyledSelect>
+      {
+        (error && errorMessage)
+        && (
+          <ErrorText>{errorMessage}</ErrorText>
+        )
+      }
       {
         helperText
         && (

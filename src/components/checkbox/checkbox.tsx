@@ -1,10 +1,13 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Checkbox as MuiCheckbox, FormGroup } from '@mui/material';
-import FormControlLabel from '../form-control-label';
+import { FormControlLabel, InputTitle, ErrorText } from '..';
 
 interface CheckboxProps {
-  label: string,
+  inputLabel?: string;
+  label: string;
+  error?: boolean;
+  errorMessage?: string;
 }
 
 const StyledCheckbox = styled(MuiCheckbox, {
@@ -29,10 +32,27 @@ const StyledCheckbox = styled(MuiCheckbox, {
   },
 }));
 
-const Checkbox: React.FC<CheckboxProps> = (props) => (
-  <FormGroup>
-    <FormControlLabel control={<StyledCheckbox />} {...props} />
-  </FormGroup>
-);
+const Checkbox: React.FC<CheckboxProps> = (props) => {
+  const {
+    inputLabel,
+    error,
+    errorMessage,
+    ...rest
+  } = props;
+
+  return (
+    <FormGroup>
+      {
+        inputLabel
+        && <InputTitle>{inputLabel}</InputTitle>
+      }
+      <FormControlLabel control={<StyledCheckbox />} {...rest} />
+      {
+        (error && errorMessage)
+        && <ErrorText sx={{ marginTop: 0 }}>{errorMessage}</ErrorText>
+      }
+    </FormGroup>
+  );
+};
 
 export default Checkbox;

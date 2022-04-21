@@ -22,6 +22,14 @@ export default {
     labelText: {
       control: { type: 'text' },
     },
+    errorMessage: {
+      control: { type: 'text' },
+      defaultValue: 'Error message',
+    },
+    error: {
+      control: 'boolean',
+      defaultValue: false,
+    },
     autoWidth: {
       control: 'boolean',
       defaultValue: false,

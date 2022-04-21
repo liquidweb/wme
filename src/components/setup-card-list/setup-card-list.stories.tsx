@@ -6,8 +6,7 @@ import {
   School,
   LibraryAdd,
 } from '@mui/icons-material';
-import { SetupCardList } from '..';
-import SetupCardListItem from '../setup-card-list-item/setup-card-list-item';
+import { SetupCardList, SetupCardListItem } from '..';
 
 export default {
   title: 'Setup Cards/SetupCardList',
