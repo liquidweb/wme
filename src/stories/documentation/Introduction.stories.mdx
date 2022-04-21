@@ -85,140 +85,109 @@ import StackAlt from "../assets/stackalt.svg";
     font-size: 14px;
     line-height: 20px;
   }
-
-  .tip {
-    display: inline-block;
-    border-radius: 1em;
-    font-size: 11px;
-    line-height: 12px;
-    font-weight: 700;
-    background: #E7FDD8;
-    color: #66BF3C;
-    padding: 4px 12px;
-    margin-right: 10px;
-    vertical-align: top;
-  }
-
-  .tip-wrapper {
-    font-size: 13px;
-    line-height: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-
-  .tip-wrapper code {
-    font-size: 12px;
-    display: inline-block;
-  }
-
   
 `}</style>
 
-# Welcome to 🐣 WME Design System
+# WordPress Made Easy
+## WME Design System
 
 We are building an awesome framework to speed up the creation of wizards and
 improving the worpdress plugin onboarding experience.
 
-Here is the Figma file for the design system:
-
-<a href="https://www.figma.com/file/dt5xmHiRhRZF9D8ObPYO6a/Mithrandir-Framework-0.0?node-id=3%3A3824">
-  {" "}
-  https://www.figma.com/file/dt5xmHiRhRZF9D8ObPYO6a/Mithrandir-Framework-0.0?node-id=3%3A3824{" "}
-</a>
-
-<hr />
-
-<div className="subheading">Configure</div>
+<div className="subheading">WME Framework Resources</div>
 
 <div className="link-list">
   <a
     className="link-item"
-    href="https://storybook.js.org/docs/react/addons/addon-types"
+    href="https://github.com/moderntribe/wme"
     target="_blank"
   >
-    <img src={Plugin} alt="plugin" />
+    <img src={Repo} alt="repo" />
     <span>
-      <strong>Presets for popular tools</strong>
-      Easy setup for TypeScript, SCSS and more.
+      <strong>GitHub Repo</strong>
+      View the source and add issues/contribute
     </span>
   </a>
   <a
     className="link-item"
-    href="https://storybook.js.org/docs/react/configure/webpack"
-    target="_blank"
-  >
-    <img src={StackAlt} alt="Build" />
-    <span>
-      <strong>Build configuration</strong>
-      How to customize webpack and Babel
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/configure/styling-and-css"
-    target="_blank"
-  >
-    <img src={Colors} alt="colors" />
-    <span>
-      <strong>Styling</strong>
-      How to load and configure CSS libraries
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/get-started/setup#configure-storybook-for-your-stack"
+    href="https://www.npmjs.com/package/@moderntribe/wme"
     target="_blank"
   >
     <img src={Flow} alt="flow" />
     <span>
-      <strong>Data</strong>
-      Providers and mocking for data libraries
-    </span>
-  </a>
-</div>
-
-<div className="subheading">Learn</div>
-
-<div className="link-list">
-  <a className="link-item" href="https://storybook.js.org/docs" target="_blank">
-    <img src={Repo} alt="repo" />
-    <span>
-      <strong>Storybook documentation</strong>
-      Configure, customize, and extend
+      <strong>NPM Package</strong>
+      Get the latest version from NPM
     </span>
   </a>
   <a
     className="link-item"
-    href="https://storybook.js.org/tutorials/"
+    href="https://www.figma.com/file/dt5xmHiRhRZF9D8ObPYO6a/Mithrandir-Framework-0.0?node-id=3%3A3824"
     target="_blank"
   >
-    <img src={Direction} alt="direction" />
+    <img src={Colors} alt="colors" />
     <span>
-      <strong>In-depth guides</strong>
-      Best practices from leading teams
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://github.com/storybookjs/storybook"
-    target="_blank"
-  >
-    <img src={Code} alt="code" />
-    <span>
-      <strong>GitHub project</strong>
-      View the source and add issues
-    </span>
-  </a>
-  <a className="link-item" href="https://discord.gg/storybook" target="_blank">
-    <img src={Comments} alt="comments" />
-    <span>
-      <strong>Discord chat</strong>
-      Chat with maintainers and the community
+      <strong>Figma Design</strong>
+      See the complete Figma design
     </span>
   </a>
 </div>
 
-<div className="tip-wrapper">
-  <span className="tip">Tip</span>Edit the Markdown in{" "}
-  <code>src/stories/documentation/introduction.stories.mdx</code>
-</div>
+## Overview
+WME contains all the components needed to build an easy-to-use UI. Although it was intially
+designed to work in the WordPress admin, it can be utilizied anywhere. It does not depend on 
+WordPress in any way.
+
+WME is built in React and TypeScript. The framework relies heavily on Material UI.
+
+Most of the components in WME are either extending MUI or creating wrappers
+to more easily build more complex components, such as a File Upload or a Wizard.
+
+MUI is a dependency and can be used in conjuction with WME if needed. However, you don't have to
+use MUI independently at all if you don't want. WME should come with everything you need.
+
+## Documentation
+Each individual component is in StoryBook and should have its own documentation. Use the
+`Canvas` tab to see a playground of the component, and then the `Docs` tab to see detailed
+documentation for each component as well as an arguments table.
+
+## Installation
+Grab the latest version from NPM and then you import components as needed, just like any
+other design framework. 
+
+`npm i @moderntribe/wme`
+
+**Example:**
+```
+import React from 'react';
+import { Button, SetupCardTask } from '@wme/components';
+import TaskIcon from '../img/task-icon.png';
+
+const MyComponent = () => {
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    console.log(event);
+  };
+
+  <div className="my-component">
+    <h1>Here's a primary button</h1>
+    <Button variant="primary" color="primary">
+      Click Me:
+    </Button>
+
+    <h2>Here's a Setup Card Task<h2>
+    <SetupCardTask
+      title="Example task"
+      variant="task"
+      intro="Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+      taskCta="Go to task"
+      avatarProps={
+        src: {TaskIcon}
+      }
+      onClick={handleClick}
+    />
+
+  <div>
+};
+
+export default MyComponent;
+```
