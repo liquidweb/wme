@@ -1,0 +1,111 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
+import { useState } from 'react';
+import ToggleButton from '@mui/material/ToggleButton';
+import { ToggleButtonGroup } from '..';
+
+<Meta
+  title="Buttons/ToggleButtonGroup"
+  component={ToggleButtonGroup}
+  argTypes={{
+    children: {
+      control: 'object',
+      defaultValue: [
+        <ToggleButton value="Button 1">Button 1</ToggleButton>,
+        <ToggleButton value="Button 2">Button 2</ToggleButton>,
+        <ToggleButton value="Button 3">Button 3</ToggleButton>,
+      ],
+      description: 'Array of ToggleButtons (imported from MUI)',
+      type: { required: true },
+    },
+    onChange: {
+        type: { required: true },
+        control: false,
+        description: 'Fires when toggle is changed',
+    },
+    value: {
+      type: { required: true },
+      control: false,
+      description: 'Selected value',
+      defaultValue: "Button 1",
+    },
+    ariaLabel: {
+        control: 'text',
+        description: 'Aria-label for button group',
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  const { children } = args;
+  const [selected, setSelected] = useState('');
+  const handleSelected = (event, newSelected) => {
+    setSelected(newSelected);
+  };
+  return (
+    <ToggleButtonGroup
+      value={selected}
+      onChange={handleSelected}
+    >
+    { children }
+    </ToggleButtonGroup>
+  );
+};
+
+# Toggle Button Group
+Button groups can be used to group related options. To emphasize groups
+of related toggle buttons, a group should share a common container.
+
+## Usage
+- Group together calls to action that are related to each other.
+- The button group allows up to a maximum of four options.
+- Use when all actions within the button group trigger immediate state change in one click.
+- Content within the Button Group should be short and actionable.
+
+## Props
+<ArgsTable story="." />
+
+## Handling Events
+It's up to the developer to handle the onChange event and to manage state.
+`onChange` and `value` are both required props for the toggle to work.
+```
+import React, { useState } from 'react';
+import ToggleButton from '@mui/material/ToggleButton';
+
+const MyToggleButtonGroup = (props) => (
+  const [selected, setSelected] = useState('');
+
+  const handleSelected = (event, newSelected) => {
+    setSelected(newSelected);
+  };
+
+  const buttons = [
+    <ToggleButton value="Button 1">Button 1</ToggleButton>,
+    <ToggleButton value="Button 2">Button 2</ToggleButton>,
+    <ToggleButton value="Button 3">Button 3</ToggleButton>,
+  ];
+
+  <ToggleButtonGroup
+    onChange={handleSelected}
+    value={selected}
+    ariaLabel="aria label for button group"
+  >
+    {buttons}
+  </ToggleButtonGroup>
+
+);
+
+export default MyToggleButtonGroup;
+```
+## Example
+<Canvas>
+  <Story
+    name="Buttons Group"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

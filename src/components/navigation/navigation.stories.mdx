@@ -46,7 +46,7 @@ export const screens = [
 ];
 
 export const Template = (args) => {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
   return (
     <Navigation {...args}>
       {
@@ -87,6 +87,7 @@ Navigation encompasses multiple "steps", which are each a `NavNumber` component.
 - In this particular example, the first step is hardcoded as "complete", so it shows with a checkbox.
 However, you can use your own logic to determine the `isComplete` state on each step.
 
+## Example
 <Canvas>
   <Story
     name="Default"

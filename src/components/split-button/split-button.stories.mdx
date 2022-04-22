@@ -1,0 +1,131 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
+import { useState } from 'react';
+import { action } from '@storybook/addon-actions';
+import SplitButton from './split-button';
+
+<Meta
+  title="Buttons/SplitButton"
+  component={SplitButton}
+  argTypes={{
+      options: {
+        control: 'object',
+        defaultValue: ['Create a merge commit', 'Squash and merge', 'Rebase and merge'],
+        description: 'Array of values (string) to show in dropdown',
+        type: { required: true },
+      },
+      color: {
+        control: 'select',
+        options: ['primary', 'secondary'],
+        description: 'Color of split button',
+      },
+      ariaLabelGroup: {
+        control: 'text',
+        description: 'Aria-label for entire split button group',
+      },
+      disabled: {
+        control: 'boolean',
+        defaultValue: false,
+        description: 'Adds disabled class',
+      },
+      handleClick: {
+        type: { required: true },
+        control: false,
+        description: 'Handles click of actual button',
+      },
+      handleIndexChange: {
+        type: { required: true },
+        control: false,
+        description: 'Handles which value is selected',
+      },
+      selectedIndex: {
+        type: { required: true },
+        control: false,
+        description: 'Number of selected index',
+      }
+    }}
+/>
+
+export const Template = (args) => {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const { options } = args;
+  const handleIndexChange = (index) => {
+    setSelectedIndex(index);
+  };
+  return (
+    <SplitButton
+      selectedIndex={selectedIndex}
+      handleIndexChange={handleIndexChange}
+      handleClick={action(`${options[selectedIndex]} was clicked`)}
+      {...args}
+    />
+  );
+};
+
+# Split Buttons
+Split buttons are used to allow the user to choose a primary action,
+or activate the dropdown and select multiple additional actions.
+
+## Props
+<ArgsTable story="." />
+
+## Handling Events
+It's up to the developer to handle clicks and actions. Note that `handleClick`, `handleIndexChange`, and `selectedIndex`
+are all required props in order for the component to work. Here's a code example of how you could handle this:
+
+```
+import React, { useState } from 'react';
+
+export const MySplitButton = (props) => {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const { options } = props;
+
+  const handleIndexChange = (index:number) => {
+    setSelectedIndex(index);
+  };
+
+  const handleButtonClick = () => {
+    // you can handle the actual click however you need to
+    console.log(`${options[selectedIndex]} was clicked`);
+  }
+
+  return (
+    <>
+      <h1>This is my split button</h1>
+      <SplitButton
+        selectedIndex={selectedIndex}
+        handleIndexChange={handleIndexChange}
+        handleClick={handleButtonClick}
+        color="primary"
+        options={options}
+        ariaLabelGroup="Split Button Group"
+      />
+    </>
+  );
+};
+
+export default MySplitButton;
+```
+## Example
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      color: 'primary',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Secondary"
+    args={{
+      color: 'secondary',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
