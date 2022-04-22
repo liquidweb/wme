@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { SetupCardHeader, Chip } from '..';
-import * as ChipStories from '../chip/chip.stories';
+// import * as ChipStories from '../chip/chip.stories';
 
 export default {
   title: 'Setup Cards/SetupCardHeader',
@@ -37,5 +37,5 @@ export const Header = Template.bind({});
 Header.args = {
   title: 'Example Card Header',
   subheader: 'Donec ullamcorper nulla non metus auctor fringilla.',
-  action: <Chip {...ChipStories.Todo.args} />,
+  // action: <Chip {...ChipStories.Todo.args} />,
 };

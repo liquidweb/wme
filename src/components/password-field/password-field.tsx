@@ -27,12 +27,15 @@ interface PasswordFieldProps {
   placeholder?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;
-  onMouseDown?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   chipLabel?:string;
   color?: 'default' | 'error' | 'success' | 'warning';
   error?: boolean;
   errorMessage?: string;
 }
+
+const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  event.preventDefault();
+};
 
 const StyledChip = styled(Chip, {
   name: 'WmePasswordChip',
@@ -70,7 +73,6 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
     placeholder,
     onChange,
     onClick,
-    onMouseDown,
     chipLabel,
     color,
     error,
@@ -102,7 +104,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
             <IconButton
               aria-label="toggle password visibility"
               onClick={onClick}
-              onMouseDown={onMouseDown}
+              onMouseDown={handleMouseDownPassword}
               edge="end"
             >
               {type === 'text' ? <VisibilityOff /> : <Visibility />}
@@ -111,7 +113,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
         )}
       />
       {
-        error
+        (error && errorMessage)
         && (
           <ErrorText>{errorMessage}</ErrorText>
         )

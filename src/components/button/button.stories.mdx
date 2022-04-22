@@ -67,6 +67,26 @@ Buttons should always be easy to find among other UI.
 <ArgsTable story="." />
 
 ## Example
+```
+import React, { useState } from 'react';
+import { Button } from '@wme/components';
+
+const MyButton = () => (
+  <>
+    <h1>Primary Button</h1>
+    <Button
+      variant="contained"
+      color="primary"
+    >
+      Button text
+    </Button>
+  </>
+);
+
+export default MyButton;
+```
+
+## Canvas
   <Canvas>
     <Story
       name="Primary"

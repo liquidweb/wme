@@ -73,12 +73,13 @@ or activate the dropdown and select multiple additional actions.
 ## Props
 <ArgsTable story="." />
 
-## Handling Events
+## Handling Events/Example
 It's up to the developer to handle clicks and actions. Note that `handleClick`, `handleIndexChange`, and `selectedIndex`
 are all required props in order for the component to work. Here's a code example of how you could handle this:
 
 ```
 import React, { useState } from 'react';
+import { SplitButton } from '@wme/components';
 
 export const MySplitButton = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -110,7 +111,7 @@ export const MySplitButton = (props) => {
 
 export default MySplitButton;
 ```
-## Example
+## Canvas
 <Canvas>
   <Story
     name="Primary"
