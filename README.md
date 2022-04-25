@@ -10,24 +10,20 @@ WME is built in React and TypeScript. The framework relies heavily on Material U
 Most of the components in WME are either extending MUI or creating wrappers
 to more easily build more complex components, such as a File Upload or a Wizard.
 
-MUI is a dependency and can be used in conjuction with WME if needed. However, you don't have to
-use MUI independently at all if you don't want. WME should come with everything you need.
-
 ## Documentation
 Each individual component is in StoryBook and should have its own documentation. Use the
 `Canvas` tab to see a playground of the component, and then the `Docs` tab to see detailed
 documentation for each component as well as an arguments table.
 
 ## Installation
-Grab the latest version from [NPM](https://www.npmjs.com/package/@moderntribe/wme) and then you import components as needed, just like any
-other design framework. 
+Install latest version from [NPM](https://www.npmjs.com/package/@moderntribe/wme).
 
 `npm i @moderntribe/wme`
 
 **Example:**
 ```
 import React from 'react';
-import { Button, SetupCardTask } from '@wme/components';
+import { Button, SetupCardTask } from '@moderntribe/wme';
 import TaskIcon from '../img/task-icon.png';
 
 const MyComponent = () => {
