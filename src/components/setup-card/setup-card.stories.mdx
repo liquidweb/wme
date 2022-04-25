@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 import { Box } from "@mui/material";
 import {
   CardContent,
@@ -22,11 +22,9 @@ import {
   SetupCardList,
   SetupCardListItem,
 } from '..';
-
-import * as SetupCardHeaderStories from '../setup-card-header/setup-card-header.stories';
-import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories';
+import { header } from '../setup-card-header/setup-card-header.stories.mdx';
+import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories.mdx';
 import * as SetupCardFooterStories from '../setup-card-footer/setup-card-footer.stories.mdx';
-
 import { theme } from '../../theme';
 
 <Meta title="Setup Cards/SetupCard" component={SetupCard} />
@@ -41,10 +39,10 @@ Various setup tasks are set within cards on the WME Set Up page.
 <Canvas>
   <Story name="Actions">
     <SetupCard>
-      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <SetupCardHeader {...header.args} />
       <CardContent>
-        <SetupCardTask {...SetupCardTaskStories.Action.args} />
-        <SetupCardTask {...SetupCardTaskStories.ActionDisabled.args} />
+        <SetupCardTask {...SetupCardTaskStories.action.args} />
+        <SetupCardTask {...SetupCardTaskStories.actionDisabled.args} />
       </CardContent>
       {/* @see SetupCardFooter > Footer With Text Story */}
       <SetupCardFooterStories.FooterWithText />
@@ -59,7 +57,7 @@ Various setup tasks are set within cards on the WME Set Up page.
 <Canvas>
   <Story name="Column Links">
     <SetupCard>
-      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <SetupCardHeader {...header.args} />
       <CardContent>
         <Grid container rowSpacing={3} columnSpacing={8}>
           <Grid item md={4}>
@@ -100,7 +98,7 @@ Various setup tasks are set within cards on the WME Set Up page.
 <Canvas>
   <Story name="Media & Text">
     <SetupCard>
-      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <SetupCardHeader {...header.args} />
       <CardContent>
         <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center">
           <Grid item xs={12} sm={6}>
@@ -125,7 +123,7 @@ Various setup tasks are set within cards on the WME Set Up page.
       </CardContent>
     </SetupCard>
     <SetupCard>
-      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <SetupCardHeader {...header.args} />
       <CardContent>
         <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center" direction={{xs: 'column-reverse', sm: 'row'}}>
           <Grid item xs={12} sm={6}>
@@ -159,10 +157,10 @@ Various setup tasks are set within cards on the WME Set Up page.
 <Canvas>
   <Story name="Tasks">
     <SetupCard>
-      <SetupCardHeader {...SetupCardHeaderStories.Header.args} />
+      <SetupCardHeader {...header.args} />
       <CardContent>
-        <SetupCardTask {...SetupCardTaskStories.TaskDisabled.args} />
-        <SetupCardTask {...SetupCardTaskStories.Task.args} />
+        <SetupCardTask {...SetupCardTaskStories.taskDisabled.args} />
+        <SetupCardTask {...SetupCardTaskStories.task.args} />
       </CardContent>
       {/* @see SetupCardFooter > Footer With Links Story */}
       <SetupCardFooterStories.FooterWithLinks />

@@ -1,5 +1,8 @@
-import React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import {
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
 import {
   Visibility,
   Abc,
@@ -8,10 +11,10 @@ import {
 } from '@mui/icons-material';
 import { SetupCardList, SetupCardListItem } from '..';
 
-export default {
-  title: 'Setup Cards/SetupCardList',
-  component: SetupCardList,
-} as ComponentMeta<typeof SetupCardList>;
+<Meta
+  title="Setup Cards/SetupCardList"
+  component={SetupCardList}
+/>
 
 export const ListWithIcons = () => (
   <SetupCardList>
@@ -48,3 +51,34 @@ export const List = () => (
     <SetupCardListItem title="Testing with icon title" />
   </SetupCardList>
 );
+
+## List With Icons
+<Canvas>
+  <Story name="ListWithIcons">
+    {ListWithIcons.bind({})}
+  </Story>
+</Canvas>
+
+## List With Icons And Links
+
+<Canvas>
+  <Story name="ListWithIconsAndLinks">
+    {ListWithIconsAndLinks.bind({})}
+  </Story>
+</Canvas>
+
+## List With Links
+
+<Canvas>
+  <Story name="ListWithLinks">
+    {ListWithLinks.bind({})}
+  </Story>
+</Canvas>
+
+## List
+
+<Canvas>
+  <Story name="List">
+    {List.bind({})}
+  </Story>
+</Canvas>
