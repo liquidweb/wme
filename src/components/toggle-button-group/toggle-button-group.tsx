@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { ReactElement, ChangeEvent } from 'react';
 import { ToggleButtonGroup as MuiToggleButtonGroup, ToggleButtonGroupProps as MuiToggleButtonGroupProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface ToggleButtonGroupProps extends MuiToggleButtonGroupProps {
-  variant?: 'outlined';
-  numOfButtons: number;
+  children: Array<ReactElement>;
+  onChange: (event: ChangeEvent<unknown>) => void;
+  value: string | null;
+  ariaLabel?: string;
 }
 
 // eslint-disable-next-line max-len
@@ -30,7 +32,18 @@ const StyledToggleButtonGroup = styled(MuiToggleButtonGroup, {
   },
 }));
 
-// eslint-disable-next-line max-len
-const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = (props) => <StyledToggleButtonGroup {...props} />;
+const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = (props) => {
+  const { children, ariaLabel, ...rest } = props;
+
+  return (
+    <StyledToggleButtonGroup
+      exclusive
+      aria-label={ariaLabel}
+      {...rest}
+    >
+      { children }
+    </StyledToggleButtonGroup>
+  );
+};
 
 export default ToggleButtonGroup;
