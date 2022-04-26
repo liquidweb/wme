@@ -1,0 +1,81 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
+import { Box } from '@mui/material';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { styled } from '@mui/material/styles';
+import Tooltip from './tooltip';
+
+<Meta
+  title="Data Display/Tooltip"
+  component={Tooltip}
+  argTypes={{
+      placement: {
+        options: ['top', 'left', 'right', 'bottom'],
+        control: 'select',
+        description: 'Location of tooltip',
+      },
+      title: {
+        control: 'text',
+        description: 'The content that goes inside the tooltip',
+      }
+  }}
+/>
+
+export const BOX_STYLES = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '75px',
+  marginTop: '100px',
+  marginLeft: '250px',
+};
+
+export const Template = (args) => (
+  <Tooltip {...args}>
+    <Box sx={BOX_STYLES}>
+      <PowerSettingsNewIcon />
+      <Box>Manage</Box>
+    </Box>
+  </Tooltip>
+);
+
+# Tooltip
+Tooltips display informative text when users hover over an element.
+
+## Props
+<ArgsTable story="." />
+
+## Example
+```
+import React, { useState } from 'react';
+import { Tooltip } from '@moderntribe/wme';
+
+export const MyTooltip = () => (
+  <>
+    <h1>Tooltip</h1>
+    <Tooltip
+      title="my tooltip"
+      placement="bottom"
+    />
+  </>
+);
+
+export default MyTooltip;
+```
+
+## Canvas
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      title: 'tooltip',
+      placement: 'top',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

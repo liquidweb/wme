@@ -21,9 +21,9 @@ interface SplitButtonProps {
   options: Array<string>;
   handleClick: () => void;
   handleIndexChange: (arg:number) => void;
-  ariaLabelGroup: string;
-  color: 'primary' | 'secondary';
-  disabled: boolean;
+  ariaLabelGroup?: string;
+  color?: 'primary' | 'secondary';
+  disabled?: boolean;
   selectedIndex: number;
 }
 

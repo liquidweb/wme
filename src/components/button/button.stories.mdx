@@ -1,0 +1,127 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
+import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
+import { action } from '@storybook/addon-actions';
+import { Button } from '..';
+
+<Meta
+  title="Buttons/Button"
+  component={Button}
+  argTypes={{
+      children: {
+        control: 'text',
+        defaultValue: 'Button',
+        description: 'The content (children) to appear in the button',
+      },
+      disabled: {
+        control: 'boolean',
+        defaultValue: false,
+        description: 'Adds disabled class',
+      },
+      variant: {
+        control: 'select',
+        options: ['contained', 'outlined', 'text'],
+        description: 'Type of button',
+      },
+      color: {
+        control: 'select',
+        options: ['primary', 'secondary', 'inherit'],
+        description: 'Color of button',
+      },
+      startIcon: {
+        control: 'boolean',
+        mapping: {
+          true: <DownhillSkiingIcon />,
+        },
+        defaultValue: false,
+        description: 'Icon to show at start of button. Can be any icon, passed as a node',
+      },
+      endIcon: {
+        control: 'boolean',
+        mapping: {
+          true: <DownhillSkiingIcon />,
+        },
+        defaultValue: false,
+        description: 'Icon to show at end of button. Can be any icon, passed as a node',
+      },
+    }}
+/>
+
+export const Template = (args) => <Button onClick={action('button clicked')} {...args} />;
+
+# Buttons
+Buttons allow users to take actions with a singular click.
+They should be clear indications that they are triggering an action or advancing in a flow.
+Buttons should always be easy to find among other UI.
+
+## Usage
+- Use 8 px spacing between buttons.
+- Button width is set by the content it contains.
+- Use only one primary button per screen. Any remaining actionable items should be presented with a lower emphasis call to actions.
+
+## Props
+<ArgsTable story="." />
+
+## Example
+```
+import React, { useState } from 'react';
+import { Button } from '@wme/components';
+
+const MyButton = () => (
+  <>
+    <h1>Primary Button</h1>
+    <Button
+      variant="contained"
+      color="primary"
+    >
+      Button text
+    </Button>
+  </>
+);
+
+export default MyButton;
+```
+
+## Canvas
+  <Canvas>
+    <Story
+      name="Primary"
+      args={{
+        variant: 'contained',
+        color: 'primary',
+      }}
+    >
+      {Template.bind({})}
+    </Story>
+    <Story
+      name="Secondary"
+      args={{
+        variant: 'contained',
+        color: 'secondary',
+      }}
+    >
+      {Template.bind({})}
+    </Story>
+    <Story
+      name="Stroked"
+      args={{
+        variant: 'outlined',
+        color: 'primary',
+      }}
+    >
+      {Template.bind({})}
+    </Story>
+    <Story
+      name="NoContainer"
+      args={{
+        variant: 'text',
+        color: 'inherit',
+      }}
+    >
+      {Template.bind({})}
+    </Story>
+  </Canvas>

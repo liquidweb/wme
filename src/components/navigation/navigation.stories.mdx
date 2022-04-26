@@ -1,4 +1,9 @@
-import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta
+} from '@storybook/addon-docs';
 import { useState } from 'react';
 import { Navigation, NavNumber } from '..';
 
@@ -41,7 +46,7 @@ export const screens = [
 ];
 
 export const Template = (args) => {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
   return (
     <Navigation {...args}>
       {
@@ -78,10 +83,63 @@ Navigation encompasses multiple "steps", which are each a `NavNumber` component.
 - active (required)
 - isComplete (required)
 
+## Example
+```
+import React, { useState } from 'react';
+import { Navigation, NavNumber } from '@moderntribe/wme';
+
+const MyNavigation = (props) => {
+  const [active, setActive] = useState(0);
+
+  const screens = [
+    {
+      text: 'Screen 1',
+      active: false,
+      completed: true,
+    },
+    {
+      text: 'Screen 2',
+      active: true,
+      completed: false,
+    },
+    {
+      text: 'Screen 3',
+      active: false,
+      completed: false,
+    },
+    {
+      text: 'Screen 4',
+      active: false,
+      completed: false,
+    },
+  ];
+
+  return (
+    <Navigation {...args}>
+      {
+        screens.map((screen, i) => (
+          <NavNumber
+            number={i + 1}
+            text={screen.text}
+            onClick={() => setActive(i)}
+            active={active === i}
+            key={i}
+            isComplete={screen.completed}
+          />
+        ))
+      }
+    </Navigation>
+  );
+};
+
+export default MyNavigation;
+```
+
 ## Notes
 - In this particular example, the first step is hardcoded as "complete", so it shows with a checkbox.
 However, you can use your own logic to determine the `isComplete` state on each step.
 
+## Canvas
 <Canvas>
   <Story
     name="Default"

@@ -20,7 +20,7 @@
     "outDir": "dist",
     "emitDeclarationOnly": true
   },
-  "include": ["src", "declaration.d.ts"],
+  "include": ["src", "types/declaration.d.ts"],
   "exclude": [
     "dist",
     "node_modules",

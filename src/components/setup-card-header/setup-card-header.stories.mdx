@@ -1,0 +1,56 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
+import { SetupCardHeader, Chip } from '..';
+import { todo } from '../chip/chip.stories.mdx';
+
+<Meta
+  title="Setup Cards/SetupCardHeader"
+  component={SetupCardHeader}
+  argTypes={{
+    title: {
+      type: 'string',
+      description: '`node` The content (title) of the component.',
+    },
+    subheader: {
+      description: '`node` The content(subtitle) of the component.',
+    },
+    action: {
+      control: false,
+      description: '`node` The action to display in the card header.',
+    },
+  }}
+  decorators={[
+    (Story) => (
+      <div style={{ maxWidth: 800, margin: '0 auto'}}>
+        <Story />
+      </div>
+    ),
+  ]}
+/>
+
+export const Template = (args) => (
+  <SetupCardHeader {...args} />
+);
+
+# Setup Card Header
+The Wizard header features the logo and the ability to exit.
+
+## Props
+<ArgsTable story="." />
+
+<Canvas>
+  <Story
+    name="Header"
+    args={{
+      title: 'Example Card Header',
+      subheader: 'Donec ullamcorper nulla non metus auctor fringilla.',
+      action: <Chip {...todo.args} />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

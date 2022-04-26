@@ -12,13 +12,14 @@ import { InputTitle, FormHelperText, ErrorText } from '..';
 interface WmeDropdownProps {
   children: Array<ReactElement>;
   value?: (string | number)[];
-  onChange?: (event: SelectChangeEvent<unknown>) => void;
+  onChange: (event: SelectChangeEvent<unknown>) => void;
   selectValue?: string;
   helperText?: string;
   labelText?: string;
   autoWidth?: boolean;
   error?: boolean;
   errorMessage?: string;
+  multiple?: boolean;
 }
 
 interface WmeFormControlProps extends FormControlProps {
@@ -59,14 +60,14 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
 
   const {
     children,
-    value,
-    onChange,
     selectValue,
     helperText,
     labelText,
     autoWidth,
     error,
     errorMessage,
+    value,
+    ...rest
   } = props;
 
   const itemHeight = theme.globalStyles.menuListItemHeight;
@@ -101,10 +102,8 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
         )
       }
       <StyledSelect
-        multiple
         displayEmpty
         value={value}
-        onChange={onChange}
         input={<OutlinedInput />}
         renderValue={(selected: any) => {
           if (selected.length === 0) {
@@ -114,6 +113,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
           return <span className="Wme-selected-text">{selected.join(', ')}</span>;
         }}
         MenuProps={MenuProps}
+        {...rest}
       >
         {childrenWithIcons}
       </StyledSelect>
