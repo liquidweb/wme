@@ -4,7 +4,6 @@ import { CardMedia, CardMediaProps, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface VideoEmbedProps extends CardMediaProps {
-  frameBorder?: number | string;
   allow?: string;
   height?: string;
   width?: string;

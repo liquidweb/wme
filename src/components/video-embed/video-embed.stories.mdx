@@ -35,24 +35,17 @@ import { VideoEmbed } from '..';
         defaultValue: { summary: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'}
       },
     },
-    frameBorder: {
-      control: 'text',
-      description: 'Optional border for video, defaults to 0 (off)',
-      table: {
-        defaultValue: { summary: '0'}
-      },
-    }
   }}
 />
 
 export const Template = (args) => <VideoEmbed {...args} />;
 
-# VideoEmbed
+# Video Embed
 Basic video component that can be used in other components.
 
 Height and width are set using CSS instead of attributes on the iFrame.
 These props should be passed as string values either as a percent or pixel
-(i.e. '85%' or '250px').
+(i.e. `85%` or `250px`).
 
 ## Props
 <ArgsTable story="." />
