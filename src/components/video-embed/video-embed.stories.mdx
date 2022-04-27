@@ -18,14 +18,14 @@ import { VideoEmbed } from '..';
       control: 'text',
       description: 'Width of video player',
       table: {
-        defaultValue: { summary: '560px'}
+        defaultValue: { summary: '100%'}
       },
     },
     height: {
       control: 'text',
       description: 'Height of video player',
       table: {
-        defaultValue: { summary: '315px'}
+        defaultValue: { summary: '100%'}
       },
     },
     allow: {
@@ -49,7 +49,10 @@ export const Template = (args) => <VideoEmbed {...args} />;
 
 # VideoEmbed
 Basic video component that can be used in other components.
-Height and width are set 
+
+Height and width are set using CSS instead of attributes on the iFrame.
+These props should be passed as string values either as a percent or pixel
+(i.e. '85%' or '250px').
 
 ## Props
 <ArgsTable story="." />
@@ -61,7 +64,7 @@ import { VideoEmbed } from '@moderntribe/wme';
 
 const MyVideoEmbed = (props) => (
   <>
-    <VideoEmbed src="https://www.youtube.com/embed/YwjYtoE5UMQ" height="500" width="700" />
+    <VideoEmbed src="https://www.youtube.com/embed/YwjYtoE5UMQ" height="315px" width="560px" />
   </>
 );
 

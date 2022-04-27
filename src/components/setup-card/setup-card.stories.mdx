@@ -21,6 +21,7 @@ import {
   SetupCardTask,
   SetupCardList,
   SetupCardListItem,
+  VideoEmbed,
 } from '..';
 import { header } from '../setup-card-header/setup-card-header.stories.mdx';
 import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.stories.mdx';
@@ -143,6 +144,27 @@ Various setup tasks are set within cards on the WME Set Up page.
               src="https://picsum.photos/684/360"
               alt="Test"
             />
+          </Grid>
+        </Grid>
+      </CardContent>
+    </SetupCard>
+    <SetupCard>
+      <SetupCardHeader title="Example Card With Video" />
+      <CardContent>
+        <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center">
+          <Grid item xs={12} sm={6}>
+            <VideoEmbed src="https://www.youtube.com/embed/gF97ZyEB4gg" />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="overline">3 Minutes</Typography>
+            <Typography variant="h3" mb={1}>
+              Lorem ipsum dolor sit ametconsectetur adipiscing elit
+            </Typography>
+            <Typography variant="caption">
+              Duis mollis, est non commodo luctus, nisi erat porttitor
+              ligula, eget lacinia odio sem nec elit. Cras justo odio,
+              dapibus ac facilisis in, egestas eget quam.
+            </Typography>
           </Grid>
         </Grid>
       </CardContent>
