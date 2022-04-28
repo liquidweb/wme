@@ -11,7 +11,7 @@ interface VideoEmbedProps extends CardMediaProps {
 }
 
 const StyledContainer = styled(Box, {
-  name: 'WmeVideoContainer',
+  name: 'WmeVideoEmbed',
   slot: 'Root',
 })(() => ({
   overflow: 'hidden',
