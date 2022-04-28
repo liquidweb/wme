@@ -72,3 +72,6 @@ export * from './nav-number';
 
 export { default as ErrorText } from './error-text';
 export * from './error-text';
+
+export { default as VideoEmbed } from './video-embed';
+export * from './video-embed';
