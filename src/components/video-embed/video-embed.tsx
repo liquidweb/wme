@@ -22,7 +22,7 @@ const StyledContainer = styled(Box, {
 
 const StyledMedia = styled(CardMedia, {
   name: 'WmeVideoEmbed',
-  slot: 'Root',
+  slot: 'Media',
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'height',
 })<VideoEmbedProps>(({ width, height }) => ({
   position: 'absolute',
