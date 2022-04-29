@@ -50,8 +50,8 @@
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
     "lint": "eslint ./src --ext .tsx --ext .ts",
-    "lint:fix": "yarn lint --fix",
-    "lint:quiet": "yarn lint --quiet"
+    "lint:fix": "npm run lint --fix",
+    "lint:quiet": "npm run lint --quiet"
   },
   "browserslist": {
     "production": [
