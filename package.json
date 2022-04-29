@@ -1,6 +1,6 @@
 {
   "name": "@moderntribe/wme",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "private": false,
   "author": "Moderntribe Incubator Team",
   "description": "Components and hooks to build the best UX/UI admin wizards",
@@ -30,14 +30,14 @@
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
-    "typescript": "^4.6.2"
-  },
-  "peerDependencies": {
+    "typescript": "^4.6.2",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.3.0",
     "@mui/material": "^5.2.8",
-    "@mui/utils": "^5.3.0",
+    "@mui/utils": "^5.3.0"
+  },
+  "peerDependencies": {
     "@types/react": "^16.8.6 || ^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
