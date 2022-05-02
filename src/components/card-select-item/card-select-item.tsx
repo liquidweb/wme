@@ -141,6 +141,7 @@ const StyleCardSelectionFooter = styled(Box, {
   textTransform: 'initial',
   color: theme.palette.text.primary,
   lineHeight: 1.6,
+  marginTop: theme.spacing(2),
 }));
 
 const PrimaryText = styled(Typography, {
@@ -161,7 +162,6 @@ const SecondaryText = styled(Typography, {
   color: theme.palette.text.primary,
   fontSize: theme.typography.pxToRem(12),
   lineHeight: 1.33,
-  marginBottom: theme.spacing(2),
 }));
 
 const CardSelectCompleteIcon = () => (
