@@ -5,7 +5,7 @@ import {
   Meta,
 } from '@storybook/addon-docs';
 import { SetupCardTask } from '..';
-import TaskIcon from './img/task-icon.png';
+import taskIcon from '../../stories/images/task-icon.png';
 
 <Meta
   title="Setup Cards/SetupCardTask"
@@ -24,7 +24,7 @@ import TaskIcon from './img/task-icon.png';
       defaultValue: 'Learn More',
     },
     avatarProps: {
-      src: TaskIcon,
+      src: taskIcon,
     },
     onClick: {
       onClick: (e) => handleClick(e),
