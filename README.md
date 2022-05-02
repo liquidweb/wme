@@ -34,7 +34,7 @@ const MyComponent = () => {
 
   <div className="my-component">
     <h1>Here's a primary button</h1>
-    <Button variant="primary" color="primary">
+    <Button variant="contained" color="primary">
       Click Me:
     </Button>
 

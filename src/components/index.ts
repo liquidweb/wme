@@ -78,3 +78,6 @@ export * from './card-select-group';
 
 export { default as CardSelectItem } from './card-select-item';
 export * from './card-select-item';
+
+export { default as VideoEmbed } from './video-embed';
+export * from './video-embed';
