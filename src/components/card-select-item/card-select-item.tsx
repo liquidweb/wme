@@ -5,45 +5,81 @@ import {
   Box,
   ToggleButton,
   ToggleButtonProps,
-  Typography
+  Typography,
+  TypographyProps
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 interface CardSelectItemProps extends ToggleButtonProps {
   primary?: any;
   secondary?: any;
+  footer?: any;
+  hasFooter?: boolean;
   icon?: string;
+  cardPadding?: 'sm' | 'md';
+  completedIcon?: React.ReactNode;
 }
 
 const StyleCardSelectItem = styled(ToggleButton, {
-})(({ theme }) => ({
+  shouldForwardProp: (prop) => prop !== 'hasFooter' && prop !== 'completedIcon' && prop !== 'cardPadding',
+})<CardSelectItemProps>(({ theme, disabled, hasFooter }) => ({
   position: 'relative',
-  padding: theme.spacing(2),
   transition: theme?.transitions?.create(['border-color'], {
     duration: theme.transitions.duration.standard,
   }),
   '&.MuiButtonBase-root.Mui-selected': {
-    borderColor: theme.palette.primary.light,
     backgroundColor: 'transparent',
+    borderColor: theme.palette.primary.light,
+    borderWidth: 1,
+    borderStyle: 'solid',
   },
-  '&.MuiButtonBase-root': {
+  '&.MuiButtonBase-root.WmeCardSelectItem-root': {
+    display: 'flex',
+    textTransform: 'none',
+    borderRadius: theme.spacing(0.5),
+    border: `1px solid ${theme.palette.border.ui}`,
+    '& + .MuiButtonBase-root.WmeCardSelectItem-root': {
+      borderRadius: theme.spacing(0.5),
+      border: `1px solid ${theme.palette.border.ui}`,
+    },
     '&:hover, &:focus': {
       borderColor: theme.palette.primary.main,
       backgroundColor: 'transparent',
     },
+    '& + .MuiButtonBase-root.WmeCardSelectItem-root.Mui-selected': {
+      backgroundColor: 'transparent',
+      borderColor: theme.palette.primary.light,
+      borderWidth: 1,
+      borderStyle: 'solid',
+    },
+    ...(hasFooter && {
+      paddingBottom: theme.spacing(2),
+    }),
   },
   '& .MuiTouchRipple-root': {
     opacity: '0.25',
   },
+  ...(disabled && {
+    backgroundColor: theme.palette.background.hover,
+    '& .WmeCardSelectItem-icon': {
+      backgroundColor: theme.palette.common.white,
+    },
+  }),
 }));
 
-const StyleCardSelectCompleteIcon = styled('div', {
+const StyleCardSelectCompleteContainer = styled('div', {
   name: 'WmeCardSelectItem',
-  slot: 'Complete-Icon',
+  slot: 'CompleteContainer',
 })(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing(1),
   right: theme.spacing(1),
+}));
+
+const StyleCardSelectCompleteIcon = styled('div', {
+  name: 'WmeCardSelectItem',
+  slot: 'CompleteIcon',
+})(({ theme }) => ({
   width: theme.spacing(2.75),
   height: theme.spacing(2.75),
   borderRadius: '50%',
@@ -51,7 +87,6 @@ const StyleCardSelectCompleteIcon = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-
   '& .MuiSvgIcon-root': {
     color: theme.palette.primary.main,
     fontSize: '1.4em',
@@ -69,61 +104,127 @@ const StyleCardSelectIcon = styled('div', {
   borderRadius: '50%',
   backgroundColor: theme.palette.grey[100],
   display: 'flex',
+  flexShrink: 0,
   alignItems: 'center',
   justifyContent: 'center',
   overflow: 'hidden',
-
   '& img': {
     width: theme.spacing(3),
     height: 'auto',
-  }
+  },
 }));
 
-const StyleCardSelectContent = styled(Box, {
+const StyleCardSelectContentOuter = styled(Box, {
   name: 'WmeCardSelectItem',
-  slot: 'Content',
+  slot: 'ContentOuter',
   shouldForwardProp: (prop) => prop !== 'icon',
-})(() => ({}));
+})(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+}));
+
+const StyleCardSelectContentInner = styled(Box, {
+  name: 'WmeCardSelectItem',
+  slot: 'ContentInner',
+  shouldForwardProp: (prop) => prop !== 'icon',
+})(() => ({
+  flexGrow: 1,
+}));
+
+const StyleCardSelectionFooter = styled(Box, {
+  name: 'WmeCardSelectItem',
+  slot: 'Footer',
+  shouldForwardProp: (prop) => prop !== 'icon',
+})(({ theme }) => ({
+  fontSize: 10,
+  textTransform: 'initial',
+  color: theme.palette.text.primary,
+  lineHeight: 1.6,
+}));
+
+const PrimaryText = styled(Typography, {
+  name: 'WmeCardSelectItem',
+  slot: 'Primary',
+})<TypographyProps>(({ theme }) => ({
+  display: 'block',
+  fontWeight: 600,
+  color: theme.palette.text.primary,
+  marginBottom: theme.spacing(1),
+}));
+
+const SecondaryText = styled(Typography, {
+  name: 'WmeCardSelectItem',
+  slot: 'Secondary',
+})<TypographyProps>(({ theme }) => ({
+  display: 'block',
+  color: theme.palette.text.primary,
+  fontSize: theme.typography.pxToRem(12),
+  lineHeight: 1.33,
+  marginBottom: theme.spacing(2),
+}));
+
+const CardSelectCompleteIcon = () => (
+  <StyleCardSelectCompleteIcon>
+    <CheckIcon />
+  </StyleCardSelectCompleteIcon>
+);
 
 export default function CardSelectItem(props: CardSelectItemProps) {
   const {
     className,
     children,
     icon,
+    completedIcon,
     primary: primaryProp,
     secondary: secondaryProp,
+    footer: footerProp,
     ...rest
   } = props;
 
   const { selected } = props;
 
-  let primary = primaryProp !== null ? primaryProp : children;
+  let primary = primaryProp != null ? primaryProp : children;
   let secondary = secondaryProp;
+  let footer = footerProp;
 
-  if (primary !== null && primary.type !== Typography) {
-    primary = <Typography variant="body">{primary}</Typography>;
+  if (primary != null && primary.type !== Typography) {
+    primary = <PrimaryText variant="body">{primary}</PrimaryText>;
   }
 
-  if (secondary !== null && secondary.type !== Typography) {
-    secondary = <Typography variant="caption">{secondary}</Typography>;
+  if (secondary != null && secondary?.type !== Typography) {
+    secondary = <SecondaryText>{secondary}</SecondaryText>;
   }
+
+  if (footer != null && footer?.type !== Typography) {
+    footer = <StyleCardSelectionFooter className="WmeCardSelectItem-footer">{footer}</StyleCardSelectionFooter>;
+  }
+
+  const hasFooter = footer != null;
 
   return (
-    <StyleCardSelectItem className={`${className} WmeCardSelectItem-root`} {...rest}>
+    <StyleCardSelectItem
+      className={`${className} WmeCardSelectItem-root`}
+      {...rest}
+      hasFooter={hasFooter}
+    >
       {selected && (
-      <StyleCardSelectCompleteIcon>
-        <CheckIcon />
-      </StyleCardSelectCompleteIcon>
+      <StyleCardSelectCompleteContainer className="WmeCardSelectItem-completeContainer">
+        { completedIcon || <CardSelectCompleteIcon /> }
+      </StyleCardSelectCompleteContainer>
       )}
       {icon && (
         <StyleCardSelectIcon className="WmeCardSelectItem-icon">
           <img src={icon} alt="" />
         </StyleCardSelectIcon>
       )}
-      <StyleCardSelectContent className="WmeCardSelectItem-content">
-        {primary}
-        {secondary}
-      </StyleCardSelectContent>
+      <StyleCardSelectContentOuter className="WmeCardSelectItem-contentOuter">
+        <StyleCardSelectContentInner className="WmeCardSelectItem-contentInner">
+          {primary}
+          {secondary}
+        </StyleCardSelectContentInner>
+        {footer}
+      </StyleCardSelectContentOuter>
     </StyleCardSelectItem>
   );
 }
