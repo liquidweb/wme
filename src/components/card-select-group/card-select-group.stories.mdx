@@ -6,7 +6,7 @@ import {
   Meta,
 } from '@storybook/addon-docs';
 import { Typography, Link, Grid } from '@mui/material';
-import { CardSelectGroup, CardSelectItem, Chip, FormHelperText } from '..';
+import { CardSelectGroup, CardSelectItem, FormHelperText } from '..';
 
 import cardSelectImage from '../../stories/images/card-select-item.png';
 
@@ -114,7 +114,7 @@ import cardSelectImage from '../../stories/images/card-select-item.png';
 />
 
 export const Group = (args) => {
-  const [selectedIndex, setSelectedIndex] = useState(() => ['1']);
+  const [selectedIndex, setSelectedIndex] = useState(() => []);
   const handleIndexChange = (event, value) => {
     setSelectedIndex(value);
   }
@@ -142,7 +142,6 @@ export const Group = (args) => {
       <CardSelectItem
         primary="Example of card with alternative completed icon"
         secondary="Praesent commodo cursus magna, vel scelerisque nisl consectetur et."
-        completedIcon={<Chip size="small" color="success" label="Complete" />}
         footer="Presented by Modern Tribe"
         icon={cardSelectImage}
         value="3"
