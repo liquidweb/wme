@@ -1,0 +1,75 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta
+} from '@storybook/addon-docs';
+import { VideoEmbed } from '..';
+
+<Meta
+  title="Misc/Video Embed"
+  component={ VideoEmbed }
+  argTypes={{
+    src: {
+      control: 'text',
+      description: 'Embedded src url for video (i.e. https://www.youtube.com/embed/YwjYtoE5UMQ)',
+    },
+    width: {
+      control: 'text',
+      description: 'Width of video player',
+      table: {
+        defaultValue: { summary: '100%'}
+      },
+    },
+    height: {
+      control: 'text',
+      description: 'Height of video player',
+      table: {
+        defaultValue: { summary: '100%'}
+      },
+    },
+    allow: {
+      control: 'text',
+      description: 'iFrame attribute for video settings',
+      table: {
+        defaultValue: { summary: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'}
+      },
+    },
+  }}
+/>
+
+export const Template = (args) => <VideoEmbed {...args} />;
+
+# Video Embed
+Basic video component that can be used in other components.
+
+Height and width are set using CSS instead of attributes on the iFrame.
+These props should be passed as string values either as a percent or pixel
+(i.e. `85%` or `250px`).
+
+## Props
+<ArgsTable story="." />
+
+## Example
+```
+import React, { useState } from 'react';
+import { VideoEmbed } from '@moderntribe/wme';
+
+const MyVideoEmbed = (props) => (
+  <>
+    <VideoEmbed src="https://www.youtube.com/embed/YwjYtoE5UMQ" height="315px" width="560px" />
+  </>
+);
+
+export default MyVideoEmbed;
+```
+
+## Canvas
+<Canvas>
+  <Story
+    name="Default"
+    args={{ src: 'https://www.youtube.com/embed/YwjYtoE5UMQ' }}
+  >
+  {Template.bind({})}
+  </Story>
+</Canvas>
