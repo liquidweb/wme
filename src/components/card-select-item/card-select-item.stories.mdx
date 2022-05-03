@@ -1,0 +1,235 @@
+import {
+  ArgsTable,
+  Canvas,
+  Meta,
+  Story,
+} from '@storybook/addon-docs';
+import { Link } from '@mui/material';
+import CardSelectItem from '.';
+import CardSelectGroup from '../card-select-group';
+import Chip from '../chip';
+
+import cardSelectImage from '../../stories/images/card-select-item.png';
+
+<Meta
+  title="Misc/CardSelectItem"
+  component={CardSelectItem}
+  argTypes={{
+    selected: {
+      control: 'boolean',
+      defaultValue: false,
+      description: 'If `true`, the button is rendered in an active state.',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: `false`,
+        }
+      }
+    },
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+      description: 'If `true`, the component is disabled.',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: `false`,
+        }
+      }
+    },
+    value: {
+      control: false,
+      defaultValue: '1',
+      description: 'The value to associate with the card when selected in a CardSelectItem.',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      }
+    },
+    children: {
+      control: false,
+      description: 'The content of the component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    icon: {
+      control: false,
+      description: 'Image `src` value.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    completedIcon: {
+      control: false,
+      description: 'Replaces default checkmark icon with another component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    primary: {
+      control: 'text',
+      defaultValue: 'Example Primary Content',
+      description: 'The main content element.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    secondary: {
+      control: 'text',
+      defaultValue: 'Example secondary content for testing',
+      description: 'The secondary content element.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    footer: {
+      control: 'text',
+      defaultValue: 'Presented by Modern Tribe',
+      description: 'The footer content element.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    cardPadding: {
+      control: {
+        type: 'inline-radio',
+        options: ['sm', 'md'],
+      }, 
+      defaultValue: 'sm',
+      description: 'Alterntive padding for CardSelectItem',
+      table: {
+        type: {
+          summary: 'string',
+          detail: "'sm' | 'md'"
+        },
+      }
+    },
+    orientation: {
+      control: {
+        type: 'inline-radio',
+        options: ['horizontal', 'vertical'],
+      },
+      defaultValue: 'horizontal',
+      description: 'Change flow of CardSelectItem',
+      table: {
+        type: {
+          summary: 'string',
+          detail: "'horizontal' | 'vertical'"
+        },
+      }
+    },
+    onChange: {
+      onClick: (e) => handleClick(e),
+      description: 'Callback fired when the state changes.',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
+    },
+    onClick: {
+      onClick: (e) => handleClick(e),
+      description: 'Callback fired when the button is clicked.',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
+    },
+    sx: {
+      control: false,
+      description: 'The system prop that allows defining system overrides as well as additional CSS styles.',
+      table: {
+        type: {
+          summary: 'Array<func | object | bool> | func | object',
+        }
+      }
+    }
+  }}
+  decorators={[
+    (Story) => (
+      <div style={{ maxWidth: 600 }}>
+        <Story />
+      </div>
+    ),
+  ]}
+/>
+
+export const handleClick = (event) => {
+  console.log(event);
+};
+
+export const Template = (args) => {
+  const {
+    orientation = 'horizontal',
+    cardPadding = 'sm',
+    ...rest
+  } = args;
+  return (
+    <CardSelectGroup value="1" orientation={orientation} cardPadding={cardPadding}>
+      <CardSelectItem {...rest} />
+    </CardSelectGroup>
+  );
+}
+
+# Card Select Item
+Card Select Items can be used to group related options.
+
+To emphasize groups of related Toggle buttons, a group should share a
+common container. The `CardSelectGroup` controls the selected state of 
+its child buttons when given its own `value` prop.
+
+## Props
+<ArgsTable story="." />
+
+## Canvas
+<Canvas>
+  <Story 
+    name="Standard"
+    args={{
+      icon: cardSelectImage
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story 
+    name="Disabled"
+    args={{
+      icon: cardSelectImage,
+      disabled: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story 
+    name="Alt Completed Icon"
+    args={{
+      icon: cardSelectImage,
+      disabled: true,
+      selected: true,
+      completedIcon: <Chip size="small" color="success" label="Complete" />
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+- [Card Select Group](/docs/misc-cardselectgroup--horizontal)
