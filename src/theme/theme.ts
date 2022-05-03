@@ -49,7 +49,6 @@ declare module '@mui/material/styles/createPalette' {
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
-    body: React.CSSProperties;
     subtext: React.CSSProperties;
     link: React.CSSProperties;
     taskTitle: React.CSSProperties;
@@ -57,7 +56,6 @@ declare module '@mui/material/styles' {
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
-    body?: React.CSSProperties;
     subtext?: React.CSSProperties;
     link?: React.CSSProperties;
     taskTitle?: React.CSSProperties;
@@ -83,13 +81,10 @@ declare module '@mui/material/styles' {
 // Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    body: true;
     subtext: true;
     link: true;
     taskTitle: true;
     // Remove unused variants
-    body1: false;
-    body2: false;
     subtitle1: false;
     subtitle2: false;
   }
@@ -133,9 +128,15 @@ const typographyVariants = {
     fontWeight: 600,
     letterSpacing: '-2%',
   },
-  body: {
+  body1: {
     fontSize: '0.875rem',
     lineHeight: 1.285,
+    fontWeight: 400,
+    letterSpacing: '-2%',
+  },
+  body2: {
+    fontSize: '0.75rem',
+    lineHeight: 1.333,
     fontWeight: 400,
     letterSpacing: '-2%',
   },

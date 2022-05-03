@@ -18,7 +18,8 @@ const DESCRIPTIONS = {
   h3: 'Use as after headings and on set up cards',
   h4: 'Use as after headings and on set up cards',
   h5: 'Use as Labels for Inputs, Footers',
-  body: 'Body copy',
+  body1: 'Body1 copy',
+  body2: 'Body2 copy',
   subtext: 'Use for helper text, captions, and tool tips',
   link: 'Use for links, Call To Actions',
 // eslint-disable-next-line no-unused-vars
@@ -54,10 +55,10 @@ const TypographyDetails = ({ variant }: {variant: WMEVariants}) => {
       {
         VARIANT_INFO_LIST.map(([key, label]) => key in variantInfo && (
           <Box key={key}>
-            <Typography sx={{ lineHeight: '24px', fontWeight: '600' }} variant="body">
+            <Typography sx={{ lineHeight: '24px', fontWeight: '600' }} variant="body1">
               {`${label}: `}
             </Typography>
-            <Typography variant="body">
+            <Typography variant="body1">
               {`${variantInfo[key]}`}
               {key === 'fontSize' && fontSizePx && ` (${fontSizePx}px)`}
               {key === 'lineHeight' && lineHeightPx && ` (${lineHeightPx}px)`}
