@@ -7,6 +7,7 @@ interface WmeMenuItemProps {
   key: number | string;
   icon?: ReactNode;
   id?: string;
+  children: string | ReactNode;
 }
 
 const StyledMenuItem = styled(MuiMenuItem, {

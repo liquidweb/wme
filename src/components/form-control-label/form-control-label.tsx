@@ -6,6 +6,7 @@ interface FormControlProps {
   control: ReactElement;
   label: string;
   value?: string;
+  children?: string;
 }
 
 const StyledFormControlLabel = styled(MuiFormControlLabel, {

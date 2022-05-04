@@ -144,7 +144,10 @@ const TitleContainer: React.FC<TitleContainerProps> = (props) => {
 
   return (
     <StyledTitleContainer>
-      <InputTitle>{label}</InputTitle>
+      {
+        label
+        && <InputTitle>{label}</InputTitle>
+      }
       {
         selectedFile
         && (

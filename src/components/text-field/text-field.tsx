@@ -18,7 +18,7 @@ export interface WmeTextFieldProps {
   errorMessage?: string;
   placeholder?: string;
   defaultValue?: string;
-  label?: string;
+  label: string;
   endAdornment?: ReactNode;
   helperText?: string;
   type?: string;
