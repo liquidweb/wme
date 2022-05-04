@@ -90,6 +90,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        error={error}
         endAdornment={(
           <StyledInputAdornment position="end">
             {

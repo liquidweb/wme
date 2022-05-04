@@ -45,6 +45,11 @@ const StyledSelect = styled(Select, {
       borderWidth: 1,
     },
   },
+  '&.Mui-error': {
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: theme.palette.error.main,
+    },
+  },
 }));
 
 const StyledFormControl = styled(FormControl, {
@@ -103,6 +108,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
       }
       <StyledSelect
         displayEmpty
+        error={error}
         value={value}
         input={<OutlinedInput />}
         renderValue={(selected: any) => {
