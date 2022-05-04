@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface NavigationProps {
   width?: string;
+  children: string | ReactNode;
 }
 
 const StyledNavigation = styled(Box)<NavigationProps>(({ width = 'auto' }) => ({

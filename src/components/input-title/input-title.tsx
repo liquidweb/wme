@@ -2,6 +2,10 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 
+interface InputTitleProps {
+  children: string;
+}
+
 const StyledInputTitle = styled(Typography, {
   name: 'WmeInputTitle',
   slot: 'Root',
@@ -12,7 +16,7 @@ const StyledInputTitle = styled(Typography, {
   color: theme.palette.text.primary,
 }));
 
-const InputTitle: React.FC = (props) => {
+const InputTitle: React.FC<InputTitleProps> = (props) => {
   const { children } = props;
   return (
     <StyledInputTitle>

@@ -6,7 +6,7 @@ import {
   ToggleButton,
   ToggleButtonProps,
   Typography,
-  TypographyProps
+  TypographyProps,
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
@@ -189,7 +189,7 @@ export default function CardSelectItem(props: CardSelectItemProps) {
   let footer = footerProp;
 
   if (primary != null && primary.type !== Typography) {
-    primary = <PrimaryText variant="body">{primary}</PrimaryText>;
+    primary = <PrimaryText variant="body1">{primary}</PrimaryText>;
   }
 
   if (secondary != null && secondary?.type !== Typography) {

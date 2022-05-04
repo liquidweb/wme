@@ -20,7 +20,7 @@ import {
  */
 
 interface PasswordFieldProps {
-  label?: string;
+  label: string;
   helperText?: string;
   type: string;
   value: string;
@@ -81,11 +81,8 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
 
   return (
     <>
-      {
-        label
-        && <InputTitle>{label}</InputTitle>
-      }
       <TextField
+        label={label}
         type={type}
         value={value}
         onChange={onChange}
