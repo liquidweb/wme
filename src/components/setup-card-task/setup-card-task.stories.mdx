@@ -11,23 +11,89 @@ import taskIcon from '../../stories/images/task-icon.png';
   title="Setup Cards/SetupCardTask"
   component={SetupCardTask}
   argTypes={{
+    disabled: {
+      control: 'boolean',
+      defaultValue: false,
+      description: 'If `true`, the component is disabled.',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: `false`,
+        }
+      }
+    },
     variant: {
-      options: ['task', 'action'],
-      control: 'radio',
+      control: {
+        type: 'inline-radio',
+        options: ['task', 'action'],
+      }, 
+      defaultValue: 'task',
+      table: {
+        type: {
+          summary: 'string',
+          detail: "'task' | 'action'"
+        },
+      },
+      description: 'Setup Card Task type',
+    },
+    title: {
+      control: 'text',
+      defaultValue: 'Example task title',
+      description: 'The title content for component.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
     },
     intro: {
       control: 'text',
       defaultValue: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
+      description: 'The intro content for component.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
     },
     taskCta: {
       control: 'text',
       defaultValue: 'Learn More',
+      description: 'The CTA content for `task` variant.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
     },
     avatarProps: {
-      src: taskIcon,
+      control: false,
+      description: 'Accepts all MUI Avatar props.',
+      table: {
+        type: {
+          summary: 'node'
+        }
+      }
     },
     onClick: {
       onClick: (e) => handleClick(e),
+      description: 'Callback fired when the button is clicked.',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
+    },
+    sx: {
+      control: false,
+      description: 'The system prop that allows defining system overrides as well as additional CSS styles.',
+      table: {
+        type: {
+          summary: 'Array<func | object | bool> | func | object',
+        }
+      }
     }
   }}
   decorators={[
@@ -47,7 +113,11 @@ export const handleClick = (event) => {
   console.log(event);
 };
 
-# Setup Card Task Stories
+# Setup Card Task
+Tasks are used on the WordPress Set Up Page for WME. They come in two 
+styles: text based CTAs that launch the wizard modal and button CTAs 
+that launch non-wizard functionality such as taking the user to a 
+specific part of the WordPress admin.
 
 ## Props
 <ArgsTable story="." />
@@ -60,6 +130,9 @@ export const handleClick = (event) => {
       title: 'Example task title',
       variant: 'task',
       taskCta: 'Learn More',
+      avatarProps: {
+        src: taskIcon,
+      }
     }}
   >
     {Template.bind({})}
@@ -71,6 +144,9 @@ export const handleClick = (event) => {
       title: 'Example disabled task',
       taskCta: 'Learn More',
       disabled: true,
+      avatarProps: {
+        src: taskIcon,
+      }
     }}
   >
     {Template.bind({})}
@@ -85,6 +161,9 @@ export const handleClick = (event) => {
         url: '#TBD',
         backgroundColor: '#645FF3',
       },
+      avatarProps: {
+        src: taskIcon,
+      }
     }}
   >
     {Template.bind({})}
@@ -100,6 +179,9 @@ export const handleClick = (event) => {
         url: '#TBD',
         backgroundColor: '#645FF3',
       },
+      avatarProps: {
+        src: taskIcon,
+      }
     }}
   >
     {Template.bind({})}

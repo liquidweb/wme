@@ -1,4 +1,5 @@
 import {
+  ArgsTable,
   Story,
   Canvas,
   Meta,
@@ -25,6 +26,17 @@ import { SetupCardFooter, SetupCardList, SetupCardListItem } from '..';
       </div>
     ),
   ]}
+  argTypes={{
+    children: {
+      control: false,
+      description: 'The content of the component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    }
+  }}
 />
 
 export const FooterWithLinks = () => (
@@ -118,6 +130,9 @@ export const FooterWithAccordion = () => (
 # Setup Card Footer
 A task card footer that allows users to store additional footnoted information such
 as links or additional helper text. If used, they always come last in a Task Card. 
+
+## Props
+<ArgsTable story="." />
 
 ## Footer With Links
 <Canvas>

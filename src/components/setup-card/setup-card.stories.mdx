@@ -1,4 +1,9 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  ArgsTable,
+  Meta,
+  Story,
+  Canvas
+} from '@storybook/addon-docs';
 import { Box } from "@mui/material";
 import {
   CardContent,
@@ -28,14 +33,34 @@ import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.storie
 import * as SetupCardFooterStories from '../setup-card-footer/setup-card-footer.stories.mdx';
 import { theme } from '../../theme';
 
-<Meta title="Setup Cards/SetupCard" component={SetupCard} />
+<Meta 
+  title="Setup Cards/SetupCard"
+  component={SetupCard}
+  argTypes={{
+    children: {
+      control: false,
+      description: 'The content of the component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    }
+  }}
+/>
 
-# SetupCard
-Various setup tasks are set within cards on the WME Set Up page.
+# Setup Card
+The Setup Card provides the foundation on which to build-out a setup page card. 
+Setup Cards can contain tasks or be purely informational.
+
+Below are some example configurations.
+
+## Props
+<ArgsTable story="." />
 
 ## SetupCard with Actions
-- SetupCard layout with SetupCardTask using the `action` variant.
-- Footer with message.
+- `SetupCard` layout with `SetupCardTask`s using the `action` variant.
+- `SetupCardFooter` with message.
 
 <Canvas>
   <Story name="Actions">
@@ -52,8 +77,8 @@ Various setup tasks are set within cards on the WME Set Up page.
 </Canvas>
 
 ## SetupCard with Column Links
-- SetupCard layout with SetupCardList.
-- Footer with Accordion.
+- `SetupCard` layout with `SetupCardList`.
+- `SetupCardFooter` with MUI `Accordion`.
 
 <Canvas>
   <Story name="Column Links">
@@ -95,6 +120,7 @@ Various setup tasks are set within cards on the WME Set Up page.
 </Canvas>
 
 ## SetupCard with Media & Text
+- `SetupCard` with media and text.
 
 <Canvas>
   <Story name="Media & Text">
@@ -173,8 +199,8 @@ Various setup tasks are set within cards on the WME Set Up page.
 </Canvas>
 
 ## SetupCard with Tasks
-- SetupCard layout with SetupCardTask using the `task` variant.
-- Footer with message and links.
+- `SetupCard` layout with `SetupCardTask`s using the `task` variant.
+- `SetupCardFooter` with message and links.
 
 <Canvas>
   <Story name="Tasks">
