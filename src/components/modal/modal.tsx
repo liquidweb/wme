@@ -5,19 +5,17 @@ import {
 import { styled } from '@mui/material/styles';
 
 interface WmeDialogProps extends DialogProps {
-  width?: string;
   children?: ReactNode;
 }
 
 const StyledModal = styled(Dialog, {
   name: 'WmeDialog',
   slot: 'Root',
-})<WmeDialogProps>(({ width }) => ({
+})(() => ({
   zIndex: 99999,
 
   '& .MuiDialogContent-root': {
     minHeight: 'calc(100vh - 200px)',
-    width,
   },
 }));
 
@@ -30,6 +28,7 @@ const Modal: React.FC<WmeDialogProps> = (props) => {
   return (
     <StyledModal
       fullScreen
+      fullWidth
       {...rest}
     >
       <DialogContent>
