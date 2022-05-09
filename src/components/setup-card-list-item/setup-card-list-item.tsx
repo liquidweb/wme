@@ -47,7 +47,7 @@ const StyledSetupCardListItem = styled('li', {
 
 export default function SetupCardListItem(props: SetupCardListItemProps) {
   const {
-    icon = null,
+    icon = false,
     title,
     href,
     target = '_self',

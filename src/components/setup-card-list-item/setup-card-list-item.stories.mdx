@@ -12,11 +12,53 @@ import { SetupCardList, SetupCardListItem } from '..';
   component={SetupCardListItem}
   argTypes={{
     icon: {
-      control: 'boolean',
-      mapping: {
-        true: <DownhillSkiingIcon />,
-      },
+      control: false,
+      description: 'The content of the component, normally `Icon`, `SvgIcon`, or a `@mui/icons-material` SVG icon element.',
+      table: {
+        type: {
+          summary: 'node',
+        }
+      }
     },
+    title: {
+      control: 'text',
+      defaultValue: '',
+      description: 'The main content element.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    href: {
+      control: 'text',
+      defaultValue: '',
+      description: 'The URL to link to when the item is clicked.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    target: {
+      control: 'text',
+      defaultValue: '_self',
+      description: 'Specify where to open the link.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    linkProps: {
+      control: false,
+      description: 'Accepts all MUI Link props.',
+      table: {
+        type: {
+          summary: 'node'
+        }
+      }
+    }
   }}
 />
 
@@ -27,6 +69,8 @@ export const Template = (args) => (
 );
 
 # Setup Card List Item
+Setup Card List Items can optionally display as links 
+and optionally be pre-pended with an MUI Icon.
 
 ## Props
 <ArgsTable story="." />
@@ -38,6 +82,17 @@ export const Template = (args) => (
       title: 'Example title text for testing',
       href: '#example-link',
       target: '_self',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="ListItemWithIcon"
+    args={{
+      title: 'Example title text for testing',
+      href: '#example-link',
+      target: '_self',
+      icon: <DownhillSkiingIcon />
     }}
   >
     {Template.bind({})}

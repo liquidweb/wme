@@ -160,8 +160,6 @@ const SecondaryText = styled(Typography, {
 })<TypographyProps>(({ theme }) => ({
   display: 'block',
   color: theme.palette.text.primary,
-  fontSize: theme.typography.pxToRem(12),
-  lineHeight: 1.33,
 }));
 
 const CardSelectCompleteIcon = () => (
@@ -193,7 +191,7 @@ export default function CardSelectItem(props: CardSelectItemProps) {
   }
 
   if (secondary != null && secondary?.type !== Typography) {
-    secondary = <SecondaryText>{secondary}</SecondaryText>;
+    secondary = <SecondaryText variant="body2">{secondary}</SecondaryText>;
   }
 
   if (footer != null && footer?.type !== Typography) {
