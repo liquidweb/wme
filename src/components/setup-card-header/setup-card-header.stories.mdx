@@ -13,14 +13,30 @@ import { todo } from '../chip/chip.stories.mdx';
   argTypes={{
     title: {
       type: 'string',
-      description: '`node` The content (title) of the component.',
+      description: 'The content (title) of the component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
     },
     subheader: {
-      description: '`node` The content(subtitle) of the component.',
+      type: 'string',
+      description: 'The content(subtitle) of the component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
     },
     action: {
       control: false,
-      description: '`node` The action to display in the card header.',
+      description: 'The action to display in the card header.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
     },
   }}
   decorators={[
