@@ -81,3 +81,6 @@ export * from './card-select-item';
 
 export { default as VideoEmbed } from './video-embed';
 export * from './video-embed';
+
+export { default as Modal } from './modal';
+export * from './modal';
