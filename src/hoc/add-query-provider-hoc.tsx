@@ -1,17 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { ReactElement, useMemo } from 'react';
 import {
   BrowserRouter,
   useNavigate,
   useLocation,
 } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
+import { Location } from 'history';
 
 interface RouteProps {
   children: React.FunctionComponent;
-}
-
-interface QueryParams {
-  ReactRouterRoute?: React.ComponentClass | React.FunctionComponent;
 }
 
 const RouteAdapter: React.FC<RouteProps> = ({ children }) => {
@@ -20,10 +17,10 @@ const RouteAdapter: React.FC<RouteProps> = ({ children }) => {
 
   const adaptedHistory = useMemo(
     () => ({
-      replace(locationTemp:any) {
+      replace(locationTemp:Location) {
         navigate(locationTemp, { replace: true, state: locationTemp.state });
       },
-      push(locationTemp:any) {
+      push(locationTemp:Location) {
         navigate(locationTemp, { replace: false, state: locationTemp.state });
       },
     }),
@@ -32,11 +29,11 @@ const RouteAdapter: React.FC<RouteProps> = ({ children }) => {
   return children({ history: adaptedHistory, location });
 };
 
-export function addQueryProviderHoc(WrappedComponent:any) {
-  return (props:any) => (
+export function addQueryProviderHoc(WrappedComponent:React.FunctionComponent) {
+  return (props:ReactElement) => (
     <BrowserRouter>
       <QueryParamProvider
-        ReactRouterRoute={RouteAdapter}
+        ReactRouterRoute={RouteAdapter as unknown as React.FunctionComponent}
         stringifyOptions={{
           skipNull: true,
           skipEmptyString: true,
