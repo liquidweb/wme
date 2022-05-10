@@ -6,7 +6,7 @@ import {
 } from '@storybook/addon-docs';
 import { useState } from 'react';
 import {
-  Modal,
+  Wizard,
   Button,
   Navigation,
   NavNumber
@@ -16,8 +16,8 @@ import welcomeImage from '../../stories/images/ftc-welcome.png';
 import { Box, Typography } from '@mui/material';
 
 <Meta
-  title="Wizard/Modal"
-  component={ Modal }
+  title="Wizard/Wizard"
+  component={ Wizard }
   argTypes={{
     open: {
       type: { required: true },
@@ -31,7 +31,7 @@ import { Box, Typography } from '@mui/material';
       }
     },
     onClose: {
-      description: 'Callback fired when the modal is closed.',
+      description: 'Callback fired when the wizard is closed.',
       table: {
         type: {
           summary: 'func',
@@ -48,8 +48,8 @@ export const Template = (args) => {
   const [active, setActive] = useState(0);
   return (
     <>
-    <Typography>Change the <i>open</i> prop in "Controls" to open/close the Modal.</Typography>
-    <Modal {...args}>
+    <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
+    <Wizard {...args}>
       <Box
         mb={ 3 }
         sx={{
@@ -94,17 +94,36 @@ export const Template = (args) => {
           ))
         }
       </Navigation>
-    </Modal>
+    </Wizard>
     </>
   );
 };
 
-# Modal
-The Wizard/Modal is a Dialog box that can be opened/closed. It is the MUI `Dialog` component
+# Wizard
+The Wizard is a Dialog box that can be opened/closed. It is the MUI `Dialog` component
 wrapping the `DialogContent` component. Children are passed to `DialogContent`.
 
-This Modal extends MUI's Modal, so you can access any props available there. <a href="https://mui.com/material-ui/api/dialog" target="_blank">You can view the reference here</a>.
+This Wizard Component extends MUI's Modal, so you can access any props available there. <a href="https://mui.com/material-ui/api/dialog" target="_blank">You can view the reference here</a>.
 Since this is for building a Wizard, the Modal will always expand to fullscreen. If you don't want the fullscreen Wizard option, we recommend using MUI's `Dialog` or `Modal` component instead.
+
+## WordPress Compatibility
+If using the WME Framework in the WordPress admin, we recommend passing a `z-index` of at least `99999` into
+the `Wizard` component using the MUI's Global Theme Overrides. For example:
+
+```
+const theme = createTheme({
+  components: {
+    // Name of the component
+    Wizard: {
+      styleOverrides: {
+        root: {
+          zIndex: 99999,
+        },
+      },
+    },
+  },
+});
+```
 
 ## Props
 <ArgsTable story="." />

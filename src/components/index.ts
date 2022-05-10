@@ -82,5 +82,8 @@ export * from './card-select-item';
 export { default as VideoEmbed } from './video-embed';
 export * from './video-embed';
 
-export { default as Modal } from './modal';
-export * from './modal';
+export { default as Wizard } from './wizard';
+export * from './wizard';
+
+export { default as WizardHeader } from './wizard-header';
+export * from './wizard-header';
