@@ -87,3 +87,6 @@ export * from './wizard';
 
 export { default as WizardHeader } from './wizard-header';
 export * from './wizard-header';
+
+export { default as WizardSectionTitle } from './wizard-section-title';
+export * from './wizard-section-title';

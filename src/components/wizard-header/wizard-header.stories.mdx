@@ -5,10 +5,7 @@ import {
   Meta
 } from '@storybook/addon-docs';
 import { useState } from 'react';
-import {
-  WizardHeader,
-  Button
-} from '..';
+import { WizardHeader, Button } from '..';
 import { screens } from '../navigation/navigation.stories.mdx';
 import logo from '../../stories/images/logo.png';
 import { Box, Typography } from '@mui/material';
@@ -19,11 +16,11 @@ import { Logout } from '@mui/icons-material';
   component={ WizardHeader }
   argTypes={{
     logoSrc: {
-      control: 'object',
+      control: 'string',
       description: 'Path to src of image',
       table: {
         type: {
-          summary: 'object',
+          summary: 'string',
         },
       }
     },
@@ -64,7 +61,7 @@ export const Template = (args) => {
 };
 
 # Wizard Header
-The Wizard header features the logo and the ability to exit. You can pass a component or text as the exit. 
+The WizardHeader features the logo and the ability to exit. You can pass a component or text as the exit. 
 
 The Wizard component does not require this header, so feel free to build your own if this component doesn't fit your needs.
 
@@ -76,7 +73,7 @@ The Wizard component does not require this header, so feel free to build your ow
   <Story
     name="Default"
     args={{
-      logoSrc: {logo},
+      logoSrc: logo,
       logoAlt: 'Mithrandir logo',
       exit: <Exit />,
     }}
