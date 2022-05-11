@@ -28,15 +28,15 @@ const WizardSectionTitleContainer = styled(Box, {
 const Heading = styled(Typography, {
   name: 'WmeWizardSectionTitle',
   slot: 'Heading',
-})(() => ({
-  marginBottom: '16px',
+})(({ theme }) => ({
+  marginBottom: theme.spacing(2),
 }));
 
 const IconContainer = styled(Box, {
   name: 'WmeWizardSectionTitle',
   slot: 'IconContainer',
-})(() => ({
-  marginBottom: '24px',
+})(({ theme }) => ({
+  marginBottom: theme.spacing(3),
 }));
 
 const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {

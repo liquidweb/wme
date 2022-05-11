@@ -90,3 +90,6 @@ export * from './wizard-header';
 
 export { default as WizardSectionTitle } from './wizard-section-title';
 export * from './wizard-section-title';
+
+export { default as WizardFooter } from './wizard-footer';
+export * from './wizard-footer';
