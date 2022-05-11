@@ -9,11 +9,24 @@ import {
   Wizard,
   Button,
   Navigation,
-  NavNumber
+  NavNumber,
+  WizardSectionTitle,
+  WizardHeader,
+  WizardFooter,
+  TextField,
+  PasswordField,
+  Dropdown,
+  MenuItem,
 } from '..';
 import { screens } from '../navigation/navigation.stories.mdx';
 import welcomeImage from '../../stories/images/ftc-welcome.png';
-import { Box, Typography } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Grid,
+} from '@mui/material';
+import * as WizardHeaderStories from '../wizard-header/wizard-header.stories.mdx';
+import * as WizardFooterStories from '../wizard-footer/wizard-footer.stories.mdx';
 
 <Meta
   title="Wizard/Wizard"
@@ -41,59 +54,183 @@ import { Box, Typography } from '@mui/material';
   }}
 />
 
-export const INTRO_TEXT = 'Let\'s set up a few basic details about your store. You can skip any of these steps and come back to them later if you\'re not ready to complete them yet.';
-export const TITLE_TEXT = 'Welcome to StoreBuilder for WordPress!';
+export const BOOKEND_INTRO_TEXT = 'Let\'s set up a few basic details about your store. You can skip any of these steps and come back to them later if you\'re not ready to complete them yet.';
+export const BOOKEND_TITLE_TEXT = 'Welcome to StoreBuilder for WordPress!';
+export const WELCOME_IMG_ALT = 'welcome icon party emoji';
 
-export const Template = (args) => {
+export const Bookend = (args) => {
   const [active, setActive] = useState(0);
   return (
     <>
     <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
     <Wizard {...args}>
-      <Box
-        mb={ 3 }
-        sx={{
-          img: {
-            maxWidth: '75px',
+      <WizardSectionTitle
+        heading={BOOKEND_TITLE_TEXT}
+        copy={BOOKEND_INTRO_TEXT}
+        iconSrc={welcomeImage}
+        iconAlt={WELCOME_IMG_ALT}
+        iconWidth={75}
+        bookend={true}
+        width="50%"
+        sx={{ marginTop: '50px'}}
+      />
+      <WizardFooter {...WizardFooterStories.defaultStory.args}>
+        <Navigation width="auto">
+          {
+            screens.map((screen, i) => (
+              <NavNumber
+                number={i + 1}
+                text={screen.text}
+                onClick={() => setActive(i)}
+                active={active === i}
+                key={i}
+                isComplete={false}
+              />
+            ))
           }
-        }}
-        textAlign={ 'center' }>
-        <img src={ welcomeImage } alt={ 'party emoji welcome' } />
+        </Navigation>
+      </WizardFooter>
+    </Wizard>
+    </>
+  );
+};
+
+export const Fullscreen = (args) => {
+  const [active, setActive] = useState(0);
+  return (
+    <>
+    <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
+    <Wizard {...args}>
+      <WizardHeader {...WizardHeaderStories.defaultStory.args} />
+      <WizardSectionTitle
+        heading="WME WIZARD WALKTHROUGH"
+        copy="Enter your information to continue"
+      />
+      <Box sx={{ textAlign: 'center', marginTop: '25px' }}>
+        <TextField
+          label="Username"
+          placeholder="Username"
+          sx={{ marginRight: '5px' }}
+        />
+        <PasswordField
+          label="Password"
+          placeholder="Password"
+        />
       </Box>
-      <Box>
-        <Typography
-          sx={{ fontSize: '48px' }}
-          variant="h3"
-          component="h2"
-          mb={ 3 }
-          align={ 'center' }>
-          { TITLE_TEXT }
-        </Typography>
-        <Typography
-          sx={{ maxWidth: 460 }}
-          variant="body1"
-          component="p"
-          ml={ 'auto' }
-          mr={ 'auto' }
-          mb={ 3 }
-          align={ 'center' }>
-          { INTRO_TEXT }
-        </Typography>
-		  </Box>
-      <Navigation width="auto">
-        {
-          screens.map((screen, i) => (
-            <NavNumber
-              number={i + 1}
-              text={screen.text}
-              onClick={() => setActive(i)}
-              active={active === i}
-              key={i}
-              isComplete={false}
-            />
-          ))
-        }
-      </Navigation>
+      <WizardFooter {...WizardFooterStories.defaultStory.args}>
+        <Navigation width="auto">
+          {
+            screens.map((screen, i) => (
+              <NavNumber
+                number={i + 1}
+                text={screen.text}
+                onClick={() => setActive(i)}
+                active={active === i}
+                key={i}
+                isComplete={false}
+              />
+            ))
+          }
+        </Navigation>
+      </WizardFooter>
+    </Wizard>
+    </>
+  );
+};
+
+export const Sidebar = (args) => {
+  const [active, setActive] = useState(0);
+  const themeUrl = 'https://startertemplatecloud.com/';
+  const [item, setItem] = useState('Outdoor Store');
+  const themes = [
+    {
+      id: 'outdoor-store',
+      value: 'Outdoor Store',
+      theme: '31',
+      key: 0,
+    },
+    {
+      id: 'coffee-shop',
+      value: 'Coffee Shop',
+      theme: 'g27',
+      key: 1,
+    },
+    {
+      id: 'print-shop',
+      value: 'Print Shop',
+      theme: 'g02',
+      key: 2,
+    },
+  ];
+  const handleChange = (event) => {
+    setItem(event.target.value);
+  };
+  const getTheme = (val) => {
+    for (const theme of themes) {
+      if (theme.value === val) {
+        return themeUrl + theme.theme;
+      }
+    }
+    return '';
+  }
+  return (
+    <>
+    <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
+    <Wizard {...args}>
+      <WizardHeader {...WizardHeaderStories.defaultStory.args} />
+      <Grid container spacing={ 2 } sx={{ marginBottom: '20px' }}>
+        <Grid item xs={ 2.5 } sx={{ display: 'flex', flexDirection: 'column' }}>
+          <WizardSectionTitle
+            heading="Kadence Starter Theme"
+            copy="Select a theme to view"
+            headingVariant="h3"
+          />
+          <Dropdown
+            value={item}
+            selectValue={item}
+            onChange={handleChange}
+            width={200}
+            sx={{ marginBottom: '20px' }}
+          >
+            {
+              themes.map((theme) => {
+                return <MenuItem id={theme.id} value={theme.value} key={theme.key}>{theme.value}</MenuItem>
+              })
+            }
+          </Dropdown>
+          <Button variant="contained" color="secondary" sx={{ width: '200px' }}>Next Step</Button>
+        </Grid>
+        <Grid item xs={ 9.5 }>
+          <iframe
+            id="kadence-starter-preview"
+            title="kadence-starter-preview"
+            src={getTheme(item)}
+            style={{
+              display:'block',
+              width: '100%',
+              height: '75vh',
+              margin: '0 auto',
+              borderRadius: '4px',
+            }}
+          />
+        </Grid>
+      </Grid>
+      <WizardFooter {...WizardFooterStories.defaultStory.args}>
+        <Navigation width="auto">
+          {
+            screens.map((screen, i) => (
+              <NavNumber
+                number={i + 1}
+                text={screen.text}
+                onClick={() => setActive(i)}
+                active={active === i}
+                key={i}
+                isComplete={false}
+              />
+            ))
+          }
+        </Navigation>
+      </WizardFooter>
     </Wizard>
     </>
   );
@@ -105,6 +242,35 @@ wrapping the `DialogContent` component. Children are passed to `DialogContent`.
 
 This Wizard Component extends MUI's Modal, so you can access any props available there. <a href="https://mui.com/material-ui/api/dialog" target="_blank">You can view the reference here</a>.
 Since this is for building a Wizard, the Modal will always expand to fullscreen. If you don't want the fullscreen Wizard option, we recommend using MUI's `Dialog` or `Modal` component instead.
+
+## Sidebar Layout
+For a sidebar layou, we recommend using MUI's Grid component. Here's an example:
+```    
+<Wizard {...props}>
+  <WizardHeader heading="Wizard Heading" />
+  
+  // Outer grid container 
+  <Grid container spacing={ 2 }>
+    
+    // Left Sidebar grid start
+    <Grid item xs={ 2.5 }>
+      <WizardSectionTitle
+        heading="Kadence Starter Theme"
+        copy="Select a theme to view"
+      />
+      <Button variant="contained" color="secondary">Next Step</Button>
+    </Grid>
+
+    // Main content area start
+    <Grid item xs={ 9.5 }>
+      <iframe
+        id="kadence-starter-preview"
+        src="kadencewp.com"
+      />
+    </Grid>
+  </Grid>
+</Wizard>
+```
 
 ## WordPress Compatibility
 If using the WME Framework in the WordPress admin, we recommend passing a `z-index` of at least `99999` into
@@ -130,9 +296,19 @@ const theme = createTheme({
 
 ## Canvas
 <Canvas>
-  <Story
-    name="Default"
-  >
-  {Template.bind({})}
+  <Story name="Bookend">
+  {Bookend.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Fullscreen">
+  {Fullscreen.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Sidebar">
+  {Sidebar.bind({})}
   </Story>
 </Canvas>

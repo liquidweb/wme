@@ -21,8 +21,8 @@ export interface WmeTextFieldProps {
   label: string;
   endAdornment?: ReactNode;
   helperText?: string;
-  type?: string;
   value?: string;
+  type?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 

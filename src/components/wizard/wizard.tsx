@@ -4,10 +4,21 @@ import {
   DialogProps,
   DialogContent,
 } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 interface WmeDialogProps extends DialogProps {
   children?: ReactNode;
 }
+
+const StyledDialogContent = styled(DialogContent, {
+  name: 'WmeDialogContent',
+  slot: 'Root',
+})(() => ({
+  margin: '16px 32px',
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+}));
 
 const Wizard: React.FC<WmeDialogProps> = (props) => {
   const {
@@ -21,9 +32,9 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
       fullWidth
       {...rest}
     >
-      <DialogContent>
+      <StyledDialogContent>
         {children}
-      </DialogContent>
+      </StyledDialogContent>
     </Dialog>
   );
 };

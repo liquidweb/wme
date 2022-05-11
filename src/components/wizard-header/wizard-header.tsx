@@ -13,9 +13,9 @@ interface WizardHeaderProps {
 const WizardHeaderContainer = styled(Box, {
   name: 'WmeWizardHeader',
   slot: 'Root',
-})(() => ({
-  margin: '16px 32px 0 32px',
+})(({ theme }) => ({
   display: 'flex',
+  marginBottom: theme.spacing(2),
   justifyContent: 'space-between',
   alignItems: 'center',
   position: 'relative',

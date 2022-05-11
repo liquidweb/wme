@@ -14,6 +14,7 @@ const StyledInputTitle = styled(Typography, {
   fontSize: 14,
   marginBottom: 5,
   color: theme.palette.text.primary,
+  textAlign: 'left',
 }));
 
 const InputTitle: React.FC<InputTitleProps> = (props) => {

@@ -17,6 +17,7 @@ const WizardFooterContainer = styled(Box, {
 })(() => ({
   display: 'flex',
   alignItems: 'center',
+  marginTop: 'auto',
 }));
 
 const Prev = styled(Box, {

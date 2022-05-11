@@ -9,7 +9,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import {
-  InputTitle,
   TextField,
   FormHelperText,
   ErrorText,
@@ -22,8 +21,7 @@ import {
 interface PasswordFieldProps {
   label: string;
   helperText?: string;
-  type: string;
-  value: string;
+  value?: string;
   placeholder?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;
@@ -31,6 +29,7 @@ interface PasswordFieldProps {
   color?: 'default' | 'error' | 'success' | 'warning';
   error?: boolean;
   errorMessage?: string;
+  type?: string;
 }
 
 const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -68,8 +67,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
   const {
     label,
     helperText,
-    type,
-    value,
+    value = '',
     placeholder,
     onChange,
     onClick,
@@ -77,17 +75,18 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
     color,
     error,
     errorMessage,
+    type,
   } = props;
 
   return (
     <>
       <TextField
         label={label}
-        type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         error={error}
+        type={type || 'password'}
         endAdornment={(
           <StyledInputAdornment position="end">
             {
