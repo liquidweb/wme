@@ -36,7 +36,7 @@ import * as WizardFooterStories from '../wizard-footer/wizard-footer.stories.mdx
       type: { required: true },
       control: 'boolean',
       description: 'Boolean value of if modal should be opened (required)',
-      defaultValue: true,
+      defaultValue: false,
       table: {
         defaultValue: {
           summary: false,
@@ -57,12 +57,15 @@ import * as WizardFooterStories from '../wizard-footer/wizard-footer.stories.mdx
 export const BOOKEND_INTRO_TEXT = 'Let\'s set up a few basic details about your store. You can skip any of these steps and come back to them later if you\'re not ready to complete them yet.';
 export const BOOKEND_TITLE_TEXT = 'Welcome to StoreBuilder for WordPress!';
 export const WELCOME_IMG_ALT = 'welcome icon party emoji';
+export const DOCS_NOTE = <Typography sx={{ marginTop: '25px' }}><strong>NOTE: </strong>When viewing the Docs tab, make sure each Wizard's <code>open </code>prop is set to <code>False</code>.
+If set to <code>True</code> the open modal will show on top of the Docs page.</Typography>;
 
 export const Bookend = (args) => {
   const [active, setActive] = useState(0);
   return (
     <>
-    <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
+    <Typography>Change the <code>open</code> prop in "Controls" to open/close the wizard.</Typography>
+    {DOCS_NOTE}
     <Wizard {...args}>
       <WizardSectionTitle
         heading={BOOKEND_TITLE_TEXT}
@@ -100,6 +103,7 @@ export const Fullscreen = (args) => {
   return (
     <>
     <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
+    {DOCS_NOTE}
     <Wizard {...args}>
       <WizardHeader {...WizardHeaderStories.defaultStory.args} />
       <WizardSectionTitle
@@ -176,6 +180,7 @@ export const Sidebar = (args) => {
   return (
     <>
     <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
+    {DOCS_NOTE}
     <Wizard {...args}>
       <WizardHeader {...WizardHeaderStories.defaultStory.args} />
       <Grid container spacing={ 2 } sx={{ marginBottom: '20px' }}>
@@ -244,7 +249,7 @@ This Wizard Component extends MUI's Modal, so you can access any props available
 Since this is for building a Wizard, the Modal will always expand to fullscreen. If you don't want the fullscreen Wizard option, we recommend using MUI's `Dialog` or `Modal` component instead.
 
 ## Sidebar Layout
-For a sidebar layou, we recommend using MUI's Grid component. Here's an example:
+For a sidebar layout, we recommend using MUI's Grid component. Here's an example:
 ```    
 <Wizard {...props}>
   <WizardHeader heading="Wizard Heading" />
