@@ -51,12 +51,26 @@ import * as WizardFooterStories from '../wizard-footer/wizard-footer.stories.mdx
         },
       }
     },
+    bgStyles: {
+      description: 'Object of styles applied to container in wizard',
+      table: {
+        type: {
+          summary: 'obj',
+        },
+      }
+    }
   }}
 />
 
 export const BOOKEND_INTRO_TEXT = 'Let\'s set up a few basic details about your store. You can skip any of these steps and come back to them later if you\'re not ready to complete them yet.';
 export const BOOKEND_TITLE_TEXT = 'Welcome to StoreBuilder for WordPress!';
 export const WELCOME_IMG_ALT = 'welcome icon party emoji';
+export const BG_STYLES = { 
+  backgroundImage: `url(${window.location.origin}/images/setup-modal-background.png)`,
+  backgroundPosition: 'top left',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 200,
+};
 export const DOCS_NOTE = <Typography sx={{ marginTop: '25px' }}><strong>NOTE: </strong>When viewing the Docs tab, make sure each Wizard's <code>open </code>prop is set to <code>False</code>.
 If set to <code>True</code> the open modal will show on top of the Docs page.</Typography>;
 
@@ -301,7 +315,12 @@ const theme = createTheme({
 
 ## Canvas
 <Canvas>
-  <Story name="Bookend">
+  <Story
+    name="Bookend"
+    args={{
+      bgStyles: BG_STYLES,
+    }}
+  >
   {Bookend.bind({})}
   </Story>
 </Canvas>

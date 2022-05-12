@@ -19,6 +19,7 @@ const WizardHeaderContainer = styled(Box, {
   justifyContent: 'space-between',
   alignItems: 'center',
   position: 'relative',
+  zIndex: 1,
 }));
 
 const LogoContainer = styled(Box, {

@@ -1,18 +1,23 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import {
   Dialog,
   DialogProps,
   DialogContent,
+  Box,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface WmeDialogProps extends DialogProps {
   children?: ReactNode;
+  bgStyles?: {};
+  logoSrc?: string;
+  logoAlt?: string;
+  exit?: ReactElement;
 }
 
 const StyledDialogContent = styled(DialogContent, {
-  name: 'WmeDialogContent',
-  slot: 'Root',
+  name: 'WmeWizard',
+  slot: 'DialogContent',
 })(() => ({
   margin: '16px 32px',
   display: 'flex',
@@ -23,6 +28,10 @@ const StyledDialogContent = styled(DialogContent, {
 const Wizard: React.FC<WmeDialogProps> = (props) => {
   const {
     children,
+    bgStyles,
+    logoSrc,
+    logoAlt,
+    exit,
     ...rest
   } = props;
 
@@ -32,9 +41,11 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
       fullWidth
       {...rest}
     >
-      <StyledDialogContent>
-        {children}
-      </StyledDialogContent>
+      <Box sx={{ ...bgStyles }}>
+        <StyledDialogContent>
+          {children}
+        </StyledDialogContent>
+      </Box>
     </Dialog>
   );
 };

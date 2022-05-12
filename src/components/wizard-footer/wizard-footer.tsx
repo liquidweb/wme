@@ -14,10 +14,15 @@ interface WizardFooterProps {
 const WizardFooterContainer = styled(Box, {
   name: 'WmeWizardFooter',
   slot: 'Root',
-})(() => ({
+})(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   marginTop: 'auto',
+  position: 'absolute',
+  justifyContent: 'center',
+  left: theme.spacing(4),
+  right: theme.spacing(4),
+  bottom: theme.spacing(4),
 }));
 
 const Prev = styled(Box, {
