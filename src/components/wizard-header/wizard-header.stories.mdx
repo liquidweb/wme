@@ -9,7 +9,12 @@ import { WizardHeader, Button } from '..';
 import { screens } from '../navigation/navigation.stories.mdx';
 import logo from '../../stories/images/logo.png';
 import { Box, Typography } from '@mui/material';
-import { Logout } from '@mui/icons-material';
+import {
+  Logout,
+  DesktopWindows,
+  TabletMac,
+  PhoneIphone,
+} from '@mui/icons-material';
 
 <Meta
   title="Wizard/WizardHeader"
@@ -30,6 +35,15 @@ import { Logout } from '@mui/icons-material';
       table: {
         type: {
           summary: 'string',
+        },
+      }
+    },
+    centerContent: {
+      control: 'object',
+      description: 'Optional content for center of header',
+      table: {
+        type: {
+          summary: 'func',
         },
       }
     },
@@ -54,6 +68,39 @@ export const Exit = () => {
   );
 };
 
+export const DEVICE_SX = {
+	active: {
+		color: 'primary.dark',
+		mx: '5px',
+	},
+	default: {
+		color: '#BFBFBF',
+		cursor: 'pointer',
+		mx: '5px',
+	}
+};
+
+export const DEVICES = {
+	desktop: DesktopWindows,
+	tablet: TabletMac,
+	mobile: PhoneIphone,
+};
+
+export function ModalDeviceSelection() {
+	return (
+    <Box sx={ { display: 'flex', alignItems: 'center' }}>
+      { Object.keys(DEVICES).map((key) => {
+        const DeviceName = DEVICES[ key ];
+        return <DeviceName
+          key={ key }
+          sx={ 'desktop' === key ? DEVICE_SX.active : DEVICE_SX.default }
+          onClick={ () => console.log('device changed') }
+        />;
+      }) }
+	  </Box>
+  );
+}
+
 export const Template = (args) => {
   return (
     <WizardHeader {...args} />
@@ -75,6 +122,7 @@ The Wizard component does not require this header, so feel free to build your ow
     args={{
       logoSrc: logo,
       logoAlt: 'Mithrandir logo',
+      centerContent: <ModalDeviceSelection />,
       exit: <Exit />,
     }}
   >

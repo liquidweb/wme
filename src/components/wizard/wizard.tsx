@@ -19,7 +19,8 @@ const StyledDialogContent = styled(DialogContent, {
   name: 'WmeWizard',
   slot: 'DialogContent',
 })(() => ({
-  margin: '16px 32px',
+  padding: '16px 32px',
+  overflowY: 'inherit',
   display: 'flex',
   flexDirection: 'column',
   height: '100%',

@@ -217,7 +217,12 @@ export const Sidebar = (args) => {
               })
             }
           </Dropdown>
-          <Button variant="contained" color="secondary" sx={{ width: '200px' }}>Next Step</Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{ width: '200px' }}
+            onClick={() => console.log('Next Step button clicked')}
+          >Next Step</Button>
         </Grid>
         <Grid item xs={ 9.5 }>
           <iframe

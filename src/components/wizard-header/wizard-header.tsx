@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 interface WizardHeaderProps {
   logoSrc?: string;
   logoAlt?: string;
+  centerContent?: ReactElement;
   exit?: ReactElement;
 }
 
@@ -40,6 +41,7 @@ const WizardHeader: React.FC<WizardHeaderProps> = (props) => {
   const {
     logoSrc,
     logoAlt,
+    centerContent,
     exit,
   } = props;
 
@@ -51,6 +53,7 @@ const WizardHeader: React.FC<WizardHeaderProps> = (props) => {
           && <img src={logoSrc} alt={logoAlt} />
         }
       </LogoContainer>
+      {centerContent}
       <ExitContainer>
         {exit}
       </ExitContainer>

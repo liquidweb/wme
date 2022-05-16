@@ -10,6 +10,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import {
   TextField,
+  TextFieldProps,
   FormHelperText,
   ErrorText,
 } from '..';
@@ -18,18 +19,10 @@ import {
  * Password field is a WME Text Field component with additional props
  */
 
-interface PasswordFieldProps {
-  label: string;
-  helperText?: string;
-  value?: string;
-  placeholder?: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+interface PasswordFieldProps extends TextFieldProps {
+  chipLabel?: string;
   onClick?: () => void;
-  chipLabel?:string;
-  color?: 'default' | 'error' | 'success' | 'warning';
-  error?: boolean;
-  errorMessage?: string;
-  type?: string;
+  value: any;
 }
 
 const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -65,32 +58,27 @@ const StyledInputAdornment = styled(InputAdornment, {
 
 const PasswordField: React.FC<PasswordFieldProps> = (props) => {
   const {
-    label,
     helperText,
-    value = '',
-    placeholder,
-    onChange,
+    value,
     onClick,
     chipLabel,
     color,
-    error,
     errorMessage,
     type,
+    error,
+    ...rest
   } = props;
 
   return (
     <>
       <TextField
-        label={label}
         value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        error={error}
         type={type || 'password'}
+        error={error}
         endAdornment={(
           <StyledInputAdornment position="end">
             {
-              value.length > 0
+              value?.length > 0
               && (
                 <StyledChip
                   label={chipLabel}
@@ -108,6 +96,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
             </IconButton>
           </StyledInputAdornment>
         )}
+        {...rest}
       />
       {
         (error && errorMessage)

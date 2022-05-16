@@ -2,6 +2,7 @@ import React, { ReactNode, ChangeEvent } from 'react';
 import {
   InputBase,
   FormControl,
+  InputBaseProps,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { InputTitle, FormHelperText, ErrorText } from '..';
@@ -12,18 +13,10 @@ import { InputTitle, FormHelperText, ErrorText } from '..';
  * Label should come from InputTitle.
  */
 
-export interface WmeTextFieldProps {
-  disabled?: boolean;
-  error?: boolean;
+export interface TextFieldProps extends InputBaseProps {
   errorMessage?: string;
-  placeholder?: string;
-  defaultValue?: string;
   label: string;
-  endAdornment?: ReactNode;
   helperText?: string;
-  value?: string;
-  type?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const StyledInputBase = styled(InputBase, {
@@ -64,7 +57,7 @@ const StyledInputBase = styled(InputBase, {
   },
 }));
 
-const TextField: React.FC<WmeTextFieldProps> = (props) => {
+const TextField: React.FC<TextFieldProps> = (props) => {
   const {
     label,
     helperText,
