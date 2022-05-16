@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import {
   IconButton,
   InputAdornment,
@@ -69,11 +69,13 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
     ...rest
   } = props;
 
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
   return (
     <>
       <TextField
         value={value}
-        type={type || 'password'}
+        type={showPassword ? 'text' : 'password'}
         error={error}
         endAdornment={(
           <StyledInputAdornment position="end">
@@ -88,7 +90,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
             }
             <IconButton
               aria-label="toggle password visibility"
-              onClick={onClick}
+              onClick={() => setShowPassword(!showPassword)}
               onMouseDown={handleMouseDownPassword}
               edge="end"
             >
