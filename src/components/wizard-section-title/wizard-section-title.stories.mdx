@@ -1,0 +1,142 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta
+} from '@storybook/addon-docs';
+import { WizardSectionTitle } from '..';
+import smile from '../../stories/images/smile.png';
+
+<Meta
+  title="Wizard/WizardSectionTitle"
+  component={ WizardSectionTitle }
+  argTypes={{
+    heading: {
+      control: 'text',
+      description: 'Heading text (shows as an h1)',
+      type: { required: true },
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    headingVariant: {
+      control: 'select',
+      options: ['h1', 'h2', 'h3', 'h4'],
+      description: 'Heading text variant (h1, h2, h3, h4)',
+      table: {
+        defaultValue: {
+          summary: 'h2',
+        },
+      },
+    },
+    copy: {
+      control: 'text',
+      description: 'Heading text (shows as an h1)',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    copyAlign: {
+      control: 'select',
+      options: ['left', 'center', 'right'],
+      description: 'Choose to left align or center align text (defaults to left)',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    width: {
+      control: 'text',
+      description: 'Width of container for section title (defaults to "auto")',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    icon: {
+      control: 'text',
+      description: 'Path to src of icon',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    iconSrc: {
+      control: 'text',
+      description: 'Alt text for icon',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    bookend: {
+      control: 'boolean',
+      description: 'Set to true to center align entire heading element (icon, heading, copy)',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: false,
+        }
+      },
+      defaultValue: false,
+    }
+  }}
+/>
+
+export const Template = (args) => {
+  return (
+    <WizardSectionTitle {...args} />
+  );
+};
+
+# Wizard Section Title
+Each Wizard page requires a header with optional body copy to inform the user of the actionable items needed.
+
+The Wizard Section Title Component extends MUI's box, so you can pass `sx` and other props if needed and they'll
+be applied to the Section Title container.
+
+## Props
+<ArgsTable story="." />
+
+## Bookend Section Headers
+Bookend is a prop (boolean) that centers the entire element. It's used at the beginning and end of a Wizard. The user
+is greated with a bookend header that features an optional icon, title, an body copy.
+
+If bookend is set to true, it will override the `copyAlign` attribute.
+
+## Canvas
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      heading: 'Wizard Section Header',
+      headingVariant: 'h2',
+      copy: 'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.',
+    }}
+  >
+  {Template.bind({})}
+  </Story>
+  <Story
+    name="Bookend"
+    args={{
+      heading: 'Wizard Section Header',
+      headingVariant: 'h2',
+      copy: 'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.',
+      iconSrc: smile,
+      iconAlt: 'smiley face emoji',
+      bookend: true,
+    }}
+  >
+  {Template.bind({})}
+  </Story>
+</Canvas>

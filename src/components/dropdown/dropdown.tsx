@@ -16,16 +16,16 @@ interface WmeDropdownProps {
   selectValue?: string;
   helperText?: string;
   labelText?: string;
-  autoWidth?: boolean;
   error?: boolean;
   errorMessage?: string;
   multiple?: boolean;
+  width?: string | number;
 }
 
 interface WmeFormControlProps extends FormControlProps {
   helperText?: string;
   labelText?: string;
-  autoWidth?: boolean;
+  width?: string | number;
 }
 
 const StyledSelect = styled(Select, {
@@ -55,9 +55,9 @@ const StyledSelect = styled(Select, {
 const StyledFormControl = styled(FormControl, {
   name: 'WmeFormControl',
   slot: 'Root',
-  shouldForwardProp: (prop) => prop !== 'autoWidth',
-})<WmeFormControlProps>(({ theme, autoWidth }) => ({
-  width: autoWidth ? 'auto' : theme.globalStyles.menuPaperWidth,
+  shouldForwardProp: (prop) => prop !== 'width',
+})<WmeFormControlProps>(({ theme, width }) => ({
+  width: width || theme.globalStyles.menuPaperWidth,
 }));
 
 const Dropdown: React.FC<WmeDropdownProps> = (props) => {
@@ -68,23 +68,22 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
     selectValue,
     helperText,
     labelText,
-    autoWidth,
     error,
     errorMessage,
     value,
+    width,
     ...rest
   } = props;
 
   const itemHeight = theme.globalStyles.menuListItemHeight;
   const itemPaddingTop = theme.globalStyles.menuListItemPadding;
-  const width = autoWidth ? 'auto' : theme.globalStyles.menuPaperWidth;
 
   const MenuProps = {
     PaperProps: {
       style: {
         maxHeight: itemHeight * 4.5 + itemPaddingTop,
         top: 96,
-        width,
+        width: width || theme.globalStyles.menuPaperWidth,
       },
     },
   };
@@ -97,7 +96,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
   });
 
   return (
-    <StyledFormControl autoWidth={autoWidth}>
+    <StyledFormControl width={width}>
       {
         labelText
         && (
@@ -112,7 +111,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
         value={value}
         input={<OutlinedInput />}
         renderValue={(selected: any) => {
-          if (selected.length === 0) {
+          if (selected.length === 0 || typeof selected === 'string') {
             return selectValue;
           }
 
