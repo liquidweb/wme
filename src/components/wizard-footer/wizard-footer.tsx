@@ -6,7 +6,8 @@ import {
   StepButton,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ArrowBack } from '@mui/icons-material';
+import { ArrowBack, ChevronRight } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
 
@@ -28,6 +29,10 @@ interface WizardFooterProps {
     hidePagination?: boolean;
   }>;
   onClickStep?: (step: any) => void;
+  disableNext?: boolean;
+  isLoading?: boolean;
+  loadingText?: string;
+  save?: () => void;
 }
 
 const WizardFooterContainer = styled(Box, {
@@ -111,9 +116,14 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     activeStep,
     steps,
     onClickStep,
+    disableNext = false,
+    isLoading = false,
+    loadingText,
+    save,
   } = props;
 
   const { maxActiveStep } = useMaxActiveStep(activeStep);
+  const isLastStep = activeStep === steps.length - 1;
 
   return (
     <WizardFooterContainer>
@@ -149,9 +159,28 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
         <Skip>
           <Button onClick={onSkip}>{skipText}</Button>
         </Skip>
-        <Button variant="contained" color="primary" onClick={onNext}>
-          {nextText}
-        </Button>
+        {
+          isLoading ? (
+            <LoadingButton
+              loading
+              variant="contained"
+              loadingPosition="start"
+              startIcon={<ChevronRight />}
+            >
+              {loadingText}
+            </LoadingButton>
+          )
+            : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={isLastStep ? save : onNext}
+                disabled={disableNext}
+              >
+                {nextText}
+              </Button>
+            )
+        }
       </Next>
     </WizardFooterContainer>
   );
