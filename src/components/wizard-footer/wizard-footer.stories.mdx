@@ -19,59 +19,141 @@ import { screens } from '../navigation/navigation.stories.mdx';
   title="Wizard/WizardFooter"
   component={ WizardFooter }
   argTypes={{
-    previous: {
-      type: 'object',
+    backText: {
+      control: {
+        type: 'text',
+      },
+      description: 'Text for back button',
+    },
+    onBack: {
+      description: 'Callback fired when the back button is clicked.',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
+    },
+    skipText: {
+      control: {
+        type: 'text',
+      },
+      description: 'Text for skip button',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    onSkip: {
+      description: 'Callback fired when the skip button is clicked.',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
+    },
+    nextText: {
+      control: {
+        type: 'text',
+      },
+      description: 'Text for Next button',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    onNext: {
+      description: 'Callback fired when the next button is clicked.',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
+    },
+    activeStep: {
+      control: {
+        type: 'number',
+      },
+      description: 'Current active step',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      }
+    },
+    steps: {
+      control: 'object',
+      description: 'Array of steps. Each step should be an object containing the properties shown in the control.',
+      table: {
+        type: {
+          summary: 'Array',
+        },
+      }
+    },
+    disableNext: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Boolean to disable the next button',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: `false`,
+        }
+      }
+    },
+    isLoading: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Changes Next button to a loading state',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: `false`,
+        }
+      }
+    },
+    loadingText: {
+      control: {
+        type: 'text',
+        description: 'Text for loading button',
+        table: {
+        type: {
+          summary: 'boolean',
+        },
+      }
+      }
+    },
+    save: {
+      description: 'Callback for when the save button is clicked on the last step',
+      table: {
+        type: {
+          summary: 'func',
+        },
+      }
     }
   }}
 />
 
-export const Previous = () => (
-  <Box sx={{ display: 'flex', cursor: 'pointer' }} onClick={() => console.log('Back Button Clicked')}>
-    <img src={backArrow} alt="back arrow icon" style={{ marginRight: '5px'}} />
-    <Typography variant="body1">Back</Typography>
-  </Box>
-);
-
-export const Skip = () => (
-  <Box sx={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => console.log('Skip Button Clicked')}>
-    <Typography variant="body1">Skip</Typography>
-  </Box>
-);
-
-export const Next = () => (
-  <Button variant="contained" color="primary" onClick={() => console.log('Next Button Clicked')}>
-    Next
-  </Button>
-);
-
 export const Template = (args) => {
   const [active, setActive] = useState(0);
   return (
-    <WizardFooter {...args}>
-      <Navigation width="auto">
-        {
-          screens.map((screen, i) => (
-            <NavNumber
-              number={i + 1}
-              text={screen.text}
-              onClick={() => setActive(i)}
-              active={active === i}
-              key={i}
-              isComplete={false}
-            />
-          ))
-        }
-      </Navigation>
-    </WizardFooter>
+    <WizardFooter {...args} />
   );
 };
 
 # Wizard Footer
 The wizard footer should appear on every Wizard to provide users with proper expectations.
 
-The Previous Button, Skip Button, and Next Button are all passed in as props. These can be buttons, links,
-components, etc. The actual navigation is passed in as the children of `WizardFooter`. We recommend using
-the WME `Navigation` component, but you can also use MUI's or your own nav.
+Callback functions should be provided for "Back", "Skip", and "Next".
+
+Steps should be passed in as an array of objects, as modeled below.
 
 ## Props
 <ArgsTable story="." />
@@ -79,55 +161,11 @@ the WME `Navigation` component, but you can also use MUI's or your own nav.
 ## Example
 ```
 import React, { useState } from 'react';
-import {
-  Navigation,
-  NavNumber,
-  Button,
-} from '@moderntribe/wme';
-import { Box, Typography } from '@mui/material';
+import { WizardFooter } from '@moderntribe/wme';
 
-const Previous = () => (
-  <Box sx={{ display: 'flex', cursor: 'pointer' }} onClick={() => console.log('Back Button Clicked')}>
-    <img src={backArrow} alt="back arrow icon" style={{ marginRight: '5px'}} />
-    <Typography variant="body1">Back</Typography>
-  </Box>
-);
-
-const Skip = () => (
-  <Box sx={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => console.log('Skip Button Clicked')}>
-    <Typography variant="body1">Skip</Typography>
-  </Box>
-);
-
-const Next = () => (
-  <Button variant="contained" color="primary" onClick={() => console.log('Next Button Clicked')}>
-    Next
-  </Button>
-);
-
-export const MyWizardFooter = (screens) => {
-  const [active, setActive] = useState(0);
+export const MyWizardFooter = (props) => {
   return (
-    <WizardFooter
-      previous={previous}
-      skip={skip}
-      next={next}
-    >
-      <Navigation width="auto">
-        {
-          screens.map((screen, i) => (
-            <NavNumber
-              number={i + 1}
-              text={screen.text}
-              onClick={() => setActive(i)}
-              active={active === i}
-              key={i}
-              isComplete={false}
-            />
-          ))
-        }
-      </Navigation>
-    </WizardFooter>
+    <WizardFooter {...props} />
   );
 };
 ```
@@ -137,9 +175,40 @@ export const MyWizardFooter = (screens) => {
   <Story
     name="Default"
     args={{
-      previous: <Previous />,
-      skip: <Skip />,
-      next: <Next />,
+      backText: 'Back',
+      nextText: 'Next',
+      skipText: 'Skip',
+      activeStep: 0,
+      steps: [
+        {
+          id: 0,
+          heading: "Choose a template",
+          hideBack: true,
+          hidePagination: false,
+          label: "Choose a template",
+          step: "template",
+          text: "Our set up wizard will help you get the most out of your store.",
+	      },
+        {
+          id: 1,
+          heading: "Choose a font",
+          hideBack: false,
+          hidePagination: false,
+          label: "Fonts",
+          step: "fonts",
+          text: "Lets pick a starting font, you can always change it later and pick from more options.",
+        },
+        {
+          id: 2,
+          heading: "Pick some colors",
+          hideBack: false,
+          hidePagination: false,
+          label: "Colors",
+          step: "colors",
+          text: "Let's get you some starting colors. You can always update, expand, and change these later.",
+        },
+      ],
+      loadingText: 'Saving',
     }}
   >
   {Template.bind({})}
