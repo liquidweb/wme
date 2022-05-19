@@ -22,6 +22,8 @@ interface WizardFooterProps {
   steps: Array<{
     id: number;
     hideBack?: boolean;
+    hideSkip?: boolean;
+    hideNext?: boolean;
     heading?: string;
     label?: string;
     step?: string;
@@ -125,10 +127,17 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
   const { maxActiveStep } = useMaxActiveStep(activeStep);
   const isLastStep = activeStep === steps.length - 1;
 
+  console.log(steps[activeStep]);
+
   return (
     <WizardFooterContainer>
       <Prev>
-        <Button startIcon={<ArrowBack />} onClick={onBack}>{backText}</Button>
+        {
+          !steps[activeStep].hideBack
+          && (
+            <Button startIcon={<ArrowBack />} onClick={onBack}>{backText}</Button>
+          )
+        }
       </Prev>
       <Nav>
         <StyledStepper activeStep={maxActiveStep} connector={null}>
@@ -157,29 +166,37 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
       </Nav>
       <Next>
         <Skip>
-          <Button onClick={onSkip}>{skipText}</Button>
+          {
+            !steps[activeStep].hideSkip
+            && (
+              <Button onClick={onSkip}>{skipText}</Button>
+            )
+          }
         </Skip>
         {
-          isLoading ? (
-            <LoadingButton
-              loading
-              variant="contained"
-              loadingPosition="start"
-              startIcon={<ChevronRight />}
-            >
-              {loadingText}
-            </LoadingButton>
-          )
-            : (
-              <Button
+          !steps[activeStep].hideNext
+          && (
+            isLoading ? (
+              <LoadingButton
+                loading
                 variant="contained"
-                color="primary"
-                onClick={isLastStep ? save : onNext}
-                disabled={disableNext}
+                loadingPosition="start"
+                startIcon={<ChevronRight />}
               >
-                {nextText}
-              </Button>
+                {loadingText}
+              </LoadingButton>
             )
+              : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={isLastStep ? save : onNext}
+                  disabled={disableNext}
+                >
+                  {nextText}
+                </Button>
+              )
+          )
         }
       </Next>
     </WizardFooterContainer>
