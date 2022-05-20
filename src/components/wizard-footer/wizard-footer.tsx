@@ -4,7 +4,6 @@ import {
   Stepper,
   Step,
   StepButton,
-  StepContent,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ArrowBack, ChevronRight } from '@mui/icons-material';
