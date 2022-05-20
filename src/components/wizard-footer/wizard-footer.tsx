@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   Box,
   Stepper,
   Step,
   StepButton,
+  StepContent,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ArrowBack, ChevronRight } from '@mui/icons-material';
@@ -29,6 +30,7 @@ interface WizardFooterProps {
     step?: string;
     text?: string;
     hidePagination?: boolean;
+    screen?: ReactNode;
   }>;
   onClickStep?: (step: any) => void;
   disableNext?: boolean;
@@ -127,13 +129,11 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
   const { maxActiveStep } = useMaxActiveStep(activeStep);
   const isLastStep = activeStep === steps.length - 1;
 
-  console.log(steps[activeStep]);
-
   return (
     <WizardFooterContainer>
       <Prev>
         {
-          !steps[activeStep].hideBack
+          !steps[activeStep]?.hideBack
           && (
             <Button startIcon={<ArrowBack />} onClick={onBack}>{backText}</Button>
           )
@@ -167,14 +167,14 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
       <Next>
         <Skip>
           {
-            !steps[activeStep].hideSkip
+            !steps[activeStep]?.hideSkip
             && (
               <Button onClick={onSkip}>{skipText}</Button>
             )
           }
         </Skip>
         {
-          !steps[activeStep].hideNext
+          !steps[activeStep]?.hideNext
           && (
             isLoading ? (
               <LoadingButton
