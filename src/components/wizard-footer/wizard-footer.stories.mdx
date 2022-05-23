@@ -154,7 +154,7 @@ The wizard footer should appear on every Wizard to provide users with proper exp
 Callback functions should be provided for "Back", "Skip", and "Next".
 
 Steps should be passed in as an array of objects, as modeled below. Although you can use it as needed, the
-easiest way is to pass your screen as a component in the step object, like:
+easiest way is to pass your screen as a component in the step object, such as:
 
 ```
 	const steps = [
@@ -208,6 +208,7 @@ export const MyWizardFooter = (props) => {
           label: "Choose a template",
           step: "template",
           text: "Our set up wizard will help you get the most out of your store.",
+          disableNext: true,
 	      },
         {
           id: 1,
