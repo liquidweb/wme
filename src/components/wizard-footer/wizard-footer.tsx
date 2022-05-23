@@ -31,6 +31,7 @@ interface WizardFooterProps {
     hidePagination?: boolean;
     screen?: ReactNode;
     disableNext?: boolean;
+    disableAll?: boolean;
   }>;
   onClickStep?: (step: any) => void;
   disableNext?: boolean;
@@ -38,6 +39,7 @@ interface WizardFooterProps {
   loadingText?: string;
   save?: () => void;
   hideFooter: boolean;
+  disableAll: boolean;
 }
 
 const WizardFooterContainer = styled(Box, {
@@ -76,7 +78,6 @@ const Skip = styled(Box, {
   slot: 'Skip',
 })(({ theme }) => ({
   marginRight: theme.spacing(1),
-  cursor: 'pointer',
 }));
 
 const Next = styled(Box, {
@@ -126,11 +127,13 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     loadingText,
     save,
     hideFooter,
+    disableAll,
   } = props;
 
   const { maxActiveStep } = useMaxActiveStep(activeStep);
   const isLastStep = activeStep === steps.length - 1;
   const currStep = steps[activeStep];
+  const disable = disableAll || currStep.disableAll;
 
   if (!hideFooter) {
     return (
@@ -139,7 +142,13 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
           {
             !currStep?.hideBack
             && (
-              <Button startIcon={<ArrowBack />} onClick={onBack}>{backText}</Button>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={onBack}
+                disabled={disable}
+              >
+                {backText}
+              </Button>
             )
           }
         </Prev>
@@ -155,6 +164,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                 return (
                   <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
                     <StyledStepButton
+                      disabled={disable}
                       onClick={() => onClickStep?.(step)}
                       sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
                     >
@@ -171,7 +181,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
             {
               !currStep?.hideSkip
               && (
-                <Button onClick={onSkip}>{skipText}</Button>
+                <Button onClick={onSkip} disabled={disable}>{skipText}</Button>
               )
             }
           </Skip>
@@ -193,7 +203,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                     variant="contained"
                     color="primary"
                     onClick={isLastStep ? save : onNext}
-                    disabled={(disableNext || currStep?.disableNext)}
+                    disabled={(disableNext || currStep?.disableNext || disable)}
                   >
                     {nextText}
                   </Button>
