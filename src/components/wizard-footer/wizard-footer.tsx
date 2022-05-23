@@ -82,9 +82,6 @@ const Skip = styled(Box, {
 const Next = styled(Box, {
   name: 'WmeWizardFooter',
   slot: 'Next',
-  overridesResolver: (styles) => (
-    [styles.next]
-  ),
 })(() => ({
   display: 'flex',
   flex: 1,
