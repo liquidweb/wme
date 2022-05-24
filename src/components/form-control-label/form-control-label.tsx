@@ -15,6 +15,7 @@ const StyledFormControlLabel = styled(MuiFormControlLabel, {
 })(() => ({
   '& .MuiTypography-root': {
     fontSize: 14,
+    textAlign: 'left',
   },
 }));
 

@@ -30,12 +30,16 @@ interface WizardFooterProps {
     text?: string;
     hidePagination?: boolean;
     screen?: ReactNode;
+    disableNext?: boolean;
+    disableAll?: boolean;
   }>;
   onClickStep?: (step: any) => void;
   disableNext?: boolean;
   isLoading?: boolean;
   loadingText?: string;
   save?: () => void;
+  hideFooter: boolean;
+  disableAll: boolean;
 }
 
 const WizardFooterContainer = styled(Box, {
@@ -74,7 +78,6 @@ const Skip = styled(Box, {
   slot: 'Skip',
 })(({ theme }) => ({
   marginRight: theme.spacing(1),
-  cursor: 'pointer',
 }));
 
 const Next = styled(Box, {
@@ -123,83 +126,95 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     isLoading = false,
     loadingText,
     save,
+    hideFooter,
+    disableAll,
   } = props;
 
   const { maxActiveStep } = useMaxActiveStep(activeStep);
   const isLastStep = activeStep === steps.length - 1;
+  const currStep = steps[activeStep];
+  const disable = disableAll || currStep.disableAll;
 
-  return (
-    <WizardFooterContainer>
-      <Prev>
-        {
-          !steps[activeStep]?.hideBack
-          && (
-            <Button startIcon={<ArrowBack />} onClick={onBack}>{backText}</Button>
-          )
-        }
-      </Prev>
-      <Nav>
-        <StyledStepper activeStep={maxActiveStep} connector={null}>
+  if (!hideFooter) {
+    return (
+      <WizardFooterContainer>
+        <Prev>
           {
-            steps?.map((step) => {
-              if (step.id > steps.length || step.hidePagination) {
-                return null;
-              }
-
-              const isCurrentStep = step.id === activeStep;
-              const unlocked = step.id <= maxActiveStep;
-
-              return (
-                <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
-                  <StyledStepButton
-                    onClick={() => onClickStep?.(step)}
-                    sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
-                  >
-                    { step.label }
-                  </StyledStepButton>
-                </Step>
-              );
-            })
-}
-        </StyledStepper>
-      </Nav>
-      <Next>
-        <Skip>
-          {
-            !steps[activeStep]?.hideSkip
+            !currStep?.hideBack
             && (
-              <Button onClick={onSkip}>{skipText}</Button>
+              <Button
+                startIcon={<ArrowBack />}
+                onClick={onBack}
+                disabled={disable}
+              >
+                {backText}
+              </Button>
             )
           }
-        </Skip>
-        {
-          !steps[activeStep]?.hideNext
-          && (
-            isLoading ? (
-              <LoadingButton
-                loading
-                variant="contained"
-                loadingPosition="start"
-                startIcon={<ChevronRight />}
-              >
-                {loadingText}
-              </LoadingButton>
-            )
-              : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={isLastStep ? save : onNext}
-                  disabled={disableNext}
-                >
-                  {nextText}
-                </Button>
+        </Prev>
+        <Nav>
+          <StyledStepper activeStep={maxActiveStep} connector={null}>
+            {
+              steps?.map((step) => {
+                if (step.id > steps.length || step.hidePagination) {
+                  return null;
+                }
+                const isCurrentStep = step.id === activeStep;
+                const unlocked = step.id <= maxActiveStep;
+                return (
+                  <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
+                    <StyledStepButton
+                      disabled={disable}
+                      onClick={() => onClickStep?.(step)}
+                      sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
+                    >
+                      { step.label }
+                    </StyledStepButton>
+                  </Step>
+                );
+              })
+            }
+          </StyledStepper>
+        </Nav>
+        <Next>
+          <Skip>
+            {
+              !currStep?.hideSkip
+              && (
+                <Button onClick={onSkip} disabled={disable}>{skipText}</Button>
               )
-          )
-        }
-      </Next>
-    </WizardFooterContainer>
-  );
+            }
+          </Skip>
+          {
+            !currStep?.hideNext
+            && (
+              isLoading ? (
+                <LoadingButton
+                  loading
+                  variant="contained"
+                  loadingPosition="start"
+                  startIcon={<ChevronRight />}
+                >
+                  {loadingText}
+                </LoadingButton>
+              )
+                : (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={isLastStep ? save : onNext}
+                    disabled={(disableNext || currStep?.disableNext || disable)}
+                  >
+                    {nextText}
+                  </Button>
+                )
+            )
+          }
+        </Next>
+      </WizardFooterContainer>
+    );
+  }
+  return null;
 };
 
 export default WizardFooter;
