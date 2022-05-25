@@ -39,7 +39,7 @@ interface WizardFooterProps {
   loadingText?: string;
   save?: () => void;
   hideFooter: boolean;
-  disableAll: boolean;
+  disableAll?: boolean;
 }
 
 const WizardFooterContainer = styled(Box, {
@@ -51,9 +51,12 @@ const WizardFooterContainer = styled(Box, {
   marginTop: 'auto',
   position: 'absolute',
   justifyContent: 'center',
-  left: theme.spacing(4),
-  right: theme.spacing(4),
-  bottom: theme.spacing(4),
+  left: theme.spacing(2),
+  right: theme.spacing(2),
+  bottom: 0,
+  padding: `${theme.spacing(2)} ${theme.spacing(2)}`,
+  backgroundColor: theme.palette.background.primary,
+  borderTop: `1px solid ${theme.palette.border.layout}`,
 }));
 
 const Prev = styled(Box, {
@@ -133,7 +136,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
   const { maxActiveStep } = useMaxActiveStep(activeStep);
   const isLastStep = activeStep === steps.length - 1;
   const currStep = steps[activeStep];
-  const disable = disableAll || currStep.disableAll;
+  const disable = disableAll || currStep?.disableAll;
 
   if (!hideFooter) {
     return (

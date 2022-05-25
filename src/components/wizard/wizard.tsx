@@ -20,7 +20,8 @@ const StyledDialogContent = styled(DialogContent, {
   slot: 'DialogContent',
 })(() => ({
   padding: '16px 32px',
-  overflowY: 'inherit',
+  overflowY: 'auto',
+  overflowX: 'hidden',
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
