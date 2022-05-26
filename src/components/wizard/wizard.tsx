@@ -37,6 +37,8 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
     ...rest
   } = props;
 
+  const { displayName } = StyledDialogContent;
+
   return (
     <Dialog
       fullScreen
@@ -44,7 +46,7 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
       {...rest}
     >
       <Box sx={{ ...bgStyles }}>
-        <StyledDialogContent>
+        <StyledDialogContent className={displayName}>
           {children}
         </StyledDialogContent>
       </Box>

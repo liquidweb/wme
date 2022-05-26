@@ -56,8 +56,10 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
     ...rest
   } = props;
 
+  const { displayName } = WizardSectionTitleContainer;
+
   return (
-    <WizardSectionTitleContainer width={width} bookend={bookend} {...rest}>
+    <WizardSectionTitleContainer className={displayName} width={width} bookend={bookend} {...rest}>
       {
         iconSrc
         && <IconContainer><img src={iconSrc} alt={iconAlt} width={iconWidth} /></IconContainer>

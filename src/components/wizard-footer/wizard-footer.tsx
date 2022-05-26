@@ -140,8 +140,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
 
   if (!hideFooter) {
     return (
-      <WizardFooterContainer>
-        <Prev>
+      <WizardFooterContainer className={WizardFooterContainer.displayName}>
+        <Prev className={Prev.displayName}>
           {
             !currStep?.hideBack
             && (
@@ -155,8 +155,12 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
             )
           }
         </Prev>
-        <Nav>
-          <StyledStepper activeStep={maxActiveStep} connector={null}>
+        <Nav className={Nav.displayName}>
+          <StyledStepper
+            activeStep={maxActiveStep}
+            connector={null}
+            className={StyledStepper.displayName}
+          >
             {
               steps?.map((step) => {
                 if (step.id > steps.length || step.hidePagination) {
@@ -179,8 +183,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
             }
           </StyledStepper>
         </Nav>
-        <Next>
-          <Skip>
+        <Next className={Next.displayName}>
+          <Skip className={Skip.displayName}>
             {
               !currStep?.hideSkip
               && (
@@ -207,6 +211,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                     color="primary"
                     onClick={isLastStep ? save : onNext}
                     disabled={(disableNext || currStep?.disableNext || disable)}
+                    className="WmeWizardFooterNextButton"
+                    endIcon={<ChevronRight />}
                   >
                     {nextText}
                   </Button>

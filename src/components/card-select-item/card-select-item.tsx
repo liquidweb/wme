@@ -180,6 +180,7 @@ export default function CardSelectItem(props: CardSelectItemProps) {
     ...rest
   } = props;
 
+  console.log(className);
   const { selected } = props;
 
   let primary = primaryProp != null ? primaryProp : children;

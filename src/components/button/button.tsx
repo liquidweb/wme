@@ -2,7 +2,10 @@ import React from 'react';
 import { Button as MuiButton, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const StyledButton = styled(MuiButton)(({ theme }) => ({
+const StyledButton = styled(MuiButton, {
+  name: 'WmeButton',
+  slot: 'Root',
+})(({ theme }) => ({
   textTransform: 'none',
   padding: '6px 12px',
   boxShadow: 'none',
@@ -35,6 +38,8 @@ const StyledButton = styled(MuiButton)(({ theme }) => ({
   },
 }));
 
-const Button: React.FC<ButtonProps> = (props) => <StyledButton {...props} />;
+const Button: React.FC<ButtonProps> = (props) => (
+  <StyledButton className={StyledButton.displayName} {...props} />
+);
 
 export default Button;
