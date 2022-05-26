@@ -71,7 +71,7 @@ const TextField: React.FC<TextFieldProps> = (props) => {
       <InputTitle>
         {label}
       </InputTitle>
-      <StyledInputBase error={error} {...rest} />
+      <StyledInputBase className={StyledInputBase.displayName} error={error} {...rest} />
       {
         (error && errorMessage)
         && (

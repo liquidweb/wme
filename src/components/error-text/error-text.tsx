@@ -13,9 +13,10 @@ const StyledText = styled(Typography, {
 
 const ErrorText: React.FC<TypographyProps> = (props) => {
   const { children } = props;
+  const { displayName } = StyledText;
 
   return (
-    <StyledText {...props}>
+    <StyledText className={displayName} {...props}>
       {children}
     </StyledText>
   );

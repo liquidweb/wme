@@ -39,6 +39,7 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = (props) => {
     <StyledToggleButtonGroup
       exclusive
       aria-label={ariaLabel}
+      className={StyledToggleButtonGroup.displayName}
       {...rest}
     >
       { children }

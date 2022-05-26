@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { styled } from '@mui/material/styles';
-import { FormControlLabel as MuiFormControlLabel } from '@mui/material';
+import { FormControlLabel as MuiFormControlLabel, FormControlLabelProps } from '@mui/material';
 
-interface FormControlProps {
+interface FormControlProps extends FormControlLabelProps {
   control: ReactElement;
   label: string;
   value?: string;
@@ -12,7 +12,7 @@ interface FormControlProps {
 const StyledFormControlLabel = styled(MuiFormControlLabel, {
   name: 'WmeFormControlLabel',
   slot: 'Root',
-})(() => ({
+})<FormControlProps>(() => ({
   '& .MuiTypography-root': {
     fontSize: 14,
     textAlign: 'left',
@@ -21,8 +21,10 @@ const StyledFormControlLabel = styled(MuiFormControlLabel, {
 
 const FormControlLabel: React.FC<FormControlProps> = (props) => {
   const { children, ...rest } = props;
+  const { displayName } = StyledFormControlLabel;
+
   return (
-    <StyledFormControlLabel {...rest}>
+    <StyledFormControlLabel className={displayName} {...rest}>
       {children}
     </StyledFormControlLabel>
   );

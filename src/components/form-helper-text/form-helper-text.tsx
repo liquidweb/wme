@@ -16,8 +16,10 @@ const StyledFormHelperText = styled(MuiFormHelperText, {
 
 const FormHelperText: React.FC<FormHelperTextProps> = (props) => {
   const { children } = props;
+  const { displayName } = StyledFormHelperText;
+
   return (
-    <StyledFormHelperText {...props}>
+    <StyledFormHelperText className={displayName} {...props}>
       {children}
     </StyledFormHelperText>
   );

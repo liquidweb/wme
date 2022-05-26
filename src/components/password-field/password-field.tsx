@@ -78,13 +78,14 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
         type={showPassword ? 'text' : 'password'}
         error={error}
         endAdornment={(
-          <StyledInputAdornment position="end">
+          <StyledInputAdornment className={StyledInputAdornment.displayName} position="end">
             {
               value?.length > 0
               && (
                 <StyledChip
                   label={chipLabel}
                   color={color}
+                  className={StyledChip.displayName}
                 />
               )
             }

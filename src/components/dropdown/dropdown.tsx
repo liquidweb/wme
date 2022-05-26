@@ -96,7 +96,10 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
   });
 
   return (
-    <StyledFormControl width={width}>
+    <StyledFormControl
+      width={width}
+      className={StyledFormControl.displayName}
+    >
       {
         labelText
         && (
@@ -110,6 +113,7 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
         error={error}
         value={value}
         input={<OutlinedInput />}
+        className={StyledSelect.displayName}
         renderValue={(selected: any) => {
           if (selected.length === 0 || typeof selected === 'string') {
             return selectValue;

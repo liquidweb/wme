@@ -172,6 +172,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                   <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
                     <StyledStepButton
                       disabled={disable}
+                      className={StyledStepButton.displayName}
                       onClick={() => onClickStep?.(step)}
                       sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
                     >

@@ -143,7 +143,7 @@ const TitleContainer: React.FC<TitleContainerProps> = (props) => {
   } = props;
 
   return (
-    <StyledTitleContainer>
+    <StyledTitleContainer className={StyledTitleContainer.displayName}>
       {
         label
         && <InputTitle>{label}</InputTitle>
@@ -171,12 +171,12 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
   } = props;
 
   return (
-    <Container>
+    <Container className={Container.displayName}>
       {
         label
         && <TitleContainer {...props} />
       }
-      <FileUploadBox error={error}>
+      <FileUploadBox className={FileUploadBox.displayName} error={error}>
         {
           !selectedFile || error
             ? (

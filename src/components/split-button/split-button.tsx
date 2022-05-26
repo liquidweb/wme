@@ -109,7 +109,13 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
 
   return (
     <>
-      <StyledButtonGroup variant="contained" ref={anchorRef} aria-label={ariaLabelGroup} {...rest}>
+      <StyledButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label={ariaLabelGroup}
+        className={StyledButtonGroup.displayName}
+        {...rest}
+      >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
           onClick={handleToggle}
@@ -131,13 +137,14 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
       >
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
-            <StyledPaper>
+            <StyledPaper className={StyledPaper.displayName}>
               <ClickAwayListener onClickAway={handleClose}>
-                <StyledList id="split-button-menu" autoFocusItem>
+                <StyledList className={StyledList.displayName} id="split-button-menu" autoFocusItem>
                   {options.map((option:string, index:number) => (
                     <StyledMenuItem
                       key={option}
                       selected={index === selectedIndex}
+                      className={StyledMenuItem.displayName}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
                       {option}
