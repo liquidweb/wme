@@ -61,10 +61,21 @@ export default function SetupCardListItem(props: SetupCardListItemProps) {
         target={target}
         variant="body1"
         underline="none"
+        className={StyledSetupCardListItem.displayName}
         {...linkProps}
       >
-        { icon && <StyledSetupCardIconWrapper>{icon}</StyledSetupCardIconWrapper> }
-        <StyledSetupCardTextWrapper>{title}</StyledSetupCardTextWrapper>
+        { icon && (
+          <StyledSetupCardIconWrapper
+            className={StyledSetupCardIconWrapper.displayName}
+          >
+            {icon}
+          </StyledSetupCardIconWrapper>
+        )}
+        <StyledSetupCardTextWrapper
+          className={StyledSetupCardTextWrapper.displayName}
+        >
+          {title}
+        </StyledSetupCardTextWrapper>
       </Link>
     </StyledSetupCardListItem>
   );

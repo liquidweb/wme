@@ -46,15 +46,15 @@ const WizardHeader: React.FC<WizardHeaderProps> = (props) => {
   } = props;
 
   return (
-    <WizardHeaderContainer>
-      <LogoContainer>
+    <WizardHeaderContainer className={WizardHeaderContainer.displayName}>
+      <LogoContainer className={LogoContainer.displayName}>
         {
           logoSrc
           && <img src={logoSrc} alt={logoAlt} />
         }
       </LogoContainer>
       {centerContent}
-      <ExitContainer>
+      <ExitContainer className={ExitContainer.displayName}>
         {exit}
       </ExitContainer>
     </WizardHeaderContainer>

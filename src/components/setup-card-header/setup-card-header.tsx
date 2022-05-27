@@ -19,5 +19,7 @@ StyledSetupCardHeader.defaultProps = {
 };
 
 export default function SetupCardHeader(props: CardHeaderProps) {
-  return <StyledSetupCardHeader {...props} />;
+  const { displayName } = StyledSetupCardHeader;
+
+  return <StyledSetupCardHeader className={displayName} {...props} />;
 }

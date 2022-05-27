@@ -17,7 +17,7 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
   const { children, ...rest } = props;
 
   return (
-    <StyledTooltip arrow {...rest}>
+    <StyledTooltip className={StyledTooltip.displayName} arrow {...rest}>
       {children}
     </StyledTooltip>
   );

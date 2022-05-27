@@ -46,7 +46,14 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
         inputLabel
         && <InputTitle>{inputLabel}</InputTitle>
       }
-      <FormControlLabel control={<StyledCheckbox />} {...rest} />
+      <FormControlLabel
+        control={(
+          <StyledCheckbox
+            className={StyledCheckbox.displayName}
+          />
+        )}
+        {...rest}
+      />
       {
         (error && errorMessage)
         && <ErrorText sx={{ marginTop: 0 }}>{errorMessage}</ErrorText>

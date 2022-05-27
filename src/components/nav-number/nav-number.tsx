@@ -63,8 +63,8 @@ const NavNumber: React.FC<NavNumberProps> = (props) => {
   } = props;
 
   return (
-    <StyledNavBlock {...rest}>
-      <StyledCircle>
+    <StyledNavBlock className={StyledNavBlock.displayName} {...rest}>
+      <StyledCircle className={StyledCircle.displayName}>
         {
           // eslint-disable-next-line react/destructuring-assignment
           props.isComplete
@@ -72,7 +72,7 @@ const NavNumber: React.FC<NavNumberProps> = (props) => {
             : number
         }
       </StyledCircle>
-      <StyledText>
+      <StyledText className={StyledText.displayName}>
         {text}
       </StyledText>
     </StyledNavBlock>

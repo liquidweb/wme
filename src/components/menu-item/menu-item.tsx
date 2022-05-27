@@ -31,8 +31,10 @@ const StyledMenuItem = styled(MuiMenuItem, {
 
 const MenuItem: React.FC<WmeMenuItemProps> = (props) => {
   const { children, icon } = props;
+  const { displayName } = StyledMenuItem;
+
   return (
-    <StyledMenuItem {...props}>
+    <StyledMenuItem className={displayName} {...props}>
       {children}
       {icon
       && (

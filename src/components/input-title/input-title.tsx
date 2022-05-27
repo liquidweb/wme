@@ -19,8 +19,9 @@ const StyledInputTitle = styled(Typography, {
 
 const InputTitle: React.FC<InputTitleProps> = (props) => {
   const { children } = props;
+  const { displayName } = StyledInputTitle;
   return (
-    <StyledInputTitle>
+    <StyledInputTitle className={displayName}>
       {children}
     </StyledInputTitle>
   );

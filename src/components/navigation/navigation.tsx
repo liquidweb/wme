@@ -18,7 +18,7 @@ export const Navigation: React.FC<NavigationProps> = (props) => {
 
   return (
     <div role="presentation">
-      <StyledNavigation {...rest}>
+      <StyledNavigation className={StyledNavigation.displayName} {...rest}>
         {children}
       </StyledNavigation>
     </div>

@@ -23,5 +23,6 @@ const StyledSetupCard = styled(Card, {
 }));
 
 export default function SetupCard(props: CardProps) {
-  return <StyledSetupCard {...props} />;
+  const { displayName } = StyledSetupCard;
+  return <StyledSetupCard className={displayName} {...props} />;
 }

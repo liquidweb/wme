@@ -129,7 +129,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
   const variantType = variant === 'action' ? 'action' : 'task';
 
   return (
-    <Task variant={variantType}>
+    <Task className={Task.displayName} variant={variantType}>
       <ConditionalWrapper
         condition={variantType === 'task'}
         wrapper={
@@ -156,8 +156,8 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
           </Button>
         )
           : (
-            <SetupCardTaskCta>
-              <CtaAction variant="body1">
+            <SetupCardTaskCta className={SetupCardTaskCta.displayName}>
+              <CtaAction className={CtaAction.displayName} variant="body1">
                 {taskCta}
               </CtaAction>
               <ChevronRight />

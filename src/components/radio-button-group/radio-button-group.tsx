@@ -38,7 +38,11 @@ const RadioButtonGroup: React.FC<RadioButtonGroupProps> = (props) => {
 
   return (
     <FormControl>
-      <StyledRadioGroup aria-labelledby={ariaLabelledby} {...rest}>
+      <StyledRadioGroup
+        className={StyledRadioGroup.displayName}
+        aria-labelledby={ariaLabelledby}
+        {...rest}
+      >
         {children}
       </StyledRadioGroup>
       <RadioGroup />

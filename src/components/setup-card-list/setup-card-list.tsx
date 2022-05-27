@@ -12,5 +12,7 @@ const StyledSetupCardList = styled(List, {
 }));
 
 export default function SetupCardList(props: ListProps) {
-  return <StyledSetupCardList dense disablePadding {...props} />;
+  const { displayName } = StyledSetupCardList;
+
+  return <StyledSetupCardList className={displayName} dense disablePadding {...props} />;
 }
