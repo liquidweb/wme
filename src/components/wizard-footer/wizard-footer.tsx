@@ -137,6 +137,12 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
   const isLastStep = activeStep === steps.length - 1;
   const currStep = steps[activeStep];
   const disable = disableAll || currStep?.disableAll;
+  let nextButtonClassName = 'WmeWizardFooterNextButton';
+
+  // Add class to last step button in case the theme wants unique style.
+  if (isLastStep) {
+    nextButtonClassName += ' isLastStep';
+  }
 
   if (!hideFooter) {
     return (
@@ -184,43 +190,45 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
             }
           </StyledStepper>
         </Nav>
-        <Next className={Next.displayName}>
-          <Skip className={Skip.displayName}>
-            {
-              !currStep?.hideSkip
-              && (
-                <Button onClick={onSkip} disabled={disable}>{skipText}</Button>
-              )
-            }
-          </Skip>
-          {
-            !currStep?.hideNext
-            && (
-              isLoading ? (
-                <LoadingButton
-                  loading
-                  variant="contained"
-                  loadingPosition="start"
-                  startIcon={<ChevronRight />}
-                >
-                  {loadingText}
-                </LoadingButton>
-              )
-                : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={isLastStep ? save : onNext}
-                    disabled={(disableNext || currStep?.disableNext || disable)}
-                    className="WmeWizardFooterNextButton"
-                    endIcon={<ChevronRight />}
-                  >
-                    {nextText}
-                  </Button>
+        {
+          !currStep?.hideNext
+          && (
+            <Next className={Next.displayName}>
+              {
+                !currStep?.hideSkip
+                && (
+                  <Skip className={Skip.displayName}>
+                    <Button onClick={onSkip} disabled={disable}>{skipText}</Button>
+                  </Skip>
                 )
-            )
-          }
-        </Next>
+              }
+              {
+                isLoading ? (
+                  <LoadingButton
+                    loading
+                    variant="contained"
+                    loadingPosition="start"
+                    startIcon={<ChevronRight />}
+                  >
+                    {loadingText}
+                  </LoadingButton>
+                )
+                  : (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={isLastStep ? save : onNext}
+                      disabled={(disableNext || currStep?.disableNext || disable)}
+                      className={nextButtonClassName}
+                      endIcon={<ChevronRight />}
+                    >
+                      {nextText}
+                    </Button>
+                  )
+              }
+            </Next>
+          )
+        }
       </WizardFooterContainer>
     );
   }
