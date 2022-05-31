@@ -13,6 +13,9 @@ export * from './setup-card';
 export { default as SetupCardHeader } from './setup-card-header';
 export * from './setup-card-header';
 
+export { default as SetupCardContent } from './setup-card-content';
+export * from './setup-card-content';
+
 export { default as SetupCardTask } from './setup-card-task';
 export * from './setup-card-task';
 
