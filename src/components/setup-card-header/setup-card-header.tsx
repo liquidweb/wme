@@ -15,7 +15,7 @@ const StyledSetupCardHeader = styled(CardHeader)<CardHeaderProps>(({ theme }) =>
 
 StyledSetupCardHeader.defaultProps = {
   titleTypographyProps: { variant: 'h3' },
-  subheaderTypographyProps: { variant: 'body1' },
+  subheaderTypographyProps: { variant: 'body2' },
 };
 
 export default function SetupCardHeader(props: CardHeaderProps) {
