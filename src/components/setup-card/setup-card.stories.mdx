@@ -6,7 +6,6 @@ import {
 } from '@storybook/addon-docs';
 import { Box } from "@mui/material";
 import {
-  CardContent,
   Grid,
   Link,
   Typography,
@@ -23,6 +22,7 @@ import {
 import {
   SetupCard,
   SetupCardHeader,
+  SetupCardContent,
   SetupCardTask,
   SetupCardList,
   SetupCardListItem,
@@ -66,10 +66,10 @@ Below are some example configurations.
   <Story name="Actions">
     <SetupCard>
       <SetupCardHeader {...header.args} />
-      <CardContent>
+      <SetupCardContent>
         <SetupCardTask {...SetupCardTaskStories.action.args} />
         <SetupCardTask {...SetupCardTaskStories.actionDisabled.args} />
-      </CardContent>
+      </SetupCardContent>
       {/* @see SetupCardFooter > Footer With Text Story */}
       <SetupCardFooterStories.FooterWithText />
     </SetupCard>
@@ -84,7 +84,7 @@ Below are some example configurations.
   <Story name="Column Links">
     <SetupCard>
       <SetupCardHeader {...header.args} />
-      <CardContent>
+      <SetupCardContent>
         <Grid container rowSpacing={3} columnSpacing={8}>
           <Grid item md={4}>
             <Typography fontWeight={600} mb={2}>Column One</Typography>
@@ -112,7 +112,7 @@ Below are some example configurations.
             </SetupCardList>
           </Grid>
         </Grid>
-      </CardContent>
+      </SetupCardContent>
       {/* @see SetupCardFooter > Footer With Accordion Story */}
       <SetupCardFooterStories.FooterWithAccordion />
     </SetupCard>
@@ -126,7 +126,7 @@ Below are some example configurations.
   <Story name="Media & Text">
     <SetupCard>
       <SetupCardHeader {...header.args} />
-      <CardContent>
+      <SetupCardContent>
         <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center">
           <Grid item xs={12} sm={6}>
             <img
@@ -147,11 +147,11 @@ Below are some example configurations.
             </Typography>
           </Grid>
         </Grid>
-      </CardContent>
+      </SetupCardContent>
     </SetupCard>
     <SetupCard>
       <SetupCardHeader {...header.args} />
-      <CardContent>
+      <SetupCardContent>
         <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center" direction={{xs: 'column-reverse', sm: 'row'}}>
           <Grid item xs={12} sm={6}>
             <Typography variant="overline">3 Minutes</Typography>
@@ -172,11 +172,11 @@ Below are some example configurations.
             />
           </Grid>
         </Grid>
-      </CardContent>
+      </SetupCardContent>
     </SetupCard>
     <SetupCard>
       <SetupCardHeader title="Example Card With Video" />
-      <CardContent>
+      <SetupCardContent>
         <Grid container spacing={{xs: 2, sm: 4, md: 6}} alignItems="center">
           <Grid item xs={12} sm={6}>
             <VideoEmbed src="https://www.youtube.com/embed/gF97ZyEB4gg" />
@@ -193,7 +193,7 @@ Below are some example configurations.
             </Typography>
           </Grid>
         </Grid>
-      </CardContent>
+      </SetupCardContent>
     </SetupCard>
   </Story>
 </Canvas>
@@ -206,10 +206,10 @@ Below are some example configurations.
   <Story name="Tasks">
     <SetupCard>
       <SetupCardHeader {...header.args} />
-      <CardContent>
+      <SetupCardContent>
         <SetupCardTask {...SetupCardTaskStories.taskDisabled.args} />
         <SetupCardTask {...SetupCardTaskStories.task.args} />
-      </CardContent>
+      </SetupCardContent>
       {/* @see SetupCardFooter > Footer With Links Story */}
       <SetupCardFooterStories.FooterWithLinks />
     </SetupCard>

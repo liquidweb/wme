@@ -85,7 +85,7 @@ const Task = styled(Box, {
         padding: theme.spacing(1.5),
         justifyContent: 'flex-start',
         alignItems: 'center',
-        borderRadius: 1,
+        borderRadius: theme.shape.borderRadius,
       },
 
       '& > button:hover .MuiAvatar-root': {
@@ -141,7 +141,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         <Avatar {...avatarProps} />
         <Box sx={{ mr: 2 }}>
           {title && <Typography component="h3" variant="taskTitle" mb={1}>{title}</Typography>}
-          {intro && <Typography variant="body1">{intro}</Typography>}
+          {intro && <Typography variant="body2">{intro}</Typography>}
           {children}
         </Box>
         {variantType === 'action' ? (
@@ -157,7 +157,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         )
           : (
             <SetupCardTaskCta className={SetupCardTaskCta.displayName}>
-              <CtaAction className={CtaAction.displayName} variant="body1">
+              <CtaAction className={CtaAction.displayName} variant="body2">
                 {taskCta}
               </CtaAction>
               <ChevronRight />
