@@ -178,7 +178,12 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         condition={variantType === 'task'}
         wrapper={
           (child: React.ReactNode) => (
-            <TaskActionArea onClick={onClick} disabled={disabled} href={url}>
+            <TaskActionArea
+              className={TaskActionArea.displayName}
+              onClick={onClick}
+              disabled={disabled}
+              href={url}
+            >
               {child}
             </TaskActionArea>
           )
@@ -192,6 +197,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         </Box>
         {variantType === 'action' ? (
           <CtaActionButton
+            className={CtaActionButton.displayName}
             disabled={button?.disabled || disabled}
             variant="contained"
             href={button?.url}
