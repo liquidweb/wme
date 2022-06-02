@@ -3,7 +3,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, FormControlProps, OutlinedInput } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
-import { InputTitle, FormHelperText, ErrorText } from '..';
+import { InputLabel, FormHelperText, ErrorText } from '..';
 
 /**
  * Dropdown should use the WME version of MenuItem to allow for custom styling and icons.
@@ -103,9 +103,9 @@ const Dropdown: React.FC<WmeDropdownProps> = (props) => {
       {
         labelText
         && (
-          <InputTitle>
+          <InputLabel>
             {labelText}
-          </InputTitle>
+          </InputLabel>
         )
       }
       <StyledSelect

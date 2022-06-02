@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Checkbox as MuiCheckbox, FormGroup } from '@mui/material';
-import { FormControlLabel, InputTitle, ErrorText } from '..';
+import { FormControlLabel, InputLabel, ErrorText } from '..';
 
 interface CheckboxProps {
   inputLabel?: string;
@@ -44,7 +44,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
     <FormGroup>
       {
         inputLabel
-        && <InputTitle>{inputLabel}</InputTitle>
+        && <InputLabel>{inputLabel}</InputLabel>
       }
       <FormControlLabel
         control={(

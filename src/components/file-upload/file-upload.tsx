@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Button,
   FormHelperText,
-  InputTitle,
+  InputLabel,
   ErrorText,
 } from '..';
 
@@ -146,7 +146,7 @@ const TitleContainer: React.FC<TitleContainerProps> = (props) => {
     <StyledTitleContainer className={StyledTitleContainer.displayName}>
       {
         label
-        && <InputTitle>{label}</InputTitle>
+        && <InputLabel>{label}</InputLabel>
       }
       {
         selectedFile

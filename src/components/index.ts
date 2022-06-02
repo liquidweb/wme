@@ -34,8 +34,8 @@ export * from './dropdown';
 export { default as MenuItem } from './menu-item';
 export * from './menu-item';
 
-export { default as InputTitle } from './input-title';
-export * from './input-title';
+export { default as InputLabel } from './input-label';
+export * from './input-label';
 
 export { default as FormHelperText } from './form-helper-text';
 export * from './form-helper-text';

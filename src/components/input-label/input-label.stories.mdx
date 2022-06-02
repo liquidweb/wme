@@ -1,0 +1,39 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import InputLabel from "./";
+
+<Meta
+  title="Forms/InputLabel"
+  component={InputLabel}
+  argTypes={{
+    children: {
+      control: "text",
+      defaultValue: "Input Label",
+      description: "The content (children) to appear in the label",
+    },
+  }}
+/>
+
+export const Template = (args) => <InputLabel {...args} />;
+
+# Input Label
+
+A styled version of <a href="https://mui.com/material-ui/api/input-label/" target="_blank">MUI's InputLabel</a>, so you can use any prop provided there.
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { InputLabel } from '@moderntribe/wme';
+
+export const MyInputLabel = (props) => (
+  <InputLabel>Input Label<InputLabel>
+);
+
+export default MyInputLabel;
+```
+
+## Canvas
+
+<Canvas>
+  <Story name="Base">{Template.bind({})}</Story>
+</Canvas>
