@@ -4,13 +4,13 @@ import {
   InputAdornment,
   Chip,
   ChipProps,
+  InputBaseProps
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import {
   TextField,
-  TextFieldProps,
   FormHelperText,
   ErrorText,
 } from '..';
@@ -19,7 +19,9 @@ import {
  * Password field is a WME Text Field component with additional props
  */
 
-interface PasswordFieldProps extends TextFieldProps {
+interface PasswordFieldProps extends InputBaseProps {
+  errorMessage?: string;
+  helperText?: string;
   chipLabel?: string;
   onClick?: () => void;
   value: any;

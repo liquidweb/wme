@@ -25,8 +25,8 @@ export * from './setup-card-footer';
 export { default as SetupCardList } from './setup-card-list';
 export * from './setup-card-list';
 
-export { default as TextField } from './text-field';
-export * from './text-field';
+export { default as TextField } from './text-input';
+export * from './text-input';
 
 export { default as Dropdown } from './dropdown';
 export * from './dropdown';

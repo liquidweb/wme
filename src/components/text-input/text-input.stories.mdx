@@ -1,0 +1,137 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import InputAdornment from "@mui/material/InputAdornment";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import TextInput from "./";
+import { Placeholder } from "@storybook/components";
+
+<Meta
+  title="Forms/TextInput"
+  component={TextInput}
+  argTypes={{
+    defaultValue: {
+      control: "text",
+      description:
+        "The default value. Use when the component is not controlled.",
+    },
+    disabled: {
+      control: "boolean",
+      description:
+        "If true, the component is disabled. The prop defaults to the value (false) inherited from the parent FormControl component.",
+      defaultValue: false,
+    },
+    endAdornment: {
+      control: "select",
+      options: ["none", "circle"],
+      mapping: {
+        none: null,
+        circle: (
+          <InputAdornment position="end">
+            <AccountCircle />
+          </InputAdornment>
+        ),
+      },
+      description: "Icon at end of input. Can accept any icon",
+    },
+    error: {
+      control: "boolean",
+      defaultValue: false,
+      description:
+        "If true, the input will indicate an error. The prop defaults to the value (false) inherited from the parent FormControl component.",
+    },
+    id: {
+      control: "string",
+      defaultValue: "field-id",
+      description: "The id of the input element.",
+    },
+    name: {
+      control: "string",
+      defaultValue: "field-name",
+      description: "Name attribute of the input element.",
+    },
+    placeholder: {
+      control: "string",
+      description:
+        "The short hint displayed in the input before the user enters a value.",
+    },
+    required: {
+      control: "boolean",
+      defaultValue: false,
+      description:
+        "If true, the input element is required. The prop defaults to the value (false) inherited from the parent FormControl component.",
+    },
+  }}
+/>
+
+export const Template = (args) => <TextInput {...args} />;
+
+# Text Input
+
+A styled version of <a href="https://mui.com/material-ui/api/input-base/" target="_blank">MUI's InputBase</a>, so you can use any prop provided there.
+
+## Usage
+
+- Always use a placholder in the input
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React from 'react';
+import { TextInput } from '@moderntribe/wme';
+
+export const MyTextInput = (props) => (
+  <TextInput
+    error={ props.error }
+    endAdornment={
+      <InputAdornment position="end">
+        <AccountCircle />
+      </InputAdornment>
+    }
+    placeholder="Placeholder text"
+  />
+)
+
+export default TextInput;
+```
+
+## Canvas
+
+<Canvas>
+  <Story
+    name="TextInputBase"
+    args={{
+      placeholder: "Weep; for not all tears are an evil.",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="TextInputFilled"
+    args={{
+      defaultValue: "Weep; for not all tears are an evil.",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="TextInputError"
+    args={{
+      error: true,
+      defaultValue: "Weep; for not all tears are an evil.",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="TextInputDisabled"
+    args={{
+      disabled: true,
+      defaultValue: "Weep; for not all tears are an evil.",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
