@@ -90,3 +90,9 @@ export * from './wizard-section-title';
 
 export { default as WizardFooter } from './wizard-footer';
 export * from './wizard-footer';
+
+export { default as Logo } from './logo';
+export * from './logo';
+
+export { default as ExitButton } from './exit-button';
+export * from './exit-button';
