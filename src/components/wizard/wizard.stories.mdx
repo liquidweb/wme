@@ -8,8 +8,6 @@ import { useState } from 'react';
 import {
   Wizard,
   Button,
-  Navigation,
-  NavNumber,
   WizardSectionTitle,
   WizardHeader,
   WizardFooter,
@@ -18,7 +16,6 @@ import {
   Dropdown,
   MenuItem,
 } from '..';
-import { screens } from '../navigation/navigation.stories.mdx';
 import welcomeImage from '../../stories/images/ftc-welcome.png';
 import {
   Box,
@@ -92,20 +89,6 @@ export const Bookend = (args) => {
         sx={{ marginTop: '50px'}}
       />
       <WizardFooter {...WizardFooterStories.defaultStory.args}>
-        <Navigation width="auto">
-          {
-            screens.map((screen, i) => (
-              <NavNumber
-                number={i + 1}
-                text={screen.text}
-                onClick={() => setActive(i)}
-                active={active === i}
-                key={i}
-                isComplete={false}
-              />
-            ))
-          }
-        </Navigation>
       </WizardFooter>
     </Wizard>
     </>
@@ -136,20 +119,6 @@ export const Fullscreen = (args) => {
         />
       </Box>
       <WizardFooter {...WizardFooterStories.defaultStory.args}>
-        <Navigation width="auto">
-          {
-            screens.map((screen, i) => (
-              <NavNumber
-                number={i + 1}
-                text={screen.text}
-                onClick={() => setActive(i)}
-                active={active === i}
-                key={i}
-                isComplete={false}
-              />
-            ))
-          }
-        </Navigation>
       </WizardFooter>
     </Wizard>
     </>
@@ -221,7 +190,7 @@ export const Sidebar = (args) => {
             variant="contained"
             color="secondary"
             sx={{ width: '200px' }}
-            onClick={() => console.log('Next Step button clicked')}
+            onClick={() => console.log('Next Step btton')}
           >Next Step</Button>
         </Grid>
         <Grid item xs={ 9.5 }>
@@ -240,20 +209,6 @@ export const Sidebar = (args) => {
         </Grid>
       </Grid>
       <WizardFooter {...WizardFooterStories.defaultStory.args}>
-        <Navigation width="auto">
-          {
-            screens.map((screen, i) => (
-              <NavNumber
-                number={i + 1}
-                text={screen.text}
-                onClick={() => setActive(i)}
-                active={active === i}
-                key={i}
-                isComplete={false}
-              />
-            ))
-          }
-        </Navigation>
       </WizardFooter>
     </Wizard>
     </>

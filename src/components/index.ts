@@ -67,12 +67,6 @@ export * from './password-field';
 export { default as FileUpload } from './file-upload';
 export * from './file-upload';
 
-export { Navigation } from './navigation';
-export * from './navigation';
-
-export { default as NavNumber } from './nav-number';
-export * from './nav-number';
-
 export { default as ErrorText } from './error-text';
 export * from './error-text';
 
