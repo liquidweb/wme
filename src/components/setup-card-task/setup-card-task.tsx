@@ -3,6 +3,7 @@ import {
   Box,
   BoxProps,
   CardActionArea,
+  CardActionAreaProps,
   Typography,
   TypographyProps,
   Avatar,
@@ -26,6 +27,8 @@ interface TaskButton extends ButtonProps {
 }
 
 interface SetupCardProps extends BoxProps {
+  id: string;
+  url?: string;
   title?: string;
   intro?: string;
   children?: React.ReactNode;
@@ -41,6 +44,10 @@ interface SetupCardProps extends BoxProps {
 interface TaskProps extends BoxProps {
   variant?: TaskVariant;
   button?: boolean;
+}
+
+interface TaskActionAreaProps extends CardActionAreaProps {
+  href?: string;
 }
 
 const Task = styled(Box, {
@@ -80,7 +87,7 @@ const Task = styled(Box, {
       marginRight: theme.spacing(-1.5),
       marginLeft: theme.spacing(-1.5),
 
-      '& > button': {
+      '& > button, & > a': {
         display: 'flex',
         padding: theme.spacing(1.5),
         justifyContent: 'flex-start',
@@ -88,8 +95,12 @@ const Task = styled(Box, {
         borderRadius: theme.shape.borderRadius,
       },
 
-      '& > button:hover .MuiAvatar-root': {
+      '& > button:hover .MuiAvatar-root, & > a:hover .MuiAvatar-root': {
         backgroundColor: theme.palette.common.white,
+      },
+
+      '& > a:focus': {
+        outline: 'none',
       },
     }
   ),
@@ -98,11 +109,12 @@ const Task = styled(Box, {
 const SetupCardTaskCta = styled(Box, {
   name: 'WmeTaskCta',
   slot: 'Root',
-})<BoxProps>(() => ({
+})<BoxProps>(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   marginLeft: 'auto',
   flex: '0 0 auto',
+  color: theme.palette.text.primary,
 }));
 
 const CtaAction = styled(Typography, {
@@ -122,9 +134,41 @@ const CtaAction = styled(Typography, {
   },
 }));
 
+const CtaActionButton = styled(Button, {
+  name: 'WmeTaskCta',
+  slot: 'Button',
+})<ButtonProps>(({ theme }) => ({
+  marginLeft: 'auto',
+  flex: '0 0 auto',
+
+  '&:hover': {
+    color: theme.palette.common.white,
+  },
+}));
+
+const TaskActionArea = styled(CardActionArea)<TaskActionAreaProps>(({ theme }) => ({
+  '&.Mui-focusVisible': {
+    boxShadow: 'none',
+    outline: 'none',
+  },
+  '& .MuiCardActionArea-focusHighlight': {
+    backgroundColor: theme.palette.grey[600],
+  },
+}));
+
 const SetupCardTask: React.FC<SetupCardProps> = (props) => {
   const {
-    title, intro, button, avatarProps, variant, taskCta, onClick, children, disabled = false,
+    id,
+    url = '',
+    title,
+    intro,
+    button,
+    avatarProps,
+    variant,
+    taskCta,
+    onClick,
+    children,
+    disabled = false,
   } = props;
   const variantType = variant === 'action' ? 'action' : 'task';
 
@@ -134,7 +178,9 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
         condition={variantType === 'task'}
         wrapper={
           (child: React.ReactNode) => (
-            <CardActionArea onClick={onClick} disabled={disabled}>{child}</CardActionArea>
+            <TaskActionArea onClick={onClick} disabled={disabled} href={url}>
+              {child}
+            </TaskActionArea>
           )
         }
       >
@@ -145,15 +191,15 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
           {children}
         </Box>
         {variantType === 'action' ? (
-          <Button
+          <CtaActionButton
             disabled={button?.disabled || disabled}
             variant="contained"
             href={button?.url}
             onClick={onClick}
-            sx={{ marginLeft: 'auto', flex: '0 0 auto' }}
+            sx={{ backgroundColor: button?.backgroundColor ? button.backgroundColor : null }}
           >
             {button?.label}
-          </Button>
+          </CtaActionButton>
         )
           : (
             <SetupCardTaskCta className={SetupCardTaskCta.displayName}>
