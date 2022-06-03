@@ -99,3 +99,6 @@ export * from './wizard-footer';
 
 export { default as InputError } from './input-error';
 export * from './input-error';
+
+export { default as FormControl } from './form-control';
+export * from './form-control';
