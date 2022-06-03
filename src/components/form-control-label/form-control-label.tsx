@@ -1,32 +1,26 @@
-import React, { ReactElement } from 'react';
-import { styled } from '@mui/material/styles';
-import { FormControlLabel as MuiFormControlLabel, FormControlLabelProps } from '@mui/material';
-
-interface FormControlProps extends FormControlLabelProps {
-  control: ReactElement;
-  label: string;
-  value?: string;
-  children?: string;
-}
+import React from "react";
+import {
+  FormControlLabel as MuiFormControlLabel,
+  FormControlLabelProps,
+  styled,
+} from "@mui/material";
 
 const StyledFormControlLabel = styled(MuiFormControlLabel, {
-  name: 'WmeFormControlLabel',
-  slot: 'Root',
-})<FormControlProps>(() => ({
-  '& .MuiTypography-root': {
+  name: "WmeFormControlLabel",
+  slot: "Root",
+})(() => ({
+  "& .MuiTypography-root": {
     fontSize: 14,
-    textAlign: 'left',
+    textAlign: "left",
   },
 }));
 
-const FormControlLabel: React.FC<FormControlProps> = (props) => {
-  const { children, ...rest } = props;
-  const { displayName } = StyledFormControlLabel;
-
+const FormControlLabel: React.FC<FormControlLabelProps> = (props) => {
   return (
-    <StyledFormControlLabel className={displayName} {...rest}>
-      {children}
-    </StyledFormControlLabel>
+    <StyledFormControlLabel
+      className={StyledFormControlLabel.displayName}
+      {...props}
+    />
   );
 };
 
