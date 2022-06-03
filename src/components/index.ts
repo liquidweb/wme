@@ -96,3 +96,6 @@ export * from './wizard-section-title';
 
 export { default as WizardFooter } from './wizard-footer';
 export * from './wizard-footer';
+
+export { default as InputError } from './input-error';
+export * from './input-error';
