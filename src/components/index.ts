@@ -37,8 +37,8 @@ export * from './menu-item';
 export { default as InputLabel } from './input-label';
 export * from './input-label';
 
-export { default as FormHelperText } from './form-helper-text';
-export * from './form-helper-text';
+export { default as FormHelperText } from './input-helper-text';
+export * from './input-helper-text';
 
 export { default as FormControlLabel } from './form-control-label';
 export * from './form-control-label';
