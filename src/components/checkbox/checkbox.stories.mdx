@@ -1,30 +1,30 @@
-import {
-  ArgsTable,
-  Story,
-  Canvas,
-  Meta,
-} from '@storybook/addon-docs';
-import { Checkbox } from '..';
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Checkbox } from "..";
 
 <Meta
-  title="Input/Checkbox"
+  title="Forms/Checkbox"
   component={Checkbox}
   argTypes={{
-    inputLabel: {
-      control: 'text',
-      description: 'Descriptive label of checkbox group (optional)',
-    },
     label: {
-      control: 'text',
-      description: 'Text that corresponds with checkbox',
+      control: {
+        required: true,
+        type: "text",
+      },
+      description: "Text or element to be used in an enclosing label element.",
     },
-    error: {
-      control: 'boolean',
-      description: 'True/false value for displaying an error',
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message, only shows if "error" === true',
+    labelPlacement: {
+      control: {
+        type: "select",
+        options: [ 'bottom', 'end', 'start', 'top' ],
+        labels: {
+          bottom: "Bottom",
+          end: "End",
+          start: "Start",
+          top: "Top",
+        },
+      },
+      defaultValue: "end",
+      description: "The position of the label.",
     },
   }}
 />
@@ -32,42 +32,44 @@ import { Checkbox } from '..';
 export const Template = (args) => <Checkbox {...args} />;
 
 # Checkbox
-Checkboxes allow users to select one or more items from a set of options.
+
+Composes `FormControlLabel` and `CheckboxInput` to create a single, re-usable "checkbox" component.
+
+**_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/material-ui/api/form-control-label" target="_blank">MUI's FormControlLabel</a>, so you can use any prop provided there.
+
 
 ## Usage
+
 - Checkboxes should be used independently from each other.
 - Ensure both label and input are clickable to select the checkbox field.
 
 ## Props
+
 <ArgsTable story="." />
 
 ## Example
+
 ```
 import React, { useState } from 'react';
-import { SplitButton } from '@moderntribe/wme';
+import { Checkbox } from '@moderntribe/wme';
 
 export const MyCheckbox = (props) => (
-  <>
-    <h1>Checkbox</h1>
-    <Checkbox
-      inputLabel="My checkbox"
-      label="Check this box, or uncheck it"
-      error={props.error}
-      errorMessage={props.errorMessage}
-    />
-  </>
+  <Checkbox
+    label="Creating an account means you’re okay with our Terms of Service and Privacy Policy."
+  />
 );
 
 export default MyCheckbox;
 ```
+
 ## Canvas
+
 <Canvas>
   <Story
     name="Base"
     args={{
-      label: 'Creating an account means you’re okay with our Terms of Service and Privacy Policy.',
-      error: false,
-      errorMessage: 'Error Message',
+      label:
+        "Creating an account means you’re okay with our Terms of Service and Privacy Policy.",
     }}
   >
     {Template.bind({})}
