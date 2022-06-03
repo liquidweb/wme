@@ -1,0 +1,33 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { FileInput } from "..";
+
+<Meta title="Forms/FileInput" component={FileInput} />
+
+export const Template = (args) => <FileInput {...args} />;
+
+# FileInput
+
+A styled version of <a href="https://mui.com/material-ui/api/input/" target="_blank">MUI's Input</a>, so you can use any prop provided there.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { FileInput } from '@moderntribe/wme';
+
+export const MyFileInput = (props) => (
+  <FileInput {...props} />
+);
+
+export default MyFileInput;
+```
+
+## Canvas
+
+<Canvas>
+  <Story name="Base">{Template.bind({})}</Story>
+</Canvas>
