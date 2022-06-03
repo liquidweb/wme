@@ -1,0 +1,79 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { MenuItem, SelectInput } from "..";
+
+<Meta
+  title="Forms/SelectInput"
+  component={SelectInput}
+  argTypes={{
+    defaultValue: {
+      control: "text",
+      description: "The default value. Use when the component is not controlled.",
+    },
+    multiple: {
+      control: "boolean",
+      description: "If true, value must be an array and the menu will support multiple selections.",
+    },
+    placeholder: {
+      control: "text",
+      defaultValue: "Select",
+      description: "Base text if nothing is selected",
+    },
+  }}
+/>
+
+export const Template = (args) => (
+  <SelectInput {...args}>
+    <MenuItem id="item1" key="1" value="Item 1">
+      Item 1
+    </MenuItem>
+    <MenuItem id="item2" key="2" value="Item 2">
+      Item 2
+    </MenuItem>
+    <MenuItem id="item3" key="3" value="Item 3">
+      Item 3
+    </MenuItem>
+  </SelectInput>
+);
+
+# SelectInput
+
+A styled version of <a href="https://mui.com/material-ui/react-select/" target="_blank">MUI's Select</a>, so you can use any prop provided there.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { SelectInput } from '@moderntribe/wme';
+
+export const MySelectInput = (props) => (
+  <SelectInput {...props} />
+);
+
+export default MySelectInput;
+```
+
+## Canvas
+
+<Canvas>
+  <Story
+    name="Base"
+    args={{
+      defaultValue: '',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Multiple"
+    args={{
+      defaultValue: [],
+      multiple: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

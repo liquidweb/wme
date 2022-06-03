@@ -105,3 +105,6 @@ export * from './form-control';
 
 export { default as CheckboxInput } from './checkbox-input';
 export * from './checkbox-input';
+
+export { default as SelectInput } from './select-input';
+export * from './select-input';
