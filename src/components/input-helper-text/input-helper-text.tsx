@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { FormHelperText, FormHelperTextProps, styled } from "@mui/material";
 
-interface StyledInputHelperText extends FormHelperTextProps {
+interface InputHelperTextProps extends FormHelperTextProps {
   onClick?: () => void;
 }
 
@@ -13,7 +13,7 @@ const StyledInputHelperText = styled(FormHelperText, {
   marginLeft: 0,
 });
 
-const InputHelperText: React.FC<PropsWithChildren<StyledInputHelperText>> = ({
+const InputHelperText: React.FC<PropsWithChildren<InputHelperTextProps>> = ({
   children,
   ...props
 }) => {
