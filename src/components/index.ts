@@ -28,9 +28,6 @@ export * from './setup-card-list';
 export { default as TextField } from './text-input';
 export * from './text-input';
 
-export { default as Dropdown } from './dropdown';
-export * from './dropdown';
-
 export { default as MenuItem } from './menu-item';
 export * from './menu-item';
 
