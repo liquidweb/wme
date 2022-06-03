@@ -108,3 +108,6 @@ export * from './select-input';
 
 export { default as FileInput } from './file-input';
 export * from './file-input';
+
+export { default as File } from './file';
+export * from './file';
