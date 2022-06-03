@@ -102,3 +102,6 @@ export * from './input-error';
 
 export { default as FormControl } from './form-control';
 export * from './form-control';
+
+export { default as CheckboxInput } from './checkbox-input';
+export * from './checkbox-input';
