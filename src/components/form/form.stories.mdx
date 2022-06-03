@@ -1,0 +1,96 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Grid, Stack } from "@mui/material";
+import Form from "./";
+import FormField from "../form-field";
+import TextInput from "../text-input";
+
+<Meta
+  title="Forms/Form"
+  component={Form}
+  argTypes={{
+    children: {
+      description:
+        "Any valid form elements such as `FormField`, `FormControl`, `InputLabel`, etc.",
+    },
+  }}
+/>
+
+export const Template = (args) => <Form {...args} />;
+
+# Form
+
+A styled version of <a href="https://mui.com/material-ui/react-box" target="_blank">MUI's Box</a>, so you can use any prop provided there.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React from 'react';
+import { Form, FormField, TextInput } from '@moderntribe/wme';
+
+export const MyForm = (props) => (
+  <Form>
+    <FormField
+      field={<TextInput />}
+      label="Text Input"
+    />
+  </Form>
+)
+
+export default Form;
+```
+
+## Canvas
+
+<Canvas>
+  <Story
+    name="Base"
+    args={{
+      children: <FormField field={<TextInput />} label="Text Input" />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Column"
+    args={{
+      children: (
+        <Stack spacing={2}>
+          <FormField field={<TextInput />} label="First Name" />
+          <FormField field={<TextInput />} label="Last Name" />
+          <FormField field={<TextInput />} label="Email Address" />
+          <FormField field={<TextInput />} label="Phone Number" />
+        </Stack>
+      ),
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Grid"
+    args={{
+      children: (
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <FormField field={<TextInput fullWidth />} label="First Name" />
+          </Grid>
+          <Grid item xs={6}>
+            <FormField field={<TextInput fullWidth />} label="Last Name" />
+          </Grid>
+          <Grid item xs={6}>
+            <FormField field={<TextInput fullWidth />} label="Email Address" />
+          </Grid>
+          <Grid item xs={6}>
+            <FormField field={<TextInput fullWidth />} label="Phone Number" />
+          </Grid>
+        </Grid>
+      ),
+      maxWidth: 600,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
