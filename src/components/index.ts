@@ -34,7 +34,7 @@ export * from './menu-item';
 export { default as InputLabel } from './input-label';
 export * from './input-label';
 
-export { default as FormHelperText } from './input-helper-text';
+export { default as InputHelperText } from './input-helper-text';
 export * from './input-helper-text';
 
 export { default as FormControlLabel } from './form-control-label';
@@ -111,3 +111,9 @@ export * from './file-input';
 
 export { default as File } from './file';
 export * from './file';
+
+export { default as DeleteFile } from './delete-file';
+export * from './delete-file';
+
+export { default as SelectFile } from './select-file';
+export * from './select-file';

@@ -1,221 +1,79 @@
-import React, { ChangeEvent } from 'react';
-import { Box, Input } from '@mui/material';
-import { Add } from '@mui/icons-material';
-import { visuallyHidden } from '@mui/utils';
-import { styled } from '@mui/material/styles';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import DeleteIcon from '@mui/icons-material/Delete';
+/* eslint-disable no-param-reassign */
+import React from "react";
+import { Box, BoxProps, styled } from "@mui/material";
+import { visuallyHidden } from "@mui/utils";
 import {
-  Button,
-  FormHelperText,
-  InputLabel,
-  ErrorText,
-} from '..';
+  DeleteFile,
+  DeleteFileProps,
+  File,
+  FileProps,
+  SelectFile,
+  SelectFileProps,
+} from "..";
 
-/**
- * FileUpload also contains two other components, TitleContainer and UploadedFile.
- *
- * These components should not be used independently, however. They're broken up to improve
- * the developer experience.
- *
- * All actions should be built out on an individual basis per component.
-*/
-
-interface FileUploadProps {
-  label?: string;
-  image?: string;
-  file?: string;
-  imageAlt?: string;
-  deleteButtonText?: string;
-  showSelectedFileActions?: boolean;
-  handleDeleteFile?: () => void;
-  handleFileActions?: () => void;
-  nevermind?: string;
-  buttonText?: string;
-  subText?: string;
-  helperText?: string;
-  selectedFile?: boolean;
-  handleUploadedFile?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface FileUploadProps extends BoxProps {
+  actionProps?: any;
+  actions?: React.ReactElement;
+  deleteFileProps?: DeleteFileProps;
   error?: boolean;
-  errorMessage?: string;
+  file?: React.ReactElement;
+  fileProps?: FileProps;
+  select?: React.ReactElement;
+  selectFileProps?: SelectFileProps;
+  showActions?: boolean;
 }
 
-interface UploadedFileProps {
-  image?: string;
-  file?: string;
-  imageAlt?: string;
-  showSelectedFileActions?: boolean;
-  handleDeleteFile?: () => void;
-  handleFileActions?: () => void;
-  nevermind?: string;
-  deleteButtonText?: string;
-}
-
-interface TitleContainerProps {
-  label?: string;
-  selectedFile?: boolean;
-  handleFileActions?: () => void;
-  deleteButtonText?: string;
-}
-
-const Container = styled(Box, {
-  name: 'WmeFileUploadContainer',
-  slot: 'Root',
-})(() => ({
-  width: 415,
-}));
-
-const StyledTitleContainer = styled(Box, {
-  name: 'WmeTitleContainer',
-  slot: 'Root',
-})(() => ({
-  display: 'flex',
-  alignItems: 'center',
-}));
-
-const FileUploadBox = styled(Box, {
-  name: 'WmeFileUploadBox',
-  slot: 'Root',
+const StyledFileUpload = styled(Box, {
+  name: "WmeFileUpload",
+  slot: "Root",
 })<FileUploadProps>(({ error, theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
+  alignItems: "center",
+  border: error
+    ? `1px dashed ${theme.palette.error.main}`
+    : "1px dashed #C4C4C4",
   borderRadius: 4,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
   minHeight: 106,
   width: 415,
-  border: error ? `1px dashed ${theme.palette.error.main}` : '1px dashed #C4C4C4',
+  "& .MuiInputBase-input": visuallyHidden,
 }));
 
-const UploadedFile: React.FC<UploadedFileProps> = (props) => {
-  const {
-    image,
-    file,
-    imageAlt,
-    showSelectedFileActions,
-    handleDeleteFile,
-    handleFileActions,
-    nevermind = 'Nevermind',
-    deleteButtonText = 'Delete',
-  } = props;
-
-  if (showSelectedFileActions) {
-    return (
-      <>
-        <Button
-          variant="contained"
-          color="error"
-          onClick={handleDeleteFile}
-          startIcon={<DeleteIcon />}
-        >
-          {deleteButtonText}
-        </Button>
-        <FormHelperText onClick={handleFileActions} sx={{ cursor: 'pointer' }}>
-          {nevermind}
-        </FormHelperText>
-      </>
-    );
+const FileUpload: React.FC<FileUploadProps> = ({
+  actionProps,
+  actions,
+  deleteFileProps,
+  error,
+  file,
+  fileProps,
+  select,
+  selectFileProps,
+  showActions,
+  ...props
+}) => {
+  // Use `DeleteFile` if no override is preset
+  if (!actions) {
+    actions = <DeleteFile {...deleteFileProps} />;
   }
 
-  if (image) {
-    return (
-      <img src={image} alt={imageAlt} />
-    );
+  // Use `File` if no override is preset
+  if (!file) {
+    file = <File {...fileProps} />;
   }
-  return (
-    <Button
-      variant="contained"
-      color="info"
-      disabled
-      startIcon={<FileCopyIcon />}
-    >
-      {file}
-    </Button>
-  );
-};
 
-const TitleContainer: React.FC<TitleContainerProps> = (props) => {
-  const {
-    label,
-    selectedFile,
-    handleFileActions,
-    deleteButtonText = 'Delete',
-  } = props;
+  // Use `SelectFile` if no override is preset
+  if (!select) {
+    select = <SelectFile {...selectFileProps} />;
+  }
+
+  // Toggle "actions" display logic
+  const preview = showActions ? actions : file;
 
   return (
-    <StyledTitleContainer className={StyledTitleContainer.displayName}>
-      {
-        label
-        && <InputLabel>{label}</InputLabel>
-      }
-      {
-        selectedFile
-        && (
-          <ErrorText onClick={handleFileActions} sx={{ cursor: 'pointer', marginLeft: 'auto' }}>{deleteButtonText}</ErrorText>
-        )
-      }
-    </StyledTitleContainer>
-  );
-};
-
-const FileUpload: React.FC<FileUploadProps> = (props) => {
-  const {
-    label,
-    buttonText,
-    helperText,
-    selectedFile,
-    handleUploadedFile,
-    error,
-    errorMessage,
-    subText,
-  } = props;
-
-  return (
-    <Container className={Container.displayName}>
-      {
-        label
-        && <TitleContainer {...props} />
-      }
-      <FileUploadBox className={FileUploadBox.displayName} error={error}>
-        {
-          !selectedFile || error
-            ? (
-              <>
-                <Input
-                  id="buttonId"
-                  sx={visuallyHidden}
-                  type="file"
-                  onChange={handleUploadedFile}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  startIcon={<Add />}
-                >
-                  {buttonText}
-                </Button>
-                {
-                  subText
-                  && <FormHelperText>{subText}</FormHelperText>
-                }
-              </>
-            )
-            : (
-              <UploadedFile {...props} />
-            )
-        }
-      </FileUploadBox>
-      {
-        (error && errorMessage)
-        && (
-          <ErrorText>{errorMessage}</ErrorText>
-        )
-      }
-      {
-        helperText
-        && <FormHelperText>{helperText}</FormHelperText>
-      }
-    </Container>
+    <StyledFileUpload className={StyledFileUpload.displayName} {...props}>
+      {error || !fileProps ? select : preview}
+    </StyledFileUpload>
   );
 };
 

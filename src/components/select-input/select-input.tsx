@@ -52,8 +52,8 @@ const SelectInput: React.FC<SelectInputProps> = ({
     PaperProps: {
       style: {
         maxHeight:
-          theme.globalStyles.menuListItemHeight * 4.5 +
-          theme.globalStyles.menuListItemPadding,
+          theme.globalStyles.menuListItemHeight * 4.5 
+          + theme.globalStyles.menuListItemPadding,
         top: 96,
         width: width || theme.globalStyles.menuPaperWidth,
       },
@@ -73,12 +73,12 @@ const SelectInput: React.FC<SelectInputProps> = ({
       displayEmpty
       input={<OutlinedInput />}
       MenuProps={MenuProps}
-      renderValue={(value: any) => {
-        if (!value || value.length === 0) {
+      renderValue={(selected: any) => {
+        if (!selected || selected.length === 0) {
           return placeholder;
         }
 
-        return <span className="Wme-selected-text">{typeof value === 'string' ? value : value.join(", ")}</span>;
+        return <span className="Wme-selected-text">{typeof selected === 'string' ? selected : selected.join(", ")}</span>;
       }}
       {...props}
     >

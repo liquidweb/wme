@@ -11,7 +11,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import {
   TextField,
-  FormHelperText,
+  InputHelperText,
   ErrorText,
 } from '..';
 
@@ -111,7 +111,7 @@ const PasswordField: React.FC<PasswordFieldProps> = (props) => {
       }
       {
         helperText
-        && <FormHelperText>{helperText}</FormHelperText>
+        && <InputHelperText>{helperText}</InputHelperText>
       }
     </>
   );

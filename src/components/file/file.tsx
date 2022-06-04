@@ -2,7 +2,7 @@ import React from "react";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import { Button } from "..";
 
-interface FileProps {
+export interface FileProps {
   filePath?: string;
   imagePath?: string;
   imageAlt?: string;
