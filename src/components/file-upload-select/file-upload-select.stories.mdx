@@ -1,0 +1,55 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { FileUploadSelect } from "..";
+
+<Meta
+  title="Forms/FileUploadSelect"
+  component={FileUploadSelect}
+  argTypes={{
+    buttonText: {
+      control: "text",
+      description: "Text to display inside upload button",
+    },
+    helperText: {
+      control: "text",
+      description: "Text to display under upload button",
+    },
+  }}
+/>
+
+export const Template = (args) => <FileUploadSelect {...args} />;
+
+# FileUploadSelect
+
+Composes `Button`, `FileInput`, and `FormHelperText` to create a single, re-usable "FileUploadSelect" component.
+
+**_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/material-ui/api/box/" target="_blank">MUI's Box</a>, so you can use any prop provided there.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { FileUploadSelect } from '@moderntribe/wme';
+
+export const MyFileUploadSelect = (props) => (
+  <FileUploadSelect {...props} />
+);
+
+export default MyFileUploadSelect;
+```
+
+## Canvas
+
+<Canvas>
+  <Story
+    name="Base"
+    args={{
+      helperText: "20MB max",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

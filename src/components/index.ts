@@ -111,3 +111,6 @@ export * from './select-input';
 
 export { default as FileInput } from './file-input';
 export * from './file-input';
+
+export { default as FileUploadSelect } from './file-upload-select';
+export * from './file-upload-select';
