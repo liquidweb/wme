@@ -99,3 +99,6 @@ export * from './wizard-footer';
 
 export { default as Form } from './form';
 export * from './form';
+
+export { default as CheckboxInput } from './checkbox-input';
+export * from './checkbox-input';
