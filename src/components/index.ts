@@ -123,3 +123,6 @@ export * from './file-upload-preview';
 
 export { default as FileUploadHeader } from './file-upload-header';
 export * from './file-upload-header';
+
+export { default as InputHelperText } from './input-helper-text';
+export * from './input-helper-text';
