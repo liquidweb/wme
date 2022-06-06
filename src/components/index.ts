@@ -96,3 +96,6 @@ export * from './logo';
 
 export { default as ExitButton } from './exit-button';
 export * from './exit-button';
+
+export { default as DeviceSelection } from './device-selection';
+export * from './device-selection';

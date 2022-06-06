@@ -2,18 +2,18 @@ import {
   ArgsTable,
   Story,
   Canvas,
-  Meta
+  Meta,
 } from '@storybook/addon-docs';
 import { useState } from 'react';
-import { WizardHeader, ExitButton, Logo } from '..';
+import {
+  WizardHeader,
+  ExitButton,
+  Logo,
+  DeviceSelection,
+} from '..';
 import logo from '../../stories/images/logo.png';
 import { Box, Typography } from '@mui/material';
-import {
-  Logout,
-  DesktopWindows,
-  TabletMac,
-  PhoneIphone,
-} from '@mui/icons-material';
+import { devices } from '../device-selection/device-selection.stories.mdx';
 
 <Meta
   title="Wizard/WizardHeader"
@@ -29,44 +29,11 @@ export const Exit = () => {
   );
 };
 
-export const DEVICE_SX = {
-	active: {
-		color: 'primary.dark',
-		mx: '5px',
-	},
-	default: {
-		color: '#BFBFBF',
-		cursor: 'pointer',
-		mx: '5px',
-	}
-};
-
-export const DEVICES = {
-	desktop: DesktopWindows,
-	tablet: TabletMac,
-	mobile: PhoneIphone,
-};
-
-export function ModalDeviceSelection() {
-	return (
-    <Box sx={ { display: 'flex', alignItems: 'center' }}>
-      { Object.keys(DEVICES).map((key) => {
-        const DeviceName = DEVICES[ key ];
-        return <DeviceName
-          key={ key }
-          sx={ 'desktop' === key ? DEVICE_SX.active : DEVICE_SX.default }
-          onClick={ () => console.log('device changed') }
-        />;
-      }) }
-	  </Box>
-  );
-}
-
 export const Template = (args) => {
   return (
     <WizardHeader {...args}>
       <Logo logoSrc={logo} logoAlt="Mithrandir Logo" width="150px" />
-      <Box>center</Box>
+      <DeviceSelection devices={devices} />
       <ExitButton onClick={() => console.log('Exit Button Clicked')}>
         Exit to Setup
       </ExitButton>
