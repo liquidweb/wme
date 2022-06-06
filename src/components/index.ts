@@ -105,3 +105,6 @@ export * from './checkbox-input';
 
 export { default as InputLabel } from './input-label';
 export * from './input-label';
+
+export { default as SelectInput } from './select-input';
+export * from './select-input';
