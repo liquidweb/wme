@@ -120,3 +120,6 @@ export * from './file-upload-delete';
 
 export { default as FileUploadPreview } from './file-upload-preview';
 export * from './file-upload-preview';
+
+export { default as FileUploadHeader } from './file-upload-header';
+export * from './file-upload-header';
