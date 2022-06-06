@@ -114,3 +114,6 @@ export * from './file-input';
 
 export { default as FileUploadSelect } from './file-upload-select';
 export * from './file-upload-select';
+
+export { default as FileUploadDelete } from './file-upload-delete';
+export * from './file-upload-delete';
