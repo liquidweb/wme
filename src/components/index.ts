@@ -102,3 +102,6 @@ export * from './form';
 
 export { default as CheckboxInput } from './checkbox-input';
 export * from './checkbox-input';
+
+export { default as InputLabel } from './input-label';
+export * from './input-label';
