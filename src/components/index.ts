@@ -117,3 +117,6 @@ export * from './file-upload-select';
 
 export { default as FileUploadDelete } from './file-upload-delete';
 export * from './file-upload-delete';
+
+export { default as FileUploadPreview } from './file-upload-preview';
+export * from './file-upload-preview';
