@@ -5,8 +5,8 @@ import {
   CheckboxInput,
   FileUpload,
   FormField,
+  FormFieldLabel,
   InputLabel,
-  InputTitle,
   MenuItem,
   PasswordInput,
   RadioGroup,
@@ -90,7 +90,7 @@ export const Template = (args) => <FormField {...args} />;
 
 # Form Field
 
-Composes `FormControl`, `InputTitle`, `InputError`, and `InputHelperText` to create a single, re-usable "field" component.
+Composes `FormControl`, `FormFieldLabel`, `InputError`, and `InputHelperText` to create a single, re-usable "field" component.
 
 **_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/base/react-form-control/" target="_blank">MUI's FormControlUnstyled</a>, so you can use any prop provided there.
 
@@ -142,11 +142,11 @@ export default MyFormField;
       children: (
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <InputTitle>First Name</InputTitle>
+            <FormFieldLabel>First Name</FormFieldLabel>
             <TextInput placeholder="First" />
           </Grid>
           <Grid item xs={6}>
-            <InputTitle>Last Name</InputTitle>
+            <FormFieldLabel>Last Name</FormFieldLabel>
             <TextInput placeholder="Last" />
           </Grid>
         </Grid>

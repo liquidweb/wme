@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React from "react";
+import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
 import { Box, BoxProps, styled } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 import {
@@ -67,6 +68,8 @@ const FileUpload: React.FC<FileUploadProps> = ({
   showActions,
   ...props
 }) => {
+  const formControlContext = useFormControlUnstyledContext();
+
   // Use `FileUploadDelete` if no override is preset
   if (!action) {
     action = <FileUploadDelete {...removeProps} />;
@@ -93,7 +96,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   return (
     <StyledFileUpload className={StyledFileUpload.displayName} {...props}>
       {header}
-      <StyledFileUploadBody error={error}>
+      <StyledFileUploadBody error={error || formControlContext?.error}>
         {error || !uploaded ? select : fileView}
       </StyledFileUploadBody>
     </StyledFileUpload>

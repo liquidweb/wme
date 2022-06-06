@@ -4,7 +4,7 @@ import { FormControlUnstyledProps } from "@mui/base";
 import InputError from "../input-error";
 import FormControl from "../form-control";
 import InputHelperText from "../input-helper-text";
-import InputTitle from "../input-title";
+import FormFieldLabel from "../form-field-label";
 
 type FormFieldProps = FormControlUnstyledProps & {
   errorMessage?: string;
@@ -24,7 +24,7 @@ const FormField: React.FC<PropsWithChildren<FormFieldProps>> = ({
   ...props
 }) => (
   <FormControl {...props}>
-    {label && <InputTitle>{label}</InputTitle>}
+    {label && <FormFieldLabel>{label}</FormFieldLabel>}
     {field}
     {errorMessage && <InputError>{errorMessage}</InputError>}
     {helperText && <InputHelperText>{helperText}</InputHelperText>}

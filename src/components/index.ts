@@ -144,3 +144,6 @@ export * from './radio-group';
 
 export { default as FormField } from './form-field';
 export * from './form-field';
+
+export { default as FormFieldLabel } from './form-field-label';
+export * from './form-field-label';
