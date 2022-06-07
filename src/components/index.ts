@@ -129,3 +129,6 @@ export * from './input-helper-text';
 
 export { default as FormControl } from './form-control';
 export * from './form-control';
+
+export { default as InputError } from './input-error';
+export * from './input-error';
