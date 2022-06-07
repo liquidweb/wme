@@ -1,10 +1,10 @@
-import React from "react";
-import { useFormControlUnstyledContext } from "@mui/base";
-import { styled, Typography, TypographyProps } from "@mui/material";
+import React from 'react';
+import { useFormControlUnstyledContext } from '@mui/base';
+import { styled, Typography, TypographyProps } from '@mui/material';
 
 const StyledInputError = styled(Typography, {
-  name: "WmeInputError",
-  slot: "Root",
+  name: 'WmeInputError',
+  slot: 'Root',
 })(({ theme }) => ({
   color: theme.palette.error.main,
   fontSize: 10,

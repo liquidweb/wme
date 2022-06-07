@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   IconButton,
   InputAdornment,
   InputAdornmentProps,
   styled,
-} from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 interface EndAdornmentProps extends InputAdornmentProps {
   chip?: React.ReactElement;
@@ -15,10 +15,10 @@ interface EndAdornmentProps extends InputAdornmentProps {
 }
 
 const StyledInputAdornment = styled(InputAdornment, {
-  name: "WmePasswordInputAdornment",
-  slot: "Root",
+  name: 'WmePasswordInputAdornment',
+  slot: 'Root',
 })({
-  position: "absolute",
+  position: 'absolute',
   right: 15,
 });
 

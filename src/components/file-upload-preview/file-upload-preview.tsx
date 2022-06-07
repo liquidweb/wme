@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, styled } from "@mui/material";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import { Button } from "..";
+import React from 'react';
+import { Box, styled } from '@mui/material';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import { Button } from '..';
 
 export interface FileUploadPreviewProps {
   filePath?: string;
@@ -10,8 +10,8 @@ export interface FileUploadPreviewProps {
 }
 
 const StyledFileUploadPreview = styled(Box, {
-  name: "WmeFilePreview",
-  slot: "Root",
+  name: 'WmeFilePreview',
+  slot: 'Root',
 })({});
 
 const FileUploadPreview: React.FC<FileUploadPreviewProps> = ({

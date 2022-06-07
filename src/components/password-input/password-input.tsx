@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { useFormControlUnstyledContext } from "@mui/base";
-import { ChipProps, InputBaseProps, styled } from "@mui/material";
-import Chip from "./chip";
-import EndAdornment from "./end-adornment";
-import { TextInput } from "..";
+import React, { useState } from 'react';
+import { useFormControlUnstyledContext } from '@mui/base';
+import { ChipProps, InputBaseProps, styled } from '@mui/material';
+import Chip from './chip';
+import EndAdornment from './end-adornment';
+import { TextInput } from '..';
 
 /**
  * Password field is a WME Text Field component with additional props
  */
 
 interface PasswordInputProps extends InputBaseProps {
-  chipColor?: ChipProps["color"];
-  chipLabel?: ChipProps["label"];
+  chipColor?: ChipProps['color'];
+  chipLabel?: ChipProps['label'];
   value: any;
 }
 
 const StyledPasswordInput = styled(TextInput, {
-  name: "WmePasswordInput",
-  slot: "Root",
+  name: 'WmePasswordInput',
+  slot: 'Root',
 })({});
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -47,7 +47,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
         />
       )}
       error={formControlContext?.error}
-      type={showPassword ? "text" : "password"}
+      type={showPassword ? 'text' : 'password'}
       value={value}
       {...props}
     />

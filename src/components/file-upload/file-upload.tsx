@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import React from "react";
+import React from 'react';
 import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
-import { Box, BoxProps, styled } from "@mui/material";
-import { visuallyHidden } from "@mui/utils";
+import { Box, BoxProps, styled } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 import {
   FileUploadHeader,
   FileUploadHeaderProps,
@@ -12,7 +12,7 @@ import {
   FileUploadDeleteProps,
   FileUploadSelect,
   FileUploadSelectProps,
-} from "..";
+} from '..';
 
 interface FileUploadProps extends BoxProps {
   action?: React.ReactElement;
@@ -30,27 +30,27 @@ interface FileUploadProps extends BoxProps {
 }
 
 const StyledFileUpload = styled(Box, {
-  name: "WmeFileUpload",
-  slot: "Root",
+  name: 'WmeFileUpload',
+  slot: 'Root',
 })({
   width: 415,
 });
 
 const StyledFileUploadBody = styled(Box, {
-  name: "WmeFileUploadBody",
-  slot: "Root",
+  name: 'WmeFileUploadBody',
+  slot: 'Root',
 })<FileUploadProps>(({ error, theme }) => ({
-  alignItems: "center",
+  alignItems: 'center',
   border: error
     ? `1px dashed ${theme.palette.error.main}`
-    : "1px dashed #C4C4C4",
+    : '1px dashed #C4C4C4',
   borderRadius: 4,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   minHeight: 106,
   width: 415,
-  "& .MuiInputBase-input": visuallyHidden,
+  '& .MuiInputBase-input': visuallyHidden,
 }));
 
 const FileUpload: React.FC<FileUploadProps> = ({

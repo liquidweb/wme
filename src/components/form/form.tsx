@@ -1,9 +1,9 @@
-import React from "react";
-import { Box, BoxProps, styled } from "@mui/material";
+import React from 'react';
+import { Box, BoxProps, styled } from '@mui/material';
 
 const StyledForm = styled(Box, {
-  name: "WmeForm",
-  slot: "Root",
+  name: 'WmeForm',
+  slot: 'Root',
 })({}) as typeof Box;
 
 const Form: React.FC<BoxProps> = ({ children, ...props }) => (

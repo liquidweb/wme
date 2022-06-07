@@ -1,18 +1,18 @@
-import React from "react";
-import { Box, styled } from "@mui/material";
-import { visuallyHidden } from "@mui/utils";
-import AddIcon from "@mui/icons-material/Add";
-import { Button, FileInput, FormHelperText } from "..";
+import React from 'react';
+import { Box, styled } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
+import AddIcon from '@mui/icons-material/Add';
+import { Button, FileInput, FormHelperText } from '..';
 
 const StyledFileUploadSelect = styled(Box, {
-  name: "WmeFileUploadSelect",
-  slot: "Root",
+  name: 'WmeFileUploadSelect',
+  slot: 'Root',
 })({
-  alignItems: "center",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  "& .MuiInputBase-input": visuallyHidden,
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  '& .MuiInputBase-input': visuallyHidden,
 });
 
 export interface FileUploadSelectProps {
@@ -31,7 +31,7 @@ const FileUploadSelect: React.FC<FileUploadSelectProps> = ({
   >
     <FileInput />
     <Button color="primary" startIcon={<AddIcon />} variant="contained">
-      {buttonText || "Add File"}
+      {buttonText || 'Add File'}
     </Button>
     {helperText && <FormHelperText>{helperText}</FormHelperText>}
   </StyledFileUploadSelect>

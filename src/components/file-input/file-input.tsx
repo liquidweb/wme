@@ -1,9 +1,9 @@
-import React from "react";
-import { InputBase, InputBaseProps, styled } from "@mui/material";
+import React from 'react';
+import { InputBase, InputBaseProps, styled } from '@mui/material';
 
 const StyledFileInput = styled(InputBase, {
-  name: "WmeFileInput",
-  slot: "Root",
+  name: 'WmeFileInput',
+  slot: 'Root',
 })({});
 
 const FileInput: React.FC<InputBaseProps> = (props) => (

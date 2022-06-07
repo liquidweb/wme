@@ -80,7 +80,7 @@ const StyleCardSelectGroup = styled(ToggleButtonGroup, {
     '& .WmeCardSelectItem-completeContainer': {
       top: '50%',
       transform: 'translateY(-50%)',
-    }
+    },
   }),
   '& .WmeCardSelectItem-root': {
     padding: cardPadding === 'md' ? theme.spacing(4) : theme.spacing(2),

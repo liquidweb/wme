@@ -1,13 +1,13 @@
-import React from "react";
-import { useFormControlUnstyledContext } from "@mui/base";
+import React from 'react';
+import { useFormControlUnstyledContext } from '@mui/base';
 import {
   OutlinedInput,
   Select,
   SelectProps,
   styled,
   useTheme,
-} from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
+} from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface SelectInputProps extends SelectProps {
   placeholder?: string;
@@ -15,24 +15,24 @@ interface SelectInputProps extends SelectProps {
 }
 
 const StyledSelectInput = styled(Select, {
-  name: "WmeSelectInput",
-  slot: "Root",
+  name: 'WmeSelectInput',
+  slot: 'Root',
 })(({ theme }) => ({
   color: theme.palette.text.disabled,
   height: theme.globalStyles.menuListItemHeight,
-  "& .MuiSelect-select": {
-    "& .Wme-selected-text": {
+  '& .MuiSelect-select': {
+    '& .Wme-selected-text': {
       color: theme.palette.text.primary,
     },
   },
-  "&.Mui-focused": {
-    "& .MuiOutlinedInput-notchedOutline": {
+  '&.Mui-focused': {
+    '& .MuiOutlinedInput-notchedOutline': {
       borderColor: theme.palette.text.primary,
       borderWidth: 1,
     },
   },
-  "&.Mui-error": {
-    "& .MuiOutlinedInput-notchedOutline": {
+  '&.Mui-error': {
+    '& .MuiOutlinedInput-notchedOutline': {
       borderColor: theme.palette.error.main,
     },
   },
@@ -52,7 +52,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
     PaperProps: {
       style: {
         maxHeight:
-          theme.globalStyles.menuListItemHeight * 4.5 
+          theme.globalStyles.menuListItemHeight * 4.5
           + theme.globalStyles.menuListItemPadding,
         top: 96,
         width: width || theme.globalStyles.menuPaperWidth,
@@ -60,7 +60,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
     },
   };
 
-  const childrenWithIcons = children 
+  const childrenWithIcons = children
     && (children as React.ReactElement[])?.map((child) => {
       if (child && (value as string[])?.includes(child.props.value)) {
         return React.cloneElement(child, { icon: <CheckIcon /> });
@@ -82,7 +82,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
 
         return (
           <span className="Wme-selected-text">
-            {typeof selected === "string" ? selected : selected.join(", ")}
+            {typeof selected === 'string' ? selected : selected.join(', ')}
           </span>
         );
       }}

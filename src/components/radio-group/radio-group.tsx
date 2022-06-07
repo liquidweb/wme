@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 import MuiRadioGroup, {
   RadioGroupProps as MuiRadioGroupProps,
-} from "@mui/material/RadioGroup";
-import { styled } from "@mui/material/styles";
+} from '@mui/material/RadioGroup';
+import { styled } from '@mui/material/styles';
 
 export interface RadioGroupProps extends MuiRadioGroupProps {
   ariaLabelledby?: string;
 }
 
 const StyledRadioGroup = styled(MuiRadioGroup, {
-  name: "WmeRadioGroup",
-  slot: "Root",
+  name: 'WmeRadioGroup',
+  slot: 'Root',
 })(({ theme }) => ({
-  "& .MuiRadio-root": {
-    "&:focus, &:hover": {
-      backgroundColor: "transparent",
+  '& .MuiRadio-root': {
+    '&:focus, &:hover': {
+      backgroundColor: 'transparent',
       color: theme.palette.primary.dark,
     },
   },

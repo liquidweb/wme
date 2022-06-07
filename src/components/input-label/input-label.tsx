@@ -1,13 +1,13 @@
-import React from "react";
-import { FormControlLabel, FormControlLabelProps, styled } from "@mui/material";
+import React from 'react';
+import { FormControlLabel, FormControlLabelProps, styled } from '@mui/material';
 
 const StyledInputLabel = styled(FormControlLabel, {
-  name: "WmeInputLabel",
-  slot: "Root",
+  name: 'WmeInputLabel',
+  slot: 'Root',
 })(() => ({
-  "& .MuiTypography-root": {
+  '& .MuiTypography-root': {
     fontSize: 14,
-    textAlign: "left",
+    textAlign: 'left',
   },
 }));
 

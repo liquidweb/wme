@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, styled } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Button, FormHelperText } from "..";
+import React from 'react';
+import { Box, styled } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, FormHelperText } from '..';
 
 export interface FileUploadDeleteProps {
   buttonText?: string;
@@ -11,13 +11,13 @@ export interface FileUploadDeleteProps {
 }
 
 const StyledFileUploadDelete = styled(Box, {
-  name: "WmeFileUploadDelete",
-  slot: "Root",
+  name: 'WmeFileUploadDelete',
+  slot: 'Root',
 })({
-  alignItems: "center",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
 });
 
 const FileUploadDelete: React.FC<FileUploadDeleteProps> = ({
@@ -37,10 +37,10 @@ const FileUploadDelete: React.FC<FileUploadDeleteProps> = ({
       startIcon={<DeleteIcon />}
       variant="contained"
     >
-      {buttonText || "Delete"}
+      {buttonText || 'Delete'}
     </Button>
     {helperText && (
-      <FormHelperText onClick={onCancel} sx={{ cursor: "pointer" }}>
+      <FormHelperText onClick={onCancel} sx={{ cursor: 'pointer' }}>
         {helperText}
       </FormHelperText>
     )}

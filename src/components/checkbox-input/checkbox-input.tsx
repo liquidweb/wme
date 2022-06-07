@@ -1,25 +1,25 @@
-import React from "react";
-import { Checkbox as MuiCheckbox, CheckboxProps, styled } from "@mui/material";
+import React from 'react';
+import { Checkbox as MuiCheckbox, CheckboxProps, styled } from '@mui/material';
 
 const StyledCheckbox = styled(MuiCheckbox, {
-  name: "WmeCheckboxInput",
-  slot: "Root",
+  name: 'WmeCheckboxInput',
+  slot: 'Root',
 })(({ theme }) => ({
-  "&.Mui-checked": {
-    "& .MuiSvgIcon-root": {
+  '&.Mui-checked': {
+    '& .MuiSvgIcon-root': {
       fill: theme.palette.primary.main,
     },
   },
-  "&:focus, &:hover": {
-    "& .MuiSvgIcon-root": {
+  '&:focus, &:hover': {
+    '& .MuiSvgIcon-root': {
       fill: theme.palette.primary.dark,
     },
   },
-  "& .MuiSvgIcon-root": {
+  '& .MuiSvgIcon-root': {
     fill: theme.palette.text.disabled,
   },
-  "&:hover": {
-    backgroundColor: "transparent",
+  '&:hover': {
+    backgroundColor: 'transparent',
   },
 }));
 
