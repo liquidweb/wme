@@ -132,3 +132,6 @@ export * from './form-control';
 
 export { default as InputError } from './input-error';
 export * from './input-error';
+
+export { default as TextInput } from './text-input';
+export * from './text-input';
