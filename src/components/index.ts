@@ -138,3 +138,6 @@ export * from './text-input';
 
 export { default as PasswordInput } from './password-input';
 export * from './password-input';
+
+export { default as RadioGroup } from './radio-group';
+export * from './radio-group';
