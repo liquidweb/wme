@@ -34,9 +34,7 @@ const EndAdornment: React.FC<EndAdornmentProps> = ({
       aria-label="toggle password visibility"
       edge="end"
       onClick={onClickAdornment}
-      onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
-        e.preventDefault()
-      }
+      onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) => e.preventDefault()}
     >
       {visible ? <VisibilityOff /> : <Visibility />}
     </IconButton>

@@ -34,7 +34,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   return (
     <StyledPasswordInput
       className={StyledPasswordInput.displayName}
-      endAdornment={
+      endAdornment={(
         <EndAdornment
           chip={
             chipLabel ? <Chip color={chipColor} label={chipLabel} /> : undefined
@@ -45,7 +45,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
           position="end"
           visible={showPassword}
         />
-      }
+      )}
       error={formControlContext?.error}
       type={showPassword ? "text" : "password"}
       value={value}

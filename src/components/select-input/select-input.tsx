@@ -52,17 +52,16 @@ const SelectInput: React.FC<SelectInputProps> = ({
     PaperProps: {
       style: {
         maxHeight:
-          theme.globalStyles.menuListItemHeight * 4.5 +
-          theme.globalStyles.menuListItemPadding,
+          theme.globalStyles.menuListItemHeight * 4.5 
+          + theme.globalStyles.menuListItemPadding,
         top: 96,
         width: width || theme.globalStyles.menuPaperWidth,
       },
     },
   };
 
-  const childrenWithIcons =
-    children &&
-    (children as React.ReactElement[])?.map((child) => {
+  const childrenWithIcons = children 
+    && (children as React.ReactElement[])?.map((child) => {
       if (child && (value as string[])?.includes(child.props.value)) {
         return React.cloneElement(child, { icon: <CheckIcon /> });
       }
