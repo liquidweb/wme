@@ -12,8 +12,8 @@ interface LogoContainerProps extends BoxProps {
 }
 
 const LogoContainer = styled(Box, {
-  name: 'WmeWizardHeader',
-  slot: 'LogoContainer',
+  name: 'WmeLogoContainer',
+  slot: 'Root',
 })(() => ({
   margin: 0,
   '& img': {
