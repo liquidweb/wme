@@ -5,15 +5,9 @@ import {
   Canvas,
   Meta
 } from '@storybook/addon-docs';
-import {
-  WizardFooter,
-  Button,
-  Navigation,
-  NavNumber,
-} from '..';
+import { WizardFooter, Button } from '..';
 import { Box, Typography } from '@mui/material';
 import backArrow from '../../stories/assets/back-arrow.svg';
-import { screens } from '../navigation/navigation.stories.mdx';
 
 <Meta
   title="Wizard/WizardFooter"
@@ -204,7 +198,6 @@ export const MyWizardFooter = (props) => {
         {
           id: 0,
           heading: "Choose a template",
-          hidePagination: false,
           label: "Choose a template",
           step: "template",
           text: "Our set up wizard will help you get the most out of your store.",
@@ -214,7 +207,6 @@ export const MyWizardFooter = (props) => {
           heading: "Choose a font",
           hideBack: true,
           hideSkip: true,
-          hidePagination: false,
           label: "Fonts",
           step: "fonts",
           text: "Lets pick a starting font, you can always change it later and pick from more options.",
@@ -222,7 +214,6 @@ export const MyWizardFooter = (props) => {
         {
           id: 2,
           heading: "Pick some colors",
-          hidePagination: true,
           label: "Colors",
           step: "colors",
           text: "Let's get you some starting colors. You can always update, expand, and change these later.",
