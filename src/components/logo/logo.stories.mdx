@@ -1,0 +1,59 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta
+} from '@storybook/addon-docs';
+import logo from '../../stories/images/logo.png';
+import { Logo } from '..';
+
+<Meta
+  title="Misc/Logo"
+  component={ Logo }
+  argTypes={{
+    logoSrc: {
+      control: 'string',
+      description: 'Path to src of image',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    logoAlt: {
+      control: 'text',
+      description: 'alt text for logo',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  return (
+    <Logo {...args} />
+  );
+};
+
+# Logo
+Container for display site logo.
+
+## Props
+<ArgsTable story="." />
+
+## Canvas
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      logoSrc: logo,
+      logoAlt: 'Mithrandir logo',
+      width: '250px',
+    }}
+  >
+  {Template.bind({})}
+  </Story>
+</Canvas>

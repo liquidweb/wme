@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable func-names */
+/* eslint-disable object-shorthand */
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -10,12 +13,18 @@ const packageJson = require('./package.json');
 export default [
   {
     input: 'src/index.ts',
+    onwarn: function (warning) {
+      if (warning.code === 'THIS_IS_UNDEFINED' || warning.code === 'CIRCULAR_DEPENDENCY') { return; }
+      console.error(warning);
+    },
     output: [
       {
+        sourcemap: true,
         file: packageJson.main,
         format: 'cjs',
       },
       {
+        sourcemap: true,
         file: packageJson.module,
         format: 'esm',
       },

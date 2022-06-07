@@ -5,10 +5,7 @@ import {
 import { styled } from '@mui/material/styles';
 
 interface WizardHeaderProps {
-  logoSrc?: string;
-  logoAlt?: string;
-  centerContent?: ReactElement;
-  exit?: ReactElement;
+  children: ReactElement;
 }
 
 const WizardHeaderContainer = styled(Box, {
@@ -23,40 +20,14 @@ const WizardHeaderContainer = styled(Box, {
   zIndex: 1,
 }));
 
-const LogoContainer = styled(Box, {
-  name: 'WmeWizardHeader',
-  slot: 'LogoContainer',
-})(() => ({
-  margin: 0,
-}));
-
-const ExitContainer = styled(Box, {
-  name: 'WmeWizardHeader',
-  slot: 'ExitContainer',
-})(() => ({
-  margin: 0,
-}));
-
 const WizardHeader: React.FC<WizardHeaderProps> = (props) => {
   const {
-    logoSrc,
-    logoAlt,
-    centerContent,
-    exit,
+    children,
   } = props;
 
   return (
     <WizardHeaderContainer className={WizardHeaderContainer.displayName}>
-      <LogoContainer className={LogoContainer.displayName}>
-        {
-          logoSrc
-          && <img src={logoSrc} alt={logoAlt} />
-        }
-      </LogoContainer>
-      {centerContent}
-      <ExitContainer className={ExitContainer.displayName}>
-        {exit}
-      </ExitContainer>
+      { children }
     </WizardHeaderContainer>
   );
 };
