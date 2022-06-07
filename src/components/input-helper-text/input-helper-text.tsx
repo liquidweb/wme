@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { FormHelperText, FormHelperTextProps, styled } from '@mui/material';
 
 interface InputHelperTextProps extends FormHelperTextProps {
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLParagraphElement>;
 }
 
 const StyledInputHelperText = styled(FormHelperText, {

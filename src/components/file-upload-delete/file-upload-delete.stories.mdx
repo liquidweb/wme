@@ -13,6 +13,22 @@ import { FileUploadDelete } from "..";
       control: "text",
       description: "Text to display under upload button",
     },
+    onCancel: { 
+      description: 'Callback fired when the cancel button is clicked.', 
+      table: { 
+        type: { 
+          summary: '(e: React.MouseEvent<HTMLParagraphElement>) => void', 
+        }, 
+      }
+    },
+    onDelete: { 
+      description: 'Callback fired when the delete button is clicked.', 
+      table: { 
+        type: { 
+          summary: '(e: React.MouseEvent<HTMLButtonElement>) => void', 
+        }, 
+      }
+    },
   }}
 />
 

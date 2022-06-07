@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, styled } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, FormHelperText } from '..';
+import { Button, InputHelperText } from '..';
 
 export interface FileUploadDeleteProps {
   buttonText?: string;
   helperText?: string;
-  onCancel?: () => void;
+  onCancel?: React.MouseEventHandler<HTMLParagraphElement>;
   onDelete?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -40,9 +40,9 @@ const FileUploadDelete: React.FC<FileUploadDeleteProps> = ({
       {buttonText || 'Delete'}
     </Button>
     {helperText && (
-      <FormHelperText onClick={onCancel} sx={{ cursor: 'pointer' }}>
+      <InputHelperText onClick={onCancel} sx={{ cursor: 'pointer' }}>
         {helperText}
-      </FormHelperText>
+      </InputHelperText>
     )}
   </StyledFileUploadDelete>
 );
