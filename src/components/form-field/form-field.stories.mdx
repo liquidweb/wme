@@ -90,7 +90,7 @@ export const Template = (args) => <FormField {...args} />;
 
 # Form Field
 
-Composes `FormControl`, `FormFieldLabel`, `InputError`, and `InputHelperText` to create a single, re-usable "field" component.
+Composes `FormFieldControl`, `FormFieldLabel`, `InputError`, and `InputHelperText` to create a single, re-usable "field" component.
 
 **_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/base/react-form-control/" target="_blank">MUI's FormControlUnstyled</a>, so you can use any prop provided there.
 
@@ -98,7 +98,7 @@ Composes `FormControl`, `FormFieldLabel`, `InputError`, and `InputHelperText` to
 
 If you would like to create a "custom" form field, you can use any combination of the props provided, OR provide a child that completely overwrites the default template.
 
-If you provide your own children, they will be wrapped in a `FormControl` (aka <a href="https://mui.com/base/react-form-control/" target="_blank">FormControlUnstyled</a>) component. This allows you to access the <a href="https://mui.com/base/react-form-control/#useformcontrolunstyledcontext-hook" target="_blank">useFormControlUnstyledContext</a> hook to enable integration between custom form inputs and FormControlUnstyled. You can also use it to read the form control's state and react to its changes in a custom component.
+If you provide your own children, they will be wrapped in a `FormFieldControl` (aka <a href="https://mui.com/base/react-form-control/" target="_blank">FormControlUnstyled</a>) component. This allows you to access the <a href="https://mui.com/base/react-form-control/#useformcontrolunstyledcontext-hook" target="_blank">useFormControlUnstyledContext</a> hook to enable integration between custom form inputs and FormControlUnstyled. You can also use it to read the form control's state and react to its changes in a custom component.
 
 ## Props
 
@@ -114,10 +114,7 @@ export const MyFormField = (props) => (
   const fieldId = "field-id";
 
   <FormField
-    errorMessage="This field is required"
-    field={<TextInput id={fieldId} />}
-    helperText="The Doors of Durin, also known as the West-gate, the West-door of Moria, or Elven Door, were built into the Walls of Moria in the dark cliffs."
-    id={fieldId}
+    field={<TextInput />}
     label="Field Label"
   />
 );

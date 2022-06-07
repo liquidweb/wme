@@ -127,8 +127,8 @@ export * from './file-upload-header';
 export { default as InputHelperText } from './input-helper-text';
 export * from './input-helper-text';
 
-export { default as FormControl } from './form-control';
-export * from './form-control';
+export { default as FormFieldControl } from './form-field-control';
+export * from './form-field-control';
 
 export { default as InputError } from './input-error';
 export * from './input-error';

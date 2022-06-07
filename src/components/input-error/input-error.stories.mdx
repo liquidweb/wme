@@ -1,6 +1,5 @@
 import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
-import InputError from "./";
-import FormControl from "../form-control";
+import { FormFieldControl, InputError } from "..";
 
 <Meta
   title="Forms/InputError"
@@ -20,9 +19,9 @@ import FormControl from "../form-control";
 />
 
 export const Template = ({ error, ...args }) => (
-  <FormControl error={error}>
+  <FormFieldControl error={error}>
     <InputError {...args} />
-  </FormControl>
+  </FormFieldControl>
 );
 
 # Input Label
@@ -31,20 +30,20 @@ A styled version of <a href="https://mui.com/material-ui/react-typography/" targ
 
 ## Usage
 
-- Always wrap with a `FormControl` component in order to use `useFormControlUnstyledContext` hook to determine if input is invalid.
+- Always wrap with a `FormFieldControl` component in order to use `useFormControlUnstyledContext` hook to determine if input is invalid.
 
 ## Example
 
 ```
 import React, { useState } from 'react';
-import { FormControl, InputError } from '@moderntribe/wme';
+import { FormFieldControl, InputError } from '@moderntribe/wme';
 
 export const MyInputError = (props) => (
-  <FormControl>
+  <FormFieldControl>
     <InputError>
       This field is required.
     </InputError>
-  </FormControl>
+  </FormFieldControl>
 );
 
 export default InputError;
