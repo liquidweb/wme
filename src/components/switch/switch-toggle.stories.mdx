@@ -1,0 +1,29 @@
+import { ArgsTable, Story, Canvas, Meta } from '@storybook/addon-docs';
+import { Switch } from '..';
+
+<Meta title="Forms/Switch" component={Switch} />
+
+export const Template = (args) => <Switch {...args} />;
+
+# Switch
+
+A styled version of <a href="https://mui.com/material-ui/react-switch/" target="_blank">MUI's Switch</a>, so you can use any prop provided there.
+
+## Example
+
+```
+import React from 'react';
+import { Switch } from '@moderntribe/wme';
+
+export const MySwitch = (props) => (
+  <Switch {...props} />
+);
+
+export default Switch;
+```
+
+## Canvas
+
+<Canvas>
+  <Story name="Base">{Template.bind({})}</Story>
+</Canvas>

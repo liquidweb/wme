@@ -135,3 +135,6 @@ export * from './exit-button';
 
 export { default as DeviceSelection } from './device-selection';
 export * from './device-selection';
+
+export { default as Switch } from './switch';
+export * from './switch';
