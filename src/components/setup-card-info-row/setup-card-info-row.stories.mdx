@@ -1,0 +1,118 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta,
+} from '@storybook/addon-docs';
+import Link from '@mui/material/Link';
+import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
+import { SetupCardInfoRow } from '..';
+
+<Meta
+  title="Setup Cards/SetupCardInfoRow"
+  component={SetupCardInfoRow}
+  argTypes={{
+    icon: {
+      control: false,
+      description: 'MUI Icon',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    primary: {
+      control: 'text',
+      defaultValue: 'Example Primary Content',
+      description: 'The main content content of the info box.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    secondary: {
+      control: 'text',
+      defaultValue: '',
+      description: 'The secondary content element, right-aligned, is typically an action or link.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    children: {
+      control: false,
+      description: 'The content of the component.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+  }}
+/>
+
+export const Template = (args) => <SetupCardInfoRow {...args} />;
+
+# Setup Card Info Row
+
+Task Card Info Rows are used in Setup cards to communicate status and provide secondary actions for the card.
+
+## Props
+<ArgsTable story="." />
+
+## Canvas: Default
+<Canvas>
+  <Story
+    name="Default"
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Example: Default
+```
+import React from 'react';
+import { SetupCardInfoRow } from '@moderntribe/wme';
+
+const MySetupCardInfoRow = () => (
+  <SetupCardInfoRow 
+    primary="Example Primary Content"
+  />
+);
+```
+
+## Canvas: With Icon and Secondary Link
+<Canvas>
+  <Story
+    name="With Icon"
+    args={{
+      secondary: <Link href="#" underline="hover">Click Me</Link>,
+      icon: <DownhillSkiingIcon />
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Example: With Icon and Secondary Link
+`SetupCardInfoRow` example with MUI Icon and Secondary Link.
+```
+import React from 'react';
+import { SetupCardInfoRow } from '@moderntribe/wme';
+import { Link } from '@mui/material';
+import DownhillSkiingIcon from '@mui/icons-material/DownhillSkiing';
+
+const MySetupCardInfoRow = () => (
+  <SetupCardInfoRow 
+    icon={
+      <DownhillSkiingIcon />
+    }
+    primary="Example Primary Content"
+    secondary={
+      <Link href="#" underline="hover">Click Me</Link>
+    }
+  />
+);
+```

@@ -19,6 +19,12 @@ export * from './setup-card-content';
 export { default as SetupCardTask } from './setup-card-task';
 export * from './setup-card-task';
 
+export { default as SetupCardTaskCta } from './setup-card-task-cta';
+export * from './setup-card-task-cta';
+
+export { default as SetupCardInfoRow } from './setup-card-info-row';
+export * from './setup-card-info-row';
+
 export { default as SetupCardFooter } from './setup-card-footer';
 export * from './setup-card-footer';
 
