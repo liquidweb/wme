@@ -25,12 +25,6 @@ export * from './setup-card-footer';
 export { default as SetupCardList } from './setup-card-list';
 export * from './setup-card-list';
 
-export { default as TextField } from './text-field';
-export * from './text-field';
-
-export { default as Dropdown } from './dropdown';
-export * from './dropdown';
-
 export { default as MenuItem } from './menu-item';
 export * from './menu-item';
 
@@ -54,15 +48,6 @@ export * from './progress-bar';
 
 export { default as Tooltip } from './tooltip';
 export * from './tooltip';
-
-export { default as Checkbox } from './checkbox';
-export * from './checkbox';
-
-export { default as RadioButtonGroup } from './radio-button-group';
-export * from './radio-button-group';
-
-export { default as PasswordField } from './password-field';
-export * from './password-field';
 
 export { default as FileUpload } from './file-upload';
 export * from './file-upload';
@@ -150,3 +135,6 @@ export * from './exit-button';
 
 export { default as DeviceSelection } from './device-selection';
 export * from './device-selection';
+
+export { default as Switch } from './switch';
+export * from './switch';
