@@ -1,0 +1,70 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { FileUploadPreview } from "..";
+import fileUploadImage from "../../stories/images/file-upload.png";
+
+<Meta
+  title="Forms/FileUploadPreview"
+  component={FileUploadPreview}
+  argTypes={{
+    filePath: {
+      control: "string",
+      description: "Path to the selected file",
+    },
+    imagePath: {
+      control: "string",
+      description: "Path to the selected image",
+    },
+    imageAlt: {
+      control: "string",
+      description:
+        "Provides alternative information for an image if a user for some reason cannot view it.",
+    },
+  }}
+/>
+
+export const Template = (args) => <FileUploadPreview {...args} />;
+
+# FileUploadPreview
+
+Composes `Button`, and `img` to create a single, re-usable "FileUploadPreview" component.
+
+**_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/material-ui/api/box/" target="_blank">MUI's Box</a>, so you can use any prop provided there.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { FileUploadPreview } from '@moderntribe/wme';
+
+export const MyFileUploadPreview = (props) => (
+  <FileUploadPreview {...props} />
+);
+
+export default MyFileUploadPreview;
+```
+
+## Canvas
+
+<Canvas>
+  <Story
+    name="FileUploadPreview"
+    args={{
+      filePath: "~/Downloads/document.pdf",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Image"
+    args={{
+      imageAlt: "handwritten signature",
+      imagePath: fileUploadImage,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

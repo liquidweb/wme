@@ -1,0 +1,156 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Grid, Radio } from "@mui/material";
+import Button from "../button";
+import {
+  CheckboxInput,
+  FileUpload,
+  FormField,
+  FormFieldLabel,
+  InputLabel,
+  MenuItem,
+  PasswordInput,
+  RadioGroup,
+  SelectInput,
+  TextInput,
+} from "..";
+
+<Meta
+  title="Forms/FormField"
+  component={FormField}
+  argTypes={{
+    children: {
+      description:
+        "Use this field to add any additional React Elements you'd like, OR to completely overwrite the contents of the field.",
+    },
+    field: {
+      control: "select",
+      defaultValue: "Text",
+      description: "React node(s) that you would like ",
+      mapping: {
+        Checkbox: (
+          <InputLabel
+            control={<CheckboxInput />}
+            label="Creating an account means you’re okay with our Terms of Service and Privacy Policy."
+          />
+        ),
+        File: <FileUpload />,
+        Password: <PasswordInput />,
+        Radio: (
+          <RadioGroup>
+            <InputLabel control={<Radio />} label="Item One" value="1" />
+            <InputLabel control={<Radio />} label="Item Two" value="2" />
+            <InputLabel control={<Radio />} label="Item Three" value="3" />
+          </RadioGroup>
+        ),
+        Select: (
+          <SelectInput placeholder="Select">
+            <MenuItem id="item1" key="1" value="Item 1">
+              Item 1
+            </MenuItem>
+            <MenuItem id="item2" key="2" value="Item 2">
+              Item 2
+            </MenuItem>
+            <MenuItem id="item3" key="3" value="Item 3">
+              Item 3
+            </MenuItem>
+          </SelectInput>
+        ),
+        Text: <TextInput />,
+      },
+      options: ["Checkbox", "File", "Password", "Radio", "Select", "Text"],
+    },
+    error: {
+      control: "boolean",
+      description: "If true, the input will indicate an error. The prop defaults to the value (false)."
+    },
+    errorMessage: {
+      control: "text",
+      description: "The message to display when the field is invalid.",
+    },
+    helperText: {
+      control: "text",
+      description: "Optional text to display under input field.",
+    },
+    id: {
+      control: "text",
+      description: "The id of the input element.",
+    },
+    label: {
+      control: "text",
+      description: "Input label text",
+    },
+    name: {
+      control: "text",
+      description: "Name attribute of the input element.",
+    },
+  }}
+/>
+
+export const Template = (args) => <FormField {...args} />;
+
+# Form Field
+
+Composes `FormFieldControl`, `FormFieldLabel`, `InputError`, and `InputHelperText` to create a single, re-usable "field" component.
+
+**_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/base/react-form-control/" target="_blank">MUI's FormControlUnstyled</a>, so you can use any prop provided there.
+
+## Custom Form Fields
+
+If you would like to create a "custom" form field, you can use any combination of the props provided, OR provide a child that completely overwrites the default template.
+
+If you provide your own children, they will be wrapped in a `FormFieldControl` (aka <a href="https://mui.com/base/react-form-control/" target="_blank">FormControlUnstyled</a>) component. This allows you to access the <a href="https://mui.com/base/react-form-control/#useformcontrolunstyledcontext-hook" target="_blank">useFormControlUnstyledContext</a> hook to enable integration between custom form inputs and FormControlUnstyled. You can also use it to read the form control's state and react to its changes in a custom component.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { FormField, TextInput } from '@moderntribe/wme';
+
+export const MyFormField = (props) => (
+  const fieldId = "field-id";
+
+  <FormField
+    field={<TextInput />}
+    label="Field Label"
+  />
+);
+
+export default MyFormField;
+```
+
+## Canvas
+
+<Canvas>
+  <Story
+    name="Base"
+    args={{
+      label: "Field label",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Custom"
+    args={{
+      children: (
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <FormFieldLabel>First Name</FormFieldLabel>
+            <TextInput placeholder="First" />
+          </Grid>
+          <Grid item xs={6}>
+            <FormFieldLabel>Last Name</FormFieldLabel>
+            <TextInput placeholder="Last" />
+          </Grid>
+        </Grid>
+      ),
+      field: undefined,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

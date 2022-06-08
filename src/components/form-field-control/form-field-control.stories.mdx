@@ -1,0 +1,51 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { FormField, FormFieldControl, TextInput } from "..";
+
+<Meta
+  title="Forms/FormFieldControl"
+  component={FormFieldControl}
+  argTypes={{
+    error: {
+      control: "boolean",
+      description:
+        "If true, the input will indicate an error. The prop defaults to the value (false).",
+    },
+  }}
+/>
+
+export const Template = (args) => (
+  <FormFieldControl {...args}>
+    <FormField
+      field={<TextInput />}
+      label="Text Field"
+    />
+  </FormFieldControl>
+);
+
+# Input Label
+
+A styled version of <a href="https://mui.com/base/react-form-control/" target="_blank">MUI's FormControlUnstyled</a>, so you can use any prop provided there.
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { FormField, FormFieldControl, TextInput } from '@moderntribe/wme';
+
+export const MyFormFieldControl = (props) => (
+  <FormFieldControl>
+    <FormField
+      field={<TextInput />}
+      label="Text Field"
+    />
+  <FormFieldControl>
+);
+
+export default MyFormFieldControl;
+```
+
+## Canvas
+
+<Canvas>
+  <Story name="Base">{Template.bind({})}</Story>
+</Canvas>
