@@ -8,7 +8,7 @@ const SetupCardContentWrapper = styled(CardContent, {
   overridesResolver: (props, styles) => [
     styles.root,
   ],
-})();
+})({});
 
 const SetupCardContent: React.FC<CardContentProps> = (props) => {
   const { children, ...rest } = props;
