@@ -172,7 +172,7 @@ export default function CardSelectItem(props: CardSelectItemProps) {
   const {
     className,
     children,
-    icon,
+    icon = '',
     completedIcon,
     primary: primaryProp,
     secondary: secondaryProp,
@@ -213,7 +213,7 @@ export default function CardSelectItem(props: CardSelectItemProps) {
       )}
       {icon && (
         <StyleCardSelectIcon className="WmeCardSelectItem-icon">
-          <img src={icon} alt="" />
+          <Box component="img" src={icon} alt="" />
         </StyleCardSelectIcon>
       )}
       <StyleCardSelectContentOuter className="WmeCardSelectItem-contentOuter">
