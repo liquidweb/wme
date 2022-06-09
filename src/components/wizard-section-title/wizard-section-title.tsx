@@ -1,10 +1,11 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import {
   Box,
   BoxProps,
   Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { pxToRem } from '../../utils';
 
 interface WizardSectionTitleProps extends BoxProps {
   heading?: string;
@@ -33,6 +34,13 @@ const Heading = styled(Typography, {
   slot: 'Heading',
 })(({ theme }) => ({
   marginBottom: theme.spacing(2),
+}));
+
+const Copy = styled(Typography, {
+  name: 'WmeWizardSectionTitle',
+  slot: 'Copy',
+})(() => ({
+  lineHeight: pxToRem(24),
 }));
 
 const IconContainer = styled(Box, {
@@ -74,7 +82,13 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
         )
       }
       <Heading className={Heading.displayName} variant={headingVariant || 'h2'}>{heading}</Heading>
-      <Typography variant="body1" align={copyAlign && !bookend ? copyAlign : 'inherit'}>{copy}</Typography>
+      <Copy
+        variant="body1"
+        align={copyAlign && !bookend ? copyAlign : 'inherit'}
+        className={Copy.displayName}
+      >
+        {copy}
+      </Copy>
     </WizardSectionTitleContainer>
   );
 };
