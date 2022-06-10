@@ -21,9 +21,7 @@ const ExitButton: React.FC<ExitButtonProps> = (props) => {
 
   return (
     <ExitButtonContainer className={ExitButtonContainer.displayName} {...rest}>
-      <Button
-        onClick={onClick}
-      >
+      <Button onClick={onClick}>
         {children}
         <Logout sx={{ ml: 1 }} />
       </Button>
