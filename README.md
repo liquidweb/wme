@@ -7,14 +7,13 @@ WordPress in any way.
 
 WME is built in React and TypeScript. The framework relies heavily on Material UI.
 
-Most of the components in WME are either extending MUI component or creating wrappers
-to more easily build complex components, such as a File Upload or a complete Wizard component.
+The WME components are either styled MUI components (such as a `Button`) or wrappers designed to easily build complex components, such as `FileUpload`.
 
 ## Documentation
 Each individual component is showcased in the <a href="https://main--623a01cac28a2f003a843c20.chromatic.com/" target="_blank">WME StoryBook</a> and should have its own documentation. Use the `Canvas` tab to see a playground of the component, and then the `Docs` tab to see detailed
 documentation for each component as well as an arguments table.
 
-The framework also contains "Wizard" components, which are building blocks for fullscreen wizards such as set up screens, plugin configuration, etc.
+The framework also contains `Wizard` components, which are building blocks for fullscreen wizards such as set up screens, plugin configuration, etc.
 
 To create a new wizard, use the `Wizard` component:
 
@@ -44,7 +43,7 @@ To create a new wizard, use the `Wizard` component:
 </Wizard>
 ```
 
-WME components are designed to be used at a granular level if needed. For example, you can use *just* the `FormFieldLabel` component if you need a styled label, but if you want an entire input field, you could use `FormField` like in the example above.
+WME components are designed to be used at a granular level if needed. For example, you can use *just* the `FormFieldLabel` component if you need a styled label, but if you want an entire input field, you could use `FormField` like in the example above, which encompasses all the parts necessary for a complete form field.
 
 All components come pre-styled based on the WME design, but can be tweaked using the <a href="https://mui.com/system/the-sx-prop/" target="_blank">MUI `sx` prop</a> on an individual basis, or by using the <a href="https://mui.com/material-ui/customization/theme-components/" target="_blank">MUI global styleOverrides</a> on a global site level.
 
