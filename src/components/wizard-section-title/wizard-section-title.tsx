@@ -9,15 +9,21 @@ import { pxToRem } from '../../utils';
 
 interface WizardSectionTitleProps extends BoxProps {
   heading?: string;
+  headingComponent?: React.ElementType;
   headingVariant?: 'h1' | 'h2' | 'h3' | 'h4';
   copy?: string;
   copyAlign?: 'center' | 'left';
+  copyVariant?: 'h1' | 'h2' | 'h3' | 'h4';
   iconSrc?: string;
   iconAlt?: string;
   iconWidth?: string;
   width?: string;
   bookend?: boolean;
 }
+
+type StyledTypography = {
+  component?: React.ElementType;
+};
 
 const WizardSectionTitleContainer = styled(Box, {
   name: 'WmeWizardSectionTitle',
@@ -32,14 +38,14 @@ const WizardSectionTitleContainer = styled(Box, {
 const Heading = styled(Typography, {
   name: 'WmeWizardSectionTitle',
   slot: 'Heading',
-})(({ theme }) => ({
+})<StyledTypography>(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
 const Copy = styled(Typography, {
   name: 'WmeWizardSectionTitle',
   slot: 'Copy',
-})(() => ({
+})<StyledTypography>(() => ({
   lineHeight: pxToRem(24),
 }));
 
@@ -53,9 +59,11 @@ const IconContainer = styled(Box, {
 const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
   const {
     heading,
+    headingComponent,
     headingVariant,
     copy,
     copyAlign,
+    copyVariant,
     iconSrc,
     iconAlt,
     iconWidth = 'auto',
@@ -73,22 +81,29 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
       bookend={bookend}
       {...rest}
     >
-      {
-        iconSrc
-        && (
-          <IconContainer className={IconContainer.displayName}>
-            <img src={iconSrc} alt={iconAlt} width={iconWidth} />
-          </IconContainer>
-        )
-      }
-      <Heading className={Heading.displayName} variant={headingVariant || 'h2'}>{heading}</Heading>
-      <Copy
-        variant="body1"
-        align={copyAlign && !bookend ? copyAlign : 'inherit'}
-        className={Copy.displayName}
-      >
-        {copy}
-      </Copy>
+      {iconSrc && (
+        <IconContainer className={IconContainer.displayName}>
+          <img src={iconSrc} alt={iconAlt} width={iconWidth} />
+        </IconContainer>
+      )}
+      {heading && (
+        <Heading
+          className={Heading.displayName}
+          component={headingComponent || 'h2'}
+          variant={headingVariant}
+        >
+          {heading}
+        </Heading>
+      )}
+      {copy && (
+        <Copy
+          align={copyAlign && !bookend ? copyAlign : 'inherit'}
+          className={Copy.displayName}
+          variant={copyVariant || 'body1'}
+        >
+          {copy}
+        </Copy>
+      )}
     </WizardSectionTitleContainer>
   );
 };
