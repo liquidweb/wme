@@ -60,13 +60,13 @@ const SelectInput: React.FC<SelectInputProps> = ({
     },
   };
 
-  const childrenWithIcons = children
-    && (children as React.ReactElement[])?.map((child) => {
-      if (child && (value as string[])?.includes(child.props.value)) {
+  const childrenWithIcons = Array.isArray(children) && Array.isArray(value) ?
+    (children as React.ReactElement[])?.map((child) => {
+      if (child && value.includes(child.props.value)) {
         return React.cloneElement(child, { icon: <CheckIcon /> });
       }
       return child;
-    });
+    }) : children;
 
   return (
     <StyledSelectInput
@@ -86,6 +86,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
           </span>
         );
       }}
+      value={value}
       {...props}
     >
       {childrenWithIcons}
