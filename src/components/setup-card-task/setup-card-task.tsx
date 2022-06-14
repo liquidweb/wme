@@ -189,7 +189,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
     ? React.cloneElement(button as React.ReactElement<any>, { onClick })
     : button;
 
-  // If button and `href` is defined for task.
+  // If button and no button href is defined, we attribute the parent `href` prop to button.
   button = (button && href.length && (typeof buttonProps === 'object' && !('href' in buttonProps)))
     ? React.cloneElement(button as React.ReactElement<any>, { href })
     : button;
