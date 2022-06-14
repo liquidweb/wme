@@ -33,6 +33,8 @@ import * as SetupCardTaskStories from '../setup-card-task/setup-card-task.storie
 import * as SetupCardFooterStories from '../setup-card-footer/setup-card-footer.stories.mdx';
 import { theme } from '../../theme';
 
+console.log(SetupCardFooterStories);
+
 <Meta 
   title="Setup Cards/SetupCard"
   component={SetupCard}
@@ -67,8 +69,8 @@ Below are some example configurations.
     <SetupCard>
       <SetupCardHeader {...header.args} />
       <SetupCardContent>
-        <SetupCardTask {...SetupCardTaskStories.action.args} />
-        <SetupCardTask {...SetupCardTaskStories.actionDisabled.args} />
+        <SetupCardTask {...SetupCardTaskStories.actionWithButton.args} />
+        <SetupCardTask {...SetupCardTaskStories.actionWithButtonDisabled.args} />
       </SetupCardContent>
       {/* @see SetupCardFooter > Footer With Text Story */}
       <SetupCardFooterStories.FooterWithText />
@@ -207,8 +209,8 @@ Below are some example configurations.
     <SetupCard>
       <SetupCardHeader {...header.args} />
       <SetupCardContent>
+        <SetupCardTask {...SetupCardTaskStories.taskWithOnClick.args} />
         <SetupCardTask {...SetupCardTaskStories.taskDisabled.args} />
-        <SetupCardTask {...SetupCardTaskStories.task.args} />
       </SetupCardContent>
       {/* @see SetupCardFooter > Footer With Links Story */}
       <SetupCardFooterStories.FooterWithLinks />
