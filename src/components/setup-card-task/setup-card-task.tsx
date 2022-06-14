@@ -6,40 +6,31 @@ import {
   CardActionAreaProps,
   Typography,
   TypographyProps,
-  Avatar,
-  AvatarProps,
-  ButtonProps,
 } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
-import { Button } from '..';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
 
 type TaskVariant = 'action' | 'task' | undefined;
 
-/* eslint-disable no-unused-vars */
-interface TaskButton extends ButtonProps {
-  label: string;
-  url: string;
-  backgroundColor: string;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-}
-
 interface SetupCardProps extends BoxProps {
-  id: string;
-  url?: string;
+  href?: string;
   title?: string;
   intro?: string;
   children?: React.ReactNode;
-  button?: TaskButton;
+  button?: any;
   taskCta?: string;
   disabled?: boolean;
-  avatarProps?: AvatarProps;
+  avatar?: React.ReactNode;
   variant?: TaskVariant;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 /* eslint-enable no-unused-vars */
+
+interface CtaActionRootProps {
+  taskCta?: string;
+}
 
 interface TaskProps extends BoxProps {
   variant?: TaskVariant;
@@ -79,6 +70,19 @@ const Task = styled(Box, {
       duration: theme.transitions.duration.standard,
     }),
   },
+
+  ...(variant === 'action' 
+    && {
+      '& .MuiButtonGroup-root, & .WmeButtonGroupRoot, & .MuiButton-root, & .WmeButtonRoot': {
+        marginLeft: 'auto',
+        flex: '0 0 auto',
+
+        '&:hover': {
+          color: theme.palette.common.white,
+        },
+      },
+    }
+  ),
 
   ...(variant === 'task'
     && {
@@ -134,18 +138,6 @@ const CtaAction = styled(Typography, {
   },
 }));
 
-const CtaActionButton = styled(Button, {
-  name: 'WmeTaskCta',
-  slot: 'Button',
-})<ButtonProps>(({ theme }) => ({
-  marginLeft: 'auto',
-  flex: '0 0 auto',
-
-  '&:hover': {
-    color: theme.palette.common.white,
-  },
-}));
-
 const TaskActionArea = styled(CardActionArea)<TaskActionAreaProps>(({ theme }) => ({
   '&.Mui-focusVisible': {
     boxShadow: 'none',
@@ -156,21 +148,51 @@ const TaskActionArea = styled(CardActionArea)<TaskActionAreaProps>(({ theme }) =
   },
 }));
 
+const CtaActionRoot = (props: CtaActionRootProps) => {
+  const { taskCta } = props;
+  return (
+    <SetupCardTaskCta className={SetupCardTaskCta.displayName}>
+      <CtaAction className={CtaAction.displayName} variant="body2">
+        {taskCta}
+      </CtaAction>
+      <ChevronRight />
+    </SetupCardTaskCta>
+  );
+};
+
 const SetupCardTask: React.FC<SetupCardProps> = (props) => {
   const {
-    id,
-    url = '',
+    href = '',
     title,
     intro,
-    button,
-    avatarProps,
+    button: buttonProp,
+    avatar,
     variant,
     taskCta,
     onClick,
     children,
     disabled = false,
   } = props;
-  const variantType = variant === 'action' ? 'action' : 'task';
+
+  // Check that `button` is React Element and `variant` is `action`.
+  const variantType = React.isValidElement(buttonProp) && variant === 'action' ? 'action' : 'task';
+
+  // If SetupCardTask is `disabled` add `disabled` prop to 
+  let button = (buttonProp && disabled)
+    ? React.cloneElement(buttonProp as React.ReactElement<any>, { disabled: true })
+    : buttonProp;
+
+  const { props: buttonProps } = button || {};
+
+  // If button has no `onClick` handler, we attribute the parent `onClick` handler.
+  button = (button && (typeof buttonProps === 'object' && !('onClick' in buttonProps)))
+    ? React.cloneElement(button as React.ReactElement<any>, { onClick })
+    : button;
+
+  // If button and no button href is defined, we attribute the parent `href` prop to button.
+  button = (button && href.length && (typeof buttonProps === 'object' && !('href' in buttonProps)))
+    ? React.cloneElement(button as React.ReactElement<any>, { href })
+    : button;
 
   return (
     <Task className={Task.displayName} variant={variantType}>
@@ -182,39 +204,20 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
               className={TaskActionArea.displayName}
               onClick={onClick}
               disabled={disabled}
-              href={url}
+              href={href}
             >
               {child}
             </TaskActionArea>
           )
         }
       >
-        <Avatar {...avatarProps} />
+        {avatar}
         <Box sx={{ mr: 2 }}>
           {title && <Typography component="h3" variant="taskTitle" mb={1}>{title}</Typography>}
           {intro && <Typography variant="body2">{intro}</Typography>}
           {children}
         </Box>
-        {variantType === 'action' ? (
-          <CtaActionButton
-            className={CtaActionButton.displayName}
-            disabled={button?.disabled || disabled}
-            variant="contained"
-            href={button?.url}
-            onClick={onClick}
-            sx={{ backgroundColor: button?.backgroundColor ? button.backgroundColor : null }}
-          >
-            {button?.label}
-          </CtaActionButton>
-        )
-          : (
-            <SetupCardTaskCta className={SetupCardTaskCta.displayName}>
-              <CtaAction className={CtaAction.displayName} variant="body2">
-                {taskCta}
-              </CtaAction>
-              <ChevronRight />
-            </SetupCardTaskCta>
-          )}
+        {variantType === 'action' ? button : <CtaActionRoot taskCta={taskCta} />}
       </ConditionalWrapper>
     </Task>
   );

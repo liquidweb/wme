@@ -4,7 +4,10 @@ import {
   Canvas,
   Meta,
 } from '@storybook/addon-docs';
-import { SetupCardTask } from '..';
+import { action as actionAddon } from '@storybook/addon-actions';
+import LinkTo from '@storybook/addon-links/react';
+import { Avatar } from '@mui/material';
+import { SetupCardTask, Button, SplitButton } from '..';
 import taskIcon from '../../stories/images/task-icon.png';
 
 <Meta
@@ -33,7 +36,7 @@ import taskIcon from '../../stories/images/task-icon.png';
       table: {
         type: {
           summary: 'string',
-          detail: "'task' | 'action'"
+          detail: "'task' | 'action'",
         },
       },
       description: 'Setup Card Task type',
@@ -50,7 +53,7 @@ import taskIcon from '../../stories/images/task-icon.png';
     },
     intro: {
       control: 'text',
-      defaultValue: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
+      defaultValue: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
       description: 'The intro content for component.',
       table: {
         type: {
@@ -68,9 +71,28 @@ import taskIcon from '../../stories/images/task-icon.png';
         },
       }
     },
-    avatarProps: {
+    avatar: {
       control: false,
-      description: 'Accepts all MUI Avatar props.',
+      description: 'MUI Avatar component.',
+      table: {
+        type: {
+          summary: 'node'
+        }
+      }
+    },
+    href: {
+      control: 'text',
+      defaultValue: '',
+      description: 'The URL to link to when the task is clicked.',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    button: {
+      control: false,
+      description: 'Button or SplitButton component.',
       table: {
         type: {
           summary: 'node'
@@ -78,13 +100,14 @@ import taskIcon from '../../stories/images/task-icon.png';
       }
     },
     onClick: {
-      onClick: (e) => handleClick(e),
-      description: 'Callback fired when the button is clicked.',
+      control: false,
+      description: 'Callback fired when the component, or button is clicked.',
       table: {
         type: {
           summary: 'func',
         },
-      }
+      },
+      action: 'onclick action testing'
     },
     sx: {
       control: false,
@@ -109,87 +132,301 @@ export const Template = (args) => (
   <SetupCardTask {...args} />
 );
 
-export const handleClick = (event) => {
-  console.log(event);
-};
-
 # Setup Card Task
-Tasks are used on the WordPress Set Up Page for WME. They come in two 
-styles: text based CTAs that launch the wizard modal and button CTAs 
-that launch non-wizard functionality such as taking the user to a 
-specific part of the WordPress admin.
+SetupCardTasks are used in the WME <LinkTo kind="setup-cards-setupcard--actions">SetupCard</LinkTo>. 
+They come in two styles: text based CTAs (Tasks) that launch the wizard modal and button CTAs (Actions)
+that launch non-wizard functionality such as navigating the user to a 
+specific part of the admin area.
 
 ## Props
 <ArgsTable story="." />
 
-## Canvas
+## Usage
+- The `avatar` prop expects the <a href="https://mui.com/material-ui/api/avatar/" target="_blank">MUI Avatar</a> component, see the MUI documentation for details.
+  - If using an image for the avatar, we recommend a 128 x 128 PNG with transparent background, and the image/icon visually centered.
+- The `button` prop expects either the WME <LinkTo kind="buttons-button--primary">Button</LinkTo> or <LinkTo kind="buttons-splitbutton--primary">SplitButton</LinkTo> component.
+<br/><br/>
+
+## Variants
+<br/>
+
+### Action with Button
+- The `onClick` event handler can either be attributed the `SetupCardTask` or the `SetupCardTask`'s button component.
+
 <Canvas>
   <Story
-    name="Task"
+    name="Action with Button"
     args={{
-      id: 'task1',
-      url: 'https://tri.be',
-      title: 'Example task title',
-      variant: 'task',
-      taskCta: 'Learn More',
-      avatarProps: {
-        src: taskIcon,
-      }
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="TaskDisabled"
-    args={{
-      id: 'task2',
-      url: 'https://tri.be',
-      variant: 'task',
-      title: 'Example disabled task',
-      taskCta: 'Learn More',
-      disabled: true,
-      avatarProps: {
-        src: taskIcon,
-      }
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="Action"
-    args={{
-      id: 'action1',
-      title: 'Example task with Action',
       variant: 'action',
-      button: {
-        label: 'Connect Stripe',
-        url: '#TBD',
-        backgroundColor: '#645FF3',
-      },
-      avatarProps: {
-        src: taskIcon,
-      }
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story
-    name="ActionDisabled"
-    args={{
-      id: 'action2',
-      title: 'Example task with disabled Action',
-      disabled: true,
-      variant: 'action',
-      button: {
-        label: 'Connect Stripe',
-        url: '#TBD',
-        backgroundColor: '#645FF3',
-      },
-      avatarProps: {
-        src: taskIcon,
-      }
+      title: 'Example action with button',
+      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
+      avatar: <Avatar src={taskIcon} />,
+      button: <Button variant="contained" color="primary">Click Me</Button>
     }}
   >
     {Template.bind({})}
   </Story>
 </Canvas>
+
+```
+import React from 'react';
+import { SetupCardTask, Button } from '@moderntribe/wme';
+import { Avatar } from '@mui/material';
+
+const MySetupCardTask = () => {
+  const handleButtonClick = () => {
+    // you can handle the actual click however you need to
+    console.log('Button was clicked');
+  }
+
+  return (
+    <SetupCardTask
+      variant="task"
+      avatar={
+        <Avatar src="/path/to/image.png" />
+      }
+      title="Example action with button"
+      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+      // onClick={handleButtonClick} <- This would work, too
+      button={
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleButtonClick}
+        >Click Me</Button>
+      }
+    />
+  );
+};
+```
+
+### Action with Button (Disabled)
+
+<Canvas>
+  <Story
+    name="Action with Button Disabled"
+    args={{
+      disabled: true,
+      variant: 'action',
+      title: 'Example action with disabled button',
+      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
+      avatar: <Avatar src={taskIcon} />,
+      button: <Button variant="contained" color="primary">Click Me</Button>
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+```
+import React from 'react';
+import { SetupCardTask, Button } from '@moderntribe/wme';
+import { Avatar } from '@mui/material';
+
+const MySetupCardTask = () => {
+  const handleButtonClick = () => {
+    // you can handle the actual click however you need to
+    console.log('Button was clicked');
+  }
+
+  return (
+    <SetupCardTask
+      variant="action"
+      disabled
+      avatar={
+        <Avatar src="/path/to/image.png" />
+      }
+      title="Example action with disabled button"
+      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+      button={
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleButtonClick}
+        >Click Me</Button>
+      }
+    />
+  );
+};
+```
+
+### Action with SplitButton
+
+<Canvas>
+  <Story
+    name="Action with SplitButton"
+    args={{
+      variant: 'action',
+      title: 'Example action with split button',
+      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
+      avatar: <Avatar src={taskIcon} />,
+      button: <SplitButton
+        color="primary"
+        selectedIndex={0}
+        options={['Create a merge commit', 'Squash and merge', 'Rebase and merge']}
+      />
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+```
+import React from 'react';
+import { SetupCardTask, SplitButton } from '@moderntribe/wme';
+import { Avatar } from '@mui/material';
+
+const MySetupCardTask = (props) => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const { options } = props;
+
+  const handleIndexChange = (index:number) => {
+    setSelectedIndex(index);
+  };
+
+  const handleButtonClick = () => {
+    // you can handle the actual click however you need to
+    console.log(`${options[selectedIndex]} was clicked`);
+  }
+
+  return (
+    <SetupCardTask
+      variant="action"
+      avatar={
+        <Avatar src="/path/to/image.png" />
+      }
+      title="Example action with split button"
+      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+      button={
+        <SplitButton
+          color="primary"
+          selectedIndex={0}
+          handleClick={handleButtonClick}
+          handleIndexChange={handleIndexChange}
+          options={options}
+        />
+      }
+    />
+  );
+};
+```
+
+### Task Disabled 
+<Canvas>
+  <Story
+    name="Task Disabled"
+    args={{
+      href: 'https://tri.be',
+      variant: 'task',
+      title: 'Example disabled task',
+      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
+      taskCta: 'Learn More',
+      disabled: true,
+      avatar: <Avatar src={taskIcon} />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+```
+import React from 'react';
+import { SetupCardTask } from '@moderntribe/wme';
+import { Avatar } from '@mui/material';
+
+const MySetupCardTask = () => {
+  return (
+    <SetupCardTask
+      variant="task"
+      disabled,
+      avatar={
+        <Avatar src="/path/to/image.png" />
+      }
+      title="Example disabled task"
+      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+    />
+  );
+};
+```
+
+### Task with onClick
+Use the `onClick` property to provide callback functionality to your `SetupCardTask`. Most commonly, this will be used to open a <LinkTo kind="wizard-wizard--bookend">Wizard</LinkTo>.
+
+<Canvas>
+  <Story
+    name="Task with onClick"
+    args={{
+      title: 'Example task with onClick',
+      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
+      variant: 'task',
+      taskCta: 'Learn More',
+      avatar: <Avatar src={taskIcon} />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+```
+import React from 'react';
+import { SetupCardTask } from '@moderntribe/wme';
+import { Avatar } from '@mui/material';
+
+const MySetupCardTask = () => {
+  const handleClick = () => {
+    console.log('Click handled');
+  }
+
+  return (
+    <SetupCardTask
+      variant="task"
+      avatar={
+        <Avatar src="/path/to/image.png" />
+      }
+      title="Example task with onClick"
+      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+      onClick={handleClick}
+    />
+  );
+};
+```
+
+### Task with href 
+Use the `href` property to make `SetupCardComponent` link.
+
+<Canvas>
+  <Story
+    name="Task with href"
+    args={{
+      href: 'https://tri.be',
+      variant: 'task',
+      title: 'Example task with href',
+      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
+      taskCta: 'Learn More',
+      avatar: <Avatar src={taskIcon} />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+```
+import React from 'react';
+import { SetupCardTask } from '@moderntribe/wme';
+import { Avatar } from '@mui/material';
+
+const MySetupCardTask = () => {
+  return (
+    <SetupCardTask
+      variant="task"
+      href="https://tri.be"
+      avatar={
+        <Avatar src="/path/to/image.png" />
+      }
+      title="Example task with href"
+      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+    />
+  );
+};
+```
