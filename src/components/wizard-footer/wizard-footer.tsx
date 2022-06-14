@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import {
   Box,
+  BoxProps,
   Stepper,
   Step,
   StepButton,
@@ -11,7 +12,7 @@ import { LoadingButton } from '@mui/lab';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
 
-interface WizardFooterProps {
+interface WizardFooterProps extends BoxProps {
   backText?: string;
   onBack?: () => void;
   nextText?: string;
@@ -131,6 +132,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     save,
     hideFooter,
     disableAll,
+    ...rest
   } = props;
 
   const { maxActiveStep } = useMaxActiveStep(activeStep);
@@ -146,7 +148,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
 
   if (!hideFooter) {
     return (
-      <WizardFooterContainer className={WizardFooterContainer.displayName}>
+      <WizardFooterContainer className={WizardFooterContainer.displayName} {...rest}>
         <Prev className={Prev.displayName}>
           {
             !currStep?.hideBack
