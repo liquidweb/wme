@@ -17,6 +17,7 @@ import {
 interface FileUploadProps extends BoxProps {
   action?: React.ReactElement;
   actionProps?: any;
+  alert?: React.ReactElement;
   error?: boolean;
   header?: React.ReactElement;
   headerProps?: FileUploadHeaderProps;
@@ -56,6 +57,7 @@ const StyledFileUploadBody = styled(Box, {
 const FileUpload: React.FC<FileUploadProps> = ({
   action,
   actionProps,
+  alert,
   error,
   header,
   headerProps,
@@ -97,6 +99,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
     <StyledFileUpload className={StyledFileUpload.displayName} {...props}>
       {header}
       <StyledFileUploadBody error={error || formControlContext?.error}>
+        {alert}
         {error || !uploaded ? select : fileView}
       </StyledFileUploadBody>
     </StyledFileUpload>
