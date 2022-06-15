@@ -29,15 +29,15 @@ const StyledButton = styled(ButtonUnstyled, {
 }));
 
 export interface FileUploadHeaderProps {
+  button?: React.ReactElement;
   buttonText?: string;
-  fileUploaded?: boolean;
   labelText?: string;
   onRemove?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
+  button,
   buttonText,
-  fileUploaded,
   labelText,
   onRemove,
   ...props
@@ -47,9 +47,7 @@ const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
     {...props}
   >
     {labelText && <InputTitle>{labelText}</InputTitle>}
-    {fileUploaded && (
-      <StyledButton onClick={onRemove}>{buttonText}</StyledButton>
-    )}
+    {button || <StyledButton onClick={onRemove}>{buttonText}</StyledButton>}
   </StyledFileUploadHeader>
 );
 

@@ -77,7 +77,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
   // Use `FileUploadHeader` if no override is preset
   if (!header) {
-    header = <FileUploadHeader fileUploaded={uploaded} {...headerProps} />;
+    header = <FileUploadHeader {...headerProps} />;
   }
 
   // Use `File` if no override is preset
