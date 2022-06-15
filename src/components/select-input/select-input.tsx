@@ -60,8 +60,8 @@ const SelectInput: React.FC<SelectInputProps> = ({
     },
   };
 
-  const childrenWithIcons = Array.isArray(children) && Array.isArray(value) ?
-    (children as React.ReactElement[])?.map((child) => {
+  const childrenWithIcons = Array.isArray(children) && Array.isArray(value)
+    ? (children as React.ReactElement[])?.map((child) => {
       if (child && value.includes(child.props.value)) {
         return React.cloneElement(child, { icon: <CheckIcon /> });
       }
