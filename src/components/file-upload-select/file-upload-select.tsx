@@ -1,5 +1,10 @@
 import React from 'react';
-import { Box, styled } from '@mui/material';
+import {
+  Box,
+  ButtonProps,
+  InputBaseProps,
+  styled
+} from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
 import { Button, FileInput, FormHelperText } from '..';
@@ -17,20 +22,24 @@ const StyledFileUploadSelect = styled(Box, {
 
 export interface FileUploadSelectProps {
   buttonText?: string;
+  buttonProps?: ButtonProps;
   helperText?: string;
+  inputProps?: InputBaseProps;
 }
 
 const FileUploadSelect: React.FC<FileUploadSelectProps> = ({
   buttonText,
+  buttonProps,
   helperText,
+  inputProps,
   ...props
 }) => (
   <StyledFileUploadSelect
     className={StyledFileUploadSelect.displayName}
     {...props}
   >
-    <FileInput />
-    <Button color="primary" startIcon={<AddIcon />} variant="contained">
+    <FileInput {...inputProps} />
+    <Button color="primary" startIcon={<AddIcon />} variant="contained" {...buttonProps}>
       {buttonText || 'Add File'}
     </Button>
     {helperText && <FormHelperText>{helperText}</FormHelperText>}

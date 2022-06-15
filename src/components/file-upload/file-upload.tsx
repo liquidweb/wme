@@ -8,8 +8,8 @@ import {
   FileUploadHeaderProps,
   FileUploadPreview,
   FileUploadPreviewProps,
-  FileUploadDelete,
-  FileUploadDeleteProps,
+  FileUploadRemove,
+  FileUploadRemoveProps,
   FileUploadSelect,
   FileUploadSelectProps,
 } from '..';
@@ -17,13 +17,14 @@ import {
 interface FileUploadProps extends BoxProps {
   action?: React.ReactElement;
   actionProps?: any;
+  alert?: React.ReactElement;
   error?: boolean;
   header?: React.ReactElement;
   headerProps?: FileUploadHeaderProps;
   uploaded?: boolean;
   preview?: React.ReactElement;
   previewProps?: FileUploadPreviewProps;
-  removeProps?: FileUploadDeleteProps;
+  removeProps?: FileUploadRemoveProps;
   select?: React.ReactElement;
   selectProps?: FileUploadSelectProps;
   showActions?: boolean;
@@ -32,9 +33,7 @@ interface FileUploadProps extends BoxProps {
 const StyledFileUpload = styled(Box, {
   name: 'WmeFileUpload',
   slot: 'Root',
-})({
-  width: 415,
-});
+})({});
 
 const StyledFileUploadBody = styled(Box, {
   name: 'WmeFileUploadBody',
@@ -49,13 +48,13 @@ const StyledFileUploadBody = styled(Box, {
   flexDirection: 'column',
   justifyContent: 'center',
   minHeight: 106,
-  width: 415,
   '& .MuiInputBase-input': visuallyHidden,
 }));
 
 const FileUpload: React.FC<FileUploadProps> = ({
   action,
   actionProps,
+  alert,
   error,
   header,
   headerProps,
@@ -70,14 +69,14 @@ const FileUpload: React.FC<FileUploadProps> = ({
 }) => {
   const formControlContext = useFormControlUnstyledContext();
 
-  // Use `FileUploadDelete` if no override is preset
+  // Use `FileUploadRemove` if no override is preset
   if (!action) {
-    action = <FileUploadDelete {...removeProps} />;
+    action = <FileUploadRemove {...removeProps} />;
   }
 
   // Use `FileUploadHeader` if no override is preset
   if (!header) {
-    header = <FileUploadHeader fileUploaded={uploaded} {...headerProps} />;
+    header = <FileUploadHeader {...headerProps} />;
   }
 
   // Use `File` if no override is preset
@@ -91,13 +90,14 @@ const FileUpload: React.FC<FileUploadProps> = ({
   }
 
   // Toggle "action" display logic
-  const fileView = showActions ? action : preview;
+  const view = showActions ? action : preview;
 
   return (
     <StyledFileUpload className={StyledFileUpload.displayName} {...props}>
       {header}
       <StyledFileUploadBody error={error || formControlContext?.error}>
-        {error || !uploaded ? select : fileView}
+        {alert}
+        {error || !uploaded ? select : view}
       </StyledFileUploadBody>
     </StyledFileUpload>
   );

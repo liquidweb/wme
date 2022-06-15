@@ -23,7 +23,7 @@ export const Template = (args) => {
   const handleHideRemove = () => {
     setShowActions(false);
   };
-  const handleDeleteFile = () => {
+  const handleRemoveFile = () => {
     setUploaded(false);
   };
   return (
@@ -34,9 +34,9 @@ export const Template = (args) => {
         onRemove: handleShowRemove,
       }}
       removeProps={{
-        helperText: "Cancel",
+        cancelText: "Cancel",
         onCancel: handleHideRemove,
-        onDelete: handleDeleteFile,
+        onRemove: handleRemoveFile,
       }}
       selectProps={{
         buttonText: "Add File",
@@ -51,7 +51,7 @@ export const Template = (args) => {
 
 # FileUpload
 
-Composes `FileUploadHeader`, `FileUploadSelect`, `FileUploadPreview` and `FileUploadDelete` to create a single, re-usable "FileUpload" component.
+Composes `FileUploadHeader`, `FileUploadSelect`, `FileUploadPreview` and `FileUploadRemove` to create a single, re-usable "FileUpload" component.
 
 **_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/material-ui/api/box/" target="_blank">MUI's Box</a>, so you can use any prop provided there.
 
