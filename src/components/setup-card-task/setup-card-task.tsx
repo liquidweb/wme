@@ -71,7 +71,7 @@ const Task = styled(Box, {
     }),
   },
 
-  ...(variant === 'action' 
+  ...(variant === 'action'
     && {
       '& .MuiButtonGroup-root, & .WmeButtonGroupRoot, & .MuiButton-root, & .WmeButtonRoot': {
         marginLeft: 'auto',
@@ -177,7 +177,7 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
   // Check that `button` is React Element and `variant` is `action`.
   const variantType = React.isValidElement(buttonProp) && variant === 'action' ? 'action' : 'task';
 
-  // If SetupCardTask is `disabled` add `disabled` prop to 
+  // If SetupCardTask is `disabled` add `disabled` prop to
   let button = (buttonProp && disabled)
     ? React.cloneElement(buttonProp as React.ReactElement<any>, { disabled: true })
     : buttonProp;

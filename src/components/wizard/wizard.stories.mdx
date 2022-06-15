@@ -11,10 +11,12 @@ import {
   WizardSectionTitle,
   WizardHeader,
   WizardFooter,
-  TextField,
-  PasswordField,
-  Dropdown,
+  TextInput,
+  PasswordInput,
+  SelectInput,
   MenuItem,
+  Form,
+  FormField
 } from '..';
 import welcomeImage from '../../stories/images/ftc-welcome.png';
 import {
@@ -107,17 +109,26 @@ export const Fullscreen = (args) => {
         heading="WME WIZARD WALKTHROUGH"
         copy="Enter your information to continue"
       />
-      <Box sx={{ textAlign: 'center', marginTop: '25px' }}>
-        <TextField
-          label="Username"
-          placeholder="Username"
-          sx={{ marginRight: '5px' }}
-        />
-        <PasswordField
-          label="Password"
-          placeholder="Password"
-        />
-      </Box>
+      <Form sx={{ marginTop: '25px' }}>
+        <Grid container spacing={ 2 }>
+          <Grid item xs={12}>
+            <FormField
+              field={
+                <TextInput sx={{ marginRight: '5px' }} />
+              }
+              label="Username"
+            /> 
+          </Grid>
+          <Grid item xs={12}>
+            <FormField
+              field={
+                <PasswordInput placeholder="Password" />
+              }
+              label="Password"
+            />
+          </Grid>
+        </Grid>
+      </Form>
       <WizardFooter {...WizardFooterStories.defaultStory.args}>
       </WizardFooter>
     </Wizard>
@@ -173,19 +184,21 @@ export const Sidebar = (args) => {
             copy="Select a theme to view"
             headingVariant="h3"
           />
-          <Dropdown
-            value={item}
-            selectValue={item}
-            onChange={handleChange}
-            width={200}
-            sx={{ marginBottom: '20px' }}
-          >
-            {
-              themes.map((theme) => {
+          <FormField
+            field={
+              <SelectInput 
+                onChange={handleChange}
+                selectValue={item}
+                sx={{ marginBottom: '20px' }}
+                value={item}
+                width={200}
+              >
+              { themes.map((theme) => {
                 return <MenuItem id={theme.id} value={theme.value} key={theme.key}>{theme.value}</MenuItem>
-              })
+              }) }
+              </SelectInput>
             }
-          </Dropdown>
+          />
           <Button
             variant="contained"
             color="secondary"
