@@ -18,7 +18,7 @@ const StyledTextInput = styled(InputBase, {
     padding: '5px 6px',
     paddingRight: '35px',
     position: 'relative',
-    width: '415px',
+    width: '100%',
     '&:focus': {
       borderColor: theme.palette.text.primary,
     },
