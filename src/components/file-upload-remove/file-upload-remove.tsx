@@ -5,8 +5,8 @@ import { Button, InputHelperText } from '..';
 
 export interface FileUploadRemoveProps {
   buttonText?: string;
-  helperText?: string;
-  onCancel?: React.MouseEventHandler<HTMLParagraphElement>;
+  cancelText?: string;
+  onCancel?: React.MouseEventHandler<HTMLButtonElement>;
   onRemove?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -16,13 +16,12 @@ const StyledFileUploadRemove = styled(Box, {
 })({
   alignItems: 'center',
   display: 'flex',
-  flexDirection: 'column',
   justifyContent: 'center',
 });
 
 const FileUploadRemove: React.FC<FileUploadRemoveProps> = ({
   buttonText,
-  helperText,
+  cancelText,
   onCancel,
   onRemove,
   ...props
@@ -39,10 +38,10 @@ const FileUploadRemove: React.FC<FileUploadRemoveProps> = ({
     >
       {buttonText || 'Delete'}
     </Button>
-    {helperText && (
-      <InputHelperText onClick={onCancel} sx={{ cursor: 'pointer' }}>
-        {helperText}
-      </InputHelperText>
+    {cancelText && (
+      <Button onClick={onCancel} sx={{ color: 'text.primary', ml: 1 }}>
+        {cancelText}
+      </Button>
     )}
   </StyledFileUploadRemove>
 );

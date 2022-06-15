@@ -7,11 +7,11 @@ import { FileUploadRemove } from "..";
   argTypes={{
     buttonText: {
       control: "text",
-      description: "Text to display inside upload button",
+      description: "Text to display inside remove button",
     },
-    helperText: {
+    cancelText: {
       control: "text",
-      description: "Text to display under upload button",
+      description: "Text to display inside cancel button",
     },
     onCancel: { 
       description: 'Callback fired when the cancel button is clicked.', 
@@ -63,7 +63,7 @@ export default MyFileUploadRemove;
   <Story
     name="Base"
     args={{
-      helperText: "Are you sure you want to remove this file?",
+      cancelText: "Nevermind",
     }}
   >
     {Template.bind({})}
