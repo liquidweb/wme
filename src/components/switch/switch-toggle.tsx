@@ -30,7 +30,7 @@ const StyledSwitch = styled(MuiSwitch, {
 }));
 
 const Switch: React.FC<SwitchProps> = (props) => (
-  <StyledSwitch {...props} />
+  <StyledSwitch className={StyledSwitch.displayName} {...props} />
 );
 
 export default Switch;
