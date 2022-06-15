@@ -90,14 +90,14 @@ const FileUpload: React.FC<FileUploadProps> = ({
   }
 
   // Toggle "action" display logic
-  const fileView = showActions ? action : preview;
+  const view = showActions ? action : preview;
 
   return (
     <StyledFileUpload className={StyledFileUpload.displayName} {...props}>
       {header}
       <StyledFileUploadBody error={error || formControlContext?.error}>
         {alert}
-        {error || !uploaded ? select : fileView}
+        {error || !uploaded ? select : view}
       </StyledFileUploadBody>
     </StyledFileUpload>
   );
