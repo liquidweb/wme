@@ -33,9 +33,7 @@ interface FileUploadProps extends BoxProps {
 const StyledFileUpload = styled(Box, {
   name: 'WmeFileUpload',
   slot: 'Root',
-})({
-  width: 415,
-});
+})({});
 
 const StyledFileUploadBody = styled(Box, {
   name: 'WmeFileUploadBody',
@@ -50,7 +48,6 @@ const StyledFileUploadBody = styled(Box, {
   flexDirection: 'column',
   justifyContent: 'center',
   minHeight: 106,
-  width: 415,
   '& .MuiInputBase-input': visuallyHidden,
 }));
 
