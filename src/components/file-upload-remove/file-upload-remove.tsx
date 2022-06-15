@@ -3,15 +3,15 @@ import { Box, styled } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, InputHelperText } from '..';
 
-export interface FileUploadDeleteProps {
+export interface FileUploadRemoveProps {
   buttonText?: string;
   helperText?: string;
   onCancel?: React.MouseEventHandler<HTMLParagraphElement>;
-  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
+  onRemove?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const StyledFileUploadDelete = styled(Box, {
-  name: 'WmeFileUploadDelete',
+const StyledFileUploadRemove = styled(Box, {
+  name: 'WmeFileUploadRemove',
   slot: 'Root',
 })({
   alignItems: 'center',
@@ -20,20 +20,20 @@ const StyledFileUploadDelete = styled(Box, {
   justifyContent: 'center',
 });
 
-const FileUploadDelete: React.FC<FileUploadDeleteProps> = ({
+const FileUploadRemove: React.FC<FileUploadRemoveProps> = ({
   buttonText,
   helperText,
   onCancel,
-  onDelete,
+  onRemove,
   ...props
 }) => (
-  <StyledFileUploadDelete
-    className={StyledFileUploadDelete.displayName}
+  <StyledFileUploadRemove
+    className={StyledFileUploadRemove.displayName}
     {...props}
   >
     <Button
       color="error"
-      onClick={onDelete}
+      onClick={onRemove}
       startIcon={<DeleteIcon />}
       variant="contained"
     >
@@ -44,7 +44,7 @@ const FileUploadDelete: React.FC<FileUploadDeleteProps> = ({
         {helperText}
       </InputHelperText>
     )}
-  </StyledFileUploadDelete>
+  </StyledFileUploadRemove>
 );
 
-export default FileUploadDelete;
+export default FileUploadRemove;

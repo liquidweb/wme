@@ -8,8 +8,8 @@ import {
   FileUploadHeaderProps,
   FileUploadPreview,
   FileUploadPreviewProps,
-  FileUploadDelete,
-  FileUploadDeleteProps,
+  FileUploadRemove,
+  FileUploadRemoveProps,
   FileUploadSelect,
   FileUploadSelectProps,
 } from '..';
@@ -24,7 +24,7 @@ interface FileUploadProps extends BoxProps {
   uploaded?: boolean;
   preview?: React.ReactElement;
   previewProps?: FileUploadPreviewProps;
-  removeProps?: FileUploadDeleteProps;
+  removeProps?: FileUploadRemoveProps;
   select?: React.ReactElement;
   selectProps?: FileUploadSelectProps;
   showActions?: boolean;
@@ -69,9 +69,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
 }) => {
   const formControlContext = useFormControlUnstyledContext();
 
-  // Use `FileUploadDelete` if no override is preset
+  // Use `FileUploadRemove` if no override is preset
   if (!action) {
-    action = <FileUploadDelete {...removeProps} />;
+    action = <FileUploadRemove {...removeProps} />;
   }
 
   // Use `FileUploadHeader` if no override is preset

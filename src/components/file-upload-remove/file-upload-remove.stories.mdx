@@ -1,9 +1,9 @@
 import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
-import { FileUploadDelete } from "..";
+import { FileUploadRemove } from "..";
 
 <Meta
-  title="Forms/FileUploadDelete"
-  component={FileUploadDelete}
+  title="Forms/FileUploadRemove"
+  component={FileUploadRemove}
   argTypes={{
     buttonText: {
       control: "text",
@@ -21,8 +21,8 @@ import { FileUploadDelete } from "..";
         }, 
       }
     },
-    onDelete: { 
-      description: 'Callback fired when the delete button is clicked.', 
+    onRemove: { 
+      description: 'Callback fired when the remove file button is clicked.', 
       table: { 
         type: { 
           summary: '(e: React.MouseEvent<HTMLButtonElement>) => void', 
@@ -32,11 +32,11 @@ import { FileUploadDelete } from "..";
   }}
 />
 
-export const Template = (args) => <FileUploadDelete {...args} />;
+export const Template = (args) => <FileUploadRemove {...args} />;
 
-# FileUploadDelete
+# FileUploadRemove
 
-Composes `Button`, and `FormHelperText` to create a single, re-usable "FileUploadDelete" component.
+Composes `Button`, and `FormHelperText` to create a single, re-usable "FileUploadRemove" component.
 
 **_Note:_** Any additional props passed to this component will be passed to <a href="https://mui.com/material-ui/api/box/" target="_blank">MUI's Box</a>, so you can use any prop provided there.
 
@@ -48,13 +48,13 @@ Composes `Button`, and `FormHelperText` to create a single, re-usable "FileUploa
 
 ```
 import React, { useState } from 'react';
-import { FileUploadDelete } from '@moderntribe/wme';
+import { FileUploadRemove } from '@moderntribe/wme';
 
-export const MyFileUploadDelete = (props) => (
-  <FileUploadDelete {...props} />
+export const MyFileUploadRemove = (props) => (
+  <FileUploadRemove {...props} />
 );
 
-export default MyFileUploadDelete;
+export default MyFileUploadRemove;
 ```
 
 ## Canvas
