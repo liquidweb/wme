@@ -33,7 +33,7 @@ interface WizardFooterProps extends BoxProps {
     screen?: ReactNode;
     disableNext?: boolean;
     disableAll?: boolean;
-    disabled?: boolean;
+    disable?: boolean;
   }>;
   onClickStep?: (step: any) => void;
   disableNext?: boolean;
@@ -140,7 +140,6 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
   const isLastStep = activeStep === steps.length - 1;
   const currStep = steps[activeStep];
   const disable = disableAll || currStep?.disableAll;
-  const disableCurrentStep = currStep?.disabled || false;
   let nextButtonClassName = 'WmeWizardFooterNextButton';
 
   // Add class to last step button in case the theme wants unique style.
@@ -181,9 +180,9 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                 return (
                   <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
                     <StyledStepButton
-                      disabled={disable || disableCurrentStep}
                       className={StyledStepButton.displayName}
-                      onClick={() => (disable || disableCurrentStep) && onClickStep?.(step)}
+                      disabled={disable || step.disable}
+                      onClick={() => onClickStep?.(step)}
                       sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
                     >
                       { step.label }
