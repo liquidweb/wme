@@ -38,10 +38,12 @@ const FileUploadSelect: React.FC<FileUploadSelectProps> = ({
     className={StyledFileUploadSelect.displayName}
     {...props}
   >
-    <FileInput {...inputProps} />
-    <Button color="primary" startIcon={<AddIcon />} variant="contained" {...buttonProps}>
-      {buttonText || 'Add File'}
-    </Button>
+    <label htmlFor={inputProps?.id}>
+      <FileInput {...inputProps} />
+      <Button color="primary" startIcon={<AddIcon />} variant="contained" {...buttonProps}>
+        {buttonText || 'Add File'}
+      </Button>
+    </label>
     {helperText && <FormHelperText>{helperText}</FormHelperText>}
   </StyledFileUploadSelect>
 );
