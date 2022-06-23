@@ -33,6 +33,7 @@ export interface FileUploadHeaderProps {
   buttonText?: string;
   labelText?: string;
   onRemove?: React.MouseEventHandler<HTMLButtonElement>;
+  showButton?: boolean;
 }
 
 const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
@@ -40,6 +41,7 @@ const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
   buttonText,
   labelText,
   onRemove,
+  showButton,
   ...props
 }) => (
   <StyledFileUploadHeader
@@ -47,7 +49,7 @@ const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
     {...props}
   >
     {labelText && <InputTitle>{labelText}</InputTitle>}
-    {button || <StyledButton onClick={onRemove}>{buttonText}</StyledButton>}
+    {showButton && button || <StyledButton onClick={onRemove}>{buttonText}</StyledButton>}
   </StyledFileUploadHeader>
 );
 
