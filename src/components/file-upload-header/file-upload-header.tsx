@@ -49,7 +49,7 @@ const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
     {...props}
   >
     {labelText && <InputTitle>{labelText}</InputTitle>}
-    {showButton && button || <StyledButton onClick={onRemove}>{buttonText}</StyledButton>}
+    {showButton && (button || <StyledButton onClick={onRemove}>{buttonText}</StyledButton>)}
   </StyledFileUploadHeader>
 );
 
