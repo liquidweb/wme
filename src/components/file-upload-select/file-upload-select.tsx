@@ -3,7 +3,7 @@ import {
   Box,
   ButtonProps,
   InputBaseProps,
-  styled
+  styled,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
