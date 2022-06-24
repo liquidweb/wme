@@ -40,6 +40,7 @@ const Heading = styled(Typography, {
   slot: 'Heading',
 })<StyledTypography>(({ theme }) => ({
   marginBottom: theme.spacing(2),
+  color: theme.palette.text.primary,
 }));
 
 const Copy = styled(Typography, {
