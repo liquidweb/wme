@@ -14,6 +14,9 @@ const ExitButtonContainer = styled(Box, {
   slot: 'Root',
 })(() => ({
   margin: 0,
+  '& .MuiButton-text': {
+    fontWeight: '600',
+  },
 }));
 
 const ExitButton: React.FC<ExitButtonProps> = (props) => {
