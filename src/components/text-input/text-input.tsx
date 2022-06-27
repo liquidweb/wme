@@ -43,7 +43,7 @@ const TextInput: React.FC<InputBaseProps> = (props) => {
   const formControlContext = useFormControlUnstyledContext();
   return (
     <StyledTextInput
-      className={StyledTextInput.displayName}
+      className="WmeTextInput-root"
       error={formControlContext?.error}
       {...props}
     />

@@ -27,7 +27,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
 }) => (
   <StyledRadioGroup
     aria-labelledby={ariaLabelledby}
-    className={StyledRadioGroup.displayName}
+    className="WmeRadioGroup-root"
     {...props}
   >
     {children}

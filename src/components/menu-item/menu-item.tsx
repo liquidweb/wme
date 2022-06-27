@@ -34,7 +34,7 @@ const MenuItem: React.FC<WmeMenuItemProps> = (props) => {
   const { displayName } = StyledMenuItem;
 
   return (
-    <StyledMenuItem className={displayName} {...props}>
+    <StyledMenuItem className="WmeMenuItem-root" {...props}>
       {children}
       {icon
       && (

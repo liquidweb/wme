@@ -18,7 +18,7 @@ const InputHelperText: React.FC<PropsWithChildren<InputHelperTextProps>> = ({
   ...props
 }) => (
   <StyledInputHelperText
-    className={StyledInputHelperText.displayName}
+    className="WmeInputHelperText-root"
     {...props}
   >
     {children}

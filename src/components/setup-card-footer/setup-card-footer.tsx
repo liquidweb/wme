@@ -37,10 +37,9 @@ const SetupCardFooterWrapper = styled(Box, {
 
 const SetupCardFooter: React.FC<BoxProps> = (props) => {
   const { children } = props;
-  const { displayName } = SetupCardFooterWrapper;
 
   return (
-    <SetupCardFooterWrapper className={displayName}>
+    <SetupCardFooterWrapper className="WmeSetupCardFooter-root">
       { children }
     </SetupCardFooterWrapper>
   );

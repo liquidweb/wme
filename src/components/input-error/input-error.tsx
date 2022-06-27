@@ -16,7 +16,7 @@ const InputError: React.FC<TypographyProps> = ({ children, ...props }) => {
 
   if (formControlContext?.error) {
     return (
-      <StyledInputError className={StyledInputError.displayName} {...props}>
+      <StyledInputError className="WmeInputError-root" {...props}>
         {children}
       </StyledInputError>
     );

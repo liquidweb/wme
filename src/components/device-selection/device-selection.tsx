@@ -38,7 +38,7 @@ const DeviceSelection: React.FC<DeviceSelectionProps> = (props) => {
   const { devices } = props;
 
   return (
-    <DeviceSelectionContainer>
+    <DeviceSelectionContainer className="WmeDeviceSelectionContainer-root">
       { devices.map((device, key) => {
         const DeviceName:any = devices[key].icon;
         return (

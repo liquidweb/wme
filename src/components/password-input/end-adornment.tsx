@@ -28,7 +28,7 @@ const EndAdornment: React.FC<EndAdornmentProps> = ({
   visible,
   ...props
 }) => (
-  <StyledInputAdornment className={StyledInputAdornment.displayName} {...props}>
+  <StyledInputAdornment className="WmePasswordInputAdornment-root" {...props}>
     {chip}
     <IconButton
       aria-label="toggle password visibility"

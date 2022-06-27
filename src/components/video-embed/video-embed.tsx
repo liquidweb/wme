@@ -41,8 +41,8 @@ const VideoEmbed: React.FC<VideoEmbedProps> = (props) => {
   };
 
   return (
-    <StyledContainer className={StyledContainer.displayName}>
-      <StyledMedia className={StyledMedia.displayName} {...videoProps} />
+    <StyledContainer className="WmeVideoEmbed-root">
+      <StyledMedia className="WmeVideoEmbed-media" {...videoProps} />
     </StyledContainer>
   );
 };

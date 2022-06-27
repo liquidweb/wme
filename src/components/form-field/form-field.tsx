@@ -24,7 +24,7 @@ const FormField: React.FC<PropsWithChildren<FormFieldProps>> = ({
   label,
   ...props
 }) => (
-  <FormFieldControl {...props}>
+  <FormFieldControl className="WmeFormFieldControl-root" {...props}>
     {label && <FormFieldLabel>{label}</FormFieldLabel>}
     {field}
     {errorMessage && <InputError>{errorMessage}</InputError>}

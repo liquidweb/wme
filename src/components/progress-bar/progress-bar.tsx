@@ -44,23 +44,23 @@ export default function ProgressBar(props: ProgressBarProps) {
   const { value, statusMessage } = props;
   const percentage = typeof value !== 'undefined' ? Math.round(value) : 0;
   return (
-    <StyledProgressBarWrapper className={StyledProgressBarWrapper.displayName}>
+    <StyledProgressBarWrapper className="WmeProgressBar-root">
       <StyledProgressBar
         aria-label="progress bar"
         variant="determinate"
-        className={StyledProgressBar.displayName}
+        className="WmeProgressBar-progress"
         {...props}
       />
       <StyledProgressBarPercentage
         variant="caption"
-        className={StyledProgressBarPercentage.displayName}
+        className="WmeProgressBar-percentage"
       >
         {`${percentage}%`}
       </StyledProgressBarPercentage>
       { statusMessage
       && (
         <StyledProgressBarStatusMessage
-          className={StyledProgressBarStatusMessage.displayName}
+          className="WmeProgressBar-status"
           variant="caption"
         >
             {statusMessage}

@@ -9,7 +9,7 @@ const StyledForm = styled(Box, {
 const Form: React.FC<BoxProps> = ({ children, ...props }) => (
   <StyledForm
     autoComplete="off"
-    className={(StyledForm as any).displayName}
+    className="WmeForm-root"
     component="form"
     noValidate
     {...props}

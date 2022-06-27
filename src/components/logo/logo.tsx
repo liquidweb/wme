@@ -25,7 +25,7 @@ const Logo: React.FC<LogoContainerProps> = (props) => {
   const { logoSrc, logoAlt, width } = props;
 
   return (
-    <LogoContainer className={LogoContainer.displayName} width={width}>
+    <LogoContainer className="WmeLogoContainer-root" width={width}>
       <img src={logoSrc} alt={logoAlt} />
     </LogoContainer>
   );

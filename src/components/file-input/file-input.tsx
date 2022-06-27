@@ -9,7 +9,7 @@ const StyledFileInput = styled(InputBase, {
 const FileInput: React.FC<InputBaseProps> = (props) => (
   <StyledFileInput
     type="file"
-    className={StyledFileInput.displayName}
+    className="WmeFileInput-root"
     {...props}
   />
 );

@@ -22,7 +22,7 @@ const StyledChip = styled(MuiChip, {
 
 const Chip: React.FC<ChipProps> = ({ color, label, ...props }) => (
   <StyledChip
-    className={StyledChip.displayName}
+    className="WmePasswordInputChip-root"
     color={color}
     label={label}
     {...props}

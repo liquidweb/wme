@@ -7,7 +7,7 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/material';
-import { ChevronRight } from '@mui/icons-material';
+import { ChevronRight, ConnectingAirportsOutlined } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
@@ -151,8 +151,8 @@ const TaskActionArea = styled(CardActionArea)<TaskActionAreaProps>(({ theme }) =
 const CtaActionRoot = (props: CtaActionRootProps) => {
   const { taskCta } = props;
   return (
-    <SetupCardTaskCta className={SetupCardTaskCta.displayName}>
-      <CtaAction className={CtaAction.displayName} variant="body2">
+    <SetupCardTaskCta className="WmeTaskCta-root">
+      <CtaAction className="WmeTaskCta-action" variant="body2">
         {taskCta}
       </CtaAction>
       <ChevronRight />
@@ -195,13 +195,13 @@ const SetupCardTask: React.FC<SetupCardProps> = (props) => {
     : button;
 
   return (
-    <Task className={Task.displayName} variant={variantType}>
+    <Task className="WmeTask-root" variant={variantType}>
       <ConditionalWrapper
         condition={variantType === 'task'}
         wrapper={
           (child: React.ReactNode) => (
             <TaskActionArea
-              className={TaskActionArea.displayName}
+              className="WmeTaskActionArea-root"
               onClick={onClick}
               disabled={disabled}
               href={href}

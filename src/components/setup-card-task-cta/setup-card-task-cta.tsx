@@ -18,7 +18,7 @@ const StyledSetupCardTaskCta = styled(Button, {
 
 const SetupCardTaskCta: React.FC<SetupCardTaskCtaProps> = (props) => (
   <StyledSetupCardTaskCta
-    className={StyledSetupCardTaskCta.displayName}
+    className="WmeSetupCardTaskCta-root"
     {...props}
     fullWidth
     variant="outlined"

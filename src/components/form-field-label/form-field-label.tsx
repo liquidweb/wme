@@ -16,7 +16,7 @@ const FormFieldLabel: React.FC<PropsWithChildren<InputLabelProps>> = ({
   children,
   ...props
 }) => (
-  <StyledFormFieldLabel className={StyledFormFieldLabel.displayName} {...props}>
+  <StyledFormFieldLabel className="WmeFormFieldLabel-root" {...props}>
     {children}
   </StyledFormFieldLabel>
 );

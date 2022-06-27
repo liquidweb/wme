@@ -70,7 +70,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
 
   return (
     <StyledSelectInput
-      className={StyledSelectInput.displayName}
+      className="WmeSelectInput-root"
       displayEmpty
       error={formControlContext?.error}
       input={<OutlinedInput />}

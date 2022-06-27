@@ -149,8 +149,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
 
   if (!hideFooter) {
     return (
-      <WizardFooterContainer className={WizardFooterContainer.displayName} {...rest}>
-        <Prev className={Prev.displayName}>
+      <WizardFooterContainer className="WmeWizardFooter-root" {...rest}>
+        <Prev className="WmeWizardFooter-prev">
           {
             !currStep?.hideBack
             && (
@@ -164,11 +164,11 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
             )
           }
         </Prev>
-        <Nav className={Nav.displayName}>
+        <Nav className="WmeWizardFooter-nav">
           <StyledStepper
             activeStep={maxActiveStep}
             connector={null}
-            className={StyledStepper.displayName}
+            className="WmeStepper-root"
           >
             {
               steps?.map((step) => {
@@ -180,7 +180,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                 return (
                   <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
                     <StyledStepButton
-                      className={StyledStepButton.displayName}
+                      className="WmeStepButton-root"
                       disabled={disable || step.disable}
                       onClick={() => onClickStep?.(step)}
                       sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
@@ -196,11 +196,11 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
         {
           !currStep?.hideNext
           && (
-            <Next className={Next.displayName}>
+            <Next className="WmeWizardFooter-next">
               {
                 !currStep?.hideSkip
                 && (
-                  <Skip className={Skip.displayName}>
+                  <Skip className="WmeWizardFooter-skip">
                     <Button onClick={onSkip} disabled={disable}>{skipText}</Button>
                   </Skip>
                 )

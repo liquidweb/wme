@@ -73,7 +73,7 @@ const SetupCardInfoRow: React.FC<SetupCardInfoRowProps> = (props) => {
 
   return (
     <StyledSetupCardInfoRow
-      className={StyledSetupCardInfoRow.displayName}
+      className="WmeSetupCardInfoRow-root"
       hasIcon={!!icon}
       {...rest}
     >
