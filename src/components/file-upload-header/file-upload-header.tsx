@@ -45,7 +45,7 @@ const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({
   ...props
 }) => (
   <StyledFileUploadHeader
-    className={StyledFileUploadHeader.displayName}
+    className="WmeFileUploadHeader-root"
     {...props}
   >
     {labelText && <InputTitle>{labelText}</InputTitle>}

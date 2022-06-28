@@ -21,7 +21,7 @@ const FileUploadPreview: React.FC<FileUploadPreviewProps> = ({
   ...props
 }) => (
   <StyledFileUploadPreview
-    className={StyledFileUploadPreview.displayName}
+    className="WmeFilePreview-root"
     {...props}
   >
     {imagePath ? (

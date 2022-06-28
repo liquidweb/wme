@@ -19,7 +19,7 @@ const FormHelperText: React.FC<FormHelperTextProps> = (props) => {
   const { displayName } = StyledFormHelperText;
 
   return (
-    <StyledFormHelperText className={displayName} {...props}>
+    <StyledFormHelperText className="WmeFormHelperText-root" {...props}>
       {children}
     </StyledFormHelperText>
   );

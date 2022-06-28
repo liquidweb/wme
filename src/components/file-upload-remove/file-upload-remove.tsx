@@ -27,7 +27,7 @@ const FileUploadRemove: React.FC<FileUploadRemoveProps> = ({
   ...props
 }) => (
   <StyledFileUploadRemove
-    className={StyledFileUploadRemove.displayName}
+    className="WmeFileUploadRemove-root"
     {...props}
   >
     <Button

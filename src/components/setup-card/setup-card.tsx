@@ -23,6 +23,5 @@ const StyledSetupCard = styled(Card, {
 }));
 
 export default function SetupCard(props: CardProps) {
-  const { displayName } = StyledSetupCard;
-  return <StyledSetupCard className={displayName} {...props} />;
+  return <StyledSetupCard className="WmeSetupCard-root" {...props} />;
 }

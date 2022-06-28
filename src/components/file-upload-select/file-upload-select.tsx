@@ -35,7 +35,7 @@ const FileUploadSelect: React.FC<FileUploadSelectProps> = ({
   ...props
 }) => (
   <StyledFileUploadSelect
-    className={StyledFileUploadSelect.displayName}
+    className="WmeFileUploadSelect-root"
     {...props}
   >
     <label htmlFor={inputProps?.id}>

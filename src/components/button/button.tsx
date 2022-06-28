@@ -39,7 +39,7 @@ const StyledButton = styled(MuiButton, {
 }));
 
 const Button: React.FC<ButtonProps> = (props) => (
-  <StyledButton className={StyledButton.displayName} {...props} />
+  <StyledButton className="WmeButton-root" {...props} />
 );
 
 export default Button;

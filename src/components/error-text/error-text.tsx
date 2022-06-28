@@ -16,7 +16,7 @@ const ErrorText: React.FC<TypographyProps> = (props) => {
   const { displayName } = StyledText;
 
   return (
-    <StyledText className={displayName} {...props}>
+    <StyledText className="WmeErrorText-root" {...props}>
       {children}
     </StyledText>
   );

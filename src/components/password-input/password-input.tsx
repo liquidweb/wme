@@ -33,7 +33,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
 
   return (
     <StyledPasswordInput
-      className={StyledPasswordInput.displayName}
+      className="WmePasswordInput-root"
       endAdornment={(
         <EndAdornment
           chip={

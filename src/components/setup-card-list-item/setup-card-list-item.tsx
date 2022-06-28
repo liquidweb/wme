@@ -61,18 +61,18 @@ export default function SetupCardListItem(props: SetupCardListItemProps) {
         target={target}
         variant="body1"
         underline="none"
-        className={StyledSetupCardListItem.displayName}
+        className="WmeSetupCardListItem-root"
         {...linkProps}
       >
         { icon && (
           <StyledSetupCardIconWrapper
-            className={StyledSetupCardIconWrapper.displayName}
+            className="WmeSetupCardListItem-wmeIconWrapper"
           >
             {icon}
           </StyledSetupCardIconWrapper>
         )}
         <StyledSetupCardTextWrapper
-          className={StyledSetupCardTextWrapper.displayName}
+          className="WmeSetupCardListItem-wmeTextWrapper"
         >
           {title}
         </StyledSetupCardTextWrapper>

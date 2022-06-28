@@ -46,7 +46,7 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
       {...rest}
     >
       <Box sx={{ ...bgStyles }}>
-        <StyledDialogContent className={displayName}>
+        <StyledDialogContent className="WmeWizard-dialogContent">
           {children}
         </StyledDialogContent>
       </Box>

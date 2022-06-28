@@ -26,7 +26,7 @@ const WizardHeader: React.FC<WizardHeaderProps> = (props) => {
   } = props;
 
   return (
-    <WizardHeaderContainer className={WizardHeaderContainer.displayName}>
+    <WizardHeaderContainer className="WmeWizardHeader-root">
       { children }
     </WizardHeaderContainer>
   );

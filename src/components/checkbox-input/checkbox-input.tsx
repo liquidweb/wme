@@ -24,7 +24,7 @@ const StyledCheckbox = styled(MuiCheckbox, {
 }));
 
 const CheckboxInput: React.FC<CheckboxProps> = (props) => (
-  <StyledCheckbox className={StyledCheckbox.displayName} {...props} />
+  <StyledCheckbox className="WmeCheckboxInput-root" {...props} />
 );
 
 export default CheckboxInput;

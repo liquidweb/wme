@@ -93,7 +93,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   const view = showActions ? action : preview;
 
   return (
-    <StyledFileUpload className={StyledFileUpload.displayName} {...props}>
+    <StyledFileUpload className="WmeFileUpload-root" {...props}>
       {header}
       <StyledFileUploadBody error={error || formControlContext?.error}>
         {alert}

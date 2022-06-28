@@ -21,7 +21,7 @@ const InputTitle: React.FC<InputTitleProps> = (props) => {
   const { children } = props;
   const { displayName } = StyledInputTitle;
   return (
-    <StyledInputTitle className={displayName}>
+    <StyledInputTitle className="WmeInputTitle-root">
       {children}
     </StyledInputTitle>
   );

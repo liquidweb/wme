@@ -13,7 +13,7 @@ const StyledInputLabel = styled(FormControlLabel, {
 }));
 
 const InputLabel: React.FC<FormControlLabelProps> = (props) => (
-  <StyledInputLabel className={StyledInputLabel.displayName} {...props} />
+  <StyledInputLabel className="WmeInputLabel-root" {...props} />
 );
 
 export default InputLabel;

@@ -29,5 +29,5 @@ const StyledChip = styled(MuiChip)<ChipProps>(({ color, size, theme }) => ({
 }));
 
 export default function Chip(props: ChipProps) {
-  return <StyledChip className={StyledChip.displayName} {...props} />;
+  return <StyledChip className="WmeChip-root" {...props} />;
 }

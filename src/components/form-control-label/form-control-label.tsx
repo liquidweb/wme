@@ -24,7 +24,7 @@ const FormControlLabel: React.FC<FormControlProps> = (props) => {
   const { displayName } = StyledFormControlLabel;
 
   return (
-    <StyledFormControlLabel className={displayName} {...rest}>
+    <StyledFormControlLabel className="WmeFormControlLabel-root" {...rest}>
       {children}
     </StyledFormControlLabel>
   );

@@ -12,10 +12,9 @@ const SetupCardContentWrapper = styled(CardContent, {
 
 const SetupCardContent: React.FC<CardContentProps> = (props) => {
   const { children, ...rest } = props;
-  const { displayName } = SetupCardContentWrapper;
 
   return (
-    <SetupCardContentWrapper className={displayName} {...rest}>
+    <SetupCardContentWrapper className="WmeSetupCardContent-root" {...rest}>
       { children }
     </SetupCardContentWrapper>
   );

@@ -73,23 +73,21 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
     ...rest
   } = props;
 
-  const { displayName } = WizardSectionTitleContainer;
-
   return (
     <WizardSectionTitleContainer
-      className={displayName}
+      className="WmeWizardSectionTitle-root"
       width={width}
       bookend={bookend}
       {...rest}
     >
       {iconSrc && (
-        <IconContainer className={IconContainer.displayName}>
+        <IconContainer className="WmeWizardSectionTitle-iconContainer">
           <img src={iconSrc} alt={iconAlt} width={iconWidth} />
         </IconContainer>
       )}
       {heading && (
         <Heading
-          className={Heading.displayName}
+          className="WmeWizardSectionTitle-heading"
           component={headingComponent || 'h2'}
           variant={headingVariant}
         >
@@ -99,7 +97,7 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
       {copy && (
         <Copy
           align={copyAlign && !bookend ? copyAlign : 'inherit'}
-          className={Copy.displayName}
+          className="WmeWizardSectionTitle-copy"
           variant={copyVariant || 'body1'}
         >
           {copy}

@@ -11,7 +11,7 @@ const FormFieldControl: React.FC<FormControlUnstyledProps> = ({
   children,
   ...props
 }) => (
-  <StyledFormFieldControl className={StyledFormFieldControl.displayName} {...props}>
+  <StyledFormFieldControl className="WmeFormFieldControl-root" {...props}>
     {children}
   </StyledFormFieldControl>
 );
