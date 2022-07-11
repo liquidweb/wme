@@ -42,6 +42,7 @@ interface WizardFooterProps extends BoxProps {
   save?: () => void;
   hideFooter: boolean;
   disableAll?: boolean;
+  isLastStep?: boolean;
 }
 
 const WizardFooterContainer = styled(Box, {
@@ -133,11 +134,11 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     save,
     hideFooter,
     disableAll,
+    isLastStep = false,
     ...rest
   } = props;
 
   const { maxActiveStep } = useMaxActiveStep(activeStep);
-  const isLastStep = activeStep === steps.length - 1;
   const currStep = steps[activeStep];
   const disable = disableAll || currStep?.disableAll;
   let nextButtonClassName = 'WmeWizardFooterNextButton';

@@ -6,7 +6,7 @@ import {
 import { styled } from '@mui/material/styles';
 
 interface LogoContainerProps extends BoxProps {
-  logoSrc?: string;
+  logoSrc?: string | React.ReactNode;
   logoAlt?: string;
   width?: string;
 }
@@ -19,6 +19,10 @@ const LogoContainer = styled(Box, {
   '& img': {
     width: '100%',
   },
+  '& svg': {
+    width: '100%',
+    height: 'auto',
+  }
 }));
 
 const Logo: React.FC<LogoContainerProps> = (props) => {
@@ -26,7 +30,8 @@ const Logo: React.FC<LogoContainerProps> = (props) => {
 
   return (
     <LogoContainer className="WmeLogoContainer-root" width={width}>
-      <img src={logoSrc} alt={logoAlt} />
+      { typeof logoSrc === 'object' && logoSrc }
+      { typeof logoSrc === 'string' && <img src={logoSrc} alt={logoAlt} /> }
     </LogoContainer>
   );
 };

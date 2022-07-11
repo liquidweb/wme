@@ -15,7 +15,7 @@ interface CardSelectItemProps extends ToggleButtonProps {
   secondary?: any;
   footer?: any;
   hasFooter?: boolean;
-  icon?: string;
+  icon?: any;
   cardPadding?: 'sm' | 'md';
   completedIcon?: React.ReactNode;
 }
@@ -108,7 +108,7 @@ const StyleCardSelectIcon = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   overflow: 'hidden',
-  '& img': {
+  '& img, & svg': {
     width: theme.spacing(3),
     height: 'auto',
   },
@@ -213,7 +213,8 @@ export default function CardSelectItem(props: CardSelectItemProps) {
       )}
       {icon && (
         <StyleCardSelectIcon className="WmeCardSelectItem-icon">
-          <Box component="img" src={icon} alt="" />
+          { typeof icon === 'object' && icon }
+          { typeof icon === 'string' && <Box component="img" src={icon} alt="" /> }
         </StyleCardSelectIcon>
       )}
       <StyleCardSelectContentOuter className="WmeCardSelectItem-contentOuter">
