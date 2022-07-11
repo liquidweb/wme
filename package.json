@@ -1,6 +1,6 @@
 {
   "name": "@moderntribe/wme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "author": "Moderntribe Incubator Team",
   "description": "Components and hooks to build the best UX/UI admin wizards",
