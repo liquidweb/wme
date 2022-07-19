@@ -5,6 +5,7 @@ import {
   Story,
 } from '@storybook/addon-docs';
 import { Link } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CardSelectItem from '.';
 import CardSelectGroup from '../card-select-group';
 import Chip from '../chip';
@@ -69,7 +70,16 @@ import cardSelectImage from '../../stories/images/card-select-item.png';
         },
       }
     },
-    completedIcon: {
+    taskDefaultIcon: {
+      control: false,
+      description: 'Provide default icon for the un-selected state.',
+      table: {
+        type: {
+          summary: 'node',
+        },
+      }
+    },
+    taskCompleteIcon: {
       control: false,
       description: 'Replaces default checkmark icon with another component.',
       table: {
@@ -211,21 +221,12 @@ its child buttons when given its own `value` prop.
     {Template.bind({})}
   </Story>
   <Story 
-    name="Disabled"
+    name="Alt Status Icons"
     args={{
       icon: cardSelectImage,
-      disabled: true,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-  <Story 
-    name="Alt Completed Icon"
-    args={{
-      icon: cardSelectImage,
-      disabled: true,
       selected: true,
-      completedIcon: <Chip size="small" color="success" label="Complete" />
+      taskDefaultIcon: <Chip size="small" color="success" label="Add-On" />,
+      taskCompleteIcon: <Chip size="small" color="success" label="Add-On" icon={ <CheckCircleIcon /> } />
     }}
   >
     {Template.bind({})}
@@ -233,3 +234,49 @@ its child buttons when given its own `value` prop.
 </Canvas>
 
 - [Card Select Group](/docs/misc-cardselectgroup--horizontal)
+
+## Example
+```
+import React, { useState } from 'react';
+import { Chip, CardSelectGroup, CardSelectItem } from '@moderntribe/wme';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+import { ExampleSvgIcon1, ExampleSvgIcon2 } from '../icons';
+
+const AltTaskIcon = ({ selected }) => <Chip color="success" size="small" label="Add-On" icon={ selected ? <CheckCircleIcon /> : null } />;
+
+export const MyCardSelections = () => {
+  const [cardSelection, setCardSelections] = useState(null);
+
+  const handleCardSelection = (event, newSelection) => {
+    setCardSelections(newSelection);
+  };
+
+  return (
+    <CardSelectGroup
+      value={ cardSelection }
+      exclusive
+      onChange={ handleCardSelection }
+    >
+      <CardSelectItem
+        value="value1"
+        icon={ <ExampleSvgIcon1 /> }
+        taskDefaultIcon={ <AltIcon /> }
+        taskCompleteIcon={ <AltIcon selected /> }
+        primary="Example 1 Primary Content"
+        secondary="Example 1 secondary content for testing"
+      />
+      <CardSelectItem
+        value="value2"
+        icon={ <ExampleSvgIcon2 /> }
+        taskDefaultIcon={ <AltIcon /> }
+        taskCompleteIcon={ <AltIcon selected /> }
+        primary="Example 2 Primary Content"
+        secondary="Example 2 secondary content for testing"
+      />
+    </CardSelectGroup>
+  );
+};
+
+export default MyCardSelectItem;
+```
