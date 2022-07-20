@@ -17,6 +17,7 @@ interface CardSelectItemProps extends ToggleButtonProps {
   hasFooter?: boolean;
   icon?: any;
   cardPadding?: 'sm' | 'md';
+  defaultIcon?: React.ReactNode;
   completedIcon?: React.ReactNode;
 }
 
@@ -173,6 +174,7 @@ export default function CardSelectItem(props: CardSelectItemProps) {
     className,
     children,
     icon = '',
+    defaultIcon,
     completedIcon,
     primary: primaryProp,
     secondary: secondaryProp,
@@ -209,6 +211,11 @@ export default function CardSelectItem(props: CardSelectItemProps) {
       {selected && (
       <StyleCardSelectCompleteContainer className="WmeCardSelectItem-completeContainer">
         { completedIcon || <CardSelectCompleteIcon /> }
+      </StyleCardSelectCompleteContainer>
+      )}
+      {(defaultIcon && !selected) && (
+      <StyleCardSelectCompleteContainer className="WmeCardSelectItem-completeContainer">
+        { defaultIcon }
       </StyleCardSelectCompleteContainer>
       )}
       {icon && (

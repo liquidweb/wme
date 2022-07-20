@@ -1,11 +1,22 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, {
+  ReactNode,
+  ReactElement,
+  forwardRef,
+  Ref
+} from 'react';
 import {
   Dialog,
   DialogProps,
   DialogContent,
   Box,
+  Paper,
+  PaperProps
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+interface WmePaperProps extends PaperProps {
+  ref?: Ref<HTMLDivElement>;
+}
 
 interface WmeDialogProps extends DialogProps {
   children?: ReactNode;
@@ -13,6 +24,7 @@ interface WmeDialogProps extends DialogProps {
   logoSrc?: string;
   logoAlt?: string;
   exit?: ReactElement;
+  PaperProps?: WmePaperProps;
 }
 
 const StyledDialogContent = styled(DialogContent, {
@@ -27,7 +39,11 @@ const StyledDialogContent = styled(DialogContent, {
   height: '100%',
 }));
 
-const Wizard: React.FC<WmeDialogProps> = (props) => {
+const PaperComponent = forwardRef((props: WmePaperProps, ref: Ref<HTMLDivElement>) => (
+  <Paper ref={ref} {...props} />
+));
+
+const Wizard = forwardRef((props: WmeDialogProps, ref: Ref<HTMLDivElement>) => {
   const {
     children,
     bgStyles,
@@ -37,13 +53,13 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
     ...rest
   } = props;
 
-  const { displayName } = StyledDialogContent;
-
   return (
     <Dialog
       fullScreen
       fullWidth
       {...rest}
+      PaperComponent={PaperComponent}
+      PaperProps={{ ref }}
     >
       <Box sx={{ ...bgStyles }}>
         <StyledDialogContent className="WmeWizard-dialogContent">
@@ -52,6 +68,6 @@ const Wizard: React.FC<WmeDialogProps> = (props) => {
       </Box>
     </Dialog>
   );
-};
+});
 
 export default Wizard;
