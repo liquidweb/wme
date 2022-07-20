@@ -17,8 +17,8 @@ interface CardSelectItemProps extends ToggleButtonProps {
   hasFooter?: boolean;
   icon?: any;
   cardPadding?: 'sm' | 'md';
-  taskDefaultIcon?: React.ReactNode;
-  taskCompleteIcon?: React.ReactNode;
+  defaultIcon?: React.ReactNode;
+  completedIcon?: React.ReactNode;
 }
 
 const StyleCardSelectItem = styled(ToggleButton, {
@@ -174,8 +174,8 @@ export default function CardSelectItem(props: CardSelectItemProps) {
     className,
     children,
     icon = '',
-    taskDefaultIcon,
-    taskCompleteIcon,
+    defaultIcon,
+    completedIcon,
     primary: primaryProp,
     secondary: secondaryProp,
     footer: footerProp,
@@ -210,12 +210,12 @@ export default function CardSelectItem(props: CardSelectItemProps) {
     >
       {selected && (
       <StyleCardSelectCompleteContainer className="WmeCardSelectItem-completeContainer">
-        { taskCompleteIcon || <CardSelectCompleteIcon /> }
+        { completedIcon || <CardSelectCompleteIcon /> }
       </StyleCardSelectCompleteContainer>
       )}
-      {(taskDefaultIcon && !selected) && (
+      {(defaultIcon && !selected) && (
       <StyleCardSelectCompleteContainer className="WmeCardSelectItem-completeContainer">
-        { taskDefaultIcon }
+        { defaultIcon }
       </StyleCardSelectCompleteContainer>
       )}
       {icon && (

@@ -70,7 +70,7 @@ import cardSelectImage from '../../stories/images/card-select-item.png';
         },
       }
     },
-    taskDefaultIcon: {
+    defaultIcon: {
       control: false,
       description: 'Provide default icon for the un-selected state.',
       table: {
@@ -79,7 +79,7 @@ import cardSelectImage from '../../stories/images/card-select-item.png';
         },
       }
     },
-    taskCompleteIcon: {
+    completedIcon: {
       control: false,
       description: 'Replaces default checkmark icon with another component.',
       table: {
@@ -225,8 +225,8 @@ its child buttons when given its own `value` prop.
     args={{
       icon: cardSelectImage,
       selected: true,
-      taskDefaultIcon: <Chip size="small" color="success" label="Add-On" />,
-      taskCompleteIcon: <Chip size="small" color="success" label="Add-On" icon={ <CheckCircleIcon /> } />
+      defaultIcon: <Chip size="small" color="success" label="Add-On" />,
+      completedIcon: <Chip size="small" color="success" label="Add-On" icon={ <CheckCircleIcon /> } />
     }}
   >
     {Template.bind({})}
@@ -261,16 +261,16 @@ export const MyCardSelections = () => {
       <CardSelectItem
         value="value1"
         icon={ <ExampleSvgIcon1 /> }
-        taskDefaultIcon={ <AltIcon /> }
-        taskCompleteIcon={ <AltIcon selected /> }
+        defaultIcon={ <AltIcon /> }
+        completedIcon={ <AltIcon selected /> }
         primary="Example 1 Primary Content"
         secondary="Example 1 secondary content for testing"
       />
       <CardSelectItem
         value="value2"
         icon={ <ExampleSvgIcon2 /> }
-        taskDefaultIcon={ <AltIcon /> }
-        taskCompleteIcon={ <AltIcon selected /> }
+        defaultIcon={ <AltIcon /> }
+        completedIcon={ <AltIcon selected /> }
         primary="Example 2 Primary Content"
         secondary="Example 2 secondary content for testing"
       />
