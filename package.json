@@ -18,6 +18,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "types": "dist/esm/types/index.d.ts",
   "files": [
     "dist/**/*.js",
     "dist/**/*.js.map",
