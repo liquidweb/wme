@@ -1,6 +1,6 @@
 {
   "name": "@moderntribe/wme",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "author": "Moderntribe Incubator Team",
   "description": "Components and hooks to build the best UX/UI admin wizards",
@@ -18,6 +18,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "types": "dist/esm/types/index.d.ts",
   "files": [
     "dist/**/*.js",
     "dist/**/*.js.map",
