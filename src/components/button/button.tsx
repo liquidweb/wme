@@ -2,6 +2,10 @@ import React from 'react';
 import { Button as MuiButton, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+export interface WmeButtonProps extends ButtonProps {
+  component?: string;
+}
+
 const StyledButton = styled(MuiButton, {
   name: 'WmeButton',
   slot: 'Root',
@@ -38,7 +42,7 @@ const StyledButton = styled(MuiButton, {
   },
 }));
 
-const Button: React.FC<ButtonProps> = (props) => (
+const Button: React.FC<WmeButtonProps> = (props) => (
   <StyledButton className="WmeButton-root" {...props} />
 );
 

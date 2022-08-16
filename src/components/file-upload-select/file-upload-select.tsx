@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Box,
-  ButtonProps,
-  InputBaseProps,
+  InputBaseComponentProps,
   styled,
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
 import { Button, FileInput, FormHelperText } from '..';
+import { WmeButtonProps } from '../button/button';
 
 const StyledFileUploadSelect = styled(Box, {
   name: 'WmeFileUploadSelect',
@@ -22,9 +22,9 @@ const StyledFileUploadSelect = styled(Box, {
 
 export interface FileUploadSelectProps {
   buttonText?: string;
-  buttonProps?: ButtonProps;
+  buttonProps?: WmeButtonProps;
   helperText?: string;
-  inputProps?: InputBaseProps;
+  inputProps?: InputBaseComponentProps;
 }
 
 const FileUploadSelect: React.FC<FileUploadSelectProps> = ({
@@ -40,7 +40,7 @@ const FileUploadSelect: React.FC<FileUploadSelectProps> = ({
   >
     <label htmlFor={inputProps?.id}>
       <FileInput {...inputProps} />
-      <Button color="primary" startIcon={<AddIcon />} variant="contained" {...buttonProps}>
+      <Button color="primary" startIcon={<AddIcon />} variant="contained" component="span" {...buttonProps}>
         {buttonText || 'Add File'}
       </Button>
     </label>

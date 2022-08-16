@@ -1,6 +1,7 @@
 import React from 'react';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-import { Box, styled } from '@mui/material';
+import { Box, SxProps, styled } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 import { InputTitle } from '..';
 
 const StyledFileUploadHeader = styled(Box, {
@@ -34,6 +35,7 @@ export interface FileUploadHeaderProps {
   labelText?: string;
   onRemove?: React.MouseEventHandler<HTMLButtonElement>;
   showButton?: boolean;
+  sx?: SxProps<Theme>;
 }
 
 const FileUploadHeader: React.FC<FileUploadHeaderProps> = ({

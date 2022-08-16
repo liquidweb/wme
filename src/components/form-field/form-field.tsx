@@ -10,7 +10,7 @@ import {
 type FormFieldProps = FormControlUnstyledProps & {
   errorMessage?: string;
   field?: ReactNode;
-  helperText?: string;
+  helperText?: string | React.ReactElement;
   id?: string;
   label?: string;
 };
