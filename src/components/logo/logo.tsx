@@ -22,7 +22,7 @@ const LogoContainer = styled(Box, {
   '& svg': {
     width: '100%',
     height: 'auto',
-  }
+  },
 }));
 
 const Logo: React.FC<LogoContainerProps> = (props) => {

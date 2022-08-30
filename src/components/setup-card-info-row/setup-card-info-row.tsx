@@ -76,6 +76,7 @@ const SetupCardInfoRow: React.FC<SetupCardInfoRowProps> = (props) => {
       className="WmeSetupCardInfoRow-root"
       hasIcon={!!icon}
       {...rest}
+      component="div"
     >
       {icon}
       {primary}

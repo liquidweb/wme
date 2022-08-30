@@ -14,7 +14,7 @@ import { ConditionalWrapper, pxToRem } from '../../utils';
 
 type TaskVariant = 'action' | 'task' | undefined;
 
-interface SetupCardProps extends BoxProps {
+export interface SetupCardTaskProps extends BoxProps {
   href?: string;
   title?: string;
   intro?: string;
@@ -160,7 +160,7 @@ const CtaActionRoot = (props: CtaActionRootProps) => {
   );
 };
 
-const SetupCardTask: React.FC<SetupCardProps> = (props) => {
+const SetupCardTask: React.FC<SetupCardTaskProps> = (props) => {
   const {
     href = '',
     title,
