@@ -13,7 +13,7 @@ interface WizardSectionTitleProps extends BoxProps {
   headingVariant?: 'h1' | 'h2' | 'h3' | 'h4';
   copy?: string;
   copyAlign?: 'center' | 'left';
-  copyVariant?: 'h1' | 'h2' | 'h3' | 'h4';
+  copyVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'body1' | 'body2';
   iconSrc?: string;
   iconAlt?: string;
   iconWidth?: string;

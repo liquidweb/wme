@@ -13,15 +13,24 @@ const StyledTextInput = styled(InputBase, {
     },
   },
   '& .MuiInputBase-input': {
-    border: `1px solid ${theme.palette.text.disabled}`,
+    border: `1px solid ${theme.palette.border.ui}`,
     borderRadius: 4,
-    padding: '5px 6px',
-    paddingRight: '35px',
+    padding: '4px 12px',
     position: 'relative',
     width: '100%',
     '&:focus': {
       borderColor: theme.palette.text.primary,
+      boxShadow: 'none',
+      outline: 'none',
     },
+    '&:disabled': {
+      borderColor: theme.palette.background.disabled,
+      backgroundColor: theme.palette.background.disabled,
+      boxShadow: 'none',
+    },
+  },
+  '&.MuiInputBase-adornedEnd .MuiInputBase-input': {
+    paddingRight: '35px',
   },
   '&.Mui-error': {
     color: theme.palette.error.main,
@@ -35,6 +44,7 @@ const StyledTextInput = styled(InputBase, {
     },
   },
   '&.Mui-disabled': {
+    borderRadius: 4,
     backgroundColor: theme.palette.background.disabled,
   },
 }));

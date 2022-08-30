@@ -2,7 +2,7 @@ import React, {
   ReactNode,
   ReactElement,
   forwardRef,
-  Ref
+  Ref,
 } from 'react';
 import {
   Dialog,
@@ -10,7 +10,7 @@ import {
   DialogContent,
   Box,
   Paper,
-  PaperProps
+  PaperProps,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 

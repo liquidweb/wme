@@ -12,10 +12,11 @@ interface ExitButtonProps extends BoxProps {
 const ExitButtonContainer = styled(Box, {
   name: 'WmeExitButton',
   slot: 'Root',
-})(() => ({
+})(({ theme }) => ({
   margin: 0,
-  '& .MuiButton-text': {
+  '& .MuiButton-text.WmeButton-root': {
     fontWeight: '600',
+    color: theme.palette.text.disabled,
   },
 }));
 
