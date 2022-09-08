@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Checkbox as MuiCheckbox, CheckboxProps, styled } from '@mui/material';
 
 const StyledCheckbox = styled(MuiCheckbox, {

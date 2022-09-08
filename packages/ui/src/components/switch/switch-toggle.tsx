@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Switch as MuiSwitch, SwitchProps, styled } from '@mui/material';
 
 const StyledSwitch = styled(MuiSwitch, {

@@ -1,5 +1,6 @@
-import React, { PropsWithChildren, ReactNode } from 'react';
-import { FormControlUnstyledProps } from '@mui/base';
+import type React from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
+import type { FormControlUnstyledProps } from '@mui/base';
 import {
   InputError,
   FormFieldControl,

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { styled } from '@mui/material/styles';
 import { FormHelperText as MuiFormHelperText, FormHelperTextProps as MuiFormHelperTextProps } from '@mui/material';
 
@@ -16,7 +16,6 @@ const StyledFormHelperText = styled(MuiFormHelperText, {
 
 const FormHelperText: React.FC<FormHelperTextProps> = (props) => {
   const { children } = props;
-  const { displayName } = StyledFormHelperText;
 
   return (
     <StyledFormHelperText className="WmeFormHelperText-root" {...props}>

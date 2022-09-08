@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import type React from 'react';
+import type { PropsWithChildren } from 'react';
 import { InputLabel, InputLabelProps, styled } from '@mui/material';
 
 const StyledFormFieldLabel = styled(InputLabel, {

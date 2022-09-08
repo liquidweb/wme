@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import MuiRadioGroup, {
   RadioGroupProps as MuiRadioGroupProps,
 } from '@mui/material/RadioGroup';

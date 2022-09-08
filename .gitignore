@@ -19,8 +19,9 @@ nbproject/private/
 # Logs
 logs/
 
-# Eslint Cache
+# Cache
 .eslintcache
+.rollup.cache
 
 # Environment files
 wp-cli.local.yml

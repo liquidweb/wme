@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Box, BoxProps, styled } from '@mui/material';
 
 const StyledForm = styled(Box, {

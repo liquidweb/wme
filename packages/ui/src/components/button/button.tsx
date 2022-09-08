@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Button as MuiButton, ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 

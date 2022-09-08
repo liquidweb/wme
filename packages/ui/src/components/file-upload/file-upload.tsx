@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React from 'react';
+import type React from 'react';
 import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
 import { Box, BoxProps, styled } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';

@@ -1,4 +1,5 @@
-import React, { ReactElement, ChangeEvent } from 'react';
+import type React  from 'react';
+import type { ReactElement, ChangeEvent } from 'react';
 import { ToggleButtonGroup as MuiToggleButtonGroup, ToggleButtonGroupProps as MuiToggleButtonGroupProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 

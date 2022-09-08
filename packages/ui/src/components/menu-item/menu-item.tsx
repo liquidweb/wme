@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import type React from 'react';
+import type { ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
 import { MenuItem as MuiMenuItem } from '@mui/material';
 
@@ -31,7 +32,6 @@ const StyledMenuItem = styled(MuiMenuItem, {
 
 const MenuItem: React.FC<WmeMenuItemProps> = (props) => {
   const { children, icon } = props;
-  const { displayName } = StyledMenuItem;
 
   return (
     <StyledMenuItem className="WmeMenuItem-root" {...props}>

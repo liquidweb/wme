@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import type React from 'react';
+import type { ReactElement } from 'react';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Logout } from '@mui/icons-material';

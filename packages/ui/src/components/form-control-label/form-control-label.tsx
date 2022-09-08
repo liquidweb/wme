@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import type React from 'react';
+import type { ReactElement } from 'react';
 import { styled } from '@mui/material/styles';
 import { FormControlLabel as MuiFormControlLabel, FormControlLabelProps } from '@mui/material';
 
@@ -21,7 +22,6 @@ const StyledFormControlLabel = styled(MuiFormControlLabel, {
 
 const FormControlLabel: React.FC<FormControlProps> = (props) => {
   const { children, ...rest } = props;
-  const { displayName } = StyledFormControlLabel;
 
   return (
     <StyledFormControlLabel className="WmeFormControlLabel-root" {...rest}>

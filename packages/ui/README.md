@@ -58,7 +58,7 @@ Install latest version from [NPM](https://www.npmjs.com/package/@moderntribe/wme
 **Example:**
 
 ```
-import React from 'react';
+import type React from 'react';
 import { Button, SetupCardTask } from '@moderntribe/wme';
 import TaskIcon from '../img/task-icon.png';
 

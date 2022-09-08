@@ -1,10 +1,11 @@
-import * as React from 'react';
+import type React from 'react';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const SetupCardFooterWrapper = styled(Box, {
   name: 'WmeSetupCardFooter',
   slot: 'Root',
+  // @ts-ignore: No Unused Parameters - props is passed but not used.
   overridesResolver: (props, styles) => [
     styles.root,
   ],

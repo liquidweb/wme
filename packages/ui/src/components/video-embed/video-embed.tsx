@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import type React from 'react';
 import { CardMedia, CardMediaProps, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 

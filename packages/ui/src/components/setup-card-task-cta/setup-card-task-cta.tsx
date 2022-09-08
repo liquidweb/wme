@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type React from 'react';
 import { Button, ButtonProps, styled } from '@mui/material';
 
 interface SetupCardTaskCtaProps extends Omit<ButtonProps, 'variant'|'color'> {}

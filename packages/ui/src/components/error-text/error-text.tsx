@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { styled } from '@mui/material/styles';
 import { Typography, TypographyProps } from '@mui/material';
 
@@ -13,7 +13,6 @@ const StyledText = styled(Typography, {
 
 const ErrorText: React.FC<TypographyProps> = (props) => {
   const { children } = props;
-  const { displayName } = StyledText;
 
   return (
     <StyledText className="WmeErrorText-root" {...props}>

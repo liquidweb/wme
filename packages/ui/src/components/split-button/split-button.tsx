@@ -100,6 +100,7 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
   };
 
   const handleMenuItemClick = (
+	// @ts-ignore: Events is declared but never read.
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
     index: number,
   ) => {

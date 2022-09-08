@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { FormControlUnstyled, FormControlUnstyledProps } from '@mui/base';
 import styled from '@mui/material/styles/styled';
 

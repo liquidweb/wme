@@ -1,7 +1,7 @@
-import React from 'react';
+import type React from 'react';
+import type { Theme } from '@mui/material/styles';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { Box, SxProps, styled } from '@mui/material';
-import { Theme } from '@mui/material/styles';
 import { InputTitle } from '..';
 
 const StyledFileUploadHeader = styled(Box, {

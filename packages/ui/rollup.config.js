@@ -33,7 +33,7 @@ export default [
       peerDepsExternal(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ tsconfig: './tsconfig.json', outputToFilesystem: true }),
       terser(),
     ],
     external: ['react', 'react-dom', 'styled-components'],

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type React from 'react';
 import {
   Box,
   BoxProps,
@@ -17,9 +17,7 @@ interface SetupCardInfoRowProps extends BoxProps {
 const PrimaryText = styled(Typography, {
   name: 'WmeCardInfoRow',
   slot: 'Primary',
-})<TypographyProps>(({ theme }) => ({
-
-}));
+})<TypographyProps>(() => ({}));
 
 const SecondaryText = styled(Typography, {
   name: 'WmeCardInfoRow',

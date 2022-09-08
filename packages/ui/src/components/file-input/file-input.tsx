@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { InputBase, InputBaseComponentProps, styled } from '@mui/material';
 
 const StyledFileInput = styled(InputBase, {

@@ -1,11 +1,13 @@
-import React, { ReactElement, useMemo } from 'react';
+import type React from 'react';
+import type { ReactElement } from 'react';
+import type { Location } from 'history';
+import { useMemo } from 'react';
 import {
   BrowserRouter,
   useNavigate,
   useLocation,
 } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
-import { Location } from 'history';
 
 interface RouteProps {
   children: React.FunctionComponent;

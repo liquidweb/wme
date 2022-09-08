@@ -1,7 +1,7 @@
-import React from 'react';
+import type React from 'react';
 import { Box, styled } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, InputHelperText } from '..';
+import { Button } from '..';
 
 export interface FileUploadRemoveProps {
   buttonText?: string;

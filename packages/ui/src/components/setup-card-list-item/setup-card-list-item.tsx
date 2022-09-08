@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { styled } from '@mui/material/styles';
 import { Link, LinkProps } from '@mui/material';
 

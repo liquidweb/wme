@@ -1,7 +1,6 @@
-import React from 'react';
-import { Theme } from '@mui/material/styles/createTheme';
-import { ResponsiveStyleValue } from '@mui/system';
-import { GridSpacing } from '@mui/material/Grid';
+import type { Theme } from '@mui/material/styles/createTheme';
+import type { ResponsiveStyleValue } from '@mui/system';
+import type { GridSpacing } from '@mui/material/Grid';
 import { styled, ToggleButtonGroup, ToggleButtonGroupProps } from '@mui/material';
 
 interface CardSelectGroupProps extends ToggleButtonGroupProps {

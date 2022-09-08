@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import type React from 'react';
+import type { ReactElement } from 'react';
 import {
   Box,
   BoxProps,
@@ -17,7 +18,7 @@ interface DeviceSelectionProps extends BoxProps {
 const DeviceSelectionContainer = styled(Box, {
   name: 'WmeDeviceSelectionContainer',
   slot: 'Root',
-})(({ theme }) => ({
+})(() => ({
   display: 'flex',
   alignItems: 'center',
 }));

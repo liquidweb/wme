@@ -1,4 +1,5 @@
-import React from 'react';
+import type React from 'react';
+import type { WmeButtonProps } from '../button/button';
 import {
   Box,
   InputBaseComponentProps,
@@ -7,7 +8,6 @@ import {
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
 import { Button, FileInput, FormHelperText } from '..';
-import { WmeButtonProps } from '../button/button';
 
 const StyledFileUploadSelect = styled(Box, {
   name: 'WmeFileUploadSelect',

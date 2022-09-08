@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Box, styled } from '@mui/material';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { Button } from '..';

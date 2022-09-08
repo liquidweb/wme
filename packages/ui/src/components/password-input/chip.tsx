@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Chip as MuiChip, ChipProps, styled } from '@mui/material';
 
 const StyledChip = styled(MuiChip, {

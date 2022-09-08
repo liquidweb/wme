@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 
@@ -19,7 +19,6 @@ const StyledInputTitle = styled(Typography, {
 
 const InputTitle: React.FC<InputTitleProps> = (props) => {
   const { children } = props;
-  const { displayName } = StyledInputTitle;
   return (
     <StyledInputTitle className="WmeInputTitle-root">
       {children}

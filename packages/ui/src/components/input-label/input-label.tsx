@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { FormControlLabel, FormControlLabelProps, styled } from '@mui/material';
 
 const StyledInputLabel = styled(FormControlLabel, {
