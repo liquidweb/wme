@@ -1,0 +1,61 @@
+module.exports = {
+	extends: ["eslint:recommended"],
+	plugins: ["@typescript-eslint"],
+	rules: {
+		"@typescript-eslint/no-unused-vars": "error",
+		"array-bracket-spacing": ["warn", "never"],
+		"block-spacing": ["warn", "always"],
+		"comma-dangle": [
+			"warn",
+			{
+				arrays: "only-multiline",
+				objects: "only-multiline",
+				imports: "never",
+				exports: "never",
+				functions: "never",
+			},
+		],
+		"comma-spacing": [
+			"warn",
+			{
+				before: false,
+				after: true,
+			},
+		],
+		"eol-last": ["warn", "always"],
+		indent: ["warn", "tab"],
+		"import/prefer-default-export": "off",
+		"linebreak-style": ["warn", "unix"],
+		"no-alert": "warn",
+		"no-console": "warn",
+		"no-eval": "warn",
+		"no-implied-eval": "warn",
+		"no-template-curly-in-string": "warn",
+		"no-undef": "off",
+		"no-unused-vars": "off",
+		"no-useless-concat": "warn",
+		"object-curly-spacing": ["warn", "always"],
+		quotes: ["warn", "single"],
+		radix: "error",
+		semi: ["warn", "always"],
+		"space-before-function-paren": [
+			"warn",
+			{
+				anonymous: "always",
+				named: "never",
+				asyncArrow: "always",
+			},
+		],
+		"space-in-parens": ["warn", "never"],
+		"spaced-comment": ["warn", "always"],
+	},
+	parser: "@typescript-eslint/parser",
+	parserOptions: {
+		ecmaFeatures: {
+			jsx: true,
+		},
+		ecmaVersion: "latest",
+		sourceType: "module",
+		requireConfigFile: false,
+	},
+};

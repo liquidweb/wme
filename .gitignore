@@ -1,24 +1,76 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-/dist
-
-# misc
+# Operating System files
 .DS_Store
+Thumbs.db
+
+# IDE files
+.idea
+.vscode/*
+project.xml
+project.properties
+.project
+.settings*
+*.sublime-project
+*.sublime-workspace
+.sublimelinterrc
+nbproject/private/
+
+# Logs
+logs/
+
+# Eslint Cache
+.eslintcache
+
+# Environment files
+wp-cli.local.yml
+yarn-error.log
+npm-debug.log
+.pnpm-debug.log
+
+# Environment Config
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.vscode
+
+# Build files
+*.sql
+*.swp
+*.zip
+
+# Built packages
+build/
+build-module/
+build-style/
+build-types/
+dist/
+
+# Project files
+node_modules/
+vendor/
+
+# TypeScript files
+tsconfig.tsbuildinfo
+
+# testing
+/coverage
+
+# Node Package Dependencies
+package-lock.json
+
+# Composer
+vendor/
+bin/composer/**/vendor/
+lib/vendor/
+contributors.md
+contributors.html
+
+# Turborepo
+.turbo
+
+# Support .gitkeep Files
+!.gitkeep
 
 npm-debug.log*
 yarn-debug.log*

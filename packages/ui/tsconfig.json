@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "packages/ui-components/types",
     "sourceMap": true,
     "outDir": "dist",
     "emitDeclarationOnly": true
