@@ -1,4 +1,4 @@
-# ESLint Plugin
+# ESLint Custom Config
 
 This is an [ESLint](https://eslint.org/) plugin including configurations and custom rules for StellarWP WME Foundation development.
 
@@ -16,7 +16,7 @@ In addition, this ruleset does implement a number of custom rules:
 Install the module
 
 ```
-pnpm install @stellarwp/wme-eslint-plugin --save-dev
+pnpm install @stellarwp/eslint-config-custom --save-dev
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ To opt-in to the default configuration, extend your own project's `.eslintrc.js`
 
 ```js
 module.exports = {
-  extends: ["plugin:@stellarwp/wme-eslint-plugin/recommended"],
+  extends: ["plugin:@stellarwp/eslint-config-custom/recommended"],
 };
 ```
 
@@ -35,6 +35,6 @@ The `recommended` preset will include rules governing an ES2015+ environment, an
 
 ### Rules
 
-| Rule                                                           | Description      | Recommended |
-| -------------------------------------------------------------- | ---------------- | ----------- |
-| [custom-tbd](/packages/eslint-plugin/docs/rules/custom-tbd.md) | TBD Custom Rules | ✓           |
+| Rule                                                                  | Description      | Recommended |
+| --------------------------------------------------------------------- | ---------------- | ----------- |
+| [custom-tbd](/packages/eslint-config-custom/docs/rules/custom-tbd.md) | TBD Custom Rules | ✓           |
