@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@babel/preset-env': ^7.19.0
       '@babel/runtime': ^7.19.0
+      '@stellarwp/eslint-config-custom': workspace:*
       '@storybook/addon-actions': ^6.5.10
       '@storybook/addon-docs': ^6.5.10
       '@storybook/addon-essentials': ^6.5.10
@@ -20,7 +21,6 @@ importers:
       '@storybook/testing-library': ^0.0.9
       '@storybook/theming': ^6.5.10
       '@types/react': '*'
-      eslint-config-custom: workspace:*
       eslint-config-turbo: ^0.0.3
       prettier: ^2.7.1
       turbo: ^1.4.6
@@ -31,6 +31,7 @@ importers:
     devDependencies:
       '@babel/preset-env': 7.19.0_@babel+core@7.19.0
       '@babel/runtime': 7.19.0
+      '@stellarwp/eslint-config-custom': link:packages/eslint-config-custom
       '@storybook/addon-actions': 6.5.10_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.10_34fmpv7eb37mft7ywryea42ef4
       '@storybook/addon-essentials': 6.5.10_v2qdisjowmh5exi52o7wpdcq4i
@@ -44,7 +45,6 @@ importers:
       '@storybook/react': 6.5.10_jxpmhrjbdwwbpc6k7trdicl75a
       '@storybook/testing-library': 0.0.9_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.10_biqbaboplfbrettd7655fr4n2y
-      eslint-config-custom: link:packages/eslint-config-custom
       eslint-config-turbo: 0.0.3_eslint@8.23.0
       prettier: 2.7.1
       turbo: 1.4.6
@@ -90,7 +90,10 @@ importers:
       '@mui/lab': ^5.0.0-alpha.92
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
+      '@stellarwp/tsconfig': workspace:*
+      '@stellarwp/wme-ui': workspace:*
       '@types/jquery': ^3.5.14
+      '@types/node': ^18.7.16
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
       '@typescript-eslint/eslint-plugin': ^5.33.1
@@ -112,9 +115,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.3.0
       ts-loader: ^9.3.1
-      tsconfig: workspace:*
       typescript: ^4.7.4
-      wme-ui: workspace:*
       wp-types: ^3.60.0
     dependencies:
       '@emotion/react': 11.10.4_p6fq7jdyqwnykllwwkx4b6uid4
@@ -123,6 +124,7 @@ importers:
       '@mui/lab': 5.0.0-alpha.98_xiknshxjcg2am4zp4ruxcjguui
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
+      '@stellarwp/wme-ui': link:../wme-ui
       '@wordpress/element': 4.14.0
       '@wordpress/eslint-plugin': 12.9.0_kztpe7hxs2dnqdtkvtgesbmt34
       '@wordpress/html-entities': 3.16.0
@@ -132,10 +134,11 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
-      wme-ui: link:../wme-ui
     devDependencies:
       '@babel/preset-react': 7.18.6_@babel+core@7.19.0
+      '@stellarwp/tsconfig': link:../tsconfig
       '@types/jquery': 3.5.14
+      '@types/node': 18.7.16
       '@types/react': 18.0.18
       '@types/react-dom': 18.0.6
       '@typescript-eslint/eslint-plugin': 5.36.2_2l2r3i3lm6jysqd4ac3ql4n2mm
@@ -148,7 +151,6 @@ importers:
       eslint-plugin-prettier: 4.2.1_tgumt6uwl2md3n6uqnggd6wvce
       prettier: 2.7.1
       ts-loader: 9.3.1_kb3egcnme7w23lfa5xodfjfhge
-      tsconfig: link:../tsconfig
       typescript: 4.8.3
       wp-types: 3.60.0
 
@@ -171,6 +173,7 @@ importers:
       '@rollup/plugin-commonjs': ^21.1.0
       '@rollup/plugin-node-resolve': ^13.3.0
       '@rollup/plugin-typescript': ^8.5.0
+      '@stellarwp/tsconfig': workspace:*
       '@storybook/addon-actions': ^6.5.10
       '@storybook/addon-docs': ^6.5.10
       '@storybook/addon-essentials': ^6.5.10
@@ -212,7 +215,6 @@ importers:
       rollup-plugin-dts: ^4.2.2
       rollup-plugin-peer-deps-external: ^2.2.4
       rollup-plugin-terser: ^7.0.2
-      tsconfig: workspace:*
       tslib: ^2.4.0
       typescript: ^4.8.3
       use-query-params: ^1.2.3
@@ -240,6 +242,7 @@ importers:
       '@rollup/plugin-commonjs': 21.1.0_rollup@2.79.0
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
       '@rollup/plugin-typescript': 8.5.0_tznp6w7csbjledp5nresoxoky4
+      '@stellarwp/tsconfig': link:../tsconfig
       '@storybook/addon-actions': 6.5.10_sfoxds7t5ydpegc3knd667wn6m
       '@storybook/addon-docs': 6.5.10_eqrcdolrtah32uvyagurqyzbfy
       '@storybook/addon-essentials': 6.5.10_5ritnxd7c73hssldnmmsw7zriu
@@ -276,7 +279,6 @@ importers:
       rollup-plugin-dts: 4.2.2_ihkqvyh37tzxtjmovjyy2yrv7m
       rollup-plugin-peer-deps-external: 2.2.4_rollup@2.79.0
       rollup-plugin-terser: 7.0.2_rollup@2.79.0
-      tsconfig: link:../tsconfig
       typescript: 4.8.3
       webpack: 5.74.0
 
@@ -6313,7 +6315,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.6
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.4.6:
     resolution: {integrity: sha512-/fqTbjxyFUaYNO7VcW5g+4npmqVACz1bB7RTHYuLj+PRjw9hrCwrUXVQFpChUS0JsyEFvMZ7U/PfmvWgxJhI9g==}

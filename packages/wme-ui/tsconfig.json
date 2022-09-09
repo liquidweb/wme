@@ -1,5 +1,5 @@
 {
-	"extends": "tsconfig/react-library.json",
+	"extends": "@stellarwp/tsconfig/react-library.json",
 	"compilerOptions": {
 		"declaration": true,
 		"declarationDir": "types",
