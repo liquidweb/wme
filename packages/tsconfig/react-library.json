@@ -1,0 +1,33 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "React Library",
+	"extends": "./base.json",
+	"compilerOptions": {
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"checkJs": true,
+		"declarationDir": "types",
+		"emitDeclarationOnly": true,
+		"importsNotUsedAsValues": "error",
+		"incremental": true,
+		"jsx": "react-jsx",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"module": "esnext",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"outDir": "./dist",
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"target": "es5"
+	},
+	"include": [
+		"src"
+	],
+	"exclude": [
+		"build",
+		"dist",
+		"node_modules"
+	]
+}

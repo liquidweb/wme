@@ -1,0 +1,25 @@
+{
+	"extends": "@stellarwp/tsconfig/react-library.json",
+	"compilerOptions": {
+		"declaration": true,
+		"declarationDir": "types",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"strict": true,
+		"typeRoots": [ "./typings", "./types", "./node_modules/@types" ]
+	},
+	"include": [
+		"src/**/*",
+		"types/declaration.d.ts"
+	],
+	"exclude": [
+		"build",
+		"dist",
+		"node_modules",
+		"src/**/*.test.tsx",
+		"src/**/*.stories.tsx"
+	]
+}

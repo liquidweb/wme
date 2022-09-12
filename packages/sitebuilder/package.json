@@ -1,0 +1,63 @@
+{
+	"name": "@stellarwp/sitebuilder",
+	"version": "0.0.1",
+	"description": "SiteBuilder foundation",
+	"main": "dist/index.js",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "pnpm run development",
+		"build-prod": "pnpm run production",
+		"dev": "pnpm run development",
+		"development": "mix",
+		"hot": "mix watch --hot",
+		"lint": "eslint . --ext ts,tsx",
+		"lint-fix": "eslint . --fix --ext ts,tsx",
+		"prod": "npm run production",
+		"production": "mix --production",
+		"test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000"
+	},
+	"author": "",
+	"dependencies": {
+		"@emotion/react": "^11.9.3",
+		"@emotion/styled": "^11.9.3",
+		"@mui/icons-material": "^5.8.4",
+		"@mui/lab": "^5.0.0-alpha.92",
+		"@mui/material": "^5.9.2",
+		"@mui/utils": "^5.9.1",
+		"@stellarwp/wme-ui": "workspace:*",
+		"@wordpress/element": "^4.12.0",
+		"@wordpress/eslint-plugin": "^12.9.0",
+		"@wordpress/html-entities": "^3.14.0",
+		"@wordpress/i18n": "^4.14.0",
+		"laravel-mix": "^6.0.49",
+		"query-string": "^7.1.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.3.0"
+	},
+	"devDependencies": {
+		"@babel/preset-react": "^7.18.6",
+		"@stellarwp/tsconfig": "workspace:*",
+		"@types/jquery": "^3.5.14",
+		"@types/node": "^18.7.16",
+		"@types/react": "^18.0.17",
+		"@types/react-dom": "^18.0.6",
+		"@typescript-eslint/eslint-plugin": "^5.33.1",
+		"@typescript-eslint/parser": "^5.33.1",
+		"eslint": "^8.22.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-import-resolver-typescript": "^3.4.1",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"laravel-mix": "^6.0.49",
+		"prettier": "^2.7.1",
+		"ts-loader": "^9.3.1",
+		"typescript": "^4.7.4",
+		"wp-types": "^3.60.0"
+	}
+}

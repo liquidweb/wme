@@ -1,4 +1,4 @@
 module.exports = {
-	extends: [ "turbo", 'plugin:@stellarwp/eslint-plugin/recommended' ],
+	extends: [ "turbo", 'custom/recommended' ],
 	root: true,
 };
