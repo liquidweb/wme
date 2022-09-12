@@ -1,0 +1,26 @@
+# External dependencies.
+node_modules
+
+# Artifacts.
+dist/**
+!dist/index.html
+
+# Cache files.
+.stylelintcache
+
+# Archives and dumps.
+*.sql
+*.tar.gz
+*.zip
+
+# System files.
+.DS_Store
+Thumbs.db
+
+# IDE files.
+.vscode/
+.idea/
+
+# Local development files.
+.yalc
+yalc.lock
