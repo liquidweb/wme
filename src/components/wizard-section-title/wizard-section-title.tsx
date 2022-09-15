@@ -73,21 +73,23 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
     ...rest
   } = props;
 
+  const bookendClass = bookend ? 'isBookend' : '';
+
   return (
     <WizardSectionTitleContainer
-      className="WmeWizardSectionTitle-root"
+      className={`WmeWizardSectionTitle-root ${bookendClass}`}
       width={width}
       bookend={bookend}
       {...rest}
     >
       {iconSrc && (
-        <IconContainer className="WmeWizardSectionTitle-iconContainer">
+        <IconContainer className={ `WmeWizardSectionTitle-iconContainer ${bookendClass}` }>
           <img src={iconSrc} alt={iconAlt} width={iconWidth} />
         </IconContainer>
       )}
       {heading && (
         <Heading
-          className="WmeWizardSectionTitle-heading"
+          className={ `WmeWizardSectionTitle-heading ${bookendClass}` }
           component={headingComponent || 'h2'}
           variant={headingVariant}
         >
@@ -97,7 +99,7 @@ const WizardSectionTitle: React.FC<WizardSectionTitleProps> = (props) => {
       {copy && (
         <Copy
           align={copyAlign && !bookend ? copyAlign : 'inherit'}
-          className="WmeWizardSectionTitle-copy"
+          className={ `WmeWizardSectionTitle-copy ${bookendClass}` }
           variant={copyVariant || 'body1'}
         >
           {copy}
