@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SetupCardTask as WmeSetupCardTask } from '@stellarwp/wme-ui';
+import { SetupCardTask as WmeSetupCardTask, Button } from '@stellarwp/wme-ui';
 import { Avatar } from '@mui/material';
 import { IMAGE_DIR } from '@store/constants';
 import { isValidUrl } from '@store/utils';
@@ -19,6 +19,10 @@ const getAvatarProps = (props: SetupCardRowInterface) => {
 const SetupCardTask = (props: SetupCardRowInterface) => {
 	const {
 		type,
+		button,
+		url,
+		connected = false,
+		disableText = '',
 		wizardHash,
 		...rest
 	} = props;
@@ -28,21 +32,44 @@ const SetupCardTask = (props: SetupCardRowInterface) => {
 
 	const navigate = useNavigate();
 
-	const validUrl = wizardHash && isValidUrl(wizardHash);
+	const validUrl = url && isValidUrl(url);
 
-	const onClick = () => {
+	const handleOnClick = () => {
 		if (wizardHash) {
 			navigate(wizardHash);
 		}
 	};
 
-	return <WmeSetupCardTask
-		{ ...rest }
-		onClick={ ! validUrl ? onClick : undefined }
-		href={ validUrl ? wizardHash : undefined }
-		variant={ isVariant ? type : 'task' }
-		avatar={ Object.keys(avatarProps).length > 0 && <Avatar { ...avatarProps } /> }
-	/>;
+	return (
+		<WmeSetupCardTask
+			{ ...rest }
+			onClick={ ! validUrl ? handleOnClick : undefined }
+			href={ validUrl ? url : undefined }
+			variant={ isVariant ? type : 'task' }
+			avatar={
+				Object.keys(avatarProps).length > 0 && (
+					<Avatar { ...avatarProps } />
+				)
+			}
+			button={
+				button && (
+					<Button
+						variant="contained"
+						color="primary"
+						onClick={ ! connected ? handleOnClick : undefined }
+						href={ connected && validUrl ? url : undefined }
+						sx={ {
+							...(button.backgroundColor && {
+								backgroundColor: button.backgroundColor,
+							}),
+						} }
+					>
+						{ connected && disableText ? disableText : button.label }
+					</Button>
+				)
+			}
+		/>
+	);
 };
 
 export default SetupCardTask;

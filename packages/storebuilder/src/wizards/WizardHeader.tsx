@@ -1,6 +1,5 @@
 import React from 'react';
 import { WizardHeader as WmeWizardHeader, Logo, ExitButton } from '@stellarwp/wme-ui';
-import { Routes, Route } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';
 import { useWizard } from '@store/hooks';
 import { SiteBuilderLogo } from '@store/logos';

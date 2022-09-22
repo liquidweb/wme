@@ -56,6 +56,12 @@ declare global {
     url: string;
   }
 
+  interface SetupRowTaskButtonInterface {
+    label: string;
+    href?: string;
+    backgroundColor?: string;
+  }
+
 	interface SetupCardRowInterface {
 		id: string;
 		type: 'task' | 'action';
@@ -68,6 +74,8 @@ declare global {
 		disabled?: boolean;
 		disableText?: string;
 		wizardHash?: string;
+		connected?: boolean;
+    button?: SetupRowTaskButtonInterface;
 	}
 
 	interface SetupCardInterface {

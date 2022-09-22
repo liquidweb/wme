@@ -51,7 +51,10 @@ const WizardWrapper = () => {
 			<WizardHeader />
 			<WizardContent>
 				<Routes>
-					<Route path="/ftc" element={ <StoreSetup /> } />
+					<Route path="/store-details" element={ <StoreSetup /> } />
+					<Route path="/connect-stripe" element={ <div>STRIPE WIZARD</div> } />
+					<Route path="/connect-paypal" element={ <div>PAYPAL WIZARD</div> } />
+					<Route path="/shipping" element={ <div>SHIPPING WIZARD</div> } />
 					<Route path="*" element={ <Navigate to="/" /> } />
 				</Routes>
 			</WizardContent>

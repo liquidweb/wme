@@ -1,17 +1,18 @@
 import React from 'react';
 import { SetupCardFooter as WmeSetupCardFooter } from '@stellarwp/wme-ui';
-import { LookAndFeelFooter, LookAndFeelFooterInterface } from './footer';
+// import { LookAndFeelFooter, LookAndFeelFooterInterface } from './footer';
 
-type SetupCardFooterRenderProps = LookAndFeelFooterInterface;
+// type SetupCardFooterRenderProps = LookAndFeelFooterInterface;
 
 export interface SetupCardFooterPropsInterface {
-	footers?: SetupCardFooterRenderProps;
+	footers?: any;
 }
 
-const renderFooterRow = (row: SetupCardFooterRenderProps) => {
+const renderFooterRow = (row: any) => {
 	switch (row.id) {
 	case 'look-and-feel-wizard':
-		return <LookAndFeelFooter key={ row.id } { ...row } />;
+		return <div>footer</div>;
+		// return <LookAndFeelFooter key={ row.id } { ...row } />;
 	}
 };
 
