@@ -1,22 +1,34 @@
 import { useContext } from 'react';
 import {
 	StoreSetupContext,
-	FtcProviderContextInterface
+	StoreSetupProviderContextInterface
 } from '@store/contexts/StoreSetupProvider';
 
 export function useStoreSetup() {
 	const {
-		ftcState,
+		storeState,
 		setFormValue,
 		submitForm,
 		resetFormValue,
-		setIsLoading
-	} = useContext(StoreSetupContext) as FtcProviderContextInterface;
+		setIsLoading,
+		getRegions,
+		setRegion,
+		getSelectedRegion,
+		getStates,
+		getSelectedState,
+		getCurrentLocale
+	} = useContext(StoreSetupContext) as StoreSetupProviderContextInterface;
 	return {
-		ftcState,
+		storeState,
 		setFormValue,
 		submitForm,
 		resetFormValue,
-		setIsLoading
+		setIsLoading,
+		getRegions,
+		setRegion,
+		getSelectedRegion,
+		getStates,
+		getSelectedState,
+		getCurrentLocale
 	};
 }
