@@ -48,12 +48,6 @@ declare module '@mui/material/styles/createPalette' {
 
 let theme = {
 	palette: {
-		primary: {
-			main: '#303F9F',
-			dark: '#2A3353',
-			grey: '#949494',
-			white: '#FFF',
-		},
 		text: {
 			primary: '#2A3353',
 			secondary: '#2A3353',
@@ -270,6 +264,12 @@ theme = deepmerge(theme, {
 		MuiModal: {
 			styleOverrides: {
 				root: {
+					// Wizard Overrides.
+					zIndex: 99999,
+					// WizardContent Overrides.
+					'& .WmeWizard-dialogContent': {
+						paddingBottom: '64px',
+					},
 					// WizardFooter Overrides.
 					'& .WmeWizardFooter-next': {
 						'& .WmeWizardFooterNextButton': {
@@ -320,6 +320,10 @@ theme = deepmerge(theme, {
 					// Input Helper Overrides.
 					'& .WmeInputHelperText-root': {
 						marginTop: 8
+					},
+					// Video Embed.
+					'& .WmeVideoEmbed-root': {
+						width: '100%'
 					}
 				}
 			}

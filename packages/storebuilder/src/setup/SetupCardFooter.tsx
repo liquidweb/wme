@@ -1,17 +1,21 @@
 import React from 'react';
 import { SetupCardFooter as WmeSetupCardFooter } from '@stellarwp/wme-ui';
-import { LookAndFeelFooter, LookAndFeelFooterInterface } from './footer';
+import { Accordion, AccordionInterface, PaymentHelp, PaymentHelpInterface } from '@store/setup/footer';
 
-type SetupCardFooterRenderProps = LookAndFeelFooterInterface;
+type FooterRowType = AccordionInterface | PaymentHelpInterface;
 
 export interface SetupCardFooterPropsInterface {
-	footers?: SetupCardFooterRenderProps;
+	footers?: FooterRowType;
 }
 
-const renderFooterRow = (row: SetupCardFooterRenderProps) => {
-	switch (row.id) {
-	case 'look-and-feel-wizard':
-		return <LookAndFeelFooter key={ row.id } { ...row } />;
+const renderFooterRow = (row: FooterRowType) => {
+	switch (row.type) {
+	case 'accordion':
+		return <Accordion key={ row.id } { ...row } />;
+	case 'gateway-help':
+		return <PaymentHelp key={ row.id } { ...row } />;
+	default:
+		return <></>;
 	}
 };
 

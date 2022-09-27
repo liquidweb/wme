@@ -1,2 +1,4 @@
-export { default as LookAndFeelFooter } from './LookAndFeelFooter';
-export * from './LookAndFeelFooter';
+export { default as Accordion } from './Accordion';
+export * from './Accordion';
+export { default as PaymentHelp } from './PaymentHelp';
+export * from './PaymentHelp';

@@ -4,7 +4,7 @@ import { Chip as MuiChip, ChipProps } from '@mui/material';
 const StyledChip = styled(MuiChip)<ChipProps>(({ color, size, theme }) => ({
   flexDirection: 'row-reverse',
   backgroundColor: theme.palette.info.light,
-  color: theme.palette.info.dark,
+  color: theme.palette.primary.dark,
 
   '& .MuiChip-icon': {
     marginRight: theme.spacing(0.5),

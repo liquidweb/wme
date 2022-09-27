@@ -1,13 +1,14 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
+import { WatchLater, CheckCircle } from '@mui/icons-material';
 import {
 	Chip,
 	SetupCard as WmeSetupCard,
 	SetupCardHeader,
-	SetupCardContent,
+	SetupCardContent
 } from '@stellarwp/wme-ui';
 import { useSetupCard } from '@store/hooks';
-import { SetupCardTasks, SetupCardFooter } from '@store/setup';
+import { SetupCardLayout, SetupCardFooter } from '@store/setup';
 
 const SetupCard = (props: SetupCardInterface) => {
 	const {
@@ -28,7 +29,8 @@ const SetupCard = (props: SetupCardInterface) => {
 				subheader={ intro }
 				action={ time && <Chip
 					size="small"
-					color="success"
+					color={ completed ? 'success' : 'info' }
+					icon={ completed ? <CheckCircle /> : <WatchLater /> }
 					label={ completed ? __('Completed', 'nexcess-mapps') : time }
 				/> }
 			/>
@@ -38,7 +40,7 @@ const SetupCard = (props: SetupCardInterface) => {
 					paddingBottom: (lastRowType && lastRowType === 'task') ? '20px' : '32px',
 				}
 			} }>
-				<SetupCardTasks rows={ rows } completed={ completed } />
+				<SetupCardLayout rows={ rows } completed={ completed } />
 			</SetupCardContent>
 			<SetupCardFooter footers={ footers } />
 		</WmeSetupCard>

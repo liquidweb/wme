@@ -5,7 +5,7 @@ import {
 	Navigate,
 	useNavigate,
 	useLocation,
-	useSearchParams,
+	useSearchParams
 } from 'react-router-dom';
 import { Wizard } from '@stellarwp/wme-ui';
 
@@ -41,17 +41,14 @@ const WizardWrapper = () => {
 			aria-labelledby="sb-modal-title"
 			aria-describedby=""
 			onClose={ handleOnClose }
-			sx={ {
-				zIndex: 99999,
-				'& .WmeWizard-dialogContent': {
-					paddingBottom: (theme) => theme.spacing(4),
-				},
-			} }
 		>
 			<WizardHeader />
 			<WizardContent>
 				<Routes>
-					<Route path="/ftc" element={ <StoreSetup /> } />
+					<Route path="/store-details" element={ <StoreSetup /> } />
+					<Route path="/connect-stripe" element={ <div>STRIPE WIZARD</div> } />
+					<Route path="/connect-paypal" element={ <div>PAYPAL WIZARD</div> } />
+					<Route path="/shipping" element={ <div>SHIPPING WIZARD</div> } />
 					<Route path="*" element={ <Navigate to="/" /> } />
 				</Routes>
 			</WizardContent>

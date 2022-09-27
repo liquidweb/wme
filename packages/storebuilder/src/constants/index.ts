@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 export const SITEBUILDER = window.sitebuilder;
 
 export const ASSETS_URL = SITEBUILDER.assets_url;
@@ -23,5 +25,34 @@ export const NEXCESS_SUPPORT_URL = SITEBUILDER.support_url;
 export const NEXCESS_DOMAIN_REGISTRATION_URL = GO_LIVE_PROPS.domainRegistrationUrl;
 
 export const NEXCESS_DOMAIN_SEARCH_URL = GO_LIVE_PROPS.domainSearchUrl;
+
+export const WP_101_URL = 'https://app.wp101plugin.com/api/media/';
+
+export const WP_101_API_KEY = 'testkey';
+
+export const WP_101_HOW_TO_LINKS = [{
+	title: __('Simple', 'nexcess-mapps'),
+	modalTitle: __('Simple Product Overview', 'nexcess-mapps'),
+	url: 'wp101:woocommerce-simple-product',
+	target: '_blank',
+},
+{
+	title: __('Variable', 'nexcess-mapps'),
+	modalTitle: __('Variable Product Overview', 'nexcess-mapps'),
+	url: 'wp101:woocommerce-variable-products',
+	target: '_blank',
+},
+{
+	title: __('Grouped', 'nexcess-mapps'),
+	modalTitle: __('Grouped Product Overview', 'nexcess-mapps'),
+	url: 'wp101:woocommerce-grouped-product',
+	target: '_blank',
+},
+{
+	title: __('Downloadable', 'nexcess-mapps'),
+	modalTitle: __('Downloadable Product Overview', 'nexcess-mapps'),
+	url: 'wp101:woocommerce-downloadable-products',
+	target: '_blank',
+}];
 
 export * from './theme';

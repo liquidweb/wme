@@ -2,6 +2,7 @@ export * from './beforeUnloadListener';
 export * from './copyClipboard';
 export * from './createInput';
 export * from './getWizardCloseArgs';
+export * from './getVideoSource';
 export * from './handleActionRequest';
 export * from './isObjectEmpty';
 export * from './isValidUrl';
