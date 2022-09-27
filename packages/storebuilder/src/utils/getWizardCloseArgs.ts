@@ -1,4 +1,4 @@
-import { Location } from 'react-router-dom';
+import type { Location } from 'react-router-dom';
 export interface WizardCloseInterface {
 	showCloseWarning: boolean;
 	navigateTo: string;

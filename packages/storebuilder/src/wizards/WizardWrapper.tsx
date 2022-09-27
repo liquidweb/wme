@@ -5,7 +5,7 @@ import {
 	Navigate,
 	useNavigate,
 	useLocation,
-	useSearchParams,
+	useSearchParams
 } from 'react-router-dom';
 import { Wizard } from '@stellarwp/wme-ui';
 
@@ -41,12 +41,6 @@ const WizardWrapper = () => {
 			aria-labelledby="sb-modal-title"
 			aria-describedby=""
 			onClose={ handleOnClose }
-			sx={ {
-				zIndex: 99999,
-				'& .WmeWizard-dialogContent': {
-					paddingBottom: (theme) => theme.spacing(4),
-				},
-			} }
 		>
 			<WizardHeader />
 			<WizardContent>

@@ -100,7 +100,7 @@ declare global {
 		type: DomainVerificationTypes;
 		message: string;
 	}
-	
+
 	interface HandleKadencePayloadInterface {
 		action: string;
 		security: string;

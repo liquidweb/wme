@@ -1,6 +1,5 @@
-import React from'react';
+import React from 'react';
 import { WizardSectionTitle } from '@stellarwp/wme-ui';
-import { __ } from '@wordpress/i18n';
 
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { FtcStringData } from '@setup/data/constants';
