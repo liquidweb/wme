@@ -327,7 +327,23 @@ theme = deepmerge(theme, {
 					}
 				}
 			}
-		}
+		},
+		MuiPopover: {
+			styleOverrides: {
+				root: {
+					'&.MuiMenu-root': {
+						zIndex: '99999'
+					}
+				}
+			}
+		},
+		MuiAutocomplete: {
+			styleOverrides: {
+				popper: {
+					zIndex: '99999',
+				}
+			}
+		},
 	}
 });
 
