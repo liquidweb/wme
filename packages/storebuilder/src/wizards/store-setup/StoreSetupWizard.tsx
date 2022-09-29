@@ -9,7 +9,7 @@ import { beforeUnloadListener } from '@store/utils';
 
 const StoreSetupWizard = () => {
 	const {
-		ftcState: { steps, isLoading, lastStep },
+		setupState: { steps, isLoading, lastStep },
 		submitForm
 	} = useStoreSetup();
 
@@ -45,7 +45,6 @@ const StoreSetupWizard = () => {
 		if (activeStep === lastStep) {
 			return;
 		}
-		// setStepDataTouched(stepIndex);
 		goToNextStep();
 	};
 

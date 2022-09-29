@@ -3,6 +3,8 @@ import { __ } from '@wordpress/i18n';
 
 import { StoreLocation, StoreDetails, Complete } from '../screens';
 
+type KeysOfUnion<T> = T extends T ? keyof T: never;
+
 export interface CurrencyInterface {
 	[key: string]: string;
 }
@@ -24,7 +26,7 @@ export interface LocaleInterface {
 		required: boolean;
 		hidden: boolean;
 	};
-	state?: {
+	state: {
 		label?: string;
 		required?: boolean;
 		hidden?: boolean;
@@ -35,8 +37,8 @@ export interface LocaleInterface {
 		hidden?: boolean;
 	};
 	address_2?: {
-		required: boolean;
-		hidden: boolean;
+		required?: boolean;
+		hidden?: boolean;
 	}
 }
 
@@ -47,8 +49,18 @@ export interface LocalesInterface {
 export interface StoreSetupWizardObjectInterface {
 	id: string;
 	completed: boolean;
-	currencies: any;
-	locales: LocalesInterface[];
+	addressLine1: string;
+	addressLine2: string;
+	region: string;
+	state: string;
+	city: string;
+	postCode: string;
+	locale: string;
+	currency: string;
+	productsType: string[];
+	productCount: string;
+	currencies: CurrencyInterface[];
+	locales: LocalesInterface;
 	regions: RegionInterface[];
 	states: StateInterface[];
 	ajax: SiteBuilderAjaxObject;
@@ -86,6 +98,8 @@ export interface StoreSetupFormItemsInterface {
 	productCount: StoreSetupFormValueInterface;
 }
 
+export type StoreSetupFormKeysType = keyof StoreSetupFormItemsInterface;
+
 export interface StoreSetupScreenDataInterface extends StoreSetupWizardObjectInterface {
 	isLoading: boolean;
 	lastStep: number;
@@ -93,11 +107,14 @@ export interface StoreSetupScreenDataInterface extends StoreSetupWizardObjectInt
 	form: StoreSetupFormItemsInterface;
 }
 
+export interface StoreSetupServerDataInterface {
+
+}
+
 const stepsData: Array<StoreSetupStepInterface> = [
 	{
 		id: 0,
 		label: __('Location', 'nexcess-mapps'),
-		disableNext: true,
 		hideSkip: true,
 		nextText: __('Next', 'nexcess-mapps'),
 		screen: <StoreLocation />
@@ -170,21 +187,44 @@ const formItemsData: StoreSetupFormItemsInterface = {
 const localData: StoreSetupScreenDataInterface = {
 	isLoading: false,
 	lastStep: 3,
+	steps: stepsData,
+	form: formItemsData,
 	id: '',
 	completed: false,
+	addressLine1: '',
+	addressLine2: '',
+	region: '',
+	state: '',
+	city: '',
+	postCode: '',
+	locale: '',
+	currency: '',
+	productsType: [],
+	productCount: '',
+	currencies: [],
+	locales: {},
+	regions: [],
+	states: [],
 	ajax: {
 		action: '',
 		nonce: '',
 		url: ''
 	},
-	steps: stepsData,
-	form: formItemsData
 };
 
+type StoreSetupFormItemsType = KeysOfUnion<StoreSetupFormItemsInterface>;
+
 const setInitialFormValues = (wizardData: StoreSetupWizardObjectInterface): StoreSetupFormItemsInterface => {
-	// @todo: map server data to form object, maybe?
-	console.log(wizardData);
 	const form = formItemsData;
+
+	Object.keys(formItemsData).forEach((property) => {
+		if (property in wizardData) {
+			const value = wizardData[ property as StoreSetupFormItemsType ];
+			if (typeof value === 'string') {
+				form[ property as StoreSetupFormItemsType ].value = value;
+			}
+		}
+	});
 
 	return form;
 };
@@ -197,19 +237,21 @@ const getStepsData = (disable: boolean) => {
 };
 
 const StoreSetupScreenData = (): StoreSetupScreenDataInterface => {
-	const serverData = window?.sitebuilder?.wizards.ftc;
+	const serverData = window?.sitebuilder?.wizards.store_setup;
 	const { completed } = serverData;
 	const formData = serverData
 		? setInitialFormValues(serverData)
 		: formItemsData;
 	const steps = getStepsData(! completed);
 
+	console.log('formData:', formData);
+
 	return Object.assign(
 		{},
 		localData,
 		serverData,
 		{ steps },
-		{ form: formData },
+		{ form: formData }
 	);
 };
 

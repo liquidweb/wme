@@ -16,6 +16,7 @@ import Search from '@mui/icons-material/Search';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';
 import { StoreSetupStringData } from '@setup/data/constants';
+import { StoreSetupFormItemsInterface } from '@setup/data/store-setup-screen-data';
 
 const { storeLocation: {
 	title,
@@ -33,7 +34,38 @@ const { storeLocation: {
 const StoreLocation = () => {
 	const {
 		setupState,
+		setFormValue,
+		getCurrentLocale,
+		setRegion,
+		getRegions,
+		getSelectedRegion,
+		getStates,
+		getSelectedState
 	} = useStoreSetup();
+
+	const currentLocale = getCurrentLocale();
+	const regions = getRegions();
+	const selectedRegion = getSelectedRegion();
+	const states = getStates();
+	const selectedState = getSelectedState();
+
+	const handleChange = (prop: keyof StoreSetupFormItemsInterface) => (event: React.ChangeEvent<HTMLInputElement>) => {
+		setFormValue(prop, event.target.value);
+	};
+
+	const handleRegionChange = (value: string) => {
+		const region = regions?.filter((item) => item.label === value);
+		if (region[ 0 ]?.value) {
+			setRegion(region[ 0 ].value);
+		}
+	};
+
+	const handleStateChange = (value: string) => {
+		const state = states?.filter((item) => item.label === value);
+		if (state[ 0 ]?.value) {
+			setFormValue('state', state[ 0 ].value);
+		}
+	};
 
 	return (
 		<ScreenWrapper sx={ { maxWidth: 425 } }>
@@ -51,7 +83,7 @@ const StoreLocation = () => {
 								onChange={ handleChange('addressLine1') }
 								placeholder={ addressLine1Placeholder }
 								required
-								value={ ftcState?.form?.addressLine1?.value }
+								value={ setupState?.form?.addressLine1?.value }
 							/>
 						}
 						label={ addressLine1Label }
@@ -61,7 +93,7 @@ const StoreLocation = () => {
 							<TextInput
 								fullWidth
 								onChange={ handleChange('addressLine2') }
-								value={ ftcState?.form?.addressLine2?.value }
+								value={ setupState?.form?.addressLine2?.value }
 							/>
 						}
 						label={ addressLine2Label }
@@ -98,7 +130,7 @@ const StoreLocation = () => {
 						<FormField
 							field={
 								<Autocomplete
-									disabled={ ftcState.isStatesLoading }
+									disabled={ setupState.isLoading }
 									getOptionLabel={ (option) => option.label }
 									isOptionEqualToValue={ (option, value) => option.value === value.value }
 									onInputChange={ (_, newValue) => {
@@ -134,7 +166,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('city') }
 										placeholder={ cityLabel }
 										required
-										value={ ftcState?.form?.city?.value }
+										value={ setupState?.form?.city?.value }
 									/>
 								}
 								label={ cityLabel }
@@ -148,7 +180,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('postCode') }
 										placeholder={ postCodeLabel }
 										required
-										value={ ftcState?.form?.postCode?.value }
+										value={ setupState?.form?.postCode?.value }
 									/>
 								}
 								label={ postCodeLabel }

@@ -1,56 +1,22 @@
 import React from 'react';
-import { WizardSectionTitle, FormField, TextInput, Form } from '@stellarwp/wme-ui';
-import { Stack } from '@mui/material';
+import { WizardSectionTitle } from '@stellarwp/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
-import { useStoreSetup } from '@store/hooks';
-// import { FtcFormItemsInterface } from '@setup/data/store-setup-screen-data';
-import { FtcStringData } from '@setup/data/constants';
+// import { useStoreSetup } from '@store/hooks';
+import { StoreSetupStringData } from '@setup/data/constants';
 
-const { siteDetails } = FtcStringData;
+const { storeDetails: {
+	title,
+	copy
+} } = StoreSetupStringData;
 
 const StoreDetails = () => {
-	const { ftcState: { form } } = useStoreSetup();
-	const siteName = form.siteName.value;
-	const tagline = form.tagline.value;
-
-	// const handleChange = () => {};
-
 	return (
 		<ScreenWrapper sx={ { maxWidth: 425 } }>
 			<WizardSectionTitle
-				heading={ siteDetails.title }
+				heading={ title }
 				headingVariant="h2"
+				copy={ copy }
 			/>
-			<Form>
-				<Stack spacing={ 2 }>
-					<FormField
-						field={
-							<TextInput
-								fullWidth
-								// onChange={ handleChange('siteName') }
-								placeholder={ siteDetails.siteNameLabelText }
-								required
-								value={ siteName }
-							/>
-						}
-						helperText={ siteDetails.siteNameHelperText }
-						label={ siteDetails.siteNameLabelText }
-					/>
-					<FormField
-						field={
-							<TextInput
-								fullWidth
-								// onChange={ handleChange('tagline') }
-								placeholder={ siteDetails.siteTagnamePlaceholderText }
-								required
-								value={ tagline }
-							/>
-						}
-						helperText={ siteDetails.siteTaglineHelperText }
-						label={ siteDetails.siteTagnameLabelText }
-					/>
-				</Stack>
-			</Form>
 		</ScreenWrapper>
 	);
 };

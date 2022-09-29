@@ -14,6 +14,17 @@ import StoreSetupScreenData, {
 import { SITEBUILDER_URL } from '@store/constants';
 import { StoreSetupStringData } from '@setup/data/constants';
 
+export interface WooCommerceStateObjectInterface {
+	code: string;
+	name: string;
+}
+
+export interface WooCommerceRegionResponseInterface {
+	code: string;
+	name: string;
+	states: WooCommerceStateObjectInterface[];
+}
+
 export interface StoreSetupProviderContextInterface {
 	setupState: StoreSetupScreenDataInterface;
 	setFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
@@ -22,10 +33,10 @@ export interface StoreSetupProviderContextInterface {
 	setIsLoading: (isLoading: boolean) => void;
 	getRegions: () => RegionInterface[];
 	setRegion: (region: string) => void;
-	getSelectedRegion: () => RegionInterface | [];
+	getSelectedRegion: () => RegionInterface[];
 	getStates: () => StateInterface[];
-	getSelectedState: () => StateInterface | [];
-	getLocales: () => LocalesInterface[];
+	getSelectedState: () => StateInterface[];
+	getLocales: () => LocalesInterface;
 	getCurrentLocale: () => string;
 	getLocaleByRegion: (region: string) => string;
 }
@@ -53,7 +64,7 @@ const StoreSetupProvider = ({
 		}
 	}, []);
 
-	const submitForm = (isNextLookAndFeel: boolean = false) => {
+	const submitForm = () => {
 		function handleError() {
 			// eslint-disable-next-line no-alert
 			alert(submitFormContent.errorMessage);
@@ -119,7 +130,7 @@ const StoreSetupProvider = ({
 	};
 
 	const getRegions = () => {
-		return setupState?.values?.regions;
+		return setupState?.regions;
 	};
 
 	const setRegion = (region: string) => {
@@ -128,67 +139,70 @@ const StoreSetupProvider = ({
 		}
 
 		setIsLoading(true);
-		window.wp.apiRequest({ path: `/wc/v3/data/countries/${ region }` }).then((data) => {
-			const { values, form, ...rest } = setupState;
-			const locale = getLocaleByRegion(region);
-			let states = [];
+		window.wp.apiRequest({ path: `/wc/v3/data/countries/${ region }` })
+			.then((data: WooCommerceRegionResponseInterface) => {
+				const { form, ...rest } = setupState;
+				const locale = getLocaleByRegion(region);
 
-			if (data.states && data.states.length > 0) {
-				states = data.states.map((state) => ({
-					value: state.code,
-					label: state.name
-				}));
-			}
+				let states: StateInterface[] = [];
 
-			setStoreSetupState({
-				...rest,
-				form: Object.assign({}, form, { region: { value: region, isTouched: true }, state: { value: '' } }),
-				isLoading: false,
-				values: Object.assign({}, values, { states, locale })
+				if (data.states && data.states.length > 0) {
+					states = data.states.map((state: WooCommerceStateObjectInterface) => ({
+						value: state.code,
+						label: state.name
+					}));
+				}
+
+				setStoreSetupState({
+					...rest,
+					form: Object.assign({}, form, { region: { value: region, isTouched: true }, state: { value: '' } }),
+					isLoading: false,
+					states,
+					locale,
+				});
 			});
-		});
 	};
 
 	const getStates = () => {
-		return setupState?.values?.states;
+		return setupState?.states;
 	};
 
 	const getSelectedState = () => {
 		const states = getStates();
 
 		if (! states || states.length === 0) {
-			return [];
+			return [] as StateInterface[];
 		}
 
 		if (states && ! setupState.form.state.value) {
 			return [states[ 0 ]];
 		}
 
-		return states?.filter((item) => item.value === setupState.form.state.value);
+		return states?.filter((item: StateInterface) => item.value === setupState.form.state.value);
 	};
 
 	const getLocales = () => {
-		return setupState?.values?.locales;
+		return setupState?.locales;
 	};
 
 	const getCurrentLocale = () => {
-		const { values: { locale } } = setupState;
+		const { locale } = setupState;
 
 		return locale;
 	};
 
-	const getLocaleByRegion = (region: keyof ) => {
+	const getLocaleByRegion = (region: string) => {
 		const locales = getLocales();
-		const locale = locales && region in locales && locales[ region ];
+		const locale = locales && typeof region === 'string' && region in locales && (locales as LocalesInterface)[ region ];
 
-		return (typeof locale === 'object' && 'label' in locale.state) ? locale.state.label : __('State', 'nexcess-mapps');
+		return locale && locale?.state?.label ? locale.state.label	: __('State', 'nexcess-mapps');
 	};
 
 	const getSelectedRegion = () => {
 		const regions = getRegions();
 
 		if (! regions || regions.length === 0) {
-			return [];
+			return [] as RegionInterface[];
 		}
 
 		if (regions && ! setupState.form.region.value) {
@@ -211,6 +225,8 @@ const StoreSetupProvider = ({
 				getSelectedRegion,
 				getStates,
 				getSelectedState,
+				getLocales,
+				getLocaleByRegion,
 				getCurrentLocale
 			} }
 		>

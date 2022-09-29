@@ -11,14 +11,15 @@ export const StoreSetupStringData = {
 		countryLabel: __('Country/Region', 'nexcess-mapps'),
 		statePlaceholder: __('Your State/Province/District', 'nexcess-mapps'),
 		cityLabel: __('City', 'nexcess-mapps'),
-		postCodeLabel: __('Postcode/Zip', 'nexcess-mapps'),
+		postCodeLabel: __('Postcode/Zip', 'nexcess-mapps')
 	},
 	storeDetails: {
 		title: __('About your store', 'nexcess-mapps'),
+		copy: __('Last step! A few more details about your store.', 'nexcess-mapps')
 	},
 	complete: {
 		title: __('Nice work! Let\'s keep going.', 'nexcess-mapps'),
-		description: __(
+		copy: __(
 			'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et.',
 			'nexcess-mapps'
 		),

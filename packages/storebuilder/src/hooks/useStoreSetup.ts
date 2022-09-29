@@ -6,7 +6,7 @@ import {
 
 export function useStoreSetup() {
 	const {
-		storeState,
+		setupState,
 		setFormValue,
 		submitForm,
 		resetFormValue,
@@ -16,10 +16,12 @@ export function useStoreSetup() {
 		getSelectedRegion,
 		getStates,
 		getSelectedState,
+		getLocales,
+		getLocaleByRegion,
 		getCurrentLocale
 	} = useContext(StoreSetupContext) as StoreSetupProviderContextInterface;
 	return {
-		storeState,
+		setupState,
 		setFormValue,
 		submitForm,
 		resetFormValue,
@@ -29,6 +31,8 @@ export function useStoreSetup() {
 		getSelectedRegion,
 		getStates,
 		getSelectedState,
+		getLocales,
+		getLocaleByRegion,
 		getCurrentLocale
 	};
 }
