@@ -56,13 +56,6 @@ const StoreSetupProvider = ({
 	children: React.ReactNode;
 }) => {
 	const [storeSetupState, setStoreSetupState] = useState<StoreSetupScreenDataInterface>(ftcData);
-	const { setHideExit } = useWizard();
-
-	useEffect(() => {
-		if (! storeSetupState.completed) {
-			setHideExit(true);
-		}
-	}, []);
 
 	const submitForm = () => {
 		function handleError() {
