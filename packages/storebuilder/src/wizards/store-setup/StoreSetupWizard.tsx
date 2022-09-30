@@ -9,7 +9,7 @@ import { beforeUnloadListener } from '@store/utils';
 
 const StoreSetupWizard = () => {
 	const {
-		setupState: { steps, isLoading, lastStep },
+		storeSetupState: { steps, isLoading, lastStep },
 		submitForm
 	} = useStoreSetup();
 

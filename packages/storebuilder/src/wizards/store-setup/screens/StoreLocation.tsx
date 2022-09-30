@@ -33,7 +33,7 @@ const { storeLocation: {
 
 const StoreLocation = () => {
 	const {
-		setupState,
+		storeSetupState,
 		setFormValue,
 		getCurrentLocale,
 		setRegion,
@@ -83,7 +83,7 @@ const StoreLocation = () => {
 								onChange={ handleChange('addressLine1') }
 								placeholder={ addressLine1Placeholder }
 								required
-								value={ setupState?.form?.addressLine1?.value }
+								value={ storeSetupState?.form?.addressLine1?.value }
 							/>
 						}
 						label={ addressLine1Label }
@@ -93,7 +93,7 @@ const StoreLocation = () => {
 							<TextInput
 								fullWidth
 								onChange={ handleChange('addressLine2') }
-								value={ setupState?.form?.addressLine2?.value }
+								value={ storeSetupState?.form?.addressLine2?.value }
 							/>
 						}
 						label={ addressLine2Label }
@@ -130,7 +130,7 @@ const StoreLocation = () => {
 						<FormField
 							field={
 								<Autocomplete
-									disabled={ setupState.isLoading }
+									disabled={ storeSetupState.isLoading }
 									getOptionLabel={ (option) => option.label }
 									isOptionEqualToValue={ (option, value) => option.value === value.value }
 									onInputChange={ (_, newValue) => {
@@ -166,7 +166,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('city') }
 										placeholder={ cityLabel }
 										required
-										value={ setupState?.form?.city?.value }
+										value={ storeSetupState?.form?.city?.value }
 									/>
 								}
 								label={ cityLabel }
@@ -180,7 +180,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('postCode') }
 										placeholder={ postCodeLabel }
 										required
-										value={ setupState?.form?.postCode?.value }
+										value={ storeSetupState?.form?.postCode?.value }
 									/>
 								}
 								label={ postCodeLabel }

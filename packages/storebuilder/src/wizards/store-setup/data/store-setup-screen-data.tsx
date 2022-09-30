@@ -244,8 +244,6 @@ const StoreSetupScreenData = (): StoreSetupScreenDataInterface => {
 		: formItemsData;
 	const steps = getStepsData(! completed);
 
-	console.log('formData:', formData);
-
 	return Object.assign(
 		{},
 		localData,

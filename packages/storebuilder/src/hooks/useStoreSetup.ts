@@ -6,7 +6,7 @@ import {
 
 export function useStoreSetup() {
 	const {
-		setupState,
+		storeSetupState,
 		setFormValue,
 		submitForm,
 		resetFormValue,
@@ -21,7 +21,7 @@ export function useStoreSetup() {
 		getCurrentLocale
 	} = useContext(StoreSetupContext) as StoreSetupProviderContextInterface;
 	return {
-		setupState,
+		storeSetupState,
 		setFormValue,
 		submitForm,
 		resetFormValue,

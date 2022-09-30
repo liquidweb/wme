@@ -26,7 +26,7 @@ export interface WooCommerceRegionResponseInterface {
 }
 
 export interface StoreSetupProviderContextInterface {
-	setupState: StoreSetupScreenDataInterface;
+	storeSetupState: StoreSetupScreenDataInterface;
 	setFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
 	submitForm: (isNextLookAndFeel?: boolean) => void;
 	resetFormValue: (prop: keyof StoreSetupFormItemsInterface) => void;
@@ -55,11 +55,11 @@ const StoreSetupProvider = ({
 }: {
 	children: React.ReactNode;
 }) => {
-	const [setupState, setStoreSetupState] = useState<StoreSetupScreenDataInterface>(ftcData);
+	const [storeSetupState, setStoreSetupState] = useState<StoreSetupScreenDataInterface>(ftcData);
 	const { setHideExit } = useWizard();
 
 	useEffect(() => {
-		if (! setupState.completed) {
+		if (! storeSetupState.completed) {
 			setHideExit(true);
 		}
 	}, []);
@@ -70,10 +70,10 @@ const StoreSetupProvider = ({
 			alert(submitFormContent.errorMessage);
 		}
 
-		const formValues = setupState.form;
+		const formValues = storeSetupState.form;
 		const data = removeNulls({
-			_wpnonce: setupState?.ajax?.nonce ? setupState.ajax.nonce : '',
-			action: setupState?.ajax?.action ? setupState.ajax.action : '',
+			_wpnonce: storeSetupState?.ajax?.nonce ? storeSetupState.ajax.nonce : '',
+			action: storeSetupState?.ajax?.action ? storeSetupState.ajax.action : '',
 			sub_action: 'finish',
 			addressLine1: formValues.addressLine1.touched ? formValues.addressLine1.value : null,
 			addressLine2: formValues.addressLine2.touched ? formValues.addressLine2.value : null,
@@ -98,50 +98,50 @@ const StoreSetupProvider = ({
 		value: string,
 		touched: boolean = true
 	) => {
-		if (setupState.form[ prop ].value === value) {
+		if (storeSetupState.form[ prop ].value === value) {
 			return;
 		}
 
-		const formData = setupState.form;
+		const formData = storeSetupState.form;
 		formData[ prop ].value = value;
 		formData[ prop ].touched = touched;
 		setStoreSetupState({
-			...setupState,
+			...storeSetupState,
 			form: formData
 		});
 	};
 
 	const resetFormValue = (prop: keyof StoreSetupFormItemsInterface) => {
-		const formData = setupState.form;
+		const formData = storeSetupState.form;
 		formData[ prop ].value = '';
 		formData[ prop ].touched = false;
 
 		setStoreSetupState({
-			...setupState,
+			...storeSetupState,
 			form: formData
 		});
 	};
 
 	const setIsLoading = (isLoading: boolean) => {
 		setStoreSetupState({
-			...setupState,
+			...storeSetupState,
 			isLoading
 		});
 	};
 
 	const getRegions = () => {
-		return setupState?.regions;
+		return storeSetupState?.regions;
 	};
 
 	const setRegion = (region: string) => {
-		if (region === setupState.form.region.value) {
+		if (region === storeSetupState.form.region.value) {
 			return;
 		}
 
 		setIsLoading(true);
 		window.wp.apiRequest({ path: `/wc/v3/data/countries/${ region }` })
 			.then((data: WooCommerceRegionResponseInterface) => {
-				const { form, ...rest } = setupState;
+				const { form, ...rest } = storeSetupState;
 				const locale = getLocaleByRegion(region);
 
 				let states: StateInterface[] = [];
@@ -164,7 +164,7 @@ const StoreSetupProvider = ({
 	};
 
 	const getStates = () => {
-		return setupState?.states;
+		return storeSetupState?.states;
 	};
 
 	const getSelectedState = () => {
@@ -174,19 +174,19 @@ const StoreSetupProvider = ({
 			return [] as StateInterface[];
 		}
 
-		if (states && ! setupState.form.state.value) {
+		if (states && ! storeSetupState.form.state.value) {
 			return [states[ 0 ]];
 		}
 
-		return states?.filter((item: StateInterface) => item.value === setupState.form.state.value);
+		return states?.filter((item: StateInterface) => item.value === storeSetupState.form.state.value);
 	};
 
 	const getLocales = () => {
-		return setupState?.locales;
+		return storeSetupState?.locales;
 	};
 
 	const getCurrentLocale = () => {
-		const { locale } = setupState;
+		const { locale } = storeSetupState;
 
 		return locale;
 	};
@@ -205,17 +205,17 @@ const StoreSetupProvider = ({
 			return [] as RegionInterface[];
 		}
 
-		if (regions && ! setupState.form.region.value) {
+		if (regions && ! storeSetupState.form.region.value) {
 			return [regions[ 0 ]];
 		}
 
-		return regions?.filter((item) => item.value === setupState.form.region.value);
+		return regions?.filter((item) => item.value === storeSetupState.form.region.value);
 	};
 
 	return (
 		<StoreSetupContext.Provider
 			value={ {
-				setupState,
+				storeSetupState,
 				setFormValue,
 				submitForm,
 				resetFormValue,
