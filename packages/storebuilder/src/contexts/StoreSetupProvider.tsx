@@ -1,5 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { useWizard } from '@store/hooks';
+import React, { createContext, useState } from 'react';
 import { beforeUnloadListener, removeNulls, handleActionRequest } from '@store/utils';
 import { __ } from '@wordpress/i18n';
 
@@ -13,6 +12,7 @@ import StoreSetupScreenData, {
 
 import { SITEBUILDER_URL } from '@store/constants';
 import { StoreSetupStringData } from '@setup/data/constants';
+import { useWizard } from '@store/hooks';
 
 export interface WooCommerceStateObjectInterface {
 	code: string;
@@ -29,7 +29,7 @@ export interface StoreSetupProviderContextInterface {
 	storeSetupState: StoreSetupScreenDataInterface;
 	setFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
 	submitForm: (isNextLookAndFeel?: boolean) => void;
-	resetFormValue: (prop: keyof StoreSetupFormItemsInterface) => void;
+	resetFormValues: () => void;
 	setIsLoading: (isLoading: boolean) => void;
 	getRegions: () => RegionInterface[];
 	setRegion: (region: string) => void;
@@ -39,23 +39,28 @@ export interface StoreSetupProviderContextInterface {
 	getLocales: () => LocalesInterface;
 	getCurrentLocale: () => string;
 	getLocaleByRegion: (region: string) => string;
+	setCurrency: (currency: string) => void;
+	setProductTypes: (types: string[]) => void;
+	setProductCount: (count: string) => void;
 }
 
-const ftcData = StoreSetupScreenData();
-// @todo: Decide on window object manipulation.
-// const wizardWindowObject = window?.sitebuilder?.wizards?.ftc;
+const locationScreenFormProps = ['addressLine1', 'addressLine2', 'region', 'state', 'city', 'postCode'];
+const storeDetailsScreenFormProps = ['currency', 'productTypes', 'productCount'];
+
+const storeSetupData = StoreSetupScreenData();
 const { submitForm: submitFormContent } = StoreSetupStringData;
 
 export const StoreSetupContext = createContext<
 	StoreSetupProviderContextInterface | StoreSetupScreenDataInterface | null
->(ftcData);
+>(storeSetupData);
 
 const StoreSetupProvider = ({
 	children
 }: {
 	children: React.ReactNode;
 }) => {
-	const [storeSetupState, setStoreSetupState] = useState<StoreSetupScreenDataInterface>(ftcData);
+	const [storeSetupState, setStoreSetupState] = useState<StoreSetupScreenDataInterface>(storeSetupData);
+	const { currentStep } = useWizard();
 
 	const submitForm = () => {
 		function handleError() {
@@ -75,7 +80,7 @@ const StoreSetupProvider = ({
 			city: formValues.city.touched ? formValues.city.value : null,
 			postCode: formValues.postCode.touched ? formValues.postCode.value : null,
 			currency: formValues.currency.touched ? formValues.currency.value : null,
-			productsType: formValues.productsType.touched ? formValues.productsType.value : null,
+			productTypes: formValues.productTypes.touched ? formValues.productTypes.value : null,
 			productCount: formValues.productCount.touched ? formValues.productCount.value : null,
 		});
 
@@ -98,6 +103,7 @@ const StoreSetupProvider = ({
 		const formData = storeSetupState.form;
 		formData[ prop ].value = value;
 		formData[ prop ].touched = touched;
+
 		setStoreSetupState({
 			...storeSetupState,
 			form: formData
@@ -106,13 +112,22 @@ const StoreSetupProvider = ({
 
 	const resetFormValue = (prop: keyof StoreSetupFormItemsInterface) => {
 		const formData = storeSetupState.form;
-		formData[ prop ].value = '';
+		formData[ prop ].value = Array.isArray(formData[ prop ].value) ? [] : '';
 		formData[ prop ].touched = false;
 
 		setStoreSetupState({
 			...storeSetupState,
 			form: formData
 		});
+	};
+
+	const resetFormValues = () => {
+		switch (currentStep) {
+		case 1:
+			return locationScreenFormProps.map((property) => resetFormValue(property as keyof StoreSetupFormItemsInterface));
+		case 2:
+			return storeDetailsScreenFormProps.map((property) => resetFormValue(property as keyof StoreSetupFormItemsInterface));
+		}
 	};
 
 	const setIsLoading = (isLoading: boolean) => {
@@ -205,13 +220,47 @@ const StoreSetupProvider = ({
 		return regions?.filter((item) => item.value === storeSetupState.form.region.value);
 	};
 
+	const setCurrency = (currency: string) => {
+		const formData = storeSetupState.form;
+		formData.currency.value = currency;
+		formData.currency.touched = true;
+
+		setStoreSetupState({
+			...storeSetupState,
+			currency,
+			form: formData
+		});
+	};
+
+	const setProductTypes = (types: string[]) => {
+		const formData = storeSetupState.form;
+		formData.productTypes.value = types;
+		formData.productTypes.touched = true;
+
+		setStoreSetupState({
+			...storeSetupState,
+			productTypes: types
+		});
+	};
+
+	const setProductCount = (count: string) => {
+		const formData = storeSetupState.form;
+		formData.productCount.value = count;
+		formData.productCount.touched = true;
+
+		setStoreSetupState({
+			...storeSetupState,
+			productCount: count
+		});
+	};
+
 	return (
 		<StoreSetupContext.Provider
 			value={ {
 				storeSetupState,
 				setFormValue,
 				submitForm,
-				resetFormValue,
+				resetFormValues,
 				setIsLoading,
 				getRegions,
 				setRegion,
@@ -220,7 +269,10 @@ const StoreSetupProvider = ({
 				getSelectedState,
 				getLocales,
 				getLocaleByRegion,
-				getCurrentLocale
+				getCurrentLocale,
+				setCurrency,
+				setProductTypes,
+				setProductCount
 			} }
 		>
 			{ children }

@@ -339,6 +339,16 @@ theme = deepmerge(theme, {
 		},
 		MuiAutocomplete: {
 			styleOverrides: {
+				root: {
+					'& .MuiInputBase-root': {
+						paddingTop: 0,
+						paddingBottom: 0,
+					},
+					'& .MuiInputBase-input': {
+						paddingTop: '4px',
+						paddingBottom: '4px',
+					},
+				},
 				popper: {
 					zIndex: '99999',
 				}

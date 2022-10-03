@@ -9,7 +9,7 @@ export function useStoreSetup() {
 		storeSetupState,
 		setFormValue,
 		submitForm,
-		resetFormValue,
+		resetFormValues,
 		setIsLoading,
 		getRegions,
 		setRegion,
@@ -18,13 +18,16 @@ export function useStoreSetup() {
 		getSelectedState,
 		getLocales,
 		getLocaleByRegion,
-		getCurrentLocale
+		getCurrentLocale,
+		setCurrency,
+		setProductTypes,
+		setProductCount
 	} = useContext(StoreSetupContext) as StoreSetupProviderContextInterface;
 	return {
 		storeSetupState,
 		setFormValue,
 		submitForm,
-		resetFormValue,
+		resetFormValues,
 		setIsLoading,
 		getRegions,
 		setRegion,
@@ -33,6 +36,9 @@ export function useStoreSetup() {
 		getSelectedState,
 		getLocales,
 		getLocaleByRegion,
-		getCurrentLocale
+		getCurrentLocale,
+		setCurrency,
+		setProductTypes,
+		setProductCount
 	};
 }

@@ -10,6 +10,7 @@ import { beforeUnloadListener } from '@store/utils';
 const StoreSetupWizard = () => {
 	const {
 		storeSetupState: { steps, isLoading, lastStep },
+		resetFormValues,
 		submitForm
 	} = useStoreSetup();
 
@@ -52,6 +53,11 @@ const StoreSetupWizard = () => {
 		submitForm();
 	};
 
+	const handleOnSkip = () => {
+		resetFormValues();
+		goToNextStep();
+	};
+
 	return (
 		<>
 			{ steps[ stepIndex ].screen }
@@ -64,6 +70,7 @@ const StoreSetupWizard = () => {
 				isLastStep={ activeStep === lastStep }
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
+				onSkip={ handleOnSkip }
 				save={ handleOnSave }
 				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }

@@ -9,12 +9,21 @@ export interface CurrencyInterface {
 	[key: string]: string;
 }
 
+export interface WooCurrencyInterface {
+
+}
+
+export interface LabelValueInterface {
+	label: string;
+	value: string;
+}
+
 export interface StateInterface {
 	label: string;
 	value: string;
 }
 
-export interface RegionInterface extends StateInterface {
+export interface RegionInterface extends LabelValueInterface {
 	country: string;
 }
 
@@ -57,9 +66,9 @@ export interface StoreSetupWizardObjectInterface {
 	postCode: string;
 	locale: string;
 	currency: string;
-	productsType: string[];
+	productTypes: string[];
 	productCount: string;
-	currencies: CurrencyInterface[];
+	currencies: LabelValueInterface[];
 	locales: LocalesInterface;
 	regions: RegionInterface[];
 	states: StateInterface[];
@@ -67,10 +76,12 @@ export interface StoreSetupWizardObjectInterface {
 }
 
 export interface StoreSetupFormValueInterface {
-	value: string;
+	value: string | string[];
 	touched: boolean;
 	isValid: boolean;
 }
+
+// export type ProductTypesFormType = O
 
 export interface StoreSetupStepInterface {
 	id: number;
@@ -94,7 +105,7 @@ export interface StoreSetupFormItemsInterface {
 	city: StoreSetupFormValueInterface;
 	postCode: StoreSetupFormValueInterface;
 	currency: StoreSetupFormValueInterface;
-	productsType: StoreSetupFormValueInterface;
+	productTypes: StoreSetupFormValueInterface;
 	productCount: StoreSetupFormValueInterface;
 }
 
@@ -115,14 +126,13 @@ const stepsData: Array<StoreSetupStepInterface> = [
 	{
 		id: 0,
 		label: __('Location', 'nexcess-mapps'),
-		hideSkip: true,
+		hideBack: true,
 		nextText: __('Next', 'nexcess-mapps'),
 		screen: <StoreLocation />
 	},
 	{
 		id: 1,
 		label: __('Your Store', 'nexcess-mapps'),
-		hideSkip: true,
 		nextText: __('Next', 'nexcess-mapps'),
 		screen: <StoreDetails />
 	},
@@ -172,8 +182,8 @@ const formItemsData: StoreSetupFormItemsInterface = {
 		touched: false,
 		isValid: true
 	},
-	productsType: {
-		value: '',
+	productTypes: {
+		value: [],
 		touched: false,
 		isValid: true
 	},
@@ -198,8 +208,8 @@ const localData: StoreSetupScreenDataInterface = {
 	city: '',
 	postCode: '',
 	locale: '',
-	currency: '',
-	productsType: [],
+	currency: 'USD',
+	productTypes: [],
 	productCount: '',
 	currencies: [],
 	locales: {},

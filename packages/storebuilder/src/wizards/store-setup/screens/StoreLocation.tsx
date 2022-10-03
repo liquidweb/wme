@@ -83,7 +83,7 @@ const StoreLocation = () => {
 								onChange={ handleChange('addressLine1') }
 								placeholder={ addressLine1Placeholder }
 								required
-								value={ storeSetupState?.form?.addressLine1?.value }
+								value={ storeSetupState.addressLine1 }
 							/>
 						}
 						label={ addressLine1Label }
@@ -93,7 +93,7 @@ const StoreLocation = () => {
 							<TextInput
 								fullWidth
 								onChange={ handleChange('addressLine2') }
-								value={ storeSetupState?.form?.addressLine2?.value }
+								value={ storeSetupState.addressLine2 }
 							/>
 						}
 						label={ addressLine2Label }
@@ -166,7 +166,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('city') }
 										placeholder={ cityLabel }
 										required
-										value={ storeSetupState?.form?.city?.value }
+										value={ storeSetupState.city }
 									/>
 								}
 								label={ cityLabel }
@@ -180,7 +180,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('postCode') }
 										placeholder={ postCodeLabel }
 										required
-										value={ storeSetupState?.form?.postCode?.value }
+										value={ storeSetupState.postCode }
 									/>
 								}
 								label={ postCodeLabel }
