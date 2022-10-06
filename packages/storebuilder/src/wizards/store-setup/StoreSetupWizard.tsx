@@ -9,7 +9,9 @@ import { beforeUnloadListener } from '@store/utils';
 
 const StoreSetupWizard = () => {
 	const {
-		ftcState: { steps, isLoading, lastStep },
+		storeSetupState: { steps, isLoading, lastStep },
+		isScreenTouched,
+		resetFormValues,
 		submitForm
 	} = useStoreSetup();
 
@@ -45,13 +47,19 @@ const StoreSetupWizard = () => {
 		if (activeStep === lastStep) {
 			return;
 		}
-		// setStepDataTouched(stepIndex);
 		goToNextStep();
 	};
 
 	const handleOnSave = () => {
 		submitForm();
 	};
+
+	const handleOnSkip = () => {
+		resetFormValues();
+		goToNextStep();
+	};
+
+	console.log('isScreenTouched: ', isScreenTouched() );
 
 	return (
 		<>
@@ -65,9 +73,11 @@ const StoreSetupWizard = () => {
 				isLastStep={ activeStep === lastStep }
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
+				onSkip={ handleOnSkip }
 				save={ handleOnSave }
 				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
+				hideSkip={ isScreenTouched() }
 				backText={ __('Back', 'nexcess-mapps') }
 				skipText={ __('Skip', 'nexcess-mapps') }
 				nextText={

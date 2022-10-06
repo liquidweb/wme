@@ -45,7 +45,7 @@ declare module '*.svg' {
 
 declare global {
   interface Window {
-    sitebuilder: any;
+    sitebuilder_store_details: any;
     wp: any;
     wpApiSettings: any;
   }

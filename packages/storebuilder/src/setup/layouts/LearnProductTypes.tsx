@@ -90,7 +90,7 @@ const LearnProductTypes: FC<LearnProductTypesInterface> = (props) => {
 							aspectRatio: '2 / 1',
 							backgroundColor: 'grey.200',
 						} }
-						src={ `${ IMAGE_DIR }/setup-product-types-poster.png` }
+						src={ `${ IMAGE_DIR }setup-product-types-poster.png` }
 						alt={ videoHeadline }
 						loading="lazy"
 					/>

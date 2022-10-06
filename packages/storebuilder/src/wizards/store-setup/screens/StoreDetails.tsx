@@ -1,54 +1,148 @@
 import React from 'react';
-import { WizardSectionTitle, FormField, TextInput, Form } from '@stellarwp/wme-ui';
-import { Stack } from '@mui/material';
+import { Stack, Typography, MenuItem, SelectChangeEvent } from '@mui/material';
+import {
+	CardSelectGroup,
+	CardSelectItem,
+	Form,
+	FormField,
+	SelectInput,
+	WizardSectionTitle
+} from '@stellarwp/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';
-// import { FtcFormItemsInterface } from '@setup/data/store-setup-screen-data';
-import { FtcStringData } from '@setup/data/constants';
+import { pxToRem } from '@store/utils';
+import {
+	StoreSetupStringData,
+	productCountOptions,
+	productTypeOptions
+} from '@setup/data/constants';
 
-const { siteDetails } = FtcStringData;
+const { storeDetails: {
+	title,
+	copy,
+	currencyLabelText,
+	currencyHelperText,
+	productTypesLabelText,
+	productTypesHelperText,
+	productCountLabelText
+} } = StoreSetupStringData;
+
+const cardSelectSx = {
+	'& .WmeCardSelectItem-primary': {
+		fontSize: pxToRem(12),
+	}
+};
 
 const StoreDetails = () => {
-	const { ftcState: { form } } = useStoreSetup();
-	const siteName = form.siteName.value;
-	const tagline = form.tagline.value;
+	const {
+		storeSetupState: { currency, currencies, productCount, productTypes },
+		setCurrency,
+		setProductCount,
+		setProductTypes,
+	} = useStoreSetup();
 
-	// const handleChange = () => {};
+	const handleCurrencyChange = (event: SelectChangeEvent<unknown>) => {
+		const value = event.target.value as string;
+		setCurrency(value);
+	};
+
+	const handleProductTypeChange = (e: React.MouseEvent<HTMLElement>, types: string[]) => {
+		setProductTypes(types);
+	};
+
+	const handleProductCountChange = (e: React.MouseEvent<HTMLElement>, count: string) => {
+		setProductCount(count);
+	};
 
 	return (
 		<ScreenWrapper sx={ { maxWidth: 425 } }>
 			<WizardSectionTitle
-				heading={ siteDetails.title }
+				heading={ title }
 				headingVariant="h2"
+				copy={ copy }
+				sx={ { mb: 2 } }
 			/>
 			<Form>
-				<Stack spacing={ 2 }>
+				<Stack spacing={ 2 } sx={ { '& .WmeFormFieldLabel-root': { mb: 2 } } }>
 					<FormField
 						field={
-							<TextInput
+							<SelectInput
 								fullWidth
-								// onChange={ handleChange('siteName') }
-								placeholder={ siteDetails.siteNameLabelText }
+								onChange={ handleCurrencyChange }
 								required
-								value={ siteName }
-							/>
+								sx={ { mt: 1, mb: '4px' } }
+								defaultValue="USD"
+								value={ currency }
+							>
+								<MenuItem disabled value="">Select</MenuItem>
+								{ currencies && currencies.map((curr) => (
+									<MenuItem key={ curr.value } value={ curr.value }>{ `${ curr.label } (${ curr.value })` }</MenuItem>
+								)) }
+							</SelectInput>
 						}
-						helperText={ siteDetails.siteNameHelperText }
-						label={ siteDetails.siteNameLabelText }
+						helperText={ currencyHelperText }
+						label={ currencyLabelText }
 					/>
 					<FormField
-						field={
-							<TextInput
-								fullWidth
-								// onChange={ handleChange('tagline') }
-								placeholder={ siteDetails.siteTagnamePlaceholderText }
-								required
-								value={ tagline }
-							/>
+						label={
+							<>
+								{ `${ productTypesLabelText } ` }
+								<Typography
+									sx={ { ml: '4px', fontSize: '14px' } }
+									component="span"
+								>{ productTypesHelperText }</Typography>
+							</>
 						}
-						helperText={ siteDetails.siteTaglineHelperText }
-						label={ siteDetails.siteTagnameLabelText }
-					/>
+					>
+						<CardSelectGroup
+							exclusive={ false }
+							cardColumns={ 3 }
+							value={ productTypes }
+							onChange={ handleProductTypeChange }
+						>
+							{
+								productTypeOptions.map((option) => (
+									<CardSelectItem
+										key={ option.value }
+										primary={ option.label }
+										icon={ option.icon }
+										value={ option.value }
+										sx={ cardSelectSx }
+									/>
+								))
+							}
+						</CardSelectGroup>
+					</FormField>
+					<FormField
+						label={ productCountLabelText }
+					>
+						<CardSelectGroup
+							exclusive={ true }
+							cardColumns={ 3 }
+							value={ productCount }
+							onChange={ handleProductCountChange }
+							sx={ {
+								'& .WmeCardSelectItem-icon': {
+									background: 'transparent',
+								},
+								'& .WmeCardSelectItem-icon img': {
+									width: 'auto',
+								}
+							} }
+						>
+							{
+								productCountOptions.map((option) => (
+									<CardSelectItem
+										key={ option.value }
+										primary={ option.label }
+										icon={ option.icon }
+										value={ option.value }
+										sx={ cardSelectSx }
+									/>
+								))
+							}
+						</CardSelectGroup>
+					</FormField>
 				</Stack>
 			</Form>
 		</ScreenWrapper>

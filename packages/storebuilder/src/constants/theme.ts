@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { deepmerge } from '@mui/utils';
-import { pxToRem } from '@store/utils';
+import { pxToRem } from '../utils/pxToRem';
 
 const defaultTheme = createTheme();
 
@@ -327,7 +327,33 @@ theme = deepmerge(theme, {
 					}
 				}
 			}
-		}
+		},
+		MuiPopover: {
+			styleOverrides: {
+				root: {
+					'&.MuiMenu-root': {
+						zIndex: '99999'
+					}
+				}
+			}
+		},
+		MuiAutocomplete: {
+			styleOverrides: {
+				root: {
+					'& .MuiInputBase-root': {
+						paddingTop: 0,
+						paddingBottom: 0,
+					},
+					'& .MuiInputBase-input': {
+						paddingTop: '4px',
+						paddingBottom: '4px',
+					},
+				},
+				popper: {
+					zIndex: '99999',
+				}
+			}
+		},
 	}
 });
 
