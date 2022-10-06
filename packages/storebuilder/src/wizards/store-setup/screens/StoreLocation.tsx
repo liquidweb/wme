@@ -1,4 +1,4 @@
-import React from'react';
+import React, { useState } from 'react';
 import {
 	Autocomplete,
 	Grid,
@@ -49,6 +49,8 @@ const StoreLocation = () => {
 		getSelectedState
 	} = useStoreSetup();
 
+	const [isInitialState, setIsInitialState] = useState<boolean>(true);
+
 	const currentLocale = getCurrentLocale();
 	const regions = getRegions();
 	const selectedRegion = getSelectedRegion();
@@ -69,7 +71,8 @@ const StoreLocation = () => {
 	const handleStateChange = (value: string) => {
 		const state = states?.filter((item) => item.label === value);
 		if (state[ 0 ]?.value) {
-			setStateAndFormValue('state', state[ 0 ].value);
+			setStateAndFormValue('state', state[ 0 ].value, ! isInitialState);
+			setIsInitialState(false);
 		}
 	};
 

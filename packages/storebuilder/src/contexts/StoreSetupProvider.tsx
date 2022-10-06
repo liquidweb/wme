@@ -27,7 +27,7 @@ export interface WooCommerceRegionResponseInterface {
 
 export interface StoreSetupProviderContextInterface {
 	storeSetupState: StoreSetupScreenDataInterface;
-	setStateAndFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
+	setStateAndFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string, touched?: boolean) => void;
 	setFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
 	submitForm: () => void;
 	isScreenTouched: () => boolean;
@@ -94,10 +94,10 @@ const StoreSetupProvider = ({
 		}).catch(() => handleError());
 	};
 
-	const setStateAndFormValue = (prop: keyof StoreSetupFormItemsInterface, value: string) => {
+	const setStateAndFormValue = (prop: keyof StoreSetupFormItemsInterface, value: string, touched?: boolean) => {
 		const formData = storeSetupState.form;
 		formData[ prop ].value = value;
-		formData[ prop ].touched = true;
+		formData[ prop ].touched = typeof touched === 'boolean' ? touched : true;
 
 		setStoreSetupState({
 			...storeSetupState,

@@ -59,7 +59,6 @@ const StoreSetupWizard = () => {
 		goToNextStep();
 	};
 
-	console.log('step: ', activeStep );
 	console.log('isScreenTouched: ', isScreenTouched() );
 
 	return (
@@ -78,7 +77,7 @@ const StoreSetupWizard = () => {
 				save={ handleOnSave }
 				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
-				hideSkip={ ! isScreenTouched() }
+				hideSkip={ isScreenTouched() }
 				backText={ __('Back', 'nexcess-mapps') }
 				skipText={ __('Skip', 'nexcess-mapps') }
 				nextText={
