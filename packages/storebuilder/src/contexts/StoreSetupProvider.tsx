@@ -10,7 +10,7 @@ import StoreSetupScreenData, {
 	LocalesInterface
 } from '@setup/data/store-setup-screen-data';
 
-import { SITEBUILDER_URL } from '@store/constants';
+import { STOREBUILDER_URL } from '@store/constants';
 import { StoreSetupStringData } from '@setup/data/constants';
 import { useWizard } from '@store/hooks';
 
@@ -27,8 +27,10 @@ export interface WooCommerceRegionResponseInterface {
 
 export interface StoreSetupProviderContextInterface {
 	storeSetupState: StoreSetupScreenDataInterface;
+	setStateAndFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
 	setFormValue: (prop: keyof StoreSetupFormItemsInterface, value: string) => void;
-	submitForm: (isNextLookAndFeel?: boolean) => void;
+	submitForm: () => void;
+	isScreenTouched: () => boolean;
 	resetFormValues: () => void;
 	setIsLoading: (isLoading: boolean) => void;
 	getRegions: () => RegionInterface[];
@@ -44,7 +46,7 @@ export interface StoreSetupProviderContextInterface {
 	setProductCount: (count: string) => void;
 }
 
-const locationScreenFormProps = ['addressLine1', 'addressLine2', 'region', 'state', 'city', 'postCode'];
+const locationScreenFormProps = ['addressLineOne', 'addressLineTwo', 'region', 'state', 'city', 'postCode'];
 const storeDetailsScreenFormProps = ['currency', 'productTypes', 'productCount'];
 
 const storeSetupData = StoreSetupScreenData();
@@ -73,8 +75,8 @@ const StoreSetupProvider = ({
 			_wpnonce: storeSetupState?.ajax?.nonce ? storeSetupState.ajax.nonce : '',
 			action: storeSetupState?.ajax?.action ? storeSetupState.ajax.action : '',
 			sub_action: 'finish',
-			addressLine1: formValues.addressLine1.touched ? formValues.addressLine1.value : null,
-			addressLine2: formValues.addressLine2.touched ? formValues.addressLine2.value : null,
+			addressLineOne: formValues.addressLineOne.touched ? formValues.addressLineOne.value : null,
+			addressLineTwo: formValues.addressLineTwo.touched ? formValues.addressLineTwo.value : null,
 			region: formValues.region.touched ? formValues.region.value : null,
 			state: formValues.state.touched ? formValues.state.value : null,
 			city: formValues.city.touched ? formValues.city.value : null,
@@ -84,11 +86,24 @@ const StoreSetupProvider = ({
 			productCount: formValues.productCount.touched ? formValues.productCount.value : null,
 		});
 
-		// @todo: This will likely have to be changed.
+		console.log('submitForm: ', data);
+
 		handleActionRequest(data).then(() => {
 			removeEventListener('beforeunload', beforeUnloadListener);
-			window.location.assign(`${ SITEBUILDER_URL }`);
+			window.location.assign(`${ STOREBUILDER_URL }`);
 		}).catch(() => handleError());
+	};
+
+	const setStateAndFormValue = (prop: keyof StoreSetupFormItemsInterface, value: string) => {
+		const formData = storeSetupState.form;
+		formData[ prop ].value = value;
+		formData[ prop ].touched = true;
+
+		setStoreSetupState({
+			...storeSetupState,
+			[ prop ]: value,
+			form: formData
+		});
 	};
 
 	const setFormValue = (
@@ -119,6 +134,24 @@ const StoreSetupProvider = ({
 			...storeSetupState,
 			form: formData
 		});
+	};
+
+	const isScreenTouched = (): boolean => {
+		const { form } = storeSetupState;
+		let fields: string[] = [];
+
+		switch (currentStep) {
+		case 1:
+			fields = locationScreenFormProps;
+			break;
+		case 2:
+			fields = storeDetailsScreenFormProps;
+			break;
+		}
+
+		const matches = fields.filter((property) => form[ property as keyof StoreSetupFormItemsInterface ].touched);
+
+		return matches.length > 0;
 	};
 
 	const resetFormValues = () => {
@@ -163,8 +196,9 @@ const StoreSetupProvider = ({
 
 				setStoreSetupState({
 					...rest,
-					form: Object.assign({}, form, { region: { value: region, isTouched: true }, state: { value: '' } }),
+					form: Object.assign({}, form, { region: { value: region, touched: true }, state: { value: '' } }),
 					isLoading: false,
+					region,
 					states,
 					locale,
 				});
@@ -258,8 +292,10 @@ const StoreSetupProvider = ({
 		<StoreSetupContext.Provider
 			value={ {
 				storeSetupState,
+				setStateAndFormValue,
 				setFormValue,
 				submitForm,
+				isScreenTouched,
 				resetFormValues,
 				setIsLoading,
 				getRegions,

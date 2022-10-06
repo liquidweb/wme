@@ -58,8 +58,8 @@ export interface LocalesInterface {
 export interface StoreSetupWizardObjectInterface {
 	id: string;
 	completed: boolean;
-	addressLine1: string;
-	addressLine2: string;
+	addressLineOne: string;
+	addressLineTwo: string;
 	region: string;
 	state: string;
 	city: string;
@@ -81,8 +81,6 @@ export interface StoreSetupFormValueInterface {
 	isValid: boolean;
 }
 
-// export type ProductTypesFormType = O
-
 export interface StoreSetupStepInterface {
 	id: number;
 	hideBack?: boolean;
@@ -98,8 +96,8 @@ export interface StoreSetupStepInterface {
 }
 
 export interface StoreSetupFormItemsInterface {
-	addressLine1: StoreSetupFormValueInterface;
-	addressLine2: StoreSetupFormValueInterface;
+	addressLineOne: StoreSetupFormValueInterface;
+	addressLineTwo: StoreSetupFormValueInterface;
 	region: StoreSetupFormValueInterface;
 	state: StoreSetupFormValueInterface;
 	city: StoreSetupFormValueInterface;
@@ -109,17 +107,11 @@ export interface StoreSetupFormItemsInterface {
 	productCount: StoreSetupFormValueInterface;
 }
 
-export type StoreSetupFormKeysType = keyof StoreSetupFormItemsInterface;
-
 export interface StoreSetupScreenDataInterface extends StoreSetupWizardObjectInterface {
 	isLoading: boolean;
 	lastStep: number;
 	steps: Array<StoreSetupStepInterface>;
 	form: StoreSetupFormItemsInterface;
-}
-
-export interface StoreSetupServerDataInterface {
-
 }
 
 const stepsData: Array<StoreSetupStepInterface> = [
@@ -147,12 +139,12 @@ const stepsData: Array<StoreSetupStepInterface> = [
 ];
 
 const formItemsData: StoreSetupFormItemsInterface = {
-	addressLine1: {
+	addressLineOne: {
 		value: '',
 		touched: false,
 		isValid: true
 	},
-	addressLine2: {
+	addressLineTwo: {
 		value: '',
 		touched: false,
 		isValid: true
@@ -201,8 +193,8 @@ const localData: StoreSetupScreenDataInterface = {
 	form: formItemsData,
 	id: '',
 	completed: false,
-	addressLine1: '',
-	addressLine2: '',
+	addressLineOne: '',
+	addressLineTwo: '',
 	region: '',
 	state: '',
 	city: '',
@@ -247,7 +239,7 @@ const getStepsData = (disable: boolean) => {
 };
 
 const StoreSetupScreenData = (): StoreSetupScreenDataInterface => {
-	const serverData = window?.sitebuilder?.wizards.store_setup;
+	const serverData = window?.sitebuilder_store_details?.wizards.store_setup;
 	const { completed } = serverData;
 	const formData = serverData
 		? setInitialFormValues(serverData)

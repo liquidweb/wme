@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { deepmerge } from '@mui/utils';
-import { pxToRem } from '@store/utils';
+import { pxToRem } from '../utils/pxToRem';
 
 const defaultTheme = createTheme();
 

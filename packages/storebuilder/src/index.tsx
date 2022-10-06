@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import StoreBuilder from './StoreBuilder';
 
-const container = document.getElementById('sitebuilder-react');
+const container = document.getElementById('sitebuilder-store-details-react');
 const root = ReactDOM.createRoot(container!);
 
 root.render(

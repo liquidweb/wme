@@ -7,8 +7,10 @@ import {
 export function useStoreSetup() {
 	const {
 		storeSetupState,
+		setStateAndFormValue,
 		setFormValue,
 		submitForm,
+		isScreenTouched,
 		resetFormValues,
 		setIsLoading,
 		getRegions,
@@ -25,8 +27,10 @@ export function useStoreSetup() {
 	} = useContext(StoreSetupContext) as StoreSetupProviderContextInterface;
 	return {
 		storeSetupState,
+		setStateAndFormValue,
 		setFormValue,
 		submitForm,
+		isScreenTouched,
 		resetFormValues,
 		setIsLoading,
 		getRegions,

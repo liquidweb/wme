@@ -21,9 +21,9 @@ import { StoreSetupFormItemsInterface } from '@setup/data/store-setup-screen-dat
 const { storeLocation: {
 	title,
 	copy,
-	addressLine1Placeholder,
-	addressLine1Label,
-	addressLine2Label,
+	addressLineOnePlaceholder,
+	addressLineOneLabel,
+	addressLineTwoLabel,
 	countryPlaceholder,
 	countryLabel,
 	statePlaceholder,
@@ -33,8 +33,14 @@ const { storeLocation: {
 
 const StoreLocation = () => {
 	const {
-		storeSetupState,
-		setFormValue,
+		storeSetupState: {
+			addressLineOne,
+			addressLineTwo,
+			city,
+			postCode,
+			isLoading
+		},
+		setStateAndFormValue,
 		getCurrentLocale,
 		setRegion,
 		getRegions,
@@ -50,7 +56,7 @@ const StoreLocation = () => {
 	const selectedState = getSelectedState();
 
 	const handleChange = (prop: keyof StoreSetupFormItemsInterface) => (event: React.ChangeEvent<HTMLInputElement>) => {
-		setFormValue(prop, event.target.value);
+		setStateAndFormValue(prop, event.target.value);
 	};
 
 	const handleRegionChange = (value: string) => {
@@ -63,7 +69,7 @@ const StoreLocation = () => {
 	const handleStateChange = (value: string) => {
 		const state = states?.filter((item) => item.label === value);
 		if (state[ 0 ]?.value) {
-			setFormValue('state', state[ 0 ].value);
+			setStateAndFormValue('state', state[ 0 ].value);
 		}
 	};
 
@@ -73,6 +79,7 @@ const StoreLocation = () => {
 				heading={ title }
 				headingVariant="h2"
 				copy={ copy }
+				sx={ { mb: 4 } }
 			/>
 			<Form>
 				<Stack spacing={ 2 }>
@@ -80,23 +87,23 @@ const StoreLocation = () => {
 						field={
 							<TextInput
 								fullWidth
-								onChange={ handleChange('addressLine1') }
-								placeholder={ addressLine1Placeholder }
+								onChange={ handleChange('addressLineOne') }
+								placeholder={ addressLineOnePlaceholder }
 								required
-								value={ storeSetupState.addressLine1 }
+								value={ addressLineOne }
 							/>
 						}
-						label={ addressLine1Label }
+						label={ addressLineOneLabel }
 					/>
 					<FormField
 						field={
 							<TextInput
 								fullWidth
-								onChange={ handleChange('addressLine2') }
-								value={ storeSetupState.addressLine2 }
+								onChange={ handleChange('addressLineTwo') }
+								value={ addressLineTwo }
 							/>
 						}
-						label={ addressLine2Label }
+						label={ addressLineTwoLabel }
 					/>
 					<FormField
 						field={ regions?.length > 0 && (
@@ -130,7 +137,7 @@ const StoreLocation = () => {
 						<FormField
 							field={
 								<Autocomplete
-									disabled={ storeSetupState.isLoading }
+									disabled={ isLoading }
 									getOptionLabel={ (option) => option.label }
 									isOptionEqualToValue={ (option, value) => option.value === value.value }
 									onInputChange={ (_, newValue) => {
@@ -166,7 +173,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('city') }
 										placeholder={ cityLabel }
 										required
-										value={ storeSetupState.city }
+										value={ city }
 									/>
 								}
 								label={ cityLabel }
@@ -180,7 +187,7 @@ const StoreLocation = () => {
 										onChange={ handleChange('postCode') }
 										placeholder={ postCodeLabel }
 										required
-										value={ storeSetupState.postCode }
+										value={ postCode }
 									/>
 								}
 								label={ postCodeLabel }

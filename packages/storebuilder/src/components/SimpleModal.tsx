@@ -7,7 +7,7 @@ import {
 } from '@stellarwp/wme-ui';
 import { __ } from '@wordpress/i18n';
 import WizardContent from '@store/wizards/WizardContent';
-import { SiteBuilderLogo } from '@store/logos';
+import { StoreBuilderLogo } from '@store/logos';
 
 interface SimpleModalInterface {
 	open: boolean;
@@ -31,7 +31,7 @@ const SimpleModal: FC<SimpleModalInterface> = (props) => {
 				<>
 					<Logo
 						width="100"
-						logoSrc={ <SiteBuilderLogo /> }
+						logoSrc={ <StoreBuilderLogo /> }
 					/>
 					<ExitButton onClick={ onClose }>
 						<span>{ __('Exit to Setup', 'nexcess-mapps') }</span>
