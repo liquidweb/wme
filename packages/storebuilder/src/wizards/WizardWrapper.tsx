@@ -19,7 +19,7 @@ import { useWizard } from '@store/hooks/useWizard';
 
 // Lazy Wizards.
 const StoreSetup = Loadable(lazy(() => import('@setup/StoreSetup')));
-// const Shipping = Loadable(lazy(() => import('@shipping/Shipping')));
+const Shipping = Loadable(lazy(() => import('@shipping/Shipping')));
 
 const WizardWrapper = () => {
 	const { wizardState: { hasStepped }, setShowCloseWarning } = useWizard();
@@ -49,7 +49,7 @@ const WizardWrapper = () => {
 					<Route path="/store-setup" element={ <StoreSetup /> } />
 					<Route path="/connect-stripe" element={ <div>STRIPE WIZARD</div> } />
 					<Route path="/connect-paypal" element={ <div>PAYPAL WIZARD</div> } />
-					<Route path="/shipping" element={ <div>SHIPPING WIZARD</div> } />
+					<Route path="/shipping" element={ <Shipping /> } />
 					<Route path="*" element={ <Navigate to="/" /> } />
 				</Routes>
 			</WizardContent>
