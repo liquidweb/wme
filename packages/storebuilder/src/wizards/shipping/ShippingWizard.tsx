@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useWizard, useShipping } from '@store/hooks';
 import { beforeUnloadListener } from '@store/utils';
+import { STOREBUILDER_URL } from '@store/constants';
 
 const ShippingWizard = () => {
 	const {
@@ -38,8 +39,9 @@ const ShippingWizard = () => {
 	};
 
 	const handleOnSave = () => {
+		removeEventListener('beforeunload', beforeUnloadListener);
 		setProvidersActivated(false);
-		navigate('/');
+		window.location.assign(`${ STOREBUILDER_URL }`);
 	};
 
 	return (

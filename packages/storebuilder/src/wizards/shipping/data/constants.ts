@@ -37,4 +37,6 @@ export const ShippingStringData = {
 		descriptionPart3: __('Still having trouble? We’re here to help: ', 'nexcess-mapps'),
 		descriptionPart4: __('Contact Support', 'nexcess-mapps')
 	},
+	buttonFinish: __('Finish', 'nexcess-mapps'),
+	buttonNext: __('Next', 'nexcess-mapps'),
 };

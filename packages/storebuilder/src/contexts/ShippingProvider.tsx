@@ -1,7 +1,9 @@
 import React, { createContext, useState } from 'react';
+import { __ } from '@wordpress/i18n';
 import ShippingScreenData, {
 	ShippingScreenDataInterface
 } from '@shipping/data/shipping-screen-data';
+import { ShippingStringData } from '@shipping/data/constants';
 import { Confirmation, Error } from '@shipping/screens';
 import { handleActionRequest, removeNulls } from '@store/utils';
 
@@ -13,6 +15,7 @@ export interface ShippingProviderContextInterface {
 	submitProvidersAndActivate: () => void;
 }
 
+const { buttonNext, buttonFinish } = ShippingStringData;
 const shippingData = ShippingScreenData();
 
 export const ShippingContext = createContext<
@@ -57,8 +60,24 @@ const ShippingProvider = ({
 		});
 	};
 
+	const handleSuccess = () => {
+		const { steps } = shippingState;
+		steps[ 0 ].completed = true;
+		steps[ 0 ].disableNext = false;
+		steps[ 0 ].nextText = buttonFinish;
+		steps[ 0 ].screen = <Confirmation />;
+
+		setShippingState({
+			...shippingState,
+			steps,
+			error: false,
+			isLoading: false,
+			providersActivated: true,
+		});
+	};
+
 	const submitProvidersAndActivate = () => {
-		const { steps, shippingProviders } = shippingState;
+		const { shippingProviders } = shippingState;
 
 		setShippingState({
 			...shippingState,
@@ -72,19 +91,9 @@ const ShippingProvider = ({
 			shippingProviders
 		});
 
-		handleActionRequest(data).then(() => {
-			steps[ 0 ].completed = true;
-			steps[ 0 ].disableNext = false;
-			steps[ 0 ].screen = <Confirmation />;
-
-			setShippingState({
-				...shippingState,
-				steps,
-				error: false,
-				isLoading: false,
-				providersActivated: true,
-			});
-		}).catch(() => handleError());
+		handleActionRequest(data)
+			.then(() => handleSuccess())
+			.catch(() => handleError());
 	};
 
 	const setIsLoading = (isLoading: boolean) => {
