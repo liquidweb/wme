@@ -4,14 +4,13 @@ import ShippingScreenData, {
 } from '@shipping/data/shipping-screen-data';
 import { Confirmation, Error } from '@shipping/screens';
 import { handleActionRequest, removeNulls } from '@store/utils';
-import { SHIPPING_PROPS } from '@store/constants';
 
 export interface ShippingProviderContextInterface {
 	shippingState: ShippingScreenDataInterface;
 	setIsLoading: (isLoading: boolean) => void;
 	setShippingProviders: (providers: string[]) => void;
 	setProvidersActivated: (providersActivated: boolean) => void;
-	activatePlugins: () => void;
+	submitProvidersAndActivate: () => void;
 }
 
 const shippingData = ShippingScreenData();
@@ -26,20 +25,6 @@ const ShippingProvider = ({
 	children: React.ReactNode;
 }) => {
 	const [shippingState, setShippingState] = useState<ShippingScreenDataInterface>(shippingData);
-
-	// useEffect(() => {
-	// 	if (! shippingState.error) {
-	// 		const { steps } = shippingState;
-	// 		steps[ 0 ].screen = <AddShippingMethod />;
-
-	// 		setShippingState({
-	// 			...shippingState,
-	// 			error: true,
-	// 			isLoading: false,
-	// 			steps
-	// 		});
-	// 	}
-	// }, [shippingState.error]);
 
 	const setShippingProviders = (providers: string[]) => {
 		const { steps } = shippingState;
@@ -72,7 +57,7 @@ const ShippingProvider = ({
 		});
 	};
 
-	const activatePlugins = () => {
+	const submitProvidersAndActivate = () => {
 		const { steps, shippingProviders } = shippingState;
 
 		setShippingState({
@@ -116,7 +101,7 @@ const ShippingProvider = ({
 				setIsLoading,
 				setShippingProviders,
 				setProvidersActivated,
-				activatePlugins
+				submitProvidersAndActivate
 			} }
 		>
 			{ children }
