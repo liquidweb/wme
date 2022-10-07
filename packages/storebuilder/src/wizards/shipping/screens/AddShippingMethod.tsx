@@ -1,26 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Box, Typography } from '@mui/material';
 import { CardSelectGroup, CardSelectItem, Chip } from '@stellarwp/wme-ui';
 import { pxToRem } from '@store/utils';
-import { IMAGE_DIR, SHIPPING_PROPS, USPS_PLUGIN_SLUG } from '@store/constants';
+import { IMAGE_DIR, USPS_PLUGIN_SLUG } from '@store/constants';
 import { useShipping } from '@store/hooks';
 
 import { ShippingStringData } from '@shipping/data/constants';
 
 const cardSx = {
-	'& .WmeCardSelectItem-root': {
-		paddingLeft: 2,
-		paddingRight: 2,
-	},
 	'& .WmeCardSelectItem-footer': {
-		marginLeft: -0.5,
-		marginRight: -0.5,
+		marginLeft: -2,
+		marginRight: -2,
 	}
 };
 
 const AddShippingMethod = () => {
-
 	const { addShippingMethod: {
 		title,
 		card1,
@@ -28,12 +23,11 @@ const AddShippingMethod = () => {
 	} } = ShippingStringData;
 
 	const { shippingState: {
-			activatedProviders,
 			shippingProviders
 		}, 
 		setShippingProviders 
 	} = useShipping();
-	// const { nonce, action } = SHIPPING_PROPS?.ajaxTelemetry?.started || '';
+	
 	const pluginSlug = USPS_PLUGIN_SLUG;
 
 	const handleShippingSelection = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: any) => {
@@ -41,10 +35,6 @@ const AddShippingMethod = () => {
 			setShippingProviders(value);
 		}
 	};
-
-	// useEffect(() => {
-	// 	handleTelemetryRequest(nonce, action, pluginSlug);
-	// }, []);
 
 	return (
 		<Box sx={ { maxWidth: 544 } }>{
@@ -59,7 +49,7 @@ const AddShippingMethod = () => {
 					{ title }
 				</Typography>
 				<CardSelectGroup
-					// sx={ cardSx }
+					sx={ cardSx }
 					cardColumns={ 2 }
 					cardSpacing={ 1 }
 					cardPadding="md"
@@ -78,8 +68,12 @@ const AddShippingMethod = () => {
 								label={ __('Active', 'nexcess-mapps') }
 							/>
 						}
-						primary={ card1.title }
-						secondary={ card1.content }
+						primary={
+							<Typography variant="body2" mb={ 1 } fontWeight="600">{ card1.title }</Typography>
+						}
+						secondary={
+							<Typography variant="body2" fontSize="12px">{ card1.content }</Typography>
+						}
 						footer={ card1.footer }
 						sx={ {
 							'&.Mui-disabled.Mui-selected .WmeCardSelectItem-icon': {
@@ -89,17 +83,14 @@ const AddShippingMethod = () => {
 					/>
 					<CardSelectItem
 						icon={ `${ IMAGE_DIR }${ card2.img.src }` }
-						value="elex-usps-shipping-method"
-						primary={ card2.title }
-						secondary={ card2.content }
+						value={ pluginSlug }
+						primary={
+							<Typography variant="body2" mb={ 1 } fontWeight="600">{ card2.title }</Typography>
+						}
+						secondary={
+							<Typography variant="body2" fontSize="12px">{ card2.content }</Typography>
+						}
 						footer={ card2.footer }
-						completedIcon={ activatedProviders.includes('elex-usps-shipping-method') && (
-							<Chip
-								size="small"
-								color="success"
-								label={ __('Active', 'nexcess-mapps') }
-							/>
-						) }
 						sx={ {
 							'.WmeCardSelectItem-icon img': {
 								width: '38px',

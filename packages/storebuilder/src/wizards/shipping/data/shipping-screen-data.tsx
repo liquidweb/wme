@@ -51,10 +51,6 @@ const localData: ShippingScreenDataInterface = {
 	}
 };
 
-// const getActivatedProviders = (providers: ShippingProviderType[]) => {
-// 	return providers.filter((provider) => provider.active === true).map((provider) => provider.provider);
-// };
-
 const ShippingScreenData = (): ShippingScreenDataInterface => {
 	const serverData: ShippingWizardObjectInterface = window?.sitebuilder_store_details?.wizards.shipping;
 
