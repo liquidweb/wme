@@ -14,10 +14,10 @@ const Error = () => {
 		descriptionPart4
 	} } = ShippingStringData;
 
-	const { activeShippingProviderPlugins } = useShipping();
+	const { activateShippingProviderPlugins } = useShipping();
 
 	const handleClick = () => {
-		activeShippingProviderPlugins();
+		activateShippingProviderPlugins();
 	};
 
 	return (

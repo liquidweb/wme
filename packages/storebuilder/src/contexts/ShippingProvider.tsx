@@ -12,7 +12,7 @@ export interface ShippingProviderContextInterface {
 	setIsLoading: (isLoading: boolean) => void;
 	setShippingProviders: (providers: string[]) => void;
 	setProvidersActivated: (providersActivated: boolean) => void;
-	activeShippingProviderPlugins: () => void;
+	activateShippingProviderPlugins: () => void;
 }
 
 const { buttonFinish } = ShippingStringData;
@@ -76,7 +76,7 @@ const ShippingProvider = ({
 		});
 	};
 
-	const activeShippingProviderPlugins = () => {
+	const activateShippingProviderPlugins = () => {
 		const { shippingProviders } = shippingState;
 
 		setShippingState({
@@ -110,7 +110,7 @@ const ShippingProvider = ({
 				setIsLoading,
 				setShippingProviders,
 				setProvidersActivated,
-				activeShippingProviderPlugins
+				activateShippingProviderPlugins
 			} }
 		>
 			{ children }
