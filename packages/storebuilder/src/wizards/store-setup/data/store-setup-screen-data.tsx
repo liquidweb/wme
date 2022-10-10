@@ -9,10 +9,6 @@ export interface CurrencyInterface {
 	[key: string]: string;
 }
 
-export interface WooCurrencyInterface {
-
-}
-
 export interface LabelValueInterface {
 	label: string;
 	value: string;
@@ -72,7 +68,7 @@ export interface StoreSetupWizardObjectInterface {
 	locales: LocalesInterface;
 	regions: RegionInterface[];
 	states: StateInterface[];
-	ajax: SiteBuilderAjaxObject;
+	ajax: StoreBuilderAjaxObject;
 }
 
 export interface StoreSetupFormValueInterface {
