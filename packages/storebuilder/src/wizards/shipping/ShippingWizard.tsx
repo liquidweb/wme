@@ -15,7 +15,7 @@ const ShippingWizard = () => {
 			providersActivated,
 		},
 		setProvidersActivated,
-		submitProvidersAndActivate
+		activeShippingProviderPlugins
 	} = useShipping();
 
 	const { goToStep } = useWizard();
@@ -35,7 +35,7 @@ const ShippingWizard = () => {
 	}, []);
 
 	const handleOnNext = () => {
-		submitProvidersAndActivate();
+		activeShippingProviderPlugins();
 	};
 
 	const handleOnSave = () => {

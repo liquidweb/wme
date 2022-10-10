@@ -10,13 +10,13 @@ export function useShipping() {
 		setIsLoading,
 		setShippingProviders,
 		setProvidersActivated,
-		submitProvidersAndActivate
+		activeShippingProviderPlugins
 	} = useContext(ShippingContext) as ShippingProviderContextInterface;
 	return {
 		shippingState,
 		setIsLoading,
 		setShippingProviders,
 		setProvidersActivated,
-		submitProvidersAndActivate
+		activeShippingProviderPlugins
 	};
 }
