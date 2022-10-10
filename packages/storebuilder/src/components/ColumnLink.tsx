@@ -4,9 +4,26 @@ import {
 	VideoEmbed
 } from '@stellarwp/wme-ui';
 import { DialogContentText } from '@mui/material';
-import * as Icons from '@mui/icons-material';
 import { getVideoSource } from '@store/utils';
 import { SimpleModal } from '@store/components';
+import SvgIcon from '@mui/material/SvgIcon';
+import Add from '@mui/icons-material/Add';
+import LocalLibrary from '@mui/icons-material/LocalLibrary';
+import Upload from '@mui/icons-material/Upload';
+import School from '@mui/icons-material/School';
+import Downloading from '@mui/icons-material/Downloading';
+
+type SvgIconComponent = typeof SvgIcon;
+
+const icons: {
+	[key: string]: SvgIconComponent
+} = {
+	Add,
+	Downloading,
+	LocalLibrary,
+	School,
+	Upload
+};
 
 export interface ColumnLinkInterface {
 	title: string;
@@ -29,8 +46,7 @@ const ColumnLink: FC<ColumnLinkInterface> = (props) => {
 
 	const isWp101 = url.split(':')[ 0 ] === 'wp101';
 	const videoSrc = isWp101 && getVideoSource(url);
-
-	const IconComponent = icon && Icons[ icon as keyof typeof Icons ] ? Icons[ icon as keyof typeof Icons ] : null;
+	const IconComponent = icon && typeof icons[ icon as string ] !== 'undefined' ? icons[ icon ] : Add;
 
 	const handleOnClick = () => {
 		setModalOpen(true);
@@ -41,7 +57,7 @@ const ColumnLink: FC<ColumnLinkInterface> = (props) => {
 			<SetupCardListItem
 				title={ title }
 				href={ url && ! isWp101 ? url : undefined }
-				icon={ IconComponent ? <IconComponent /> : null }
+				icon={ <IconComponent /> }
 				linkProps={ {
 					target: target ? target : '_self',
 					onClick: () => isWp101 ? handleOnClick() : null
