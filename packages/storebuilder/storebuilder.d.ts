@@ -52,7 +52,7 @@ declare global {
 		PayPal?: any;
   }
 
-  interface SiteBuilderAjaxObject {
+  interface StoreBuilderAjaxObject {
     action: string;
     nonce: string;
     url: string;
@@ -126,6 +126,7 @@ declare global {
 		disableNext?: boolean;
 		disableAll?: boolean;
 		disable?: boolean;
+		completed?: boolean;
 		hidePagination?: boolean;
 	}
 }
