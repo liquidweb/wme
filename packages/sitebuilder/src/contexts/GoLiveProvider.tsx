@@ -1,12 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
-// import { CHANGE_DOMAIN_ACTION, CHANGE_DOMAIN_NONCE, VERIFY_DOMAIN_ACTION, VERIFY_DOMAIN_NONCE, VERIFY_DOMAIN_URL } from '@sb/constants';
-import { removeNulls } from '@sb/utils';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { handleActionRequest, removeNulls } from '@sb/utils';
 import GoLiveData, { GoLiveInterface } from '@sb/wizards/go-live/data/go-live-data';
 import { GoLiveStringData } from '@go-live/data/constants';
-
-// TODO: Change out these temp values
-const CHANGE_DOMAIN_NONCE = '';
-const VERIFY_DOMAIN_NONCE = '';
+import { GO_LIVE_PROPS, SITEBUILDER } from '@sb/constants';
+import { useSiteBuilder } from '@sb/hooks';
 
 export interface GoLiveProviderContextInterface {
 	goLiveState: GoLiveInterface;
@@ -18,40 +16,116 @@ export interface GoLiveProviderContextInterface {
 	getHasDomainNextText: (hasDomain: string) => void;
 	setHasDomain: (hasDomain: string) => void;
 	setShowGetDomain: (show: boolean) => void;
-	retryVerificationStep: () => void;
 }
 
-const goLiveData = GoLiveData();
+export interface DomainVerficationSuccessInterface {
+	domain: string;
+	is_registered: boolean;
+	is_pointed: boolean;
+	uses_local_nameservers: boolean;
+	can_setup: boolean;
+	nameservers: string[];
+}
+
+export interface DomainVerificationErrorInterface {
+	code: string;
+	message: string;
+}
+
+type DomainVerificationResponseType = DomainVerficationSuccessInterface | DomainVerificationErrorInterface;
+
+const { goLiveProviderText: {
+	getDomain,
+	haveDomain,
+	continueStr,
+	errorMessage,
+	errorMessageVerification,
+	errorNotPointed,
+	errorNotRegistered,
+	errorGeneral
+} } = GoLiveStringData;
+
+type DomainVerificationResponseTypes = {
+	[key in DomainVerificationTypes]: DomainVerificationInterface;
+}
+
+const verificationResponse: DomainVerificationResponseTypes = {
+	success: {
+		type: 'success',
+		message: ''
+	},
+	general: {
+		type: 'general',
+		message: errorGeneral
+	},
+	registration: {
+		type: 'registration',
+		message: errorNotRegistered
+	},
+	pointed: {
+		type: 'pointed',
+		message: errorNotPointed
+	}
+} as const;
 
 export const GoLiveContext = createContext<GoLiveProviderContextInterface | null>(null);
 
 const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
-	const [goLiveState, setGoLiveState] = useState<GoLiveInterface>(goLiveData);
-	const { goLiveProviderText: {
-		getDomain,
-		haveDomain,
-		continueStr,
-		errorMessage,
-		errorMessageVerification,
-		errorNotPointed,
-		errorNotRegistered,
-		errorGeneral
-	} } = GoLiveStringData;
+	const [goLiveState, setGoLiveState] = useState<GoLiveInterface>(GoLiveData());
+
+	const goLiveNonce = GO_LIVE_PROPS.ajax?.nonce || '';
+	const goLiveAction = GO_LIVE_PROPS.ajax?.action || '';
+
+	const { siteBuilderState: { capturedDomain } } = useSiteBuilder();
+
+	const navigate = useNavigate();
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	const activeStep = searchParams.get('step')
+		? Number(searchParams.get('step'))
+		: 1;
+
+	const retryVerfication = searchParams.get('retry');
 
 	useEffect(() => {
-		if (goLiveState.activeStep === 0 && goLiveState.hasDomain !== null) {
-			const { steps, activeStep, hasDomain, showGetDomain } = goLiveState;
+		if (retryVerfication === 'true') {
+			submitDomainVerification();
+		}
+	}, [retryVerfication]);
 
-			steps[ activeStep ].nextText = continueStr;
-			steps[ activeStep ].hideBack = true;
+	useEffect(() => {
+		if (activeStep === 3) {
+			if (! capturedDomain) {
+				navigate('/wizard/go-live');
+			}
+
+			if (
+				goLiveState.verificationStatus && ! (
+					goLiveState.verificationStatus === 'connected' ||
+					goLiveState.verificationStatus === 'advanced'
+				)
+			) {
+				navigate('/wizard/go-live');
+			}
+
+			if (goLiveState.verificationStatus === 'error') {
+				navigate('/wizard/go-live?step=2');
+			}
+		}
+
+		if (activeStep === 1 && goLiveState.hasDomain !== null) {
+			const { steps, hasDomain, showGetDomain } = goLiveState;
+
+			steps[ 0 ].nextText = continueStr;
+			steps[ 0 ].hideBack = true;
 
 			if (hasDomain === 'no') {
-				steps[ activeStep ].nextText = showGetDomain ? haveDomain : getDomain;
+				steps[ 0 ].nextText = showGetDomain ? haveDomain : getDomain;
 			}
 
 			if (hasDomain === 'no' && showGetDomain) {
-				steps[ activeStep ].disableNext = true;
-				steps[ activeStep ].hideBack = false;
+				steps[ 0 ].disableNext = true;
+				steps[ 0 ].hideBack = false;
 			}
 
 			setGoLiveState({
@@ -59,39 +133,52 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 				steps
 			});
 		}
-	}, [goLiveState.activeStep, goLiveState.showGetDomain]);
+	}, [activeStep, goLiveState.showGetDomain]);
 
 	const submitGoLiveForm = () => {
-		const { steps, activeStep } = goLiveState;
+		const { steps, showLogoutButton } = goLiveState;
 		const handleError = () => {
 			// eslint-disable-next-line no-alert
 			alert(errorMessage);
 		};
 
-		steps[ activeStep ].hideBack = true;
+		if (showLogoutButton) {
+			window.location.assign(SITEBUILDER.logout_url);
+			return;
+		}
+
+		const previousText = steps[ 2 ].nextText;
+
+		steps[ 2 ].hideBack = true;
+		steps[ 2 ].nextText = 'Log Out';
 
 		setGoLiveState({
 			...goLiveState,
 			steps,
 			isLoading: true,
+			showLogoutButton: true,
 			verificationStatus: 'connecting',
 		});
 
 		const data = removeNulls({
-			domain: goLiveState.capturedDomain ? goLiveState.capturedDomain : null,
-			_mapps_nonce: CHANGE_DOMAIN_NONCE,
+			_wpnonce: goLiveNonce,
+			action: goLiveAction,
+			sub_action: 'finish',
+			domain: capturedDomain ? capturedDomain : null,
 		});
 
-		// TODO: update once backend is set up
+		handleActionRequest(data).catch(() => {
+			steps[ 2 ].nextText = previousText;
 
-		// wp.ajax.post(CHANGE_DOMAIN_ACTION, data).fail(() => {
-		// 	setGoLiveState({
-		// 		...goLiveState,
-		// 		isLoading: false,
-		// 		verificationStatus: 'default',
-		// 	});
-		// 	handleError();
-		// });
+			setGoLiveState({
+				...goLiveState,
+				steps,
+				isLoading: false,
+				showLogoutButton: false,
+				verificationStatus: 'default',
+			});
+			handleError();
+		});
 	};
 
 	const submitDomainVerification = () => {
@@ -107,12 +194,26 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		handleDomainVerificationRequest();
 	};
 
+	const isDomainVerificationResponse = (response: any): response is DomainVerificationResponseType => {
+		return 'code' in response || 'domain' in response;
+	};
+
+	const isDomainVerificationSuccess = (response: any): response is DomainVerficationSuccessInterface => {
+		return 'domain' in response;
+	};
+
+	const isVerificationError = (response: any): response is DomainVerificationInterface => {
+		return 'type' in response && 'message' in response && response.type !== 'success';
+	};
+
 	const handleDomainVerificationRequest = () => {
-		const { steps, activeStep, capturedDomain } = goLiveState;
+		const { steps } = goLiveState;
 
 		const data = removeNulls({
+			_wpnonce: goLiveNonce,
+			action: goLiveAction,
+			sub_action: 'verify-domain',
 			domain: capturedDomain,
-			_mapps_nonce: VERIFY_DOMAIN_NONCE,
 		});
 
 		const handleError = () => {
@@ -120,98 +221,85 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			alert(errorMessageVerification);
 		};
 
-		// TODO: update once backend is set up
+		handleActionRequest(data).then((response) => {
+			const error = isDomainVerificationResponse(response)
+				? getDomainVerificationError(response)
+				: verificationResponse.general;
 
-		// wp.ajax.post(VERIFY_DOMAIN_ACTION, data).done((response) => {
-		// 	const error = getDomainVerificationError(response);
+			steps[ 1 ].disableNext = false;
 
-		// 	if (error) {
-		// 		steps[ activeStep ].disableNextButton = true;
+			if (isVerificationError(error)) {
+				steps[ 1 ].disableNext = true;
 
-		// 		setGoLiveState((previousGoLiveState) => ({
-		// 			...previousGoLiveState,
-		// 			steps,
-		// 			isLoading: false,
-		// 			verificationStatus: 'error',
-		// 			verificationErrorType: error.type,
-		// 			verificationMessage: error.message,
-		// 		}));
+				setGoLiveState((previousGoLiveState) => ({
+					...previousGoLiveState,
+					steps,
+					isLoading: false,
+					verificationStatus: 'error',
+					verificationErrorType: error.type,
+					verificationMessage: error.message,
+				}));
 
-		// 		return;
-		// 	}
+				return;
+			}
 
-		// 	// Successful API check and valid domain.
-		// 	steps[ activeStep ].disableNextButton = false;
+			setGoLiveState((previousGoLiveState) => ({
+				...previousGoLiveState,
+				isLoading: false,
+				verificationStatus: 'connected',
+				verificationMessage: '',
+				verificationErrorType: false,
+			}));
+		}).catch(() => {
+			steps[ 1 ].disableNext = true;
 
-		// 	setGoLiveState((previousGoLiveState) => ({
-		// 		...previousGoLiveState,
-		// 		steps,
-		// 		isLoading: false,
-		// 		verificationStatus: 'connected',
-		// 		verificationMessage: '',
-		// 		verificationErrorType: false,
-		// 	}));
-		// }).fail(() => {
-		// 	steps[ activeStep ].disableNextButton = true;
+			setGoLiveState((previousGoLiveState) => ({
+				...previousGoLiveState,
+				isLoading: false,
+				verificationStatus: 'error',
+				verificationErrorType: false,
+				verificationMessage: '',
+			}));
 
-		// 	setGoLiveState((previousGoLiveState) => ({
-		// 		...previousGoLiveState,
-		// 		steps,
-		// 		isLoading: false,
-		// 		verificationStatus: 'error',
-		// 		verificationErrorType: false,
-		// 		verificationMessage: '',
-		// 	}));
-
-		// 	handleError();
-		// });
+			handleError();
+		}).finally(() => {
+			searchParams.delete('retry');
+			setSearchParams(searchParams);
+		});
 	};
 
-	// TODO: update response type
-	const getDomainVerificationError = (response:any) => {
-		// Error: Empty response.
-		if (! response || response.length === 0) {
-			return {
-				type: 'general',
-				message: errorGeneral
-			};
+	const getDomainVerificationError = (response: DomainVerificationResponseType): DomainVerificationInterface => {
+		// Error: Empty response or unexpected response.
+		if (! isDomainVerificationSuccess(response)) {
+			return verificationResponse.general;
 		}
 
 		// Error: Domain is not registered.
 		if (! response?.is_registered) {
-			return {
-				type: 'registration',
-				message: errorNotRegistered
-			};
+			return verificationResponse.registration;
 		}
 
 		// Return early if Domain is pointed to this account.
 		if (response?.is_pointed) {
-			return false;
+			return verificationResponse.success;
 		}
 
 		// Domain is pointing to Nexcess Nameservers.
 		if (response?.uses_local_nameservers) {
 			// Error: Domain is not associated with requesting account.
 			if (! response?.can_setup) {
-				return {
-					type: 'general',
-					message: errorGeneral
-				};
+				return verificationResponse.general;
 			}
 
-			return false;
+			return verificationResponse.success;
 		}
 
 		// Error: Domain is not pointed at Nexcess or using Nexcess Nameservers.
 		if (! response?.is_pointed || ! response?.uses_local_nameservers) {
-			return {
-				type: 'pointed',
-				message: errorNotPointed
-			};
+			return verificationResponse.pointed;
 		}
 
-		return false;
+		return verificationResponse.success;
 	};
 
 	const setIsLoading = (loading:boolean) => {
@@ -233,9 +321,9 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const setHasDomain = (hasDomain:string) => {
-		const { steps, activeStep } = goLiveState;
-		steps[ activeStep ].disableNext = hasDomain === null;
-		steps[ activeStep ].nextText = getHasDomainNextText(hasDomain);
+		const { steps } = goLiveState;
+		steps[ 0 ].disableNext = hasDomain === null;
+		steps[ 0 ].nextText = getHasDomainNextText(hasDomain);
 		setGoLiveState({
 			...goLiveState,
 			hasDomain,
@@ -244,27 +332,13 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const setShowGetDomain = (show:boolean) => {
-		const { steps, activeStep } = goLiveState;
-		steps[ activeStep ].nextText = haveDomain;
+		const { steps } = goLiveState;
+		steps[ 0 ].nextText = haveDomain;
 		setGoLiveState({
 			...goLiveState,
 			showGetDomain: show,
 			steps
 		});
-	};
-
-	const retryVerificationStep = () => {
-		setGoLiveState({
-			...goLiveState,
-			activeStep: 1,
-			isLoading: true,
-			hasDomain: 'yes',
-			verificationStatus: 'connecting',
-			verificationErrorType: false,
-			verificationMessage: '',
-		});
-
-		handleDomainVerificationRequest();
 	};
 
 	return (
@@ -276,7 +350,6 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			setIsLoading,
 			setHasDomain,
 			setShowGetDomain,
-			retryVerificationStep,
 			handleDomainVerificationRequest,
 			getHasDomainNextText
 		} }>

@@ -3,9 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Link, Typography } from '@mui/material';
 import { CheckCircle, Warning } from '@mui/icons-material';
 import { SetupCardInfoRow } from '@stellarwp/wme-ui';
-import { useGoLive } from '@sb/hooks';
+import { useSiteBuilder } from '@sb/hooks';
+import { SITEBUILDER } from '@sb/constants';
 
 import { SetupData } from '@sb/setup/data/constants';
+
+export interface GoLiveStatusRowInterface extends Omit<SetupCardRowInterface, 'type'> {
+	type: 'launch-domain-status';
+	completed: boolean;
+}
 
 interface StatusWrapperInterface {
 	children?: ReactNode;
@@ -61,22 +67,16 @@ const RetryStatus: React.FC<RetryStatusInterface> = ({ domain }) => (
 
 const GoLiveStatus: React.FC<GoLiveStatusInterface> = (props) => {
 	const { completed = false } = props;
-
-	// const { retryVerificationStep } = useGoLive();
-
-	// @todo: Get current domain from window object.
-	// const domain = SETTINGS.site_url.replace(/^https?:\/\//, '');
-	const domain = window.location.host;
-
-	// @todo: Find alternative to provider for getting this value, once set.
-	const capturedDomain = '';
-
-	const retryVerificationStep = () => {};
-
+	const { siteBuilderState: { capturedDomain = '' } } = useSiteBuilder();
 	const navigate = useNavigate();
+	const domain = SITEBUILDER.site_url.replace(/^https?:\/\//, '');
+
+	const retryVerificationStep = () => {
+		navigate('/wizard/go-live?step=2&retry=true');
+	};
 
 	return <SetupCardInfoRow
-		primary={ ! completed && !! capturedDomain ? <RetryStatus domain={ domain } /> : <StandardStatus domain={ domain } completed={ completed } /> }
+		primary={ ! completed && !! capturedDomain ? <RetryStatus domain={ capturedDomain } /> : <StandardStatus domain={ domain } completed={ completed } /> }
 		secondary={ (completed || !! capturedDomain) && (
 			<Link
 				variant="body2"

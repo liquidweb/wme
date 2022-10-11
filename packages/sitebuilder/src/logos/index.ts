@@ -1,2 +1,2 @@
 export { default as KadenceIcon } from './KadenceIcon';
-export { default as SiteBuilderLogo } from './SiteBuilderLogo';
+export { default as StoreBuilderLogo } from './StoreBuilderLogo';

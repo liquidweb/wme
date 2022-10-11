@@ -11,3 +11,4 @@ export * from './pxToRem';
 export * from './randomInt';
 export * from './removeNulls';
 export * from './uploadImage';
+export * from './objToFormData';

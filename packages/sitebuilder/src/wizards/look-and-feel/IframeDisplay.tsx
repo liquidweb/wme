@@ -3,7 +3,7 @@ import { useLookAndFeel, useWizard } from '@sb/hooks';
 
 const IframeDisplay = () => {
 	const { lookAndFeelState } = useLookAndFeel();
-	const { activeTemplate: { url }, font, updateIframe, color } = lookAndFeelState;
+	const { template: { url }, font, updateIframe, color } = lookAndFeelState;
 	const { wizardState: { activeDevice } } = useWizard();
 	const starterTemplateId = 'kadence-starter-preview';
 	const starterTemplateTitle = 'kadence-template-preview';

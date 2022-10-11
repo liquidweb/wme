@@ -29,8 +29,6 @@ export interface FtcUsernamePasswordInterface {
 }
 
 const ftcData = FtcScreenData();
-// @todo: Decide on window object manipulation.
-// const wizardWindowObject = window?.sitebuilder?.wizards?.ftc;
 const { submitForm: submitFormContent } = FtcStringData;
 
 export const FirstTimeConfigurationContext = createContext<
