@@ -13,7 +13,7 @@ type FormFieldProps = FormControlUnstyledProps & {
   field?: ReactNode;
   helperText?: string | React.ReactElement;
   id?: string;
-  label?: string;
+  label?: string | React.ReactElement;
 };
 
 const FormField: React.FC<PropsWithChildren<FormFieldProps>> = ({

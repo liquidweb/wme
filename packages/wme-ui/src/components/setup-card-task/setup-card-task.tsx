@@ -7,7 +7,7 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/material';
-import { ChevronRight } from '@mui/icons-material';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import { styled } from '@mui/material/styles';
 
 import { ConditionalWrapper, pxToRem } from '../../utils';
