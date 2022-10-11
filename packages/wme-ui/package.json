@@ -56,11 +56,12 @@
     "watch": "rollup -c -w",
     "start": "start-storybook -p 6006 -s public",
     "storybook": "start-storybook -p 6006 -s public",
+    "dev": "NODE_ENV=development pnpm run storybook",
     "build-storybook": "build-storybook -s public",
     "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
     "lint": "eslint ./src --ext .tsx --ext .ts",
-    "lint:fix": "npm run lint --fix",
-    "lint:quiet": "npm run lint --quiet"
+    "lint:fix": "pnpm run lint --fix",
+    "lint:quiet": "pnpm run lint --quiet"
   },
   "browserslist": {
     "production": [
