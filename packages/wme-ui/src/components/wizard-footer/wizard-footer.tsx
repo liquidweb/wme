@@ -8,7 +8,8 @@ import {
   StepButton,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ArrowBack, ChevronRight } from '@mui/icons-material';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
@@ -35,12 +36,14 @@ interface WizardFooterProps extends BoxProps {
     disableNext?: boolean;
     disableAll?: boolean;
     disable?: boolean;
+    completed?: boolean;
   }>;
   onClickStep?: (step: any) => void;
   disableNext?: boolean;
   isLoading?: boolean;
   loadingText?: string;
   save?: () => void;
+  hideSkip?: boolean;
   hideFooter: boolean;
   disableAll?: boolean;
   isLastStep?: boolean;
@@ -133,6 +136,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     isLoading = false,
     loadingText,
     save,
+    hideSkip,
     hideFooter,
     disableAll,
     isLastStep = false,
@@ -200,7 +204,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
           && (
             <Next className="WmeWizardFooter-next">
               {
-                !currStep?.hideSkip
+                hideSkip || !currStep?.hideSkip
                 && (
                   <Skip className="WmeWizardFooter-skip">
                     <Button onClick={onSkip} disabled={disable}>{skipText}</Button>
