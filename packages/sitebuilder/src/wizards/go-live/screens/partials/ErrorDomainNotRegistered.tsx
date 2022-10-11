@@ -2,14 +2,28 @@ import React from 'react';
 import { Typography, Link } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { ErrorStatusMessage } from '.';
-import { useGoLive } from '@sb/hooks';
+import { useGoLive, useSiteBuilder } from '@sb/hooks';
 import { sprintf } from '@wordpress/i18n';
-import { NEXCESS_DOMAIN_REGISTRATION_URL } from '@sb/constants';
+import { NEXCESS_DOMAIN_SEARCH_URL } from '@sb/constants';
 import { GoLiveStringData } from '@go-live/data/constants';
 
 const ErrorDomainNotRegistered = () => {
-	const { goLiveState: { capturedDomain, verificationMessage } } = useGoLive();
-	const { errorDomainNotRegistered: { registerDomainContent, registerDomainCtaPart1, registerDomainCtaPart2 } } = GoLiveStringData;
+	const {
+		goLiveState: { verificationMessage }
+	} = useGoLive();
+
+	const {
+		siteBuilderState: { capturedDomain = '' }
+	} = useSiteBuilder();
+
+	const {
+		errorDomainNotRegistered: {
+			registerDomainContent,
+			registerDomainCtaPart1,
+			registerDomainCtaPart2
+		}
+	} = GoLiveStringData;
+
 	const capitalizedDomainName = `${ capturedDomain[ 0 ].toUpperCase() }${ capturedDomain.slice(1) }`;
 
 	return (
@@ -18,7 +32,7 @@ const ErrorDomainNotRegistered = () => {
 			<Typography variant="body2" mb={ 3 }>{ registerDomainContent }</Typography>
 			<Typography variant="body2">
 				<Link
-					href={ NEXCESS_DOMAIN_REGISTRATION_URL }
+					href={ `${ NEXCESS_DOMAIN_SEARCH_URL }?domain=${ capturedDomain }` }
 					target="_blank"
 					underline="hover"
 					sx={ { display: 'flex', alignItems: 'center' } }

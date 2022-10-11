@@ -29,20 +29,6 @@ export interface FtcFormValueInterface {
 	isValid: boolean;
 }
 
-export interface FtcStepInterface {
-	id: number;
-	hideBack?: boolean;
-	hideSkip?: boolean;
-	hideNext?: boolean;
-	label?: string;
-	nextText?: string;
-	hidePagination?: boolean;
-	screen?: React.ReactNode;
-	disableNext?: boolean;
-	disableAll?: boolean;
-	disable?: boolean;
-}
-
 export interface FtcFormItemsInterface {
 	username: FtcFormValueInterface;
 	password: FtcFormValueInterface;
@@ -54,11 +40,11 @@ export interface FtcFormItemsInterface {
 export interface FtcScreenDataInterface extends FtcWizardObjectInterface {
 	isLoading: boolean;
 	lastStep: number;
-	steps: Array<FtcStepInterface>;
+	steps: Array<StepInterface>;
 	form: FtcFormItemsInterface;
 }
 
-const stepsData: Array<FtcStepInterface> = [
+const stepsData: Array<StepInterface> = [
 	{
 		id: 0,
 		label: __('Start', 'nexcess-mapps'),

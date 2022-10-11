@@ -1,46 +1,33 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-
+import { GO_LIVE_PROPS } from '@sb/constants';
 import { Start, VerifyDomain, UpdateSiteUrl } from '../screens';
-
-export interface GoLiveStep {
-	id: number;
-	hideBack?: boolean;
-	hideSkip?: boolean;
-	hideNext?: boolean;
-	label?: string;
-	nextText?: string;
-	loadingText?: string;
-	backText?: string;
-	screen?: React.ReactNode;
-	disableNext?: boolean;
-	disableAll?: boolean;
-	disable?: boolean;
-  }
 
 export interface GoLiveInterface {
 	isLoading: boolean;
-	capturedDomain: string;
-	activeStep: number;
+	verifyingUrl: string;
+	lastStep: number;
 	hasDomain: string | null;
 	skipDnsVerification: boolean;
 	verificationStatus: string;
 	verificationErrorType: boolean | string;
 	verificationMessage: string;
 	showGetDomain: boolean;
-    steps: Array<GoLiveStep>;
+	showLogoutButton: boolean;
+	steps: Array<StepInterface>;
 }
 
-const goLiveScreenData = (): GoLiveInterface => ({
+const localData: GoLiveInterface = {
 	isLoading: false,
-	capturedDomain: '', // TODO: replace with URL from backend
-	activeStep: 0,
+	verifyingUrl: '',
+	lastStep: 3,
 	hasDomain: null,
 	skipDnsVerification: false,
 	verificationStatus: 'default',
 	verificationErrorType: false,
 	verificationMessage: '',
 	showGetDomain: false,
+	showLogoutButton: false,
 	steps: [
 		{
 			id: 0,
@@ -79,6 +66,16 @@ const goLiveScreenData = (): GoLiveInterface => ({
 			disableNext: false,
 		},
 	],
-});
+};
+
+const goLiveScreenData = (): GoLiveInterface => {
+	const serverData = GO_LIVE_PROPS;
+
+	return Object.assign(
+		{},
+		localData,
+		serverData
+	);
+};
 
 export default goLiveScreenData;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, BoxProps } from '@mui/material';
+import { Box } from '@mui/material';
+import type { BoxProps } from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { useLocation } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ export interface WizardContentInterface extends BoxProps {
 const StyledWizardContent = styled(Box, {
 	name: 'WmeWizard',
 	slot: 'Content',
+	shouldForwardProp: (prop) => prop !== 'isLookAndFeel',
 })<WizardContentInterface>(({ isLookAndFeel }) => ({
 	minHeight: 'calc(100vh - 200px)',
 	width: isLookAndFeel ? '100%' : '700px',

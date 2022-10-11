@@ -9,7 +9,7 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { useGoLive } from '@sb/hooks';
+import { useGoLive, useSiteBuilder } from '@sb/hooks';
 import { Loading } from '@sb/components';
 import { WizardSectionTitle } from '@stellarwp/wme-ui';
 import { __, sprintf } from '@wordpress/i18n';
@@ -19,9 +19,18 @@ import { IMAGE_DIR } from '@sb/constants';
 import { GoLiveStringData } from '../data/constants';
 
 const UpdateSiteUrl = () => {
-	const { goLiveState } = useGoLive();
-	const { capturedDomain, isLoading } = goLiveState;
-	const { updateSiteUrl: { screenTitle, screenDescription, launchImgAltText, descriptionProcessing, loginUrlLabelText, loginUrlHelperText } } = GoLiveStringData;
+	const { siteBuilderState: { capturedDomain = '' } } = useSiteBuilder();
+	const { goLiveState: { isLoading } } = useGoLive();
+	const {
+		updateSiteUrl: {
+			screenTitle,
+			screenDescription,
+			launchImgAltText,
+			descriptionProcessing,
+			loginUrlLabelText,
+			loginUrlHelperText
+		}
+	} = GoLiveStringData;
 
 	const titleProcessing = sprintf('%1$s %2$s',
 		capturedDomain,
@@ -36,7 +45,7 @@ const UpdateSiteUrl = () => {
 				<Loading mb={ 4 } />
 				<WizardSectionTitle
 					heading={ titleProcessing }
-					headingVariant="h1"
+					headingVariant="h2"
 					copy={ descriptionProcessing }
 					bookend={ true }
 					sx={ {
