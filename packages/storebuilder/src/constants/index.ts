@@ -18,6 +18,10 @@ export const STORE_SETUP_PROPS = STOREBUILDER.wizards.store_setup;
 
 export const NEXCESS_SUPPORT_URL = STOREBUILDER.support_url;
 
+export const SHIPPING_PROPS = WIZARDS?.shipping || {};
+
+export const USPS_PLUGIN_SLUG = 'elex-usps-shipping-method';
+
 export const WP_101_URL = 'https://app.wp101plugin.com/api/media/';
 
 export const WP_101_API_KEY = STOREBUILDER?.wp101_api_key || '';

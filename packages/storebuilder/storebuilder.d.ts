@@ -50,7 +50,7 @@ declare global {
     wpApiSettings: any;
   }
 
-  interface SiteBuilderAjaxObject {
+  interface StoreBuilderAjaxObject {
     action: string;
     nonce: string;
     url: string;
@@ -109,6 +109,23 @@ declare global {
 		font?: string;
 		palette?: string;
 		selected?: string;
+	}
+
+	interface StepInterface {
+		id: number;
+		hideBack?: boolean;
+		hideSkip?: boolean;
+		hideNext?: boolean;
+		label?: string;
+		nextText?: string;
+		loadingText?: string;
+		backText?: string;
+		screen?: React.ReactNode;
+		disableNext?: boolean;
+		disableAll?: boolean;
+		disable?: boolean;
+		completed?: boolean;
+		hidePagination?: boolean;
 	}
 }
 
