@@ -26,6 +26,10 @@ export const WP_101_URL = 'https://app.wp101plugin.com/api/media/';
 
 export const WP_101_API_KEY = STOREBUILDER?.wp101_api_key || '';
 
+export const PAYMENTS_PAYPAL_PROPS = STOREBUILDER.wizards.payment_gateway_paypal;
+
+export const PAYMENTS_STRIPE_PROPS = STOREBUILDER.wizards.payment_gateway_stripe;
+
 export const WP_101_HOW_TO_LINKS = [{
 	title: __('Simple', 'nexcess-mapps'),
 	modalTitle: __('Simple Product Overview', 'nexcess-mapps'),

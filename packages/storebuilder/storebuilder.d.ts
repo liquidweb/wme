@@ -48,6 +48,8 @@ declare global {
     sitebuilder_store_details: any;
     wp: any;
     wpApiSettings: any;
+		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;
+		PayPal?: any;
   }
 
   interface StoreBuilderAjaxObject {
