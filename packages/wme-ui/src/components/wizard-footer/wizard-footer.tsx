@@ -204,7 +204,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
           && (
             <Next className="WmeWizardFooter-next">
               {
-                hideSkip || !currStep?.hideSkip
+                (hideSkip || !currStep?.hideSkip)
                 && (
                   <Skip className="WmeWizardFooter-skip">
                     <Button onClick={onSkip} disabled={disable}>{skipText}</Button>

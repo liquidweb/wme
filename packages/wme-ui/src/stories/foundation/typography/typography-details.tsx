@@ -1,7 +1,7 @@
-import type { WMEVariants } from '../../../theme';
 import type { CSSProperties } from '@mui/material/styles/createTypography';
 import { useTheme } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
+import type { WMEVariants } from '../../../theme';
 
 const VARIANT_INFO_LIST: [keyof CSSProperties, string][] = [
   ['fontFamily', 'Font Family'],
