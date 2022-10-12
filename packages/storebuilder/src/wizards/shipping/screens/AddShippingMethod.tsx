@@ -23,11 +23,11 @@ const AddShippingMethod = () => {
 	} } = ShippingStringData;
 
 	const { shippingState: {
-			shippingProviders
-		}, 
-		setShippingProviders 
+		shippingProviders
+	},
+	setShippingProviders
 	} = useShipping();
-	
+
 	const pluginSlug = USPS_PLUGIN_SLUG;
 
 	const handleShippingSelection = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: any) => {

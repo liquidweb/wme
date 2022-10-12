@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { WizardFooter } from '@stellarwp/wme-ui';
 import { __ } from '@wordpress/i18n';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useWizard, useShipping } from '@store/hooks';
 import { beforeUnloadListener } from '@store/utils';
 import { STOREBUILDER_URL } from '@store/constants';
@@ -19,10 +19,7 @@ const ShippingWizard = () => {
 	} = useShipping();
 
 	const { goToStep } = useWizard();
-
 	const [searchParams] = useSearchParams();
-	const navigate = useNavigate();
-
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
 		: 1;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import { Box, Typography, Link } from '@mui/material';
 import { IMAGE_DIR, NEXCESS_SUPPORT_URL } from '@store/constants';
 import { useShipping } from '@store/hooks';

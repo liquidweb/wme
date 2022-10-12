@@ -1,3 +1,4 @@
+import React from 'react';
 import type { CSSProperties } from '@mui/material/styles/createTypography';
 import { useTheme } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { __ } from '@wordpress/i18n';
 import { IMAGE_DIR } from '@store/constants';
 
 import { ShippingStringData } from '@shipping/data/constants';
@@ -11,9 +10,9 @@ const Confirmation = () => {
 		descriptionPart1,
 		descriptionPart2,
 		descriptionPart3
-	}, addShippingMethod: { 
+	}, addShippingMethod: {
 		card2
-	}} = ShippingStringData;
+	} } = ShippingStringData;
 
 	return (
 		<Box sx={ { maxWidth: 560 } }>
@@ -51,6 +50,6 @@ const Confirmation = () => {
 			</Typography>
 		</Box>
 	);
-}
+};
 
 export default Confirmation;
