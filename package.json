@@ -1,18 +1,18 @@
 {
-	"name": "wme-foundation",
+	"name": "wme",
 	"version": "0.0.0",
-	"title": "StellarWP WME (WordPress Made Easy) Monorepo",
+	"title": "WME (WordPress Made Easy) Monorepo",
 	"description": "Monorepo for the WME (WordPress Made Easy) ecosystem",
 	"homepage": "https://stellarwp.com/",
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/stellarwp/wme-foundation.git"
+		"url": "https://github.com/moderntribe/wme.git"
 	},
-	"author": "StellarWP",
+	"author": "Modern Tribe Incubator Team",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/stellarwp/wme-foundation/issues"
+		"url": "https://github.com/moderntribe/wme/issues"
 	},
 	"workspaces": [
 		"packages/*"
@@ -41,7 +41,7 @@
 		"@babel/preset-env": "^7.19.0",
 		"@babel/runtime": "^7.19.0",
 		"@changesets/cli": "^2.25.0",
-		"@stellarwp/eslint-config-custom": "workspace:*",
+		"@moderntribe/eslint-config-custom": "workspace:*",
 		"@storybook/addon-actions": "^6.5.12",
 		"@storybook/addon-docs": "^6.5.12",
 		"@storybook/addon-essentials": "^6.5.12",

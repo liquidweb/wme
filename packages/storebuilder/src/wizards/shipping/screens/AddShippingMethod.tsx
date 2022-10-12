@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Box, Typography } from '@mui/material';
-import { CardSelectGroup, CardSelectItem, Chip } from '@stellarwp/wme-ui';
+import { CardSelectGroup, CardSelectItem, Chip } from '@moderntribe/wme-ui';
 import { pxToRem } from '@store/utils';
 import { IMAGE_DIR, USPS_PLUGIN_SLUG } from '@store/constants';
 import { useShipping } from '@store/hooks';

@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react';
 import { Typography, Grid, Box, Link } from '@mui/material';
 import { PlayArrow } from '@mui/icons-material';
-import { VideoEmbed } from '@stellarwp/wme-ui';
+import { VideoEmbed } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { SimpleModal, VideoLink, ColumnLinkInterface } from '@store/components';
 import { pxToRem } from '@store/utils';

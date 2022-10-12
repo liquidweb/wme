@@ -11,7 +11,7 @@ import {
 	FormField,
 	TextInput,
 	WizardSectionTitle
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import Search from '@mui/icons-material/Search';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';

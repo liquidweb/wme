@@ -7,7 +7,7 @@ import {
 	FormField,
 	SelectInput,
 	WizardSectionTitle
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';
 import { pxToRem } from '@store/utils';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SetupCardTaskCta } from '@stellarwp/wme-ui';
+import { SetupCardTaskCta } from '@moderntribe/wme-ui';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useNavigate } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';

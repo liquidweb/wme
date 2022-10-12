@@ -1,5 +1,5 @@
 import React from 'react';
-import { SetupCardFooter as WmeSetupCardFooter } from '@stellarwp/wme-ui';
+import { SetupCardFooter as WmeSetupCardFooter } from '@moderntribe/wme-ui';
 import { LookAndFeelFooter, LookAndFeelFooterInterface } from './footer';
 
 type SetupCardFooterRenderProps = LookAndFeelFooterInterface;

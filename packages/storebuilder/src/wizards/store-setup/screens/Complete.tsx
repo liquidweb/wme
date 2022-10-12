@@ -1,5 +1,5 @@
 import React from 'react';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { StoreSetupStringData } from '@setup/data/constants';
 import { IMAGE_DIR } from '@store/constants';

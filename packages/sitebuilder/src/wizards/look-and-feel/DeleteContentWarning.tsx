@@ -9,7 +9,7 @@ import {
 	FormLabel
 } from '@mui/material';
 import { IMAGE_DIR } from '@sb/constants';
-import { RadioGroup, FormControlLabel, Button } from '@stellarwp/wme-ui';
+import { RadioGroup, FormControlLabel, Button } from '@moderntribe/wme-ui';
 import { useLookAndFeel } from '@sb/hooks';
 import { lookAndFeelConsts } from './data/constants';
 

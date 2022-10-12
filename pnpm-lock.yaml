@@ -9,7 +9,7 @@ importers:
       '@babel/preset-env': ^7.19.0
       '@babel/runtime': ^7.19.0
       '@changesets/cli': ^2.25.0
-      '@stellarwp/eslint-config-custom': workspace:*
+      '@moderntribe/eslint-config-custom': workspace:*
       '@storybook/addon-actions': ^6.5.12
       '@storybook/addon-docs': ^6.5.12
       '@storybook/addon-essentials': ^6.5.12
@@ -34,7 +34,7 @@ importers:
       '@babel/preset-env': 7.19.0_@babel+core@7.19.0
       '@babel/runtime': 7.19.0
       '@changesets/cli': 2.25.0
-      '@stellarwp/eslint-config-custom': link:packages/eslint-config-custom
+      '@moderntribe/eslint-config-custom': link:packages/eslint-config-custom
       '@storybook/addon-actions': 6.5.12_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.12_y5lb2kykqqdfjy53xnswemwg3y
       '@storybook/addon-essentials': 6.5.12_owryfgctn3lb5kp2lk6ibq7zdi
@@ -94,8 +94,8 @@ importers:
       '@mui/icons-material': ^5.8.4
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
-      '@stellarwp/tsconfig': workspace:*
-      '@stellarwp/wme-ui': workspace:*
+      '@moderntribe/tsconfig': workspace:*
+      '@moderntribe/wme-ui': workspace:*
       '@types/jquery': ^3.5.14
       '@types/node': ^18.7.16
       '@types/react': ^18.0.17
@@ -125,7 +125,7 @@ importers:
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
-      '@stellarwp/wme-ui': link:../wme-ui
+      '@moderntribe/wme-ui': link:../wme-ui
       '@wordpress/element': 4.14.0
       '@wordpress/html-entities': 3.16.0
       '@wordpress/i18n': 4.16.0
@@ -134,7 +134,7 @@ importers:
       react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@babel/preset-react': 7.18.6_@babel+core@7.19.0
-      '@stellarwp/tsconfig': link:../tsconfig
+      '@moderntribe/tsconfig': link:../tsconfig
       '@types/jquery': 3.5.14
       '@types/node': 18.7.16
       '@types/react': 18.0.18
@@ -161,8 +161,8 @@ importers:
       '@mui/icons-material': ^5.8.4
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
-      '@stellarwp/tsconfig': workspace:*
-      '@stellarwp/wme-ui': workspace:*
+      '@moderntribe/tsconfig': workspace:*
+      '@moderntribe/wme-ui': workspace:*
       '@types/jquery': ^3.5.14
       '@types/node': ^18.7.16
       '@types/react': ^18.0.17
@@ -194,7 +194,7 @@ importers:
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
-      '@stellarwp/wme-ui': link:../wme-ui
+      '@moderntribe/wme-ui': link:../wme-ui
       '@wordpress/element': 4.14.0
       '@wordpress/html-entities': 3.16.0
       '@wordpress/i18n': 4.16.0
@@ -203,7 +203,7 @@ importers:
       react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@babel/preset-react': 7.18.6_@babel+core@7.19.0
-      '@stellarwp/tsconfig': link:../tsconfig
+      '@moderntribe/tsconfig': link:../tsconfig
       '@types/jquery': 3.5.14
       '@types/node': 18.7.16
       '@types/react': 18.0.18
@@ -241,7 +241,7 @@ importers:
       '@rollup/plugin-commonjs': ^21.1.0
       '@rollup/plugin-node-resolve': ^13.3.0
       '@rollup/plugin-typescript': ^8.5.0
-      '@stellarwp/tsconfig': workspace:*
+      '@moderntribe/tsconfig': workspace:*
       '@storybook/addon-actions': ^6.5.12
       '@storybook/addon-docs': ^6.5.12
       '@storybook/addon-essentials': ^6.5.12
@@ -308,7 +308,7 @@ importers:
       '@rollup/plugin-commonjs': 21.1.0_rollup@2.79.0
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
       '@rollup/plugin-typescript': 8.5.0_tznp6w7csbjledp5nresoxoky4
-      '@stellarwp/tsconfig': link:../tsconfig
+      '@moderntribe/tsconfig': link:../tsconfig
       '@storybook/addon-actions': 6.5.12_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.12_34fmpv7eb37mft7ywryea42ef4
       '@storybook/addon-essentials': 6.5.12_hyglahv44teoxbm4dyyd7d7qbq

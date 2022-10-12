@@ -4,7 +4,7 @@ import {
 	WizardHeader,
 	Logo,
 	ExitButton
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import WizardContent from '@store/wizards/WizardContent';
 import { StoreBuilderLogo } from '@store/logos';

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { WizardFooter } from '@stellarwp/wme-ui';
+import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 

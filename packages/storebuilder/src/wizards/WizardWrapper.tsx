@@ -7,7 +7,7 @@ import {
 	useLocation,
 	useSearchParams
 } from 'react-router-dom';
-import { Wizard } from '@stellarwp/wme-ui';
+import { Wizard } from '@moderntribe/wme-ui';
 
 // Wizard Components.
 import WizardHeader from './WizardHeader';

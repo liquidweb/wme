@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { VideoEmbed } from '@stellarwp/wme-ui';
+import { VideoEmbed } from '@moderntribe/wme-ui';
 import { Box, Link, Typography } from '@mui/material';
 import type { SxProps } from '@mui/material/styles';
 import { getVideoSource } from '@store/utils';

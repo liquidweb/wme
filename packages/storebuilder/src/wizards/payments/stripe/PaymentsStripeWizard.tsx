@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect } from 'react';
-import { WizardFooter } from '@stellarwp/wme-ui';
+import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useWizard, usePaymentsStripe } from '@store/hooks';
 import { useSearchParams } from 'react-router-dom';

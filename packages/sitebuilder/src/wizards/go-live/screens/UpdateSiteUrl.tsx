@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { useGoLive, useSiteBuilder } from '@sb/hooks';
 import { Loading } from '@sb/components';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { __, sprintf } from '@wordpress/i18n';
 import { copyToClipboard } from '@sb/utils';
 import { ContentCopy } from '@mui/icons-material';

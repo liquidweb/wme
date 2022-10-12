@@ -7,7 +7,7 @@ import {
 	MenuItem,
 	InputHelperText,
 	WizardSectionTitle
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import { IMAGE_DIR } from '@store/constants';
 import { paymentsPaypalConsts, dropdownItems } from '../data/constants';
 import { usePaymentsPaypal } from '@store/hooks';

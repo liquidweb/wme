@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IconButton, Alert } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { Add, DeleteOutline } from '@mui/icons-material';
-import { FileUpload as WmeFileUpload } from '@stellarwp/wme-ui';
+import { FileUpload as WmeFileUpload } from '@moderntribe/wme-ui';
 // eslint-disable-next-line camelcase
 import { WP_REST_API_Attachment } from 'wp-types';
 import { useFirstTimeConfiguration } from '@sb/hooks';

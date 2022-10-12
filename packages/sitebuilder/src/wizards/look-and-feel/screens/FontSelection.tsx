@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { useLookAndFeelFonts, useLookAndFeel, useWizard } from '@sb/hooks';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 import IframeDisplay from '@look-and-feel/IframeDisplay';

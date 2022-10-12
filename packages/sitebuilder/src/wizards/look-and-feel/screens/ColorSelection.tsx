@@ -6,7 +6,7 @@ import {
 	RadioGroup,
 	Radio
 } from '@mui/material';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 import { useLookAndFeelColors, useLookAndFeel } from '@sb/hooks';
 import { ColorLine, Frame, ModalDeviceSelection, PoweredByKadence } from '@sb/components';

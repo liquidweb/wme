@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { SetupCards } from '@sb/setup';
 import { SetupData } from '@sb/setup/data/constants';
 import { StoreBuilderLogo } from '@sb/logos';

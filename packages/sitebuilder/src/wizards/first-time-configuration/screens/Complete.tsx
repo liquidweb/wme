@@ -1,5 +1,5 @@
 import React from 'react';
-import { WizardSectionTitle, Button } from '@stellarwp/wme-ui';
+import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { Box, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import ScreenWrapper from '@ftc/ScreenWrapper';

@@ -6,7 +6,7 @@ import {
 	SetupCard as WmeSetupCard,
 	SetupCardHeader,
 	SetupCardContent
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import { useSetupCard } from '@store/hooks';
 import { SetupCardLayout, SetupCardFooter } from '@store/setup';
 

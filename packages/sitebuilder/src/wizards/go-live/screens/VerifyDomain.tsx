@@ -19,7 +19,7 @@ import {
 	ErrorDomainGeneral,
 	ErrorDomainNotRegistered
 } from './partials';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { GoLiveStringData } from '../data/constants';
 import { useGoLive, useSiteBuilder } from '@sb/hooks';
 import { IMAGE_DIR } from '@sb/constants';

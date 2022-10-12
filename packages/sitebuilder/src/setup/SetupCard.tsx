@@ -1,6 +1,6 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
-import { Chip, SetupCard as WmeSetupCard, SetupCardHeader, SetupCardContent } from '@stellarwp/wme-ui';
+import { Chip, SetupCard as WmeSetupCard, SetupCardHeader, SetupCardContent } from '@moderntribe/wme-ui';
 
 import { useSetupCard } from '@sb/hooks';
 
