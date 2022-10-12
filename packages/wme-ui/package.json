@@ -37,8 +37,7 @@
 		"react-refresh": "^0.14.0",
 		"react-router-dom": "^6.3.0",
 		"require-from-string": "^2.0.2",
-		"use-query-params": "^1.2.3",
-		"@stellarwp/eslint-config-custom": "workspace:*"
+		"use-query-params": "^1.2.3"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.9.3",
