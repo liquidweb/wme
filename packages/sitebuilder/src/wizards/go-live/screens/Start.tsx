@@ -77,10 +77,10 @@ const Start = () => {
 			? <>
 				<WizardSectionTitle
 					heading={ title }
-					headingVariant="h1"
+					headingVariant="h2"
 					copy={ description }
-					copyVariant="h4"
-					iconSrc={ `${ IMAGE_DIR }/nexcess-logo.png` }
+					copyVariant="body2"
+					iconSrc={ `${ IMAGE_DIR }nexcess-logo.png` }
 					sx={ {
 						marginBottom: 4,
 
@@ -104,9 +104,9 @@ const Start = () => {
 			: <>
 				<WizardSectionTitle
 					heading={ title }
-					headingVariant="h1"
+					headingVariant="h2"
 					copy={ description }
-					copyVariant="h4"
+					copyVariant="body2"
 					sx={ { marginBottom: 4.5 } }
 				/>
 				<Typography variant="body2" mb={ 2 } fontWeight={ 600 }>

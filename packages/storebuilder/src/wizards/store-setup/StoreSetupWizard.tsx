@@ -59,8 +59,6 @@ const StoreSetupWizard = () => {
 		goToNextStep();
 	};
 
-	console.log('isScreenTouched: ', isScreenTouched() );
-
 	return (
 		<>
 			{ steps[ stepIndex ].screen }

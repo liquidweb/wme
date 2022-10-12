@@ -30,4 +30,14 @@ export const lookAndFeelConsts = {
 		finished: __('Site imported successfully!', 'nexcess-mapps'),
 		errorMessage: __('Import failed, please try refreshing the page and starting the import again.', 'nexcess-mapps'),
 	},
+	deleteContentWarning: {
+		warningHeadline: __('Please Note', 'nexcess-mapps'),
+		message: __('Importing a new starter template will create sample content from your chosen template and replace your site\'s current fonts, colors, widgets and menus.', 'nexcess-mapps'),
+		deleteOption: __('Delete content (pages, posts, products and images) imported by previous template', 'nexcess-mapps'),
+		keepOption: __('Keep previously imported content', 'nexcess-mapps'),
+		importOptions: __('Import options', 'nexcess-mapps'),
+		importButton: __('Import Template', 'nexcess-mapps'),
+		nevermind: __('Never Mind', 'nexcess-mapps'),
+		eyesAlt: __('eyes emoji', 'nexcess-mapps')
+	}
 };

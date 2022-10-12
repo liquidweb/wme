@@ -21,7 +21,7 @@ import {
 } from './partials';
 import { WizardSectionTitle } from '@stellarwp/wme-ui';
 import { GoLiveStringData } from '../data/constants';
-import { useGoLive } from '@sb/hooks';
+import { useGoLive, useSiteBuilder } from '@sb/hooks';
 import { IMAGE_DIR } from '@sb/constants';
 
 const loadingSx = {
@@ -42,7 +42,15 @@ const loadingSx = {
 };
 
 const VerifyDomain = () => {
-	const { verifyDomain: { screenTitle, screenDescription, goLiveLabelText, goLivePlaceholderText, errorDomainFormat } } = GoLiveStringData;
+	const {
+		verifyDomain: {
+			screenTitle,
+			screenDescription,
+			goLiveLabelText,
+			goLivePlaceholderText,
+			errorDomainFormat
+		}
+	} = GoLiveStringData;
 
 	const {
 		goLiveState,
@@ -51,7 +59,12 @@ const VerifyDomain = () => {
 	} = useGoLive();
 
 	const {
-		capturedDomain,
+		siteBuilderState,
+		siteBuilderState: { capturedDomain = '' },
+		setSiteBuilderState
+	} = useSiteBuilder();
+
+	const {
 		verificationStatus,
 		verificationErrorType,
 		isLoading,
@@ -60,15 +73,19 @@ const VerifyDomain = () => {
 	const [validDomain, setValidDomain] = useState<boolean>(true);
 
 	useEffect(() => {
-		if (goLiveState.capturedDomain.length) {
+		if (capturedDomain.length) {
 			validateDomain();
 		}
-	}, [goLiveState.capturedDomain]);
+	}, [capturedDomain]);
 
 	const handleDomainChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSiteBuilderState({
+			...siteBuilderState,
+			capturedDomain: event.target.value
+		});
+
 		setGoLiveState({
 			...goLiveState,
-			capturedDomain: event.target.value,
 			verificationStatus: 'default',
 			verificationErrorType: false,
 			verificationMessage: '',
@@ -77,7 +94,7 @@ const VerifyDomain = () => {
 
 	const validateDomain = () => {
 		const pattern = /(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/g;
-		setValidDomain(pattern.test(goLiveState.capturedDomain));
+		setValidDomain(pattern.test(capturedDomain));
 	};
 
 	const handleSubmit = (event: React.FormEvent) => {
@@ -99,9 +116,9 @@ const VerifyDomain = () => {
 		<Box sx={ { maxWidth: 425, margin: '0 auto' } }>
 			<WizardSectionTitle
 				heading={ screenTitle }
-				headingVariant="h1"
+				headingVariant="h2"
 				copy={ screenDescription }
-				copyVariant="h4"
+				copyVariant="body2"
 				sx={ {
 					marginBottom: 4,
 				} }
@@ -119,13 +136,13 @@ const VerifyDomain = () => {
 							error={ verificationStatus === 'error' }
 							disabled={ isLoading || verificationStatus === 'advanced' }
 							margin={ 'dense' }
-							value={ capturedDomain }
+							value={ siteBuilderState.capturedDomain }
 							onChange={ handleDomainChange }
 							inputProps={ { 'aria-labelledby': 'site-domain-label' } }
 							InputProps={ (verificationStatus === 'error' || verificationStatus === 'connected' || verificationStatus === 'connecting') ? {
 								endAdornment: <InputAdornment position="end">
 									{ verificationStatus === 'connected' && <CheckCircle color="success" /> }
-									{ verificationStatus === 'connecting' && <Box component="img" src={ `${ IMAGE_DIR }/loading-icon.svg` } sx={ loadingSx } /> }
+									{ verificationStatus === 'connecting' && <Box component="img" src={ `${ IMAGE_DIR }loading-icon.svg` } sx={ loadingSx } /> }
 									{ verificationStatus === 'error' && <Error color="error" /> }
 								</InputAdornment>
 							} : undefined }

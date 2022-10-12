@@ -1,5 +1,4 @@
 import React from 'react';
-import { __ } from '@wordpress/i18n';
 import { Typography, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 

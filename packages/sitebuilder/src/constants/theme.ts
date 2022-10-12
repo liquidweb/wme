@@ -199,6 +199,15 @@ let theme = {
 				}
 			}
 		},
+		MuiPopover: {
+			styleOverrides: {
+				root: {
+					'&.MuiMenu-root': {
+						zIndex: '99999'
+					}
+				}
+			}
+		},
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {
@@ -302,13 +311,19 @@ theme = deepmerge(theme, {
 							fontSize: pxToRem(48),
 							fontWeight: 400,
 							letterSpacing: '-0.02em',
-							marginBottom: 24
+							marginBottom: 24,
+							'&.isBookend': {
+								marginBottom: 32
+							}
 						},
 						'& .MuiTypography-h2.WmeWizardSectionTitle-heading': {
 							fontSize: pxToRem(32),
 							fontWeight: 400,
 							letterSpacing: '-0.02em',
-							marginBottom: 32
+							marginBottom: 16,
+							'&.isBookend': {
+								marginBottom: 24
+							}
 						}
 					},
 					// Input Helper Overrides.

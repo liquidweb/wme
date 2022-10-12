@@ -43,7 +43,7 @@ const Complete = () => {
 				heading={ complete.title }
 				headingVariant="h2"
 				iconAlt={ complete.title }
-				iconSrc={ `${ IMAGE_DIR }ftc-complete.png` }
+				iconSrc={ `${ IMAGE_DIR }party-emoji.png` }
 				sx={ {
 					img: {
 						maxWidth: '86px',
@@ -66,9 +66,7 @@ const Complete = () => {
 					component="h3"
 					mb={ 2 }
 					sx={ {
-						fontWeight: 500,
 						maxWidth: '190px',
-						letterSpacing: '-0.05em',
 					} }
 					align={ 'center' }>
 					{ complete.designStepTitleText }
@@ -76,9 +74,8 @@ const Complete = () => {
 				<Button
 					onClick={ () => submitForm(true) }
 					variant="contained"
-					sx={ {
-						backgroundColor: 'primary.dark',
-					} }>
+					color="primary"
+				>
 					{ complete.designStepButtonText }
 				</Button>
 				<Box sx={ {

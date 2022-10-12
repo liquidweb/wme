@@ -7,8 +7,6 @@
 
 export {};
 
-declare module '@stellarwp/wme-ui';
-
 declare module '*.gif' {
   const src: string;
   export default src;
@@ -60,7 +58,7 @@ declare global {
 
 	interface SetupCardRowInterface {
 		id: string;
-		type: string;
+		type: 'task' | 'action';
 		variant?: string;
 		title?: string;
 		intro?: string;
@@ -69,6 +67,7 @@ declare global {
 		url?: string;
 		disabled?: boolean;
 		disableText?: string;
+		wizardHash?: string;
 	}
 
 	interface SetupCardInterface {
@@ -86,8 +85,47 @@ declare global {
 		action: string;
 		sub_action: string;
 	}
+
+	type DomainVerificationTypes = 'general' | 'registration' | 'pointed' | 'success';
+
+	interface DomainVerificationInterface {
+		type: DomainVerificationTypes;
+		message: string;
+	}
+
+	interface HandleKadencePayloadInterface {
+		action: string;
+		security: string;
+		wp_customize?: string;
+		builder?: string;
+		font?: string;
+		palette?: string;
+		selected?: string;
+	}
+
+	interface StepInterface {
+		id: number;
+		hideBack?: boolean;
+		hideSkip?: boolean;
+		hideNext?: boolean;
+		label?: string;
+		nextText?: string;
+		loadingText?: string;
+		backText?: string;
+		screen?: React.ReactNode;
+		disableNext?: boolean;
+		disableAll?: boolean;
+		disable?: boolean;
+		hidePagination?: boolean;
+	}
+
+	interface Window {
+		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;
+		PayPal?: any;
+	}
 }
 
 declare function getPasswordStrength(password: string): 'weak' | 'medium' | 'strong';
 declare function uploadImage(file: File, additionalData: { title: string, alt_text: string }): object;
 declare function createInput(name: string, value: string, form: HTMLFormElement | null): HTMLInputElement;
+declare function getDomainVerificationError(response: any): DomainVerificationInterface | boolean;

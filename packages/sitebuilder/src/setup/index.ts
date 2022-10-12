@@ -11,3 +11,4 @@ export { default as SetupCardTasks } from './SetupCardTasks';
 export * from './SetupCardTasks';
 export { default as SetupScreen } from './SetupScreen';
 export { default as GoLiveStatus } from './GoLiveStatus';
+export * from './GoLiveStatus';
