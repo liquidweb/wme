@@ -15,7 +15,7 @@
 		"module": "esnext",
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitReturns": true,
-		"noUnusedLocals": true,
+		"noUnusedLocals": false,
 		"noUnusedParameters": true,
 		"outDir": "./dist",
 		"resolveJsonModule": true,
