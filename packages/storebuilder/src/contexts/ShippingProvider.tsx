@@ -1,5 +1,4 @@
 import React, { createContext, useState } from 'react';
-import { __ } from '@wordpress/i18n';
 import ShippingScreenData, {
 	ShippingScreenDataInterface
 } from '@shipping/data/shipping-screen-data';
