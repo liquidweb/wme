@@ -7,14 +7,13 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "pnpm run development",
-		"build-prod": "pnpm run production",
+		"build": "pnpm run production",
 		"dev": "pnpm run development",
 		"development": "mix",
 		"hot": "mix watch --hot",
 		"lint": "eslint . --ext ts,tsx",
 		"lint-fix": "eslint . --fix --ext ts,tsx",
-		"prod": "npm run production",
+		"prod": "pnpm run production",
 		"production": "mix --production",
 		"test": "echo \"Error: no test specified\" && exit 1",
         "watch": "mix watch",
