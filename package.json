@@ -15,8 +15,7 @@
 		"url": "https://github.com/stellarwp/wme-foundation/issues"
 	},
 	"workspaces": [
-		"packages/*",
-		"plugins/*"
+		"packages/*"
 	],
 	"scripts": {
 		"build": "turbo run build",
