@@ -6,7 +6,8 @@ import { useWizard, usePaymentsStripe } from '@store/hooks';
 import { useSearchParams } from 'react-router-dom';
 import { handleActionRequest } from '@store/utils';
 import { PAYMENTS_STRIPE_PROPS } from '@store/constants';
-import { ErrorKeys, ErrorPluginInstall } from '@payments/shared-screens';
+import { ErrorKeys } from '@payments/shared-screens';
+import { ErrorPluginInstall } from '@payments/stripe/screens';
 
 const PaymentsStripeWizard = () => {
 	const { goToNextStep, closeAll } = useWizard();
