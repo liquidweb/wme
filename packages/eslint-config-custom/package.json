@@ -5,8 +5,8 @@
 	"author": "StellarWP",
 	"license": "MIT",
 	"keywords": [
-        "stellarwp",
-        "wme",
+		"stellarwp",
+		"wme",
 		"wordpress",
 		"eslint",
 		"plugin"
@@ -21,16 +21,15 @@
 		"url": "https://github.com/stellarwp/wme-foundation/issues"
 	},
 	"files": [
-		"configs",
 		"rules",
 		"index.js"
 	],
 	"main": "index.js",
 	"dependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.16.0",
-        "@typescript-eslint/parser": "^5.16.0",
-        "@wordpress/eslint-plugin": "^11.0.0",
-        "eslint-config-prettier": "^8.5.0",
+		"@typescript-eslint/eslint-plugin": "^5.16.0",
+		"@typescript-eslint/parser": "^5.16.0",
+		"@wordpress/eslint-plugin": "^11.0.0",
+		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.25.2",
 		"eslint-plugin-jsdoc": "^37.0.3",
 		"eslint-plugin-prettier": "^4.2.1",
@@ -42,8 +41,8 @@
 		"access": "public"
 	},
 	"scripts": {
-		"lint": "eslint ./rules ./configs",
-		"lint:fix": "eslint ./rules ./configs --fix"
+		"lint": "eslint . ./rules",
+		"lint:fix": "eslint . ./rules --fix"
 	},
 	"peerDependencies": {
 		"@babel/core": ">=7.13.0 <8.0.0",

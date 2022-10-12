@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Grid, CircularProgress } from '@mui/material';
 import { WizardSectionTitle } from '@stellarwp/wme-ui';
-import { useLookAndFeelTemplates, useLookAndFeel } from '@sb/hooks';
+import { useLookAndFeel, useWizard } from '@sb/hooks';
 import { TemplateBox, Frame, PoweredByKadence } from '@sb/components';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 
 const TemplateSelection = () => {
-	const { lookAndFeelState: { activeTemplate }, setTemplateValue } = useLookAndFeel();
+	const { lookAndFeelState: { activeTemplate }, templates, setTemplateValue, ajaxTemplateData } = useLookAndFeel();
+	const { setShowDeviceHeader } = useWizard();
 	const { templateSelection: { heading, text } } = lookAndFeelConsts;
-	const templates = useLookAndFeelTemplates();
-	let activeTemplateSettings = '';
+	let activeTemplateSettings = '' || undefined;
 
-	if (activeTemplate) {
-		activeTemplateSettings = templates.find((template: { slug: string }) => template.slug === activeTemplate.slug);
+	useEffect(() => {
+		ajaxTemplateData();
+		setShowDeviceHeader(false);
+	}, []);
+
+	if (activeTemplate && templates) {
+		activeTemplateSettings = templates?.find((template: { slug: string }) => template.slug === activeTemplate);
 	}
 
 	return (
@@ -24,6 +29,7 @@ const TemplateSelection = () => {
 			minHeight: '100vh',
 			display: 'flex',
 			gap: 2,
+			width: '100%',
 		} }>
 			<Box width="290px">
 				<Box sx={ {
@@ -71,8 +77,8 @@ const TemplateSelection = () => {
 								/>
 							</Grid>
 						}
-						{ templates.length ? templates?.map((template: {slug: string}, i:number) => (
-							template.slug !== activeTemplate.slug &&
+						{ templates?.length ? templates?.map((template: {slug: string}, i:number) => (
+							template.slug !== activeTemplate &&
 							<Grid item xs={ 12 } sm={ 6 } md={ 4 } lg={ 3 } key={ i }>
 								<TemplateBox
 									template={ template }
@@ -80,7 +86,7 @@ const TemplateSelection = () => {
 									isActive={ false }
 								/>
 							</Grid>
-						)) : <CircularProgress /> }
+						)) : <Box><CircularProgress /></Box> }
 					</Grid>
 				</Frame>
 			</Box>

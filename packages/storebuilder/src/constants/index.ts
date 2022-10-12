@@ -18,9 +18,17 @@ export const STORE_SETUP_PROPS = STOREBUILDER.wizards.store_setup;
 
 export const NEXCESS_SUPPORT_URL = STOREBUILDER.support_url;
 
+export const SHIPPING_PROPS = WIZARDS?.shipping || {};
+
+export const USPS_PLUGIN_SLUG = 'elex-usps-shipping-method';
+
 export const WP_101_URL = 'https://app.wp101plugin.com/api/media/';
 
 export const WP_101_API_KEY = STOREBUILDER?.wp101_api_key || '';
+
+export const PAYMENTS_PAYPAL_PROPS = STOREBUILDER.wizards.payment_gateway_paypal;
+
+export const PAYMENTS_STRIPE_PROPS = STOREBUILDER.wizards.payment_gateway_stripe;
 
 export const WP_101_HOW_TO_LINKS = [{
 	title: __('Simple', 'nexcess-mapps'),

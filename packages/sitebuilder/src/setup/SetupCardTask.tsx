@@ -19,7 +19,7 @@ const getAvatarProps = (props: SetupCardRowInterface) => {
 const SetupCardTask = (props: SetupCardRowInterface) => {
 	const {
 		type,
-		url,
+		wizardHash,
 		...rest
 	} = props;
 
@@ -28,18 +28,18 @@ const SetupCardTask = (props: SetupCardRowInterface) => {
 
 	const navigate = useNavigate();
 
-	const validUrl = url && isValidUrl(url);
+	const validUrl = wizardHash && isValidUrl(wizardHash);
 
 	const onClick = () => {
-		if (url) {
-			navigate(url);
+		if (wizardHash) {
+			navigate(wizardHash);
 		}
 	};
 
 	return <WmeSetupCardTask
 		{ ...rest }
 		onClick={ ! validUrl ? onClick : undefined }
-		href={ validUrl ? url : undefined }
+		href={ validUrl ? wizardHash : undefined }
 		variant={ isVariant ? type : 'task' }
 		avatar={ Object.keys(avatarProps).length > 0 && <Avatar { ...avatarProps } /> }
 	/>;

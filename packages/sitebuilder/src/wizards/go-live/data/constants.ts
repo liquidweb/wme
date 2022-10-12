@@ -67,5 +67,12 @@ export const GoLiveStringData = {
 		statusSuccessPart1: __('Your domain is ready to connect!', 'nexcess-mapps'),
 		statusSuccessPart2: __('Continue and we\'ll do all the work of updating your site to use your custom domain.', 'nexcess-mapps'),
 		statusSuccessNote: __('This process may take a few minutes, after which you will need to log in again on the new live domain.', 'nexcess-mapps')
+	},
+	skipVerificationWarning: {
+		warningHeadline: __('Skipping domain verification is an advanced step.', 'nexcess-mapps'),
+		message1: __('Your site may become inaccessible if its domain records are invalid, so please double-check your configuration before continuing.', 'nexcess-mapps'),
+		message2: __('If anything does go wrong, please reach out to support and we\'ll get you up and running!', 'nexcess-mapps'),
+		continueButton: __('Continue without verification', 'nexcess-mapps'),
+		nevermind: __('Do not skip verification', 'nexcess-mapps')
 	}
 };

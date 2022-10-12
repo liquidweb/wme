@@ -3,7 +3,7 @@ import { WizardHeader as WmeWizardHeader, Logo, ExitButton } from '@stellarwp/wm
 import { Routes, Route } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';
 import { useWizard } from '@sb/hooks';
-import { SiteBuilderLogo } from '@sb/logos';
+import { StoreBuilderLogo } from '@sb/logos';
 import { ModalDeviceSelection } from '@sb/components';
 
 const EXIT_TEXT = __('Exit to Setup', 'nexcess-mapps');
@@ -12,7 +12,7 @@ export interface WizardHeaderInterface {
 }
 
 const WizardHeader: React.FC<WizardHeaderInterface> = () => {
-	const { wizardState: { showCloseWarning, hideExit }, setShowCloseWarning, closeAll } = useWizard();
+	const { wizardState: { showCloseWarning, hideExit, showDeviceHeader }, setShowCloseWarning, closeAll } = useWizard();
 
 	const handleExitClick = () => {
 		if (showCloseWarning !== null) {
@@ -28,10 +28,10 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 			<>
 				<Logo
 					width="100"
-					logoSrc={ <SiteBuilderLogo /> }
+					logoSrc={ <StoreBuilderLogo /> }
 				/>
 				<Routes>
-					<Route path="/look-and-feel" element={ <ModalDeviceSelection /> } />
+					<Route path="/look-and-feel" element={ showDeviceHeader && <ModalDeviceSelection /> } />
 				</Routes>
 				{
 					! hideExit &&

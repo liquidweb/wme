@@ -189,11 +189,11 @@ export default function CardSelectItem(props: CardSelectItemProps) {
   let footer = footerProp;
 
   if (primary != null && primary.type !== Typography) {
-    primary = <PrimaryText variant="body1">{primary}</PrimaryText>;
+    primary = <PrimaryText className="WmeCardSelectItem-primary" variant="body1">{primary}</PrimaryText>;
   }
 
   if (secondary != null && secondary?.type !== Typography) {
-    secondary = <SecondaryText variant="body2">{secondary}</SecondaryText>;
+    secondary = <SecondaryText className="WmeCardSelectItem-secondary" variant="body2">{secondary}</SecondaryText>;
   }
 
   if (footer != null && footer?.type !== Typography) {

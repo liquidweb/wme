@@ -86,8 +86,6 @@ const StoreSetupProvider = ({
 			productCount: formValues.productCount.touched ? formValues.productCount.value : null,
 		});
 
-		console.log('submitForm: ', data);
-
 		handleActionRequest(data).then(() => {
 			removeEventListener('beforeunload', beforeUnloadListener);
 			window.location.assign(`${ STOREBUILDER_URL }`);

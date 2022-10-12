@@ -1,28 +1,29 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { WizardFooter } from '@stellarwp/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
-
+import { Import } from '@look-and-feel/screens';
 import { useWizard, useLookAndFeel } from '@sb/hooks';
 
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
+import DeleteContentWarning from './DeleteContentWarning';
 
 const LookAndFeelWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
 
-	const { lookAndFeelState: { steps } } = useLookAndFeel();
+	const { lookAndFeelState: { steps, lastStep, isImporting, showDeleteWarning }, handleSave } = useLookAndFeel();
 
 	const handleOnNext = () => {
+		if (activeStep === lastStep) {
+			return;
+		}
+
 		goToNextStep();
 	};
 
 	const handleOnSkip = () => {
 		goToNextStep();
-	};
-
-	const handleOnSave = () => {
-		// eslint-disable-next-line no-console
-		console.log('Save');
 	};
 
 	const [searchParams] = useSearchParams();
@@ -34,7 +35,11 @@ const LookAndFeelWizard = () => {
 
 	return (
 		<>
-			{ steps[ stepIndex ].screen }
+			{
+				isImporting ? <Import />
+					: showDeleteWarning ? <DeleteContentWarning open={ showDeleteWarning } />
+						: steps[ stepIndex ].screen
+			}
 			<WizardFooter
 				sx={ { position: 'fixed' } }
 				steps={ steps }
@@ -42,7 +47,8 @@ const LookAndFeelWizard = () => {
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
 				onSkip={ handleOnSkip }
-				save={ handleOnSave }
+				isLastStep={ activeStep === lastStep }
+				save={ handleSave }
 				onClickStep={ ({ id }) => goToStep(id) }
 				hideFooter={ false }
 				backText={ __('Back', 'nexcess-mapps') }

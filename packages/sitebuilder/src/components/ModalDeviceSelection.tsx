@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, SvgIcon } from '@mui/material';
 import { DesktopWindows, TabletMac, PhoneIphone } from '@mui/icons-material';
-import { useWizard } from '../hooks/useWizard';
+import { useWizard } from '@sb/hooks';
 
 interface DevicesInterface {
 	desktop: typeof SvgIcon;
@@ -13,10 +13,6 @@ const devices:DevicesInterface = {
 	desktop: DesktopWindows,
 	tablet: TabletMac,
 	mobile: PhoneIphone,
-};
-
-const devicesOffsetSx = {
-	marginRight: '-20.833333%',
 };
 
 const deviceSx = {
@@ -32,12 +28,7 @@ const deviceSx = {
 };
 
 export const ModalDeviceSelection = () => {
-	const { currentStep, setActiveDevice, wizardState: { activeDevice } } = useWizard();
-
-	// If it's the template selection screen or import screen, just return right away
-	if (currentStep === 1 || currentStep === 5) {
-		return null;
-	}
+	const { setActiveDevice, wizardState: { activeDevice } } = useWizard();
 
 	const handleDeviceClick = (nextDevice: string) => {
 		if (nextDevice === activeDevice) {
@@ -46,7 +37,7 @@ export const ModalDeviceSelection = () => {
 		setActiveDevice(nextDevice);
 	};
 
-	return <Box sx={ { display: 'flex', alignItems: 'center', ...(currentStep !== 3 && devicesOffsetSx) } }>
+	return <Box sx={ { display: 'flex', alignItems: 'center' } }>
 		{ (Object.keys(devices) as Array<keyof typeof devices>).map((key) => {
 			const DeviceName = devices[ key ];
 			return <DeviceName

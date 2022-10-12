@@ -8,7 +8,7 @@ import { GoLiveStringData } from '@go-live/data/constants';
 const ErrorDomainRegisteredNotPointing = () => {
 	const theme = useTheme();
 	const { goLiveState, setGoLiveState } = useGoLive();
-	const { verificationStatus, skipDnsVerification, steps, activeStep } = goLiveState;
+	const { verificationStatus, skipDnsVerification, steps } = goLiveState;
 	const { errorDomainRegisteredNotPointing: {
 		helpHeadlinePart1,
 		helpHeadlinePart2,
@@ -43,7 +43,7 @@ const ErrorDomainRegisteredNotPointing = () => {
 	const handleSkipDnsVerification = () => {
 		const currentStatus = ! skipDnsVerification ? 'advanced' : 'error';
 
-		steps[ activeStep ].disableNext = !! skipDnsVerification;
+		steps[ 1 ].disableNext = !! skipDnsVerification;
 
 		setGoLiveState({
 			...goLiveState,

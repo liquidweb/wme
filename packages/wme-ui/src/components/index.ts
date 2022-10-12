@@ -147,3 +147,6 @@ export * from './device-selection';
 
 export { default as Switch } from './switch';
 export * from './switch';
+
+export { default as ListItemCheckout } from './list-item-checkout';
+export * from './list-item-checkout';

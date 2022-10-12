@@ -2,7 +2,7 @@ import type React from 'react';
 import type { ReactElement } from 'react';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Logout } from '@mui/icons-material';
+import Logout from '@mui/icons-material/Logout';
 import { Button } from '..';
 
 interface ExitButtonProps extends BoxProps {
