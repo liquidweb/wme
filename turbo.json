@@ -7,11 +7,17 @@
         "dist/**"
       ]
     },
+    "dev": {
+		"cache": false
+	},
     "lint": {
       "outputs": []
     },
-    "dev": {
-      "cache": false
-    }
+    "lint:fix": {
+		"cache": false
+	},
+	"watch": {
+		"cache": false
+	}
   }
 }

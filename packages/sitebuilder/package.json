@@ -12,7 +12,7 @@
 		"development": "mix",
 		"hot": "mix watch --hot",
 		"lint": "eslint . --ext ts,tsx",
-		"lint-fix": "eslint . --fix --ext ts,tsx",
+		"lint:fix": "eslint . --fix --ext ts,tsx",
 		"prod": "pnpm run production",
 		"production": "mix --production",
 		"test": "echo \"Error: no test specified\" && exit 1",
