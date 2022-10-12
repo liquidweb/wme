@@ -1,4 +1,4 @@
 module.exports = {
-	extends: [ 'plugin:@stellarwp/eslint-config-custom/recommended' ],
+	extends: ["./recommended"],
 	root: true,
 };
