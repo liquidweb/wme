@@ -1,11 +1,25 @@
 import React from 'react';
-import { Box, styled, BoxProps } from '@mui/material';
+import { Box, styled } from '@mui/material';
+import type { BoxProps } from '@mui/material/Box';
+
+export interface LoaderContainerInterface extends BoxProps {
+	fullscreen?: boolean;
+}
 
 const StyledLoaderContainer = styled(Box, {
 	name: 'WmeLoader',
 	slot: 'Root',
-})(() => ({
+	shouldForwardProp: (prop) => prop !== 'fullscreen',
+})<LoaderContainerInterface>(({ fullscreen }) => ({
 	textAlign: 'center',
+
+	...(fullscreen && {
+		display: 'grid',
+		placeItems: 'center',
+		position: 'absolute',
+		height: '100vh',
+		width: '100%',
+	})
 }));
 
 const StyledLoader = styled(Box, {
@@ -46,7 +60,7 @@ const StyledLoaderBall = styled(Box, {
 	display: 'inline-block',
 }));
 
-export function Loading(props: BoxProps) {
+export function Loading(props: LoaderContainerInterface) {
 	return (
 		<StyledLoaderContainer { ...props }>
 			<StyledLoader>

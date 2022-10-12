@@ -35,7 +35,7 @@ const SetupCard = (props: SetupCardInterface) => {
 					paddingBottom: (lastRowType && lastRowType === 'task') ? '20px' : '32px',
 				}
 			} }>
-				<SetupCardTasks rows={ rows } />
+				<SetupCardTasks rows={ rows } completed={ completed } />
 			</SetupCardContent>
 			<SetupCardFooter footers={ footers } />
 		</WmeSetupCard>

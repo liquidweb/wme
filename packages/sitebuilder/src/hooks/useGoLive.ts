@@ -10,7 +10,6 @@ export function useGoLive() {
 		setIsLoading,
 		setHasDomain,
 		setShowGetDomain,
-		retryVerificationStep,
 		handleDomainVerificationRequest,
 		getHasDomainNextText
 	} = useContext(GoLiveContext) as GoLiveProviderContextInterface;
@@ -22,7 +21,6 @@ export function useGoLive() {
 		setIsLoading,
 		setHasDomain,
 		setShowGetDomain,
-		retryVerificationStep,
 		handleDomainVerificationRequest,
 		getHasDomainNextText
 	};

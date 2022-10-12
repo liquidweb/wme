@@ -4,26 +4,30 @@ import { LookAndFeelContext, LookAndFeelProviderContextInterface } from '../cont
 export function useLookAndFeel() {
 	const {
 		lookAndFeelState,
-		setInitialValues,
-		resetStepData,
-		setStepDataTouched,
-		setIsLoading,
+		templates,
 		setTemplateValue,
 		setFontValue,
 		setColorValue,
 		setIsImporting,
-		setImportingError
+		setImportingError,
+		handleSave,
+		handleImport,
+		setShowDeleteWarning,
+		setDeleteValue,
+		ajaxTemplateData
 	} = useContext(LookAndFeelContext) as LookAndFeelProviderContextInterface;
 	return {
 		lookAndFeelState,
-		setInitialValues,
-		resetStepData,
-		setStepDataTouched,
-		setIsLoading,
+		templates,
 		setTemplateValue,
 		setFontValue,
 		setColorValue,
 		setIsImporting,
-		setImportingError
+		setImportingError,
+		handleSave,
+		handleImport,
+		setShowDeleteWarning,
+		setDeleteValue,
+		ajaxTemplateData
 	};
 }

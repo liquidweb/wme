@@ -1,9 +1,8 @@
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { ActiveOverlay } from './index';
-// import { theme } from '@stellarwp/wme-ui'';
-import { useLookAndFeel } from '../hooks/useLookAndFeel';
+import { useLookAndFeel } from '@sb/hooks/useLookAndFeel';
 
 export const TemplateBox = (props:any) => {
 	const {
@@ -12,7 +11,6 @@ export const TemplateBox = (props:any) => {
 	} = props;
 
 	const { setTemplateValue } = useLookAndFeel();
-	const theme = useTheme();
 
 	const PREVIEW_TEXT = __('Preview', 'nexcess-mapps');
 

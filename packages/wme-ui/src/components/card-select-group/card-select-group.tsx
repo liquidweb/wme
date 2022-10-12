@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Theme } from '@mui/material/styles/createTheme';
 import type { ResponsiveStyleValue } from '@mui/system';
 import type { GridSpacing } from '@mui/material/Grid';

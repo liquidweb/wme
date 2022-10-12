@@ -2,37 +2,28 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { lookAndFeelConsts } from './constants';
 
-import { TemplateSelection, FontSelection, ColorSelection, Preview, Import } from '../screens';
-
-export interface LookAndFeelStep {
-  id: number;
-  hideBack?: boolean;
-  hideSkip?: boolean;
-  hideNext?: boolean;
-  label?: string;
-  nextText?: string;
-  hidePagination?: boolean;
-  screen?: React.ReactNode;
-  disableNext?: boolean;
-  disableAll?: boolean;
-  disable?: boolean;
-}
+import { TemplateSelection, FontSelection, ColorSelection, Preview } from '../screens';
+import { LOOK_AND_FEEL_PROPS } from '@sb/constants';
 
 export interface LookAndFeelInterface {
     isLoading: boolean;
     values: object;
-    steps: Array<LookAndFeelStep>;
-	activeTemplate: {
+    steps: Array<StepInterface>;
+	template: {
 		name: string,
 		url: string,
 		slug: string;
 	},
 	font: string;
 	color: string;
+	activeTemplate: string;
 	updateIframe: boolean;
 	isImporting: boolean;
 	importingError: boolean;
 	importDone: boolean;
+	lastStep: number;
+	showDeleteWarning: boolean;
+	deleteValue: string;
 }
 
 const LookAndFeelScreenData = (): LookAndFeelInterface => ({
@@ -40,17 +31,21 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 	values: {
 		isFirstTimeConfiguration: true,
 	},
-	activeTemplate: {
+	template: {
 		name: '',
 		url: '',
 		slug: '',
 	},
 	font: '',
 	color: '',
+	activeTemplate: LOOK_AND_FEEL_PROPS?.template?.slug || '', // activeTemplate refers to previously selected template, not what is saved in state.
 	updateIframe: false,
 	isImporting: false,
 	importingError: false,
 	importDone: false,
+	lastStep: 4,
+	showDeleteWarning: false,
+	deleteValue: '',
 	steps: [
 		{
 			id: 0,
@@ -78,15 +73,7 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 			hidePagination: true,
 			hideSkip: true,
 			screen: <Preview />,
-		},
-		{
-			id: 4,
-			label: __('Import', 'nexcess-mapps'),
-			hideSkip: true,
-			hidePagination: true,
-			nextText: __('Save & Continue', 'nexcess-mapps'),
-			screen: <Import />
-		},
+		}
 	],
 });
 
