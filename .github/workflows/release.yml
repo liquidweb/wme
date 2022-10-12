@@ -1,4 +1,5 @@
-name: Release
+# Workflow name
+name: "Release PRs / Publish Packages"
 
 on:
   push:

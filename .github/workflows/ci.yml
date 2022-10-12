@@ -1,3 +1,6 @@
+# Workflow name
+name: "CI/CD: Install, Build, and Lint"
+
 on:
   push:
     branches: ["main"]
