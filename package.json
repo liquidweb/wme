@@ -24,7 +24,7 @@
 		"lint": "turbo run lint",
 		"lint:fix": "turbo run lint:fix",
 		"preinstall": "npx only-allow pnpm",
-		"publish-packages": "turbo run build lint && changeset version && changeset publish",
+		"publish-packages": "turbo run build && changeset version && changeset publish",
 		"watch": "turbo run watch"
 	},
 	"peerDependencies": {
