@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { NextStepTile } from '@store/components';
 import { paymentsStripeConsts } from '../data/constants';
-import { IMAGE_DIR, PAYMENTS_STRIPE_PROPS } from '@store/constants';
+import { IMAGE_DIR, PAYMENTS_STRIPE_PROPS, STRIPE_PLUGIN_SLUG } from '@store/constants';
+import { handleTelemetryRequest } from '@store/utils/handleTelemetryRequest';
 
 const Success = () => {
+	const [successScreenTouched, setSuccessScreenTouched] = useState<boolean>(false);
 	const { success: {
 		heading,
 		copy,
@@ -16,6 +18,15 @@ const Success = () => {
 	const theme = useTheme();
 	const stripeIcon = `${ IMAGE_DIR }stripe-logo.png`;
 	const nextStepImage = `${ IMAGE_DIR }manage-payment-settings.png`;
+
+	useEffect(() => {
+		if (! successScreenTouched) {
+			setSuccessScreenTouched(true);
+			const nonce = PAYMENTS_STRIPE_PROPS.ajax.nonce;
+			const action = PAYMENTS_STRIPE_PROPS.ajax.action;
+			handleTelemetryRequest(nonce, action, STRIPE_PLUGIN_SLUG, 'wizard_completed');
+		}
+	}, []);
 
 	return (
 		<Box sx={ { maxWidth: 500 } }>

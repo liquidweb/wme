@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
+import { handleTelemetryRequest } from '@store/utils/handleTelemetryRequest';
+import { PAYPAL_PLUGIN_SLUG, STRIPE_PLUGIN_SLUG, WIZARDS } from '@store/constants';
 
 export interface WizardProviderStateInterface {
 	lastStep: number | null;
@@ -45,6 +47,9 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		? Number(searchParams.get('step'))
 		: 1;
 	const navigate = useNavigate();
+	const [wizardStarted, setWizardStarted] = useState<boolean>(false);
+
+	const currentWizard = useParams()[ '*' ];
 
 	useEffect(() => {
 		if (wizardState.hasStepped) {
@@ -57,6 +62,38 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 		}
 	}, [currentStep]);
+
+	useEffect(() => {
+		if (currentStep === 1 && ! wizardStarted) {
+			let wizardProp = '' as string;
+			let pluginSlug = '';
+			setWizardStarted(true);
+
+			switch (currentWizard) {
+			case 'go-live':
+				wizardProp = 'golive';
+				break;
+			case 'payments-paypal':
+				wizardProp = 'payment_gateway_paypal';
+				pluginSlug = PAYPAL_PLUGIN_SLUG;
+				break;
+			case 'payments-stripe':
+				wizardProp = 'payment_gateway_stripe';
+				pluginSlug = STRIPE_PLUGIN_SLUG;
+				break;
+			case 'shipping':
+				pluginSlug = 'elex-usps-shipping-method';
+				break;
+			default:
+				wizardProp = currentWizard?.replaceAll('-', '_') as string;
+			}
+
+			const nonce = WIZARDS[ wizardProp ].ajax.nonce;
+			const action = WIZARDS[ wizardProp ].ajax.action;
+
+			handleTelemetryRequest(nonce, action, pluginSlug || '');
+		}
+	}, []);
 
 	const goToStep = (targetStep: number) => {
 		if (typeof targetStep !== 'number') {

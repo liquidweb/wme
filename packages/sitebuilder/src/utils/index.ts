@@ -12,3 +12,4 @@ export * from './randomInt';
 export * from './removeNulls';
 export * from './uploadImage';
 export * from './objToFormData';
+export * from './handleTelemetryRequest';

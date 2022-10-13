@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
+import { handleTelemetryRequest } from '@sb/utils/handleTelemetryRequest';
+import { WIZARDS } from '@sb/constants';
 
 export interface WizardProviderStateInterface {
 	lastStep: number | null;
@@ -46,6 +48,10 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		: 1;
 	const navigate = useNavigate();
 
+	const [wizardStarted, setWizardStarted] = useState<boolean>(false);
+
+	const currentWizard = useParams()[ '*' ];
+
 	useEffect(() => {
 		if (wizardState.hasStepped) {
 			return;
@@ -57,6 +63,24 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 		}
 	}, [currentStep]);
+
+	useEffect(() => {
+		if (currentStep === 1 && ! wizardStarted) {
+			let wizardProp = '' as string;
+			setWizardStarted(true);
+
+			if (currentWizard === 'go-live') {
+				wizardProp = 'golive';
+			} else {
+				wizardProp = currentWizard?.replaceAll('-', '_') as string;
+			}
+
+			const nonce = WIZARDS[ wizardProp ].ajax.nonce;
+			const action = WIZARDS[ wizardProp ].ajax.action;
+
+			handleTelemetryRequest(nonce, action);
+		}
+	}, []);
 
 	const goToStep = (targetStep: number) => {
 		if (typeof targetStep !== 'number') {
