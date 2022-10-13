@@ -1,0 +1,133 @@
+{
+	"name": "@moderntribe/wme-ui",
+	"version": "1.0.3",
+	"private": false,
+	"author": "Moderntribe Incubator Team",
+	"description": "Components and hooks to build the best UX/UI admin wizards",
+	"keywords": [
+		"react",
+		"react-component",
+		"wme",
+		"moderntribe",
+		"wizard"
+	],
+	"homepage": "https://github.com/moderntribe/wme/tree/trunk/packages/wme-ui/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/moderntribe/wme.git",
+		"directory": "packages/wme-ui"
+	},
+	"bugs": {
+		"url": "https://github.com/moderntribe/wme/issues"
+	},
+	"license": "MIT",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/esm/index.d.ts",
+	"files": [
+		"dist/**/*.js",
+		"dist/**/*.js.map",
+		"dist/**/*.d.ts",
+		"dist/*.d.ts",
+		"dist/*.js"
+	],
+	"dependencies": {
+		"history": "^5.3.0",
+		"query-string": "^7.1.1",
+		"react-refresh": "^0.14.0",
+		"react-router-dom": "^6.3.0",
+		"require-from-string": "^2.0.2",
+		"use-query-params": "^1.2.3"
+	},
+	"peerDependencies": {
+		"@emotion/react": "^11.9.3",
+		"@emotion/styled": "^11.9.3",
+		"@mui/base": "^5.0.0-alpha.83",
+		"@mui/icons-material": "^5.8.4",
+		"@mui/lab": "^5.0.0-alpha.82",
+		"@mui/material": "^5.9.2",
+		"@mui/system": "^5.6.4",
+		"@mui/utils": "^5.9.1",
+		"require-from-string": "^2.0.2",
+		"tslib": "^2.4.0"
+	},
+	"scripts": {
+		"build": "rollup -c",
+		"watch": "rollup -c -w",
+		"start": "start-storybook -p 6006 -s public",
+		"storybook": "start-storybook -p 6006 -s public",
+		"dev": "NODE_ENV=development pnpm run storybook",
+		"build-storybook": "build-storybook -s public",
+		"chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
+		"lint": "eslint ./src --ext .tsx --ext .ts",
+		"lint:fix": "pnpm run lint --fix",
+		"lint:quiet": "pnpm run lint --quiet"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@babel/core": ">=7.13.0 <8.0.0",
+		"@emotion/react": "^11.10.4",
+		"@emotion/styled": "^11.10.4",
+		"@mui/base": "^5.0.0-alpha.96",
+		"@mui/icons-material": "^5.10.3",
+		"@mui/lab": "^5.0.0-alpha.98",
+		"@mui/material": "^5.10.4",
+		"@mui/system": "^5.10.4",
+		"@mui/utils": "^5.10.3",
+		"@rollup/plugin-commonjs": "^21.1.0",
+		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@rollup/plugin-typescript": "^8.5.0",
+		"@moderntribe/tsconfig": "workspace:*",
+		"@storybook/addon-actions": "^6.5.12",
+		"@storybook/addon-docs": "^6.5.12",
+		"@storybook/addon-essentials": "^6.5.12",
+		"@storybook/addon-interactions": "^6.5.12",
+		"@storybook/addon-links": "^6.5.12",
+		"@storybook/addons": "^6.5.12",
+		"@storybook/builder-webpack5": "^6.5.12",
+		"@storybook/manager-webpack5": "^6.5.12",
+		"@storybook/node-logger": "^6.5.12",
+		"@storybook/preset-create-react-app": "^4.1.2",
+		"@storybook/react": "^6.5.12",
+		"@storybook/testing-library": "^0.0.13",
+		"@storybook/theming": "^6.5.12",
+		"@types/jest": "^27.5.2",
+		"@types/mdx": "^2.0.2",
+		"@types/node": "^18.7.16",
+		"@types/react": "^18.0.18",
+		"@types/react-dom": "^17.0.17",
+		"@types/react-router-dom": "^5.3.3",
+		"typescript": "^4.8.3",
+		"@typescript-eslint/eslint-plugin": "^5.36.2",
+		"@typescript-eslint/parser": "^5.36.2",
+		"chromatic": "^6.9.0",
+		"eslint": "^8.23.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-import-resolver-typescript": "^2.7.1",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsx-a11y": "^6.6.1",
+		"eslint-plugin-react": "^7.31.7",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-refresh": ">=0.10.0 <1.0.0",
+		"react-scripts": "5.0.0",
+		"rollup": "^2.79.0",
+		"rollup-plugin-dts": "^4.2.2",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-terser": "^7.0.2",
+		"webpack": "^5.74.0"
+	},
+	"sideEffects": false
+}

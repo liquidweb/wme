@@ -1,0 +1,107 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta
+} from '@storybook/addon-docs';
+import { useState } from 'react';
+import { action } from '@storybook/addon-actions';
+
+import { AddShoppingCartIcon, NotInterestedIcon, CheckCircleIcon } from '@mui/icons-material';
+import { ListItemCheckout } from '..';
+
+<Meta
+  title="Misc/ListItemCheckout"
+  component={ ListItemCheckout }
+  argTypes={{
+    name: {
+      control: "text",
+      description: "Name of the item",
+    },
+    price: {
+      control: "text",
+      description: "Price of the item",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Mark the item as disabled",
+    },
+    selected: {
+      control: "boolean",
+      description: "Mark the item as selected",
+    },
+    chipColor: {
+      control: {
+        defaultValue: "default",
+        type: "select",
+      },
+      description: "Chip color",
+      options: ["default","success"],
+    },
+    chipLabel: {
+      control: "text",
+      description: "Text that displays inside of chip",
+    },
+  }}
+    decorators={[
+    (Story) => (
+      <div style={{  maxWidth: 700, margin: '0 auto' }}>
+        <Story />
+      </div>
+    ),
+  ]}
+/>
+
+export const Template = (args) => {
+  return (
+    <List>
+      <ListItemCheckout onClick={action('ListItemCheckout clicked')} {...args} />
+    </List>
+  );
+};
+
+# ListItemCheckout
+
+An extended version  of <a href="https://mui.com/material-ui/api/list-item/" target="_blank">MUI's ListItem</a>, so you can use any prop provided there. It's prepared to work in checkout pages.
+
+To prevent overcomplicating the component, it doesn't provide any state management, so you need to handle it yourself. Be specially careful with the `selected` and `disabled` props.
+
+
+## Props
+<ArgsTable story="." />
+
+## Canvas
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      name: 'yourdomain.com',
+      price: "$10.00 / year",
+      chipLabel: 'Available',
+      chipColor: 'success',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Disabled"
+    args={{
+      disabled: true,
+      name: 'yourdomain.com',
+      chipLabel: 'Taken',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Selected"
+    args={{
+      selected: true,
+      name: 'yourdomain.com',
+      price: "$10.00 / year",
+      chipLabel: 'Selected',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
