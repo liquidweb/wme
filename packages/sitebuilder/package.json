@@ -1,6 +1,6 @@
 {
 	"name": "@moderntribe/sitebuilder",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "SiteBuilder foundation",
 	"main": "dist/index.js",
 	"files": [
@@ -16,8 +16,8 @@
 		"prod": "pnpm run production",
 		"production": "mix --production",
 		"test": "echo \"Error: no test specified\" && exit 1",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000"
+		"watch": "mix watch",
+		"watch-poll": "mix watch -- --watch-options-poll=1000"
 	},
 	"author": "",
 	"dependencies": {
