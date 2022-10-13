@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@store/utils/handleTelemetryRequest';
-import { PAYPAL_PLUGIN_SLUG, STRIPE_PLUGIN_SLUG, WIZARDS } from '@store/constants';
+import { PAYPAL_PLUGIN_SLUG, STRIPE_PLUGIN_SLUG, USPS_PLUGIN_SLUG, WIZARDS } from '@store/constants';
 
 export interface WizardProviderStateInterface {
 	lastStep: number | null;
@@ -82,7 +82,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 				pluginSlug = STRIPE_PLUGIN_SLUG;
 				break;
 			case 'shipping':
-				pluginSlug = 'elex-usps-shipping-method';
+				wizardProp = 'shipping';
+				pluginSlug = USPS_PLUGIN_SLUG;
 				break;
 			default:
 				wizardProp = currentWizard?.replaceAll('-', '_') as string;
