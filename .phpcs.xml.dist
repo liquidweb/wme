@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<ruleset name="Coding standards for WME Sitebuilder">
+	<!--
+		Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
+		Annotated ruleset: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+	-->
+
+	<!-- What to scan: -->
+	<file>./wme-sitebuilder</file>
+
+	<exclude-pattern>./wme-sitebuilder/vendor</exclude-pattern>
+
+	<!-- Show progresss & use colors. -->
+	<arg value="sp"/>
+	<arg name="colors"/>
+
+	<!-- Enables parallel processing when available for faster results. -->
+	<arg name="parallel" value="8"/>
+
+	<!-- Strip the file paths down to the relevant bit and only apply to .php files. -->
+	<arg name="basepath" value="./"/>
+	<arg name="extensions" value="php"/>
+
+    <!--
+        Set range of supported PHP versions.
+        It's recommended that you leave off the maximum version in most cases,
+        e.g. "5.6-" means "We support PHP 5.6 or newer".
+        Reference: https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions
+     -->
+    <config name="testVersion" value="5.6-"/>
+
+    <!--
+        Set the minimum supported WordPress version.
+        Reference: https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#minimum-wp-version-to-check-for-usage-of-deprecated-functions-classes-and-function-parameters
+     -->
+    <config name="minimum_supported_wp_version" value="6.0"/>
+
+	<!-- Include the StellarWP standards. -->
+	<rule ref="StellarWP"/>
+
+	<!-- Tests may use whatever methods necessary. -->
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!-- Be more forgiving about line-length when dealing with templates. -->
+	<rule ref="Generic.Files.LineLength.TooLong">
+		<exclude-pattern>resources/*</exclude-pattern>
+	</rule>
+
+	<!-- Define the WordPress i18n text-domain. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wme-sitebuilder"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

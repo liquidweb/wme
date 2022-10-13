@@ -1,0 +1,51 @@
+# Configuration for PHPStan
+# https://phpstan.org/config-reference
+
+includes:
+	# @see https://github.com/phpstan/phpstan-src/blob/master/conf/bleedingEdge.neon
+	- phar://phpstan.phar/conf/bleedingEdge.neon
+	# Include this extension
+	- wme-sitebuilder/vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+	level: max
+	inferPrivatePropertyTypeFromConstructor: true
+
+	# Paths to be analyzed.
+	paths:
+		- %currentWorkingDirectory%/wme-sitebuilder.php
+		- %currentWorkingDirectory%/wme-sitebuilder/
+	excludes_analyse:
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/*
+
+	# Additional checks.
+	polluteScopeWithLoopInitialAssignments: true
+	polluteScopeWithAlwaysIterableForeach: true
+	polluteCatchScopeWithTryAssignments: true
+	checkAlwaysTrueCheckTypeFunctionCall: true
+	checkAlwaysTrueInstanceof: true
+	checkAlwaysTrueStrictComparison: true
+	checkExplicitMixedMissingReturn: true
+	checkFunctionNameCase: true
+	checkMissingClosureNativeReturnTypehintRule: false
+	reportMaybesInMethodSignatures: true
+	reportStaticMethodSignatures: true
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+	checkUninitializedProperties: true
+
+	# To-be restored in https://liquidweb.atlassian.net/browse/NXMAPPS-348
+	checkMissingIterableValueType: false
+
+	# Unfortunately, DocBlocks can't be relied upon.
+	treatPhpDocTypesAsCertain: false
+
+	# Error patterns that should be ignored.
+	ignoreErrors:
+		# Constants that will be defined by WordPress
+		# - '#^Constant WP_\S+ not found\.$#'
+
+		# WP-CLI won't be loaded, so don't complain about it not being there.
+		# - '#^(Used )?function (WP_)?CLI\\\S+ not found\.$#i'
+
+		# WordPress coding standards dictate that we *not* use @return void
+		# - '#Method .+ has no return typehint specified#'
