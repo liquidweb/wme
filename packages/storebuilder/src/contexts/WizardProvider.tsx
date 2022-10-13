@@ -89,8 +89,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 				wizardProp = currentWizard?.replaceAll('-', '_') as string;
 			}
 
-			const nonce = WIZARDS[ wizardProp ].ajax.nonce;
-			const action = WIZARDS[ wizardProp ].ajax.action;
+			const nonce = WIZARDS[ wizardProp ]?.ajax.nonce;
+			const action = WIZARDS[ wizardProp ]?.ajax.action;
 
 			handleTelemetryRequest(nonce, action, pluginSlug || '');
 		}
