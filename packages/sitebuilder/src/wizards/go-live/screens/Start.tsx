@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Link, Typography, useTheme } from '@mui/material';
-import { CardSelectGroup, CardSelectItem, WizardSectionTitle } from '@stellarwp/wme-ui';
+import { CardSelectGroup, CardSelectItem, WizardSectionTitle } from '@moderntribe/wme-ui';
 import { OpenInNew } from '@mui/icons-material';
 import { __ } from '@wordpress/i18n';
 import { IMAGE_DIR, NEXCESS_DOMAIN_REGISTRATION_URL } from '@sb/constants';

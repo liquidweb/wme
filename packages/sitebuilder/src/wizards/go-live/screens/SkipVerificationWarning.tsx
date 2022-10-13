@@ -7,7 +7,7 @@ import {
 	Typography
 } from '@mui/material';
 import { IMAGE_DIR } from '@sb/constants';
-import { WizardSectionTitle } from '@stellarwp/wme-ui';
+import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { GoLiveStringData } from '@go-live/data/constants';
 
 const continueButtonSx = {

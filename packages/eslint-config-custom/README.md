@@ -1,6 +1,6 @@
 # ESLint Custom Config
 
-This is an [ESLint](https://eslint.org/) plugin including configurations and custom rules for StellarWP WME Foundation development.
+This is an [ESLint](https://eslint.org/) plugin including configurations and custom rules for WME development.
 
 This primarily extends the [`@typescript/eslint-plugin/recommended`](https://github.com/typescript-eslint/typescript-eslint) and [`@wordpress/eslint-plugin/recommended`](https://github.com/WordPress/gutenberg/tree/master/packages/eslint-plugin) rulesets.
 
@@ -16,7 +16,7 @@ In addition, this ruleset does implement a number of custom rules:
 Install the module
 
 ```
-pnpm install @stellarwp/eslint-config-custom --save-dev
+pnpm install @moderntribe/eslint-config-custom --save-dev
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ To opt-in to the default configuration, extend your own project's `.eslintrc.js`
 
 ```js
 module.exports = {
-  extends: ["plugin:@stellarwp/eslint-config-custom/recommended"],
+  extends: ["plugin:@moderntribe/eslint-config-custom/recommended"],
 };
 ```
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { SetupCardList } from '@stellarwp/wme-ui';
+import { SetupCardList } from '@moderntribe/wme-ui';
 import { ColumnLink, ColumnLinkInterface } from '@store/components';
 
 export interface ColumnLinkListInterface {

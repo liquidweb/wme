@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { ProgressBar } from '@stellarwp/wme-ui';
+import { ProgressBar } from '@moderntribe/wme-ui';
 import { useLookAndFeel, useWizard } from '@sb/hooks';
 import { randomInt } from '@sb/utils';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';

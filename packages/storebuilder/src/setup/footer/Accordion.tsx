@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	SetupCardAccordion as WmeSetupCardAccordion
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import {
 	Columns,
 	ColumnsInterface,

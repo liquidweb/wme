@@ -51,15 +51,15 @@ All components come pre-styled based on the WME design, but can be tweaked using
 
 ## Installation
 
-Install latest version from [NPM](https://www.npmjs.com/package/@stellarwp/wme-ui).
+Install latest version from [NPM](https://www.npmjs.com/package/@moderntribe/wme-ui).
 
-`npm i @stellarwp/wme-ui`
+`npm i @moderntribe/wme-ui`
 
 **Example:**
 
 ```
 import type React from 'react';
-import { Button, SetupCardTask } from '@stellarwp/wme-ui';
+import { Button, SetupCardTask } from '@moderntribe/wme-ui';
 import TaskIcon from '../img/task-icon.png';
 
 const MyComponent = () => {

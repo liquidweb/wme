@@ -1,5 +1,5 @@
 {
-	"extends": "@stellarwp/tsconfig/base.json",
+	"extends": "@moderntribe/tsconfig/base.json",
 	"compilerOptions": {
 		/* Visit https://aka.ms/tsconfig to read more about this file */
 

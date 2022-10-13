@@ -5,7 +5,7 @@ import {
 	FormField,
 	TextInput,
 	WizardSectionTitle
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import {
 	Box,
 	Chip,

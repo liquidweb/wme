@@ -1,5 +1,5 @@
 import React from 'react';
-import { WizardSectionTitle, FormField, TextInput, Form } from '@stellarwp/wme-ui';
+import { WizardSectionTitle, FormField, TextInput, Form } from '@moderntribe/wme-ui';
 import { Stack } from '@mui/material';
 import FileUpload from '@ftc/FileUpload';
 import ScreenWrapper from '@ftc/ScreenWrapper';

@@ -1,5 +1,5 @@
 {
-	"name": "@stellarwp/wme-ui",
+	"name": "@moderntribe/wme-ui",
 	"version": "1.0.3",
 	"private": false,
 	"author": "Moderntribe Incubator Team",
@@ -11,14 +11,14 @@
 		"moderntribe",
 		"wizard"
 	],
-	"homepage": "https://github.com/stellarwp/wme-foundation/tree/trunk/packages/wme-ui/README.md",
+	"homepage": "https://github.com/moderntribe/wme/tree/trunk/packages/wme-ui/README.md",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/stellarwp/wme-foundation.git",
+		"url": "https://github.com/moderntribe/wme.git",
 		"directory": "packages/wme-ui"
 	},
 	"bugs": {
-		"url": "https://github.com/stellarwp/wme-foundation/issues"
+		"url": "https://github.com/moderntribe/wme/issues"
 	},
 	"license": "MIT",
 	"main": "dist/cjs/index.js",
@@ -88,7 +88,7 @@
 		"@rollup/plugin-commonjs": "^21.1.0",
 		"@rollup/plugin-node-resolve": "^13.3.0",
 		"@rollup/plugin-typescript": "^8.5.0",
-		"@stellarwp/tsconfig": "workspace:*",
+		"@moderntribe/tsconfig": "workspace:*",
 		"@storybook/addon-actions": "^6.5.12",
 		"@storybook/addon-docs": "^6.5.12",
 		"@storybook/addon-essentials": "^6.5.12",

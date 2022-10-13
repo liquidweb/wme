@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Link, Typography } from '@mui/material';
 import { CheckCircle, Warning } from '@mui/icons-material';
-import { SetupCardInfoRow } from '@stellarwp/wme-ui';
+import { SetupCardInfoRow } from '@moderntribe/wme-ui';
 import { useSiteBuilder } from '@sb/hooks';
 import { SITEBUILDER } from '@sb/constants';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
-import { WizardSectionTitle, Button } from '@stellarwp/wme-ui';
+import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { NextStepTile } from '@store/components';
 import { paymentsStripeConsts } from '../data/constants';
 import { IMAGE_DIR, PAYMENTS_STRIPE_PROPS } from '@store/constants';

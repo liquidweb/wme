@@ -2,7 +2,7 @@ import React, { useState, FC } from 'react';
 import {
 	SetupCardListItem,
 	VideoEmbed
-} from '@stellarwp/wme-ui';
+} from '@moderntribe/wme-ui';
 import { DialogContentText } from '@mui/material';
 import { getVideoSource } from '@store/utils';
 import { SimpleModal } from '@store/components';

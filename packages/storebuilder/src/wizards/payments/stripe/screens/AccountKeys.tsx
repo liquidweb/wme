@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, useTheme, CircularProgress, Stack } from '@mui/material';
-import { WizardSectionTitle, Form, FormField, TextInput } from '@stellarwp/wme-ui';
+import { WizardSectionTitle, Form, FormField, TextInput } from '@moderntribe/wme-ui';
 import { usePaymentsStripe } from '@store/hooks';
 import { paymentsStripeConsts } from '../data/constants';
 import { PAYMENTS_STRIPE_PROPS } from '@store/constants';

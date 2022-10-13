@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material';
-import { theme as WME_THEME } from '@stellarwp/wme-ui';
+import { theme as WME_THEME } from '@moderntribe/wme-ui';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SiteBuilderProvider from '@sb/contexts/SiteBuilderProvider';
 import WizardProvider from '@sb/contexts/WizardProvider';

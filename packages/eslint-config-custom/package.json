@@ -1,8 +1,8 @@
 {
-	"name": "@stellarwp/eslint-config-custom",
+	"name": "@moderntribe/eslint-config-custom",
 	"version": "0.0.1",
-	"description": "ESLint plugin for StellarWP WME development.",
-	"author": "StellarWP",
+	"description": "ESLint plugin for WME development.",
+	"author": "Modern Tribe Incubator Team",
 	"license": "MIT",
 	"keywords": [
 		"stellarwp",
@@ -11,14 +11,14 @@
 		"eslint",
 		"plugin"
 	],
-	"homepage": "https://github.com/stellarwp/wme-foundation/tree/trunk/packages/eslint-config-custom/README.md",
+	"homepage": "https://github.com/moderntribe/wme/tree/trunk/packages/eslint-config-custom/README.md",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/stellarwp/wme-foundation.git",
+		"url": "https://github.com/moderntribe/wme.git",
 		"directory": "packages/eslint-config-custom"
 	},
 	"bugs": {
-		"url": "https://github.com/stellarwp/wme-foundation/issues"
+		"url": "https://github.com/moderntribe/wme/issues"
 	},
 	"files": [
 		"rules",

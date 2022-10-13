@@ -1,4 +1,4 @@
 module.exports = {
-	extends: [ '@stellarwp/eslint-config-custom/react' ],
+	extends: [ '@moderntribe/eslint-config-custom/react' ],
 	root: true,
 };
