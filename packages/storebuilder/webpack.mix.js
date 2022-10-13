@@ -9,6 +9,8 @@ mix.alias({
 	'@payments': path.join(__dirname, 'src/wizards/payments'),
 });
 
+mix.copyDirectory('src/assets', 'dist/assets');
+
 mix.ts('src/index.tsx', 'dist')
 	.sourceMaps()
 	.react()
