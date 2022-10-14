@@ -92,7 +92,7 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 			const nonce = WIZARDS[ wizardProp ]?.ajax.nonce;
 			const action = WIZARDS[ wizardProp ]?.ajax.action;
 
-			handleTelemetryRequest(nonce, action, pluginSlug || '');
+			handleTelemetryRequest(nonce, action, pluginSlug);
 		}
 	}, []);
 
