@@ -9,6 +9,8 @@ mix.alias({
 	'@go-live': path.join(__dirname, 'src/wizards/go-live'),
 });
 
+mix.copyDirectory('src/assets', 'dist/assets');
+
 mix.ts('src/index.tsx', 'dist')
 	.sourceMaps()
 	.react()

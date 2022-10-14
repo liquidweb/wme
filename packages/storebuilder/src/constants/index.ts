@@ -4,11 +4,11 @@ export const STOREBUILDER = window.sitebuilder_store_details;
 
 export const ASSETS_URL = STOREBUILDER.assets_url;
 
+export const IMAGE_DIR = `${ ASSETS_URL }images/`;
+
 export const CARDS: SetupCardInterface[] = STOREBUILDER.cards || [];
 
 export const WIZARDS = STOREBUILDER.wizards || {};
-
-export const IMAGE_DIR = `${ ASSETS_URL }img/sitebuilderapp/`;
 
 export const STOREBUILDER_URL = STOREBUILDER?.page_url || '';
 
