@@ -141,48 +141,4 @@ class SiteBuilder extends WmeBackendStarterAdmin_Page {
 		$this->enqueueScript( 'wme-sitebuilder-app', 'sitebuilder-app.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post', 'password-strength-meter' ] );
 		$this->enqueueStyle( 'wme-sitebuilder-app', 'sitebuilder-app.css', [], 'screen' );
 	}
-
-	/**
-	 * Get class for client.
-	 *
-	 * For Nexcess MAPPS mu-plugin, this should be
-	 * \Nexcess\MAPPS\Services\MappsApiClient.
-	 *
-	 * @return null|object
-	 */
-	protected function classClient() {
-		$instance = apply_filters( 'sitebuilder_class_client', null );
-
-		if ( ! is_object( $instance ) ) {
-			return null;
-		}
-
-		if ( ! is_callable( [ $instance, 'checkDomainUsable' ] ) ) {
-			return null;
-		}
-
-		return $instance;
-	}
-
-	/**
-	 * Get class for settings.
-	 *
-	 * For Nexcess MAPPS mu-plugin, this should be
-	 * \Nexcess\MAPPS\Settings.
-	 *
-	 * @return null|object
-	 */
-	protected function classSettings() {
-		$instance = apply_filters( 'sitebuilder_class_settings', null );
-
-		if ( ! is_object( $instance ) ) {
-			return null;
-		}
-
-		if ( ! is_callable( [ $instance, 'getSetting' ] ) ) {
-			return null;
-		}
-
-		return $instance;
-	}
 }
