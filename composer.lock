@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19fbc13b060b7701fa913eede21aa7e5",
+    "content-hash": "cedc4f10c9c28971e80492e4232d19e2",
     "packages": [
         {
             "name": "composer/installers",
@@ -236,147 +236,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "assertwell/phpunit-global-state",
-            "version": "v0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/assertwell/phpunit-global-state.git",
-                "reference": "af2c1be3ab2f8296a00c6d5e6dcaf3223682ef39"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/assertwell/phpunit-global-state/zipball/af2c1be3ab2f8296a00c6d5e6dcaf3223682ef39",
-                "reference": "af2c1be3ab2f8296a00c6d5e6dcaf3223682ef39",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "phpcompatibility/php-compatibility": "^9.3",
-                "phpstan/phpstan": "^1.8",
-                "squizlabs/php_codesniffer": "^3.5",
-                "stevegrunwell/runkit7-installer": "^1.2",
-                "symfony/phpunit-bridge": "^5.1"
-            },
-            "suggest": {
-                "stevegrunwell/runkit7-installer": "Streamline installation of Runkit7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AssertWell\\PHPUnitGlobalState\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Grunwell",
-                    "homepage": "https://stevegrunwell.com"
-                }
-            ],
-            "description": "Tools for testing applications that depend on global state with PHPUnit",
-            "keywords": [
-                "env",
-                "environment variables",
-                "phpunit",
-                "testing"
-            ],
-            "support": {
-                "issues": "https://github.com/assertwell/phpunit-global-state/issues",
-                "source": "https://github.com/assertwell/phpunit-global-state/"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/stevegrunwell",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/stevegrunwell",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-09-05T18:19:58+00:00"
-        },
-        {
-            "name": "assertwell/shellcheck",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/assertwell/shellcheck.git",
-                "reference": "a68b0e934a5746fcfc785bb635e72b9d98cdc939"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/assertwell/shellcheck/zipball/a68b0e934a5746fcfc785bb635e72b9d98cdc939",
-                "reference": "a68b0e934a5746fcfc785bb635e72b9d98cdc939",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/shellcheck"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Grunwell",
-                    "homepage": "https://stevegrunwell.com"
-                }
-            ],
-            "description": "Expose ShellCheck as a vendor binary for PHP projects",
-            "support": {
-                "issues": "https://github.com/assertwell/shellcheck/issues",
-                "source": "https://github.com/assertwell/shellcheck"
-            },
-            "time": "2022-02-09T15:45:30+00:00"
-        },
-        {
-            "name": "assertwell/wp-core-test-framework",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/assertwell/wp-core-test-framework.git",
-                "reference": "405676b69043f8846c1bbfdcc0f9ae881c0dce36"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/assertwell/wp-core-test-framework/zipball/405676b69043f8846c1bbfdcc0f9ae881c0dce36",
-                "reference": "405676b69043f8846c1bbfdcc0f9ae881c0dce36",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/install-wp-tests.sh"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Grunwell",
-                    "homepage": "https://stevegrunwell.com"
-                }
-            ],
-            "description": "Streamline testing WordPress plugins and themes using the WordPress core test framework",
-            "keywords": [
-                "testing",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/assertwell/wp-core-test-framework/issues",
-                "source": "https://github.com/assertwell/wp-core-test-framework"
-            },
-            "time": "2020-10-26T16:34:37+00:00"
-        },
         {
             "name": "composer/pcre",
             "version": "3.0.0",
@@ -1459,52 +1318,6 @@
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
             "time": "2022-06-18T07:21:10+00:00"
-        },
-        {
-            "name": "stellarwp/coding-standards",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stellarwp/coding-standards.git",
-                "reference": "a5189e4b250abbe35f141e2045456043ba524f95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stellarwp/coding-standards/zipball/a5189e4b250abbe35f141e2045456043ba524f95",
-                "reference": "a5189e4b250abbe35f141e2045456043ba524f95",
-                "shasum": ""
-            },
-            "require": {
-                "dealerdirect/phpcodesniffer-composer-installer": "*",
-                "friendsofphp/php-cs-fixer": "^3.5",
-                "php": "^5.6 | ^7.0 | ^8.0",
-                "phpcompatibility/phpcompatibility-wp": "^2.1",
-                "wp-coding-standards/wpcs": "^2.3"
-            },
-            "require-dev": {
-                "assertwell/shellcheck": "^1.0"
-            },
-            "bin": [
-                "bin/make-php-cs-fixer-config",
-                "bin/make-phpcs-config"
-            ],
-            "type": "phpcodesniffer-standard",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "StellarWP",
-                    "homepage": "https://stellarwp.com"
-                }
-            ],
-            "description": "Centralized coding standards for StellarWP packages",
-            "support": {
-                "issues": "https://github.com/stellarwp/coding-standards/issues",
-                "source": "https://github.com/stellarwp/coding-standards"
-            },
-            "time": "2022-04-12T18:54:19+00:00"
         },
         {
             "name": "symfony/console",
@@ -3010,6 +2823,60 @@
                 "wiki": "https://github.com/WordPress/WordPress-Coding-Standards/wiki"
             },
             "time": "2020-05-13T23:57:56+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce",
+            "version": "7.0.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce/",
+                "reference": "tags/7.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.7.0.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce/"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce-gateway-stripe",
+            "version": "6.4.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce-gateway-stripe/",
+                "reference": "tags/6.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.6.4.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce-gateway-stripe/"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce-paypal-payments",
+            "version": "1.9.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce-paypal-payments/",
+                "reference": "tags/1.9.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce-paypal-payments.1.9.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce-paypal-payments/"
         }
     ],
     "aliases": [],

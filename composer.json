@@ -45,11 +45,14 @@
         "moderntribe/wme-backend-starter": "dev-main"
     },
     "require-dev": {
-        "assertwell/phpunit-global-state": "^0.2",
-        "assertwell/shellcheck": "^1.0",
-        "assertwell/wp-core-test-framework": "^0.2",
-        "stellarwp/coding-standards": "^1.0",
-        "szepeviktor/phpstan-wordpress": "^0.7"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "friendsofphp/php-cs-fixer": "^3.12",
+        "phpcompatibility/phpcompatibility-wp": "^2.0",
+        "szepeviktor/phpstan-wordpress": "^0.7",
+        "wp-coding-standards/wpcs": "^2.1",
+		"wpackagist-plugin/woocommerce": ">=4.3",
+        "wpackagist-plugin/woocommerce-gateway-stripe": "6.4.1",
+        "wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
     },
     "scripts": {
         "test": [
@@ -67,7 +70,7 @@
         ],
         "test:standards": [
             "phpcs --cache",
-            "php-cs-fixer fix --config=wme-sitebuilder/vendor/stellarwp/coding-standards/src/php-cs-fixer.php -v --diff --dry-run"
+            "php-cs-fixer fix -v --diff --dry-run"
         ]
     },
     "scripts-descriptions": {
