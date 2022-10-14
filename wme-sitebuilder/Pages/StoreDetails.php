@@ -143,7 +143,7 @@ class StoreDetails extends Admin_Page {
 	 */
 	public function actionPrintScripts() {
 		$props = [
-			'app_name'    => __( 'Site Builder', 'wme-sitebuilder' ),
+			'app_name'    => __( 'Store', 'wme-sitebuilder' ),
 			'logo'        => 'sitebuilder-logo.svg',
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),

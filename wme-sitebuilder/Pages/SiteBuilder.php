@@ -6,6 +6,7 @@ use Tribe\WME\Sitebuilder\Cards\FirstTimeConfiguration as FirstTimeConfiguration
 use Tribe\WME\Sitebuilder\Cards\GoLive as GoLiveCard;
 use Tribe\WME\Sitebuilder\Cards\LookAndFeel as LookAndFeelCard;
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
+use Tribe\WME\Sitebuilder\Container;
 use Tribe\WME\Sitebuilder\Wizards\FirstTimeConfiguration as FirstTimeConfigurationWizard;
 use Tribe\WME\Sitebuilder\Wizards\GoLive as GoLiveWizard;
 use Tribe\WME\Sitebuilder\Wizards\LookAndFeel as LookAndFeelWizard;
@@ -67,27 +68,24 @@ class SiteBuilder extends WmeBackendStarterAdmin_Page {
 
 		parent::__construct();
 
-		$domains  = $this->classDomains();
-		$client   = $this->classClient();
-		$settings = $this->classSettings();
-		$option   = apply_filters( 'sitebuilder_classname_option', null );
+		$option = apply_filters( 'sitebuilder_classname_option', null );
 
-		if ( null === $domains || null === $client || null === $settings || null === $option ) {
+		if ( null === $option ) {
 			trigger_error( 'Class dependencies not provided; unable to proceed.' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 
 			return;
 		}
 
 		$this->cards = [
-			new FirstTimeConfigurationCard(),
-			new LookAndFeelCard(),
-			new GoLiveCard(),
+			Container::getInstance()->get( FirstTimeConfigurationCard::class ),
+			Container::getInstance()->get( LookAndFeelCard::class ),
+			Container::getInstance()->get( GoLiveCard::class ),
 		];
 
 		$this->wizards = [
-			new FirstTimeConfigurationWizard( $settings ),
-			new LookAndFeelWizard(),
-			new GoLiveWizard( $domains, $client, $settings ),
+			Container::getInstance()->get( FirstTimeConfigurationWizard::class ),
+			Container::getInstance()->get( LookAndFeelWizard::class ),
+			Container::getInstance()->get( GoLiveWizard::class ),
 		];
 
 		parent::__construct();
@@ -110,7 +108,7 @@ class SiteBuilder extends WmeBackendStarterAdmin_Page {
 	 */
 	public function actionPrintScripts() {
 		$props = [
-			'app_name'    => __( 'Site Builder', 'wme-sitebuilder' ),
+			'app_name'    => __( 'Site Details', 'wme-sitebuilder' ),
 			'logo'        => 'sitebuilder-logo.svg',
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
@@ -142,28 +140,6 @@ class SiteBuilder extends WmeBackendStarterAdmin_Page {
 	public function actionPrintScripts_15() {
 		$this->enqueueScript( 'wme-sitebuilder-app', 'sitebuilder-app.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post', 'password-strength-meter' ] );
 		$this->enqueueStyle( 'wme-sitebuilder-app', 'sitebuilder-app.css', [], 'screen' );
-	}
-
-	/**
-	 * Get class for domain changes.
-	 *
-	 * For Nexcess MAPPS mu-plugin, this should be
-	 * \Nexcess\MAPPS\Integrations\DomainChanges.
-	 *
-	 * @return null|object
-	 */
-	protected function classDomains() {
-		$instance = apply_filters( 'sitebuilder_class_domains', null );
-
-		if ( ! is_object( $instance ) ) {
-			return null;
-		}
-
-		if ( ! is_callable( [ $instance, 'formatDomain' ] ) ) {
-			return null;
-		}
-
-		return $instance;
 	}
 
 	/**

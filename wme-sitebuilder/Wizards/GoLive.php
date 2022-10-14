@@ -2,8 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
-use Nexcess\MAPPS\Support\Branding;
-use Nexcess\MAPPS\Support\Helpers;
+use Tribe\WME\Sitebuilder\Contracts\ManagesDomain;
 use Tribe\WmeBackendStarter\Wizard;
 use WP_Error;
 
@@ -34,9 +33,9 @@ class GoLive extends Wizard {
 	protected $ajax_action = 'sitebuilder-wizard-golive';
 
 	/**
-	 * @var object
+	 * @var ManagesDomain
 	 */
-	protected $domain_changes;
+	protected $domains;
 
 	/**
 	 * @var object
@@ -51,14 +50,10 @@ class GoLive extends Wizard {
 	/**
 	 * Construct.
 	 *
-	 * @param object $domain_changes
-	 * @param object $client
-	 * @param object $settings
+	 * @param ManagesDomain $domains
 	 */
-	public function __construct( $domain_changes, $client, $settings ) {
-		$this->domain_changes = $domain_changes;
-		$this->client         = $client;
-		$this->settings       = $settings;
+	public function __construct( ManagesDomain $domains ) {
+		$this->domains = $domains;
 
 		parent::__construct();
 	}
@@ -109,9 +104,9 @@ class GoLive extends Wizard {
 		}
 
 		// Verify the domain structure.
-		$domain = ! empty( $_POST['domain'] ) ? Helpers::parseDomain( $_POST['domain'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		$domain = $this->domain_changes->formatDomain( $domain );
+		$domain = $this->domains->formatDomain( $domain );
 
 		if ( empty( $domain ) ) {
 			return wp_send_json_error(new WP_Error(
@@ -127,7 +122,7 @@ class GoLive extends Wizard {
 		update_option( self::VERIFYING_OPTION_NAME, $domain, false );
 
 		try {
-			$data = $this->client->checkDomainUsable( $domain );
+			$data = $this->domains->isDomainUsable( $domain );
 
 			return wp_send_json_success( $data );
 		} catch ( \Exception $e ) {
@@ -155,9 +150,9 @@ class GoLive extends Wizard {
 		}
 
 		// Verify the domain structure.
-		$domain = ! empty( $_POST['domain'] ) ? Helpers::parseDomain( $_POST['domain'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		$domain = $this->domain_changes->formatDomain( $domain );
+		$domain = $this->domains->formatDomain( $domain );
 
 		if ( empty( $domain ) ) {
 			return wp_send_json_error(new WP_Error(
@@ -170,25 +165,7 @@ class GoLive extends Wizard {
 			), 422);
 		}
 
-		// Finally, send the request to the MAPPS API.
-		$response = $this->mappsApi('v1/site/rename', [
-			'method' => 'POST',
-			'body'   => [
-				'domain' => $domain,
-			],
-		]);
-
-		if ( is_wp_error( $response ) ) {
-			return wp_send_json_error(new WP_Error(
-				'mapps-change-domain-failure',
-				sprintf(
-					/* Translators: %1$s is the branded company name, %2$s is the API error message. */
-					__( 'The %1$s API returned an error: %2$s', 'wme-sitebuilder' ),
-					Branding::getCompanyName(),
-					$response->get_error_message()
-				)
-			));
-		}
+		do_action( 'wme_event_sitebuilder_rename_domain', $domain );
 
 		update_option( self::COMPLETED_OPTION_NAME, true, false );
 		delete_option( self::VERIFYING_OPTION_NAME );
@@ -196,48 +173,5 @@ class GoLive extends Wizard {
 		do_action( 'wme_event_wizard_completed', 'golive' );
 
 		return wp_send_json_success( null, 202 );
-	}
-
-	/**
-	 * Send a request to the MAPPS API.
-	 *
-	 * @param string  $endpoint The API endpoint.
-	 * @param mixed[] $args     Optional. WP HTTP API arguments, which will be merged with defaults.
-	 *                          {@link https://developer.wordpress.org/reference/classes/WP_Http/request/#parameters}.
-	 *
-	 * @return mixed[]|WP_Error Either a response array or a WP_Error object, same as wp_remote_request().
-	 */
-	protected function mappsApi( $endpoint, $args = [] ) {
-		// Strip leading slashes.
-		if ( 0 === mb_strpos( $endpoint, '/' ) ) {
-			$endpoint = mb_substr( $endpoint, 1 );
-		}
-
-		return wp_remote_request(
-			esc_url_raw( sprintf( '%s/api/%2$s', $this->settings->managed_apps_endpoint, $endpoint ) ),
-			array_replace_recursive( $this->getDefaultRequestArguments(), $args )
-		);
-	}
-
-	/**
-	 * Retrieve default request arguments.
-	 *
-	 * This includes common headers, User-Agent, etc.
-	 *
-	 * @link https://developer.wordpress.org/reference/classes/WP_Http/request/#parameters
-	 *
-	 * @return mixed[] An array of default request arguments.
-	 */
-	protected function getDefaultRequestArguments() {
-		$plugin_version = apply_filters( 'sitebuilder_nexcessmapps_plugin_version', 'unknown' );
-
-		return [
-			'user-agent' => sprintf( 'NexcessMAPPS/%1$s', $plugin_version ),
-			'timeout'    => 30,
-			'headers'    => [
-				'Accept'        => 'application/json',
-				'X-MAAPI-TOKEN' => $this->settings->managed_apps_token,
-			],
-		];
 	}
 }

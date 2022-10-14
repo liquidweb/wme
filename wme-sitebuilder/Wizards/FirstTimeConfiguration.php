@@ -42,22 +42,9 @@ class FirstTimeConfiguration extends Wizard {
 	public $errors = [];
 
 	/**
-	 * @var object
-	 */
-	private $settings;
-
-	/**
 	 * Construct.
-	 *
-	 * @param object $settings
 	 */
-	public function __construct( $settings ) {
-		if ( ! is_object( $settings ) ) {
-			$settings = (object) [];
-		}
-
-		$this->settings = $settings;
-
+	public function __construct() {
 		parent::__construct();
 
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
@@ -197,8 +184,8 @@ class FirstTimeConfiguration extends Wizard {
 			return;
 		}
 
-		// Prevent auto-launch on local environments.
-		if ( 'local' === $this->settings->getSetting( 'environment', 'local' ) ) {
+		// Allow implementers to prevent autolaunching the First Time Configuration Wizard.
+		if ( ! apply_filters( 'wme_sitebuilder_autolaunch_wizard', true ) ) {
 			return;
 		}
 
