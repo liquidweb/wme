@@ -4,6 +4,7 @@ interface TelemetryDataPayloadInterface {
 	_wpnonce: string;
 	action: string;
 	plugin_slug?: string;
+	pluginSlugs?: string[];
 	sub_action: string;
 }
 
@@ -21,7 +22,12 @@ export const handleTelemetryRequest = (
 
 	// Some wizards require a plugin_slug in the payload
 	if (pluginSlug) {
-		data.plugin_slug = pluginSlug;
+		// The shipping wizard needs the plugin slug(s) to come back in an array
+		if (action === 'sitebuilder-wizard-shipping') {
+			data.pluginSlugs = [pluginSlug];
+		} else {
+			data.plugin_slug = pluginSlug;
+		}
 	}
 
 	handleActionRequest(data);
