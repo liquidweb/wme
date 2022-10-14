@@ -91,11 +91,11 @@ importers:
       '@babel/preset-react': ^7.18.6
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
+      '@moderntribe/tsconfig': workspace:*
+      '@moderntribe/wme-ui': workspace:*
       '@mui/icons-material': ^5.8.4
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
-      '@moderntribe/tsconfig': workspace:*
-      '@moderntribe/wme-ui': workspace:*
       '@types/jquery': ^3.5.14
       '@types/node': ^18.7.16
       '@types/react': ^18.0.17
@@ -118,14 +118,15 @@ importers:
       react-router-dom: ^6.4.2
       ts-loader: ^9.3.1
       typescript: ^4.7.4
+      webpack-cli: ^4.10.0
       wp-types: ^3.60.0
     dependencies:
       '@emotion/react': 11.10.4_p6fq7jdyqwnykllwwkx4b6uid4
       '@emotion/styled': 11.10.4_lxst47gwu5lqjtx2guwl7nfnjm
+      '@moderntribe/wme-ui': link:../wme-ui
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
-      '@moderntribe/wme-ui': link:../wme-ui
       '@wordpress/element': 4.14.0
       '@wordpress/html-entities': 3.16.0
       '@wordpress/i18n': 4.16.0
@@ -151,6 +152,7 @@ importers:
       prettier: 2.7.1
       ts-loader: 9.3.1_kb3egcnme7w23lfa5xodfjfhge
       typescript: 4.8.3
+      webpack-cli: 4.10.0_webpack@5.74.0
       wp-types: 3.60.0
 
   packages/storebuilder:
@@ -158,11 +160,11 @@ importers:
       '@babel/preset-react': ^7.18.6
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
+      '@moderntribe/tsconfig': workspace:*
+      '@moderntribe/wme-ui': workspace:*
       '@mui/icons-material': ^5.8.4
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
-      '@moderntribe/tsconfig': workspace:*
-      '@moderntribe/wme-ui': workspace:*
       '@types/jquery': ^3.5.14
       '@types/node': ^18.7.16
       '@types/react': ^18.0.17
@@ -187,14 +189,15 @@ importers:
       react-router-dom: ^6.4.2
       ts-loader: ^9.3.1
       typescript: ^4.7.4
+      webpack-cli: ^4.10.0
       wp-types: ^3.60.0
     dependencies:
       '@emotion/react': 11.10.4_p6fq7jdyqwnykllwwkx4b6uid4
       '@emotion/styled': 11.10.4_lxst47gwu5lqjtx2guwl7nfnjm
+      '@moderntribe/wme-ui': link:../wme-ui
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
-      '@moderntribe/wme-ui': link:../wme-ui
       '@wordpress/element': 4.14.0
       '@wordpress/html-entities': 3.16.0
       '@wordpress/i18n': 4.16.0
@@ -222,6 +225,7 @@ importers:
       prettier: 2.7.1
       ts-loader: 9.3.1_kb3egcnme7w23lfa5xodfjfhge
       typescript: 4.8.3
+      webpack-cli: 4.10.0_webpack@5.74.0
       wp-types: 3.60.0
 
   packages/tsconfig:
@@ -232,6 +236,7 @@ importers:
       '@babel/core': '>=7.13.0 <8.0.0'
       '@emotion/react': ^11.10.4
       '@emotion/styled': ^11.10.4
+      '@moderntribe/tsconfig': workspace:*
       '@mui/base': ^5.0.0-alpha.96
       '@mui/icons-material': ^5.10.3
       '@mui/lab': ^5.0.0-alpha.98
@@ -241,7 +246,6 @@ importers:
       '@rollup/plugin-commonjs': ^21.1.0
       '@rollup/plugin-node-resolve': ^13.3.0
       '@rollup/plugin-typescript': ^8.5.0
-      '@moderntribe/tsconfig': workspace:*
       '@storybook/addon-actions': ^6.5.12
       '@storybook/addon-docs': ^6.5.12
       '@storybook/addon-essentials': ^6.5.12
@@ -299,6 +303,7 @@ importers:
       '@babel/core': 7.19.0
       '@emotion/react': 11.10.4_p6fq7jdyqwnykllwwkx4b6uid4
       '@emotion/styled': 11.10.4_lxst47gwu5lqjtx2guwl7nfnjm
+      '@moderntribe/tsconfig': link:../tsconfig
       '@mui/base': 5.0.0-alpha.96_63dfw6rfgd64rl77ptfma4cvt4
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/lab': 5.0.0-alpha.98_xiknshxjcg2am4zp4ruxcjguui
@@ -308,7 +313,6 @@ importers:
       '@rollup/plugin-commonjs': 21.1.0_rollup@2.79.0
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
       '@rollup/plugin-typescript': 8.5.0_tznp6w7csbjledp5nresoxoky4
-      '@moderntribe/tsconfig': link:../tsconfig
       '@storybook/addon-actions': 6.5.12_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.12_34fmpv7eb37mft7ywryea42ef4
       '@storybook/addon-essentials': 6.5.12_hyglahv44teoxbm4dyyd7d7qbq

@@ -30,6 +30,10 @@ export const PAYMENTS_PAYPAL_PROPS = STOREBUILDER.wizards.payment_gateway_paypal
 
 export const PAYMENTS_STRIPE_PROPS = STOREBUILDER.wizards.payment_gateway_stripe;
 
+export const PAYPAL_PLUGIN_SLUG = 'woocommerce-paypal-payments';
+
+export const STRIPE_PLUGIN_SLUG = 'woocommerce-gateway-stripe';
+
 export const WP_101_HOW_TO_LINKS = [{
 	title: __('Simple', 'nexcess-mapps'),
 	modalTitle: __('Simple Product Overview', 'nexcess-mapps'),

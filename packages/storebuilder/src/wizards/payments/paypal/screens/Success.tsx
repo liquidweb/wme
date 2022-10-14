@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { NextStepTile } from '@store/components';
 import { paymentsPaypalConsts } from '../data/constants';
-import { PAYMENTS_PAYPAL_PROPS, IMAGE_DIR } from '@store/constants';
+import { PAYMENTS_PAYPAL_PROPS, IMAGE_DIR, PAYPAL_PLUGIN_SLUG } from '@store/constants';
+import { handleTelemetryRequest } from '@store/utils/handleTelemetryRequest';
 
 const Success = () => {
+	const [successScreenTouched, setSuccessScreenTouched] = useState<boolean>(false);
 	const { success: {
 		heading,
 		copy,
@@ -17,6 +19,15 @@ const Success = () => {
 	const nextStepImage = `${ IMAGE_DIR }manage-payment-settings-paypal.png`;
 
 	const theme = useTheme();
+
+	useEffect(() => {
+		if (! successScreenTouched) {
+			setSuccessScreenTouched(true);
+			const nonce = PAYMENTS_PAYPAL_PROPS?.ajax.nonce;
+			const action = PAYMENTS_PAYPAL_PROPS?.ajax.action;
+			handleTelemetryRequest(nonce, action, PAYPAL_PLUGIN_SLUG, 'wizard_completed');
+		}
+	}, []);
 
 	return (
 		<Box sx={ { maxWidth: 500 } }>
