@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\HasOptions;
-use Tribe\WmeBackendStarter\Wizard;
 
 class StoreSetup extends Wizard {
 

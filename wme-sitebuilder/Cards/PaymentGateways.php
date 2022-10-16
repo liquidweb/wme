@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Cards;
 
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PaymentGatewayAbstract;
-use Tribe\WmeBackendStarter\Card;
 
 class PaymentGateways extends Card {
 

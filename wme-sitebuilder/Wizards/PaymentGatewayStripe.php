@@ -4,7 +4,6 @@ namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\HasCommands;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
-use Tribe\WmeBackendStarter\Wizard;
 use WP_Error;
 
 class PaymentGatewayStripe extends Wizard {

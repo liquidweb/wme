@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3681dd7c866fe74117ea385d9242b49",
+    "content-hash": "caab02b49672cfb6f0f1c31cbd263eae",
     "packages": [
         {
             "name": "composer/installers",
@@ -150,39 +150,6 @@
                 }
             ],
             "time": "2022-08-20T06:45:11+00:00"
-        },
-        {
-            "name": "moderntribe/wme-backend-starter",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/moderntribe/wme-backend-starter.git",
-                "reference": "40ea67174fbb655885440e378752f1d57293cf8b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/moderntribe/wme-backend-starter/zipball/40ea67174fbb655885440e378752f1d57293cf8b",
-                "reference": "40ea67174fbb655885440e378752f1d57293cf8b",
-                "shasum": ""
-            },
-            "require-dev": {
-                "moderntribe/coding-standards": "^2.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tribe\\WmeBackendStarter\\": "src/"
-                }
-            },
-            "license": [
-                "GPL-2.0-only"
-            ],
-            "support": {
-                "source": "https://github.com/moderntribe/wme-backend-starter/tree/main",
-                "issues": "https://github.com/moderntribe/wme-backend-starter/issues"
-            },
-            "time": "2022-09-07T21:26:36+00:00"
         },
         {
             "name": "psr/container",
@@ -2932,9 +2899,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "moderntribe/wme-backend-starter": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

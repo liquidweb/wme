@@ -4,7 +4,6 @@ namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\HasCommands;
 use Tribe\WME\Sitebuilder\Plugins\Shipping as ShippingPlugins;
-use Tribe\WmeBackendStarter\Wizard;
 use WP_Error;
 
 class Shipping extends Wizard {

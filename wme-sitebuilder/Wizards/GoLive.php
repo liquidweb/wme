@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Contracts\ManagesDomain;
-use Tribe\WmeBackendStarter\Wizard;
 use WP_Error;
 
 class GoLive extends Wizard {

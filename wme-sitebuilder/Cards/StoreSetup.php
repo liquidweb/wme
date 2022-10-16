@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Cards;
 
 use Tribe\WME\Sitebuilder\Concerns\HasOptions;
-use Tribe\WmeBackendStarter\Card;
 
 class StoreSetup extends Card {
 

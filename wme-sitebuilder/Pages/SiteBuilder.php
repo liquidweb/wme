@@ -10,11 +10,10 @@ use Tribe\WME\Sitebuilder\Container;
 use Tribe\WME\Sitebuilder\Wizards\FirstTimeConfiguration as FirstTimeConfigurationWizard;
 use Tribe\WME\Sitebuilder\Wizards\GoLive as GoLiveWizard;
 use Tribe\WME\Sitebuilder\Wizards\LookAndFeel as LookAndFeelWizard;
-use Tribe\WmeBackendStarter\Admin_Page as WmeBackendStarterAdmin_Page;
 
 use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 
-class SiteBuilder extends WmeBackendStarterAdmin_Page {
+class SiteBuilder extends AdminPage {
 
 	use HasAssets;
 

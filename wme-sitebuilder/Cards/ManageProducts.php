@@ -2,8 +2,6 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WmeBackendStarter\Card;
-
 class ManageProducts extends Card {
 
 	/**

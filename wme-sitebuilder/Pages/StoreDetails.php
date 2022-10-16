@@ -14,11 +14,10 @@ use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal as PaymentGatewayPayPalWi
 use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe as PaymentGatewayStripeWizard;
 use Tribe\WME\Sitebuilder\Wizards\Shipping as ShippingWizard;
 use Tribe\WME\Sitebuilder\Wizards\StoreSetup as StoreSetupWizard;
-use Tribe\WmeBackendStarter\Admin_Page;
 
 use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 
-class StoreDetails extends Admin_Page {
+class StoreDetails extends AdminPage {
 
 	use HasAssets;
 

@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Cards;
 
 use Tribe\WME\Sitebuilder\Plugins\Shipping as ShippingPlugins;
-use Tribe\WmeBackendStarter\Card;
 
 class Shipping extends Card {
 
