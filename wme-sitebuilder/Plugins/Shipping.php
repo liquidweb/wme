@@ -2,7 +2,11 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins;
 
+use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
+
 class Shipping {
+
+	use HasWordPressDependencies;
 
 	/**
 	 * @var array
@@ -19,7 +23,7 @@ class Shipping {
 		 * @link https://wordpress.org/plugins/elex-usps-shipping-method/
 		 */
 		$this->plugins['elex-usps-shipping-method'] = [
-			'active' => (bool) is_plugin_active( 'elex-usps-shipping-method/usps-woocommerce-shipping.php' ),
+			'active' => (bool) $this->isPluginActive( 'elex-usps-shipping-method/usps-woocommerce-shipping.php' ),
 			'card'   => [
 				'id'          => 'usps',
 				'type'        => 'task',

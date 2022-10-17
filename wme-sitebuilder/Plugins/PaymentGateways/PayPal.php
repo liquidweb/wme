@@ -2,6 +2,8 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
+use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
+
 /**
  * @property string[] $keys
  * @property string[] $oauth_urls
@@ -9,6 +11,8 @@ namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
  * @property string   $supported_version
  */
 class PayPal extends PaymentGatewayAbstract {
+
+	use HasWordPressDependencies;
 
 	/**
 	 * @var string
