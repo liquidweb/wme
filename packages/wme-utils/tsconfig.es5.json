@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES5",
+    "declaration": true,
+    "outDir": "./dist/es5",
+    "moduleResolution": "node",
+    "lib": ["ES2020", "DOM"],
+		"typeRoots": [ "./typings", "./types", "./node_modules/@types" ]
+  },
+  "include": [
+		"src/**/*",
+		"wme-utils.d.ts"
+	]
+}
