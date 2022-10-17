@@ -182,8 +182,8 @@ class FirstTimeConfiguration extends Wizard {
 			return;
 		}
 
-		// Allow implementers to prevent autolaunching the First Time Configuration Wizard.
-		if ( ! apply_filters( 'wme_sitebuilder_autolaunch_wizard', true ) ) {
+		// Allow implementers to implicitely autolaunch the First Time Configuration Wizard.
+		if ( ! apply_filters( 'wme_sitebuilder_autolaunch_wizard', false ) ) {
 			return;
 		}
 
