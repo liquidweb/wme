@@ -1,7 +1,8 @@
 import React, { createContext, useState } from 'react';
+import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import LookAndFeelScreenData, { LookAndFeelInterface } from '@sb/wizards/look-and-feel/data/look-and-feel-screen-data';
 import { useWizard } from '@sb/hooks';
-import { beforeUnloadListener, handleActionRequest } from '@sb/utils';
+import { handleActionRequest } from '@sb/utils';
 import { kadenceImport } from '@sb/utils/kadenceImport';
 import { FTC_PROPS, LOOK_AND_FEEL_PROPS, SITEBUILDER_URL } from '@sb/constants';
 import { __ } from '@wordpress/i18n';

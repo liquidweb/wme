@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
+import { objToFormData } from '@moderntribe/wme-utils';
 import { AJAX_URL } from '@sb/constants';
-import { objToFormData } from '@sb/utils';
 import { __ } from '@wordpress/i18n';
 
 export const kadenceImport = async (data: HandleKadencePayloadInterface) => {
