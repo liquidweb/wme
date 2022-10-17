@@ -4,6 +4,7 @@ const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-
 require('laravel-mix-eslint');
 
 const banner = 'This file is part of WME Sitebuilder and was generated automatically';
+const public_path = process.env.MIX_BUILD_DIR || 'wme-sitebuilder/assets';
 
 /*
  * Prevent Mix from creating a mix-manifest.json file, as we don't need it.
@@ -13,7 +14,7 @@ const banner = 'This file is part of WME Sitebuilder and was generated automatic
 Mix.manifest.refresh = () => void 0;
 
 // Customize Mix options.
-mix.setPublicPath(process.env.MIX_BUILD_DIR || 'wme-sitebuilder/assets')
+mix.setPublicPath(public_path)
 	.options({
 		terser: {
 			extractComments: false,
@@ -58,5 +59,7 @@ mix.js('assets/js/sitebuilder-app.js', '/')
 	.eslint()
 	.react();
 
-mix.copyDirectory('node_modules/@moderntribe/sitebuilder/dist/assets/', 'assets/sitebuilder/')
-mix.copyDirectory('node_modules/@moderntribe/storebuider/dist/assets/', 'assets/store-details/')
+
+
+mix.copyDirectory('node_modules/@moderntribe/sitebuilder/dist/assets/', `${ public_path }/sitebuilder/`)
+mix.copyDirectory('node_modules/@moderntribe/storebuilder/dist/assets/', `${ public_path }/store-details/`)

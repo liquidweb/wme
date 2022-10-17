@@ -140,6 +140,5 @@ class StoreDetails extends SettingsPage {
 	 */
 	public function actionPrintScripts_15() {
 		$this->enqueueScript( 'wme-sitebuilder-storebuilderapp', 'storebuilder-app.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post' ] );
-		$this->enqueueStyle( 'wme-sitebuilder-storebuilderapp', 'storebuilder-app.css', [], 'screen' );
 	}
 }

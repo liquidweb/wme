@@ -55,6 +55,9 @@
         "wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
     },
     "scripts": {
+        "build:plugin": [
+            "bash bin/build wme-sitebuilder.zip"
+        ],
         "test": [
             "@test:all"
         ],
@@ -74,6 +77,7 @@
         ]
     },
     "scripts-descriptions": {
+		"build:plugin": "Export a .zip archive of the production-ready plugin from the current HEAD.",
         "test": "Run all automated tests (alias of 'test:all').",
         "test:all": "Run all automated tests (test:standards, test:analysis).",
         "test:analysis": "Perform static code analysis on the codebase.",

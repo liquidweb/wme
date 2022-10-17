@@ -99,6 +99,5 @@ class SiteBuilder extends SettingsPage {
 	 */
 	public function actionPrintScripts_15() {
 		$this->enqueueScript( 'wme-sitebuilder-app', 'sitebuilder-app.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post', 'password-strength-meter' ] );
-		$this->enqueueStyle( 'wme-sitebuilder-app', 'sitebuilder-app.css', [], 'screen' );
 	}
 }
