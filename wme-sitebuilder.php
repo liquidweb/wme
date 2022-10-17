@@ -33,6 +33,11 @@ define( __NAMESPACE__ . '\VENDOR_DIR', __DIR__ . '/wme-sitebuilder/vendor/' );
 // Initialize the plugin.
 try {
 	require_once VENDOR_DIR . 'autoload.php';
+
+	// Adding these here to allow initial testing to begin.
+	// @todo Work out how to instatiate the plugin without needing these here.
+	Container::getInstance()->get( Pages\SiteBuilder::class );
+	Container::getInstance()->get( Pages\StoreDetails::class );
 } catch ( \Exception $e ) {
     // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 	trigger_error(esc_html(sprintf(
