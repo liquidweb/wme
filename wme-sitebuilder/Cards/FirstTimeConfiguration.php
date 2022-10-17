@@ -2,13 +2,9 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasOptions;
+use Tribe\WME\Sitebuilder\Wizards\Wizard;
 
 class FirstTimeConfiguration extends Card {
-
-	use HasOptions;
-
-	const OPTION_NAME = '_sitebuilder_ftc';
 
 	/**
 	 * @var string
@@ -21,6 +17,22 @@ class FirstTimeConfiguration extends Card {
 	protected $card_slug = 'ftc';
 
 	/**
+	 * @var \Tribe\WME\Sitebuilder\Wizards\Wizard
+	 */
+	protected $wizard;
+
+	/**
+	 * Construct.
+	 *
+	 * @param \Tribe\WME\Sitebuilder\Wizards\Wizard $wizard
+	 */
+	public function __construct( Wizard $wizard ) {
+		$this->wizard = $wizard;
+
+		parent::__construct();
+	}
+
+	/**
 	 * Properties for card.
 	 *
 	 * @return array
@@ -30,7 +42,7 @@ class FirstTimeConfiguration extends Card {
 			'id'        => 'ftc',
 			'title'     => __( 'Set up your site', 'wme-sitebuilder' ),
 			'intro'     => __( 'This is where the fun begins.', 'wme-sitebuilder' ),
-			'completed' => $this->isComplete(),
+			'completed' => $this->wizard->isComplete(),
 			'time'      => __( '5 Minutes', 'wme-sitebuilder' ),
 			'rows'      => [
 				[
@@ -44,14 +56,5 @@ class FirstTimeConfiguration extends Card {
 				],
 			],
 		];
-	}
-
-	/**
-	 * Returns true if the FTC has been completed, false if not.
-	 *
-	 * @return bool
-	 */
-	public function isComplete() {
-		return (bool) $this->getOption()->get( 'complete', false );
 	}
 }

@@ -15,7 +15,7 @@ trait HasAssets {
 	 * @return string The full URL to the asset.
 	 */
 	public function getAssetSource( $src ) {
-		return PLUGIN_URL . '/wme-sitebuider/assets/' . $src;
+		return PLUGIN_URL . 'wme-sitebuilder/assets/' . $src;
 	}
 
 	/**

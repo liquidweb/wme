@@ -2,13 +2,9 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasOptions;
+use Tribe\WME\Sitebuilder\Wizards\LookAndFeel as LookAndFeelWizard;
 
 class LookAndFeel extends Card {
-
-	use HasOptions;
-
-	const OPTION_NAME = '_sitebuilder_look_and_feel';
 
 	/**
 	 * @var string
@@ -21,9 +17,20 @@ class LookAndFeel extends Card {
 	protected $card_slug = 'lookandfeel';
 
 	/**
-	 * @var null|bool
+	 * @var LookAndFeelWizard
 	 */
-	protected $complete;
+	protected $wizard;
+
+	/**
+	 * Construct.
+	 *
+	 * @param LookAndFeelWizard $wizard
+	 */
+	public function __construct( LookAndFeelWizard $wizard ) {
+		$this->wizard = $wizard;
+
+		parent::__construct();
+	}
 
 	/**
 	 * Get properties.
@@ -35,26 +42,11 @@ class LookAndFeel extends Card {
 			'id'        => 'look-and-feel',
 			'title'     => __( 'Design your site', 'wme-sitebuilder' ),
 			'intro'     => __( 'It\'s all about appearances.', 'wme-sitebuilder' ),
-			'completed' => $this->isComplete(),
+			'completed' => $this->wizard->isComplete(),
 			'time'      => __( '3 Minutes', 'wme-sitebuilder' ),
 			'rows'      => $this->rows(),
 			'footers'   => $this->footer(),
 		];
-	}
-
-	/**
-	 * Checks to see if the Card has been completed.
-	 *
-	 * @return bool True if the Card has been completed, false otherwise.
-	 */
-	protected function isComplete() {
-		if ( null !== $this->complete ) {
-			return $this->complete;
-		}
-
-		$this->complete = (bool) $this->getOption()->get( 'complete', false );
-
-		return $this->complete;
 	}
 
 	/**
@@ -63,7 +55,7 @@ class LookAndFeel extends Card {
 	 * @return array[] The card rows.
 	 */
 	protected function rows() {
-		if ( $this->isComplete() ) {
+		if ( $this->wizard->isComplete() ) {
 			$return_url     = add_query_arg( 'page', $this->admin_page_slug, admin_url( 'admin.php' ) );
 			$customizer_url = add_query_arg( 'return', rawurlencode( $return_url ), admin_url( 'customize.php' ) );
 
@@ -99,15 +91,8 @@ class LookAndFeel extends Card {
 	 * @return array|array[] Array with information. Empty array otherwise.
 	 */
 	protected function footer() {
-		if ( ! $this->isComplete() ) {
+		if ( ! $this->wizard->isComplete() ) {
 			return [];
-		}
-
-		$message = '';
-		$option  = $this->getOption();
-
-		if ( ! empty( $option->template ) ) {
-			$message = $option->template;
 		}
 
 		return [
@@ -115,7 +100,7 @@ class LookAndFeel extends Card {
 				'id'       => 'look-and-feel-wizard',
 				'type'     => 'status',
 				'title'    => __( 'Selected Template:', 'wme-sitebuilder' ),
-				'message'  => $message,
+				'message'  => $this->wizard->getTemplate(),
 				'messages' => [],
 			],
 		];

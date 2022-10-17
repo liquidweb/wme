@@ -2,14 +2,11 @@
 
 namespace Tribe\WME\Sitebuilder\Pages;
 
-use Tribe\WME\Sitebuilder\Cards\ManageProducts as ManageProductsCard;
 use Tribe\WME\Sitebuilder\Cards\PaymentGateways as PaymentGatewaysCard;
-use Tribe\WME\Sitebuilder\Cards\Shipping as ShippingCard;
-use Tribe\WME\Sitebuilder\Cards\StoreSetup as StoreSetupCard;
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
+use Tribe\WME\Sitebuilder\Container;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
-use Tribe\WME\Sitebuilder\Plugins\Shipping as ShippingPlugins;
 use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal as PaymentGatewayPayPalWizard;
 use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe as PaymentGatewayStripeWizard;
 use Tribe\WME\Sitebuilder\Wizards\Shipping as ShippingWizard;
@@ -17,7 +14,7 @@ use Tribe\WME\Sitebuilder\Wizards\StoreSetup as StoreSetupWizard;
 
 use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 
-class StoreDetails extends AdminPage {
+class StoreDetails extends SettingsPage {
 
 	use HasAssets;
 
@@ -44,85 +41,55 @@ class StoreDetails extends AdminPage {
 	/**
 	 * @var string
 	 */
-	protected $icon_url = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGZpbGw9IiNhN2FhYWQiIHZpZXdCb3g9Ii0zIC00IDEzIDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0zLjQ2MTYgMTUuMjU4aC0wLjgzMzMzbDAuODMzMzMtNS44MzMzaC0yLjkxNjdjLTAuNDgzMzMgMC0wLjQ3NS0wLjI2NjY3LTAuMzE2NjctMC41NSAwLjE1ODMzLTAuMjgzMzMgMC4wNDE2NjctMC4wNjY2NyAwLjA1ODMzNC0wLjEgMS4wNzUtMS45IDIuNjkxNy00LjczMzMgNC44NDE3LTguNTE2N2gwLjgzMzMzbC0wLjgzMzMzIDUuODMzM2gyLjkxNjdjMC40MDgzNCAwIDAuNDY2NjcgMC4yNzUgMC4zOTE2NyAwLjQyNWwtMC4wNTgzMyAwLjEyNWMtMy4yODMzIDUuNzQxNi00LjkxNjcgOC42MTY2LTQuOTE2NyA4LjYxNjZ6IiBmaWxsPSIjYTdhYWFkIi8+PC9zdmc+';
+	protected $icon_url = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTUuODMzMzEgMTRDNC45MTY2NSAxNCA0LjE3NDk4IDE0Ljc1IDQuMTc0OTggMTUuNjY2N0M0LjE3NDk4IDE2LjU4MzQgNC45MTY2NSAxNy4zMzM0IDUuODMzMzEgMTcuMzMzNEM2Ljc0OTk4IDE3LjMzMzQgNy40OTk5OCAxNi41ODM0IDcuNDk5OTggMTUuNjY2N0M3LjQ5OTk4IDE0Ljc1IDYuNzQ5OTggMTQgNS44MzMzMSAxNFpNMC44MzMzMTMgMC42NjY2ODdWMi4zMzMzNUgyLjQ5OTk4TDUuNDk5OTggOC42NTgzNUw0LjM3NDk4IDEwLjdDNC4yNDE2NSAxMC45MzM0IDQuMTY2NjUgMTEuMjA4NCA0LjE2NjY1IDExLjVDNC4xNjY2NSAxMi40MTY3IDQuOTE2NjUgMTMuMTY2NyA1LjgzMzMxIDEzLjE2NjdIMTUuODMzM1YxMS41SDYuMTgzMzFDNi4wNjY2NSAxMS41IDUuOTc0OTggMTEuNDA4NCA1Ljk3NDk4IDExLjI5MTdMNS45OTk5OCAxMS4xOTE3TDYuNzQ5OTggOS44MzMzNUgxMi45NTgzQzEzLjU4MzMgOS44MzMzNSAxNC4xMzMzIDkuNDkxNjkgMTQuNDE2NiA4Ljk3NTAyTDE3LjQgMy41NjY2OUMxNy40NjY2IDMuNDUwMDIgMTcuNSAzLjMwODM1IDE3LjUgMy4xNjY2OUMxNy41IDIuNzA4MzUgMTcuMTI1IDIuMzMzMzUgMTYuNjY2NiAyLjMzMzM1SDQuMzQxNjVMMy41NTgzMSAwLjY2NjY4N0gwLjgzMzMxM1pNMTQuMTY2NiAxNEMxMy4yNSAxNCAxMi41MDgzIDE0Ljc1IDEyLjUwODMgMTUuNjY2N0MxMi41MDgzIDE2LjU4MzQgMTMuMjUgMTcuMzMzNCAxNC4xNjY2IDE3LjMzMzRDMTUuMDgzMyAxNy4zMzM0IDE1LjgzMzMgMTYuNTgzNCAxNS44MzMzIDE1LjY2NjdDMTUuODMzMyAxNC43NSAxNS4wODMzIDE0IDE0LjE2NjYgMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K';
 
 	/**
-	 * @var null|int|float
+	 * @var null|int
 	 */
 	protected $position = 3;
 
 	/**
-	 * @var array
-	 */
-	protected $cards = [];
-
-	/**
-	 * @var array
-	 */
-	protected $wizards = [];
-
-	/**
 	 * Construct.
+	 *
+	 * @param array<\Tribe\WME\Sitebuilder\Cards\Card> $cards
 	 */
-	public function __construct() {
+	public function __construct( array $cards ) {
 		$this->menu_title = __( 'Store Details', 'wme-sitebuilder' );
 
-		$classname_console_command = apply_filters( 'sitebuilder_classname_console_command', null );
-		$classname_option          = apply_filters( 'sitebuilder_classname_option', null );
-
-		if ( null === $classname_option ) {
-			trigger_error( 'Class dependencies not provided; unable to proceed.' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-
-			return;
-		}
-
-		$this->cards = [
-			new StoreSetupCard(),
-			new ManageProductsCard(),
-		];
-
 		$this->wizards = [
-			new StoreSetupWizard(),
+			Container::getInstance()->make( StoreSetupWizard::class ),
+			Container::getInstance()->make( ShippingWizard::class ),
 		];
 
-		if ( ! empty( $classname_console_command ) ) {
-			$shipping_plugins = new ShippingPlugins();
+		$this->addPaymentCardsWizards();
 
-			$this->cards[]   = new ShippingCard( $shipping_plugins );
-			$this->wizards[] = new ShippingWizard( $shipping_plugins );
-
-			$this->addPaymentCardsWizards();
-		} else {
-			trigger_error( 'Class name for performing console commands is required for payment and shipping wizards.', E_USER_NOTICE ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-		}
-
-		parent::__construct();
+		parent::__construct( $cards );
 	}
 
 	/**
 	 * Add payment cards and wizards.
 	 */
 	protected function addPaymentCardsWizards() {
-		$cards = [];
+		$plugins = [];
 
 		$stripe = new Stripe();
 		$paypal = new PayPal();
 
 		if ( ! $stripe->isPluginInstalled() || $stripe->isVersionSupported() ) {
-			$cards['stripe'] = $stripe;
-			$this->wizards[] = new PaymentGatewayStripeWizard( $stripe );
+			$plugins['stripe'] = $stripe;
+			$this->wizards[]   = new PaymentGatewayStripeWizard( $stripe );
 		}
 
 		if ( ! $paypal->isPluginInstalled() || $paypal->isVersionSupported() ) {
-			$cards['paypal'] = $paypal;
-			$this->wizards[] = new PaymentGatewayPayPalWizard( $paypal );
+			$plugins['paypal'] = $paypal;
+			$this->wizards[]   = new PaymentGatewayPayPalWizard( $paypal );
 		}
 
-		if ( empty( $cards ) ) {
+		if ( empty( $plugins ) ) {
 			return;
 		}
 
-		$this->cards[] = new PaymentGatewaysCard( $cards );
+		$this->cards[] = new PaymentGatewaysCard( $plugins );
 	}
 
 	/**
@@ -148,7 +115,7 @@ class StoreDetails extends AdminPage {
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
 			'logout_url'  => wp_logout_url(),
-			'assets_url'  => PLUGIN_URL . '/wme-sitebuilder/assets/',
+			'assets_url'  => PLUGIN_URL . 'wme-sitebuilder/assets/store-details/',
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],

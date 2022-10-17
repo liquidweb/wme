@@ -12,13 +12,12 @@ trait UsesAjax {
 	/**
 	 * Register callback for AJAX sub-action.
 	 *
-	 * @param string $registered_sub_action Slug of sub-action.
-	 * @param callable $callback Callback for the sub-action.
-	 *
-	 * @return void
+	 * @param string   $registered_sub_action Slug of sub-action.
+	 * @param callable $callback              Callback for the sub-action.
 	 */
-	public function add_ajax_action( string $registered_sub_action, callable $callback ) {
+	public function add_ajax_action( $registered_sub_action, callable $callback ) {
 		if ( ! $this->supports_ajax() ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 			trigger_error( 'AJAX action cannot be added: <code>ajax_action</code> property is undefined.', E_USER_WARNING );
 
 			return;
@@ -36,16 +35,16 @@ trait UsesAjax {
 	}
 
 	/**
-	 * Action: wp_ajax_{$this->ajax_action}
+	 * Action: wp_ajax_{$this->ajax_action}.
 	 *
 	 * Handle AJAX requests.
-	 *
-	 * @return void
 	 */
 	public function action__wp_ajax() {
 		$sub_action = '';
 
 		if ( ! empty( $_REQUEST['sub_action'] ) ) {
+			// We're processing the nonce after checking if other params exist.
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$sub_action = $_REQUEST['sub_action'];
 		}
 

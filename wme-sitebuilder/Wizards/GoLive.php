@@ -2,19 +2,15 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
+use Tribe\WME\Sitebuilder\Concerns\StoresData;
 use Tribe\WME\Sitebuilder\Contracts\ManagesDomain;
 use WP_Error;
 
 class GoLive extends Wizard {
-	/**
-	 * Option to indicate completion.
-	 */
-	const COMPLETED_OPTION_NAME = '_sitebuilder_go_live';
 
-	/**
-	 * Option to site domain being verified.
-	 */
-	const VERIFYING_OPTION_NAME = '_sitebuilder_verifying_domain';
+	use StoresData;
+
+	const DATA_STORE_NAME = '_sitebuider_go_live';
 
 	/**
 	 * @var string
@@ -77,7 +73,7 @@ class GoLive extends Wizard {
 			'canBeClosed'           => true,
 			'autoLaunch'            => false,
 			'domainRegistrationUrl' => esc_url( 'https://www.nexcess.net/domain-registration/' ),
-			'verifyingUrl'          => get_option( self::VERIFYING_OPTION_NAME, '' ),
+			'verifyingUrl'          => $this->getData()->get( 'verifying_domain', '' ),
 			'domainSearchUrl'       => esc_url( 'https://my.nexcess.net/domain-search' ),
 		];
 	}
@@ -118,7 +114,7 @@ class GoLive extends Wizard {
 			), 422);
 		}
 
-		update_option( self::VERIFYING_OPTION_NAME, $domain, false );
+		$this->getData()->set( 'verifying_domain', $domain )->save();
 
 		try {
 			$data = $this->domains->isDomainUsable( $domain );
@@ -166,11 +162,22 @@ class GoLive extends Wizard {
 
 		do_action( 'wme_event_sitebuilder_rename_domain', $domain );
 
-		update_option( self::COMPLETED_OPTION_NAME, true, false );
-		delete_option( self::VERIFYING_OPTION_NAME );
+		$this->getData()
+			->set( 'complete', true )
+			->delete( 'verifying_domain' )
+			->save();
 
 		do_action( 'wme_event_wizard_completed', 'golive' );
 
 		return wp_send_json_success( null, 202 );
+	}
+
+	/**
+	 * Check if Wizard has been completed.
+	 *
+	 * @return bool
+	 */
+	public function isComplete() {
+		return (bool) $this->getData()->get( 'complete', false );
 	}
 }

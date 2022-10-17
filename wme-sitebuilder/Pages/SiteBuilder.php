@@ -2,18 +2,11 @@
 
 namespace Tribe\WME\Sitebuilder\Pages;
 
-use Tribe\WME\Sitebuilder\Cards\FirstTimeConfiguration as FirstTimeConfigurationCard;
-use Tribe\WME\Sitebuilder\Cards\GoLive as GoLiveCard;
-use Tribe\WME\Sitebuilder\Cards\LookAndFeel as LookAndFeelCard;
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
-use Tribe\WME\Sitebuilder\Container;
-use Tribe\WME\Sitebuilder\Wizards\FirstTimeConfiguration as FirstTimeConfigurationWizard;
-use Tribe\WME\Sitebuilder\Wizards\GoLive as GoLiveWizard;
-use Tribe\WME\Sitebuilder\Wizards\LookAndFeel as LookAndFeelWizard;
 
 use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 
-class SiteBuilder extends AdminPage {
+class SiteBuilder extends SettingsPage {
 
 	use HasAssets;
 
@@ -43,51 +36,19 @@ class SiteBuilder extends AdminPage {
 	protected $icon_url = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGZpbGw9IiNhN2FhYWQiIHZpZXdCb3g9Ii0zIC00IDEzIDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0zLjQ2MTYgMTUuMjU4aC0wLjgzMzMzbDAuODMzMzMtNS44MzMzaC0yLjkxNjdjLTAuNDgzMzMgMC0wLjQ3NS0wLjI2NjY3LTAuMzE2NjctMC41NSAwLjE1ODMzLTAuMjgzMzMgMC4wNDE2NjctMC4wNjY2NyAwLjA1ODMzNC0wLjEgMS4wNzUtMS45IDIuNjkxNy00LjczMzMgNC44NDE3LTguNTE2N2gwLjgzMzMzbC0wLjgzMzMzIDUuODMzM2gyLjkxNjdjMC40MDgzNCAwIDAuNDY2NjcgMC4yNzUgMC4zOTE2NyAwLjQyNWwtMC4wNTgzMyAwLjEyNWMtMy4yODMzIDUuNzQxNi00LjkxNjcgOC42MTY2LTQuOTE2NyA4LjYxNjZ6IiBmaWxsPSIjYTdhYWFkIi8+PC9zdmc+';
 
 	/**
-	 * @var null|int|float
+	 * @var null|int
 	 */
 	protected $position = 3;
 
 	/**
-	 * @var array
-	 */
-	protected $cards = [];
-
-	/**
-	 * @var array
-	 */
-	protected $wizards = [];
-
-	/**
 	 * Construct.
 	 *
-	 * @todo remove require_once
+	 * @param array<\Tribe\WME\Sitebuilder\Cards\Card> $cards
 	 */
-	public function __construct() {
+	public function __construct( array $cards ) {
 		$this->menu_title = __( 'Set up', 'wme-sitebuilder' );
 
-		parent::__construct();
-
-		$option = apply_filters( 'sitebuilder_classname_option', null );
-
-		if ( null === $option ) {
-			trigger_error( 'Class dependencies not provided; unable to proceed.' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-
-			return;
-		}
-
-		$this->cards = [
-			Container::getInstance()->get( FirstTimeConfigurationCard::class ),
-			Container::getInstance()->get( LookAndFeelCard::class ),
-			Container::getInstance()->get( GoLiveCard::class ),
-		];
-
-		$this->wizards = [
-			Container::getInstance()->get( FirstTimeConfigurationWizard::class ),
-			Container::getInstance()->get( LookAndFeelWizard::class ),
-			Container::getInstance()->get( GoLiveWizard::class ),
-		];
-
-		parent::__construct();
+		parent::__construct( $cards );
 	}
 
 	/**
@@ -101,7 +62,7 @@ class SiteBuilder extends AdminPage {
 	}
 
 	/**
-	 * Action: toplevel_page_sitebuilder/print_scripts.
+	 * Action: toplevel_page_sitebuilder:print_scripts.
 	 *
 	 * Add properties for page headline and description.
 	 */
@@ -113,7 +74,7 @@ class SiteBuilder extends AdminPage {
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
 			'logout_url'  => wp_logout_url(),
-			'assets_url'  => PLUGIN_URL . '/wme-sitebuilder/assets/',
+			'assets_url'  => PLUGIN_URL . 'wme-sitebuilder/assets/sitebuilder/',
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],

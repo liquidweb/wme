@@ -2,16 +2,16 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasOptions;
+use Tribe\WME\Sitebuilder\Concerns\StoresData;
 
 class LookAndFeel extends Wizard {
 
-	use HasOptions;
+	use StoresData;
 
-	const FIELD_COLOR    = 'color';
-	const FIELD_FONT     = 'font';
-	const FIELD_TEMPLATE = 'template';
-	const OPTION_NAME    = '_sitebuilder_look_and_feel';
+	const FIELD_COLOR     = 'color';
+	const FIELD_FONT      = 'font';
+	const FIELD_TEMPLATE  = 'template';
+	const DATA_STORE_NAME = '_sitebuilder_look_and_feel';
 
 	/**
 	 * @var string
@@ -57,9 +57,9 @@ class LookAndFeel extends Wizard {
 			'canBeClosed' => true,
 			'autoLaunch'  => false,
 			'theme'       => wp_get_theme()->name,
-			'template'    => $this->getTemplate(),
-			'font'        => $this->getFont(),
-			'color'       => $this->getColor(),
+			'template'    => $this->getData()->get( self::FIELD_TEMPLATE, '' ),
+			'font'        => $this->getData()->get( self::FIELD_FONT, '' ),
+			'color'       => $this->getData()->get( self::FIELD_COLOR, '' ),
 			'completed'   => $this->isComplete(),
 			'kadence'     => [
 				'ajax' => [
@@ -89,24 +89,6 @@ class LookAndFeel extends Wizard {
 		];
 
 		foreach ( $fields as $field ) {
-			$method_name = sprintf( 'set%s', ucfirst( $field ) );
-
-			if ( ! method_exists( $this, $method_name ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-				trigger_error( sprintf( 'Method <code>%s</code> to save <code>%s</code> field is not defined.', esc_html( $method_name ), esc_html( $field ) ), E_USER_WARNING );
-
-				continue;
-			}
-
-			$callable = [ $this, $method_name ];
-
-			if ( ! is_callable( $callable ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-				trigger_error( sprintf( 'Method <code>%s</code> to save <code>%s</code> field is defined but not callable.', esc_html( $method_name ), esc_html( $field ) ), E_USER_WARNING );
-
-				continue;
-			}
-
             // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			if ( ! array_key_exists( $field, $_POST ) ) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
@@ -115,16 +97,17 @@ class LookAndFeel extends Wizard {
 				continue;
 			}
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			call_user_func( $callable, $_POST[ $field ] );
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$value = filter_var_array( $_POST[ $field ], FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+			$this->getData()->set( $field, $value );
 		}
 
-		if ( ! $this->getOption()->isDirty() ) {
+		if ( ! $this->getData()->isDirty() ) {
 			return;
 		}
 
-		$this->getOption()->set( 'complete', true );
-		$saved = $this->getOption()->save();
+		// This handles saving all of the incoming values.
+		$saved = $this->getData()->set( 'complete', true )->save();
 
 		if ( ! $saved ) {
 			wp_send_json_error( [ $this->wizard_slug => __( 'Invalid look and feel values.', 'wme-sitebuilder' ) ] );
@@ -141,7 +124,7 @@ class LookAndFeel extends Wizard {
 	 * @return string
 	 */
 	public function getTemplate() {
-		return ( $this->getOption()->template ) ? $this->getOption()->template : '';
+		return $this->getData()->get( self::FIELD_TEMPLATE, '' );
 	}
 
 	/**
@@ -150,7 +133,7 @@ class LookAndFeel extends Wizard {
 	 * @return string
 	 */
 	public function getFont() {
-		return ( $this->getOption()->font ) ? $this->getOption()->font : '';
+		return $this->getData()->get( self::FIELD_FONT, '' );
 	}
 
 	/**
@@ -159,60 +142,15 @@ class LookAndFeel extends Wizard {
 	 * @return string
 	 */
 	public function getColor() {
-		return ( $this->getOption()->color ) ? $this->getOption()->color : '';
+		return $this->getData()->get( self::FIELD_COLOR, '' );
 	}
 
 	/**
-	 * Sets the Look and Feel Template value.
+	 * Check if Wizard has been completed.
 	 *
-	 * @param array $value
-	 */
-	public function setTemplate( $value ) {
-		$value = filter_var_array( $value, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-
-		if ( empty( $value ) ) {
-			return;
-		}
-
-		$this->getOption()->template = $value;
-	}
-
-	/**
-	 * Sets the Look and Feel Font value.
-	 *
-	 * @param string $value
-	 */
-	public function setFont( $value ) {
-		$value = filter_var( $value, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-
-		if ( empty( $value ) ) {
-			return;
-		}
-
-		$this->getOption()->font = $value;
-	}
-
-	/**
-	 * Sets the Look and Feel Color value.
-	 *
-	 * @param string $value
-	 */
-	public function setColor( $value ) {
-		$value = filter_var( $value, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-
-		if ( empty( $value ) ) {
-			return;
-		}
-
-		$this->getOption()->color = $value;
-	}
-
-	/**
-	 * Checks to see if the wizard has been completed.
-	 *
-	 * @return bool True if the wizard has been completed, false otherwise.
+	 * @return bool
 	 */
 	public function isComplete() {
-		return (bool) $this->getOption()->get( 'complete', false );
+		return (bool) $this->getData()->get( 'complete', false );
 	}
 }

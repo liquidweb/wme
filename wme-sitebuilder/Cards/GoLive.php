@@ -2,12 +2,9 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-class GoLive extends Card {
+use Tribe\WME\Sitebuilder\Wizards\Wizard;
 
-	/**
-	 * Option to indicate completion.
-	 */
-	const COMPLETED_OPTION_NAME = '_sitebuilder_go_live';
+class GoLive extends Card {
 
 	/**
 	 * @var string
@@ -20,9 +17,20 @@ class GoLive extends Card {
 	protected $card_slug = 'golive';
 
 	/**
-	 * @var null|bool
+	 * @var \Tribe\WME\Sitebuilder\Wizards\Wizard
 	 */
-	protected $complete;
+	protected $wizard;
+
+	/**
+	 * Construct.
+	 *
+	 * @param \Tribe\WME\Sitebuilder\Wizards\Wizard $wizard
+	 */
+	public function __construct( Wizard $wizard ) {
+		$this->wizard = $wizard;
+
+		parent::__construct();
+	}
 
 	/**
 	 * Get properties.
@@ -35,8 +43,8 @@ class GoLive extends Card {
 			'title'     => __( 'Go Live with a domain', 'wme-sitebuilder' ),
 			// phpcs:ignore Generic.Files.LineLength.TooLong
 			'intro'     => __( 'Go live with a custom domain, whether you purchased with Nexcess or elsewhere.', 'wme-sitebuilder' ),
-			'completed' => $this->isComplete(),
-			'time'      => $this->isComplete() ? __( 'Complete', 'wme-sitebuilder' ) : '',
+			'completed' => $this->wizard->isComplete(),
+			'time'      => $this->wizard->isComplete() ? __( 'Complete', 'wme-sitebuilder' ) : '',
 			'rows'      => [
 				[
 					'id'   => 'launch-domain-status',
@@ -45,7 +53,7 @@ class GoLive extends Card {
 			],
 		];
 
-		if ( ! $this->isComplete() ) {
+		if ( ! $this->wizard->isComplete() ) {
 			$details['rows'][] = [
 				'id'         => 'site-domain-wizard',
 				'type'       => 'task',
@@ -58,20 +66,5 @@ class GoLive extends Card {
 		}
 
 		return $details;
-	}
-
-	/**
-	 * Check if card is marked as completed.
-	 *
-	 * @return bool
-	 */
-	public function isComplete() {
-		if ( null !== $this->complete ) {
-			return $this->complete;
-		}
-
-		$this->complete = (bool) get_option( self::COMPLETED_OPTION_NAME, false );
-
-		return $this->complete;
 	}
 }

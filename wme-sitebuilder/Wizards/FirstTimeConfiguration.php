@@ -2,18 +2,18 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasOptions;
+use Tribe\WME\Sitebuilder\Concerns\StoresData;
 
 class FirstTimeConfiguration extends Wizard {
 
-	use HasOptions;
+	use StoresData;
 
-	const FIELD_LOGO     = 'logo';
-	const FIELD_PASSWORD = 'password';
-	const FIELD_SITENAME = 'siteName';
-	const FIELD_TAGLINE  = 'tagLine';
-	const FIELD_USERNAME = 'username';
-	const OPTION_NAME    = '_sitebuilder_ftc';
+	const FIELD_LOGO      = 'logo';
+	const FIELD_PASSWORD  = 'password';
+	const FIELD_SITENAME  = 'siteName';
+	const FIELD_TAGLINE   = 'tagLine';
+	const FIELD_USERNAME  = 'username';
+	const DATA_STORE_NAME = '_sitebuilder_ftc';
 
 	/**
 	 * @var string
@@ -150,8 +150,7 @@ class FirstTimeConfiguration extends Wizard {
 			call_user_func( $callable, $_POST[ $field ] );
 		}
 
-		$this->getOption()->set( 'complete', true );
-		$this->getOption()->save();
+		$this->getData()->set( 'complete', true )->save();
 
 		do_action( 'wme_event_wizard_completed', 'ftc' );
 
@@ -161,12 +160,12 @@ class FirstTimeConfiguration extends Wizard {
 	}
 
 	/**
-	 * Check if FTC has been completed.
+	 * Check if Wizard has been completed.
 	 *
 	 * @return bool
 	 */
 	public function isComplete() {
-		return (bool) $this->getOption()->get( 'complete', false );
+		return (bool) $this->getData()->get( 'complete', false );
 	}
 
 	/**

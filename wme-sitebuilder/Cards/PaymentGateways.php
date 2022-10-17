@@ -24,7 +24,7 @@ class PaymentGateways extends Card {
 	/**
 	 * Construct.
 	 *
-	 * @param PaymentGatewayAbstract[] $payment_plugins
+	 * @param array<PaymentGatewayAbstract> $payment_plugins
 	 */
 	public function __construct( $payment_plugins ) {
 		$this->payment_plugins = $payment_plugins;

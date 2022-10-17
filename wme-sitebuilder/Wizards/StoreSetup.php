@@ -2,13 +2,13 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasOptions;
+use Tribe\WME\Sitebuilder\Concerns\StoresData;
 
 class StoreSetup extends Wizard {
 
-	use HasOptions;
+	use StoresData;
 
-	const OPTION_NAME          = '_sitebuilder_store_setup';
+	const DATA_STORE_NAME      = '_sitebuilder_store_setup';
 	const FIELD_ADDRESSLINEONE = 'addressLineOne';
 	const FIELD_ADDRESSLINETWO = 'addressLineTwo';
 	const FIELD_CITY           = 'city';
@@ -135,14 +135,13 @@ class StoreSetup extends Wizard {
 		$this->saveRegionAndState();
 
 		if ( ! empty( $this->errors ) ) {
-			$this->getOption()->set( 'complete', false );
-			$this->getOption()->save();
+			$this->getData()->set( 'complete', false )->save();
 
 			wp_send_json_error( $this->errors );
 		}
 
-		$this->getOption()->set( 'complete', true );
-		$this->getOption()->save();
+		$this->getData()->set( 'complete', true )->save();
+		$this->getData()->save();
 
 		wp_send_json_success();
 	}
@@ -154,7 +153,7 @@ class StoreSetup extends Wizard {
 	 */
 	public function getAddressLineOne() {
 		if ( empty( $this->field_values[ self::FIELD_ADDRESSLINEONE ] ) ) {
-			$this->field_values[ self::FIELD_ADDRESSLINEONE ] = WC()->countries->get_base_address();
+			$this->field_values[ self::FIELD_ADDRESSLINEONE ] = \WC()->countries->get_base_address();
 		}
 
 		return $this->field_values[ self::FIELD_ADDRESSLINEONE ];
@@ -385,7 +384,7 @@ class StoreSetup extends Wizard {
 	 * @return mixed
 	 */
 	public function getProductTypes() {
-		return $this->getOption()->get( 'producttype', [] );
+		return $this->getData()->get( 'producttype', [] );
 	}
 
 	/**
@@ -404,7 +403,7 @@ class StoreSetup extends Wizard {
 			return;
 		}
 
-		$this->getOption()->set( 'producttype', $new_product_types );
+		$this->getData()->set( 'producttype', $new_product_types );
 	}
 
 	/**
@@ -413,7 +412,7 @@ class StoreSetup extends Wizard {
 	 * @return string
 	 */
 	public function getProductCount() {
-		return $this->getOption()->get( 'productcount', '' );
+		return $this->getData()->get( 'productcount', '' );
 	}
 
 	/**
@@ -433,7 +432,7 @@ class StoreSetup extends Wizard {
 			return;
 		}
 
-		$this->getOption()->set( 'productcount', $new_product_count );
+		$this->getData()->set( 'productcount', $new_product_count );
 	}
 
 	/**
@@ -496,7 +495,7 @@ class StoreSetup extends Wizard {
 	 */
 	public function getWoocommerceRegions() {
 		$regions = [];
-		$wc      = WC();
+		$wc      = \WC();
 
 		if ( $wc->countries ) {
 			foreach ( $wc->countries->get_countries() as $country_key => $country_name ) {
@@ -547,5 +546,14 @@ class StoreSetup extends Wizard {
 		$wc = WC();
 
 		return $wc->countries->get_country_locale();
+	}
+
+	/**
+	 * Check if Wizard has been completed.
+	 *
+	 * @return bool
+	 */
+	public function isComplete() {
+		return (bool) $this->getData()->get( 'complete', false );
 	}
 }

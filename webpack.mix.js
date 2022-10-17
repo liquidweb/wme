@@ -57,3 +57,6 @@ mix.js('assets/js/sitebuilder-app.js', '/')
 	.sourceMaps(false)
 	.eslint()
 	.react();
+
+mix.copyDirectory('node_modules/@moderntribe/sitebuilder/dist/assets/', 'assets/sitebuilder/')
+mix.copyDirectory('node_modules/@moderntribe/storebuider/dist/assets/', 'assets/store-details/')

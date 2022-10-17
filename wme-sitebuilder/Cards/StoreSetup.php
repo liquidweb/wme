@@ -2,13 +2,9 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasOptions;
+use Tribe\WME\Sitebuilder\Wizards\Wizard;
 
 class StoreSetup extends Card {
-
-	use HasOptions;
-
-	const OPTION_NAME = '_sitebuilder_store_setup';
 
 	/**
 	 * @var string
@@ -21,6 +17,22 @@ class StoreSetup extends Card {
 	protected $card_slug = 'store-setup';
 
 	/**
+	 * @var \Tribe\WME\Sitebuilder\Wizards\Wizard
+	 */
+	protected $wizard;
+
+	/**
+	 * Construct.
+	 *
+	 * @param \Tribe\WME\Sitebuilder\Wizards\Wizard $wizard
+	 */
+	public function __construct( Wizard $wizard ) {
+		$this->wizard = $wizard;
+
+		parent::__construct();
+	}
+
+	/**
 	 * Properties for card.
 	 *
 	 * @return array
@@ -30,7 +42,7 @@ class StoreSetup extends Card {
 			'id'        => 'store-setup',
 			'title'     => __( 'Store Setup', 'wme-sitebuilder' ),
 			'intro'     => __( 'This is where the fun begins.', 'wme-sitebuilder' ),
-			'completed' => (bool) $this->getOption()->get( 'complete', false ),
+			'completed' => $this->wizard->isComplete(),
 			'time'      => __( '5 Minutes', 'wme-sitebuilder' ),
 			'rows'      => [
 				[
