@@ -2,7 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PaymentGatewayAbstract;
+use Tribe\WME\Sitebuilder\Plugins\Plugin;
 
 class PaymentGateways extends Card {
 
@@ -24,7 +24,7 @@ class PaymentGateways extends Card {
 	/**
 	 * Construct.
 	 *
-	 * @param array<PaymentGatewayAbstract> $payment_plugins
+	 * @param array<Plugin> $payment_plugins
 	 */
 	public function __construct( $payment_plugins ) {
 		$this->payment_plugins = $payment_plugins;

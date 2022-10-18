@@ -2,7 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder\Support;
 
-use Nexcess\MAPPS\Exceptions\ConsoleException;
+use Tribe\WME\Sitebuilder\Exceptions\ConsoleException;
 
 class ConsoleResponse {
 
@@ -83,8 +83,8 @@ class ConsoleResponse {
 	 * @param bool $throw Optional. If true, a ConsoleException will be thrown if the command was
 	 *                    unsuccessful. Default is false.
 	 *
-	 * @throws \Nexcess\MAPPS\Exceptions\ConsoleException If $throw is true and the command exited
-	 *                                                    with a non-zero exit code.
+	 * @throws \Tribe\WME\Sitebuilder\Exceptions\ConsoleException If $throw is true and the command exited
+	 *                                                            with a non-zero exit code.
 	 *
 	 * @return bool True if the command was successful (a zero exit code) or false if something
 	 *              went wrong.

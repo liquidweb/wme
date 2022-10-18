@@ -60,7 +60,7 @@ class ConsoleCommand {
 	/**
 	 * Execute the command.
 	 *
-	 * @return \Nexcess\MAPPS\Support\ConsoleResponse A representation of the console response.
+	 * @return \Tribe\WME\Sitebuilder\Support\ConsoleResponse A representation of the console response.
 	 */
 	public function execute() {
 		$arguments = array_map( 'escapeshellarg', $this->parseArguments( $this->arguments ) );
@@ -157,7 +157,7 @@ class ConsoleCommand {
 	 *
 	 * @param string $command The full command to execute.
 	 *
-	 * @return \Nexcess\MAPPS\Support\ConsoleResponse A representation of the console response.
+	 * @return \Tribe\WME\Sitebuilder\Support\ConsoleResponse A representation of the console response.
 	 */
 	protected function executeCommand( $command ) {
 		// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.system_calls_exec

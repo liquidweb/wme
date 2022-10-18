@@ -1,6 +1,6 @@
 <?php
 
-namespace Tribe\WME\Sitebuilder\Plugins\Plugin;
+namespace Tribe\WME\Sitebuilder\Plugins;
 
 abstract class Plugin {
 
