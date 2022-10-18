@@ -12,17 +12,18 @@ trait HasWordPressDependencies {
 	 *
 	 * @see get_plugins()
 	 *
+	 * @param string $plugin The directory/file path.
+	 *
 	 * @return bool
 	 */
-	public function isPluginInstalled() {
+	public function isPluginInstalled( $plugin ) {
 		if ( ! function_exists( 'get_plugins' ) ) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
 		$all_plugins = get_plugins();
-		$plugin_file = $this->slug . '/' . $this->file;
 
-		return array_key_exists( $plugin_file, $all_plugins );
+		return array_key_exists( $plugin, $all_plugins );
 	}
 
 	/**
@@ -33,44 +34,64 @@ trait HasWordPressDependencies {
 	 *
 	 * @see is_plugin_active()
 	 *
+	 * @param string $plugin The directory/file path.
+	 *
 	 * @return bool
 	 */
-	public function isPluginActive() {
+	public function isPluginActive( $plugin ) {
 		if ( ! function_exists( 'is_plugin_active' ) ) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
-		$plugin_file = $this->slug . '/' . $this->file;
-
-		return is_plugin_active( $plugin_file );
+		return is_plugin_active( $plugin );
 	}
 
 	/**
-	 * Verify that plugin version is supported.
+	 * Get specified plugin's version.
 	 *
-	 * @uses $this->isPluginInstalled()
+	 * @see get_plugins()
 	 *
-	 * @see get_plugin_data()
+	 * @param string $plugin_file "plugin-directory/plugin-file.php".
 	 *
-	 * @return bool
+	 * @return string
 	 */
-	public function isVersionSupported() {
-		if ( ! $this->isPluginInstalled() ) {
-			return false;
-		}
-
-		if ( ! function_exists( 'get_plugins' ) ) {
+	public function getPluginVersion( $plugin_file ) {
+		if ( ! function_exists( 'get_plugin_data' ) ) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
-		$plugin_file = $this->slug . '/' . $this->file;
-		$all_plugins = get_plugins();
-		$data        = $all_plugins[ $plugin_file ];
+		$plugins = get_plugins();
+
+		if ( ! array_key_exists( $plugin_file, $plugins ) ) {
+			return '';
+		}
+
+		$data = $plugins[ $plugin_file ];
 
 		if ( empty( $data['Version'] ) ) {
+			return '';
+		}
+
+		return $data['Version'];
+	}
+
+	/**
+	 * Verify that plugin is installed and the version is supported.
+	 *
+	 * @uses $this->getPluginVersion()
+	 *
+	 * @param string $plugin           The directory/file path.
+	 * @param string $expected_version The version to check against.
+	 *
+	 * @return bool
+	 */
+	public function isPluginVersion( $plugin, $expected_version ) {
+		$actual_version = $this->getPluginVersion( $plugin );
+
+		if ( empty( $actual_version ) ) {
 			return false;
 		}
 
-		return $this->supported_version === $data['Version'];
+		return $actual_version === $expected_version;
 	}
 }

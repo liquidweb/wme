@@ -2,7 +2,6 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
-use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
 use Tribe\WME\Sitebuilder\Plugins\Plugin;
 
 /**
@@ -12,8 +11,6 @@ use Tribe\WME\Sitebuilder\Plugins\Plugin;
  * @property string   $supported_version
  */
 class PayPal extends Plugin {
-
-	use HasWordPressDependencies;
 
 	/**
 	 * @var string
@@ -55,6 +52,8 @@ class PayPal extends Plugin {
 	 */
 	public function __construct() {
 		$this->admin_url = admin_url( 'admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway' );
+
+		parent::__construct();
 
 		$this->registerHooks();
 	}
@@ -111,9 +110,9 @@ class PayPal extends Plugin {
 	public function wizard_props() {
 		return [
 			'plugin' => [
-				'active'    => $this->isPluginActive(),
+				'active'    => $this->isPluginActive( $this->plugin_path ),
 				'adminUrl'  => $this->admin_url,
-				'installed' => $this->isPluginInstalled(),
+				'installed' => $this->isPluginInstalled( $this->plugin_path ),
 			],
 		];
 	}

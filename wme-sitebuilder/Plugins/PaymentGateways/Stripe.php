@@ -2,7 +2,6 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
-use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
 use Tribe\WME\Sitebuilder\Plugins\Plugin;
 use WC_Stripe_Connect;
 
@@ -13,8 +12,6 @@ use WC_Stripe_Connect;
  * @property string   $supported_version
  */
 class Stripe extends Plugin {
-
-	use HasWordPressDependencies;
 
 	/**
 	 * @var string
@@ -56,6 +53,8 @@ class Stripe extends Plugin {
 	 */
 	public function __construct() {
 		$this->admin_url = admin_url( 'admin.php?page=wc-settings&tab=checkout&section=stripe' );
+
+		parent::__construct();
 
 		$this->registerHooks();
 	}
@@ -112,9 +111,9 @@ class Stripe extends Plugin {
 	public function wizard_props() {
 		return [
 			'plugin' => [
-				'active'    => $this->isPluginActive(),
+				'active'    => $this->isPluginActive( $this->plugin_path ),
 				'adminUrl'  => $this->admin_url,
-				'installed' => $this->isPluginInstalled(),
+				'installed' => $this->isPluginInstalled( $this->plugin_path ),
 			],
 		];
 	}
@@ -131,7 +130,7 @@ class Stripe extends Plugin {
 			return;
 		}
 
-		if ( ! $this->isPluginActive() ) {
+		if ( ! $this->isPluginActive( $this->plugin_path ) ) {
 			return;
 		}
 

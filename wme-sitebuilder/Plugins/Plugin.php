@@ -2,7 +2,11 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins;
 
+use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
+
 abstract class Plugin {
+
+	use HasWordPressDependencies;
 
 	/**
 	 * @var string
@@ -17,7 +21,19 @@ abstract class Plugin {
 	/**
 	 * @var string
 	 */
+	protected $plugin_path = '';
+
+	/**
+	 * @var string
+	 */
 	protected $supported_version = '';
+
+	/**
+	 * Construct.
+	 */
+	public function __construct() {
+		$this->plugin_path = $this->slug . '/' . $this->file;
+	}
 
 	/**
 	 * Get properties for card row.
@@ -49,5 +65,16 @@ abstract class Plugin {
 	 */
 	public function __get( $property_name ) {
 		return $this->$property_name;
+	}
+
+	/**
+	 * Determine if the site has a supported version of this plugin installed.
+	 *
+	 * @uses $this->isPluginVersion()
+	 *
+	 * @return bool
+	 */
+	public function isVersionSupported() {
+		return $this->isPluginVersion( $this->plugin_path, $this->supported_version );
 	}
 }

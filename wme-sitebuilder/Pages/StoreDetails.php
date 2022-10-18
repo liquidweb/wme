@@ -75,12 +75,12 @@ class StoreDetails extends SettingsPage {
 		$stripe = new Stripe();
 		$paypal = new PayPal();
 
-		if ( ! $stripe->isPluginInstalled() || $stripe->isVersionSupported() ) {
+		if ( ! $stripe->isVersionSupported() ) {
 			$plugins['stripe'] = $stripe;
 			$this->wizards[]   = new PaymentGatewayStripeWizard( $stripe );
 		}
 
-		if ( ! $paypal->isPluginInstalled() || $paypal->isVersionSupported() ) {
+		if ( ! $paypal->isVersionSupported() ) {
 			$plugins['paypal'] = $paypal;
 			$this->wizards[]   = new PaymentGatewayPayPalWizard( $paypal );
 		}
