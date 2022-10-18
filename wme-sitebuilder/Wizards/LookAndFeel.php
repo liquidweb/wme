@@ -57,9 +57,9 @@ class LookAndFeel extends Wizard {
 			'canBeClosed' => true,
 			'autoLaunch'  => false,
 			'theme'       => wp_get_theme()->name,
-			'template'    => $this->getData()->get( self::FIELD_TEMPLATE, '' ),
-			'font'        => $this->getData()->get( self::FIELD_FONT, '' ),
-			'color'       => $this->getData()->get( self::FIELD_COLOR, '' ),
+			'template'    => $this->getTemplate(),
+			'font'        => $this->getFont(),
+			'color'       => $this->getColor(),
 			'completed'   => $this->isComplete(),
 			'kadence'     => [
 				'ajax' => [
@@ -89,7 +89,7 @@ class LookAndFeel extends Wizard {
 		];
 
 		foreach ( $fields as $field ) {
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
+            // phpcs:disable WordPress.Security.NonceVerification.Missing
 			if ( ! array_key_exists( $field, $_POST ) ) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Field <code>%s</code> is absent in $_POST global.', esc_html( $field ) ), E_USER_WARNING );
@@ -97,8 +97,13 @@ class LookAndFeel extends Wizard {
 				continue;
 			}
 
-			// phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$value = filter_var_array( $_POST[ $field ], FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+			if ( is_array( $_POST[ $field ] ) ) {
+				$value = filter_var_array( $_POST[ $field ], FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+			} else {
+				$value = filter_var( $_POST[ $field ], FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+			}
+			// phpcs:enable WordPress.Security.NonceVerification.Missing
+
 			$this->getData()->set( $field, $value );
 		}
 
