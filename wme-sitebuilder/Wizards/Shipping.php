@@ -2,13 +2,13 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasCommands;
+use Tribe\WME\Sitebuilder\Concerns\InvokesCli;
 use Tribe\WME\Sitebuilder\Plugins\Shipping as ShippingPlugins;
 use WP_Error;
 
 class Shipping extends Wizard {
 
-	use HasCommands;
+	use InvokesCli;
 
 	/**
 	 * @var string

@@ -2,13 +2,13 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
-use Tribe\WME\Sitebuilder\Concerns\HasCommands;
+use Tribe\WME\Sitebuilder\Concerns\InvokesCli;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use WP_Error;
 
 class PaymentGatewayPayPal extends Wizard {
 
-	use HasCommands;
+	use InvokesCli;
 
 	/**
 	 * @var string

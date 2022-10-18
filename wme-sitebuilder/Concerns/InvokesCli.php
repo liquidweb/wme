@@ -2,7 +2,9 @@
 
 namespace Tribe\WME\Sitebuilder\Concerns;
 
-trait HasCommands {
+use Tribe\WME\Sitebuilder\Support\ConsoleCommand;
+
+trait InvokesCli {
 
 	/**
 	 * Create a new WP-CLI command instance.
@@ -13,16 +15,6 @@ trait HasCommands {
 	 *                           Default is empty.
 	 */
 	protected function makeCommand( $command, array $arguments = [] ) {
-		/**
-		 * For Nexcess MAPPS mu-plugin, this should be
-		 * \Nexcess\MAPPS\Support\ConsoleCommand.
-		 */
-		$classname = apply_filters( 'sitebuilder_classname_console_command', null );
-
-		if ( null === $classname ) {
-			return;
-		}
-
-		return new $classname( $command, $arguments );
+		return new ConsoleCommand( $command, $arguments );
 	}
 }
