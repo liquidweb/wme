@@ -1,6 +1,6 @@
 <?php
 
-namespace Nexcess\MAPPS\Support;
+namespace Tribe\WME\Sitebuilder\Support;
 
 use Nexcess\MAPPS\Exceptions\ConsoleException;
 
@@ -95,7 +95,7 @@ class ConsoleResponse {
 		if ( $throw && ! $successful ) {
 			throw new ConsoleException( sprintf(
 				/* Translators: %1$d is the command's exit code. */
-				__( 'Received a non-zero exit code: %1$d', 'nexcess-mapps' ),
+				__( 'Received a non-zero exit code: %1$d', 'wme-sitebuilder' ),
 				$this->exit_code
 			), $this->exit_code );
 		}
