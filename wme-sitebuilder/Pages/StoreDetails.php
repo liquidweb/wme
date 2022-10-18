@@ -4,6 +4,7 @@ namespace Tribe\WME\Sitebuilder\Pages;
 
 use Tribe\WME\Sitebuilder\Cards\PaymentGateways as PaymentGatewaysCard;
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
+use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
 use Tribe\WME\Sitebuilder\Container;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
@@ -17,6 +18,7 @@ use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 class StoreDetails extends SettingsPage {
 
 	use HasAssets;
+	use HasWordPressDependencies;
 
 	/**
 	 * @var string
@@ -100,6 +102,21 @@ class StoreDetails extends SettingsPage {
 
 		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts' ], 5 );
 		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts_15' ], 15 );
+	}
+
+	/**
+	 * Action: admin_menu.
+	 *
+	 * Register menu page.
+	 *
+	 * @uses $this->register_menu_page()
+	 */
+	public function action__admin_menu() {
+		if ( ! $this->isPluginActive( 'woocommerce/woocommerce.php' ) ) {
+			return;
+		}
+
+		parent::action__admin_menu();
 	}
 
 	/**
