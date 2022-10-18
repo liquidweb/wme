@@ -90,18 +90,30 @@ class LookAndFeel extends Card {
 	 *
 	 * @return array|array[] Array with information. Empty array otherwise.
 	 */
-	protected function footer() {
-		if ( ! $this->wizard->isComplete() ) {
-			return [];
+    protected function footer() {
+        $footer_messages = [
+            [
+                'title'    => __( 'Edit specific Pages', 'nexcess-mapps' ),
+                'url'      => add_query_arg( 'post_type', 'page', admin_url( 'edit.php' ) ),
+                'target'   => '_self',
+                'dashicon' => '',
+            ]
+        ];
+
+		if ( $this->wizard->isComplete() ) {
+            $footer_messages[] = [
+                'title'    => __( 'Pick a different template', 'nexcess-mapps' ),
+                'url'      => '',
+                'target'   => '',
+                'dashicon' => '',
+            ];
 		}
 
 		return [
 			[
 				'id'       => 'look-and-feel-wizard',
-				'type'     => 'status',
-				'title'    => __( 'Selected Template:', 'wme-sitebuilder' ),
-				'message'  => $this->wizard->getTemplate(),
-				'messages' => [],
+				'type'     => 'look-and-feel-footer',
+				'messages' => $footer_messages,
 			],
 		];
 	}
