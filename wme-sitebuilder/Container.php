@@ -2,6 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder;
 
+use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
 
 class Container extends BaseContainer {
@@ -18,8 +19,9 @@ class Container extends BaseContainer {
 	 */
 	public function config() {
 		return [
-			// Default implementations of contracts.
-			Contracts\ManagesDomain::class        => Services\Domain::class,
+            // Prevent recursion by letting the container resolve itself if needed.
+            static::class => $this,
+            self::class   => $this,
 
 			// Cards.
 			Cards\FirstTimeConfiguration::class   => function ( $app ) {
@@ -49,6 +51,9 @@ class Container extends BaseContainer {
 					$app->make( Wizards\StoreSetup::class )
 				);
 			},
+
+			// Default implementations of contracts.
+			Contracts\ManagesDomain::class        => Services\Domain::class,
 
 			// Pages.
 			Pages\StoreDetails::class             => function ( $app ) {
@@ -93,6 +98,9 @@ class Container extends BaseContainer {
 				);
 			},
 			Wizards\StoreSetup::class             => null,
+
+			// Implementations of external interfaces.
+			LoggerInterface::class                => Services\Logger::class,
 		];
 	}
 }
