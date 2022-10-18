@@ -105,7 +105,7 @@ class StoreSetup extends Wizard {
 			$method_name = sprintf( 'set%s', ucfirst( $field ) );
 
 			if ( ! method_exists( $this, $method_name ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Method <code>%s</code> to save <code>%s</code> field is not defined.', esc_html( $method_name ), esc_html( $field ) ), E_USER_WARNING );
 
 				continue;
@@ -114,21 +114,21 @@ class StoreSetup extends Wizard {
 			$callable = [ $this, $method_name ];
 
 			if ( ! is_callable( $callable ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Method <code>%s</code> to save <code>%s</code> field is defined but not callable.', esc_html( $method_name ), esc_html( $field ) ), E_USER_WARNING );
 
 				continue;
 			}
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			if ( ! array_key_exists( $field, $_POST ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Field <code>%s</code> is absent in $_POST global.', esc_html( $field ) ), E_USER_WARNING );
 
 				continue;
 			}
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			call_user_func( $callable, $_POST[ $field ] );
 		}
 
@@ -153,7 +153,7 @@ class StoreSetup extends Wizard {
 	 */
 	public function getAddressLineOne() {
 		if ( empty( $this->field_values[ self::FIELD_ADDRESSLINEONE ] ) ) {
-			$this->field_values[ self::FIELD_ADDRESSLINEONE ] = \WC()->countries->get_base_address();
+			$this->field_values[ self::FIELD_ADDRESSLINEONE ] = WC()->countries->get_base_address();
 		}
 
 		return $this->field_values[ self::FIELD_ADDRESSLINEONE ];
@@ -495,7 +495,7 @@ class StoreSetup extends Wizard {
 	 */
 	public function getWoocommerceRegions() {
 		$regions = [];
-		$wc      = \WC();
+		$wc      = WC();
 
 		if ( $wc->countries ) {
 			foreach ( $wc->countries->get_countries() as $country_key => $country_name ) {
@@ -543,9 +543,7 @@ class StoreSetup extends Wizard {
 	 * @return Array<mixed>
 	 */
 	public function getWoocommerceLocales() {
-		$wc = WC();
-
-		return $wc->countries->get_country_locale();
+		return WC()->countries->get_country_locale();
 	}
 
 	/**
