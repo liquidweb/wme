@@ -3,6 +3,7 @@
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
 use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
+use Tribe\WME\Sitebuilder\Plugins\Plugin;
 
 /**
  * @property string[] $keys
@@ -10,7 +11,7 @@ use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
  * @property string   $slug
  * @property string   $supported_version
  */
-class PayPal extends PaymentGatewayAbstract {
+class PayPal extends Plugin {
 
 	use HasWordPressDependencies;
 

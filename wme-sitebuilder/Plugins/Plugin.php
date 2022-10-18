@@ -1,8 +1,8 @@
 <?php
 
-namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
+namespace Tribe\WME\Sitebuilder\Plugins\Plugin;
 
-abstract class PaymentGatewayAbstract {
+abstract class Plugin {
 
 	/**
 	 * @var string

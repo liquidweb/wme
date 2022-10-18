@@ -3,6 +3,7 @@
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
 use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
+use Tribe\WME\Sitebuilder\Plugins\Plugin;
 use WC_Stripe_Connect;
 
 /**
@@ -11,7 +12,7 @@ use WC_Stripe_Connect;
  * @property string   $slug
  * @property string   $supported_version
  */
-class Stripe extends PaymentGatewayAbstract {
+class Stripe extends Plugin {
 
 	use HasWordPressDependencies;
 
