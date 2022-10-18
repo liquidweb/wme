@@ -11,8 +11,7 @@ export function useWizard() {
 		closeAll,
 		setShowCloseWarning,
 		setHideExit,
-		setActiveDevice,
-		setShowDeviceHeader
+		setActiveDevice
 	} = useContext(WizardContext) as WizardProviderContextInterface;
 	return {
 		wizardState,
@@ -23,7 +22,6 @@ export function useWizard() {
 		closeAll,
 		setShowCloseWarning,
 		setHideExit,
-		setActiveDevice,
-		setShowDeviceHeader
+		setActiveDevice
 	};
 }

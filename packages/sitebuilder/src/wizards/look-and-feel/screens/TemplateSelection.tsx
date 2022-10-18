@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
 import { Box, Grid, CircularProgress } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
-import { useLookAndFeel, useWizard } from '@sb/hooks';
+import { useLookAndFeel } from '@sb/hooks';
 import { TemplateBox, Frame, PoweredByKadence } from '@sb/components';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 
 const TemplateSelection = () => {
 	const { lookAndFeelState: { activeTemplate }, templates, setTemplateValue, ajaxTemplateData } = useLookAndFeel();
-	const { setShowDeviceHeader } = useWizard();
 	const { templateSelection: { heading, text } } = lookAndFeelConsts;
 	let activeTemplateSettings = '' || undefined;
 
 	useEffect(() => {
 		ajaxTemplateData();
-		setShowDeviceHeader(false);
 	}, []);
 
 	if (activeTemplate && templates) {
