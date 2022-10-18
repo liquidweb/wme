@@ -4,6 +4,7 @@ namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\StoresData;
 use Tribe\WME\Sitebuilder\Contracts\ManagesDomain;
+use Tribe\WME\Sitebuilder\Services\Domain;
 use WP_Error;
 
 class GoLive extends Wizard {
@@ -61,6 +62,8 @@ class GoLive extends Wizard {
 
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
 		$this->add_ajax_action( 'verify-domain', [ $this, 'verifyDomain' ] );
+		$this->add_ajax_action( 'search-domains', [ $this, 'searchDomains' ] );
+		$this->add_ajax_action( 'create-nexcess-flow', [ $this, 'createNexcessFlow' ] );
 	}
 
 	/**
@@ -129,6 +132,166 @@ class GoLive extends Wizard {
 	}
 
 	/**
+	 * AJAX: search domains.
+	 *
+	 * @todo check response body
+	 */
+	public function searchDomains() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return wp_send_json_error( new WP_Error(
+				'mapps-capabilities-failure',
+				__( 'You do not have permission to perform this action. Please contact a site administrator or log into the Nexcess portal to change the site domain.', 'nexcess-mapps' )
+			), 403 );
+		}
+
+		// Verify the domain structure.
+		$domain = ! empty( $_POST['domain'] )
+			? Domain::parseDomain( $_POST['domain'] )
+			: null;
+
+		$domain = $this->domains->formatDomain( $domain );
+
+		if ( empty( $domain ) ) {
+			return wp_send_json_error( new WP_Error(
+				'mapps-invalid-domain',
+				sprintf(
+					/* Translators: %1$s is the provided domain name. */
+					__( '"%s" is not a valid domain name. Please check your spelling and try again.', 'nexcess-mapps' ),
+					sanitize_text_field( $_POST['domain'] )
+				)
+			), 422 );
+		}
+
+		$request_url = sprintf( '/domain/lookup/%s', $domain );
+		$response    = $this->mappsApi( $request_url );
+
+		if ( is_wp_error( $response ) ) {
+			$companyName = _x( 'Nexcess', 'company name', 'nexcess-mapps' );
+			$companyName = apply_filters( 'nexcess_mapps_branding_company_name', $companyName );
+
+			return wp_send_json_error( new WP_Error(
+				'mapps-create-ui-flow-failure',
+				sprintf(
+					/* Translators: %1$s is the branded company name, %2$s is the API error message. */
+					__( 'The %1$s API returned an error: %2$s', 'nexcess-mapps' ),
+					$companyName,
+					$response->get_error_message()
+				)
+			) );
+		}
+
+		$response_body = wp_remote_retrieve_body( $response );
+
+		return wp_send_json_success( $response_body );
+	}
+
+	/**
+	 * AJAX: create UI flow.
+	 *
+	 * @todo define $return_url
+	 * @todo define $callback_url
+	 */
+	public function createNexcessFlow() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return wp_send_json_error( new WP_Error(
+				'mapps-capabilities-failure',
+				__( 'You do not have permission to perform this action. Please contact a site administrator or log into the Nexcess portal to change the site domain.', 'nexcess-mapps' )
+			), 403 );
+		}
+
+		$selected_domains = $_POST['domains'];
+		$request_domains  = [];
+
+		foreach ( $selected_domains as $selected_domain ) {
+			$domain_name = ! empty( $selected_domain['domain_name'] )
+				? Domain::parseDomain( $selected_domain['domain_name'] )
+				: null;
+
+			if ( empty( $domain_name ) || empty( $selected_domain['package_id'] ) ) {
+				continue;
+			}
+
+			$request_domains[] = [
+				'domain_name' => $domain_name,
+				'package_id'  => $selected_domain['package_id'],
+			];
+		}
+
+		if ( empty( $request_domains ) ) {
+			return wp_send_json_error( new WP_Error(
+				'mapps-invalid-domains',
+				sprintf(
+					__( 'No valid domain names provided.', 'nexcess-mapps' )
+				)
+			), 422 );
+		}
+
+		$this->getData()->set( 'requestedDomains', $request_domains );
+		$this->getData()->save();
+
+		$return_url   = '';
+		$callback_url = '';
+
+		$response = $this->mappsApi( 'v1/flow', [
+			'headers' => [
+				'Accept'       => 'application/json',
+				'Content-Type' => 'application/json',
+			],
+			'body'    => [
+				'action'       => 'domain:add',
+				'data'         => $request_domains,
+				'return_url'   => $return_url,
+				'callback_url' => $callback_url,
+			],
+		] );
+
+		if ( is_wp_error( $response ) ) {
+			$companyName = _x( 'Nexcess', 'company name', 'nexcess-mapps' );
+			$companyName = apply_filters( 'nexcess_mapps_branding_company_name', $companyName );
+
+			return wp_send_json_error( new WP_Error(
+				'mapps-create-ui-flow-failure',
+				sprintf(
+					/* Translators: %1$s is the branded company name, %2$s is the API error message. */
+					__( 'The %1$s API returned an error: %2$s', 'nexcess-mapps' ),
+					$companyName,
+					$response->get_error_message()
+				)
+			) );
+		}
+
+		$response_body = wp_remote_retrieve_body( $response );
+
+		if ( empty( $response_body['uuid'] ) ) {
+			return wp_send_json_error( new WP_Error(
+				'mapps-response-missing-property',
+				__( 'Expected property `uuid` is missing.', 'nexcess-mapps' )
+			) );
+		}
+
+		return wp_send_json_success( $response_body );
+	}
+
+	/**
+	 * Handle webhook payload.
+	 *
+	 * @todo define
+	 */
+	public function handleWebhook() {
+		$payload = file_get_contents( 'php://input' );
+
+		if ( empty( $payload ) ) {
+			return;
+		}
+
+		$payload = json_decode( $payload );
+
+		// check for property in $payload and return if empty
+
+		$this->getData()->set( 'purchasedDomains', $payload->domains );
+	}
+
+	/**
 	 * Action after wizard is completed.
 	 *
 	 * Performs search and replace on the site's database
@@ -180,4 +343,5 @@ class GoLive extends Wizard {
 	public function isComplete() {
 		return (bool) $this->getData()->get( 'complete', false );
 	}
+
 }
