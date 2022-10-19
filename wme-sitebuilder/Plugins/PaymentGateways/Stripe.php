@@ -26,7 +26,7 @@ class Stripe extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $supported_version = '6.5.0';
+	protected $supported_version = '6.9.0';
 
 	/**
 	 * @var string
