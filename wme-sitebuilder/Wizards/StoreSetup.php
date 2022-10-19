@@ -81,7 +81,8 @@ class StoreSetup extends Wizard {
 			'currencies'     => $this->getWoocommerceCurrencies(),
 			'regions'        => $this->getWoocommerceRegions(),
 			'states'         => $this->getWoocommerceStates(),
-			'locales'        => $this->getWoocommerceLocales(),
+            'locales'        => $this->getWoocommerceLocales(),
+            'completed'      => $this->isComplete(),
 		];
 	}
 
