@@ -125,8 +125,14 @@ const StoreSetupProvider = ({
 
 	const resetFormValue = (prop: keyof StoreSetupFormItemsInterface) => {
 		const formData = storeSetupState.form;
-		formData[ prop ].value = Array.isArray(formData[ prop ].value) ? [] : '';
 		formData[ prop ].touched = false;
+
+		// If reseting Region or State, reset the form values with the storeSetupState values.
+		if (prop === 'region' || prop === 'state') {
+			formData[ prop ].value = storeSetupState[ prop ];
+		} else {
+			formData[ prop ].value = Array.isArray(formData[ prop ].value) ? [] : '';
+		}
 
 		setStoreSetupState({
 			...storeSetupState,
