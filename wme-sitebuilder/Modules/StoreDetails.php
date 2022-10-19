@@ -95,12 +95,12 @@ class StoreDetails extends Module implements LoadsConditionally {
 		$stripe = new Stripe();
 		$paypal = new PayPal();
 
-		if ( ! $stripe->isVersionSupported() ) {
+		if ( ! $stripe->isInstalled() || $stripe->isVersionSupported() ) {
 			$plugins['stripe'] = $stripe;
 			$this->wizards[]   = new PaymentGatewayStripeWizard( $stripe );
 		}
 
-		if ( ! $paypal->isVersionSupported() ) {
+		if ( ! $paypal->isInstalled() || $paypal->isVersionSupported() ) {
 			$plugins['paypal'] = $paypal;
 			$this->wizards[]   = new PaymentGatewayPayPalWizard( $paypal );
 		}
