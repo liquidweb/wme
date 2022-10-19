@@ -9,7 +9,7 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
 }) => ({
   flexDirection: 'row-reverse',
   backgroundColor: theme.palette.info.light,
-  color: theme.palette.primary.dark,
+  color: theme.palette.info.dark,
 
   '&.Mui-disabled': {
     opacity: 1,
