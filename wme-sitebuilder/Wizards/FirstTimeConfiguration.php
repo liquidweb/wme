@@ -123,7 +123,7 @@ class FirstTimeConfiguration extends Wizard {
 			$method_name = sprintf( 'set%s', ucfirst( $field ) );
 
 			if ( ! method_exists( $this, $method_name ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Method <code>%s</code> to save <code>%s</code> field is not defined.', esc_html( $method_name ), esc_html( $field ) ), E_USER_WARNING );
 
 				continue;
@@ -132,21 +132,21 @@ class FirstTimeConfiguration extends Wizard {
 			$callable = [ $this, $method_name ];
 
 			if ( ! is_callable( $callable ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Method <code>%s</code> to save <code>%s</code> field is defined but not callable.', esc_html( $method_name ), esc_html( $field ) ), E_USER_WARNING );
 
 				continue;
 			}
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			if ( ! array_key_exists( $field, $_POST ) ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 				trigger_error( sprintf( 'Field <code>%s</code> is absent in $_POST global.', esc_html( $field ) ), E_USER_WARNING );
 
 				continue;
 			}
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			call_user_func( $callable, $_POST[ $field ] );
 		}
 
@@ -189,7 +189,7 @@ class FirstTimeConfiguration extends Wizard {
 
 		$screen = get_current_screen();
 
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $screen ) && sprintf( 'toplevel_page_%s', $this->admin_page_slug ) === $screen->id ) {
 			return;
 		}
@@ -360,7 +360,7 @@ class FirstTimeConfiguration extends Wizard {
 		$updated_password = false;
 		$updated_username = false;
 
-        // phpcs:disable WordPress.Security.NonceVerification.Missing
+		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		if ( isset( $_POST[ self::FIELD_PASSWORD ] ) ) {
 			$password = sanitize_text_field( $_POST[ self::FIELD_PASSWORD ] );
 			wp_set_password( $password, $user->ID );
@@ -380,7 +380,7 @@ class FirstTimeConfiguration extends Wizard {
 				);
 			}
 		}
-        // phpcs:enable
+		// phpcs:enable
 
 		if ( ! $updated_password && ! $updated_username ) {
 			return;
