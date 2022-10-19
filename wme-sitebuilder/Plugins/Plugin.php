@@ -68,6 +68,15 @@ abstract class Plugin {
 	}
 
 	/**
+	 * Check if the plugin is installed.
+	 *
+	 * @return bool
+	 */
+	public function isInstalled() {
+		return $this->isPluginInstalled( $this->plugin_path );
+	}
+
+	/**
 	 * Determine if the site has a supported version of this plugin installed.
 	 *
 	 * @uses $this->isPluginVersion()
