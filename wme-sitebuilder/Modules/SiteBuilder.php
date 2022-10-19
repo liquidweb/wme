@@ -1,12 +1,12 @@
 <?php
 
-namespace Tribe\WME\Sitebuilder\Pages;
+namespace Tribe\WME\Sitebuilder\Modules;
 
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
 
 use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 
-class SiteBuilder extends SettingsPage {
+class SiteBuilder extends Module {
 
 	use HasAssets;
 
@@ -41,14 +41,12 @@ class SiteBuilder extends SettingsPage {
 	protected $position = 3;
 
 	/**
-	 * Construct.
-	 *
-	 * @param array<\Tribe\WME\Sitebuilder\Cards\Card> $cards
+	 * Setup the Module.
 	 */
-	public function __construct( array $cards ) {
+	public function setup() {
 		$this->menu_title = __( 'Set up', 'wme-sitebuilder' );
 
-		parent::__construct( $cards );
+		parent::setup();
 	}
 
 	/**

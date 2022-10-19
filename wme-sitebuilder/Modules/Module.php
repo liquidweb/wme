@@ -1,8 +1,8 @@
 <?php
 
-namespace Tribe\WME\Sitebuilder\Pages;
+namespace Tribe\WME\Sitebuilder\Modules;
 
-abstract class SettingsPage {
+abstract class Module {
 
 	/**
 	 * @var string
@@ -51,7 +51,12 @@ abstract class SettingsPage {
 	 */
 	public function __construct( array $cards ) {
 		$this->cards = $cards;
+	}
 
+	/**
+	 * Setup the Module.
+	 */
+	public function setup() {
 		$this->register_hooks();
 	}
 

@@ -2,6 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder;
 
+use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
 
 class Container extends BaseContainer {
@@ -18,8 +19,16 @@ class Container extends BaseContainer {
 	 */
 	public function config() {
 		return [
-			// Default implementations of contracts.
-			Contracts\ManagesDomain::class        => Services\Domain::class,
+			// Prevent recursion by letting the container resolve itself if needed.
+			static::class                         => $this,
+			self::class                           => $this,
+
+			Plugin::class                         => function ( $app ) {
+				return new Plugin(
+					$app,
+					$app->make( LoggerInterface::class )
+				);
+			},
 
 			// Cards.
 			Cards\FirstTimeConfiguration::class   => function ( $app ) {
@@ -50,9 +59,12 @@ class Container extends BaseContainer {
 				);
 			},
 
+			// Default implementations of contracts.
+			Contracts\ManagesDomain::class        => Services\Domain::class,
+
 			// Pages.
-			Pages\StoreDetails::class             => function ( $app ) {
-				return new Pages\StoreDetails(
+			Modules\StoreDetails::class           => function ( $app ) {
+				return new Modules\StoreDetails(
 					[
 						$app->make( Cards\StoreSetup::class ),
 						$app->make( Cards\ManageProducts::class ),
@@ -61,8 +73,8 @@ class Container extends BaseContainer {
 				);
 			},
 
-			Pages\SiteBuilder::class              => function ( $app ) {
-				return new Pages\SiteBuilder(
+			Modules\SiteBuilder::class            => function ( $app ) {
+				return new Modules\SiteBuilder(
 					[
 						$app->make( Cards\FirstTimeConfiguration::class ),
 						$app->make( Cards\LookAndFeel::class ),
@@ -76,6 +88,7 @@ class Container extends BaseContainer {
 
 			// Services.
 			Services\Domain::class                => null,
+			Services\Logger::class                => null,
 
 			// Wizards.
 			Wizards\FirstTimeConfiguration::class => null,
@@ -93,6 +106,9 @@ class Container extends BaseContainer {
 				);
 			},
 			Wizards\StoreSetup::class             => null,
+
+			// Implementations of external interfaces.
+			LoggerInterface::class                => Services\Logger::class,
 		];
 	}
 }

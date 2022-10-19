@@ -6,6 +6,6 @@
 
 namespace Tribe\WME\Sitebuilder\Exceptions;
 
-class ConsoleException extends \RuntimeException {
+class ConsoleException extends \RuntimeException implements SitebuilderException {
 
 }

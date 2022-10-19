@@ -11,7 +11,7 @@ class GoLive extends Wizard {
 
 	use StoresData;
 
-	const DATA_STORE_NAME = '_sitebuider_go_live';
+	const DATA_STORE_NAME = '_sitebuilder_go_live';
 
 	/**
 	 * @var string

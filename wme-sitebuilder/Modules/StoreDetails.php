@@ -1,11 +1,12 @@
 <?php
 
-namespace Tribe\WME\Sitebuilder\Pages;
+namespace Tribe\WME\Sitebuilder\Modules;
 
 use Tribe\WME\Sitebuilder\Cards\PaymentGateways as PaymentGatewaysCard;
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
 use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
 use Tribe\WME\Sitebuilder\Container;
+use Tribe\WME\Sitebuilder\Contracts\LoadsConditionally;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
 use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal as PaymentGatewayPayPalWizard;
@@ -15,7 +16,7 @@ use Tribe\WME\Sitebuilder\Wizards\StoreSetup as StoreSetupWizard;
 
 use const Tribe\WME\Sitebuilder\PLUGIN_URL;
 
-class StoreDetails extends SettingsPage {
+class StoreDetails extends Module implements LoadsConditionally {
 
 	use HasAssets;
 	use HasWordPressDependencies;
@@ -51,11 +52,18 @@ class StoreDetails extends SettingsPage {
 	protected $position = 3;
 
 	/**
-	 * Construct.
+	 * Only load this module if WooCommerce is installed.
 	 *
-	 * @param array<\Tribe\WME\Sitebuilder\Cards\Card> $cards
+	 * @return bool True if the extension should load, false otherwise.
 	 */
-	public function __construct( array $cards ) {
+	public function shouldLoad() {
+		return $this->isPluginActive( 'woocommerce/woocommerce.php' );
+	}
+
+	/**
+	 * Setup the Module.
+	 */
+	public function setup() {
 		$this->menu_title = __( 'Store Details', 'wme-sitebuilder' );
 
 		$this->wizards = [
@@ -65,7 +73,17 @@ class StoreDetails extends SettingsPage {
 
 		$this->addPaymentCardsWizards();
 
-		parent::__construct( $cards );
+		parent::setup();
+	}
+
+	/**
+	 * Register hook callbacks.
+	 */
+	public function register_hooks() {
+		parent::register_hooks();
+
+		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts' ], 5 );
+		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts_15' ], 15 );
 	}
 
 	/**
@@ -92,31 +110,6 @@ class StoreDetails extends SettingsPage {
 		}
 
 		$this->cards[] = new PaymentGatewaysCard( $plugins );
-	}
-
-	/**
-	 * Register hook callbacks.
-	 */
-	public function register_hooks() {
-		parent::register_hooks();
-
-		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts' ], 5 );
-		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts_15' ], 15 );
-	}
-
-	/**
-	 * Action: admin_menu.
-	 *
-	 * Register menu page.
-	 *
-	 * @uses $this->register_menu_page()
-	 */
-	public function action__admin_menu() {
-		if ( ! $this->isPluginActive( 'woocommerce/woocommerce.php' ) ) {
-			return;
-		}
-
-		parent::action__admin_menu();
 	}
 
 	/**

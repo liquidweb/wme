@@ -190,7 +190,14 @@ class GroupedOption implements \Countable, \JsonSerializable {
 	 * @return bool True if the option was updated, false otherwise.
 	 */
 	public function save() {
-		return update_option( $this->option, $this->values );
+		$success = update_option( $this->option, $this->values, false );
+
+		// If the data is saved, reset the original so it no longer reports as dirty.
+		if ( $success ) {
+			$this->original = $this->values;
+		}
+
+		return $success;
 	}
 
 	/**
