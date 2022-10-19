@@ -14,6 +14,9 @@
 
 namespace Tribe\WME\Sitebuilder;
 
+use Tribe\WME\Sitebuilder\Exceptions\SitebuilderException;
+use Tribe\WME\Sitebuilder\Services\Logger;
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -34,14 +37,25 @@ define( __NAMESPACE__ . '\VENDOR_DIR', __DIR__ . '/wme-sitebuilder/vendor/' );
 try {
 	require_once VENDOR_DIR . 'autoload.php';
 
-	// Adding these here to allow initial testing to begin.
-	// @todo Work out how to instatiate the plugin without needing these here.
-	Container::getInstance()->get( Pages\SiteBuilder::class );
-	Container::getInstance()->get( Pages\StoreDetails::class );
+	/** @var Plugin $wme_sitebuilder */
+	$wme_sitebuilder = Container::getInstance()->get( Plugin::class );
+
+	$wme_sitebuilder->registerModules([
+		Modules\SiteBuilder::class,
+		Modules\StoreDetails::class,
+	]);
+
+	$wme_sitebuilder->init();
 } catch ( \Exception $e ) {
-    // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-	trigger_error(esc_html(sprintf(
-		'WME Sitebuilder Error: %1$s',
-		$e->getMessage()
-	)), E_USER_WARNING);
+	$message = $e instanceof SitebuilderException
+		? 'WME Sitebuilder generated an error: %s'
+		: 'WME Sitebuilder caught the following error: %s';
+
+	/** @var Logger $logger */
+	$logger = Container::getInstance()
+		->get( Logger::class );
+
+	$logger->error(sprintf( $message, $e->getMessage() ), [
+		'exception' => $e,
+	]);
 }
