@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, Typography, MenuItem, SelectChangeEvent } from '@mui/material';
 import {
 	CardSelectGroup,
@@ -40,6 +40,18 @@ const StoreDetails = () => {
 		setProductCount,
 		setProductTypes,
 	} = useStoreSetup();
+
+	const [isProductTypeDisabled, setIsProductTypeDisabled] = useState<boolean>(false);
+	const [isProductCountDisabled, setIsProductCountDisabled] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (completed && productCount.length) {
+			setIsProductCountDisabled(true);
+		}
+		if (completed && productTypes.length) {
+			setIsProductTypeDisabled(true);
+		}
+	}, []);
 
 	const handleCurrencyChange = (event: SelectChangeEvent<unknown>) => {
 		const value = event.target.value as string;
@@ -95,7 +107,7 @@ const StoreDetails = () => {
 						}
 					>
 						<CardSelectGroup
-							disabled={ completed }
+							disabled={ isProductTypeDisabled }
 							exclusive={ false }
 							cardColumns={ 3 }
 							value={ productTypes }
@@ -118,7 +130,7 @@ const StoreDetails = () => {
 						label={ productCountLabelText }
 					>
 						<CardSelectGroup
-							disabled={ completed }
+							disabled={ isProductCountDisabled }
 							exclusive={ true }
 							cardColumns={ 3 }
 							value={ productCount }
