@@ -148,10 +148,10 @@ class Stripe extends Plugin {
 			$oauth_url = '';
 		}
 
-		$options = wp_parse_args($options, [
+		$options = wp_parse_args( $options, [
 			'publishable_key' => '',
 			'secret_key'      => '',
-		]);
+		] );
 
 		$this->oauth_url = $oauth_url;
 		$this->connected = $connected;
