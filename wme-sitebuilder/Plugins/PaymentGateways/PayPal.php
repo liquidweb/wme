@@ -25,7 +25,7 @@ class PayPal extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $supported_version = '1.9.1';
+	protected $supported_version = '1.9.4';
 
 	/**
 	 * @var string
