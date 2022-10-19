@@ -171,9 +171,11 @@ class PaymentGatewayStripe extends Wizard {
 			return $location;
 		}
 
+		// The ?step is not a query parameter, so we need to add it here.
+		$query_param_page = $this->admin_page_slug . '#/wizard/payments-stripe?step=2';
+
 		return add_query_arg( [
-			'page' => $this->admin_page_slug . '#/wizard/payments-stripe',
-			'step' => '2',
+			'page' => $query_param_page,
 		], admin_url( 'admin.php' ) );
 	}
 }
