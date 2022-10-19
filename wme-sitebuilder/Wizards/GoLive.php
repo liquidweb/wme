@@ -12,6 +12,7 @@ class GoLive extends Wizard {
 	use StoresData;
 
 	const DATA_STORE_NAME = '_sitebuilder_go_live';
+	const REWRITE_TAG     = 'domain-purchase-webhook';
 
 	/**
 	 * @var string
@@ -60,6 +61,10 @@ class GoLive extends Wizard {
 	public function register_hooks() {
 		parent::register_hooks();
 
+		add_action( 'init', [ $this, 'action__init' ] );
+		add_action( 'template_redirect', [ $this, 'action__template_redirect' ] );
+		add_filter( 'query_vars', [ $this, 'filter__query_vars' ] );
+
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
 		$this->add_ajax_action( 'verify-domain', [ $this, 'verifyDomain' ] );
 		$this->add_ajax_action( 'search-domains', [ $this, 'searchDomains' ] );
@@ -79,6 +84,48 @@ class GoLive extends Wizard {
 			'verifyingUrl'          => $this->getData()->get( 'verifying_domain', '' ),
 			'domainSearchUrl'       => esc_url( 'https://my.nexcess.net/domain-search' ),
 		];
+	}
+
+	/**
+	 * Action: init
+	 *
+	 * Add rewrite rule to receive domain purchase webhook.
+	 */
+	public function action__init() {
+		add_rewrite_rule( '^' . self::REWRITE_TAG . '$', 'index.php?' . self::REWRITE_TAG . '=true', 'top' );
+	}
+
+	/**
+	 * Action: template_redirect
+	 *
+	 * Handle webhook delivery.
+	 */
+	public function action__template_redirect() {
+		$isEndpoint = get_query_var( self::REWRITE_TAG );
+
+		if ( empty( $isEndpoint ) ) {
+			return;
+		}
+
+		nocache_headers();
+		$this->handleWebhook();
+
+		exit;
+	}
+
+	/**
+	 * Filter: query_vars
+	 *
+	 * Add domain rewrite tag.
+	 *
+	 * @param string[] $vars
+	 *
+	 * @return string[]
+	 */
+	public function filter__query_vars( $vars ) {
+		$vars[] = self::REWRITE_TAG;
+
+		return $vars;
 	}
 
 	/**
@@ -274,21 +321,55 @@ class GoLive extends Wizard {
 
 	/**
 	 * Handle webhook payload.
-	 *
-	 * @todo define
 	 */
 	public function handleWebhook() {
 		$payload = file_get_contents( 'php://input' );
 
 		if ( empty( $payload ) ) {
-			return;
+			status_header( 400 );
+			exit;
 		}
 
 		$payload = json_decode( $payload );
 
-		// check for property in $payload and return if empty
+		if ( ! $this->isValidWebhookPayload( $payload ) || 'success' !== $payload->outcome->status ) {
+			status_header( 400 );
+			exit;
+		}
 
-		$this->getData()->set( 'purchasedDomains', $payload->domains );
+		$domains = $payload->outcome->details->purchased_domain;
+
+		if ( ! is_array( $domains ) ) {
+			$domains = (array) $domains;
+		}
+
+		$this->getData()->set( 'purchasedDomains', $domains );
+		$saved = $this->getData()->save();
+
+		if ( ! $saved ) {
+			wp_send_json_error();
+		}
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Check if webhook payload is valid.
+	 *
+	 * @return bool
+	 */
+	protected function isValidWebhookPayload( $payload ) {
+		if (
+			empty( $payload->action )
+			|| 'domain:add' !== $payload->action
+			|| empty( $payload->outcome )
+			|| empty( $payload->outcome->status )
+			|| empty( $payload->outcome->details )
+		) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
