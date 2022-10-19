@@ -35,7 +35,7 @@ const cardSelectSx = {
 
 const StoreDetails = () => {
 	const {
-		storeSetupState: { currency, currencies, productCount, productTypes },
+		storeSetupState: { completed, currency, currencies, productCount, productTypes },
 		setCurrency,
 		setProductCount,
 		setProductTypes,
@@ -95,6 +95,7 @@ const StoreDetails = () => {
 						}
 					>
 						<CardSelectGroup
+							disabled={ completed }
 							exclusive={ false }
 							cardColumns={ 3 }
 							value={ productTypes }
@@ -117,6 +118,7 @@ const StoreDetails = () => {
 						label={ productCountLabelText }
 					>
 						<CardSelectGroup
+							disabled={ completed }
 							exclusive={ true }
 							cardColumns={ 3 }
 							value={ productCount }
