@@ -30,6 +30,9 @@ const { storeDetails: {
 const cardSelectSx = {
 	'& .WmeCardSelectItem-primary': {
 		fontSize: pxToRem(12),
+	},
+	'&.Mui-disabled .WmeCardSelectItem-icon': {
+		backgroundColor: 'transparent',
 	}
 };
 
