@@ -41,7 +41,7 @@ const StoreDetails = () => {
 		setProductTypes,
 	} = useStoreSetup();
 
-	const [isProductTypeDisabled, setIsProductTypeDisabled] = useState<boolean>(false);
+	const [isProductTypesDisabled, setIsProductTypesDisabled] = useState<boolean>(false);
 	const [isProductCountDisabled, setIsProductCountDisabled] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -49,7 +49,7 @@ const StoreDetails = () => {
 			setIsProductCountDisabled(true);
 		}
 		if (completed && productTypes.length) {
-			setIsProductTypeDisabled(true);
+			setIsProductTypesDisabled(true);
 		}
 	}, []);
 
@@ -107,7 +107,7 @@ const StoreDetails = () => {
 						}
 					>
 						<CardSelectGroup
-							disabled={ isProductTypeDisabled }
+							disabled={ isProductTypesDisabled }
 							exclusive={ false }
 							cardColumns={ 3 }
 							value={ productTypes }
