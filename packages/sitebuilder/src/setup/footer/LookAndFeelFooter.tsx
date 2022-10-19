@@ -1,49 +1,53 @@
 import React from 'react';
-import { Typography, Link } from '@mui/material';
+import { Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { SetupData } from '../data/constants';
-
+export interface FooterMessageInterface {
+	title: string;
+	url: string;
+	target?: string;
+	dashicon?: string;
+}
 export interface LookAndFeelFooterInterface {
 	id: string;
 	title?: string;
-	message?: string;
+	messages?: FooterMessageInterface[];
 }
 
-const { lookAndFeelFooter } = SetupData;
-
-const LookAndFeelFooter = (props: LookAndFeelFooterInterface) => {
+const LinkOrButton = (props: FooterMessageInterface) => {
 	const {
 		title,
-		message,
+		url
 	} = props;
 
 	const navigate = useNavigate();
 
+	const onClick = () => {
+		navigate('/wizard/look-and-feel');
+	};
+
 	return (
-		<>
-			{ title && <Typography
-				component="span"
-				variant="body2"
-				sx={ {
-					mr: 2,
-					fontWeight: 600,
-				} }
-			>{ title }</Typography> }
-			{ message && <Typography
-				component="span"
-				variant="body2"
-				sx={ {
-					mr: 2,
-				} }
-			>{ message }</Typography> }
-			<Link
-				component="button"
-				variant="body2"
-				onClick={ () => navigate('/wizard/look-and-feel') }
-			>{ lookAndFeelFooter.change }</Link>
-		</>
+		<Link
+			sx={ { mr: 2, verticalAlign: 'middle' } }
+			variant="body2"
+			underline="hover"
+			component={ ! url ? 'button' : 'a' }
+			href={ url ? url : undefined }
+			onClick={ ! url ? onClick : undefined }
+		>
+			{ title }
+		</Link>
 	);
+};
+
+const LookAndFeelFooter = (props: LookAndFeelFooterInterface) => {
+	const {
+		messages = [],
+	} = props;
+
+	return <>
+		{ messages.map((message, index) => <LinkOrButton key={ index } { ...message } />) }
+	</>;
 };
 
 export default LookAndFeelFooter;

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
-import { useLookAndFeelFonts, useLookAndFeel, useWizard } from '@sb/hooks';
+import { useLookAndFeelFonts, useLookAndFeel } from '@sb/hooks';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 import IframeDisplay from '@look-and-feel/IframeDisplay';
 import { Frame, PoweredByKadence } from '@sb/components';
@@ -9,12 +9,7 @@ import { Frame, PoweredByKadence } from '@sb/components';
 const FontSelection = () => {
 	const fonts = useLookAndFeelFonts();
 	const { lookAndFeelState: { font }, setFontValue } = useLookAndFeel();
-	const { setShowDeviceHeader } = useWizard();
 	const { fontSelection: { heading, text } } = lookAndFeelConsts;
-
-	useEffect(() => {
-		setShowDeviceHeader(true);
-	}, []);
 
 	const capitalize = (str: string) => {
 		return str.charAt(0).toUpperCase() + str.slice(1);
