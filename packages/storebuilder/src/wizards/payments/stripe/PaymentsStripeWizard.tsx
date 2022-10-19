@@ -49,7 +49,11 @@ const PaymentsStripeWizard = () => {
 		};
 
 		const response = await handleActionRequest(data) as string;
-		setOauthUrl(response);
+		if (response) {
+			setOauthUrl(response);
+		} else {
+			setError(true);
+		}
 	};
 
 	// Makes ajax call to install/activate plugin, then gets oauth url and sets it in oauthUrls state.
@@ -92,6 +96,8 @@ const PaymentsStripeWizard = () => {
 	const stepIndex = activeStep >= 1 ? activeStep - 1 : 0;
 
 	const stepsMax = steps.length;
+
+	console.log(activeStep);
 
 	let nextText = '';
 	if (activeStep === 1) {
