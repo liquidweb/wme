@@ -4,7 +4,7 @@
  * @param {string} url - String to check
  * @return {boolean} - Is url valid
  */
-const isValidUrl = (url: string): boolean => {
+export const isValidUrl = (url: string): boolean => {
   try {
     const urlTest = new URL(url);
     return true;
@@ -12,5 +12,3 @@ const isValidUrl = (url: string): boolean => {
     return false;
   }
 };
-
-export default isValidUrl;
