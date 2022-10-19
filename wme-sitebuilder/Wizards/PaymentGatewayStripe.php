@@ -171,9 +171,9 @@ class PaymentGatewayStripe extends Wizard {
 			return $location;
 		}
 
-		return add_query_arg([
+		return add_query_arg( [
 			'page' => $this->admin_page_slug . '#/wizard/payments-stripe',
 			'step' => '2',
-		], admin_url( 'admin.php' ));
+		], admin_url( 'admin.php' ) );
 	}
 }
