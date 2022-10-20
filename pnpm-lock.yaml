@@ -164,6 +164,7 @@ importers:
       '@emotion/styled': ^11.9.3
       '@moderntribe/tsconfig': workspace:*
       '@moderntribe/wme-ui': workspace:*
+      '@moderntribe/wme-utils': workspace:*
       '@mui/icons-material': ^5.8.4
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
@@ -197,6 +198,7 @@ importers:
       '@emotion/react': 11.10.4_p6fq7jdyqwnykllwwkx4b6uid4
       '@emotion/styled': 11.10.4_lxst47gwu5lqjtx2guwl7nfnjm
       '@moderntribe/wme-ui': link:../wme-ui
+      '@moderntribe/wme-utils': link:../wme-utils
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
