@@ -10,7 +10,7 @@ import {
 } from '@moderntribe/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';
-import { pxToRem } from '@store/utils';
+import { pxToRem } from '@moderntribe/wme-utils';
 import {
 	StoreSetupStringData,
 	productCountOptions,

@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useWizard, useStoreSetup } from '@store/hooks';
 import WizardCloseWarning from '@store/wizards/WizardCloseWarning';
-import { beforeUnloadListener } from '@store/utils';
+import { beforeUnloadListener } from '@moderntribe/wme-utils';
 
 const StoreSetupWizard = () => {
 	const {

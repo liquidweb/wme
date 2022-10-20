@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 import { deepmerge } from '@mui/utils';
-import { pxToRem } from '../utils/pxToRem';
+import { pxToRem } from '@moderntribe/wme-utils';
 
 const defaultTheme = createTheme();
 

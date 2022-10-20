@@ -3,7 +3,7 @@ import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 import { useWizard, useShipping } from '@store/hooks';
-import { beforeUnloadListener } from '@store/utils';
+import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import { STOREBUILDER_URL } from '@store/constants';
 
 const ShippingWizard = () => {

@@ -4,7 +4,7 @@ import { WizardSectionTitle, Form, FormField, TextInput } from '@moderntribe/wme
 import { usePaymentsStripe } from '@store/hooks';
 import { paymentsStripeConsts } from '../data/constants';
 import { PAYMENTS_STRIPE_PROPS } from '@store/constants';
-import { handleActionRequest } from '@store/utils';
+import { handleActionRequest } from '@moderntribe/wme-utils';
 
 interface ApiKeysInterface {
 	publishable: string;

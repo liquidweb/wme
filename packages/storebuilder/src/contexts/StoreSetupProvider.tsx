@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { beforeUnloadListener, removeNulls, handleActionRequest } from '@store/utils';
+import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';
 
 import StoreSetupScreenData, {

@@ -4,7 +4,7 @@ import { PlayArrow } from '@mui/icons-material';
 import { VideoEmbed } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { SimpleModal, VideoLink, ColumnLinkInterface } from '@store/components';
-import { pxToRem } from '@store/utils';
+import { pxToRem } from '@moderntribe/wme-utils';
 import { IMAGE_DIR, WP_101_HOW_TO_LINKS } from '@store/constants';
 
 const sectionHeadline = __('Learn more about Product Types', 'nexcess-mapps');

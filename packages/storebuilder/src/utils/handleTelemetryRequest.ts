@@ -1,4 +1,4 @@
-import { handleActionRequest } from './handleActionRequest';
+import { handleActionRequest } from '@moderntribe/wme-utils';
 
 interface TelemetryDataPayloadInterface {
 	_wpnonce: string;

@@ -21,7 +21,8 @@
 	},
 	"author": "",
 	"dependencies": {
-		"@moderntribe/wme-ui": "workspace:*"
+		"@moderntribe/wme-ui": "workspace:*",
+		"@moderntribe/wme-utils": "workspace:*"
 	},
 	"peerDependencies": {
 		"@wordpress/element": "^4.12.0",

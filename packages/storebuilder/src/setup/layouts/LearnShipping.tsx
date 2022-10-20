@@ -4,7 +4,7 @@ import { PlayArrow } from '@mui/icons-material';
 import { VideoEmbed } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { SimpleModal } from '@store/components';
-import { pxToRem } from '@store/utils';
+import { pxToRem } from '@moderntribe/wme-utils';
 import { IMAGE_DIR } from '@store/constants';
 
 const videoAriaLabel = __('Click to play video', 'nexcess-mapps');
