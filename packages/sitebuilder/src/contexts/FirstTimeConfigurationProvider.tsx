@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { beforeUnloadListener, removeNulls } from '@moderntribe/wme-utils';
+import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import { useWizard } from '@sb/hooks';
-import { handleActionRequest } from '@sb/utils';
 
 import FtcScreenData, {
 	FtcScreenDataInterface,
