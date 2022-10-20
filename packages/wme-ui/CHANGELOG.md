@@ -1,5 +1,12 @@
 # @moderntribe/wme-ui
 
+## 2.2.0
+
+### Minor Changes
+
+- 37cb1cb: Fixes selected state for CardSelectItem; Disables Store Setup choices after completion
+- 53ef50c: Fixes Chip text/icon color and SetupCard implementation
+
 ## 2.1.0
 
 ### Minor Changes

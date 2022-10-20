@@ -28,7 +28,7 @@ const StyleCardSelectItem = styled(ToggleButton, {
   transition: theme?.transitions?.create(['border-color'], {
     duration: theme.transitions.duration.standard,
   }),
-  '&.MuiButtonBase-root.Mui-selected': {
+  '&.MuiButtonBase-root.MuiToggleButton-root.Mui-selected': {
     backgroundColor: 'transparent',
     borderColor: theme.palette.primary.light,
     borderWidth: 1,

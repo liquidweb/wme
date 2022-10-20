@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { ProgressBar } from '@moderntribe/wme-ui';
 import { randomInt } from '@moderntribe/wme-utils';
-import { useLookAndFeel, useWizard } from '@sb/hooks';
+import { useLookAndFeel } from '@sb/hooks';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 
 const Import = () => {
 	const { lookAndFeelState: { importingError, isImporting, importDone } } = useLookAndFeel();
-	const { setShowDeviceHeader } = useWizard();
 	const [progress, setProgress] = useState(5);
 	const [counter, setCounter] = useState(0);
 	const { importScreen: { heading, text, messages, finished, errorMessage } } = lookAndFeelConsts;
 	const [waitingText, setWaitingText] = useState(messages[ 0 ]);
 
 	useEffect(() => {
-		setShowDeviceHeader(false);
-
 		if (! isImporting) {
 			setWaitingText(finished);
 			setProgress(100);

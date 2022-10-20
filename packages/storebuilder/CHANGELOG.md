@@ -1,5 +1,17 @@
 # @moderntribe/storebuilder
 
+## 1.2.0
+
+### Minor Changes
+
+- 37cb1cb: Fixes selected state for CardSelectItem; Disables Store Setup choices after completion
+
+### Patch Changes
+
+- Updated dependencies [37cb1cb]
+- Updated dependencies [53ef50c]
+  - @moderntribe/wme-ui@2.2.0
+
 ## 1.1.0
 
 ### Minor Changes

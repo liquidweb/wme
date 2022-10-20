@@ -1,6 +1,6 @@
 import React from 'react';
 import { WizardHeader as WmeWizardHeader, Logo, ExitButton } from '@moderntribe/wme-ui';
-import { Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';
 import { useWizard } from '@sb/hooks';
 import { StoreBuilderLogo } from '@sb/logos';
@@ -12,7 +12,8 @@ export interface WizardHeaderInterface {
 }
 
 const WizardHeader: React.FC<WizardHeaderInterface> = () => {
-	const { wizardState: { showCloseWarning, hideExit, showDeviceHeader }, setShowCloseWarning, closeAll } = useWizard();
+	const { wizardState: { showCloseWarning, hideExit }, setShowCloseWarning, closeAll, currentStep } = useWizard();
+	const location = useLocation();
 
 	const handleExitClick = () => {
 		if (showCloseWarning !== null) {
@@ -30,9 +31,7 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 					width="100"
 					logoSrc={ <StoreBuilderLogo /> }
 				/>
-				<Routes>
-					<Route path="/look-and-feel" element={ showDeviceHeader && <ModalDeviceSelection /> } />
-				</Routes>
+				{ location.pathname === '/wizard/look-and-feel' && currentStep > 1 ? <ModalDeviceSelection /> : null }
 				{
 					! hideExit &&
 					<ExitButton onClick={ handleExitClick }>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Chip, SetupCard as WmeSetupCard, SetupCardHeader, SetupCardContent } from '@moderntribe/wme-ui';
+import { WatchLater, CheckCircle } from '@mui/icons-material';
 
 import { useSetupCard } from '@sb/hooks';
 
@@ -25,7 +26,8 @@ const SetupCard = (props: SetupCardInterface) => {
 				subheader={ intro }
 				action={ time && <Chip
 					size="small"
-					color="success"
+					color={ completed ? 'success' : 'info' }
+					icon={ completed ? <CheckCircle /> : <WatchLater /> }
 					label={ completed ? __('Completed', 'nexcess-mapps') : time }
 				/> }
 			/>

@@ -49,7 +49,7 @@ const LookAndFeelWizard = () => {
 				onSkip={ handleOnSkip }
 				isLastStep={ activeStep === lastStep }
 				save={ handleSave }
-				onClickStep={ ({ id }) => goToStep(id) }
+				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
 				backText={ __('Back', 'nexcess-mapps') }
 				skipText={ __('Skip', 'nexcess-mapps') }
