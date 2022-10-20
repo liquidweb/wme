@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19fbc13b060b7701fa913eede21aa7e5",
+    "content-hash": "caab02b49672cfb6f0f1c31cbd263eae",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,37 +152,57 @@
             "time": "2022-08-20T06:45:11+00:00"
         },
         {
-            "name": "moderntribe/wme-backend-starter",
-            "version": "dev-main",
+            "name": "psr/container",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moderntribe/wme-backend-starter.git",
-                "reference": "40ea67174fbb655885440e378752f1d57293cf8b"
+                "url": "https://github.com/php-fig/container.git",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moderntribe/wme-backend-starter/zipball/40ea67174fbb655885440e378752f1d57293cf8b",
-                "reference": "40ea67174fbb655885440e378752f1d57293cf8b",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
                 "shasum": ""
             },
-            "require-dev": {
-                "moderntribe/coding-standards": "^2.0"
+            "require": {
+                "php": ">=5.3.0"
             },
-            "default-branch": true,
             "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tribe\\WmeBackendStarter\\": "src/"
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
                 }
             },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Container\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0-only"
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common Container Interface (PHP FIG PSR-11)",
+            "homepage": "https://github.com/php-fig/container",
+            "keywords": [
+                "PSR-11",
+                "container",
+                "container-interface",
+                "container-interop",
+                "psr"
             ],
             "support": {
-                "source": "https://github.com/moderntribe/wme-backend-starter/tree/main",
-                "issues": "https://github.com/moderntribe/wme-backend-starter/issues"
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/master"
             },
-            "time": "2022-09-07T21:26:36+00:00"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "psr/log",
@@ -233,41 +253,38 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
-        }
-    ],
-    "packages-dev": [
+        },
         {
-            "name": "assertwell/phpunit-global-state",
-            "version": "v0.2.2",
+            "name": "stellarwp/container",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/assertwell/phpunit-global-state.git",
-                "reference": "af2c1be3ab2f8296a00c6d5e6dcaf3223682ef39"
+                "url": "https://github.com/stellarwp/container.git",
+                "reference": "eb421de316b393bf0af37cf4adb68074832ab17d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/assertwell/phpunit-global-state/zipball/af2c1be3ab2f8296a00c6d5e6dcaf3223682ef39",
-                "reference": "af2c1be3ab2f8296a00c6d5e6dcaf3223682ef39",
+                "url": "https://api.github.com/repos/stellarwp/container/zipball/eb421de316b393bf0af37cf4adb68074832ab17d",
+                "reference": "eb421de316b393bf0af37cf4adb68074832ab17d",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": "^5.6 | ^7.0 | ^8.0",
+                "psr/container": "~1.0.0"
+            },
+            "provide": {
+                "psr/container-implementation": "^1.0.0"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "phpcompatibility/php-compatibility": "^9.3",
-                "phpstan/phpstan": "^1.8",
-                "squizlabs/php_codesniffer": "^3.5",
-                "stevegrunwell/runkit7-installer": "^1.2",
-                "symfony/phpunit-bridge": "^5.1"
-            },
-            "suggest": {
-                "stevegrunwell/runkit7-installer": "Streamline installation of Runkit7"
+                "league/climate": "^3.8",
+                "stellarwp/coding-standards": "dev-develop",
+                "szepeviktor/phpstan-wordpress": "^1.0",
+                "yoast/phpunit-polyfills": "^1.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "AssertWell\\PHPUnitGlobalState\\": "src/"
+                    "StellarWP\\Container\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -276,107 +293,19 @@
             ],
             "authors": [
                 {
-                    "name": "Steve Grunwell",
-                    "homepage": "https://stevegrunwell.com"
+                    "name": "StellarWP",
+                    "homepage": "https://stellarwp.com"
                 }
             ],
-            "description": "Tools for testing applications that depend on global state with PHPUnit",
-            "keywords": [
-                "env",
-                "environment variables",
-                "phpunit",
-                "testing"
-            ],
+            "description": "A PSR-11 Dependency Injection (DI) container for use in WordPress codebases",
             "support": {
-                "issues": "https://github.com/assertwell/phpunit-global-state/issues",
-                "source": "https://github.com/assertwell/phpunit-global-state/"
+                "issues": "https://github.com/stellarwp/container/issues",
+                "source": "https://github.com/stellarwp/container"
             },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/stevegrunwell",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/stevegrunwell",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-09-05T18:19:58+00:00"
-        },
-        {
-            "name": "assertwell/shellcheck",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/assertwell/shellcheck.git",
-                "reference": "a68b0e934a5746fcfc785bb635e72b9d98cdc939"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/assertwell/shellcheck/zipball/a68b0e934a5746fcfc785bb635e72b9d98cdc939",
-                "reference": "a68b0e934a5746fcfc785bb635e72b9d98cdc939",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/shellcheck"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Grunwell",
-                    "homepage": "https://stevegrunwell.com"
-                }
-            ],
-            "description": "Expose ShellCheck as a vendor binary for PHP projects",
-            "support": {
-                "issues": "https://github.com/assertwell/shellcheck/issues",
-                "source": "https://github.com/assertwell/shellcheck"
-            },
-            "time": "2022-02-09T15:45:30+00:00"
-        },
-        {
-            "name": "assertwell/wp-core-test-framework",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/assertwell/wp-core-test-framework.git",
-                "reference": "405676b69043f8846c1bbfdcc0f9ae881c0dce36"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/assertwell/wp-core-test-framework/zipball/405676b69043f8846c1bbfdcc0f9ae881c0dce36",
-                "reference": "405676b69043f8846c1bbfdcc0f9ae881c0dce36",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/install-wp-tests.sh"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve Grunwell",
-                    "homepage": "https://stevegrunwell.com"
-                }
-            ],
-            "description": "Streamline testing WordPress plugins and themes using the WordPress core test framework",
-            "keywords": [
-                "testing",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/assertwell/wp-core-test-framework/issues",
-                "source": "https://github.com/assertwell/wp-core-test-framework"
-            },
-            "time": "2020-10-26T16:34:37+00:00"
-        },
+            "time": "2022-03-28T19:13:54+00:00"
+        }
+    ],
+    "packages-dev": [
         {
             "name": "composer/pcre",
             "version": "3.0.0",
@@ -1241,54 +1170,6 @@
             "time": "2016-08-06T20:24:11+00:00"
         },
         {
-            "name": "psr/container",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
-                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
-                }
-            ],
-            "description": "Common Container Interface (PHP FIG PSR-11)",
-            "homepage": "https://github.com/php-fig/container",
-            "keywords": [
-                "PSR-11",
-                "container",
-                "container-interface",
-                "container-interop",
-                "psr"
-            ],
-            "support": {
-                "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.2"
-            },
-            "time": "2021-11-05T16:50:12+00:00"
-        },
-        {
             "name": "psr/event-dispatcher",
             "version": "1.0.0",
             "source": {
@@ -1459,52 +1340,6 @@
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
             "time": "2022-06-18T07:21:10+00:00"
-        },
-        {
-            "name": "stellarwp/coding-standards",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stellarwp/coding-standards.git",
-                "reference": "a5189e4b250abbe35f141e2045456043ba524f95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stellarwp/coding-standards/zipball/a5189e4b250abbe35f141e2045456043ba524f95",
-                "reference": "a5189e4b250abbe35f141e2045456043ba524f95",
-                "shasum": ""
-            },
-            "require": {
-                "dealerdirect/phpcodesniffer-composer-installer": "*",
-                "friendsofphp/php-cs-fixer": "^3.5",
-                "php": "^5.6 | ^7.0 | ^8.0",
-                "phpcompatibility/phpcompatibility-wp": "^2.1",
-                "wp-coding-standards/wpcs": "^2.3"
-            },
-            "require-dev": {
-                "assertwell/shellcheck": "^1.0"
-            },
-            "bin": [
-                "bin/make-php-cs-fixer-config",
-                "bin/make-phpcs-config"
-            ],
-            "type": "phpcodesniffer-standard",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "StellarWP",
-                    "homepage": "https://stellarwp.com"
-                }
-            ],
-            "description": "Centralized coding standards for StellarWP packages",
-            "support": {
-                "issues": "https://github.com/stellarwp/coding-standards/issues",
-                "source": "https://github.com/stellarwp/coding-standards"
-            },
-            "time": "2022-04-12T18:54:19+00:00"
         },
         {
             "name": "symfony/console",
@@ -2667,25 +2502,21 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v2.5.2",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "4b426aac47d6427cc1a1d0f7e2ac724627f5966c"
+                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/4b426aac47d6427cc1a1d0f7e2ac724627f5966c",
-                "reference": "4b426aac47d6427cc1a1d0f7e2ac724627f5966c",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/d15da7ba4957ffb8f1747218be9e1a121fd298a1",
+                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "psr/container": "^1.1",
-                "symfony/deprecation-contracts": "^2.1|^3"
-            },
-            "conflict": {
-                "ext-psr": "<1.1|>=2"
+                "psr/container": "^1.0"
             },
             "suggest": {
                 "symfony/service-implementation": ""
@@ -2693,7 +2524,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.5-dev"
+                    "dev-master": "2.2-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -2730,7 +2561,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/v2.5.2"
+                "source": "https://github.com/symfony/service-contracts/tree/master"
             },
             "funding": [
                 {
@@ -2746,7 +2577,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-30T19:17:29+00:00"
+            "time": "2020-09-07T11:33:47+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -3010,13 +2841,65 @@
                 "wiki": "https://github.com/WordPress/WordPress-Coding-Standards/wiki"
             },
             "time": "2020-05-13T23:57:56+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce",
+            "version": "7.0.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce/",
+                "reference": "tags/7.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.7.0.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce/"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce-gateway-stripe",
+            "version": "6.4.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce-gateway-stripe/",
+                "reference": "tags/6.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.6.4.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce-gateway-stripe/"
+        },
+        {
+            "name": "wpackagist-plugin/woocommerce-paypal-payments",
+            "version": "1.9.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/woocommerce-paypal-payments/",
+                "reference": "tags/1.9.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce-paypal-payments.1.9.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/woocommerce-paypal-payments/"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "moderntribe/wme-backend-starter": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
