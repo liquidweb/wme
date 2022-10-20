@@ -97,8 +97,6 @@ const PaymentsStripeWizard = () => {
 
 	const stepsMax = steps.length;
 
-	console.log(activeStep);
-
 	let nextText = '';
 	if (activeStep === 1) {
 		nextText = __('Connect Stripe', 'nexcess-mapps');
