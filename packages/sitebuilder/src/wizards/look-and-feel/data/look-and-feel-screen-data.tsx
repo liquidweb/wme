@@ -32,9 +32,9 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 		isFirstTimeConfiguration: true,
 	},
 	template: {
-		name: '',
-		url: '',
-		slug: '',
+		name: LOOK_AND_FEEL_PROPS?.template?.name || '',
+		url: LOOK_AND_FEEL_PROPS?.template?.url || '',
+		slug: LOOK_AND_FEEL_PROPS?.template?.slug || '',
 	},
 	font: '',
 	color: '',

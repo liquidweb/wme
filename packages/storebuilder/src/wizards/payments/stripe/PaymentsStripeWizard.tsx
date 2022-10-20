@@ -49,7 +49,11 @@ const PaymentsStripeWizard = () => {
 		};
 
 		const response = await handleActionRequest(data) as string;
-		setOauthUrl(response);
+		if (response) {
+			setOauthUrl(response);
+		} else {
+			setError(true);
+		}
 	};
 
 	// Makes ajax call to install/activate plugin, then gets oauth url and sets it in oauthUrls state.

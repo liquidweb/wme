@@ -181,7 +181,7 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 
 	// Triggered on save. Determines if delete warning should be shown.
 	const handleSave = () => {
-		if ((LOOK_AND_FEEL_PROPS?.template?.slug === '') || lookAndFeelState.template.slug === LOOK_AND_FEEL_PROPS?.template?.slug) {
+		if ((LOOK_AND_FEEL_PROPS?.template === '') || (lookAndFeelState.template.slug === LOOK_AND_FEEL_PROPS?.template?.slug)) {
 			handleImport('keep');
 		} else {
 			setShowDeleteWarning(true);
