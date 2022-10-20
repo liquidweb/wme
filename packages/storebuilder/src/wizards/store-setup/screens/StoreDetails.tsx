@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, Typography, MenuItem, SelectChangeEvent } from '@mui/material';
 import {
 	CardSelectGroup,
@@ -30,16 +30,31 @@ const { storeDetails: {
 const cardSelectSx = {
 	'& .WmeCardSelectItem-primary': {
 		fontSize: pxToRem(12),
+	},
+	'&.Mui-disabled .WmeCardSelectItem-icon': {
+		backgroundColor: 'transparent',
 	}
 };
 
 const StoreDetails = () => {
 	const {
-		storeSetupState: { currency, currencies, productCount, productTypes },
+		storeSetupState: { completed, currency, currencies, productCount, productTypes },
 		setCurrency,
 		setProductCount,
 		setProductTypes,
 	} = useStoreSetup();
+
+	const [isProductTypesDisabled, setIsProductTypesDisabled] = useState<boolean>(false);
+	const [isProductCountDisabled, setIsProductCountDisabled] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (completed && productCount.length) {
+			setIsProductCountDisabled(true);
+		}
+		if (completed && productTypes.length) {
+			setIsProductTypesDisabled(true);
+		}
+	}, []);
 
 	const handleCurrencyChange = (event: SelectChangeEvent<unknown>) => {
 		const value = event.target.value as string;
@@ -95,6 +110,7 @@ const StoreDetails = () => {
 						}
 					>
 						<CardSelectGroup
+							disabled={ isProductTypesDisabled }
 							exclusive={ false }
 							cardColumns={ 3 }
 							value={ productTypes }
@@ -117,6 +133,7 @@ const StoreDetails = () => {
 						label={ productCountLabelText }
 					>
 						<CardSelectGroup
+							disabled={ isProductCountDisabled }
 							exclusive={ true }
 							cardColumns={ 3 }
 							value={ productCount }
