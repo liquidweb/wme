@@ -2,6 +2,7 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable no-redeclare */
 /// <reference types="react" />
+/// <reference types="jquery" />
 
 export {};
 

@@ -1,3 +1,5 @@
+import type JQueryXHR from 'jquery';
+
 interface HandleActionPayloadInterface {
   _wpnonce: string;
   action: string;
@@ -6,7 +8,7 @@ interface HandleActionPayloadInterface {
 
 /**
  * Submit payload for use by WME Ajax Action
- * 
+ *
  * @param {HandleActionPayloadInterface} payload - Data for use as payload
  * @example
  * {

@@ -6,7 +6,7 @@
  * @param {(HTMLFormElement|null)} [form=null] form - Value of the input
  * @return {HTMLInputElement}
  */
- export const createInput = (
+export const createInput = (
   name = '',
   value = '',
   form: HTMLFormElement | null = null,

@@ -7,7 +7,7 @@
  */
 export const pxToRem = (size: number, rootFontSize = 16): string | null => {
   if (typeof size === 'number' && typeof rootFontSize === 'number') {
-    return `${parseFloat((size / rootFontSize).toFixed(4))} rem`;
+    return `${parseFloat((size / rootFontSize).toFixed(4))}rem`;
   }
   return null;
 };
