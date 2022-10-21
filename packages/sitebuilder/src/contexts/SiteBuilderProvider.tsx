@@ -10,6 +10,7 @@ export interface SiteBuilderStateInterface {
 export interface SiteBuilderContextInterface {
 	siteBuilderState: SiteBuilderStateInterface;
 	setSiteBuilderState: (props: any) => void;
+	setScrollPosition: (scrollPosition: number) => void;
 }
 
 export const SiteBuilderContext = createContext<SiteBuilderContextInterface | null>(null);
@@ -31,28 +32,19 @@ const siteBuilderData = (): SiteBuilderStateInterface => {
 const SiteBuilderProvider = ({ children }: { children: React.ReactNode }) => {
 	const [siteBuilderState, setSiteBuilderState] = useState<SiteBuilderStateInterface>(siteBuilderData);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			setSiteBuilderState({
-				...siteBuilderState,
-				scrollPosition: window.scrollY
-			});
-
-			console.log('window.scrollY', window.scrollY);
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
+	const setScrollPosition = (scrollPosition: number) => {
+		setSiteBuilderState({
+			...siteBuilderState,
+			scrollPosition
+		})
+	};
 
 	return (
 		<SiteBuilderContext.Provider
 			value={ {
 				siteBuilderState,
 				setSiteBuilderState,
+				setScrollPosition
 			} }
 		>
 			{ children }

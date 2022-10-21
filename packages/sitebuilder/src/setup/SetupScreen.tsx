@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { SetupCards } from '@sb/setup';
 import { SetupData } from '@sb/setup/data/constants';
 import { StoreBuilderLogo } from '@sb/logos';
+import { useSiteBuilder } from '@sb/hooks';
 
 const { screen } = SetupData;
 
 const SetupScreen = () => {
-	const [scrollPosition, setScrollPosition] = useState<number>(0);
+	const { siteBuilderState: { scrollPosition }, setScrollPosition } = useSiteBuilder();
 
 	useEffect(() => {
-
+		window.scrollTo(0, scrollPosition);
 	}, []);
-	
+
 	useEffect(() => {
 		const handleScroll = () => {
 			setScrollPosition(window.scrollY);
-
-			console.log('window.scrollY', window.scrollY);
 		};
 
 		window.addEventListener('scroll', handleScroll);
