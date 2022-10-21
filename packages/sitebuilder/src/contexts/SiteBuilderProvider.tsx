@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { GO_LIVE_PROPS } from '@sb/constants';
 
 export interface SiteBuilderStateInterface {
@@ -36,7 +36,7 @@ const SiteBuilderProvider = ({ children }: { children: React.ReactNode }) => {
 		setSiteBuilderState({
 			...siteBuilderState,
 			scrollPosition
-		})
+		});
 	};
 
 	return (
