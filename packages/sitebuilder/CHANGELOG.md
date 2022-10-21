@@ -1,5 +1,18 @@
 # @moderntribe/sitebuilder
 
+## 1.3.0
+
+### Minor Changes
+
+- 8722e98: Add oauth error check & fix no template selected bug
+- c345253: Creates utils package for shared functions
+- 10ebd7d: Adds scroll position state for setup screens
+
+### Patch Changes
+
+- Updated dependencies [c345253]
+  - @moderntribe/wme-utils@0.1.0
+
 ## 1.2.0
 
 ### Minor Changes
