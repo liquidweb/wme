@@ -4,8 +4,6 @@ namespace Tribe\WME\Sitebuilder\Modules;
 
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
 
-use const Tribe\WME\Sitebuilder\PLUGIN_URL;
-
 class SiteBuilder extends Module {
 
 	use HasAssets;
@@ -72,7 +70,7 @@ class SiteBuilder extends Module {
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
 			'logout_url'  => wp_logout_url(),
-			'assets_url'  => PLUGIN_URL . 'wme-sitebuilder/assets/sitebuilder/',
+			'assets_url'  => $this->getAssetSource( 'sitebuilder/' ),
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],
@@ -96,6 +94,6 @@ class SiteBuilder extends Module {
 	 * Print the JavaScript include and dependencies.
 	 */
 	public function actionPrintScripts_15() {
-		$this->enqueueScript( 'wme-sitebuilder-app', 'sitebuilder-app.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post', 'password-strength-meter' ] );
+		$this->enqueueScript( 'wme-sitebuilder', 'sitebuilder.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post', 'password-strength-meter' ] );
 	}
 }
