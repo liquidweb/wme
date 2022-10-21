@@ -1,9 +1,10 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { GO_LIVE_PROPS } from '@sb/constants';
 
 export interface SiteBuilderStateInterface {
 	capturedDomain?: string;
 	kadenceTemplate?: string;
+	scrollPosition: number;
 }
 
 export interface SiteBuilderContextInterface {
@@ -15,7 +16,8 @@ export const SiteBuilderContext = createContext<SiteBuilderContextInterface | nu
 
 const localData: SiteBuilderStateInterface = {
 	capturedDomain: '',
-	kadenceTemplate: ''
+	kadenceTemplate: '',
+	scrollPosition: 0
 };
 
 const siteBuilderData = (): SiteBuilderStateInterface => {
@@ -28,6 +30,23 @@ const siteBuilderData = (): SiteBuilderStateInterface => {
 
 const SiteBuilderProvider = ({ children }: { children: React.ReactNode }) => {
 	const [siteBuilderState, setSiteBuilderState] = useState<SiteBuilderStateInterface>(siteBuilderData);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setSiteBuilderState({
+				...siteBuilderState,
+				scrollPosition: window.scrollY
+			});
+
+			console.log('window.scrollY', window.scrollY);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
 	return (
 		<SiteBuilderContext.Provider
