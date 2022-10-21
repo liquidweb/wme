@@ -180,8 +180,6 @@ class GoLive extends Wizard {
 
 	/**
 	 * AJAX: search domains.
-	 *
-	 * @todo check response body
 	 */
 	public function searchDomains() {
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -236,7 +234,6 @@ class GoLive extends Wizard {
 	 * AJAX: create UI flow.
 	 *
 	 * @todo define $return_url
-	 * @todo define $callback_url
 	 */
 	public function createNexcessFlow() {
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -277,7 +274,7 @@ class GoLive extends Wizard {
 		$this->getData()->save();
 
 		$return_url   = '';
-		$callback_url = '';
+		$callback_url = site_url( self::REWRITE_TAG );
 
 		$response = $this->mappsApi( 'v1/flow', [
 			'headers' => [
@@ -327,6 +324,7 @@ class GoLive extends Wizard {
 
 		if ( empty( $payload ) ) {
 			status_header( 400 );
+			wp_send_json_error();
 			exit;
 		}
 
@@ -334,6 +332,7 @@ class GoLive extends Wizard {
 
 		if ( ! $this->isValidWebhookPayload( $payload ) || 'success' !== $payload->outcome->status ) {
 			status_header( 400 );
+			wp_send_json_error();
 			exit;
 		}
 
@@ -343,14 +342,11 @@ class GoLive extends Wizard {
 			$domains = (array) $domains;
 		}
 
-		$this->getData()->set( 'purchasedDomains', $domains );
-		$saved = $this->getData()->save();
+		$this->getData()
+			->set( 'purchased_domains', $domains )
+			->save();
 
-		if ( ! $saved ) {
-			wp_send_json_error();
-		}
-
-		wp_send_json_success();
+		return wp_send_json_success();
 	}
 
 	/**
@@ -389,8 +385,8 @@ class GoLive extends Wizard {
 		}
 
 		// Verify the domain structure.
-		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null;
 		$domain = $this->domains->formatDomain( $domain );
 
 		if ( empty( $domain ) ) {
