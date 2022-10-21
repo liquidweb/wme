@@ -7,7 +7,6 @@ specifiers:
   '@emotion/styled': ^11.10.4
   '@moderntribe/sitebuilder': ^1.3.0
   '@moderntribe/storebuilder': ^1.3.0
-  '@moderntribe/wme-utils': ^0.1.0
   '@mui/icons-material': ^5.10.9
   '@mui/lab': ^5.0.0-alpha.103
   '@mui/material': ^5.10.9
@@ -52,7 +51,6 @@ dependencies:
   '@emotion/styled': 11.10.4_hn2242ymjfeigbcxwpi42fjy6u
   '@moderntribe/sitebuilder': 1.3.0_hvn2vw7slj2bakjnd2cxd5iyra
   '@moderntribe/storebuilder': 1.3.0_hvn2vw7slj2bakjnd2cxd5iyra
-  '@moderntribe/wme-utils': 0.1.0
   '@mui/icons-material': 5.10.9_tkczja5i44j7seshubhrpmisiq
   '@mui/lab': 5.0.0-alpha.103_o5fu5zzztezljyppmu7zljxb6q
   '@mui/material': 5.10.9_6xnkn2aqnlmdvuspwqrjexfduy
