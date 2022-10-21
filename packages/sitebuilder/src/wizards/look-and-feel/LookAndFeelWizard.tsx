@@ -12,7 +12,7 @@ import DeleteContentWarning from './DeleteContentWarning';
 const LookAndFeelWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
 
-	const { lookAndFeelState: { steps, lastStep, isImporting, showDeleteWarning }, handleSave } = useLookAndFeel();
+	const { lookAndFeelState: { steps, lastStep, isImporting, showDeleteWarning, template }, handleSave } = useLookAndFeel();
 
 	const handleOnNext = () => {
 		if (activeStep === lastStep) {
@@ -46,6 +46,7 @@ const LookAndFeelWizard = () => {
 				activeStep={ stepIndex }
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
+				disableNext={ template.name === '' ? true : false }
 				onSkip={ handleOnSkip }
 				isLastStep={ activeStep === lastStep }
 				save={ handleSave }

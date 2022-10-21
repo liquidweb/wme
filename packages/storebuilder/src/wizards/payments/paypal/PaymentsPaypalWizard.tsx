@@ -125,11 +125,15 @@ const PaymentsPaypalWizard = () => {
 		};
 
 		const response = await handleActionRequest(data) as OauthInterface;
-		setOauthUrls({
-			standard: response?.oauth_urls?.standard,
-			advanced: response?.oauth_urls?.advanced,
-			onboardingNonce: response?.onboarding_nonce
-		});
+		if (response) {
+			setOauthUrls({
+				standard: response?.oauth_urls?.standard,
+				advanced: response?.oauth_urls?.advanced,
+				onboardingNonce: response?.onboarding_nonce
+			});
+		} else {
+			setError(true);
+		}
 	};
 
 	// Makes ajax call to install/activate plugin, then gets oauth url and sets it in oauthUrls state.
