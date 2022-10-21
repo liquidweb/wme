@@ -35,7 +35,11 @@ define( __NAMESPACE__ . '\VENDOR_DIR', __DIR__ . '/wme-sitebuilder/vendor/' );
 
 // Initialize the plugin.
 try {
-	require_once VENDOR_DIR . 'autoload.php';
+	// If the Container already exists, another package is including this
+	// as a composer dependency, and we don't need to require the autoload file.
+	if ( ! class_exists( Container::class ) ) {
+		require_once VENDOR_DIR . 'autoload.php';
+	}
 
 	/** @var Plugin $wme_sitebuilder */
 	$wme_sitebuilder = Container::getInstance()->get( Plugin::class );
