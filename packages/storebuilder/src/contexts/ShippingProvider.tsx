@@ -4,7 +4,7 @@ import ShippingScreenData, {
 } from '@shipping/data/shipping-screen-data';
 import { ShippingStringData } from '@shipping/data/constants';
 import { Confirmation, Error } from '@shipping/screens';
-import { handleActionRequest, removeNulls } from '@store/utils';
+import { handleActionRequest, removeNulls } from '@moderntribe/wme-utils';
 
 export interface ShippingProviderContextInterface {
 	shippingState: ShippingScreenDataInterface;

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "ES2021",
+    "declaration": true,
+    "outDir": "./dist/es6",
+    "moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"typeRoots": ["node_modules/@types"]
+  },
+  "include": [
+		"src/**/*",
+		"wme-utils.d.ts"
+	]
+}
+

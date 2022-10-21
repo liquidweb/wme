@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PaymentsPaypalScreenData, { PaymentsPaypalInterface } from '@store/wizards/payments/paypal/data/paypal-screen-data';
-import { handleActionRequest } from '@store/utils';
+import { handleActionRequest } from '@moderntribe/wme-utils';
 import { PAYMENTS_PAYPAL_PROPS } from '@store/constants';
 export interface PaymentsPaypalProviderContextInterface {
   paymentsPaypalState: PaymentsPaypalInterface;

@@ -3,7 +3,7 @@ import { Box, useTheme, CircularProgress, Stack } from '@mui/material';
 import { WizardSectionTitle, Form, FormField, TextInput } from '@moderntribe/wme-ui';
 import { usePaymentsPaypal } from '@store/hooks';
 import { paymentsPaypalConsts } from '../data/constants';
-import { handleActionRequest } from '@store/utils';
+import { handleActionRequest } from '@moderntribe/wme-utils';
 import { PAYMENTS_PAYPAL_PROPS } from '@store/constants';
 
 interface ApiKeysInterface {

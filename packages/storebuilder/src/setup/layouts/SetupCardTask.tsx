@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { SetupCardTask as WmeSetupCardTask, Button } from '@moderntribe/wme-ui';
 import { Avatar } from '@mui/material';
 import { IMAGE_DIR } from '@store/constants';
-import { isValidUrl } from '@store/utils';
+import { isValidUrl } from '@moderntribe/wme-utils';
 
 const getAvatarProps = (props: SetupCardRowInterface) => {
 	if (! props?.icon) {

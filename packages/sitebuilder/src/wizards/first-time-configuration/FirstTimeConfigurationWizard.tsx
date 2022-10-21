@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
+import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 
 import { useWizard, useFirstTimeConfiguration } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
-import { beforeUnloadListener } from '@sb/utils';
 
 const FirstTimeConfigurationWizard = () => {
 	const {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFirstTimeConfiguration } from './useFirstTimeConfiguration';
-import { handleActionRequest } from '@sb/utils';
+import { handleActionRequest } from '@moderntribe/wme-utils';
 import { FtcStringData } from '@sb/wizards/first-time-configuration/data/constants';
 
 const { usernameValidation } = FtcStringData;

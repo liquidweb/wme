@@ -127,5 +127,4 @@ declare global {
 
 declare function getPasswordStrength(password: string): 'weak' | 'medium' | 'strong';
 declare function uploadImage(file: File, additionalData: { title: string, alt_text: string }): object;
-declare function createInput(name: string, value: string, form: HTMLFormElement | null): HTMLInputElement;
 declare function getDomainVerificationError(response: any): DomainVerificationInterface | boolean;
