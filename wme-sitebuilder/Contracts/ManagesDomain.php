@@ -38,4 +38,11 @@ interface ManagesDomain {
 	 * @return array Data indicating the various states of validation checks, or an empty array if unsuccessful.
 	 */
 	public function isDomainUsable( $domain );
+
+	/**
+	 * Search available domains based on provided domain name.
+	 *
+	 * @return mixed[]|\WP_Error
+	 */
+	public function searchAvailableDomains( $domain );
 }

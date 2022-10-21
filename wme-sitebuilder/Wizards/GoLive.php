@@ -207,8 +207,7 @@ class GoLive extends Wizard {
 			), 422 );
 		}
 
-		$request_url = sprintf( '/domain/lookup/%s', $domain );
-		$response    = $this->mappsApi( $request_url );
+		$response = $this->domains->searchAvailableDomains( $domain );
 
 		if ( is_wp_error( $response ) ) {
 			$companyName = _x( 'Nexcess', 'company name', 'nexcess-mapps' );
