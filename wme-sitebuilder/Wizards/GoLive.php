@@ -275,18 +275,7 @@ class GoLive extends Wizard {
 		$return_url   = '';
 		$callback_url = site_url( self::REWRITE_TAG );
 
-		$response = $this->mappsApi( 'v1/flow', [
-			'headers' => [
-				'Accept'       => 'application/json',
-				'Content-Type' => 'application/json',
-			],
-			'body'    => [
-				'action'       => 'domain:add',
-				'data'         => $request_domains,
-				'return_url'   => $return_url,
-				'callback_url' => $callback_url,
-			],
-		] );
+		$response = $this->domains->createPurchaseFlow( $request_domains, $return_url, $callback_url );
 
 		if ( is_wp_error( $response ) ) {
 			$companyName = _x( 'Nexcess', 'company name', 'nexcess-mapps' );

@@ -45,4 +45,15 @@ interface ManagesDomain {
 	 * @return mixed[]|\WP_Error
 	 */
 	public function searchAvailableDomains( $domain );
+
+	/**
+	 * Create purchase flow.
+	 *
+	 * @param array[] $domains
+	 * @param string  $return_url
+	 * @param string  $callback_url
+	 *
+	 * @return mixed[]|\WP_Error
+	 */
+	public function createPurchaseFlow( $domains, $return_url, $callback_url );
 }
