@@ -4,18 +4,21 @@ import { GO_LIVE_PROPS } from '@sb/constants';
 export interface SiteBuilderStateInterface {
 	capturedDomain?: string;
 	kadenceTemplate?: string;
+	scrollPosition: number;
 }
 
 export interface SiteBuilderContextInterface {
 	siteBuilderState: SiteBuilderStateInterface;
 	setSiteBuilderState: (props: any) => void;
+	setScrollPosition: (scrollPosition: number) => void;
 }
 
 export const SiteBuilderContext = createContext<SiteBuilderContextInterface | null>(null);
 
 const localData: SiteBuilderStateInterface = {
 	capturedDomain: '',
-	kadenceTemplate: ''
+	kadenceTemplate: '',
+	scrollPosition: 0
 };
 
 const siteBuilderData = (): SiteBuilderStateInterface => {
@@ -29,11 +32,19 @@ const siteBuilderData = (): SiteBuilderStateInterface => {
 const SiteBuilderProvider = ({ children }: { children: React.ReactNode }) => {
 	const [siteBuilderState, setSiteBuilderState] = useState<SiteBuilderStateInterface>(siteBuilderData);
 
+	const setScrollPosition = (scrollPosition: number) => {
+		setSiteBuilderState({
+			...siteBuilderState,
+			scrollPosition
+		});
+	};
+
 	return (
 		<SiteBuilderContext.Provider
 			value={ {
 				siteBuilderState,
 				setSiteBuilderState,
+				setScrollPosition
 			} }
 		>
 			{ children }

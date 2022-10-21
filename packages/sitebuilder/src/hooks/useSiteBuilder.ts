@@ -4,10 +4,12 @@ import { SiteBuilderContext, SiteBuilderContextInterface } from '@sb/contexts/Si
 export function useSiteBuilder() {
 	const {
 		siteBuilderState,
-		setSiteBuilderState
+		setSiteBuilderState,
+		setScrollPosition
 	} = useContext(SiteBuilderContext) as SiteBuilderContextInterface;
 	return {
 		siteBuilderState,
-		setSiteBuilderState
+		setSiteBuilderState,
+		setScrollPosition
 	};
 }
