@@ -34,7 +34,7 @@ mix.webpackConfig({
 	],
 	resolve: {
 		alias: {
-			'@sb': __dirname + '/assets/js/storebuilder-app',
+			'@sb': __dirname + '/assets/js/store-details',
 		}
 	}
 });
@@ -47,14 +47,9 @@ if (process.env.MIX_PROXY_URL) {
 	});
 }
 
-// Bundle CSS.
-mix.css('assets/css/storebuilder-scheme-v3.css', '/')
-	.sourceMaps(false);
-mix.sass('assets/scss/storebuilder-app.scss', '/');
-
 // Bundle JavaScript.
-mix.js('assets/js/sitebuilder-app.js', '/')
-	.js('assets/js/storebuilder-app.js', '/')
+mix.js('assets/js/sitebuilder.js', '/')
+	.js('assets/js/store-details.js', '/')
 	.sourceMaps(false)
 	.eslint()
 	.react();

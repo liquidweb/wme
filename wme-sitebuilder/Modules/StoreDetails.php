@@ -14,8 +14,6 @@ use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe as PaymentGatewayStripeWi
 use Tribe\WME\Sitebuilder\Wizards\Shipping as ShippingWizard;
 use Tribe\WME\Sitebuilder\Wizards\StoreSetup as StoreSetupWizard;
 
-use const Tribe\WME\Sitebuilder\PLUGIN_URL;
-
 class StoreDetails extends Module implements LoadsConditionally {
 
 	use HasAssets;
@@ -125,7 +123,7 @@ class StoreDetails extends Module implements LoadsConditionally {
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
 			'logout_url'  => wp_logout_url(),
-			'assets_url'  => PLUGIN_URL . 'wme-sitebuilder/assets/store-details/',
+			'assets_url'  => $this->getAssetSource( 'store-details/' ),
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],
@@ -149,6 +147,6 @@ class StoreDetails extends Module implements LoadsConditionally {
 	 * Print the JavaScript include and dependencies.
 	 */
 	public function actionPrintScripts_15() {
-		$this->enqueueScript( 'wme-sitebuilder-storebuilderapp', 'storebuilder-app.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post' ] );
+		$this->enqueueScript( 'wme-sitebuilder-store-details', 'store-details.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post' ] );
 	}
 }

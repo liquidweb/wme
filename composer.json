@@ -20,10 +20,6 @@
                 "wpackagist-plugin/*",
                 "wpackagist-theme/*"
             ]
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/moderntribe/wme-backend-starter"
         }
     ],
     "autoload": {
@@ -48,9 +44,10 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "friendsofphp/php-cs-fixer": "^3.12",
         "phpcompatibility/phpcompatibility-wp": "^2.0",
+        "phpmd/phpmd": "^2.13",
         "szepeviktor/phpstan-wordpress": "^0.7",
         "wp-coding-standards/wpcs": "^2.1",
-		"wpackagist-plugin/woocommerce": ">=4.3",
+        "wpackagist-plugin/woocommerce": ">=4.3",
         "wpackagist-plugin/woocommerce-gateway-stripe": "6.4.1",
         "wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
     },
@@ -58,6 +55,10 @@
         "build:plugin": [
             "bash bin/build wme-sitebuilder.zip"
         ],
+		"fix:standards": [
+			"phpcbf --cache",
+			"php-cs-fixer fix -v --diff"
+		],
         "test": [
             "@test:all"
         ],
