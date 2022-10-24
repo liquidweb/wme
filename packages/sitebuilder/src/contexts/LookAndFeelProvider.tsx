@@ -27,7 +27,7 @@ export interface LookAndFeelProviderContextInterface {
 export const LookAndFeelContext = createContext<LookAndFeelProviderContextInterface | null>(null);
 
 const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
-	const { goToNextStep } = useWizard();
+	const { goToNextStep, setShowDeviceHeader } = useWizard();
 	const [lookAndFeelState, setLookAndFeelState] = useState<LookAndFeelInterface>(LookAndFeelScreenData());
 	const [templates, setTemplates] = useState();
 	const { kadence } = LOOK_AND_FEEL_PROPS;
@@ -75,6 +75,7 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			isImporting: status,
 			showDeleteWarning: lookAndFeelState.showDeleteWarning && false,
 		});
+		setShowDeviceHeader(! status);
 	};
 
 	const setShowDeleteWarning = (status:boolean) => {
