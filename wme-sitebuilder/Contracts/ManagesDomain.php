@@ -19,16 +19,7 @@ interface ManagesDomain {
 	 *
 	 * @return string|null|false
 	 */
-	public function formatDomain( $domain );
-
-	/**
-	 * Determine if the domain name is valid.
-	 *
-	 * @param string|false|null $domain Expected to be only the domain name (no protocol) and formatted by formatDomain().
-	 *
-	 * @return bool
-	 */
-	public function isDomainValid( $domain );
+	public static function formatDomain( $domain );
 
 	/**
 	 * Confirm the domain is usable for the site.

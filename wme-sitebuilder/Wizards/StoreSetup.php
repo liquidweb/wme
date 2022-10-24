@@ -81,8 +81,8 @@ class StoreSetup extends Wizard {
 			'currencies'     => $this->getWoocommerceCurrencies(),
 			'regions'        => $this->getWoocommerceRegions(),
 			'states'         => $this->getWoocommerceStates(),
-            'locales'        => $this->getWoocommerceLocales(),
-            'completed'      => $this->isComplete(),
+			'locales'        => $this->getWoocommerceLocales(),
+			'completed'      => $this->isComplete(),
 		];
 	}
 
@@ -143,6 +143,8 @@ class StoreSetup extends Wizard {
 
 		$this->getData()->set( 'complete', true )->save();
 		$this->getData()->save();
+
+		do_action( 'wme_event_wizard_completed', 'store-setup' );
 
 		wp_send_json_success();
 	}

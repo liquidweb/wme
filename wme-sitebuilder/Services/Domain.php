@@ -35,7 +35,7 @@ class Domain implements ManagesDomain {
 	 *
 	 * @return string|null|false
 	 */
-	public function formatDomain( $domain ) {
+	public static function formatDomain( $domain ) {
 		if ( empty( $domain ) ) {
 			return $domain;
 		}
@@ -55,17 +55,6 @@ class Domain implements ManagesDomain {
 		}
 
 		return $domain;
-	}
-
-	/**
-	 * Determine if the domain name is valid.
-	 *
-	 * @param string|false|null $domain Expected to be only the domain name (no protocol) and formatted by formatDomain().
-	 *
-	 * @return bool
-	 */
-	public function isDomainValid( $domain ) {
-		return true;
 	}
 
 	/**

@@ -90,23 +90,23 @@ class LookAndFeel extends Card {
 	 *
 	 * @return array|array[] Array with information. Empty array otherwise.
 	 */
-    protected function footer() {
-        $footer_messages = [
-            [
-                'title'    => __( 'Edit specific Pages', 'wme-sitebuilder' ),
-                'url'      => add_query_arg( 'post_type', 'page', admin_url( 'edit.php' ) ),
-                'target'   => '_self',
-                'dashicon' => '',
-            ]
-        ];
+	protected function footer() {
+		$footer_messages = [
+			[
+				'title'    => __( 'Edit specific Pages', 'wme-sitebuilder' ),
+				'url'      => add_query_arg( 'post_type', 'page', admin_url( 'edit.php' ) ),
+				'target'   => '_self',
+				'dashicon' => '',
+			],
+		];
 
 		if ( $this->wizard->isComplete() ) {
-            $footer_messages[] = [
-                'title'    => __( 'Pick a different template', 'wme-sitebuilder' ),
-                'url'      => '',
-                'target'   => '',
-                'dashicon' => '',
-            ];
+			$footer_messages[] = [
+				'title'    => __( 'Pick a different template', 'wme-sitebuilder' ),
+				'url'      => '',
+				'target'   => '',
+				'dashicon' => '',
+			];
 		}
 
 		return [

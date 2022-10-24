@@ -94,7 +94,7 @@ class Container extends BaseContainer {
 			Wizards\FirstTimeConfiguration::class => null,
 			Wizards\GoLive::class                 => function ( $app ) {
 				return new Wizards\GoLive(
-					$app->make( Services\Domain::class )
+					$app->make( Contracts\ManagesDomain::class )
 				);
 			},
 			Wizards\LookAndFeel::class            => null,
