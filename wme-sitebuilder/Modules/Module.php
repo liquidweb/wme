@@ -132,4 +132,13 @@ abstract class Module {
 		);
 	}
 
+	/**
+	 * Get admin page URL.
+	 *
+	 * @return string
+	 */
+	public function getPageUrl() {
+		return add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) );
+	}
+
 }
