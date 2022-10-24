@@ -68,7 +68,7 @@ class GoLive extends Wizard {
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
 		$this->add_ajax_action( 'verify-domain', [ $this, 'verifyDomain' ] );
 		$this->add_ajax_action( 'search-domains', [ $this, 'searchDomains' ] );
-		$this->add_ajax_action( 'create-nexcess-flow', [ $this, 'createNexcessFlow' ] );
+		$this->add_ajax_action( 'create-purchase-flow', [ $this, 'createPurchaseFlow' ] );
 	}
 
 	/**
@@ -234,7 +234,7 @@ class GoLive extends Wizard {
 	 *
 	 * @todo define $return_url
 	 */
-	public function createNexcessFlow() {
+	public function createPurchaseFlow() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
