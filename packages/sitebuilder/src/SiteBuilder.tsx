@@ -8,7 +8,7 @@ import WizardWrapper from '@sb/wizards/WizardWrapper';
 import Loadable from '@sb/components/Loadable';
 import { SB_THEME } from '@sb/constants';
 
-const SetupScreen = Loadable(lazy(() => import('@sb/setup/SetupScreen')));
+const SetupScreen: (props: any) => JSX.Element = Loadable(lazy(() => import('@sb/setup/SetupScreen')));
 
 const siteBuilderTheme = createTheme(WME_THEME, SB_THEME);
 
