@@ -12,7 +12,7 @@ export interface WizardHeaderInterface {
 }
 
 const WizardHeader: React.FC<WizardHeaderInterface> = () => {
-	const { wizardState: { showCloseWarning, hideExit, showDeviceHeader }, setShowCloseWarning, closeAll } = useWizard();
+	const { wizardState: { showCloseWarning, hideExit }, setShowCloseWarning, closeAll, currentStep } = useWizard();
 	const location = useLocation();
 
 	const handleExitClick = () => {
@@ -31,7 +31,7 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 					width="100"
 					logoSrc={ <StoreBuilderLogo /> }
 				/>
-				{ location.pathname === '/wizard/look-and-feel' && showDeviceHeader ? <ModalDeviceSelection /> : null }
+				{ location.pathname === '/wizard/look-and-feel' && currentStep < 5 ? <ModalDeviceSelection /> : null }
 				{
 					! hideExit &&
 					<ExitButton onClick={ handleExitClick }>

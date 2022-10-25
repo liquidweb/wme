@@ -7,7 +7,7 @@ import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import DeleteContentWarning from './DeleteContentWarning';
 
 const LookAndFeelWizard = () => {
-	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, setShowDeviceHeader } = useWizard();
+	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep } = useWizard();
 
 	const { lookAndFeelState: { steps, lastStep, showDeleteWarning, template, importDone }, initImport } = useLookAndFeel();
 
@@ -33,12 +33,6 @@ const LookAndFeelWizard = () => {
 	const handleOnSkip = () => {
 		goToNextStep();
 	};
-
-	useEffect(() => {
-		if (activeStep > 4) {
-			setShowDeviceHeader(false);
-		}
-	}, []);
 
 	return (
 		<>
