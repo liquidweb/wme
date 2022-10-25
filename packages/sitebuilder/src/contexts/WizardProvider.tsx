@@ -23,6 +23,7 @@ export interface WizardProviderContextInterface {
 	setShowCloseWarning: (showCloseWarning: boolean) => void;
 	setHideExit: (hideExit: boolean) => void;
 	setActiveDevice: (device: string) => void;
+	setShowDeviceHeader: (showDeviceHeader: boolean) => void;
 }
 
 const initialState: WizardProviderStateInterface = {
@@ -58,7 +59,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		if (currentStep > 1) {
 			setWizardState({
 				...wizardState,
-				hasStepped: true
+				hasStepped: true,
+				showDeviceHeader: true
 			});
 		}
 	}, [currentStep]);
@@ -125,6 +127,13 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
+	const setShowDeviceHeader = (showDeviceHeader: boolean) => {
+		setWizardState({
+			...wizardState,
+			showDeviceHeader
+		});
+	};
+
 	return (
 		<WizardContext.Provider
 			value={ {
@@ -136,7 +145,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 				closeAll,
 				setShowCloseWarning,
 				setHideExit,
-				setActiveDevice
+				setActiveDevice,
+				setShowDeviceHeader
 			} }
 		>
 			{ children }

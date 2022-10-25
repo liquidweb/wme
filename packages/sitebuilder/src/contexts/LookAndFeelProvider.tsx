@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
 
 export interface LookAndFeelProviderContextInterface {
   lookAndFeelState: LookAndFeelInterface;
-  templates: any; // TODO COLTEN add types
+  templates: any;
   setTemplateValue: (val: {slug: string, url: string, name: string}) => void;
   setFontValue: (font: string) => void;
   setColorValue: (color: string) => void;

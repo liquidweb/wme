@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
@@ -7,7 +7,7 @@ import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import DeleteContentWarning from './DeleteContentWarning';
 
 const LookAndFeelWizard = () => {
-	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep } = useWizard();
+	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, setShowDeviceHeader } = useWizard();
 
 	const { lookAndFeelState: { steps, lastStep, showDeleteWarning, template, importDone }, initImport } = useLookAndFeel();
 
@@ -34,7 +34,11 @@ const LookAndFeelWizard = () => {
 		goToNextStep();
 	};
 
-	console.log('new update');
+	useEffect(() => {
+		if (activeStep > 4) {
+			setShowDeviceHeader(false);
+		}
+	}, []);
 
 	return (
 		<>
