@@ -13,11 +13,10 @@ export interface LookAndFeelProviderContextInterface {
   setFontValue: (font: string) => void;
   setColorValue: (color: string) => void;
   handleUpdateIframe: () => void;
-  setIsImporting: (status:boolean) => void;
   setImportingError: () => void;
-  setImportDone: () => void;
+  setImportDone: (status: boolean) => void;
   ajaxDelete: () => void;
-  handleSave: () => void;
+  initImport: () => void;
   setShowDeleteWarning: (status:boolean) => void;
   setDeleteValue: (val: string) => void;
   handleImport: (val: string) => void;
@@ -69,14 +68,6 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setIsImporting = (status:boolean) => {
-		setLookAndFeelState({
-			...lookAndFeelState,
-			isImporting: status,
-			showDeleteWarning: lookAndFeelState.showDeleteWarning && false,
-		});
-	};
-
 	const setShowDeleteWarning = (status:boolean) => {
 		setLookAndFeelState({
 			...lookAndFeelState,
@@ -91,10 +82,10 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setImportDone = () => {
+	const setImportDone = (status: boolean) => {
 		setLookAndFeelState({
 			...lookAndFeelState,
-			importDone: ! lookAndFeelState.importDone,
+			importDone: status,
 		});
 	};
 
@@ -180,12 +171,23 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	// Triggered on save. Determines if delete warning should be shown.
-	const handleSave = () => {
+	const initImport = () => {
 		if ((LOOK_AND_FEEL_PROPS?.template === '') || (lookAndFeelState.template.slug === LOOK_AND_FEEL_PROPS?.template?.slug)) {
 			handleImport('keep');
 		} else {
 			setShowDeleteWarning(true);
 		}
+	};
+
+	// Starts importing process.
+	const handleImport = async (val: string) => {
+		setShowDeleteWarning(false);
+
+		if (val === 'delete') {
+			await ajaxDelete();
+		}
+
+		await ajaxDemoData();
 	};
 
 	// Sets logo back to what the user set it as in the FTC. Kadence will replace the logo with the template logo, so this is a workaround to avoid that.
@@ -218,30 +220,23 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 
 		await ajaxCustomizer();
 		await ajaxAfter();
+		setImportDone(true);
 
 		// Set logo back to what it was before import.
 		await setLogo();
 
 		await handleActionRequest(data).then(() => {
 			removeEventListener('beforeunload', beforeUnloadListener);
-			window.location.assign(SITEBUILDER_URL);
+
+			// Delay .5 seconds to show progress bar got to 100%.
+			setTimeout(() => {
+				goToNextStep();
+			}, 500);
 		}).catch((err:JQueryXHR) => {
-			setIsImporting(false);
 			const errorMessage = err?.responseJSON?.message;
 			// eslint-disable-next-line no-console
 			console.error(errorMessage + errorMessage);
 		});
-	};
-
-	// Starts importing process.
-	const handleImport = async (val: string) => {
-		setIsImporting(true);
-
-		if (val === 'delete') {
-			await ajaxDelete();
-		}
-
-		await ajaxDemoData();
 	};
 
 	return (
@@ -253,12 +248,11 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			setColorValue,
 			setDeleteValue,
 			handleUpdateIframe,
-			setIsImporting,
 			setImportingError,
 			setImportDone,
 			setShowDeleteWarning,
 			ajaxDelete,
-			handleSave,
+			initImport,
 			handleImport,
 			ajaxTemplateData
 		} }>
