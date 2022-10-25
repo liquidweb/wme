@@ -228,10 +228,10 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		await handleActionRequest(data).then(() => {
 			removeEventListener('beforeunload', beforeUnloadListener);
 
-			// Delay .5 seconds to show progress bar got to 100%.
+			// Delay 1 second to show progress bar got to 100%.
 			setTimeout(() => {
 				goToNextStep();
-			}, 500);
+			}, 1000);
 		}).catch((err:JQueryXHR) => {
 			const errorMessage = err?.responseJSON?.message;
 			// eslint-disable-next-line no-console

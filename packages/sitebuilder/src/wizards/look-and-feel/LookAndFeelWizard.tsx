@@ -7,7 +7,7 @@ import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import DeleteContentWarning from './DeleteContentWarning';
 
 const LookAndFeelWizard = () => {
-	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep } = useWizard();
+	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, closeAll } = useWizard();
 
 	const { lookAndFeelState: { steps, lastStep, showDeleteWarning, template, importDone }, initImport } = useLookAndFeel();
 
@@ -47,9 +47,9 @@ const LookAndFeelWizard = () => {
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
 				disableNext={ template.name === '' ? true : false }
+				save={ closeAll }
 				onSkip={ handleOnSkip }
 				isLastStep={ activeStep === lastStep }
-				// onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
 				backText={ __('Back', 'nexcess-mapps') }
 				skipText={ __('Skip', 'nexcess-mapps') }

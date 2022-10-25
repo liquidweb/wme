@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { Box, Typography } from '@mui/material';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
-import { IMAGE_DIR } from '@sb/constants';
+import { IMAGE_DIR, LOOK_AND_FEEL_PROPS, SITEBUILDER_URL } from '@sb/constants';
 
 const designStepSx = {
 	backgroundColor: '#FAFAFA',
@@ -26,6 +26,10 @@ const designStepSx = {
 		opacity: 0,
 		right: '16px',
 	},
+};
+
+const handleRedirect = () => {
+	window.location.assign(LOOK_AND_FEEL_PROPS?.storeDetailsURL || SITEBUILDER_URL);
 };
 
 const Complete = () => {
@@ -68,7 +72,7 @@ const Complete = () => {
 					{ designStepTitleText }
 				</Typography>
 				<Button
-					onClick={ () => console.log('clicked') }
+					onClick={ handleRedirect }
 					variant="contained"
 					color="primary"
 				>
