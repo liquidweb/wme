@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 import { useWizard, useLookAndFeel } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import DeleteContentWarning from './DeleteContentWarning';
+import { SITEBUILDER_URL } from '@sb/constants';
 
 const LookAndFeelWizard = () => {
-	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, closeAll } = useWizard();
-
+	const { wizardState: { showCloseWarning, hasStepped }, goToNextStep, goToPreviousStep, setShowCloseWarning } = useWizard();
 	const { lookAndFeelState: { steps, lastStep, showDeleteWarning, template, importDone }, initImport } = useLookAndFeel();
-
 	const [searchParams] = useSearchParams();
 
 	const activeStep = searchParams.get('step')
@@ -34,6 +33,17 @@ const LookAndFeelWizard = () => {
 		goToNextStep();
 	};
 
+	const closeOnSave = () => {
+		window.location.assign(SITEBUILDER_URL);
+	};
+
+	useEffect(() => {
+		if (hasStepped) {
+			// Enable the close warning behavior.
+			setShowCloseWarning(false);
+		}
+	}, [hasStepped]);
+
 	return (
 		<>
 			{
@@ -47,7 +57,7 @@ const LookAndFeelWizard = () => {
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
 				disableNext={ template.name === '' ? true : false }
-				save={ closeAll }
+				save={ closeOnSave }
 				onSkip={ handleOnSkip }
 				isLastStep={ activeStep === lastStep }
 				hideFooter={ false }

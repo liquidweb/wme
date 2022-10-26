@@ -5,6 +5,7 @@ import { useWizard } from '@sb/hooks';
 import { kadenceImport } from '@sb/utils/kadenceImport';
 import { FTC_PROPS, LOOK_AND_FEEL_PROPS } from '@sb/constants';
 import { __ } from '@wordpress/i18n';
+import { SetMealOutlined } from '@mui/icons-material';
 
 export interface LookAndFeelProviderContextInterface {
   lookAndFeelState: LookAndFeelInterface;
@@ -26,7 +27,7 @@ export interface LookAndFeelProviderContextInterface {
 export const LookAndFeelContext = createContext<LookAndFeelProviderContextInterface | null>(null);
 
 const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
-	const { goToNextStep } = useWizard();
+	const { goToNextStep, goToStep } = useWizard();
 	const [lookAndFeelState, setLookAndFeelState] = useState<LookAndFeelInterface>(LookAndFeelScreenData());
 	const [templates, setTemplates] = useState();
 	const { kadence } = LOOK_AND_FEEL_PROPS;
@@ -126,7 +127,7 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		if (typeof response.status !== 'undefined' && response.status === 'newAJAX') {
 			ajaxDemoData();
 		} else {
-			saveWizardSettings();
+			finishKadenceImport();
 		}
 	};
 
@@ -207,7 +208,21 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 	};
 
-	// Saves settings, sends data to backend.
+	const finishKadenceImport = async () => {
+		// Run last two AJAX requests to Kadence.
+		await ajaxCustomizer();
+		await ajaxAfter();
+		setImportDone(true);
+
+		// Delay 1 second to show progress bar got to 100%.
+		setTimeout(() => {
+			goToStep(6);
+		}, 1000);
+
+		saveWizardSettings();
+	};
+
+	// Runs last two kadence AJAX requests, saves settings, sends data to backend.
 	const saveWizardSettings = async () => {
 		const data = {
 			_wpnonce: LOOK_AND_FEEL_PROPS.ajax?.nonce || '',
@@ -218,25 +233,16 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			color: lookAndFeelState.color,
 		};
 
-		await ajaxCustomizer();
-		await ajaxAfter();
-		setImportDone(true);
-
 		// Set logo back to what it was before import.
 		await setLogo();
 
-		await handleActionRequest(data).then(() => {
-			removeEventListener('beforeunload', beforeUnloadListener);
-
-			// Delay 1 second to show progress bar got to 100%.
-			setTimeout(() => {
-				goToNextStep();
-			}, 1000);
-		}).catch((err:JQueryXHR) => {
-			const errorMessage = err?.responseJSON?.message;
-			// eslint-disable-next-line no-console
-			console.error(errorMessage + errorMessage);
-		});
+		// Submit data to backend.
+		await handleActionRequest(data)
+			.catch((err:JQueryXHR) => {
+				const errorMessage = err?.responseJSON?.message;
+				// eslint-disable-next-line no-console
+				console.error(errorMessage);
+			});
 	};
 
 	return (
