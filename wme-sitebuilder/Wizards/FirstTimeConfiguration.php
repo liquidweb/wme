@@ -384,6 +384,8 @@ class FirstTimeConfiguration extends Wizard {
 
 		if ( ! $updated_password && ! $updated_username ) {
 			return;
+		} else {
+			do_action( 'wme_sitebuilder_user_password_updated', $user->ID );
 		}
 
 		clean_user_cache( $user->ID );
