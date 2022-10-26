@@ -56,7 +56,7 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		if (currentStep > 1) {
 			setWizardState({
 				...wizardState,
-				hasStepped: true,
+				hasStepped: true
 			});
 		}
 	}, [currentStep]);

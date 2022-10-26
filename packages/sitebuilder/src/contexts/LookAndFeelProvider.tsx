@@ -207,8 +207,8 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 	};
 
+	// Run last two Kadence AJAX requests and set import to done.
 	const finishKadenceImport = async () => {
-		// Run last two AJAX requests to Kadence.
 		await ajaxCustomizer();
 		await ajaxAfter();
 		setImportDone(true);
@@ -221,7 +221,7 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		saveWizardSettings();
 	};
 
-	// Runs last two kadence AJAX requests, saves settings, sends data to backend.
+	// Sets logo back to user-saved logo, saves settings, sends data to backend.
 	const saveWizardSettings = async () => {
 		const data = {
 			_wpnonce: LOOK_AND_FEEL_PROPS.ajax?.nonce || '',
