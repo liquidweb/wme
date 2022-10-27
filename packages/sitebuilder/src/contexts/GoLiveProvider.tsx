@@ -15,7 +15,7 @@ export interface GoLiveProviderContextInterface {
 	setIsLoading: (loading: boolean) => void;
 	getHasDomainNextText: (hasDomain: string) => void;
 	setHasDomain: (hasDomain: string) => void;
-	setShowGetDomain: (show: boolean) => void;
+	setShowConnectWithNexcess: (show: boolean) => void;
 }
 
 export interface DomainVerficationSuccessInterface {
@@ -37,6 +37,7 @@ type DomainVerificationResponseType = DomainVerficationSuccessInterface | Domain
 const { goLiveProviderText: {
 	getDomain,
 	haveDomain,
+	checkout,
 	continueStr,
 	errorMessage,
 	errorMessageVerification,
@@ -95,45 +96,26 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	useEffect(() => {
 		if (activeStep === 3) {
-			if (! capturedDomain) {
-				navigate('/wizard/go-live');
-			}
+			if (! goLiveState.showConnectWithNexcess) {
+				if (! capturedDomain) {
+					navigate('/wizard/go-live');
+				}
 
-			if (
-				goLiveState.verificationStatus && ! (
-					goLiveState.verificationStatus === 'connected' ||
+				if (
+					goLiveState.verificationStatus && ! (
+						goLiveState.verificationStatus === 'connected' ||
 					goLiveState.verificationStatus === 'advanced'
-				)
-			) {
-				navigate('/wizard/go-live');
-			}
+					)
+				) {
+					navigate('/wizard/go-live');
+				}
 
-			if (goLiveState.verificationStatus === 'error') {
-				navigate('/wizard/go-live?step=2');
+				if (goLiveState.verificationStatus === 'error') {
+					navigate('/wizard/go-live?step=2');
+				}
 			}
 		}
-
-		if (activeStep === 1 && goLiveState.hasDomain !== null) {
-			const { steps, hasDomain, showGetDomain } = goLiveState;
-
-			steps[ 0 ].nextText = continueStr;
-			steps[ 0 ].hideBack = true;
-
-			if (hasDomain === 'no') {
-				steps[ 0 ].nextText = showGetDomain ? haveDomain : getDomain;
-			}
-
-			if (hasDomain === 'no' && showGetDomain) {
-				steps[ 0 ].disableNext = true;
-				steps[ 0 ].hideBack = false;
-			}
-
-			setGoLiveState({
-				...goLiveState,
-				steps
-			});
-		}
-	}, [activeStep, goLiveState.showGetDomain]);
+	}, [activeStep]);
 
 	const submitGoLiveForm = () => {
 		const { steps, showLogoutButton } = goLiveState;
@@ -312,7 +294,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	const getHasDomainNextText = (hasDomain:string) => {
 		switch (hasDomain) {
 		case 'yes':
-			return goLiveState.showGetDomain ? haveDomain : continueStr;
+			return haveDomain;
 		case 'no':
 			return getDomain;
 		default:
@@ -331,13 +313,10 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setShowGetDomain = (show:boolean) => {
-		const { steps } = goLiveState;
-		steps[ 0 ].nextText = haveDomain;
+	const setShowConnectWithNexcess = (show: boolean) => {
 		setGoLiveState({
 			...goLiveState,
-			showGetDomain: show,
-			steps
+			showConnectWithNexcess: show,
 		});
 	};
 
@@ -349,7 +328,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			submitDomainVerification,
 			setIsLoading,
 			setHasDomain,
-			setShowGetDomain,
+			setShowConnectWithNexcess,
 			handleDomainVerificationRequest,
 			getHasDomainNextText
 		} }>

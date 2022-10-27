@@ -4,6 +4,7 @@ export const GoLiveStringData = {
 	goLiveProviderText: {
 		getDomain: __('Get My Domain', 'nexcess-mapps'),
 		haveDomain: __('I\'ve Got My Domain', 'nexcess-mapps'),
+		checkout: __('Checkout', 'nexcess-mapps'),
 		continueStr: __('Continue', 'nexcess-mapps'),
 		errorMessage: __('There was an error while updating your site\'s domain.', 'nexcess-mapps'),
 		errorMessageVerification: __('There was an error while verifying your site\'s domain.', 'nexcess-mapps'),
@@ -13,9 +14,9 @@ export const GoLiveStringData = {
 	},
 	start: {
 		screenTitle1: __('Set your site domain', 'nexcess-mapps'),
-		screenTitle2: __('Own your perfect domain with Nexcess.', 'nexcess-mapps'),
+		screenTitle2: __('Find the perfect domain.', 'nexcess-mapps'),
 		screenDescription1: __('Let\'s get your site set up with the perfect domain. If you don\'t already have one, don\'t worry - we can help you out.', 'nexcess-mapps'),
-		screenDescription2: __('Nexcess helps you find, create and own your perfect domain. It\'s so easy, even we could do it. Once you\'ve got your domain, come back here and select "I\'ve Got My Domain".', 'nexcess-mapps'),
+		screenDescription2: __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur augue eget condimentum dapibus. Duis ullamcorper turpis sit amet sapien hendrerit consequat in eget massa.', 'nexcess-mapps'), // TODO: Replace lorem ipsum with real text
 		actionLabel: __('Have you purchased your custom domain?', 'nexcess-mapps'),
 		actionTitle1: __('Yes! I have my own custom domain.', 'nexcess-mapps'),
 		actionTitle2: __('No, I need one!', 'nexcess-mapps'),

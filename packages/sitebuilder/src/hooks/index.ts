@@ -1,3 +1,4 @@
+export * from './useFindDomain';
 export * from './useFirstTimeConfiguration';
 export * from './useLookAndFeel';
 export * from './useGoLive';

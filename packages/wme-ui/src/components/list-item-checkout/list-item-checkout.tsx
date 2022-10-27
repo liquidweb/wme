@@ -87,6 +87,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
     icon = <AddShoppingCartIcon />,
     iconDisabled = <NotInterestedIcon />,
     iconSelected = <StyledCheckCircleIcon />,
+    onClick,
     ...rest
   } = props;
 
@@ -100,7 +101,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
     <StyledListItemCheckout
       className="WmeListItemCheckout-root"
       secondaryAction={(
-        <IconButton edge="end" aria-label="add-to-cart" disabled={disabled}>
+        <IconButton edge="end" aria-label="add-to-cart" disabled={disabled} onClick={onClick}>
           {iconToRender}
         </IconButton>
       )}

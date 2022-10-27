@@ -4,13 +4,12 @@ import { useTheme } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 import { useWizard, useGoLive } from '@sb/hooks';
-import { NEXCESS_DOMAIN_REGISTRATION_URL } from '@sb/constants';
 import { SkipVerificationWarning } from '@go-live/screens';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
 const GoLiveWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
-	const { goLiveState: { steps, hasDomain, lastStep, showGetDomain, showLogoutButton, verificationStatus }, goLiveState, setShowGetDomain, setGoLiveState, submitGoLiveForm } = useGoLive();
+	const { goLiveState: { steps: stepsOriginal, stepsAlternative, hasDomain, lastStep, showConnectWithNexcess, showLogoutButton, verificationStatus }, setShowConnectWithNexcess, submitGoLiveForm, setGoLiveState } = useGoLive();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
 	const [searchParams] = useSearchParams();
@@ -21,22 +20,16 @@ const GoLiveWizard = () => {
 
 	const handleNext = () => {
 		if (activeStep === 1) {
-			if (hasDomain === 'no' && NEXCESS_DOMAIN_REGISTRATION_URL && ! showGetDomain) {
-				setShowGetDomain(true);
-				return false;
+			if (hasDomain === 'no' && ! showConnectWithNexcess) {
+				return setShowConnectWithNexcess(true);
 			}
-			setGoLiveState({
-				...goLiveState,
-				hasDomain: 'yes',
-				showGetDomain: false,
-			});
-			goToNextStep();
 		}
-		if (activeStep === 2 && verificationStatus === 'advanced') {
-			setShowVerificationWarning(true);
-			return false;
+		if (activeStep === 2) {
+			if (verificationStatus === 'advanced') {
+				return setShowVerificationWarning(true);
+			}
 		}
-		goToNextStep();
+		return goToNextStep();
 	};
 
 	const handleSkipVerificationWarningClose = () => {
@@ -49,9 +42,15 @@ const GoLiveWizard = () => {
 	};
 
 	const handleBack = () => {
-		if (hasDomain === 'no' && showGetDomain) {
-			setShowGetDomain(false);
-			return;
+		if (activeStep === 1) {
+			if (showConnectWithNexcess) {
+				setGoLiveState((prevState) => ({
+					...prevState,
+					selectedDomains: [],
+					searchDomain: '',
+					showConnectWithNexcess: false,
+				}));
+			}
 		}
 		goToPreviousStep();
 	};
@@ -61,6 +60,8 @@ const GoLiveWizard = () => {
 			submitGoLiveForm();
 		}
 	};
+
+	const steps = showConnectWithNexcess ? stepsAlternative : stepsOriginal;
 
 	return (
 		<>
