@@ -4,6 +4,13 @@ namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\StoresData;
 
+/**
+ * After Kadence template import, the site logo may be reset.
+ * Restoration of the logo set in the FTC wizard is handled in
+ * FirstTimeConfiguration::restoreLogoAfterKadenceImport().
+ *
+ * @see FirstTimeConfiguration::restoreLogoAfterKadenceImport()
+ */
 class LookAndFeel extends Wizard {
 
 	use StoresData;

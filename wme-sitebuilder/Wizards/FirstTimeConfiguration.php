@@ -57,6 +57,7 @@ class FirstTimeConfiguration extends Wizard {
 		parent::register_hooks();
 
 		add_action( 'current_screen', [ $this, 'autoLaunch' ] );
+		add_action( 'kadence-starter-templates/after_all_import_execution', [ $this, 'restoreLogoAfterKadenceImport' ] );
 	}
 
 	/**
@@ -270,6 +271,7 @@ class FirstTimeConfiguration extends Wizard {
 	public function setLogo( $logo ) {
 		if ( empty( $logo ) ) {
 			update_option( 'site_logo', null );
+			$this->getData()->set( 'logo', null );
 			return;
 		}
 
@@ -283,6 +285,8 @@ class FirstTimeConfiguration extends Wizard {
 		if ( $logo === $this->getLogo() ) {
 			return;
 		}
+
+		$this->getData()->set( 'logo', $logo );
 
 		if ( update_option( 'site_logo', $logo ) ) {
 			return;
@@ -430,5 +434,21 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Restore set logo after Kadence template import.
+	 *
+	 * @param string[] $selected_import_files
+	 */
+	public function restoreLogoAfterKadenceImport( $selected_import_files ) {
+		$site_logo = get_option( 'site_logo', null );
+		$ftc_logo  = $this->getData()->get( 'logo' );
+
+		if ( $site_logo === $ftc_logo ) {
+			return;
+		}
+
+		update_option( 'site_logo', $ftc_logo );
 	}
 }
