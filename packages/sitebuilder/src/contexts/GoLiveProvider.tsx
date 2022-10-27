@@ -37,7 +37,6 @@ type DomainVerificationResponseType = DomainVerficationSuccessInterface | Domain
 const { goLiveProviderText: {
 	getDomain,
 	haveDomain,
-	checkout,
 	continueStr,
 	errorMessage,
 	errorMessageVerification,

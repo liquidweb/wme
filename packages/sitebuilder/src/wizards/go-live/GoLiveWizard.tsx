@@ -8,7 +8,7 @@ import { SkipVerificationWarning } from '@go-live/screens';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
 const GoLiveWizard = () => {
-	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
+	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep, closeAll } = useWizard();
 	const { goLiveState: { steps: stepsOriginal, stepsAlternative, selectedDomains, hasDomain, lastStep, showLogoutButton, verificationStatus }, setShowNexcessNavigation, submitGoLiveForm, setGoLiveState } = useGoLive();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
@@ -65,7 +65,11 @@ const GoLiveWizard = () => {
 
 	const handleSave = () => {
 		if (activeStep === lastStep) {
-			submitGoLiveForm();
+			if (nexcessNavigation) {
+				closeAll();
+			} else {
+				submitGoLiveForm();
+			}
 		}
 	};
 

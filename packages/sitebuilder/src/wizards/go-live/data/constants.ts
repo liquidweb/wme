@@ -42,6 +42,10 @@ export const GoLiveStringData = {
 		screenTitle: __('Good choice! We’ll need to connect to your Nexcess account.', 'nexcess-mapps'),
 		screenDescription: __('We\'ll make sure your chosen domain is managed by your Nexcess account. Once connected, we\'ll navigate you back here to complete the process.', 'nexcess-mapps'),
 	},
+	claimYourDomain: {
+		screenTitle: __('is all yours!', 'nexcess-mapps'),
+		screenDescription: __('While a new domain is often ready for use within an hour, it can take up to 8 hours to completely process.', 'nexcess-mapps'),
+	},
 	errorDomainGeneral: {
 		accountContent: __('It looks like we\'re having trouble connecting your domain.', 'nexcess-mapps'),
 		accountCta: __('Contact Support', 'nexcess-mapps')

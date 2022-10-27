@@ -1,7 +1,7 @@
 import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { GO_LIVE_PROPS } from '@sb/constants';
-import { Start, VerifyDomain, UpdateSiteUrl, ConnectWithNexcess, FindDomain } from '../screens';
+import { Start, VerifyDomain, UpdateSiteUrl, ConnectWithNexcess, FindDomain, ClaimYourDomain } from '../screens';
 
 export interface GoLiveInterface {
 	isLoading: boolean;
@@ -102,7 +102,7 @@ const localData: GoLiveInterface = {
 			nextText: __('Save & Exit', 'nexcess-mapps'),
 			loadingText: __('Processing', 'nexcess-mapps'),
 			backText: __('Back', 'nexcess-mapps'),
-			screen: <UpdateSiteUrl />,
+			screen: <ClaimYourDomain />,
 			disable: true,
 			disableNext: false,
 		},
