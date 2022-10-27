@@ -9,7 +9,7 @@ import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
 const GoLiveWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
-	const { goLiveState: { steps: stepsOriginal, stepsAlternative, selectedDomains, hasDomain, lastStep, showConnectWithNexcess, showLogoutButton, verificationStatus }, setShowConnectWithNexcess, submitGoLiveForm, setGoLiveState } = useGoLive();
+	const { goLiveState: { steps: stepsOriginal, stepsAlternative, selectedDomains, hasDomain, lastStep, showLogoutButton, verificationStatus }, setShowNexcessNavigation, submitGoLiveForm, setGoLiveState } = useGoLive();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
 	const createPurchaseFlow = useCreatePurchaseFlow();
@@ -17,19 +17,20 @@ const GoLiveWizard = () => {
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
 		: 1;
+	const nexcessNavigation = searchParams.get('nexcess') === 'true';
 	const stepIndex = activeStep >= 1 ? activeStep - 1 : 0;
 
 	const handleNext = () => {
 		if (activeStep === 1) {
-			if (hasDomain === 'no' && ! showConnectWithNexcess) {
-				return setShowConnectWithNexcess(true);
+			if (hasDomain === 'no' && ! nexcessNavigation) {
+				return setShowNexcessNavigation(true);
 			}
 		}
 		if (activeStep === 2) {
 			if (verificationStatus === 'advanced') {
 				return setShowVerificationWarning(true);
 			}
-			if (showConnectWithNexcess) {
+			if (nexcessNavigation) {
 				return createPurchaseFlow.mutate(selectedDomains.map((domain) => ({
 					domainName: domain.domain,
 					packageId: domain.package.id
@@ -50,13 +51,13 @@ const GoLiveWizard = () => {
 
 	const handleBack = () => {
 		if (activeStep === 1) {
-			if (showConnectWithNexcess) {
+			if (nexcessNavigation) {
 				setGoLiveState((prevState) => ({
 					...prevState,
 					selectedDomains: [],
 					searchDomain: '',
-					showConnectWithNexcess: false,
 				}));
+				setShowNexcessNavigation(false);
 			}
 		}
 		goToPreviousStep();
@@ -68,7 +69,7 @@ const GoLiveWizard = () => {
 		}
 	};
 
-	const steps = showConnectWithNexcess ? stepsAlternative : stepsOriginal;
+	const steps = nexcessNavigation ? stepsAlternative : stepsOriginal;
 
 	return (
 		<>

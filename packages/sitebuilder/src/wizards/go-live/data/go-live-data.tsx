@@ -14,7 +14,6 @@ export interface GoLiveInterface {
 	verificationStatus: string;
 	verificationErrorType: boolean | string;
 	verificationMessage: string;
-	showConnectWithNexcess: boolean;
 	showLogoutButton: boolean;
 	steps: Array<StepInterface>;
 	stepsAlternative: Array<StepInterface>;
@@ -31,7 +30,6 @@ const localData: GoLiveInterface = {
 	verificationStatus: 'default',
 	verificationErrorType: false,
 	verificationMessage: '',
-	showConnectWithNexcess: false,
 	showLogoutButton: false,
 	steps: [
 		{

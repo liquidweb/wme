@@ -15,7 +15,7 @@ export interface GoLiveProviderContextInterface {
 	setIsLoading: (loading: boolean) => void;
 	getHasDomainNextText: (hasDomain: string) => void;
 	setHasDomain: (hasDomain: string) => void;
-	setShowConnectWithNexcess: (show: boolean) => void;
+	setShowNexcessNavigation: (show: boolean) => void;
 }
 
 export interface DomainVerficationSuccessInterface {
@@ -81,6 +81,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
+	const nexcessNavigation = searchParams.get('nexcess') === 'true';
 
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
@@ -96,7 +97,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	useEffect(() => {
 		if (activeStep === 3) {
-			if (! goLiveState.showConnectWithNexcess) {
+			if (! nexcessNavigation) {
 				if (! capturedDomain) {
 					navigate('/wizard/go-live');
 				}
@@ -115,7 +116,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 				}
 			}
 		}
-	}, [activeStep]);
+	}, [activeStep, nexcessNavigation]);
 
 	const submitGoLiveForm = () => {
 		const { steps, showLogoutButton } = goLiveState;
@@ -313,11 +314,13 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setShowConnectWithNexcess = (show: boolean) => {
-		setGoLiveState({
-			...goLiveState,
-			showConnectWithNexcess: show,
-		});
+	const setShowNexcessNavigation = (show: boolean) => {
+		if (show) {
+			searchParams.set('nexcess', 'true');
+		} else {
+			searchParams.delete('nexcess');
+		}
+		setSearchParams(searchParams);
 	};
 
 	return (
@@ -328,7 +331,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			submitDomainVerification,
 			setIsLoading,
 			setHasDomain,
-			setShowConnectWithNexcess,
+			setShowNexcessNavigation,
 			handleDomainVerificationRequest,
 			getHasDomainNextText
 		} }>
