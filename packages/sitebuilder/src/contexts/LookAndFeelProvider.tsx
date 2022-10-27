@@ -1,23 +1,22 @@
 import React, { createContext, useState } from 'react';
-import { beforeUnloadListener, handleActionRequest } from '@moderntribe/wme-utils';
+import { handleActionRequest } from '@moderntribe/wme-utils';
 import LookAndFeelScreenData, { LookAndFeelInterface } from '@sb/wizards/look-and-feel/data/look-and-feel-screen-data';
 import { useWizard } from '@sb/hooks';
 import { kadenceImport } from '@sb/utils/kadenceImport';
-import { FTC_PROPS, LOOK_AND_FEEL_PROPS, SITEBUILDER_URL } from '@sb/constants';
+import { FTC_PROPS, LOOK_AND_FEEL_PROPS } from '@sb/constants';
 import { __ } from '@wordpress/i18n';
 
 export interface LookAndFeelProviderContextInterface {
   lookAndFeelState: LookAndFeelInterface;
-  templates: any; // TODO COLTEN add types
+  templates: any;
   setTemplateValue: (val: {slug: string, url: string, name: string}) => void;
   setFontValue: (font: string) => void;
   setColorValue: (color: string) => void;
   handleUpdateIframe: () => void;
-  setIsImporting: (status:boolean) => void;
   setImportingError: () => void;
-  setImportDone: () => void;
+  setImportDone: (status: boolean) => void;
   ajaxDelete: () => void;
-  handleSave: () => void;
+  initImport: () => void;
   setShowDeleteWarning: (status:boolean) => void;
   setDeleteValue: (val: string) => void;
   handleImport: (val: string) => void;
@@ -27,7 +26,7 @@ export interface LookAndFeelProviderContextInterface {
 export const LookAndFeelContext = createContext<LookAndFeelProviderContextInterface | null>(null);
 
 const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
-	const { goToNextStep } = useWizard();
+	const { goToNextStep, goToStep } = useWizard();
 	const [lookAndFeelState, setLookAndFeelState] = useState<LookAndFeelInterface>(LookAndFeelScreenData());
 	const [templates, setTemplates] = useState();
 	const { kadence } = LOOK_AND_FEEL_PROPS;
@@ -69,14 +68,6 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setIsImporting = (status:boolean) => {
-		setLookAndFeelState({
-			...lookAndFeelState,
-			isImporting: status,
-			showDeleteWarning: lookAndFeelState.showDeleteWarning && false,
-		});
-	};
-
 	const setShowDeleteWarning = (status:boolean) => {
 		setLookAndFeelState({
 			...lookAndFeelState,
@@ -91,10 +82,10 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setImportDone = () => {
+	const setImportDone = (status: boolean) => {
 		setLookAndFeelState({
 			...lookAndFeelState,
-			importDone: ! lookAndFeelState.importDone,
+			importDone: status,
 		});
 	};
 
@@ -135,7 +126,7 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		if (typeof response.status !== 'undefined' && response.status === 'newAJAX') {
 			ajaxDemoData();
 		} else {
-			saveWizardSettings();
+			finishKadenceImport();
 		}
 	};
 
@@ -180,12 +171,23 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	// Triggered on save. Determines if delete warning should be shown.
-	const handleSave = () => {
+	const initImport = () => {
 		if ((LOOK_AND_FEEL_PROPS?.template === '') || (lookAndFeelState.template.slug === LOOK_AND_FEEL_PROPS?.template?.slug)) {
 			handleImport('keep');
 		} else {
 			setShowDeleteWarning(true);
 		}
+	};
+
+	// Starts importing process.
+	const handleImport = async (val: string) => {
+		setShowDeleteWarning(false);
+
+		if (val === 'delete') {
+			await ajaxDelete();
+		}
+
+		await ajaxDemoData();
 	};
 
 	// Sets logo back to what the user set it as in the FTC. Kadence will replace the logo with the template logo, so this is a workaround to avoid that.
@@ -205,7 +207,21 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 	};
 
-	// Saves settings, sends data to backend.
+	// Run last two Kadence AJAX requests and set import to done.
+	const finishKadenceImport = async () => {
+		await ajaxCustomizer();
+		await ajaxAfter();
+		setImportDone(true);
+
+		// Delay 1 second to show progress bar got to 100%.
+		setTimeout(() => {
+			goToStep(6);
+		}, 1000);
+
+		saveWizardSettings();
+	};
+
+	// Sets logo back to user-saved logo, saves settings, sends data to backend.
 	const saveWizardSettings = async () => {
 		const data = {
 			_wpnonce: LOOK_AND_FEEL_PROPS.ajax?.nonce || '',
@@ -216,32 +232,16 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			color: lookAndFeelState.color,
 		};
 
-		await ajaxCustomizer();
-		await ajaxAfter();
-
 		// Set logo back to what it was before import.
 		await setLogo();
 
-		await handleActionRequest(data).then(() => {
-			removeEventListener('beforeunload', beforeUnloadListener);
-			window.location.assign(SITEBUILDER_URL);
-		}).catch((err:JQueryXHR) => {
-			setIsImporting(false);
-			const errorMessage = err?.responseJSON?.message;
-			// eslint-disable-next-line no-console
-			console.error(errorMessage + errorMessage);
-		});
-	};
-
-	// Starts importing process.
-	const handleImport = async (val: string) => {
-		setIsImporting(true);
-
-		if (val === 'delete') {
-			await ajaxDelete();
-		}
-
-		await ajaxDemoData();
+		// Submit data to backend.
+		await handleActionRequest(data)
+			.catch((err:JQueryXHR) => {
+				const errorMessage = err?.responseJSON?.message;
+				// eslint-disable-next-line no-console
+				console.error(errorMessage);
+			});
 	};
 
 	return (
@@ -253,12 +253,11 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			setColorValue,
 			setDeleteValue,
 			handleUpdateIframe,
-			setIsImporting,
 			setImportingError,
 			setImportDone,
 			setShowDeleteWarning,
 			ajaxDelete,
-			handleSave,
+			initImport,
 			handleImport,
 			ajaxTemplateData
 		} }>

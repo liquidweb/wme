@@ -31,7 +31,7 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 					width="100"
 					logoSrc={ <StoreBuilderLogo /> }
 				/>
-				{ location.pathname === '/wizard/look-and-feel' && currentStep > 1 ? <ModalDeviceSelection /> : null }
+				{ (location.pathname === '/wizard/look-and-feel') && (currentStep !== 1 && currentStep < 5) ? <ModalDeviceSelection /> : null }
 				{
 					! hideExit &&
 					<ExitButton onClick={ handleExitClick }>

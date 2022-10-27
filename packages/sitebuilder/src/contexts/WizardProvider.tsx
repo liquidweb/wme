@@ -10,7 +10,6 @@ export interface WizardProviderStateInterface {
 	showCloseWarning: boolean | null;
 	activeDevice: string;
 	hasStepped: boolean;
-	showDeviceHeader: boolean;
 }
 
 export interface WizardProviderContextInterface {
@@ -32,7 +31,6 @@ const initialState: WizardProviderStateInterface = {
 	showCloseWarning: null,
 	activeDevice: 'desktop',
 	hasStepped: false,
-	showDeviceHeader: false
 };
 
 export const WizardContext =
