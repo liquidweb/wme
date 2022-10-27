@@ -3,7 +3,7 @@ import { handleActionRequest } from '@moderntribe/wme-utils';
 import LookAndFeelScreenData, { LookAndFeelInterface } from '@sb/wizards/look-and-feel/data/look-and-feel-screen-data';
 import { useWizard } from '@sb/hooks';
 import { kadenceImport } from '@sb/utils/kadenceImport';
-import { FTC_PROPS, LOOK_AND_FEEL_PROPS } from '@sb/constants';
+import { LOOK_AND_FEEL_PROPS } from '@sb/constants';
 import { __ } from '@wordpress/i18n';
 
 export interface LookAndFeelProviderContextInterface {
@@ -31,7 +31,6 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 	const [templates, setTemplates] = useState();
 	const { kadence } = LOOK_AND_FEEL_PROPS;
 	const kadenceNonce = kadence.ajax.nonce;
-	const logoId = FTC_PROPS?.site?.logo?.id || {};
 
 	const setTemplateValue = (val: { slug: string, url: string, name: string}) => {
 		const { name, slug, url } = val;
@@ -190,23 +189,6 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 		await ajaxDemoData();
 	};
 
-	// Sets logo back to what the user set it as in the FTC. Kadence will replace the logo with the template logo, so this is a workaround to avoid that.
-	const setLogo = async () => {
-		const logoPayload = {
-			_wpnonce: FTC_PROPS?.ajax?.nonce || '',
-			action: FTC_PROPS?.ajax?.action || '',
-			sub_action: 'finish',
-			logo: logoId,
-		};
-
-		handleActionRequest(logoPayload)
-			.catch((err:JQueryXHR) => {
-				const errorMessage = err?.responseJSON?.message;
-				// eslint-disable-next-line no-console
-				console.error(errorMessage + errorMessage);
-			});
-	};
-
 	// Run last two Kadence AJAX requests and set import to done.
 	const finishKadenceImport = async () => {
 		await ajaxCustomizer();
@@ -231,9 +213,6 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			font: lookAndFeelState.font,
 			color: lookAndFeelState.color,
 		};
-
-		// Set logo back to what it was before import.
-		await setLogo();
 
 		// Submit data to backend.
 		await handleActionRequest(data)
