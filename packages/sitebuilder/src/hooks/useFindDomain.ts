@@ -6,6 +6,10 @@ import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
 
 import { useGoLive } from './useGoLive';
 
+type UseFindDomainProps = {
+	maxSelectedDomains: number;
+}
+
 type UseFindDomain = UseQueryResult<Domain[], unknown> & {
 	search: string
   setSearch: (search: string) => void
@@ -18,11 +22,12 @@ type Response = {
 	alternatives: Domain[]
 }
 
-export function useFindDomain(): UseFindDomain {
+export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 	const {
 		goLiveState: { selectedDomains, searchDomain: search },
 		setGoLiveState,
 	} = useGoLive();
+	const { maxSelectedDomains = 1 } = props || {};
 	const { goLiveProviderText: { checkout } } = GoLiveStringData;
 
 	const query = useQuery(['domains', search], async () => {
@@ -54,11 +59,10 @@ export function useFindDomain(): UseFindDomain {
 		const selected = selectedDomains.find((_) => _.domain === domain.domain);
 		setGoLiveState((prevGoLiveState) => {
 			const { selectedDomains: prev } = prevGoLiveState;
-			const newSelected = selected ? prev.filter((_) => _.domain !== domain.domain) : [...prev, domain];
-
+			const newSelected = selected ? prev.filter((_) => _.domain !== domain.domain) : [domain, ...prev];
 			return {
 				...prevGoLiveState,
-				selectedDomains: newSelected,
+				selectedDomains: newSelected.slice(0, maxSelectedDomains),
 			};
 		});
 	}
