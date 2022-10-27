@@ -131,7 +131,11 @@ class StoreDetails extends Module implements LoadsConditionally {
 		];
 
 		if ( class_exists( \WP101\API::class ) ) {
-			$props['wp101_api_key'] = \WP101\API::get_instance()->get_public_api_key();
+			$key = \WP101\API::get_instance()->get_public_api_key();
+
+			if ( ! is_wp_error( $key ) ) {
+				$props['wp101_api_key'] = $key;
+			}
 		}
 
 		printf(
