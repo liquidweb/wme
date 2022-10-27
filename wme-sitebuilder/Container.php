@@ -97,11 +97,7 @@ class Container extends BaseContainer {
 					$app->make( Contracts\ManagesDomain::class )
 				);
 			},
-			Wizards\LookAndFeel::class            => function ( $app ) {
-				return new Wizards\LookAndFeel(
-					$app->make( Modules\StoreDetails::class )
-				);
-			},
+			Wizards\LookAndFeel::class            => null,
 			Wizards\PaymentGatewayPayPal::class   => null,
 			Wizards\PaymentGatewayStripe::class   => null,
 			Wizards\Shipping::class               => function ( $app ) {

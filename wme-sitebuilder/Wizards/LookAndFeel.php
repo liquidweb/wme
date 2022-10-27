@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\StoresData;
-use Tribe\WME\Sitebuilder\Modules\StoreDetails;
 
 class LookAndFeel extends Wizard {
 
@@ -40,16 +39,9 @@ class LookAndFeel extends Wizard {
 	public $errors = [];
 
 	/**
-	 * @var StoreDetails
-	 */
-	protected $store_details;
-
-	/**
 	 * Construct.
 	 */
-	public function __construct( StoreDetails $store_details ) {
-		$this->store_details = $store_details;
-
+	public function __construct() {
 		parent::__construct();
 
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
@@ -62,15 +54,15 @@ class LookAndFeel extends Wizard {
 	 */
 	public function props() {
 		return [
-			'canBeClosed'     => true,
-			'autoLaunch'      => false,
-			'theme'           => wp_get_theme()->name,
-			'template'        => $this->getTemplate(),
-			'font'            => $this->getFont(),
-			'color'           => $this->getColor(),
-			'completed'       => $this->isComplete(),
-			'storeDetailsURL' => $this->store_details->getPageUrl(),
-			'kadence'         => [
+			'canBeClosed' => true,
+			'autoLaunch'  => false,
+			'theme'       => wp_get_theme()->name,
+			'template'    => $this->getTemplate(),
+			'font'        => $this->getFont(),
+			'color'       => $this->getColor(),
+			'completed'   => $this->isComplete(),
+			'nextUrl'     => apply_filters( 'wme_sitebuilder_next_url', null, $this->admin_page_slug, $this->wizard_slug ),
+			'kadence'     => [
 				'ajax' => [
 					'nonce' => wp_create_nonce( 'kadence-ajax-verification' ),
 				],
