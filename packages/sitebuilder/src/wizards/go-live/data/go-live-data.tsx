@@ -94,7 +94,7 @@ const localData: GoLiveInterface = {
 			backText: __('Back', 'nexcess-mapps'),
 			screen: <ConnectWithNexcess />,
 			disable: true,
-			disableNext: true,
+			disableNext: false,
 		},
 		{
 			id: 2,

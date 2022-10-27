@@ -38,6 +38,10 @@ export const GoLiveStringData = {
 		loginUrlLabelText: __('Copy Your New Login URL', 'nexcess-mapps'),
 		loginUrlHelperText: __('Copy and save this URL. Once your domain is connected you\'ll need it to login.', 'nexcess-mapps')
 	},
+	connectWithNexcess: {
+		screenTitle: __('Good choice! We’ll need to connect to your Nexcess account.', 'nexcess-mapps'),
+		screenDescription: __('We\'ll make sure your chosen domain is managed by your Nexcess account. Once connected, we\'ll navigate you back here to complete the process.', 'nexcess-mapps'),
+	},
 	errorDomainGeneral: {
 		accountContent: __('It looks like we\'re having trouble connecting your domain.', 'nexcess-mapps'),
 		accountCta: __('Contact Support', 'nexcess-mapps')

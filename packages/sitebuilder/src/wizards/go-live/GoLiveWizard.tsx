@@ -3,15 +3,16 @@ import { WizardFooter } from '@moderntribe/wme-ui';
 import { useTheme } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
-import { useWizard, useGoLive } from '@sb/hooks';
+import { useWizard, useGoLive, useCreatePurchaseFlow } from '@sb/hooks';
 import { SkipVerificationWarning } from '@go-live/screens';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
 const GoLiveWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
-	const { goLiveState: { steps: stepsOriginal, stepsAlternative, hasDomain, lastStep, showConnectWithNexcess, showLogoutButton, verificationStatus }, setShowConnectWithNexcess, submitGoLiveForm, setGoLiveState } = useGoLive();
+	const { goLiveState: { steps: stepsOriginal, stepsAlternative, selectedDomains, hasDomain, lastStep, showConnectWithNexcess, showLogoutButton, verificationStatus }, setShowConnectWithNexcess, submitGoLiveForm, setGoLiveState } = useGoLive();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
+	const createPurchaseFlow = useCreatePurchaseFlow();
 	const [searchParams] = useSearchParams();
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
@@ -27,6 +28,12 @@ const GoLiveWizard = () => {
 		if (activeStep === 2) {
 			if (verificationStatus === 'advanced') {
 				return setShowVerificationWarning(true);
+			}
+			if (showConnectWithNexcess) {
+				return createPurchaseFlow.mutate(selectedDomains.map((domain) => ({
+					domainName: domain.domain,
+					packageId: domain.package.id
+				})));
 			}
 		}
 		return goToNextStep();
@@ -98,6 +105,8 @@ const GoLiveWizard = () => {
 				backText={ __('Back', 'nexcess-mapps') }
 				skipText={ __('Skip', 'nexcess-mapps') }
 				nextText={ steps[ stepIndex ].nextText || __('Next', 'nexcess-mapps') }
+				loadingText={ steps[ stepIndex ].loadingText || __('Loading', 'nexcess-mapps') }
+				isLoading={ createPurchaseFlow.isLoading }
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }
 		</>
