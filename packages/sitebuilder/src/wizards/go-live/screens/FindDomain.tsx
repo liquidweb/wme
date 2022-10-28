@@ -7,6 +7,10 @@ import { useFindDomain } from '@sb/hooks';
 import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
 import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
 
+import {
+	ErrorStatusMessage
+} from './partials';
+
 const loadingSx = {
 	'@keyframes fadeIn': {
 		from: {
@@ -28,9 +32,10 @@ const FindDomain = () => {
 	const { start: {
 		screenTitle2: title,
 		screenDescription2: description,
+		defaultError
 	} } = GoLiveStringData;
 
-	const { search, setSearch, data: domains = [], selectedDomains, toggleSelectedDomain, isFetching } = useFindDomain();
+	const { search, setSearch, data: domains = [], selectedDomains, toggleSelectedDomain, isFetching, isError, error } = useFindDomain();
 	const [internalSearch, setInternalSearch] = React.useState(search);
 
 	const handleSubmit = (event: React.FormEvent) => {
@@ -122,6 +127,7 @@ const FindDomain = () => {
 					}
 				</List>
 			</ThemeProvider>
+			{ isError && <ErrorStatusMessage message={ error[ 0 ]?.message || defaultError } /> }
 		</Box>
 	);
 };

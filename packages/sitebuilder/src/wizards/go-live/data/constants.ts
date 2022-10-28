@@ -21,7 +21,8 @@ export const GoLiveStringData = {
 		actionTitle1: __('Yes! I have my own custom domain.', 'nexcess-mapps'),
 		actionTitle2: __('No, I need one!', 'nexcess-mapps'),
 		actionContent1: __('If you have your own domain already then you\'re ready to connect and go live.', 'nexcess-mapps'),
-		actionContent2: __('Nexcess will help you find and own your perfect domain name.', 'nexcess-mapps')
+		actionContent2: __('Nexcess will help you find and own your perfect domain name.', 'nexcess-mapps'),
+		defaultError: __('Something went wrong, please try again', 'nexcess-mapps')
 	},
 	verifyDomain: {
 		screenTitle: __('Verify your domain', 'nexcess-mapps'),

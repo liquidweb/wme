@@ -10,7 +10,7 @@ type UseFindDomainProps = {
 	maxSelectedDomains: number;
 }
 
-type UseFindDomain = UseQueryResult<Domain[], unknown> & {
+type UseFindDomain = UseQueryResult<Domain[], Error[]> & {
 	search: string
   setSearch: (search: string) => void
 	selectedDomains: Domain[]
@@ -21,6 +21,10 @@ type Response = {
 	domain: Domain
 	alternatives: Domain[]
 }
+type Error = {
+	code?: string
+	message?: string
+}
 
 export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 	const {
@@ -30,7 +34,7 @@ export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 	const { maxSelectedDomains = 1 } = props || {};
 	const { goLiveProviderText: { checkout } } = GoLiveStringData;
 
-	const query = useQuery(['domains', search], async () => {
+	const query = useQuery<Response, Error[], Domain[]>(['domains', search], async () => {
 		const goLiveNonce = GO_LIVE_PROPS.ajax?.nonce || '';
 		const goLiveAction = GO_LIVE_PROPS.ajax?.action || '';
 		const response: any = await handleActionRequest({
