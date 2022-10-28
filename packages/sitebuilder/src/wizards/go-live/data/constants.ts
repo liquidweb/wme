@@ -84,5 +84,11 @@ export const GoLiveStringData = {
 		message2: __('If anything does go wrong, please reach out to support and we\'ll get you up and running!', 'nexcess-mapps'),
 		continueButton: __('Continue without verification', 'nexcess-mapps'),
 		nevermind: __('Do not skip verification', 'nexcess-mapps')
+	},
+	domainItems: {
+		perYear: __('/ year', 'nexcess-mapps'),
+		taken: __('Taken', 'nexcess-mapps'),
+		selected: __('Selected', 'nexcess-mapps'),
+		available: __('Available', 'nexcess-mapps'),
 	}
 };

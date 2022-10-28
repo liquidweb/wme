@@ -1,20 +1,25 @@
+import { sprintf } from '@wordpress/i18n';
 import { WmeListItemCheckoutProps } from '@moderntribe/wme-ui/dist/esm/components/list-item-checkout/list-item-checkout';
+import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
 
 function getPrice(price: string, isAvailable: boolean) {
 	if (! isAvailable) {
 		return undefined;
 	}
-	return `$${ price } / year`;
+	return sprintf('%1$s %2$s',
+		price,
+		GoLiveStringData.domainItems.perYear
+	);
 }
 
 function getChipLabel(isAvailable: boolean, isSelected: boolean) {
 	if (! isAvailable) {
-		return 'Taken';
+		return GoLiveStringData.domainItems.taken;
 	}
 	if (isSelected) {
-		return 'Selected';
+		return GoLiveStringData.domainItems.selected;
 	}
-	return 'Available';
+	return GoLiveStringData.domainItems.available;
 }
 
 function getChipColor(isAvailable: boolean, isSelected: boolean): 'success' | undefined {
