@@ -34,6 +34,7 @@ const StyledListItemCheckout = styled(MuiListItem, {
   margin: 0,
   display: 'flex',
   gap: theme.spacing(2),
+  paddingRight: theme.spacing(1),
   '& .MuiButton-text.WmeButton-root': {
     fontWeight: '600',
     color: theme.palette.text.disabled,
@@ -48,6 +49,7 @@ const PrimaryText = styled(Typography, {
   fontWeight: 600,
   color: selected ? theme.palette.primary.dark : theme.palette.text.primary,
   flexGrow: 1,
+  fontSize: '0.88rem',
 }));
 
 const SecondaryText = styled(Typography, {
@@ -57,6 +59,7 @@ const SecondaryText = styled(Typography, {
   display: 'block',
   fontWeight: 600,
   color: theme.palette.text.primary,
+  fontSize: '0.88rem',
 }));
 
 const StyledListItemCheckoutContentInner = styled(Box, {
@@ -74,6 +77,13 @@ const StyledCheckCircleIcon = styled(CheckCircleIcon, {
   slot: 'CheckCircleIcon',
 })(({ theme }) => ({
   color: theme.palette.primary.dark,
+}));
+
+const StyledChip = styled(Chip, {
+  name: 'WmeListItemCheckout',
+  slot: 'Chip',
+})(({ theme }) => ({
+  marginRight: theme.spacing(2),
 }));
 
 const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
@@ -110,7 +120,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
       <PrimaryText selected={selected}>{name}</PrimaryText>
       <StyledListItemCheckoutContentInner className="WmeListItemCheckout-contentInner">
         <SecondaryText>{price}</SecondaryText>
-        {chipLabel && <Chip color={chipColor} label={chipLabel} disabled={disabled} />}
+        {chipLabel && <StyledChip color={chipColor} label={chipLabel} disabled={disabled} />}
       </StyledListItemCheckoutContentInner>
     </StyledListItemCheckout>
   );
