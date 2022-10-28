@@ -29,7 +29,7 @@ const designStepSx = {
 };
 
 const handleRedirect = () => {
-	window.location.assign(LOOK_AND_FEEL_PROPS?.storeDetailsURL || SITEBUILDER_URL);
+	window.location.assign(LOOK_AND_FEEL_PROPS?.nextUrl || SITEBUILDER_URL);
 };
 
 const Complete = () => {
