@@ -61,7 +61,7 @@ class LookAndFeel extends Wizard {
 			'font'        => $this->getFont(),
 			'color'       => $this->getColor(),
 			'completed'   => $this->isComplete(),
-			'nextUrl'     => apply_filters( 'wme_sitebuilder_next_url', null, $this->admin_page_slug, $this->wizard_slug ),
+			'nextUrl'     => apply_filters( 'wme_sitebuilder_next_url', '', $this->admin_page_slug, $this->wizard_slug ),
 			'kadence'     => [
 				'ajax' => [
 					'nonce' => wp_create_nonce( 'kadence-ajax-verification' ),
