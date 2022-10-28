@@ -46,12 +46,32 @@ class LookAndFeel extends Wizard {
 	public $errors = [];
 
 	/**
-	 * Construct.
+	 * Register hooks.
 	 */
-	public function __construct() {
-		parent::__construct();
-
+	public function register_hooks() {
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
+
+		add_filter( 'kadence_starter_get_templates_args', [ $this, 'filterKadenceStarterTemplateArgs' ] );
+
+		parent::register_hooks();
+	}
+
+	/**
+	 * Filter the Kadence Starter Template Request Args to ensure the Email and API Key are set when requesting template data.
+	 *
+	 * @param array $request_args
+	 *
+	 * @return array
+	 */
+	public function filterKadenceStarterTemplateArgs( $request_args ) {
+		$kadence_pro_data = get_option( 'ktp_api_manager' );
+
+		if ( isset( $kadence_pro_data ) && is_array( $kadence_pro_data ) ) {
+			$request_args['api_email'] = ! empty( $request_args['api_email'] ) ? $request_args['api_email'] : $kadence_pro_data['activation_email'];
+			$request_args['api_key']   = ! empty( $request_args['api_key'] ) ? $request_args['api_key'] : $kadence_pro_data['ktp_api_key'];
+		}
+
+		return $request_args;
 	}
 
 	/**
