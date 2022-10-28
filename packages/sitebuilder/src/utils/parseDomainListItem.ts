@@ -1,6 +1,14 @@
 import { sprintf } from '@wordpress/i18n';
-import { WmeListItemCheckoutProps } from '@moderntribe/wme-ui/dist/esm/components/list-item-checkout/list-item-checkout';
 import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
+
+type DomainListItem = {
+	name: string,
+	disabled: boolean,
+	price?: string,
+	chipLabel: string,
+	chipColor: 'success' | undefined,
+	selected: boolean,
+}
 
 function getPrice(price: string, isAvailable: boolean) {
 	if (! isAvailable) {
@@ -29,7 +37,7 @@ function getChipColor(isAvailable: boolean, isSelected: boolean): 'success' | un
 	return 'success';
 }
 
-export function parseDomainListItem(domain: Domain, selected: boolean): WmeListItemCheckoutProps {
+export function parseDomainListItem(domain: Domain, selected: boolean): DomainListItem {
 	return ({
 		name: domain.domain,
 		disabled: ! domain.is_available,
