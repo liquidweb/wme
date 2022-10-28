@@ -1,5 +1,13 @@
 # @moderntribe/sitebuilder
 
+## 1.4.0
+
+### Minor Changes
+
+- 4b4acd8: Potential bug fix for a changed property
+- 3687ac5: Remove FE logo management from L&F wizard in anticipation of BE management
+- 122eefb: Adds completed screen to L&F wizard, refactor for L&F provider for device selection.
+
 ## 1.3.0
 
 ### Minor Changes
