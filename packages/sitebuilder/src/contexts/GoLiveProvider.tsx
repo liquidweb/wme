@@ -72,6 +72,7 @@ export const GoLiveContext = createContext<GoLiveProviderContextInterface | null
 
 const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	const [goLiveState, setGoLiveState] = useState<GoLiveInterface>(GoLiveData());
+	const { selectedDomains } = goLiveState;
 
 	const goLiveNonce = GO_LIVE_PROPS.ajax?.nonce || '';
 	const goLiveAction = GO_LIVE_PROPS.ajax?.action || '';
@@ -95,6 +96,14 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [retryVerfication]);
 
 	useEffect(() => {
+		if (activeStep === 2) {
+			if (nexcessNavigation) {
+				if (selectedDomains.length === 0) {
+					searchParams.set('step', '1');
+					setSearchParams(searchParams);
+				}
+			}
+		}
 		if (activeStep === 3) {
 			if (! nexcessNavigation) {
 				if (! capturedDomain) {
