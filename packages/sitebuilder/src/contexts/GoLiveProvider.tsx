@@ -279,11 +279,6 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			return verificationResponse.registration;
 		}
 
-		// Return early if Domain is pointed to this account.
-		if (response?.is_pointed) {
-			return verificationResponse.success;
-		}
-
 		// Domain is pointing to Nexcess Nameservers.
 		if (response?.uses_local_nameservers) {
 			// Error: Domain is not associated with requesting account.
@@ -291,6 +286,11 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 				return verificationResponse.general;
 			}
 
+			return verificationResponse.success;
+		}
+
+		// Return early if Domain is pointed to this account.
+		if (response?.is_pointed) {
 			return verificationResponse.success;
 		}
 
