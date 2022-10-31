@@ -3,6 +3,7 @@
 namespace Tribe\WME\Sitebuilder\Services;
 
 use Tribe\WME\Sitebuilder\Contracts\ManagesDomain;
+use WP_Error;
 
 /**
  * A service for working with DNS and domains.
@@ -55,6 +56,29 @@ class Domain implements ManagesDomain {
 		}
 
 		return $domain;
+	}
+
+	/**
+	 * Make a request to change the domain of the site.
+	 *
+	 * @param string $domain
+	 *
+	 * @return true|WP_Error
+	 */
+	public function renameDomain( $domain ) {
+		$domain = $this->parseDomain( $domain );
+
+		$siteurl_updated = update_option( 'siteurl', $domain );
+		$home_updated    = update_option( 'home', $domain );
+
+		if ( ! $siteurl_updated || ! $home_updated ) {
+			return new WP_Error(
+				'wme-sitebuilder-domain-failure',
+				__( 'Failed to update the siteurl or home options for the site.', 'wme-sitebuilder' )
+			);
+		}
+
+		return true;
 	}
 
 	/**

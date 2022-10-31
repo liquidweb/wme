@@ -56,6 +56,9 @@ parameters:
 
 	# Error patterns that should be ignored.
 	ignoreErrors:
+		# Uses func_get_args()
+		- '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
+
 		# WordPress coding standards dictate that we *not* use @return void
 		- '#Method .+ has no return typehint specified#'
 
