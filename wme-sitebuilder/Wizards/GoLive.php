@@ -69,6 +69,7 @@ class GoLive extends Wizard {
 		$this->add_ajax_action( 'verify-domain', [ $this, 'verifyDomain' ] );
 		$this->add_ajax_action( 'search-domains', [ $this, 'searchDomains' ] );
 		$this->add_ajax_action( 'create-purchase-flow', [ $this, 'createPurchaseFlow' ] );
+		$this->add_ajax_action( 'check-purchase-status', [ $this, 'checkPurchaseStatus' ] );
 	}
 
 	/**
@@ -269,10 +270,10 @@ class GoLive extends Wizard {
 			), 422 );
 		}
 
-		$this->getData()->set( 'requestedDomains', $request_domains );
+		$this->getData()->set( 'requested_domains', $request_domains );
 		$this->getData()->save();
 
-		$return_url   = '';
+		$return_url   = admin_url( 'admin.php?page=sitebuilder#/wizard/go-live?nexcess=true&step=3' );
 		$callback_url = site_url( self::REWRITE_TAG );
 
 		$response = $this->domains->createPurchaseFlow( $request_domains, $return_url, $callback_url );
@@ -335,6 +336,16 @@ class GoLive extends Wizard {
 			->save();
 
 		return wp_send_json_success();
+	}
+
+	/**
+	 * Provide data for purchase status.
+	 */
+	public function checkPurchaseStatus() {
+		return wp_send_json( [
+			'requested_domains' => $this->getData()->get( 'requested_domains', [] ),
+			'purchased_domains' => $this->getData()->get( 'purchased_domains', [] ),
+		] );
 	}
 
 	/**
