@@ -118,6 +118,63 @@ declare global {
 		disable?: boolean;
 		hidePagination?: boolean;
 	}
+	export interface Domain {
+		domain: string
+		is_available: boolean
+		package: {
+			id: number
+			identity: string
+			metadata: DomainMetadata
+			addons: DomainAddon[]
+			auto_renew: boolean
+			bandwidth: number
+			billing_type: string
+			configuration: DomainConfiguration
+			environment_type: string
+			is_wildcard: boolean
+			label: string
+			name: string
+			orderable_terms: DomainOrderableTerms
+			term_fees: DomainTermFees
+			tld: DomainTld
+			trial_period: number
+			type: string
+		}
+		pricing: any[]
+		tld: DomainTld
+	}
+	export interface DomainAddon {
+		id: number
+		identity: string
+		metadata: DomainMetadata
+		configuration: DomainConfiguration
+		description: string
+		monthly_fee: string
+		name: string
+		term_fees: DomainTermFees
+		type: string
+	}
+
+	export interface DomainConfiguration {}
+
+	export interface DomainTermFees {
+		[key: string]: string
+	}
+
+	export interface DomainOrderableTerms {
+		[key: string]: string
+	}
+
+	export interface DomainTld {
+		id: number
+		identity: string
+		metadata: DomainMetadata
+	}
+
+	export interface DomainMetadata {
+		scope: string
+		uri: string
+	}
 
 	interface Window {
 		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;

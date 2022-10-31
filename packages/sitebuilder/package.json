@@ -2,7 +2,10 @@
 	"name": "@moderntribe/sitebuilder",
 	"version": "1.4.0",
 	"description": "SiteBuilder foundation",
-	"main": "dist/index.js",
+	"source": "src/index.tsx",
+	"main": "dist/umd/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/esm/index.d.ts",
 	"files": [
 		"dist"
 	],
@@ -14,31 +17,33 @@
 		"lint": "eslint . --ext ts,tsx",
 		"lint:fix": "eslint . --fix --ext ts,tsx",
 		"prod": "pnpm run production",
-		"production": "mix --production",
+		"production": "rollup --config node:@moderntribe/rollup-config --environment NODE_ENV:production",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"watch": "mix watch",
+		"watch": "yalc=true rollup --config node:@moderntribe/rollup-config --watch",
 		"watch-poll": "mix watch -- --watch-options-poll=1000"
 	},
 	"author": "",
 	"dependencies": {
 		"@moderntribe/wme-ui": "workspace:*",
-		"@moderntribe/wme-utils": "workspace:*"
+		"@moderntribe/wme-utils": "workspace:*",
+		"@tanstack/react-query": "^4.13.0"
 	},
 	"peerDependencies": {
-		"@wordpress/element": "^4.12.0",
-		"@wordpress/html-entities": "^3.14.0",
-		"@wordpress/i18n": "^4.14.0",
 		"@emotion/react": "^11.9.3",
 		"@emotion/styled": "^11.9.3",
 		"@mui/icons-material": "^5.8.4",
 		"@mui/material": "^5.9.2",
 		"@mui/utils": "^5.9.1",
+		"@wordpress/element": "^4.12.0",
+		"@wordpress/html-entities": "^3.14.0",
+		"@wordpress/i18n": "^4.14.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.4.2"
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.18.6",
+		"@moderntribe/rollup-config": "workspace:*",
 		"@moderntribe/tsconfig": "workspace:*",
 		"@types/jquery": "^3.5.14",
 		"@types/node": "^18.7.16",
@@ -52,11 +57,19 @@
 		"eslint-import-resolver-typescript": "^3.4.1",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"laravel-mix": "^6.0.49",
 		"prettier": "^2.7.1",
+		"rollup": "^2.79.0",
+		"rollup-plugin-copy": "^3.4.0",
+		"rollup-plugin-shell": "^1.0.8",
 		"ts-loader": "^9.3.1",
 		"typescript": "^4.7.4",
 		"webpack-cli": "^4.10.0",
 		"wp-types": "^3.60.0"
+	},
+	"rollup": {
+		"globals": {
+			"@moderntribe/wme-ui": "WmeUI"
+		},
+		"name": "SiteBuilder"
 	}
 }

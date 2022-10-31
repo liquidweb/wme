@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const ScreenWrapper = styled(Box, {
+const ScreenWrapper: any = styled(Box, {
 	name: 'FtcWrapper',
 	slot: 'Root',
 })(() => ({
