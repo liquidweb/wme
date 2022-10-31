@@ -2,6 +2,8 @@
 
 namespace Tribe\WME\Sitebuilder\Contracts;
 
+use WP_Error;
+
 interface ManagesDomain {
 	/**
 	 * Extract the domain portion of a URL.
@@ -20,6 +22,15 @@ interface ManagesDomain {
 	 * @return string|null|false
 	 */
 	public static function formatDomain( $domain );
+
+	/**
+	 * Make a request to change the domain of the site.
+	 *
+	 * @param string $domain
+	 *
+	 * @return true|WP_Error
+	 */
+	public function renameDomain( $domain );
 
 	/**
 	 * Confirm the domain is usable for the site.
