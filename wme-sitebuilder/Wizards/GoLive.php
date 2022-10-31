@@ -232,8 +232,6 @@ class GoLive extends Wizard {
 
 	/**
 	 * AJAX: create UI flow.
-	 *
-	 * @todo define $return_url
 	 */
 	public function createPurchaseFlow() {
 		if ( ! current_user_can( 'manage_options' ) ) {
