@@ -6,13 +6,12 @@ import { IMAGE_DIR, LOOK_AND_FEEL_PROPS, SITEBUILDER_URL } from '@sb/constants';
 
 const designStepSx = {
 	backgroundColor: '#FAFAFA',
-	backgroundImage: `url(${ IMAGE_DIR }setup-background.png)`,
 	backgroundPosition: 'top -50px right',
 	backgroundRepeat: 'no-repeat',
-	width: '280px',
+	width: '286px',
 	position: 'absolute',
 	right: 0,
-	height: 'calc(100vh - 180px)',
+	height: 'calc(100vh - 240px)',
 	top: '50%',
 	transform: 'translateY(-50%)',
 	display: 'flex',
@@ -56,10 +55,10 @@ const Complete = () => {
 				<Box sx={ {
 					width: '181px',
 					height: '198px',
-					backgroundImage: `url(${ IMAGE_DIR }ftc-design-preview.png)`,
+					backgroundImage: `url(${ IMAGE_DIR }store-setup-end-card.png)`,
 					backgroundSize: 'contain',
 					filter: 'drop-shadow(0px 12px 36px rgba(41, 50, 84, 0.1))',
-					mb: 3,
+					mb: 2,
 				} } />
 				<Typography
 					variant="h3"
