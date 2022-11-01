@@ -79,4 +79,26 @@ class Domain implements ManagesDomain {
 			],
 		];
 	}
+
+	/**
+	 * Search available domains based on provided domain name.
+	 *
+	 * @return mixed[]|\WP_Error
+	 */
+	public function searchAvailableDomains( $domains ) {
+		return [];
+	}
+
+	/**
+	 * Create purchase flow.
+	 *
+	 * @param array[] $domains
+	 * @param string  $return_url
+	 * @param string  $callback_url
+	 *
+	 * @return mixed[]|\WP_Error
+	 */
+	public function createPurchaseFlow( $domains, $return_url, $callback_url ) {
+		return [];
+	}
 }
