@@ -7,7 +7,7 @@ export const GoLiveStringData = {
 		continueStr: __('Continue', 'nexcess-mapps'),
 		errorMessage: __('There was an error while updating your site\'s domain.', 'nexcess-mapps'),
 		errorMessageVerification: __('There was an error while verifying your site\'s domain.', 'nexcess-mapps'),
-		errorNotPointed: __('This domain is not pointing to your SiteBuilder website.', 'nexcess-mapps'), // TODO: change SiteBuilder to right product name
+		errorNotPointed: __('This domain is not pointing to your website.', 'nexcess-mapps'), // TODO: change wording to use product name
 		errorNotRegistered: __('This domain is not registered.', 'nexcess-mapps'),
 		errorGeneral: __('We\'re unable to connect your domain.', 'nexcess-mapps'),
 	},
