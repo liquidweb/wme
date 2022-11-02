@@ -215,7 +215,7 @@ class GoLive extends Wizard {
 			$companyName = apply_filters( 'nexcess_mapps_branding_company_name', $companyName );
 
 			return wp_send_json_error( new WP_Error(
-				'mapps-create-ui-flow-failure',
+				'mapps-search-domains-failure',
 				sprintf(
 					/* Translators: %1$s is the branded company name, %2$s is the API error message. */
 					__( 'The %1$s API returned an error: %2$s', 'nexcess-mapps' ),
