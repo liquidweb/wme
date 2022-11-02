@@ -268,8 +268,10 @@ class GoLive extends Wizard {
 			), 422 );
 		}
 
-		$this->getData()->set( 'requested_domains', $request_domains );
-		$this->getData()->save();
+		$this->getData()
+			->set( 'requested_domains', $request_domains )
+			->delete( 'purchased_domains' )
+			->save();
 
 		$return_url   = admin_url( 'admin.php?page=sitebuilder#/wizard/go-live?nexcess=true&step=3' );
 		$callback_url = site_url( self::REWRITE_TAG );
@@ -375,10 +377,10 @@ class GoLive extends Wizard {
 	 */
 	public function finish() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return wp_send_json_error(new WP_Error(
+			return wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator or log into the Nexcess portal to change the site domain.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		// Verify the domain structure.
@@ -387,14 +389,14 @@ class GoLive extends Wizard {
 		$domain = $this->domains->formatDomain( $domain );
 
 		if ( empty( $domain ) ) {
-			return wp_send_json_error(new WP_Error(
+			return wp_send_json_error( new WP_Error(
 				'mapps-invalid-domain',
 				sprintf(
 					/* Translators: %1$s is the provided domain name. */
 					__( '"%s" is not a valid domain name. Please check your spelling and try again.', 'wme-sitebuilder' ),
 					sanitize_text_field( $_POST['domain'] ) // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				)
-			), 422);
+			), 422 );
 		}
 
 		do_action( 'wme_event_sitebuilder_rename_domain', $domain );
