@@ -1,5 +1,12 @@
 # @moderntribe/sitebuilder
 
+## 1.5.0
+
+### Minor Changes
+
+- c8bcf2c: Remove placeholder string from constants
+- 72c095c: Add setup card image to complete screen and update styles
+
 ## 1.4.0
 
 ### Minor Changes
