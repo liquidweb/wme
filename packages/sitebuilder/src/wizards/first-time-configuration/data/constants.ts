@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export const FtcStringData = {
 	start: {
-		title: __('Welcome to SiteBuilder for WordPress!', 'nexcess-mapps'),
+		title: __('Welcome to StoreBuilder for WordPress!', 'nexcess-mapps'),
 		description: __(
 			'Let\'s set up a few basic details about your store. You can skip any of these steps and come back to them later if you\'re not ready to complete them yet.',
 			'nexcess-mapps'
