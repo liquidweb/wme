@@ -377,7 +377,7 @@ class GoLive extends Wizard {
 	 */
 	public function finish() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return wp_send_json_error( new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator or log into the Nexcess portal to change the site domain.', 'wme-sitebuilder' )
 			), 403 );
@@ -389,7 +389,7 @@ class GoLive extends Wizard {
 		$domain = $this->domains->formatDomain( $domain );
 
 		if ( empty( $domain ) ) {
-			return wp_send_json_error( new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-invalid-domain',
 				sprintf(
 					/* Translators: %1$s is the provided domain name. */
@@ -399,7 +399,14 @@ class GoLive extends Wizard {
 			), 422 );
 		}
 
-		do_action( 'wme_event_sitebuilder_rename_domain', $domain );
+		$response = $this->domains->renameDomain( $domain );
+
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( new WP_Error(
+				'mapps-change-domain-failure',
+				$response->get_error_message()
+			) );
+		}
 
 		$this->getData()
 			->set( 'complete', true )
@@ -408,7 +415,7 @@ class GoLive extends Wizard {
 
 		do_action( 'wme_event_wizard_completed', 'golive' );
 
-		return wp_send_json_success( null, 202 );
+		wp_send_json_success( null, 202 );
 	}
 
 	/**
