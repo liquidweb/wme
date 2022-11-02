@@ -129,7 +129,6 @@ declare global {
 			auto_renew: boolean
 			bandwidth: number
 			billing_type: string
-			configuration: DomainConfiguration
 			environment_type: string
 			is_wildcard: boolean
 			label: string
@@ -143,35 +142,31 @@ declare global {
 		pricing: any[]
 		tld: DomainTld
 	}
-	export interface DomainAddon {
+	interface DomainAddon {
 		id: number
 		identity: string
 		metadata: DomainMetadata
-		configuration: DomainConfiguration
 		description: string
 		monthly_fee: string
 		name: string
 		term_fees: DomainTermFees
 		type: string
 	}
-
-	export interface DomainConfiguration {}
-
-	export interface DomainTermFees {
+	interface DomainTermFees {
 		[key: string]: string
 	}
 
-	export interface DomainOrderableTerms {
+	interface DomainOrderableTerms {
 		[key: string]: string
 	}
 
-	export interface DomainTld {
+	interface DomainTld {
 		id: number
 		identity: string
 		metadata: DomainMetadata
 	}
 
-	export interface DomainMetadata {
+	interface DomainMetadata {
 		scope: string
 		uri: string
 	}
