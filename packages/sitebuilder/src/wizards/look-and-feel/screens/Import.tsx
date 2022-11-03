@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { ProgressBar } from '@moderntribe/wme-ui';
+import { ProgressBar, WizardSectionTitle } from '@moderntribe/wme-ui';
 import { randomInt } from '@moderntribe/wme-utils';
 import { useLookAndFeel } from '@sb/hooks';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
+import { IMAGE_DIR } from '@sb/constants';
 
 const Import = () => {
-	const { lookAndFeelState: { importingError, isImporting, importDone } } = useLookAndFeel();
+	const { lookAndFeelState: { importingError, importDone } } = useLookAndFeel();
 	const [progress, setProgress] = useState(5);
 	const [counter, setCounter] = useState(0);
-	const { importScreen: { heading, text, messages, finished, errorMessage } } = lookAndFeelConsts;
+	const { importScreen: { heading, text, messages, finished, errorMessage, paletteAlt } } = lookAndFeelConsts;
 	const [waitingText, setWaitingText] = useState(messages[ 0 ]);
+	const paletteImg = `${ IMAGE_DIR }/palette.png`;
 
 	useEffect(() => {
-		if (! isImporting) {
+		if (importDone) {
 			setWaitingText(finished);
 			setProgress(100);
-			return;
 		}
 
 		if (importingError) {
@@ -38,7 +39,7 @@ const Import = () => {
 			clearInterval(timer);
 			clearInterval(messageTimer);
 		};
-	}, [counter, importDone, importingError]);
+	}, [counter, importingError, importDone]);
 
 	return (
 		<Box sx={ {
@@ -47,16 +48,14 @@ const Import = () => {
 			alignItems: 'center',
 			justifyContent: 'center',
 		} }>
-			{ /* <Box>
-				<img src={ paletteImg } alt="palette" />
-			</Box> */ }
-			<Typography sx={ {
-				fontSize: '48px',
-				// TODO: update color
-				color: 'text.heading',
-			} }>
-				{ heading }
-			</Typography>
+			<WizardSectionTitle
+				bookend
+				heading={ heading }
+				headingVariant="h2"
+				iconAlt={ paletteAlt }
+				iconSrc={ paletteImg }
+				width="425px"
+			/>
 			<Box sx={ {
 				mb: '32px',
 				width: '100%',
