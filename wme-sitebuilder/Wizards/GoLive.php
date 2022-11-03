@@ -12,7 +12,7 @@ class GoLive extends Wizard {
 	use StoresData;
 
 	const DATA_STORE_NAME = '_sitebuilder_go_live';
-	const REWRITE_TAG     = 'domain-purchase-webhook';
+	const REWRITE_TAG     = 'wme-sitebuilder-domain-purchase-webhook';
 
 	/**
 	 * @var string
@@ -185,59 +185,49 @@ class GoLive extends Wizard {
 	public function searchDomains() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return wp_send_json_error( new WP_Error(
-				'mapps-capabilities-failure',
-				__( 'You do not have permission to perform this action. Please contact a site administrator or log into the Nexcess portal to change the site domain.', 'nexcess-mapps' )
+				'wme-sitebuilder-capabilities-failure',
+				__( 'You do not have permission to perform this action. Please contact a site administrator to change the site domain.', 'wme-sitebuilder' )
 			), 403 );
 		}
 
 		// Verify the domain structure.
 		$domain = ! empty( $_POST['domain'] )
-			? Domain::parseDomain( $_POST['domain'] )
+			? $this->domains->parseDomain( $_POST['domain'] )
 			: null;
 
 		$domain = $this->domains->formatDomain( $domain );
 
 		if ( empty( $domain ) ) {
 			return wp_send_json_error( new WP_Error(
-				'mapps-invalid-domain',
+				'wme-sitebuilder-invalid-domain',
 				sprintf(
 					/* Translators: %1$s is the provided domain name. */
-					__( '"%s" is not a valid domain name. Please check your spelling and try again.', 'nexcess-mapps' ),
+					__( '"%s" is not a valid domain name. Please check your spelling and try again.', 'wme-sitebuilder' ),
 					sanitize_text_field( $_POST['domain'] )
 				)
 			), 422 );
 		}
 
-		$response = $this->domains->searchAvailableDomains( $domain );
+		$response_body = $this->domains->searchAvailableDomains( $domain );
 
-		if ( is_wp_error( $response ) ) {
-			$companyName = _x( 'Nexcess', 'company name', 'nexcess-mapps' );
-			$companyName = apply_filters( 'nexcess_mapps_branding_company_name', $companyName );
-
-			return wp_send_json_error( new WP_Error(
-				'mapps-search-domains-failure',
-				sprintf(
-					/* Translators: %1$s is the branded company name, %2$s is the API error message. */
-					__( 'The %1$s API returned an error: %2$s', 'nexcess-mapps' ),
-					$companyName,
-					$response->get_error_message()
-				)
+		if ( is_wp_error( $response_body ) ) {
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-search-domains-failure',
+				$response_body->get_error_message()
 			) );
 		}
-
-		$response_body = wp_remote_retrieve_body( $response );
 
 		return wp_send_json_success( $response_body );
 	}
 
 	/**
-	 * AJAX: create UI flow.
+	 * AJAX: create purchase flow.
 	 */
 	public function createPurchaseFlow() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return wp_send_json_error( new WP_Error(
-				'mapps-capabilities-failure',
-				__( 'You do not have permission to perform this action. Please contact a site administrator or log into the Nexcess portal to change the site domain.', 'nexcess-mapps' )
+				'wme-sitebuilder-capabilities-failure',
+				__( 'You do not have permission to perform this action. Please contact a site administrator to change the site domain.', 'wme-sitebuilder' )
 			), 403 );
 		}
 
@@ -246,7 +236,7 @@ class GoLive extends Wizard {
 
 		foreach ( $selected_domains as $selected_domain ) {
 			$domain_name = ! empty( $selected_domain['domain_name'] )
-				? Domain::parseDomain( $selected_domain['domain_name'] )
+				? $this->domains->parseDomain( $selected_domain['domain_name'] )
 				: null;
 
 			if ( empty( $domain_name ) || empty( $selected_domain['package_id'] ) ) {
@@ -260,10 +250,10 @@ class GoLive extends Wizard {
 		}
 
 		if ( empty( $request_domains ) ) {
-			return wp_send_json_error( new WP_Error(
-				'mapps-invalid-domains',
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-invalid-domains',
 				sprintf(
-					__( 'No valid domain names provided.', 'nexcess-mapps' )
+					__( 'No valid domain names provided.', 'wme-sitebuilder' )
 				)
 			), 422 );
 		}
@@ -273,36 +263,27 @@ class GoLive extends Wizard {
 			->delete( 'purchased_domains' )
 			->save();
 
-		$return_url   = admin_url( 'admin.php?page=sitebuilder#/wizard/go-live?nexcess=true&step=3' );
+		$return_url   = sprintf( 'admin.php?page=sitebuilder#/wizard/go-live?purchase=true&step=3&domain=%s', $request_domains[0]['domain_name'] );
+		$return_url   = admin_url( $return_url );
 		$callback_url = site_url( self::REWRITE_TAG );
 
-		$response = $this->domains->createPurchaseFlow( $request_domains, $return_url, $callback_url );
+		$response_body = $this->domains->createPurchaseFlow( $request_domains, $return_url, $callback_url );
 
-		if ( is_wp_error( $response ) ) {
-			$companyName = _x( 'Nexcess', 'company name', 'nexcess-mapps' );
-			$companyName = apply_filters( 'nexcess_mapps_branding_company_name', $companyName );
-
-			return wp_send_json_error( new WP_Error(
-				'mapps-create-ui-flow-failure',
-				sprintf(
-					/* Translators: %1$s is the branded company name, %2$s is the API error message. */
-					__( 'The %1$s API returned an error: %2$s', 'nexcess-mapps' ),
-					$companyName,
-					$response->get_error_message()
-				)
+		if ( is_wp_error( $response_body ) ) {
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-create-purchase-flow-failure',
+				$response_body->get_error_message()
 			) );
 		}
-
-		$response_body = wp_remote_retrieve_body( $response );
 
 		if ( empty( $response_body['uuid'] ) ) {
-			return wp_send_json_error( new WP_Error(
-				'mapps-response-missing-property',
-				__( 'Expected property `uuid` is missing.', 'nexcess-mapps' )
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-response-missing-property',
+				__( 'Expected property `uuid` is missing.', 'wme-sitebuilder' )
 			) );
 		}
 
-		return wp_send_json_success( $response_body );
+		wp_send_json_success( $response_body );
 	}
 
 	/**
@@ -312,17 +293,13 @@ class GoLive extends Wizard {
 		$payload = file_get_contents( 'php://input' );
 
 		if ( empty( $payload ) ) {
-			status_header( 400 );
-			wp_send_json_error();
-			exit;
+			wp_send_json_error( null, 400 );
 		}
 
 		$payload = json_decode( $payload );
 
 		if ( ! $this->isValidWebhookPayload( $payload ) || 'success' !== $payload->outcome->status ) {
-			status_header( 400 );
-			wp_send_json_error();
-			exit;
+			wp_send_json_error( null, 400 );
 		}
 
 		$domains = $payload->outcome->details->purchased_domain;
