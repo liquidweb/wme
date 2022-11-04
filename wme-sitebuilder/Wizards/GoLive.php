@@ -4,7 +4,6 @@ namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\StoresData;
 use Tribe\WME\Sitebuilder\Contracts\ManagesDomain;
-use Tribe\WME\Sitebuilder\Services\Domain;
 use WP_Error;
 
 class GoLive extends Wizard {
