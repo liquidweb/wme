@@ -15,7 +15,7 @@ export interface GoLiveProviderContextInterface {
 	setIsLoading: (loading: boolean) => void;
 	getHasDomainNextText: (hasDomain: string) => void;
 	setHasDomain: (hasDomain: string) => void;
-	setShowNexcessNavigation: (show: boolean) => void;
+	setShowPurchaseNavigation: (show: boolean) => void;
 }
 
 export interface DomainVerficationSuccessInterface {
@@ -81,7 +81,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
-	const nexcessNavigation = searchParams.get('nexcess') === 'true';
+	const purchaseNavigation = searchParams.get('purchase') === 'true';
 
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
@@ -97,7 +97,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	useEffect(() => {
 		if (activeStep === 2) {
-			if (nexcessNavigation) {
+			if (purchaseNavigation) {
 				if (selectedDomains.length === 0) {
 					searchParams.set('step', '1');
 					setSearchParams(searchParams);
@@ -105,7 +105,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			}
 		}
 		if (activeStep === 3) {
-			if (! nexcessNavigation) {
+			if (! purchaseNavigation) {
 				if (! capturedDomain) {
 					navigate('/wizard/go-live');
 				}
@@ -124,7 +124,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 				}
 			}
 		}
-	}, [activeStep, nexcessNavigation]);
+	}, [activeStep, purchaseNavigation]);
 
 	const submitGoLiveForm = () => {
 		const { steps, showLogoutButton } = goLiveState;
@@ -322,11 +322,11 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setShowNexcessNavigation = (show: boolean) => {
+	const setShowPurchaseNavigation = (show: boolean) => {
 		if (show) {
-			searchParams.set('nexcess', 'true');
+			searchParams.set('purchase', 'true');
 		} else {
-			searchParams.delete('nexcess');
+			searchParams.delete('purchase');
 		}
 		setSearchParams(searchParams);
 	};
@@ -339,7 +339,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			submitDomainVerification,
 			setIsLoading,
 			setHasDomain,
-			setShowNexcessNavigation,
+			setShowPurchaseNavigation,
 			handleDomainVerificationRequest,
 			getHasDomainNextText
 		} }>

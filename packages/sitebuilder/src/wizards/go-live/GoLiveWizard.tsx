@@ -9,7 +9,7 @@ import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
 const GoLiveWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep, closeAll } = useWizard();
-	const { goLiveState: { steps: stepsOriginal, stepsAlternative, selectedDomains, hasDomain, lastStep, showLogoutButton, verificationStatus }, setShowNexcessNavigation, submitGoLiveForm, setGoLiveState } = useGoLive();
+	const { goLiveState: { steps: stepsOriginal, stepsAlternative, selectedDomains, hasDomain, lastStep, showLogoutButton, verificationStatus }, setShowPurchaseNavigation, submitGoLiveForm, setGoLiveState } = useGoLive();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
 	const createPurchaseFlow = useCreatePurchaseFlow();
@@ -17,20 +17,20 @@ const GoLiveWizard = () => {
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
 		: 1;
-	const nexcessNavigation = searchParams.get('nexcess') === 'true';
+	const purchaseNavigation = searchParams.get('purchase') === 'true';
 	const stepIndex = activeStep >= 1 ? activeStep - 1 : 0;
 
 	const handleNext = () => {
 		if (activeStep === 1) {
-			if (hasDomain === 'no' && ! nexcessNavigation) {
-				return setShowNexcessNavigation(true);
+			if (hasDomain === 'no' && ! purchaseNavigation) {
+				return setShowPurchaseNavigation(true);
 			}
 		}
 		if (activeStep === 2) {
 			if (verificationStatus === 'advanced') {
 				return setShowVerificationWarning(true);
 			}
-			if (nexcessNavigation) {
+			if (purchaseNavigation) {
 				return createPurchaseFlow.mutate(selectedDomains.map((domain) => ({
 					domainName: domain.domain,
 					packageId: domain.package.id
@@ -51,13 +51,13 @@ const GoLiveWizard = () => {
 
 	const handleBack = () => {
 		if (activeStep === 1) {
-			if (nexcessNavigation) {
+			if (purchaseNavigation) {
 				setGoLiveState((prevState) => ({
 					...prevState,
 					selectedDomains: [],
 					searchDomain: '',
 				}));
-				setShowNexcessNavigation(false);
+				setShowPurchaseNavigation(false);
 			}
 		}
 		goToPreviousStep();
@@ -65,7 +65,7 @@ const GoLiveWizard = () => {
 
 	const handleSave = () => {
 		if (activeStep === lastStep) {
-			if (nexcessNavigation) {
+			if (purchaseNavigation) {
 				closeAll();
 			} else {
 				submitGoLiveForm();
@@ -73,7 +73,7 @@ const GoLiveWizard = () => {
 		}
 	};
 
-	const steps = nexcessNavigation ? stepsAlternative : stepsOriginal;
+	const steps = purchaseNavigation ? stepsAlternative : stepsOriginal;
 
 	return (
 		<>
