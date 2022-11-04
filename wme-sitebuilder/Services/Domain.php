@@ -103,4 +103,68 @@ class Domain implements ManagesDomain {
 			],
 		];
 	}
+
+	/**
+	 * Search available domains based on provided domain name.
+	 *
+	 * @param string $domain
+	 *
+	 * @return mixed[]|\WP_Error
+	 */
+	public function searchAvailableDomains( $domain ) {
+		return [
+			'domain'       => [
+				'domain'       => $domain,
+				'is_available' => true,
+				'package'      => [
+					'id' => 123,
+				],
+			],
+			'alternatives' => [
+				[
+					'domain'       => 'domain2.tld',
+					'is_available' => true,
+					'package'      => [
+						'id' => 456,
+					],
+				],
+				[
+					'domain'       => 'domain3.tld',
+					'is_available' => true,
+					'package'      => [
+						'id' => 789,
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * Create purchase flow.
+	 *
+	 * @param array[] $domains
+	 * @param string  $return_url
+	 * @param string  $callback_url
+	 *
+	 * @return mixed[]|\WP_Error
+	 */
+	public function createPurchaseFlow( $domains, $return_url, $callback_url ) {
+		return [
+			'action' => 'domain:add',
+			'data'         => null,
+			'callback_url' => null,
+			'return_url'   => null,
+			'uuid'         => 'e23c3631-3148-4b6f-914c-49bb5034d57e',
+			'site_id'      => 0,
+			'outcome'      => [
+				'status'  => 'success',
+				'details' => [
+					'id'               => 0,
+					'identity'         => '',
+					'scope'            => 'order',
+					'purchased_domain' => 'domain.tld',
+				],
+			],
+		];
+	}
 }
