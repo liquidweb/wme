@@ -155,11 +155,11 @@ class Domain implements ManagesDomain {
 			'callback_url' => null,
 			'return_url'   => null,
 			'uuid'         => 'e23c3631-3148-4b6f-914c-49bb5034d57e',
-			'site_id'      => 00000,
+			'site_id'      => 0,
 			'outcome'      => [
 				'status'  => 'success',
 				'details' => [
-					'id'               => 00000,
+					'id'               => 0,
 					'identity'         => '',
 					'scope'            => 'order',
 					'purchased_domain' => 'domain.tld',
