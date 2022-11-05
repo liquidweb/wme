@@ -83,7 +83,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		if (typeof targetStep !== 'number') {
 			return;
 		}
-		setSearchParams({ step: String(targetStep) });
+		searchParams.set('step', String(targetStep));
+		setSearchParams(searchParams);
 	};
 
 	const goToNextStep = () => {

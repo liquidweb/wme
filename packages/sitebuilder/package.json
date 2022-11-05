@@ -22,17 +22,18 @@
 	"author": "",
 	"dependencies": {
 		"@moderntribe/wme-ui": "workspace:*",
-		"@moderntribe/wme-utils": "workspace:*"
+		"@moderntribe/wme-utils": "workspace:*",
+		"@tanstack/react-query": "^4.14.3"
 	},
 	"peerDependencies": {
-		"@wordpress/element": "^4.12.0",
-		"@wordpress/html-entities": "^3.14.0",
-		"@wordpress/i18n": "^4.14.0",
 		"@emotion/react": "^11.9.3",
 		"@emotion/styled": "^11.9.3",
 		"@mui/icons-material": "^5.8.4",
 		"@mui/material": "^5.9.2",
 		"@mui/utils": "^5.9.1",
+		"@wordpress/element": "^4.12.0",
+		"@wordpress/html-entities": "^3.14.0",
+		"@wordpress/i18n": "^4.14.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.4.2"

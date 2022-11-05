@@ -4,23 +4,25 @@ export const GoLiveStringData = {
 	goLiveProviderText: {
 		getDomain: __('Get My Domain', 'nexcess-mapps'),
 		haveDomain: __('I\'ve Got My Domain', 'nexcess-mapps'),
+		checkout: __('Checkout', 'nexcess-mapps'),
 		continueStr: __('Continue', 'nexcess-mapps'),
 		errorMessage: __('There was an error while updating your site\'s domain.', 'nexcess-mapps'),
 		errorMessageVerification: __('There was an error while verifying your site\'s domain.', 'nexcess-mapps'),
-		errorNotPointed: __('This domain is not pointing to your website.', 'nexcess-mapps'), // TODO: change wording to use product name
+		errorNotPointed: __('This domain is not pointing to your SiteBuilder website.', 'nexcess-mapps'), // TODO: change SiteBuilder to right product name
 		errorNotRegistered: __('This domain is not registered.', 'nexcess-mapps'),
 		errorGeneral: __('We\'re unable to connect your domain.', 'nexcess-mapps'),
 	},
 	start: {
 		screenTitle1: __('Set your site domain', 'nexcess-mapps'),
-		screenTitle2: __('Own your perfect domain with Nexcess.', 'nexcess-mapps'),
+		screenTitle2: __('Find the perfect domain.', 'nexcess-mapps'),
 		screenDescription1: __('Let\'s get your site set up with the perfect domain. If you don\'t already have one, don\'t worry - we can help you out.', 'nexcess-mapps'),
-		screenDescription2: __('Nexcess helps you find, create and own your perfect domain. It\'s so easy, even we could do it. Once you\'ve got your domain, come back here and select "I\'ve Got My Domain".', 'nexcess-mapps'),
+		screenDescription2: __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur augue eget condimentum dapibus. Duis ullamcorper turpis sit amet sapien hendrerit consequat in eget massa.', 'nexcess-mapps'), // TODO: Replace lorem ipsum with real text
 		actionLabel: __('Have you purchased your custom domain?', 'nexcess-mapps'),
 		actionTitle1: __('Yes! I have my own custom domain.', 'nexcess-mapps'),
 		actionTitle2: __('No, I need one!', 'nexcess-mapps'),
 		actionContent1: __('If you have your own domain already then you\'re ready to connect and go live.', 'nexcess-mapps'),
-		actionContent2: __('Nexcess will help you find and own your perfect domain name.', 'nexcess-mapps')
+		actionContent2: __('Nexcess will help you find and own your perfect domain name.', 'nexcess-mapps'),
+		defaultError: __('Something went wrong, please try again', 'nexcess-mapps')
 	},
 	verifyDomain: {
 		screenTitle: __('Verify your domain', 'nexcess-mapps'),
@@ -36,6 +38,14 @@ export const GoLiveStringData = {
 		descriptionProcessing: __('This can take a few minutes. You can log out now, or we can will just log out upon completion.', 'nexcess-mapps'),
 		loginUrlLabelText: __('Copy Your New Login URL', 'nexcess-mapps'),
 		loginUrlHelperText: __('Copy and save this URL. Once your domain is connected you\'ll need it to login.', 'nexcess-mapps')
+	},
+	connectWithNexcess: {
+		screenTitle: __('Good choice! We’ll need to connect to your Nexcess account.', 'nexcess-mapps'),
+		screenDescription: __('We\'ll make sure your chosen domain is managed by your Nexcess account. Once connected, we\'ll navigate you back here to complete the process.', 'nexcess-mapps'),
+	},
+	claimYourDomain: {
+		screenTitle: __('is all yours!', 'nexcess-mapps'),
+		screenDescription: __('While a new domain is often ready for use within an hour, it can take up to 8 hours to completely process.', 'nexcess-mapps'),
 	},
 	errorDomainGeneral: {
 		accountContent: __('It looks like we\'re having trouble connecting your domain.', 'nexcess-mapps'),
@@ -74,5 +84,11 @@ export const GoLiveStringData = {
 		message2: __('If anything does go wrong, please reach out to support and we\'ll get you up and running!', 'nexcess-mapps'),
 		continueButton: __('Continue without verification', 'nexcess-mapps'),
 		nevermind: __('Do not skip verification', 'nexcess-mapps')
+	},
+	domainItems: {
+		perYear: __('/ year', 'nexcess-mapps'),
+		taken: __('Taken', 'nexcess-mapps'),
+		selected: __('Selected', 'nexcess-mapps'),
+		available: __('Available', 'nexcess-mapps'),
 	}
 };
