@@ -292,13 +292,20 @@ class GoLive extends Wizard {
 		$payload = file_get_contents( 'php://input' );
 
 		if ( empty( $payload ) ) {
-			wp_send_json_error( null, 400 );
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-empty-purchase-webhook-payload',
+				__( 'Empty purchase webhook payload.', 'wme-sitebuilder' )
+			), 400 );
 		}
 
 		$payload = json_decode( $payload );
 
 		if ( ! $this->isValidWebhookPayload( $payload ) || 'success' !== $payload->outcome->status ) {
-			wp_send_json_error( null, 400 );
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-invalid-purchase-webhook-payload',
+				__( 'Invalid purchase webhook payload provided.', 'wme-sitebuilder' ),
+				$payload
+			), 400 );
 		}
 
 		$domains = $payload->outcome->details->purchased_domain;
