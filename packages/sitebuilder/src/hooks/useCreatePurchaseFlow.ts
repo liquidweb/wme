@@ -41,7 +41,7 @@ export function useCreatePurchaseFlow() {
 		createPurchaseFlow,
 		{
 			onSuccess: (data) => {
-				window.location.href = data.callback_url;
+        window.location.href = `https://my.nexcess.net/external/login?id=${ data.uuid }&theme=storebuilder`;
 			},
 		}
 	);
