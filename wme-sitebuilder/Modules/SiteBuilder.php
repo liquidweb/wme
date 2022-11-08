@@ -11,7 +11,7 @@ class SiteBuilder extends Module {
 	/**
 	 * @var string
 	 */
-	protected $page_title = 'SiteBuilder';
+	protected $page_title = 'Site Details';
 
 	/**
 	 * @var string
