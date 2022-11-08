@@ -28,7 +28,7 @@ export const StoreSetupStringData = {
 	complete: {
 		title: __('Nice work! Let\'s keep going.', 'nexcess-mapps'),
 		copy: __(
-			'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et.',
+      'Next up: Add products and set up your payment method.'
 			'nexcess-mapps'
 		),
 	},
