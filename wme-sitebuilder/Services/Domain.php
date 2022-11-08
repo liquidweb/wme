@@ -125,14 +125,20 @@ class Domain implements ManagesDomain {
 					'domain'       => 'domain2.tld',
 					'is_available' => true,
 					'package'      => [
-						'id' => 456,
+						'id'        => 456,
+						'term_fees' => [
+							12 => '20.00',
+						],
 					],
 				],
 				[
 					'domain'       => 'domain3.tld',
 					'is_available' => true,
 					'package'      => [
-						'id' => 789,
+						'id'        => 789,
+						'term_fees' => [
+							12 => '45.00',
+						],
 					],
 				],
 			],
