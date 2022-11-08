@@ -1,5 +1,11 @@
 # @moderntribe/storebuilder
 
+## 1.4.1
+
+### Patch Changes
+
+- 996d0f7: Content replacement on Store Setup screen
+
 ## 1.4.0
 
 ### Minor Changes
