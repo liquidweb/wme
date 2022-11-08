@@ -1,6 +1,6 @@
 {
 	"name": "@moderntribe/sitebuilder",
-	"version": "1.6.0-alpha.5",
+	"version": "1.6.0-alpha.6",
 	"description": "SiteBuilder foundation",
 	"main": "dist/index.js",
 	"files": [
