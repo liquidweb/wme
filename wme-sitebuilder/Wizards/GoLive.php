@@ -83,6 +83,7 @@ class GoLive extends Wizard {
 			'domainRegistrationUrl' => esc_url( 'https://www.nexcess.net/domain-registration/' ),
 			'verifyingUrl'          => $this->getData()->get( 'verifying_domain', '' ),
 			'domainSearchUrl'       => esc_url( 'https://my.nexcess.net/domain-search' ),
+			'purchaseFlowUrl'       => esc_url( apply_filters( 'wme_sitebuilder_golive_purchase_url', '' ) ),
 		];
 	}
 
