@@ -58,7 +58,7 @@ const ConnectWithNexcess = () => {
 										},
 										'& .MuiTouchRipple-root': {
 											display: 'none',
-									},
+										},
 									}
 								} } />
 								{ index < selectedDomains.length - 1 && (
