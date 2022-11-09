@@ -1,6 +1,6 @@
 {
 	"name": "@moderntribe/storebuilder",
-	"version": "1.4.1",
+	"version": "1.4.2",
 	"description": "StoreBuilder foundation",
 	"main": "dist/index.js",
 	"files": [
