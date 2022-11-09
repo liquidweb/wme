@@ -37,11 +37,12 @@ async function createPurchaseFlow(domains: { domainName: string, packageId: numb
 }
 
 export function useCreatePurchaseFlow() {
+	const goLivePurchaseFlowUrl = GO_LIVE_PROPS?.purchaseFlowUrl || '';
 	const mutation = useMutation(
 		createPurchaseFlow,
 		{
 			onSuccess: (data) => {
-				window.location.href = `https://my.nexcess.net/external/login?id=${ data.uuid }&theme=storebuilder`;
+				window.location.href = goLivePurchaseFlowUrl.replace('UUID', data.uuid);
 			},
 		}
 	);
