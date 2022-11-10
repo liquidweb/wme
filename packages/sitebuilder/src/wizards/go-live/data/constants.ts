@@ -10,7 +10,7 @@ export const GoLiveStringData = {
 		errorMessageVerification: __('There was an error while verifying your site\'s domain.', 'nexcess-mapps'),
 		errorNotPointed: __('This domain is not pointing to your website.', 'nexcess-mapps'), // TODO: change wording to use product name
 		errorNotRegistered: __('This domain is not registered.', 'nexcess-mapps'),
-		errorGeneral: __('We\'re unable to connect your domain.', 'nexcess-mapps'),
+		errorGeneral: __('We\'re unable to connect your domain.', 'nexcess-mapps')
 	},
 	start: {
 		screenTitle1: __('Set your site domain', 'nexcess-mapps'),
@@ -30,7 +30,7 @@ export const GoLiveStringData = {
 		screenNotice: __('If you\'re using a subdomain (ex: store.example.com), please stop here and reach out to support at', 'nexcess-mapps'),
 		goLiveLabelText: __('Enter the domain you want to connect', 'nexcess-mapps'),
 		goLivePlaceholderText: __('yourdomain.com', 'nexcess-mapps'),
-		errorDomainFormat: __('The domain entered does not appear to be a valid format.', 'nexcess-mapps'),
+		errorDomainFormat: __('The domain entered does not appear to be a valid format.', 'nexcess-mapps')
 	},
 	updateSiteUrl: {
 		screenTitle: __('You\'re ready to go live with', 'nexcess-mapps'),
@@ -46,7 +46,7 @@ export const GoLiveStringData = {
 	},
 	claimYourDomain: {
 		screenTitle: __('is all yours!', 'nexcess-mapps'),
-		screenDescription: __('While a new domain is often ready for use within an hour, it can take up to 8 hours to completely process.', 'nexcess-mapps'),
+		screenDescription: __('While a new domain is often ready for use within an hour, it can take up to 8 hours to completely process.', 'nexcess-mapps')
 	},
 	errorDomainGeneral: {
 		accountContent: __('It looks like we\'re having trouble connecting your domain.', 'nexcess-mapps'),
@@ -72,7 +72,7 @@ export const GoLiveStringData = {
 		advancedLabelPart2: __('Skip verification', 'nexcess-mapps'),
 		advancedContentPart1: __('By default, we check that the appropriate DNS records are set before changing your domain. If you\'re behind a proxy or are using another more advanced DNS technique, you may wish to skip this validation.', 'nexcess-mapps'),
 		advancedContentPart2: __('Your site may become inaccessible if its DNS records are invalid, so please double-check your DNS configuration before continuing.', 'nexcess-mapps'),
-		advancedContentPart3: __('If anything does go wrong, please reach out to support and we\'ll get you up and running!', 'nexcess-mapps'),
+		advancedContentPart3: __('If anything does go wrong, please reach out to support and we\'ll get you up and running!', 'nexcess-mapps')
 	},
 	successDomainConnected: {
 		statusSuccessPart1: __('Your domain is ready to connect!', 'nexcess-mapps'),
@@ -87,9 +87,8 @@ export const GoLiveStringData = {
 		nevermind: __('Do not skip verification', 'nexcess-mapps')
 	},
 	domainItems: {
-		perYear: __('/ year', 'nexcess-mapps'),
 		taken: __('Taken', 'nexcess-mapps'),
 		selected: __('Selected', 'nexcess-mapps'),
-		available: __('Available', 'nexcess-mapps'),
+		available: __('Available', 'nexcess-mapps')
 	}
 };

@@ -74,12 +74,12 @@ const FindDomain = () => {
 					endAdornment={
 						<InputAdornment position="end">
 							{ isFetching ? (
-                <Box component="img" src={ `${ IMAGE_DIR }loading-icon.svg` } sx={ loadingSx } /> 
-              ) : (
-                <IconButton type="submit" sx={{ position: 'absolute', right: '-12px', padding: '6px' } }>
-                  <Search /> 
-                </IconButton>
-              ) }
+								<Box component="img" src={ `${ IMAGE_DIR }loading-icon.svg` } sx={ loadingSx } />
+							) : (
+								<IconButton type="submit" sx={ { position: 'absolute', right: '-12px', padding: '6px' } }>
+									<Search />
+								</IconButton>
+							) }
 						</InputAdornment>
 					}
 					value={ internalSearch }
