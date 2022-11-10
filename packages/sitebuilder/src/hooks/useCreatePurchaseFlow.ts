@@ -37,11 +37,12 @@ async function createPurchaseFlow(domains: { domainName: string, packageId: numb
 }
 
 export function useCreatePurchaseFlow() {
+	const goLivePurchaseFlowUrl = GO_LIVE_PROPS?.purchaseFlowUrl || '';
 	const mutation = useMutation(
 		createPurchaseFlow,
 		{
 			onSuccess: (data) => {
-				window.location.href = data.callback_url;
+				window.location.href = goLivePurchaseFlowUrl.replace('UUID', data.uuid);
 			},
 		}
 	);

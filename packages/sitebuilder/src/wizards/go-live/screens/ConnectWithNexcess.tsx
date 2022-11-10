@@ -51,6 +51,15 @@ const ConnectWithNexcess = () => {
 								<ListItemCheckout { ...domainListItem } sx={ {
 									backgroundColor: 'sidebar.background',
 									padding: '12px 24px',
+									'& .MuiListItemSecondaryAction-root .MuiButtonBase-root': {
+										cursor: 'default',
+										'&:hover': {
+											backgroundColor: 'transparent',
+										},
+										'& .MuiTouchRipple-root': {
+											display: 'none',
+										},
+									}
 								} } />
 								{ index < selectedDomains.length - 1 && (
 									<Box sx={ { paddingTop: '8px', paddingBottom: '8px' } }>

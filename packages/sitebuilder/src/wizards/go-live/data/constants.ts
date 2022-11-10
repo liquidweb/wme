@@ -16,7 +16,7 @@ export const GoLiveStringData = {
 		screenTitle1: __('Set your site domain', 'nexcess-mapps'),
 		screenTitle2: __('Find the perfect domain.', 'nexcess-mapps'),
 		screenDescription1: __('Let\'s get your site set up with the perfect domain. If you don\'t already have one, don\'t worry - we can help you out.', 'nexcess-mapps'),
-		screenDescription2: __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam efficitur augue eget condimentum dapibus. Duis ullamcorper turpis sit amet sapien hendrerit consequat in eget massa.', 'nexcess-mapps'), // TODO: Replace lorem ipsum with real text
+		screenDescription2: __('Enter the domain name you want your store to have, and we\'ll see if it\'s available. If it isn\'t, we\'ll make suggestions about ones that are.', 'nexcess-mapps'),
 		actionLabel: __('Have you purchased your custom domain?', 'nexcess-mapps'),
 		actionTitle1: __('Yes! I have my own custom domain.', 'nexcess-mapps'),
 		actionTitle2: __('No, I need one!', 'nexcess-mapps'),
@@ -27,6 +27,7 @@ export const GoLiveStringData = {
 	verifyDomain: {
 		screenTitle: __('Verify your domain', 'nexcess-mapps'),
 		screenDescription: __('We\'ll verify your domain and get it ready to use. This can take a while, but don\'t worry - we\'ll walk you through it.', 'nexcess-mapps'),
+		screenNotice: __('If you\'re using a subdomain (ex: store.example.com), please stop here and reach out to support at', 'nexcess-mapps'),
 		goLiveLabelText: __('Enter the domain you want to connect', 'nexcess-mapps'),
 		goLivePlaceholderText: __('yourdomain.com', 'nexcess-mapps'),
 		errorDomainFormat: __('The domain entered does not appear to be a valid format.', 'nexcess-mapps'),

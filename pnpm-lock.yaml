@@ -98,7 +98,7 @@ importers:
       '@mui/icons-material': ^5.8.4
       '@mui/material': ^5.9.2
       '@mui/utils': ^5.9.1
-      '@tanstack/react-query': ^4.13.0
+      '@tanstack/react-query': ^4.14.3
       '@types/jquery': ^3.5.14
       '@types/node': ^18.7.16
       '@types/react': ^18.0.17
@@ -133,7 +133,7 @@ importers:
       '@mui/icons-material': 5.10.3_dtruv572645qlhu5xokhjjhjka
       '@mui/material': 5.10.4_vbxcdxy3bftsefaguotlgalomu
       '@mui/utils': 5.10.3_react@18.2.0
-      '@tanstack/react-query': 4.13.0_react@18.2.0
+      '@tanstack/react-query': 4.14.3_react@18.2.0
       '@wordpress/element': 4.14.0
       '@wordpress/html-entities': 3.16.0
       '@wordpress/i18n': 4.16.0
@@ -6592,12 +6592,12 @@ packages:
     resolution: {integrity: sha512-oocsqY7g0cR+Gur5jRQLSrX2OtpMLMse1I10JQBm8CdGMrDkh1Mg2gjsiquMHRtBs4Qwu5wgEp5GgIYHk4SNPw==}
     dev: false
 
-  /@tanstack/query-core/4.13.0:
-    resolution: {integrity: sha512-PzmLQcEgC4rl2OzkiPHYPC9O79DFcMGaKsOzDEP+U4PJ+tbkcEP+Z+FQDlfvX8mCwYC7UNH7hXrQ5EdkGlJjVg==}
+  /@tanstack/query-core/4.14.3:
+    resolution: {integrity: sha512-1OrxZk5jSKAjTIDgH/OHa6GfVpgGDVbCVf3KHQjXLFdutK4PSSXQIyX7I1HvBR3mYKyvFPo6yXKNG7QrkwUj9g==}
     dev: false
 
-  /@tanstack/react-query/4.13.0_react@18.2.0:
-    resolution: {integrity: sha512-dI/5hJ/pGQ74P5hxBLC9h6K0/Cap2T3k0ZjjjFLBCNnohDYgl7LNmMopzrRzBHk2mMjf2hgXHIzcKNG8GOZ5hg==}
+  /@tanstack/react-query/4.14.3_react@18.2.0:
+    resolution: {integrity: sha512-PP7DEFsOMl/JaGQr1B4IeGN3lqHrC5EpG+AgG03OlVIOQMtXNhb0N66Nt1pdrladvzYsKD20L3O3550rBzgLtg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -6608,7 +6608,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 4.13.0
+      '@tanstack/query-core': 4.14.3
       react: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false

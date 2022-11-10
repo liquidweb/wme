@@ -1,6 +1,6 @@
 {
 	"name": "@moderntribe/sitebuilder",
-	"version": "1.5.0",
+	"version": "1.6.0-alpha.10",
 	"description": "SiteBuilder foundation",
 	"source": "src/index.tsx",
 	"main": "dist/umd/index.js",
@@ -26,7 +26,7 @@
 	"dependencies": {
 		"@moderntribe/wme-ui": "workspace:*",
 		"@moderntribe/wme-utils": "workspace:*",
-		"@tanstack/react-query": "^4.13.0"
+		"@tanstack/react-query": "^4.14.3"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.9.3",
