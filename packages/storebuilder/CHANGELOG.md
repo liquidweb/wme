@@ -1,5 +1,23 @@
 # @moderntribe/storebuilder
 
+## 1.4.2
+
+### Patch Changes
+
+- 514f996: Linting fixes
+
+## 1.4.1
+
+### Patch Changes
+
+- 996d0f7: Content replacement on Store Setup screen
+
+## 1.4.0
+
+### Minor Changes
+
+- 122eefb: Adds completed screen to L&F wizard, refactor for L&F provider for device selection.
+
 ## 1.3.0
 
 ### Minor Changes

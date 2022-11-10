@@ -8,13 +8,14 @@ export function useLookAndFeel() {
 		setTemplateValue,
 		setFontValue,
 		setColorValue,
-		setIsImporting,
 		setImportingError,
-		handleSave,
+		setImportDone,
+		initImport,
 		handleImport,
 		setShowDeleteWarning,
 		setDeleteValue,
 		ajaxTemplateData
+
 	} = useContext(LookAndFeelContext) as LookAndFeelProviderContextInterface;
 	return {
 		lookAndFeelState,
@@ -22,9 +23,9 @@ export function useLookAndFeel() {
 		setTemplateValue,
 		setFontValue,
 		setColorValue,
-		setIsImporting,
 		setImportingError,
-		handleSave,
+		setImportDone,
+		initImport,
 		handleImport,
 		setShowDeleteWarning,
 		setDeleteValue,

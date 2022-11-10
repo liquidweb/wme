@@ -2,7 +2,14 @@ import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { lookAndFeelConsts } from './constants';
 
-import { TemplateSelection, FontSelection, ColorSelection, Preview } from '../screens';
+import {
+	TemplateSelection,
+	FontSelection,
+	ColorSelection,
+	Preview,
+	Import,
+	Complete
+} from '../screens';
 import { LOOK_AND_FEEL_PROPS } from '@sb/constants';
 
 export interface LookAndFeelInterface {
@@ -43,7 +50,7 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 	isImporting: false,
 	importingError: false,
 	importDone: false,
-	lastStep: 4,
+	lastStep: 6,
 	showDeleteWarning: false,
 	deleteValue: '',
 	steps: [
@@ -53,26 +60,41 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 			hideSkip: true,
 			nextText: __('Next', 'nexcess-mapps'),
 			hideBack: true,
-			screen: <TemplateSelection />,
+			screen: <TemplateSelection />
 		},
 		{
 			id: 1,
 			label: __('Fonts', 'nexcess-mapps'),
 			nextText: __('Next', 'nexcess-mapps'),
-			screen: <FontSelection />,
+			screen: <FontSelection />
 		},
 		{
 			id: 2,
 			label: __('Colors', 'nexcess-mapps'),
 			nextText: __('Next', 'nexcess-mapps'),
-			screen: <ColorSelection />,
+			screen: <ColorSelection />
 		},
 		{
 			id: 3,
 			nextText: __('Save & Continue', 'nexcess-mapps'),
 			hidePagination: true,
 			hideSkip: true,
-			screen: <Preview />,
+			screen: <Preview />
+		},
+		{
+			id: 4,
+			nextText: __('Saving…', 'nexcess-mapps'),
+			hidePagination: true,
+			hideSkip: true,
+			disableNext: true,
+			screen: <Import />
+		},
+		{
+			id: 5,
+			nextText: __('Exit To Setup', 'nexcess-mapps'),
+			hidePagination: true,
+			hideSkip: true,
+			screen: <Complete />
 		}
 	],
 });

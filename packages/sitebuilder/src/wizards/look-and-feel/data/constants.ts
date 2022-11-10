@@ -29,6 +29,7 @@ export const lookAndFeelConsts = {
 		],
 		finished: __('Site imported successfully!', 'nexcess-mapps'),
 		errorMessage: __('Import failed, please try refreshing the page and starting the import again.', 'nexcess-mapps'),
+		paletteAlt: __('paint palette', 'nexcess-mapps')
 	},
 	deleteContentWarning: {
 		warningHeadline: __('Please Note', 'nexcess-mapps'),
@@ -39,5 +40,11 @@ export const lookAndFeelConsts = {
 		importButton: __('Import Template', 'nexcess-mapps'),
 		nevermind: __('Never Mind', 'nexcess-mapps'),
 		eyesAlt: __('eyes emoji', 'nexcess-mapps')
+	},
+	complete: {
+		description: __('You\'re all set! We\'ve updated your site with your choices.', 'nexcess-mapps'),
+		title: __('Nice choices.', 'nexcess-mapps'),
+		designStepTitleText: __('Next Up: Set up your store.', 'nexcess-mapps'),
+		designStepButtonText: __('Get Started', 'nexcess-mapps')
 	}
 };

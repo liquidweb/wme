@@ -1,22 +1,29 @@
-/* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
-import { Import } from '@look-and-feel/screens';
 import { useWizard, useLookAndFeel } from '@sb/hooks';
-
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import DeleteContentWarning from './DeleteContentWarning';
+import { SITEBUILDER_URL } from '@sb/constants';
 
 const LookAndFeelWizard = () => {
-	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
+	const { wizardState: { showCloseWarning, hasStepped }, goToNextStep, goToPreviousStep, setShowCloseWarning } = useWizard();
+	const { lookAndFeelState: { steps, lastStep, showDeleteWarning, template, importDone }, initImport } = useLookAndFeel();
+	const [searchParams] = useSearchParams();
 
-	const { lookAndFeelState: { steps, lastStep, isImporting, showDeleteWarning, template }, handleSave } = useLookAndFeel();
+	const activeStep = searchParams.get('step')
+		? Number(searchParams.get('step'))
+		: 1;
+	const stepIndex = activeStep >= 1 ? activeStep - 1 : 0;
 
 	const handleOnNext = () => {
 		if (activeStep === lastStep) {
 			return;
+		}
+
+		if (activeStep === 4) {
+			initImport();
 		}
 
 		goToNextStep();
@@ -26,19 +33,22 @@ const LookAndFeelWizard = () => {
 		goToNextStep();
 	};
 
-	const [searchParams] = useSearchParams();
+	const closeOnSave = () => {
+		window.location.assign(SITEBUILDER_URL);
+	};
 
-	const activeStep = searchParams.get('step')
-		? Number(searchParams.get('step'))
-		: 1;
-	const stepIndex = activeStep >= 1 ? activeStep - 1 : 0;
+	useEffect(() => {
+		if (hasStepped) {
+			// Enable the close warning behavior.
+			setShowCloseWarning(false);
+		}
+	}, [hasStepped]);
 
 	return (
 		<>
 			{
-				isImporting ? <Import />
-					: showDeleteWarning ? <DeleteContentWarning open={ showDeleteWarning } />
-						: steps[ stepIndex ].screen
+				showDeleteWarning && ! importDone ? <DeleteContentWarning open={ showDeleteWarning } />
+					: steps[ stepIndex ].screen
 			}
 			<WizardFooter
 				sx={ { position: 'fixed' } }
@@ -47,10 +57,9 @@ const LookAndFeelWizard = () => {
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
 				disableNext={ template.name === '' ? true : false }
+				save={ closeOnSave }
 				onSkip={ handleOnSkip }
 				isLastStep={ activeStep === lastStep }
-				save={ handleSave }
-				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
 				backText={ __('Back', 'nexcess-mapps') }
 				skipText={ __('Skip', 'nexcess-mapps') }
