@@ -34,6 +34,9 @@ const SetupCardFooterWrapper = styled(Box, {
     paddingRight: 0,
     paddingLeft: 0,
   },
+//   '& a.MuiTypography-root': {
+//     color: theme.palette.text.link,
+//   },
 }));
 
 const SetupCardFooter: React.FC<BoxProps> = (props) => {

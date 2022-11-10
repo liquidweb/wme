@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
+import type { Theme } from '@mui/material/styles/createTheme';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
 
@@ -110,12 +111,35 @@ const StyledStepper = styled(Stepper, {
 const StyledStepButton = styled(StepButton, {
   name: 'WmeStepButton',
   slot: 'Root',
-})(() => ({
+})(({ theme }) => ({
   '& .MuiStepLabel-root': {
     '& .MuiStepLabel-iconContainer': {
       '& .MuiSvgIcon-root': {
+        color: theme.palette.secondary.main,
         width: '18px',
         height: '18px',
+      },
+    },
+    '& .MuiStepLabel-labelContainer': {
+      '& .MuiStepLabel-label': {
+        fontWeight: 500,
+      },
+    },
+    '&.Mui-disabled': {
+      '& .MuiStepLabel-iconContainer': {
+        '& .MuiSvgIcon-root': {
+          color: theme.palette.text.disabled,
+        },
+      },
+      '& .MuiStepLabel-label.Mui-disabled': {
+        color: theme.palette.text.disabled,
+      },
+      '&:hover': {
+        '& .MuiStepLabel-labelContainer': {
+          textDecoration: 'underline',
+          textDecorationColor: theme.palette.text.disabled,
+          cursor: 'pointer',
+        },
       },
     },
   },

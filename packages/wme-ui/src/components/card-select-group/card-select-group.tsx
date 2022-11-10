@@ -57,7 +57,7 @@ const StyleCardSelectGroup = styled(ToggleButtonGroup, {
     textAlign: 'center',
   },
   '& .MuiButtonBase-root.WmeCardSelectItem-root + .MuiButtonBase-root.WmeCardSelectItem-root.Mui-selected': {
-    borderColor: theme.palette.primary.light,
+    borderColor: theme.palette.secondary.main,
     borderWidth: 1,
     borderStyle: 'solid',
   },

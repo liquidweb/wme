@@ -12,11 +12,18 @@ const StyledRadioGroup = styled(MuiRadioGroup, {
   name: 'WmeRadioGroup',
   slot: 'Root',
 })(({ theme }) => ({
-  '& .MuiRadio-root': {
-    '&:focus, &:hover': {
-      backgroundColor: 'transparent',
-      color: theme.palette.primary.dark,
+  '&.MuiRadio-checked': {
+    '& .MuiSvgIcon-root': {
+      fill: theme.palette.secondary.dark,
     },
+  },
+  '&:focus, &:hover': {
+    '& .MuiSvgIcon-root': {
+      fill: theme.palette.secondary.dark,
+    },
+  },
+  '& .MuiSvgIcon-root': {
+    fill: theme.palette.secondary.main,
   },
 }));
 
