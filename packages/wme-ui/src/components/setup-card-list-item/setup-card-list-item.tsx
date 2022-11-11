@@ -40,7 +40,7 @@ const StyledSetupCardListItem = styled('li', {
     color: theme.palette.text.primary,
 
     '&[href]:not([href=""]):hover': {
-      color: theme.palette.text.link,
+      color: theme.palette.primary.main,
     },
   },
 }));

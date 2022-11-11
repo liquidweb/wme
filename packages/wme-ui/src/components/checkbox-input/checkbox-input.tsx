@@ -7,12 +7,12 @@ const StyledCheckbox = styled(MuiCheckbox, {
 })(({ theme }) => ({
   '&.Mui-checked': {
     '& .MuiSvgIcon-root': {
-      fill: theme.palette.primary.main,
+      fill: theme.palette.secondary.main,
     },
   },
   '&:focus, &:hover': {
     '& .MuiSvgIcon-root': {
-      fill: theme.palette.primary.dark,
+      fill: theme.palette.secondary.dark,
     },
   },
   '& .MuiSvgIcon-root': {
