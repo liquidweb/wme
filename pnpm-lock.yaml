@@ -34,7 +34,7 @@ importers:
       '@babel/preset-env': 7.20.2_@babel+core@7.20.2
       '@babel/runtime': 7.20.1
       '@changesets/cli': 2.25.2
-      '@moderntribe/eslint-config-custom': link:packages/eslint-config-custom
+      '@moderntribe/eslint-config-custom': link:tooling/eslint-config-custom
       '@storybook/addon-actions': 6.5.13_sfoxds7t5ydpegc3knd667wn6m
       '@storybook/addon-docs': 6.5.13_gz67yvllrtgb2jsm7ttmrbhc4m
       '@storybook/addon-essentials': 6.5.13_s3pblqc5gkcfq5t3wbrulc7zde
@@ -52,38 +52,6 @@ importers:
       eslint-config-turbo: 0.0.3_eslint@8.27.0
       prettier: 2.7.1
       turbo: 1.6.3
-      typescript: 4.8.4
-
-  packages/eslint-config-custom:
-    specifiers:
-      '@babel/core': '>=7.13.0 <8.0.0'
-      '@typescript-eslint/eslint-plugin': ^5.16.0
-      '@typescript-eslint/parser': ^5.16.0
-      '@wordpress/eslint-plugin': ^11.0.0
-      eslint: ^8.23.0
-      eslint-config-prettier: ^8.5.0
-      eslint-plugin-import: ^2.25.2
-      eslint-plugin-jsdoc: ^37.0.3
-      eslint-plugin-prettier: ^4.2.1
-      eslint-plugin-react: ^7.31.7
-      eslint-plugin-react-hooks: ^4.3.0
-      prettier: ^2.7.1
-      requireindex: ^1.2.0
-      typescript: ^4.6.2
-    dependencies:
-      '@babel/core': 7.20.2
-      '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq
-      '@typescript-eslint/parser': 5.42.1_rmayb2veg2btbq6mbmnyivgasy
-      '@wordpress/eslint-plugin': 11.1.0_b5gddm2tsfytcev32u2t5xen4u
-      eslint: 8.27.0
-      eslint-config-prettier: 8.5.0_eslint@8.27.0
-      eslint-plugin-import: 2.26.0_jnohwm7eexgw7uduhweedcbnpe
-      eslint-plugin-jsdoc: 37.9.7_eslint@8.27.0
-      eslint-plugin-prettier: 4.2.1_v7o5sx5x3wbs57ifz6wc4f76we
-      eslint-plugin-react: 7.31.10_eslint@8.27.0
-      eslint-plugin-react-hooks: 4.6.0_eslint@8.27.0
-      prettier: 2.7.1
-      requireindex: 1.2.0
       typescript: 4.8.4
 
   packages/sitebuilder:
@@ -132,7 +100,7 @@ importers:
       '@mui/icons-material': 5.10.9_7x2oudazqpvaafx6ivldozt4oy
       '@mui/material': 5.10.13_2mete2oe2kozaocyy47tavsz2y
       '@mui/utils': 5.10.9_react@17.0.2
-      '@tanstack/react-query': 4.14.6_react@17.0.2
+      '@tanstack/react-query': 4.14.6_sfoxds7t5ydpegc3knd667wn6m
       '@wordpress/element': 4.19.0
       '@wordpress/html-entities': 3.21.0
       '@wordpress/i18n': 4.21.0
@@ -142,7 +110,7 @@ importers:
     devDependencies:
       '@babel/preset-react': 7.18.6_@babel+core@7.20.2
       '@moderntribe/rollup-config': link:../../tooling/rollup-config
-      '@moderntribe/tsconfig': link:../tsconfig
+      '@moderntribe/tsconfig': link:../../tooling/tsconfig
       '@types/jquery': 3.5.14
       '@types/node': 18.11.9
       '@types/react': 17.0.52
@@ -218,7 +186,7 @@ importers:
     devDependencies:
       '@babel/preset-react': 7.18.6_@babel+core@7.20.2
       '@moderntribe/rollup-config': link:../../tooling/rollup-config
-      '@moderntribe/tsconfig': link:../tsconfig
+      '@moderntribe/tsconfig': link:../../tooling/tsconfig
       '@types/jquery': 3.5.14
       '@types/node': 18.11.9
       '@types/react': 17.0.52
@@ -239,9 +207,6 @@ importers:
       ts-loader: 9.4.1_qw7fmzhoapcndkteb5rsc33stq
       typescript: 4.8.4
       wp-types: 3.61.0
-
-  packages/tsconfig:
-    specifiers: {}
 
   packages/wme-ui:
     specifiers:
@@ -315,7 +280,7 @@ importers:
       '@babel/core': 7.20.2
       '@emotion/react': 11.10.5_jgf5e57r2hhelgoh5e3va5b5ti
       '@emotion/styled': 11.10.5_sll3v54f4hwb6kfut6lgwcncda
-      '@moderntribe/tsconfig': link:../tsconfig
+      '@moderntribe/tsconfig': link:../../tooling/tsconfig
       '@mui/base': 5.0.0-alpha.105_gzv7pa6nrbev3fs6gyzn7sadkq
       '@mui/icons-material': 5.10.9_7x2oudazqpvaafx6ivldozt4oy
       '@mui/lab': 5.0.0-alpha.107_i4f5iixgdinn6clcs5vej6oq3a
@@ -374,6 +339,38 @@ importers:
       '@types/jquery': 3.5.14
       jest: 29.3.1
 
+  tooling/eslint-config-custom:
+    specifiers:
+      '@babel/core': '>=7.13.0 <8.0.0'
+      '@typescript-eslint/eslint-plugin': ^5.16.0
+      '@typescript-eslint/parser': ^5.16.0
+      '@wordpress/eslint-plugin': ^11.0.0
+      eslint: ^8.23.0
+      eslint-config-prettier: ^8.5.0
+      eslint-plugin-import: ^2.25.2
+      eslint-plugin-jsdoc: ^37.0.3
+      eslint-plugin-prettier: ^4.2.1
+      eslint-plugin-react: ^7.31.7
+      eslint-plugin-react-hooks: ^4.3.0
+      prettier: ^2.7.1
+      requireindex: ^1.2.0
+      typescript: ^4.6.2
+    dependencies:
+      '@babel/core': 7.20.2
+      '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq
+      '@typescript-eslint/parser': 5.42.1_rmayb2veg2btbq6mbmnyivgasy
+      '@wordpress/eslint-plugin': 11.1.0_b5gddm2tsfytcev32u2t5xen4u
+      eslint: 8.27.0
+      eslint-config-prettier: 8.5.0_eslint@8.27.0
+      eslint-plugin-import: 2.26.0_jnohwm7eexgw7uduhweedcbnpe
+      eslint-plugin-jsdoc: 37.9.7_eslint@8.27.0
+      eslint-plugin-prettier: 4.2.1_v7o5sx5x3wbs57ifz6wc4f76we
+      eslint-plugin-react: 7.31.10_eslint@8.27.0
+      eslint-plugin-react-hooks: 4.6.0_eslint@8.27.0
+      prettier: 2.7.1
+      requireindex: 1.2.0
+      typescript: 4.8.4
+
   tooling/rollup-config:
     specifiers:
       '@rollup/plugin-commonjs': ^22.0.2
@@ -393,6 +390,9 @@ importers:
       rollup-plugin-terser: 7.0.2_rollup@2.79.1
       rollup-plugin-typescript2: 0.33.0_gypgyaqhine6mwjfvh7icfhviq
       typescript: 4.8.4
+
+  tooling/tsconfig:
+    specifiers: {}
 
 packages:
 
@@ -879,7 +879,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.20.2
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.20.3_@babel+core@7.12.9
 
@@ -5062,7 +5062,7 @@ packages:
     resolution: {integrity: sha512-Su1AyrPb6xnm7wXTvpN5tt+B7LViYSh9k04vvuc6+eMVH0HkE9ktZTXibRrTvV83BI1KP5MG7v/k90ne/4zQzw==}
     dev: false
 
-  /@tanstack/react-query/4.14.6_react@17.0.2:
+  /@tanstack/react-query/4.14.6_sfoxds7t5ydpegc3knd667wn6m:
     resolution: {integrity: sha512-ubx49AeV0SXfbt4mZmb0JlJa1PRXynGm+uorJhM50HVDppt/SjcOUNK5kptEWBRzTjKVS9KhpoMkKKJ/ZzuBFQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5076,6 +5076,7 @@ packages:
     dependencies:
       '@tanstack/query-core': 4.14.5
       react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
       use-sync-external-store: 1.2.0_react@17.0.2
     dev: false
 
