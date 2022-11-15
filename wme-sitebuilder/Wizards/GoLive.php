@@ -263,11 +263,13 @@ class GoLive extends Wizard {
 			->delete( 'purchased_domains' )
 			->save();
 
-		$return_url   = sprintf( 'admin.php?page=sitebuilder#/wizard/go-live?purchase=true&step=3&domain=%s', $request_domains[0]['domain_name'] );
+		$abort_url    = sprintf( 'admin.php?page=%s#/wizard/go-live?purchase=true&step=2&aborted=true', $this->admin_page_slug );
+		$abort_url    = admin_url( $abort_url );
+		$return_url   = sprintf( 'admin.php?page=%s#/wizard/go-live?purchase=true&step=3&domain=%s', $this->admin_page_slug, $request_domains[0]['domain_name'] );
 		$return_url   = admin_url( $return_url );
 		$callback_url = site_url( self::REWRITE_TAG );
 
-		$response_body = $this->domains->createPurchaseFlow( $request_domains, $return_url, $callback_url );
+		$response_body = $this->domains->createPurchaseFlow( $request_domains, $return_url, $callback_url, $abort_url );
 
 		if ( is_wp_error( $response_body ) ) {
 			wp_send_json_error( new WP_Error(
