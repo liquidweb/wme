@@ -3,13 +3,16 @@ import { styled } from '@mui/material/styles';
 import CardHeader, { CardHeaderProps } from '@mui/material/CardHeader';
 
 const StyledSetupCardHeader = styled(CardHeader)<CardHeaderProps>(({ theme }) => ({
-  paddingTop: theme.spacing(4),
-  paddingRight: theme.spacing(4),
-  paddingBottom: 0,
-  paddingLeft: theme.spacing(4),
+  paddingTop: theme.spacing(3),
+  paddingRight: theme.spacing(3),
+  paddingBottom: theme.spacing(3),
+  paddingLeft: theme.spacing(3),
 
   '& .MuiCardHeader-title': {
     marginBottom: theme.spacing(1),
+  },
+  '& .MuiCardHeader-subheader': {
+    color: theme.palette.text.disabled,
   },
 }));
 
