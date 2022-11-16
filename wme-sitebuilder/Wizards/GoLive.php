@@ -328,7 +328,7 @@ class GoLive extends Wizard {
 	 * Provide data for purchase status.
 	 */
 	public function checkPurchaseStatus() {
-		return wp_send_json( [
+		return wp_send_json_success( [
 			'requested_domains' => $this->getData()->get( 'requested_domains', [] ),
 			'purchased_domains' => $this->getData()->get( 'purchased_domains', [] ),
 		] );
