@@ -151,13 +151,15 @@ class Domain implements ManagesDomain {
 	 * @param array[] $domains
 	 * @param string  $return_url
 	 * @param string  $callback_url
+	 * @param string  $abort_url
 	 *
 	 * @return mixed[]|\WP_Error
 	 */
-	public function createPurchaseFlow( $domains, $return_url, $callback_url ) {
+	public function createPurchaseFlow( $domains, $return_url, $callback_url, $abort_url = '' ) {
 		return [
 			'action' => 'domain:add',
 			'data'         => null,
+			'abort_url'    => null,
 			'callback_url' => null,
 			'return_url'   => null,
 			'uuid'         => 'e23c3631-3148-4b6f-914c-49bb5034d57e',
