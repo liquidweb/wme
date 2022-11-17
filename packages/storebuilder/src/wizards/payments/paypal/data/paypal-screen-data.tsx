@@ -47,19 +47,19 @@ const PaymentsPaypalScreenData = (): PaymentsPaypalInterface => ({
 			id: 0,
 			label: paymentsPaypalConsts.getStarted.label,
 			hideSkip: true,
-			nextText: __('Next', 'nexcess-mapps'),
+			nextText: __('Next', 'moderntribe-storebuilder'),
 			hideBack: true,
 			screen: <GetStarted />,
 		},
 		{
 			id: 1,
 			label: paymentsPaypalConsts.accountKeys.label,
-			nextText: __('Next', 'nexcess-mapps'),
+			nextText: __('Next', 'moderntribe-storebuilder'),
 			screen: <AccountKeys />,
 		},
 		{
 			id: 2,
-			nextText: __('Complete', 'nexcess-mapps'),
+			nextText: __('Complete', 'moderntribe-storebuilder'),
 			hidePagination: true,
 			screen: <Success />
 		}

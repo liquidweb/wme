@@ -31,7 +31,7 @@ const SetupCard = (props: SetupCardInterface) => {
 					size="small"
 					color={ completed ? 'success' : 'info' }
 					icon={ completed ? <CheckCircle /> : <WatchLater /> }
-					label={ completed ? __('Completed', 'nexcess-mapps') : time }
+					label={ completed ? __('Completed', 'moderntribe-storebuilder') : time }
 				/> }
 			/>
 			<SetupCardContent sx={ {

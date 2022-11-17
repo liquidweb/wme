@@ -27,7 +27,7 @@ export interface ShippingScreenDataInterface extends ShippingWizardObjectInterfa
 const stepsData: Array<StepInterface> = [
 	{
 		id: 0,
-		label: __('Add A Shipping Method', 'nexcess-mapps'),
+		label: __('Add A Shipping Method', 'moderntribe-storebuilder'),
 		hideBack: true,
 		hideSkip: true,
 		disableNext: true,

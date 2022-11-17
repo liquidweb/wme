@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { useWizard } from '@store/hooks';
 import { StoreBuilderLogo } from '@store/logos';
 
-const EXIT_TEXT = __('Exit to Setup', 'nexcess-mapps');
+const EXIT_TEXT = __('Exit to Setup', 'moderntribe-storebuilder');
 export interface WizardHeaderInterface {
   hideExit?: boolean;
 }

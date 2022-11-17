@@ -7,12 +7,12 @@ import { SimpleModal, VideoLink, ColumnLinkInterface } from '@store/components';
 import { pxToRem } from '@moderntribe/wme-utils';
 import { IMAGE_DIR, WP_101_HOW_TO_LINKS } from '@store/constants';
 
-const sectionHeadline = __('Learn more about Product Types', 'nexcess-mapps');
-const videoAriaLabel = __('Click to play video', 'nexcess-mapps');
-const videoOverline = __('2 Minutes', 'nexcess-mapps');
-const videoHeadline = __('Understanding Types of Products in Storebuilder', 'nexcess-mapps');
-const howToHeadline = __('How To Set Up Products', 'nexcess-mapps');
-const exampleHeadline = __('Examples In Your Store', 'nexcess-mapps');
+const sectionHeadline = __('Learn more about Product Types', 'moderntribe-storebuilder');
+const videoAriaLabel = __('Click to play video', 'moderntribe-storebuilder');
+const videoOverline = __('2 Minutes', 'moderntribe-storebuilder');
+const videoHeadline = __('Understanding Types of Products in Storebuilder', 'moderntribe-storebuilder');
+const howToHeadline = __('How To Set Up Products', 'moderntribe-storebuilder');
+const exampleHeadline = __('Examples In Your Store', 'moderntribe-storebuilder');
 
 const listSx = {
 	m: 0,
@@ -206,7 +206,7 @@ const LearnProductTypes: FC<LearnProductTypesInterface> = (props) => {
 			<Box mt={ 4 } width="100%">
 				<Typography variant="h4" mb={ 2 }>{ videoHeadline }</Typography>
 				<Typography variant="body2">
-					{ __('There are 4 main types of products to choose from when adding products in StoreBuilder. This video describes each, and what each one is used for.', 'nexcess-mapps') }
+					{ __('There are 4 main types of products to choose from when adding products in StoreBuilder. This video describes each, and what each one is used for.', 'moderntribe-storebuilder') }
 				</Typography>
 			</Box>
 		</SimpleModal>
