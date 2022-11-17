@@ -90,7 +90,7 @@ const ColorSelection = () => {
 						} }>
 							<FormControl ref={ swatchesRef } sx={ { width: '100%' } }>
 								<RadioGroup
-									aria-label={ __('radio buttons for selecting color palette', 'nexcess-mapps') }
+									aria-label={ __('radio buttons for selecting color palette', 'moderntribe-sitebuilder') }
 									value={ color }
 									name="color-palette-selection"
 									onChange={ handleColorSel }
@@ -98,7 +98,7 @@ const ColorSelection = () => {
 									{
 										colors?.map((palettes, i) => (
 											<FormControlLabel
-												aria-label={ palettes.palette + __(' color palette', 'nexcess-mapps') }
+												aria-label={ palettes.palette + __(' color palette', 'moderntribe-sitebuilder') }
 												key={ i }
 												value={ palettes.palette }
 												control={ <Radio /> } label={ <ColorLine colorList={ palettes.colors } /> }

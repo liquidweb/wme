@@ -6,7 +6,7 @@ import { useWizard } from '@sb/hooks';
 import { StoreBuilderLogo } from '@sb/logos';
 import { ModalDeviceSelection } from '@sb/components';
 
-const EXIT_TEXT = __('Exit to Setup', 'nexcess-mapps');
+const EXIT_TEXT = __('Exit to Setup', 'moderntribe-sitebuilder');
 export interface WizardHeaderInterface {
   hideExit?: boolean;
 }

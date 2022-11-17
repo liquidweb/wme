@@ -34,7 +34,7 @@ const UpdateSiteUrl = () => {
 
 	const titleProcessing = sprintf('%1$s %2$s',
 		capturedDomain,
-		__('will be ready in just a few moments.', 'nexcess-mapps')
+		__('will be ready in just a few moments.', 'moderntribe-sitebuilder')
 	);
 
 	const loginUrl = `${ capturedDomain }/wp-admin`;
@@ -103,7 +103,7 @@ const UpdateSiteUrl = () => {
 							<IconButton
 								onClick={ () => copyToClipboard(loginUrl) }
 								sx={ { marginRight: '-12px', opacity: '0.5' } }
-								aria-label={ __('copy to clipboard', 'nexcess-mapps') }
+								aria-label={ __('copy to clipboard', 'moderntribe-sitebuilder') }
 							>
 								<ContentCopy />
 							</IconButton>

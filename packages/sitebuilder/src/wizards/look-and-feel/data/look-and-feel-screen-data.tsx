@@ -58,32 +58,32 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 			id: 0,
 			label: lookAndFeelConsts.templateSelection.label,
 			hideSkip: true,
-			nextText: __('Next', 'nexcess-mapps'),
+			nextText: __('Next', 'moderntribe-sitebuilder'),
 			hideBack: true,
 			screen: <TemplateSelection />
 		},
 		{
 			id: 1,
-			label: __('Fonts', 'nexcess-mapps'),
-			nextText: __('Next', 'nexcess-mapps'),
+			label: __('Fonts', 'moderntribe-sitebuilder'),
+			nextText: __('Next', 'moderntribe-sitebuilder'),
 			screen: <FontSelection />
 		},
 		{
 			id: 2,
-			label: __('Colors', 'nexcess-mapps'),
-			nextText: __('Next', 'nexcess-mapps'),
+			label: __('Colors', 'moderntribe-sitebuilder'),
+			nextText: __('Next', 'moderntribe-sitebuilder'),
 			screen: <ColorSelection />
 		},
 		{
 			id: 3,
-			nextText: __('Save & Continue', 'nexcess-mapps'),
+			nextText: __('Save & Continue', 'moderntribe-sitebuilder'),
 			hidePagination: true,
 			hideSkip: true,
 			screen: <Preview />
 		},
 		{
 			id: 4,
-			nextText: __('Saving…', 'nexcess-mapps'),
+			nextText: __('Saving…', 'moderntribe-sitebuilder'),
 			hidePagination: true,
 			hideSkip: true,
 			disableNext: true,
@@ -91,7 +91,7 @@ const LookAndFeelScreenData = (): LookAndFeelInterface => ({
 		},
 		{
 			id: 5,
-			nextText: __('Exit To Setup', 'nexcess-mapps'),
+			nextText: __('Exit To Setup', 'moderntribe-sitebuilder'),
 			hidePagination: true,
 			hideSkip: true,
 			screen: <Complete />

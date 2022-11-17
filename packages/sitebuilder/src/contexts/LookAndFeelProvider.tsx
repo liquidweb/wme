@@ -163,7 +163,7 @@ const LookAndFeelProvider = ({ children }: { children: React.ReactNode }) => {
 			const jsonResponse = Object.values(JSON.parse(response)).filter(((template:any) => template.ecommerce)) as any;
 			setTemplates(jsonResponse);
 		} catch (error) {
-			const errorMessage = __('Something went wrong with importing theme data. Please refresh and try the import again.', 'nexcess-mapps');
+			const errorMessage = __('Something went wrong with importing theme data. Please refresh and try the import again.', 'moderntribe-sitebuilder');
 			// eslint-disable-next-line no-alert
 			alert(errorMessage);
 		}

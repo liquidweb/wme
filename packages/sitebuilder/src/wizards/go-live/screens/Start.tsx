@@ -19,8 +19,8 @@ const PoweredByNexcessFooter = () => {
 
 	return (
 		<Typography sx={ footerSx }>
-			{ `${ __('Powered by', 'nexcess-mapps') } ` }
-			<Link underline="hover" href="https://www.nexcess.net/" target="_blank">{ __('Nexcess', 'nexcess-mapps') }</Link>
+			{ `${ __('Powered by', 'moderntribe-sitebuilder') } ` }
+			<Link underline="hover" href="https://www.nexcess.net/" target="_blank">{ __('Nexcess', 'moderntribe-sitebuilder') }</Link>
 		</Typography>
 	);
 };
@@ -97,7 +97,7 @@ const Start = () => {
 					sx={ registerSx }
 					onClick={ handleRegisterDomainClick }
 				>
-					{ __('Register A Domain With Nexcess', 'nexcess-mapps') }
+					{ __('Register A Domain With Nexcess', 'moderntribe-sitebuilder') }
 					<OpenInNew />
 				</Link>
 			</>

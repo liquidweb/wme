@@ -2,49 +2,49 @@ import { __ } from '@wordpress/i18n';
 
 export const lookAndFeelConsts = {
 	templateSelection: {
-		heading: __('Choose a template', 'nexcess-mapps'),
-		text: __('Our set up wizard will help you get the most out of your store.', 'nexcess-mapps'),
-		label: __('Choose a template', 'nexcess-mapps'),
+		heading: __('Choose a template', 'moderntribe-sitebuilder'),
+		text: __('Our set up wizard will help you get the most out of your store.', 'moderntribe-sitebuilder'),
+		label: __('Choose a template', 'moderntribe-sitebuilder'),
 	},
 	fontSelection: {
-		heading: __('Choose a font', 'nexcess-mapps'),
-		text: __('Lets pick a starting font, you can always change it later and pick from more options.', 'nexcess-mapps'),
-		label: __('Fonts', 'nexcess-mapps'),
+		heading: __('Choose a font', 'moderntribe-sitebuilder'),
+		text: __('Lets pick a starting font, you can always change it later and pick from more options.', 'moderntribe-sitebuilder'),
+		label: __('Fonts', 'moderntribe-sitebuilder'),
 	},
 	colorSelection: {
-		heading: __('Pick some colors', 'nexcess-mapps'),
-		text: __('Let’s get you some starting colors. You can always update, expand, and change these later.', 'nexcess-mapps'),
-		label: __('Colors', 'nexcess-mapps'),
+		heading: __('Pick some colors', 'moderntribe-sitebuilder'),
+		text: __('Let’s get you some starting colors. You can always update, expand, and change these later.', 'moderntribe-sitebuilder'),
+		label: __('Colors', 'moderntribe-sitebuilder'),
 	},
 	importScreen: {
-		heading: __('Nice choices', 'nexcess-mapps'),
-		text: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'nexcess-mapps'),
+		heading: __('Nice choices', 'moderntribe-sitebuilder'),
+		text: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
 		messages: [
-			__('Starting import…', 'nexcess-mapps'),
-			__('Importing your colors…', 'nexcess-mapps'),
-			__('Setting your fonts…', 'nexcess-mapps'),
-			__('Building out content…', 'nexcess-mapps'),
-			__('Adding images…', 'nexcess-mapps'),
-			__('Finishing up your site…', 'nexcess-mapps'),
+			__('Starting import…', 'moderntribe-sitebuilder'),
+			__('Importing your colors…', 'moderntribe-sitebuilder'),
+			__('Setting your fonts…', 'moderntribe-sitebuilder'),
+			__('Building out content…', 'moderntribe-sitebuilder'),
+			__('Adding images…', 'moderntribe-sitebuilder'),
+			__('Finishing up your site…', 'moderntribe-sitebuilder'),
 		],
-		finished: __('Site imported successfully!', 'nexcess-mapps'),
-		errorMessage: __('Import failed, please try refreshing the page and starting the import again.', 'nexcess-mapps'),
-		paletteAlt: __('paint palette', 'nexcess-mapps')
+		finished: __('Site imported successfully!', 'moderntribe-sitebuilder'),
+		errorMessage: __('Import failed, please try refreshing the page and starting the import again.', 'moderntribe-sitebuilder'),
+		paletteAlt: __('paint palette', 'moderntribe-sitebuilder')
 	},
 	deleteContentWarning: {
-		warningHeadline: __('Please Note', 'nexcess-mapps'),
-		message: __('Importing a new starter template will create sample content from your chosen template and replace your site\'s current fonts, colors, widgets and menus.', 'nexcess-mapps'),
-		deleteOption: __('Delete content (pages, posts, products and images) imported by previous template', 'nexcess-mapps'),
-		keepOption: __('Keep previously imported content', 'nexcess-mapps'),
-		importOptions: __('Import options', 'nexcess-mapps'),
-		importButton: __('Import Template', 'nexcess-mapps'),
-		nevermind: __('Never Mind', 'nexcess-mapps'),
-		eyesAlt: __('eyes emoji', 'nexcess-mapps')
+		warningHeadline: __('Please Note', 'moderntribe-sitebuilder'),
+		message: __('Importing a new starter template will create sample content from your chosen template and replace your site\'s current fonts, colors, widgets and menus.', 'moderntribe-sitebuilder'),
+		deleteOption: __('Delete content (pages, posts, products and images) imported by previous template', 'moderntribe-sitebuilder'),
+		keepOption: __('Keep previously imported content', 'moderntribe-sitebuilder'),
+		importOptions: __('Import options', 'moderntribe-sitebuilder'),
+		importButton: __('Import Template', 'moderntribe-sitebuilder'),
+		nevermind: __('Never Mind', 'moderntribe-sitebuilder'),
+		eyesAlt: __('eyes emoji', 'moderntribe-sitebuilder')
 	},
 	complete: {
-		description: __('You\'re all set! We\'ve updated your site with your choices.', 'nexcess-mapps'),
-		title: __('Nice choices.', 'nexcess-mapps'),
-		designStepTitleText: __('Next Up: Set up your store.', 'nexcess-mapps'),
-		designStepButtonText: __('Get Started', 'nexcess-mapps')
+		description: __('You\'re all set! We\'ve updated your site with your choices.', 'moderntribe-sitebuilder'),
+		title: __('Nice choices.', 'moderntribe-sitebuilder'),
+		designStepTitleText: __('Next Up: Set up your store.', 'moderntribe-sitebuilder'),
+		designStepButtonText: __('Get Started', 'moderntribe-sitebuilder')
 	}
 };

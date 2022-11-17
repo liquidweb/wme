@@ -12,7 +12,7 @@ export const TemplateBox = (props:any) => {
 
 	const { setTemplateValue } = useLookAndFeel();
 
-	const PREVIEW_TEXT = __('Preview', 'nexcess-mapps');
+	const PREVIEW_TEXT = __('Preview', 'moderntribe-sitebuilder');
 
 	const templateBlock = {
 		position: 'relative',
