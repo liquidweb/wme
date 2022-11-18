@@ -263,7 +263,7 @@ class GoLive extends Wizard {
 			->delete( 'purchased_domains' )
 			->save();
 
-		$abort_url    = sprintf( 'admin.php?page=%s#/wizard/go-live?purchase=true&step=2&aborted=true', $this->admin_page_slug );
+		$abort_url    = sprintf( 'admin.php?page=%s#/wizard/go-live?purchase=true&step=1', $this->admin_page_slug );
 		$abort_url    = admin_url( $abort_url );
 		$return_url   = sprintf( 'admin.php?page=%s#/wizard/go-live?purchase=true&step=3&domain=%s', $this->admin_page_slug, $request_domains[0]['domain_name'] );
 		$return_url   = admin_url( $return_url );
