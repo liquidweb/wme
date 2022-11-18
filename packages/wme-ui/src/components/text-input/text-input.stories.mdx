@@ -42,6 +42,18 @@ import { TextInput } from "..";
       defaultValue: "field-id",
       description: "The id of the input element.",
     },
+    minRows: {
+      control: "number",
+      description:
+        "Minimum number of rows to display when multiline option is set to true.",
+      defaultValue: 1,
+    },
+    multiline: {
+      control: "boolean",
+      description:
+        "If true, the input will have auto-sizing according to the line count",
+      defaultValue: false,
+    },
     name: {
       control: "string",
       defaultValue: "field-name",
@@ -133,4 +145,14 @@ export default TextInput;
   >
     {Template.bind({})}
   </Story>
+  <Story
+      name="TextInputMultiline"
+      args={{
+        defaultValue: "Weep; for not all tears are an evil.",
+        multiline: true,
+        minRows: 4,
+      }}
+    >
+      {Template.bind({})}
+    </Story>
 </Canvas>
