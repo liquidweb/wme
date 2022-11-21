@@ -50,15 +50,12 @@
 	},
 	"scripts": {
 		"build": "rollup --config node:@moderntribe/rollup-config --environment NODE_ENV:production",
-		"watch": "rollup -c -w",
-		"start": "start-storybook -p 6006 -s public",
+		"dev": "yalc=true rollup --config node:@moderntribe/rollup-config --watch",
 		"storybook": "start-storybook -p 6006 -s public",
-		"dev": "rollup --config node:@moderntribe/rollup-config",
 		"build-storybook": "build-storybook -s public",
 		"chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
 		"lint": "eslint ./src --ext .tsx --ext .ts",
-		"lint:fix": "pnpm run lint --fix",
-		"lint:quiet": "pnpm run lint --quiet"
+		"lint:fix": "pnpm run lint --fix"
 	},
 	"browserslist": {
 		"production": [

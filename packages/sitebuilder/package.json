@@ -10,15 +10,11 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "pnpm run production",
-		"dev": "pnpm run development",
-		"development": "rollup --config node:@moderntribe/rollup-config",
+		"build": "rollup --config node:@moderntribe/rollup-config --environment NODE_ENV:production",
+		"dev": "yalc=true rollup --config node:@moderntribe/rollup-config --watch",
 		"lint": "eslint . --ext ts,tsx",
 		"lint:fix": "eslint . --fix --ext ts,tsx",
-		"prod": "pnpm run production",
-		"production": "rollup --config node:@moderntribe/rollup-config --environment NODE_ENV:production",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"watch": "yalc=true rollup --config node:@moderntribe/rollup-config --watch"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
 	"dependencies": {

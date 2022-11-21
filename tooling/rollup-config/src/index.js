@@ -48,7 +48,7 @@ export const esmConfig = defineConfig({
     ...defaultPlugins,
     typescript({ tsconfig: resolve(cwd(), './tsconfig.json'), outputToFilesystem: true }),
     execute({
-      commands: process.env.yalc === 'true' ? ['yalc push --sig --quiet'] : [],
+      commands: process.env.yalc === 'true' ? ['yalc push --sig'] : [],
       hook: 'writeBundle'
     })
   ],
