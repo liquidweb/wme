@@ -17,12 +17,15 @@ export interface SetupCardTaskProps extends BoxProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   taskCta?: string;
+  // Deprecated props
+  action?: any;
+  variant?: any;
 }
 
 const Task = styled(Box, {
   name: 'WmeTask',
   slot: 'Root',
-})<SetupCardTaskProps>(({ theme }) => ({
+})<Pick<SetupCardTaskProps, 'children'>>(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'nowrap',
@@ -55,7 +58,7 @@ const Task = styled(Box, {
 const TaskIcon = styled(Box, {
   name: 'WmeTaskIcon',
   slot: 'Root',
-})<SetupCardTaskProps>(({ theme }) => ({
+})<Pick<SetupCardTaskProps, 'children'>>(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
@@ -85,7 +88,15 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
     button,
     disabled,
     taskCta,
+    variant,
+    action,
   } = props;
+
+  const deprecatedProps = { variant, action };
+
+  if (Object.keys(deprecatedProps).length > 0) {
+    console.error(`You are using a deprecated prop for the Setup Card Task: ${Object.keys(deprecatedProps).join(',')}`);
+  }
 
   const actionElement = (button && disabled)
     ? React.cloneElement(button, { disabled: true })
