@@ -11,6 +11,8 @@ export interface SetupCardHeaderProps extends BoxProps {
   chipText?: string;
   isComplete?: boolean;
   chipBackground?: ChipProps['color']
+  // Depreacated props
+  action?: any;
 }
 
 const CardHeader = styled(Box, {
@@ -55,7 +57,11 @@ function TitleIconHelper(props: Omit<SetupCardHeaderProps, 'title' | 'subheader'
 }
 
 export default function SetupCardHeader(props: SetupCardHeaderProps) {
-  const { title, subheader } = props;
+  const { title, subheader, action } = props;
+
+  if (action) {
+    console.error('You are using a deprecated props: action');
+  }
 
   return (
     <CardHeader className="WmeCardHeader-root">

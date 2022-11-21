@@ -20,6 +20,7 @@ export interface SetupCardTaskProps extends BoxProps {
   // Deprecated props
   action?: any;
   variant?: any;
+  avatar?: any;
 }
 
 const Task = styled(Box, {
@@ -90,9 +91,10 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
     taskCta,
     variant,
     action,
+    avatar,
   } = props;
 
-  const deprecatedProps = { variant, action };
+  const deprecatedProps = { variant, action, avatar };
 
   if (Object.keys(deprecatedProps).length > 0) {
     console.error(`You are using a deprecated prop for the Setup Card Task: ${Object.keys(deprecatedProps).join(',')}`);
