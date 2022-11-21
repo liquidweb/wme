@@ -19,6 +19,8 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
+		"clean": "pnpm -r --parallel exec rimraf dist .turbo tsconfig.tsbuildinfo",
+		"clean:hard": "pnpm -r --parallel exec rimraf dist .turbo node_modules && rm -rf node_modules",
 		"dev": "turbo run dev --parallel",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"lint": "turbo run lint",

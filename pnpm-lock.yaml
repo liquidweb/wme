@@ -10,6 +10,7 @@ importers:
       '@babel/runtime': ^7.19.0
       '@changesets/cli': ^2.25.0
       '@moderntribe/eslint-config-custom': workspace:*
+      '@moderntribe/wme-ui': workspace:*
       '@storybook/addon-actions': ^6.5.12
       '@storybook/addon-docs': ^6.5.12
       '@storybook/addon-essentials': ^6.5.12
@@ -26,6 +27,7 @@ importers:
       '@types/react': ^17.0.52
       eslint-config-turbo: ^0.0.3
       prettier: ^2.7.1
+      rimraf: ^3.0.2
       turbo: ^1.4.6
       typescript: '>=4.3.0 <5.0.0'
     dependencies:
@@ -35,6 +37,7 @@ importers:
       '@babel/runtime': 7.20.1
       '@changesets/cli': 2.25.2
       '@moderntribe/eslint-config-custom': link:tooling/eslint-config-custom
+      '@moderntribe/wme-ui': link:packages/wme-ui
       '@storybook/addon-actions': 6.5.13_sfoxds7t5ydpegc3knd667wn6m
       '@storybook/addon-docs': 6.5.13_gz67yvllrtgb2jsm7ttmrbhc4m
       '@storybook/addon-essentials': 6.5.13_s3pblqc5gkcfq5t3wbrulc7zde
@@ -51,6 +54,7 @@ importers:
       '@types/react': 17.0.52
       eslint-config-turbo: 0.0.3_eslint@8.27.0
       prettier: 2.7.1
+      rimraf: 3.0.2
       turbo: 1.6.3
       typescript: 4.8.4
 
@@ -213,6 +217,7 @@ importers:
       '@babel/core': '>=7.13.0 <8.0.0'
       '@emotion/react': ^11.10.4
       '@emotion/styled': ^11.10.4
+      '@moderntribe/rollup-config': workspace:*
       '@moderntribe/tsconfig': workspace:*
       '@mui/base': ^5.0.0-alpha.96
       '@mui/icons-material': ^5.10.3
@@ -260,14 +265,10 @@ importers:
       react-router-dom: ^6.3.0
       react-scripts: 5.0.0
       require-from-string: ^2.0.2
-      rollup: ^2.79.0
-      rollup-plugin-dts: ^4.2.2
-      rollup-plugin-peer-deps-external: ^2.2.4
-      rollup-plugin-terser: ^7.0.2
+      ts-loader: ^9.3.1
       tslib: ^2.4.0
-      typescript: ^4.8.3
+      typescript: ^4.7.4
       use-query-params: ^1.2.3
-      webpack: ^5.74.0
     dependencies:
       history: 5.3.0
       query-string: 7.1.1
@@ -280,6 +281,7 @@ importers:
       '@babel/core': 7.20.2
       '@emotion/react': 11.10.5_jgf5e57r2hhelgoh5e3va5b5ti
       '@emotion/styled': 11.10.5_sll3v54f4hwb6kfut6lgwcncda
+      '@moderntribe/rollup-config': link:../../tooling/rollup-config
       '@moderntribe/tsconfig': link:../../tooling/tsconfig
       '@mui/base': 5.0.0-alpha.105_gzv7pa6nrbev3fs6gyzn7sadkq
       '@mui/icons-material': 5.10.9_7x2oudazqpvaafx6ivldozt4oy
@@ -322,22 +324,24 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-scripts: 5.0.0_zfi4gzcx36wuoebtp37yjuce6e
-      rollup: 2.79.1
-      rollup-plugin-dts: 4.2.3_gypgyaqhine6mwjfvh7icfhviq
-      rollup-plugin-peer-deps-external: 2.2.4_rollup@2.79.1
-      rollup-plugin-terser: 7.0.2_rollup@2.79.1
+      ts-loader: 9.4.1_qw7fmzhoapcndkteb5rsc33stq
       typescript: 4.8.4
-      webpack: 5.75.0
 
   packages/wme-utils:
     specifiers:
+      '@moderntribe/rollup-config': workspace:*
+      '@moderntribe/tsconfig': workspace:*
       '@types/jest': ^29.1.2
       '@types/jquery': ^3.5.14
       jest: ^29.2.0
+      rollup: ^2.79.1
     devDependencies:
+      '@moderntribe/rollup-config': link:../../tooling/rollup-config
+      '@moderntribe/tsconfig': link:../../tooling/tsconfig
       '@types/jest': 29.2.2
       '@types/jquery': 3.5.14
       jest: 29.3.1
+      rollup: 2.79.1
 
   tooling/eslint-config-custom:
     specifiers:
@@ -376,19 +380,19 @@ importers:
       '@rollup/plugin-commonjs': ^22.0.2
       '@rollup/plugin-node-resolve': ^14.0.1
       '@rollup/plugin-replace': ^4.0.0
+      '@rollup/plugin-typescript': ^8.5.0
       rollup: ^2.79.0
       rollup-plugin-peer-deps-external: ^2.2.4
       rollup-plugin-terser: ^7.0.2
-      rollup-plugin-typescript2: ^0.33.0
       typescript: ^4.8.3
     devDependencies:
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
       '@rollup/plugin-node-resolve': 14.1.0_rollup@2.79.1
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
+      '@rollup/plugin-typescript': 8.5.0_gypgyaqhine6mwjfvh7icfhviq
       rollup: 2.79.1
       rollup-plugin-peer-deps-external: 2.2.4_rollup@2.79.1
       rollup-plugin-terser: 7.0.2_rollup@2.79.1
-      rollup-plugin-typescript2: 0.33.0_gypgyaqhine6mwjfvh7icfhviq
       typescript: 4.8.4
 
   tooling/tsconfig:
@@ -3438,6 +3442,23 @@ packages:
       typescript: 4.8.4
     dev: true
 
+  /@rollup/plugin-typescript/8.5.0_gypgyaqhine6mwjfvh7icfhviq:
+    resolution: {integrity: sha512-wMv1/scv0m/rXx21wD2IsBbJFba8wGF3ErJIr6IKRfRj49S85Lszbxb4DCo8iILpluTjk2GAAu9CoZt4G3ppgQ==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      rollup: ^2.14.0
+      tslib: '*'
+      typescript: '>=3.7.0'
+    peerDependenciesMeta:
+      tslib:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 3.1.0_rollup@2.79.1
+      resolve: 1.22.1
+      rollup: 2.79.1
+      typescript: 4.8.4
+    dev: true
+
   /@rollup/pluginutils/3.1.0_rollup@2.79.1:
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
     engines: {node: '>= 8.0.0'}
@@ -3448,14 +3469,6 @@ packages:
       estree-walker: 1.0.1
       picomatch: 2.3.1
       rollup: 2.79.1
-
-  /@rollup/pluginutils/4.2.1:
-    resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
-    engines: {node: '>= 8.0.0'}
-    dependencies:
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-    dev: true
 
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
@@ -4597,7 +4610,7 @@ packages:
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.9_xsftmjzvfioxqs4ify53ibh7ay
       '@storybook/node-logger': 6.5.13
       '@storybook/react': 6.5.13_ed3mtov4cv4ego3oadlaueg4nq
-      '@storybook/react-docgen-typescript-plugin': 1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0_qw7fmzhoapcndkteb5rsc33stq
+      '@storybook/react-docgen-typescript-plugin': 1.0.2--canary.7.324a727c65a1819f7f3ede5abc1f32d440e4530a.0_qw7fmzhoapcndkteb5rsc33stq
       '@types/babel__core': 7.1.20
       babel-plugin-react-docgen: 4.2.1
       pnp-webpack-plugin: 1.7.0_typescript@4.8.4
@@ -4628,7 +4641,7 @@ packages:
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.9_xsftmjzvfioxqs4ify53ibh7ay
       '@storybook/node-logger': 6.5.13
       '@storybook/react': 6.5.13_ed3mtov4cv4ego3oadlaueg4nq
-      '@storybook/react-docgen-typescript-plugin': 1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0_qw7fmzhoapcndkteb5rsc33stq
+      '@storybook/react-docgen-typescript-plugin': 1.0.2--canary.7.324a727c65a1819f7f3ede5abc1f32d440e4530a.0_qw7fmzhoapcndkteb5rsc33stq
       '@types/babel__core': 7.1.20
       babel-plugin-react-docgen: 4.2.1
       pnp-webpack-plugin: 1.7.0_typescript@4.8.4
@@ -4671,6 +4684,24 @@ packages:
       ts-dedent: 2.2.0
       unfetch: 4.2.0
       util-deprecate: 1.0.2
+
+  /@storybook/react-docgen-typescript-plugin/1.0.2--canary.7.324a727c65a1819f7f3ede5abc1f32d440e4530a.0_qw7fmzhoapcndkteb5rsc33stq:
+    resolution: {integrity: sha512-tnaT0VqSGhmMi/I880aMOToSrNd7XCr1avS/M1tk/+FDO+0GqHXo9abC5sos705ly3Hmi1FxFvHnzV/cvU1JTg==}
+    peerDependencies:
+      typescript: '>= 3.x'
+      webpack: '>= 4'
+    dependencies:
+      debug: 4.3.4
+      endent: 2.1.0
+      find-cache-dir: 3.3.2
+      flat-cache: 3.0.4
+      micromatch: 4.0.5
+      react-docgen-typescript: 2.2.2_typescript@4.8.4
+      tslib: 2.4.1
+      typescript: 4.8.4
+      webpack: 5.75.0
+    transitivePeerDependencies:
+      - supports-color
 
   /@storybook/react-docgen-typescript-plugin/1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0_qw7fmzhoapcndkteb5rsc33stq:
     resolution: {integrity: sha512-eVg3BxlOm2P+chijHBTByr90IZVUtgRW56qEOLX7xlww2NBuKrcavBlcmn+HH7GIUktquWkMPtvy6e0W0NgA5w==}
@@ -12372,13 +12403,6 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
 
-  /magic-string/0.26.7:
-    resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
-    engines: {node: '>=12'}
-    dependencies:
-      sourcemap-codec: 1.4.8
-    dev: true
-
   /make-dir/2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
@@ -15217,20 +15241,6 @@ packages:
       is-plain-object: 3.0.1
     dev: true
 
-  /rollup-plugin-dts/4.2.3_gypgyaqhine6mwjfvh7icfhviq:
-    resolution: {integrity: sha512-jlcpItqM2efqfIiKzDB/IKOS9E9fDvbkJSGw5GtK/PqPGS9eC3R3JKyw2VvpTktZA+TNgJRMu1NTv244aTUzzQ==}
-    engines: {node: '>=v12.22.12'}
-    peerDependencies:
-      rollup: ^2.55
-      typescript: ^4.1
-    dependencies:
-      magic-string: 0.26.7
-      rollup: 2.79.1
-      typescript: 4.8.4
-    optionalDependencies:
-      '@babel/code-frame': 7.18.6
-    dev: true
-
   /rollup-plugin-peer-deps-external/2.2.4_rollup@2.79.1:
     resolution: {integrity: sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==}
     peerDependencies:
@@ -15253,20 +15263,6 @@ packages:
       rollup: 2.79.1
       serialize-javascript: 4.0.0
       terser: 5.15.1
-
-  /rollup-plugin-typescript2/0.33.0_gypgyaqhine6mwjfvh7icfhviq:
-    resolution: {integrity: sha512-7ZXoZeX93kNb4/ICzOi2AlperVV6cAsNz8THqrbz+KNvpn47P2F/nFdK/BGhkoOsOwuYDuY57vccdZZrcd8/dA==}
-    peerDependencies:
-      rollup: '>=1.26.3'
-      typescript: '>=2.4.0'
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      find-cache-dir: 3.3.2
-      fs-extra: 10.1.0
-      rollup: 2.79.1
-      tslib: 2.4.1
-      typescript: 4.8.4
-    dev: true
 
   /rollup/2.79.1:
     resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
