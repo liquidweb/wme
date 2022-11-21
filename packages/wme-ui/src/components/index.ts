@@ -10,11 +10,11 @@ export * from './split-button';
 export { default as SetupCard } from './setup-card';
 export * from './setup-card';
 
-export { default as SetupCardAccordionV2 } from './setup-card-accordion-v2';
-export * from './setup-card-accordion-v2';
-
 export { default as SetupCardAccordion } from './setup-card-accordion';
 export * from './setup-card-accordion';
+
+export { default as ContentAccordion } from './content-accordion';
+export * from './content-accordion';
 
 export { default as SetupCardHeader } from './setup-card-header';
 export * from './setup-card-header';
@@ -24,9 +24,6 @@ export * from './setup-card-content';
 
 export { default as SetupCardTask } from './setup-card-task';
 export * from './setup-card-task';
-
-export { default as SetupCardTaskV2 } from './setup-card-task-v2';
-export * from './setup-card-task-v2';
 
 export { default as SetupCardTaskCta } from './setup-card-task-cta';
 export * from './setup-card-task-cta';
