@@ -44,7 +44,9 @@ interface ManagesDomain {
 	/**
 	 * Search available domains based on provided domain name.
 	 *
-	 * @return mixed[]|\WP_Error
+	 * @param string $domain
+	 *
+	 * @return array|WP_Error
 	 */
 	public function searchAvailableDomains( $domain );
 
@@ -56,7 +58,7 @@ interface ManagesDomain {
 	 * @param string  $callback_url
 	 * @param string  $abort_url
 	 *
-	 * @return mixed[]|\WP_Error
+	 * @return array|WP_Error
 	 */
 	public function createPurchaseFlow( $domains, $return_url, $callback_url, $abort_url = '' );
 }

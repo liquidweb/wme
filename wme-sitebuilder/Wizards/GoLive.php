@@ -88,7 +88,7 @@ class GoLive extends Wizard {
 	}
 
 	/**
-	 * Action: init
+	 * Action: init.
 	 *
 	 * Add rewrite rule to receive domain purchase webhook.
 	 */
@@ -97,14 +97,14 @@ class GoLive extends Wizard {
 	}
 
 	/**
-	 * Action: template_redirect
+	 * Action: template_redirect.
 	 *
 	 * Handle webhook delivery.
 	 */
 	public function action__template_redirect() {
-		$isEndpoint = get_query_var( self::REWRITE_TAG );
+		$is_endpoint = get_query_var( self::REWRITE_TAG );
 
-		if ( empty( $isEndpoint ) ) {
+		if ( empty( $is_endpoint ) ) {
 			return;
 		}
 
@@ -115,7 +115,7 @@ class GoLive extends Wizard {
 	}
 
 	/**
-	 * Filter: query_vars
+	 * Filter: query_vars.
 	 *
 	 * Add domain rewrite tag.
 	 *
@@ -150,7 +150,7 @@ class GoLive extends Wizard {
 		}
 
 		// Verify the domain structure.
-		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null;
 
 		$domain = $this->domains->formatDomain( $domain );
 
@@ -160,7 +160,7 @@ class GoLive extends Wizard {
 				sprintf(
 					/* Translators: %1$s is the provided domain name. */
 					__( '"%s" is not a valid domain name. Please check your spelling and try again.', 'wme-sitebuilder' ),
-					sanitize_text_field( $_POST['domain'] ) // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					sanitize_text_field( $_POST['domain'] )
 				)
 			), 422);
 		}
@@ -191,9 +191,7 @@ class GoLive extends Wizard {
 		}
 
 		// Verify the domain structure.
-		$domain = ! empty( $_POST['domain'] )
-			? $this->domains->parseDomain( $_POST['domain'] )
-			: null;
+		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null;
 
 		$domain = $this->domains->formatDomain( $domain );
 
@@ -337,6 +335,8 @@ class GoLive extends Wizard {
 	/**
 	 * Check if webhook payload is valid.
 	 *
+	 * @param object $payload
+	 *
 	 * @return bool
 	 */
 	protected function isValidWebhookPayload( $payload ) {
@@ -370,7 +370,6 @@ class GoLive extends Wizard {
 		}
 
 		// Verify the domain structure.
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$domain = ! empty( $_POST['domain'] ) ? $this->domains->parseDomain( $_POST['domain'] ) : null;
 		$domain = $this->domains->formatDomain( $domain );
 
@@ -380,7 +379,7 @@ class GoLive extends Wizard {
 				sprintf(
 					/* Translators: %1$s is the provided domain name. */
 					__( '"%s" is not a valid domain name. Please check your spelling and try again.', 'wme-sitebuilder' ),
-					sanitize_text_field( $_POST['domain'] ) // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					sanitize_text_field( $_POST['domain'] )
 				)
 			), 422 );
 		}

@@ -157,7 +157,7 @@ class Domain implements ManagesDomain {
 	 */
 	public function createPurchaseFlow( $domains, $return_url, $callback_url, $abort_url = '' ) {
 		return [
-			'action' => 'domain:add',
+			'action'       => 'domain:add',
 			'data'         => null,
 			'abort_url'    => null,
 			'callback_url' => null,
