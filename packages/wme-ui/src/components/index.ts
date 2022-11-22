@@ -52,6 +52,12 @@ export * from './setup-card-list-item';
 export { default as Chip } from './chip';
 export * from './chip';
 
+export { default as Pill } from './pill';
+export * from './pill';
+
+export { default as PillGroup } from './pillGroup';
+export * from './pillGroup';
+
 export { default as ProgressBar } from './progress-bar';
 export * from './progress-bar';
 
