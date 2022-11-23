@@ -4,6 +4,7 @@ import { Box, BoxProps, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Chip } from '..';
 import type { ChipProps } from '../chip';
+import { showDeprecatedWarning } from '../../utils';
 
 export interface SetupCardHeaderProps extends BoxProps {
   title?: string;
@@ -19,10 +20,7 @@ const CardHeader = styled(Box, {
   name: 'WmeCardHeader',
   slot: 'Root',
 })<SetupCardHeaderProps>(({ theme }) => ({
-  paddingTop: theme.spacing(3),
-  paddingRight: theme.spacing(3),
-  paddingBottom: theme.spacing(3),
-  paddingLeft: theme.spacing(3),
+  padding: theme.spacing(3),
   '& .WmeCardHeader-titleRow': {
     display: 'flex',
     alignItems: 'center',
@@ -31,7 +29,7 @@ const CardHeader = styled(Box, {
 
   '& .WmeCardTitle': {
     fontWeight: 500,
-    marginRight: '5px',
+    marginRight: 5,
   },
 }));
 
@@ -39,7 +37,7 @@ const CompleteCheckmark = styled(CheckCircleIcon, {
   name: 'WmeCheckmark',
   slot: 'Root',
 })(({ theme }) => ({
-  marginTop: '1px',
+  marginTop: 1,
   height: '1.25rem',
   width: '1.25rem',
   color: theme.palette.success.main,
@@ -59,9 +57,7 @@ function TitleIconHelper(props: Omit<SetupCardHeaderProps, 'title' | 'subheader'
 export default function SetupCardHeader(props: SetupCardHeaderProps) {
   const { title, subheader, action } = props;
 
-  if (action) {
-    console.error('You are using a deprecated props: action');
-  }
+  showDeprecatedWarning({ action }, 'Setup Card Header');
 
   return (
     <CardHeader className="WmeCardHeader-root">

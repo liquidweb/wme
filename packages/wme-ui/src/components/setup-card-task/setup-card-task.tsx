@@ -7,6 +7,7 @@ import {
 import { styled } from '@mui/material/styles';
 import CardContentWrapper from './setup-card-task-wrapper';
 import SetupCardAction from './setup-card-task-action';
+import { showDeprecatedWarning } from '../../utils';
 
 export interface SetupCardTaskProps extends BoxProps {
   title?: string;
@@ -94,11 +95,7 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
     avatar,
   } = props;
 
-  const deprecatedProps = { variant, action, avatar };
-
-  if (Object.keys(deprecatedProps).length > 0) {
-    console.error(`You are using a deprecated prop for the Setup Card Task: ${Object.keys(deprecatedProps).join(',')}`);
-  }
+  showDeprecatedWarning({ variant, action, avatar }, 'Setup Card Task');
 
   const actionElement = (button && disabled)
     ? React.cloneElement(button, { disabled: true })
