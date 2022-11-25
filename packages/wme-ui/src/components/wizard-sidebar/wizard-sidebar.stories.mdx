@@ -49,15 +49,6 @@ import { Button, WizardSidebar } from '..';
         },
       }
     },
-    iconSrc: {
-      control: 'text',
-      description: 'Alt text for icon',
-      table: {
-        type: {
-          summary: 'string',
-        },
-      }
-    },
   }}
 />
 
@@ -73,10 +64,7 @@ export const Template = (args) => {
 };
 
 # Wizard Sidebar
-Each Wizard page requires a header with optional body copy to inform the user of the actionable items needed.
-
-The Wizard Section Title Component extends MUI's box, so you can pass `sx` and other props if needed and they'll
-be applied to the Section Title container.
+The WizardSidebar component is used to display a sidebar with a heading, body, subtext, and icon. It should be used inside of a Wizard component.
 
 ## Props
 <ArgsTable story="." />
