@@ -1,0 +1,211 @@
+import {
+  ArgsTable,
+  Story,
+  Canvas,
+  Meta
+} from '@storybook/addon-docs';
+import { Grid, Box } from '@mui/material';
+
+import { Button, WizardSidebar } from '..';
+
+<Meta
+  title="Wizard/WizardSidebar"
+  component={ WizardSidebar }
+  argTypes={{
+    heading: {
+      control: 'text',
+      description: 'Heading text (shows as an h3)',
+      type: { required: true },
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    body: {
+      control: 'text',
+      description: 'Body text',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    subtext: {
+      control: 'text',
+      description: 'Sub text',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    icon: {
+      control: 'text',
+      description: 'Path to src of icon',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+    iconSrc: {
+      control: 'text',
+      description: 'Alt text for icon',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      }
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  return (
+    <Grid container sx={{ position: 'absolute', inset: 16, width: 'auto' }}>
+      <Grid item xs={ 2.5 } sx={{ display: 'flex', flexDirection: 'column'}}>
+        <WizardSidebar {...args} />
+      </Grid>
+      <Grid item xs={ 9.5 } sx={{ backgroundColor: '#f5f5f5' }} />
+    </Grid>
+  );
+};
+
+# Wizard Sidebar
+Each Wizard page requires a header with optional body copy to inform the user of the actionable items needed.
+
+The Wizard Section Title Component extends MUI's box, so you can pass `sx` and other props if needed and they'll
+be applied to the Section Title container.
+
+## Props
+<ArgsTable story="." />
+
+## Canvas
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      heading: 'Wizard Sidebar',
+      body: 'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget aliquam tincidunt.',
+      icon: (
+        <svg
+          width={42}
+          height={42}
+          viewBox="0 0 42 42"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_d_3086_36863)">
+            <path fill="#000" shapeRendering="crispEdges" d="M10 0H42V32H10z" />
+            <path
+              d="M19.333 12.667H22v6.666h-2.667v-6.666zm3.334 8h6.666v-9.334h-6.666v9.334zm7.333-8h2.667v6.666H30v-6.666z"
+              fill="#fff"
+            />
+            <path
+              stroke="#fff"
+              shapeRendering="crispEdges"
+              d="M10.5 0.5H41.5V31.5H10.5z"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_d_3086_36863"
+              x={0}
+              y={0}
+              width={42}
+              height={42}
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity={0} result="BackgroundImageFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dx={-10} dy={10} />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0" />
+              <feBlend
+                in2="BackgroundImageFix"
+                result="effect1_dropShadow_3086_36863"
+              />
+              <feBlend
+                in="SourceGraphic"
+                in2="effect1_dropShadow_3086_36863"
+                result="shape"
+              />
+            </filter>
+          </defs>
+        </svg>)
+    }}
+  >
+  {Template.bind({})}
+  </Story>
+  <Story
+    name="Minimal"
+    args={{
+      heading: 'Minimal Wizard Sidebar',
+      body: 'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.',
+    }}
+  >
+  {Template.bind({})}
+  </Story>
+  <Story
+    name="Custom subtext"
+    args={{
+      heading: 'Minimal Wizard Sidebar',
+      body: 'A sidebar with a custom subtext icon. It is also possible to not render any icon by passing `null` to the icon prop.',
+      subtext: (<span>Powered by <a href='#'>Kadence</a></span>),
+      subtextIcon: (
+        <svg
+          width={20}
+          height={20}
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M13.905 16.2H10.39a.69.69 0 010-1.38h2.296a.69.69 0 00-.048-1.378H9.045a.689.689 0 010-1.377h1.078a.689.689 0 000-1.377H8.5v-.001H5.1a.689.689 0 010-1.377h3.401v-.002h1.332a.688.688 0 000-1.375H8.115a.689.689 0 010-1.378h3.266a.7.7 0 01.048.002h1.167a.69.69 0 000-1.38H10.88a.69.69 0 01.05-1.377h2.704a.47.47 0 01.009 0h3.187L11.246 9.9l6.754 6.3h-4.077a.33.33 0 01-.018 0zM7.29 14.82a.687.687 0 010 1.374H4.767a.687.687 0 010-1.374h2.522zm-.999-2.755a.69.69 0 110 1.379.69.69 0 010-1.379zM2.69 9.31a.69.69 0 11-.001 1.38.69.69 0 010-1.38zm2.67-2.755a.69.69 0 110 1.38.69.69 0 010-1.38zM7.832 3.8a.687.687 0 010 1.375H6.238a.688.688 0 010-1.375h1.594z"
+            fill="#fff"
+          />
+        </svg>
+      )
+    }}
+  >
+  {Template.bind({})}
+  </Story>
+  <Story
+    name="With children"
+    args={{
+      heading: 'Wizard Sidebar',
+      body: 'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.',
+      children: (
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Button variant="contained" color="primary">
+            Primary
+          </Button>
+          <Button variant="contained" color="success">
+            Secondary
+          </Button>
+        </Box>
+      )
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="No logo"
+    args={{
+      heading: 'Wizard Sidebar',
+      body: 'Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.',
+      logo: null,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
