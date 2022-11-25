@@ -11,11 +11,10 @@ import { styled } from '@mui/material/styles';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
-import type { Theme } from '@mui/material/styles/createTheme';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
 
-interface WizardFooterProps extends BoxProps {
+export interface WizardFooterProps extends BoxProps {
   backText?: string;
   onBack?: () => void;
   nextText?: string;
