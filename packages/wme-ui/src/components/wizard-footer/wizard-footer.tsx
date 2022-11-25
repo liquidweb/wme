@@ -57,14 +57,11 @@ const WizardFooterContainer = styled(Box, {
   display: 'flex',
   alignItems: 'center',
   marginTop: 'auto',
-  position: 'absolute',
   justifyContent: 'center',
-  left: theme.spacing(2),
-  right: theme.spacing(2),
-  bottom: 0,
+  marginLeft: theme.spacing(2),
+  marginRight: theme.spacing(2),
   padding: `${theme.spacing(2)} ${theme.spacing(2)}`,
   backgroundColor: theme.palette.background.primary,
-  borderTop: `1px solid ${theme.palette.border.layout}`,
 }));
 
 const Prev = styled(Box, {
@@ -145,6 +142,17 @@ const StyledStepButton = styled(StepButton, {
   },
 }));
 
+const StyledLoadingButton = styled(LoadingButton, {
+  name: 'WmeLoadingButton',
+  slot: 'Root',
+})(({ theme }) => ({
+  textTransform: 'none',
+  '&.MuiButtonBase-root': {
+    color: theme.palette.text.white,
+    backgroundColor: theme.palette.text.disabled,
+  },
+}));
+
 const WizardFooter: React.FC<WizardFooterProps> = (props) => {
   const {
     backText,
@@ -188,6 +196,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                 startIcon={<ArrowBack />}
                 onClick={onBack}
                 disabled={disable}
+                sx={{ marginLeft: -1 }}
               >
                 {backText}
               </Button>
@@ -237,14 +246,14 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
               }
               {
                 isLoading ? (
-                  <LoadingButton
+                  <StyledLoadingButton
                     loading
                     variant="contained"
                     loadingPosition="start"
                     startIcon={<ChevronRight />}
                   >
                     {loadingText}
-                  </LoadingButton>
+                  </StyledLoadingButton>
                 )
                   : (
                     <Button
@@ -253,7 +262,6 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                       onClick={isLastStep ? save : onNext}
                       disabled={(disableNext || currStep?.disableNext || disable)}
                       className={nextButtonClassName}
-                      endIcon={<ChevronRight />}
                     >
                       {nextText}
                     </Button>
