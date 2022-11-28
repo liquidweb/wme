@@ -55,12 +55,6 @@ export * from './setup-card-list-item';
 export { default as Chip } from './chip';
 export * from './chip';
 
-export { default as Pill } from './pill';
-export * from './pill';
-
-export { default as PillGroup } from './pill-group';
-export * from './pill-group';
-
 export { default as ProgressBar } from './progress-bar';
 export * from './progress-bar';
 
@@ -159,6 +153,12 @@ export * from './switch';
 
 export { default as ListItemCheckout } from './list-item-checkout';
 export * from './list-item-checkout';
+
+export { default as TemplateSelectGroup } from './template-select-group';
+export * from './template-select-group';
+
+export { default as TemplateSelectItem } from './template-select-item';
+export * from './template-select-item';
 
 export { default as JumpNav } from './jump-nav';
 export * from './jump-nav';

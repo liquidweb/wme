@@ -1,0 +1,75 @@
+import { useState } from 'react';
+import {
+	ArgsTable,
+	Story,
+	Canvas,
+	Meta
+} from '@storybook/addon-docs';
+import templatePreviewImage from '../../stories/images/template-preview.png';
+import { TemplateSelectGroup, TemplateSelectItem } from '..';
+
+<Meta
+	title="Misc/TemplateSelectGroup"
+	component={TemplateSelectGroup}
+	argTypes={{
+		value: {
+			control: false,
+			defaultValue: '0',
+			description: 'The currently selected value within the group. The value must have reference equality with the option in order to be selected.',
+			table: {
+				type: {
+					summary: 'any',
+				},
+			}
+		},
+		children: {
+			control: false,
+			description: 'The content of the component.',
+			table: {
+				type: {
+					summary: 'node',
+				},
+			}
+		},
+	}}
+/>
+
+export const Template = (args) => {
+	const [selectedTemplate, setSelectedTemplate] = useState(() => 0)
+	const handleTemplateChange = (value) => {
+		setSelectedTemplate(value);
+		console.log(value);
+	}
+	return (
+		<TemplateSelectGroup
+			{...args}
+			value={selectedTemplate}
+		>
+			{[...Array(8)].map((value, index) =>
+				<TemplateSelectItem
+					buttonLabel="Start With This Style"
+					buttonSelectedLabel="Selected"
+					imageSrc={templatePreviewImage}
+					selected={selectedTemplate === index}
+					imageAlt={`Theme ${index} preview image`}
+					onClick={()=>handleTemplateChange(index)}
+					key={index}
+				/>
+			)}
+		</TemplateSelectGroup>
+	);
+};
+
+# Template Select Group
+Template Selects are used when information is best presented paired with
+theme preview images. This allows the user to select only one option.
+
+## Props
+<ArgsTable story="."/>
+
+## Canvas
+<Canvas>
+	<Story name="Default">
+		{Template.bind({})}
+	</Story>
+</Canvas>

@@ -1,0 +1,103 @@
+import {
+	ArgsTable,
+	Story,
+	Canvas,
+	Meta
+} from '@storybook/addon-docs';
+import templatePreviewImage from '../../stories/images/template-preview.png';
+import { TemplateSelectItem } from '..';
+
+<Meta
+	title="Misc/TemplateSelectItem"
+	component={TemplateSelectItem}
+	argTypes={{
+		imageSrc: {
+			control: 'string',
+			description: 'Path to src of image',
+			table: {
+				type: {
+					summary: 'string',
+				},
+			}
+		},
+		imageAlt: {
+			control: 'text',
+			description: 'alt text for template image',
+			table: {
+				type: {
+					summary: 'string',
+				},
+			}
+		},
+		buttonLabel: {
+			control: 'text',
+			description: 'Label text for select button',
+			table: {
+				type: {
+					summary: 'string',
+				},
+			}
+		},
+		buttonSelectedLabel: {
+			control: 'text',
+			description: 'Label text for the selected state of select button',
+			table: {
+				type: {
+					summary: 'string',
+				},
+			}
+		},
+		onClick: {
+			onClick: (e) => handleClick(e),
+			description: 'Callback fired when the button is clicked.',
+			table: {
+				type: {
+					summary: 'func',
+				},
+			}
+		},
+	}}
+	decorators={[
+		(Story) => (
+			<div style={{ maxWidth: 270 }}>
+				{Story()}
+			</div>
+		),
+	]}
+/>
+
+export const handleClick = (event) => {
+	console.log(event);
+};
+
+export const Template = (args) => {
+	return (
+		<TemplateSelectItem {...args} />
+	);
+};
+
+# Template Select Item
+Template Select Items can be used to group related options.
+
+To emphasize groups of related Toggle buttons, a group should share a
+common container. The `TemplateSelectGroup` controls the selected state of
+its child buttons when given its own `value` prop.
+
+## Props
+<ArgsTable story="."/>
+
+## Canvas
+<Canvas>
+	<Story
+		name="Default"
+		args={{
+			imageSrc: templatePreviewImage,
+			imageAlt: 'Theme preview image',
+			buttonLabel: 'Start With This Style',
+			buttonSelectedLabel: 'Selected',
+			selected: false,
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
