@@ -13,6 +13,9 @@ export * from './setup-card';
 export { default as SetupCardAccordion } from './setup-card-accordion';
 export * from './setup-card-accordion';
 
+export { default as ContentAccordion } from './content-accordion';
+export * from './content-accordion';
+
 export { default as SetupCardHeader } from './setup-card-header';
 export * from './setup-card-header';
 
