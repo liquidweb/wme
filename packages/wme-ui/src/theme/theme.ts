@@ -219,7 +219,7 @@ let themeWME = createTheme({
   typography: {
     fontFamily,
     allVariants: {
-      color: '#666666',
+      color: '#000000',
     },
     ...typographyVariants,
   },
