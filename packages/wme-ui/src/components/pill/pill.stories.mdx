@@ -1,0 +1,90 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Pill } from "..";
+
+<Meta
+	title="Data Display/Pill"
+	component={Pill}
+	argTypes={{
+		label: {
+			control: "text",
+			description: "Text inside pill",
+			table: {
+				type: {
+					summary: "text",
+				},
+			},
+		},
+		active: {
+			control: "boolean",
+			description:
+				"Sets the initial `active` state and allows the parent to control to the `active` state.",
+			table: {
+				type: {
+					summary: "boolean",
+				},
+			},
+		},
+		onClick: {
+			control: false,
+			description:
+				"Callback fired when the pill is clicked and the active state is changes",
+			table: {
+				type: {
+					summary: "func",
+				},
+			},
+			action: "Active callback status",
+		},
+	}}
+/>
+
+export const Template = (args) => <Pill {...args} />;
+
+# Pill
+
+Pills are similar to Chips, but have button-like qualities like an active state.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React from 'react';
+import { Pill } from '@moderntribe/wme';
+
+const myPill = () => {
+  <>
+    <h1>Pill Component</h1>
+    <Pill
+		label="Quirky"
+		onClick={(target, isActive) => console.log(target, isActive)}
+    />
+  </>
+};
+
+export default myChip;
+```
+
+## Canvas
+
+<Canvas>
+	<Story
+		name="Default"
+		args={{
+			label: "Quirky",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+	<Story
+		name="Initially active"
+		args={{
+			label: "Quirky",
+			active: true,
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
