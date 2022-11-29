@@ -11,7 +11,7 @@ const StyledButton = styled(MuiButton, {
   slot: 'Root',
 })(({ theme }) => ({
   textTransform: 'none',
-  padding: '6px 12px',
+  padding: '12px 32px',
   boxShadow: 'none',
   '&:hover': {
     boxShadow: 'none',
