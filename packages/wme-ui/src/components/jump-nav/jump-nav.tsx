@@ -62,7 +62,7 @@ export default function JumpNav(props: JumpNavProps) {
       {links?.map((link) => (
         <JumpNavLink href={link.href} underline="none">
           <LinkLabel>{link.label}</LinkLabel>
-          {link?.remainingTasks && (
+          {(link?.remainingTasks && link.remainingTasks > 0) && (
           <TaskNumber>{link.remainingTasks}</TaskNumber>
           )}
         </JumpNavLink>
