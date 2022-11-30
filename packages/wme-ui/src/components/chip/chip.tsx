@@ -12,7 +12,7 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
   color: theme.palette.info.dark,
 
   '&.Mui-disabled': {
-    opacity: 1,
+    opacity: 0.5,
     backgroundColor: theme.palette.background.grey,
     color: theme.palette.text.disabled,
   },
