@@ -35,15 +35,20 @@ import { TemplateSelectGroup, TemplateSelectItem } from '..';
 />
 
 export const Template = (args) => {
-	const [selectedTemplate, setSelectedTemplate] = useState(() => 0)
+	const [selectedTemplate, setSelectedTemplate] = useState(() => null)
+	const [isHovered, setIsHovered] = useState(() => false)
 	const handleTemplateChange = (value) => {
 		setSelectedTemplate(value);
 		console.log(value);
+	}
+	const handleTemplateHover = (value) => {
+		setIsHovered(value);
 	}
 	return (
 		<TemplateSelectGroup
 			{...args}
 			value={selectedTemplate}
+			className={isHovered ? 'is-hovered' : ''}
 		>
 			{[...Array(8)].map((value, index) =>
 				<TemplateSelectItem
@@ -53,6 +58,8 @@ export const Template = (args) => {
 					selected={selectedTemplate === index}
 					imageAlt={`Theme ${index} preview image`}
 					onClick={()=>handleTemplateChange(index)}
+					onMouseEnter={()=>handleTemplateHover(true)}
+					onMouseLeave={()=>handleTemplateHover(false)}
 					key={index}
 				/>
 			)}

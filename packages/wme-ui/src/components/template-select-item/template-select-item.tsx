@@ -21,7 +21,7 @@ const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
   position: 'relative',
   width: '100%',
   height: 0,
-  paddingBottom: '90%',
+  paddingBottom: '135%',
   overflow: 'hidden',
   borderRadius: 2,
   border: '1px solid transparent',
@@ -31,13 +31,24 @@ const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
     borderColor: theme.palette.text.primary,
     '& > .MuiBox-root': {
       transform: 'translateY(0)',
+      opacity: 1,
+    },
+    '.is-hovered &': {
+      opacity: 1,
     },
   },
   '&.is-selected': {
     borderColor: theme.palette.success.main,
     '& > .MuiBox-root': {
       transform: 'translateY(0)',
+      opacity: 1,
     },
+    '.is-hovered &': {
+      opacity: 1,
+    },
+  },
+  '.is-hovered &': {
+    opacity: 0.5,
   },
 }));
 
@@ -53,10 +64,11 @@ const TemplateItemButton = styled(Box)<BoxProps>(({ theme }) => ({
   zIndex: 2,
   textAlign: 'center',
   fontSize: theme.typography.pxToRem(13),
-  padding: '10px 0',
+  padding: '12px 0',
   backgroundColor: theme.palette.common.black,
   color: theme.palette.common.white,
-  transform: 'translateY(100%)',
+  transition: 'all 0.3s ease-in-out',
+  opacity: 0,
   '.is-selected &': {
     backgroundColor: theme.palette.success.main,
   },
@@ -94,7 +106,7 @@ export default function TemplateSelectItem(props: TemplateSelectItemProps) {
         <Typography color="common.white">
           {selected ? buttonSelectedLabel : buttonLabel}
           {selected && (
-            <TemplateItemCheck />
+          <TemplateItemCheck />
           )}
         </Typography>
       </TemplateItemButton>

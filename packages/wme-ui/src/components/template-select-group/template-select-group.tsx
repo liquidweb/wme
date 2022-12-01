@@ -10,6 +10,9 @@ const TemplateGroupContainer = styled(Box)<BoxProps>(({ theme }) => ({
   gap: theme.spacing(3),
   gridTemplateColumns: 'auto auto',
   [theme.breakpoints.up('sm')]: {
+    gridTemplateColumns: 'auto auto auto',
+  },
+  [theme.breakpoints.up('lg')]: {
     gridTemplateColumns: 'auto auto auto auto',
   },
 }));
