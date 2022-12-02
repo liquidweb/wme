@@ -5,9 +5,9 @@ import { defineConfig } from 'rollup';
 import resolvePlugin from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
+import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import typescript from 'rollup-plugin-typescript2';
 import copy from 'rollup-plugin-copy'
 import execute from "rollup-plugin-shell";
 
@@ -38,6 +38,7 @@ export const esmConfig = defineConfig({
   output: {
     file: pkg.module,
     format: 'esm',
+    sourcemap: true,
   },
   onwarn,
   plugins: [
@@ -45,15 +46,13 @@ export const esmConfig = defineConfig({
       includeDependencies: true,
     }),
     ...defaultPlugins,
-    typescript({
-      clean: true,
-    }),
+    typescript({ tsconfig: resolve(cwd(), './tsconfig.json'), outputToFilesystem: true }),
     execute({
-      commands: process.env.yalc === 'true' ? ['yalc push --sig --quiet'] : [],
+      commands: process.env.yalc === 'true' ? ['yalc push --sig'] : [],
       hook: 'writeBundle'
     })
   ],
-
+  external: ['react', 'react-dom', 'styled-components', 'use-query-params'],
 });
 
 const globals = {
@@ -72,20 +71,20 @@ export const umdConfig = defineConfig({
     exports: 'named',
     name: pkg.rollup?.name || 'Wme',
     globals,
+    sourcemap: true,
   },
   onwarn,
   plugins: [
     peerDepsExternal(),
     ...defaultPlugins,
-    typescript({
-      clean: true,
-    }),
+    typescript({ tsconfig: resolve(cwd(), './tsconfig.json'), outputToFilesystem: true }),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     terser(),
   ],
+  external: ['react', 'react-dom', 'styled-components', 'use-query-params'],
 });
 
 export default isProd ? [esmConfig, umdConfig] : esmConfig;

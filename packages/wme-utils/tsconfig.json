@@ -1,16 +1,9 @@
 {
-  "compilerOptions": {
-    "module": "ES6",
-    "target": "ES2021",
-    "declaration": true,
-    "outDir": "./dist/es6",
-    "moduleResolution": "node",
-		"allowSyntheticDefaultImports": true,
+	"extends": "@moderntribe/tsconfig/react-library.json",
+	"compilerOptions": {
+		"declarationDir": "types",
 		"typeRoots": ["node_modules/@types"]
-  },
-  "include": [
-		"src/**/*",
-		"wme-utils.d.ts"
-	]
+	},
+	"include": ["src/**/*", "wme-utils.d.ts"]
 }
 

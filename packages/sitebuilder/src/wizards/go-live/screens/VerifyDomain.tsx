@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { __ } from '@wordpress/i18n';
 import {
 	Box,
 	FormControl,
 	FormLabel,
 	IconButton,
 	TextField,
-	InputAdornment
+	InputAdornment,
+	Link,
+	FormHelperText
 } from '@mui/material';
 import {
 	ArrowForward,
@@ -46,6 +49,7 @@ const VerifyDomain = () => {
 		verifyDomain: {
 			screenTitle,
 			screenDescription,
+			screenNotice,
 			goLiveLabelText,
 			goLivePlaceholderText,
 			errorDomainFormat
@@ -127,7 +131,7 @@ const VerifyDomain = () => {
 				component="form"
 				onSubmit={ handleSubmit }
 			>
-				<FormControl fullWidth margin={ 'none' } sx={ { marginBottom: 3 } } color="error">
+				<FormControl fullWidth margin={ 'none' } sx={ { marginBottom: 1 } } color="error">
 					<FormLabel id="site-domain-label">{ goLiveLabelText }</FormLabel>
 					<Box sx={ { position: 'relative' } }>
 						<TextField
@@ -165,7 +169,11 @@ const VerifyDomain = () => {
 						</IconButton> }
 					</Box>
 				</FormControl>
-				{ <Box mt={ verificationStatus === 'error' ? 0 : 0.5 }>
+				<FormHelperText>
+					{ `${ screenNotice } ` }
+					<Link href="email:storebuilder@nexcess.net">{ __('storebuilder@nexcess.net', 'nexcess-mapps') }</Link>.
+				</FormHelperText>
+				{ <Box mt={ 3 }>
 
 					{ (verificationStatus === 'error' && ! validDomain) && <ErrorStatusMessage message={ errorDomainFormat } /> }
 					{ (verificationStatus === 'connected' && validDomain) && <SuccessDomainConnected /> }

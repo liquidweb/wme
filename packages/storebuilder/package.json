@@ -1,23 +1,20 @@
 {
 	"name": "@moderntribe/storebuilder",
-	"version": "1.4.0",
+	"version": "1.4.2",
 	"description": "StoreBuilder foundation",
-	"main": "dist/index.js",
+	"source": "src/index.tsx",
+	"main": "dist/umd/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/esm/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "pnpm run production",
-		"dev": "pnpm run development",
-		"development": "mix",
-		"hot": "mix watch --hot",
+		"build": "rollup --config node:@moderntribe/rollup-config --environment NODE_ENV:production",
+		"dev": "yalc=true rollup --config node:@moderntribe/rollup-config --watch",
 		"lint": "eslint . --ext ts,tsx",
 		"lint:fix": "eslint . --fix --ext ts,tsx",
-		"prod": "pnpm run production",
-		"production": "mix --production",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"watch": "mix watch",
-		"watch-poll": "mix watch -- --watch-options-poll=1000"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
 	"dependencies": {
@@ -25,25 +22,26 @@
 		"@moderntribe/wme-utils": "workspace:*"
 	},
 	"peerDependencies": {
-		"@wordpress/element": "^4.12.0",
-		"@wordpress/html-entities": "^3.14.0",
-		"@wordpress/i18n": "^4.14.0",
 		"@emotion/react": "^11.9.3",
 		"@emotion/styled": "^11.9.3",
 		"@mui/icons-material": "^5.8.4",
 		"@mui/material": "^5.9.2",
 		"@mui/utils": "^5.9.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"@wordpress/element": "^4.12.0",
+		"@wordpress/html-entities": "^3.14.0",
+		"@wordpress/i18n": "^4.14.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"react-router-dom": "^6.4.2"
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.18.6",
+		"@moderntribe/rollup-config": "workspace:*",
 		"@moderntribe/tsconfig": "workspace:*",
 		"@types/jquery": "^3.5.14",
 		"@types/node": "^18.7.16",
-		"@types/react": "^18.0.17",
-		"@types/react-dom": "^18.0.6",
+		"@types/react": "^17.0.52",
+		"@types/react-dom": "^17.0.18",
 		"@typescript-eslint/eslint-plugin": "^5.33.1",
 		"@typescript-eslint/parser": "^5.33.1",
 		"@wordpress/eslint-plugin": "^12.9.0",
@@ -53,12 +51,12 @@
 		"eslint-import-resolver-typescript": "^3.4.1",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"laravel-mix": "^6.0.49",
-		"laravel-mix-bundle-analyzer": "^1.0.5",
 		"prettier": "^2.7.1",
+		"rollup": "^2.79.0",
+		"rollup-plugin-copy": "^3.4.0",
+		"rollup-plugin-shell": "^1.0.8",
 		"ts-loader": "^9.3.1",
 		"typescript": "^4.7.4",
-		"webpack-cli": "^4.10.0",
 		"wp-types": "^3.60.0"
 	}
 }
