@@ -33,7 +33,6 @@ const StyledSetupCardInfoRow = styled(Box, {
 })<SetupCardInfoRowProps>(({ theme, hasIcon }) => ({
   display: 'flex',
   alignItems: 'center',
-  marginTop: theme.spacing(4),
   paddingTop: theme.spacing(1.5),
   paddingBottom: theme.spacing(1.5),
   paddingLeft: theme.spacing(2),

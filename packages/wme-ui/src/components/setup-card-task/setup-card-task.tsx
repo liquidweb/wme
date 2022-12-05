@@ -54,6 +54,7 @@ const Task = styled(Box, {
 
   '& .MuiTypography-body1': {
     color: theme.palette.text.disabled,
+    fontSize: '0.875rem',
   },
 }));
 
@@ -67,16 +68,16 @@ const TaskIcon = styled(Box, {
   alignItems: 'center',
   zIndex: 1,
   marginRight: theme.spacing(2),
-  width: 60,
-  height: 60,
+  width: 50,
+  height: 50,
   backgroundColor: theme.palette.grey[100],
   borderRadius: '50%',
   transition: theme?.transitions?.create(['background-color'], {
     duration: theme.transitions.duration.standard,
   }),
   '& .MuiSvgIcon-root': {
-    height: '1.2rem',
-    width: '1.2rem',
+    height: '1.25rem',
+    width: '1.25rem',
   },
 }));
 

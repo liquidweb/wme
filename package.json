@@ -25,7 +25,8 @@
 		"lint:fix": "turbo run lint:fix",
 		"preinstall": "npx only-allow pnpm",
 		"publish-packages": "turbo run build && changeset version && changeset publish",
-		"watch": "turbo run watch"
+		"watch": "turbo run watch",
+		"local": "pnpm build; yalc push --private"
 	},
 	"peerDependencies": {
 		"@types/react": "*",
