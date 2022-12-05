@@ -78,6 +78,7 @@ declare global {
 		time?: string;
 		rows: SetupCardRowInterface[];
 		footers?: any;
+		slug: string;
 	}
 
 	interface HandleActionPayloadInterface {

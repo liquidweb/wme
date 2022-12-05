@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { useWizard } from '../hooks/useWizard';
+import { useWizard } from '../../hooks/useWizard';
 
 interface ChildrenProps {
     children: React.ReactNode;

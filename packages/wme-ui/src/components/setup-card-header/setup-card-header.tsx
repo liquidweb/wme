@@ -31,6 +31,9 @@ const CardHeader = styled(Box, {
     fontWeight: 500,
     marginRight: 5,
   },
+  '& .MweCardSubHeader': {
+    fontSize: '0.875rem',
+  },
 }));
 
 const CompleteCheckmark = styled(CheckCircleIcon, {

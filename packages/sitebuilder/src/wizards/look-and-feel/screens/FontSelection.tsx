@@ -4,7 +4,7 @@ import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { useLookAndFeelFonts, useLookAndFeel } from '@sb/hooks';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 import IframeDisplay from '@look-and-feel/IframeDisplay';
-import { Frame, PoweredByKadence } from '@sb/components';
+import { Frame, PoweredByKadence } from '@sb/constants/components';
 
 const FontSelection = () => {
 	const fonts = useLookAndFeelFonts();

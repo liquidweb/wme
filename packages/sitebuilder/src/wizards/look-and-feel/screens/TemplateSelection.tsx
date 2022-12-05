@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Box, Grid, CircularProgress } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { useLookAndFeel } from '@sb/hooks';
-import { TemplateBox, Frame, PoweredByKadence } from '@sb/components';
+import { TemplateBox, Frame, PoweredByKadence } from '@sb/constants/components';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 
 const TemplateSelection = () => {

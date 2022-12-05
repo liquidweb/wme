@@ -7,3 +7,4 @@ export * from './useSetupCard';
 export * from './useSiteBuilder';
 export * from './useUsernameValidation';
 export * from './useWizard';
+export * from './useJumpNav';

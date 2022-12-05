@@ -9,7 +9,7 @@ import {
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';
 import { useLookAndFeelColors, useLookAndFeel } from '@sb/hooks';
-import { ColorLine, Frame, PoweredByKadence } from '@sb/components';
+import { ColorLine, Frame, PoweredByKadence } from '@sb/constants/components';
 import IframeDisplay from '@look-and-feel/IframeDisplay';
 import { __ } from '@wordpress/i18n';
 

@@ -5,7 +5,7 @@ import { Wizard } from '@moderntribe/wme-ui';
 // Wizard Components.
 import WizardHeader from './WizardHeader';
 import WizardContent from './WizardContent';
-import Loadable from '@sb/components/Loadable';
+import Loadable from '@sb/constants/components/Loadable';
 
 import LookAndFeelProvider from '@sb/contexts/LookAndFeelProvider';
 import GoLiveProvider from '@sb/contexts/GoLiveProvider';

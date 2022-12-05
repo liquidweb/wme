@@ -5,7 +5,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SiteBuilderProvider from '@sb/contexts/SiteBuilderProvider';
 import WizardProvider from '@sb/contexts/WizardProvider';
 import WizardWrapper from '@sb/wizards/WizardWrapper';
-import Loadable from '@sb/components/Loadable';
+import Loadable from '@sb/constants/components/Loadable';
 import { SB_THEME } from '@sb/constants';
 
 const SetupScreen = Loadable(lazy(() => import('@sb/setup/SetupScreen')));

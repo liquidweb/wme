@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';
 import { useWizard } from '@sb/hooks';
 import { StoreBuilderLogo } from '@sb/logos';
-import { ModalDeviceSelection } from '@sb/components';
+import { ModalDeviceSelection } from '@sb/constants/components';
 
 const EXIT_TEXT = __('Exit to Setup', 'nexcess-mapps');
 export interface WizardHeaderInterface {
