@@ -87,7 +87,6 @@ export const GoLiveStringData = {
 		nevermind: __('Do not skip verification', 'nexcess-mapps')
 	},
 	domainItems: {
-		perYear: __('/ year', 'nexcess-mapps'),
 		taken: __('Taken', 'nexcess-mapps'),
 		selected: __('Selected', 'nexcess-mapps'),
 		available: __('Available', 'nexcess-mapps'),
