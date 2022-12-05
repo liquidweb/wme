@@ -160,5 +160,8 @@ export * from './switch';
 export { default as ListItemCheckout } from './list-item-checkout';
 export * from './list-item-checkout';
 
+export { default as TemplateSelectGroup } from './template-select-group';
+export * from './template-select-group';
+
 export { default as JumpNav } from './jump-nav';
 export * from './jump-nav';
