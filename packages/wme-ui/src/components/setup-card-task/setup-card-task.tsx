@@ -18,6 +18,7 @@ export interface SetupCardTaskProps extends BoxProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   taskCta?: string;
+  isComplete?: boolean;
   // Deprecated props
   action?: any;
   variant?: any;
@@ -94,6 +95,7 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
     variant,
     action,
     avatar,
+    isComplete,
   } = props;
 
   showDeprecatedWarning({ variant, action, avatar }, 'Setup Card Task');
@@ -112,7 +114,7 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
             {intro && <Typography variant="body1">{intro}</Typography>}
           </Box>
         </Box>
-        <SetupCardAction button={actionElement} taskCta={taskCta} />
+        <SetupCardAction button={actionElement} taskCta={taskCta} isComplete={isComplete} />
       </CardContentWrapper>
     </Task>
   );

@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/system';
 import ChevronRight from '@mui/icons-material/ChevronRight';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import type { SetupCardTaskProps } from './setup-card-task';
 
 const ArrowWrapper = styled(Box, {
@@ -38,8 +39,26 @@ const PopupAction = styled(Typography, {
   },
 }));
 
-const SetupCardAction = (props: Pick<SetupCardTaskProps, 'button' | 'taskCta'>) => {
-  const { button, taskCta } = props;
+const CompleteCheckmark = styled(CheckCircleIcon, {
+  name: 'WmeCheckmark',
+  slot: 'Root',
+})(({ theme }) => ({
+  marginTop: 1,
+  height: '1.25rem',
+  width: '1.25rem',
+  color: theme.palette.success.main,
+}));
+
+const SetupCardAction = (props: Pick<SetupCardTaskProps, 'button' | 'taskCta' | 'isComplete'>) => {
+  const { button, taskCta, isComplete } = props;
+
+  if (isComplete) {
+    return (
+      <ArrowWrapper>
+        <CompleteCheckmark />
+      </ArrowWrapper>
+    );
+  }
 
   if (button) {
     return button;
