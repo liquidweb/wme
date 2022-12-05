@@ -34,6 +34,7 @@ const StyledListItemCheckout = styled(MuiListItem, {
   margin: 0,
   display: 'flex',
   gap: theme.spacing(2),
+  paddingRight: theme.spacing(1),
   '& .MuiButton-text.WmeButton-root': {
     fontWeight: '600',
     color: theme.palette.text.disabled,
@@ -48,6 +49,7 @@ const PrimaryText = styled(Typography, {
   fontWeight: 600,
   color: theme.palette.text.primary,
   flexGrow: 1,
+  fontSize: '0.88rem',
 }));
 
 const SecondaryText = styled(Typography, {
@@ -57,6 +59,7 @@ const SecondaryText = styled(Typography, {
   display: 'block',
   fontWeight: 600,
   color: theme.palette.text.primary,
+  fontSize: '0.88rem',
 }));
 
 const StyledListItemCheckoutContentInner = styled(Box, {
@@ -85,6 +88,13 @@ const StyledCheckCircleIcon = styled(CheckCircleIcon, {
   color: theme.palette.secondary.main,
 }));
 
+const StyledChip = styled(Chip, {
+  name: 'WmeListItemCheckout',
+  slot: 'Chip',
+})(({ theme }) => ({
+  marginRight: theme.spacing(2),
+}));
+
 const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
   const {
     name,
@@ -96,6 +106,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
     icon = <StyledAddToCartIcon />,
     iconDisabled = <NotInterestedIcon />,
     iconSelected = <StyledCheckCircleIcon />,
+    onClick,
     ...rest
   } = props;
 
@@ -109,7 +120,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
     <StyledListItemCheckout
       className="WmeListItemCheckout-root"
       secondaryAction={(
-        <IconButton edge="end" aria-label="add-to-cart" disabled={disabled}>
+        <IconButton edge="end" aria-label="add-to-cart" disabled={disabled} onClick={onClick}>
           {iconToRender}
         </IconButton>
       )}
@@ -118,7 +129,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
       <PrimaryText selected={selected}>{name}</PrimaryText>
       <StyledListItemCheckoutContentInner className="WmeListItemCheckout-contentInner">
         <SecondaryText>{price}</SecondaryText>
-        {chipLabel && <Chip color={chipColor} label={chipLabel} disabled={disabled} />}
+        {chipLabel && <StyledChip color={chipColor} label={chipLabel} disabled={disabled} />}
       </StyledListItemCheckoutContentInner>
     </StyledListItemCheckout>
   );
