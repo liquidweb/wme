@@ -9,7 +9,7 @@ const DetailsHeader = () => {
 	};
 
 	return (
-		<Box sx={ { display: 'flex', justifyContent: 'space-between', marginBottom: '50px' } }>
+		<Box sx={ { display: 'flex', justifyContent: 'space-between', marginBottom: '64px' } }>
 			<StoreBuilderLogo />
 			<Box sx={ { display: 'flex', gap: '8px' } }>
 				<Button variant="text" onClick={ handleClick }>Action CTA</Button>

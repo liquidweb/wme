@@ -33,6 +33,7 @@ const CardHeader = styled(Box, {
   },
   '& .MweCardSubHeader': {
     fontSize: '0.875rem',
+    color: theme.palette.text.disabled,
   },
 }));
 

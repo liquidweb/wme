@@ -68,6 +68,7 @@ declare global {
 		disabled?: boolean;
 		disableText?: string;
 		wizardHash?: string;
+		complete?: boolean;
 	}
 
 	interface SetupCardInterface {

@@ -19,13 +19,10 @@ const getAvatarProps = (props: SetupCardRowInterface) => {
 
 const SetupCardTask = (props: SetupCardRowInterface) => {
 	const {
-		// type,
 		url,
 		wizardHash,
 		...rest
 	} = props;
-
-	console.log('card props', props);
 
 	const avatarProps = getAvatarProps(props);
 
