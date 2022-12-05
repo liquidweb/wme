@@ -1,5 +1,19 @@
 # @moderntribe/sitebuilder
 
+## 1.6.0
+
+### Minor Changes
+
+- 538bda1: Developer experience updates
+- 5c6be2a: Integrating nexcess to get domains
+
+### Patch Changes
+
+- Updated dependencies [538bda1]
+- Updated dependencies [5c6be2a]
+  - @moderntribe/wme-ui@2.3.0
+  - @moderntribe/wme-utils@0.2.0
+
 ## 1.5.0
 
 ### Minor Changes

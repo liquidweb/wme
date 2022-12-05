@@ -1,5 +1,12 @@
 # @moderntribe/wme-ui
 
+## 2.3.0
+
+### Minor Changes
+
+- 538bda1: Developer experience updates
+- 5c6be2a: Integrating nexcess to get domains
+
 ## 2.2.0
 
 ### Minor Changes
