@@ -1,4 +1,4 @@
-import { sprintf } from '@wordpress/i18n';
+import { sprintf, _n } from '@wordpress/i18n';
 import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
 
 type DomainListItem = {
@@ -10,13 +10,24 @@ type DomainListItem = {
 	selected: boolean,
 }
 
-function getPrice(price: string, isAvailable: boolean) {
+function getPrice(termFees: DomainTermFees, isAvailable: boolean) {
 	if (! isAvailable) {
 		return undefined;
 	}
-	return sprintf('%1$s %2$s',
+
+	// Get the terms available for this domain.
+	const terms = Object.keys(termFees);
+	const shortestTerm = Math.min(...terms.map((term) => Number(term)));
+	const termToYear = shortestTerm / 12;
+	const price = termFees[ shortestTerm ];
+
+	// eslint-disable-next-line @wordpress/i18n-translator-comments
+	const perYear = _n('year', 'years', termToYear, 'nexcess-mapps');
+
+	return sprintf('%1$s / %2$s %3$s',
 		price,
-		GoLiveStringData.domainItems.perYear
+		termToYear,
+		perYear
 	);
 }
 
@@ -41,7 +52,7 @@ export function parseDomainListItem(domain: Domain, selected: boolean): DomainLi
 	return ({
 		name: domain.domain,
 		disabled: ! domain.is_available,
-		price: getPrice(domain.package.term_fees[ '12' ], domain.is_available),
+		price: getPrice(domain.package.term_fees, domain.is_available),
 		chipLabel: getChipLabel(domain.is_available, selected),
 		chipColor: getChipColor(domain.is_available, selected),
 		selected,
