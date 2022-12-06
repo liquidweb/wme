@@ -118,6 +118,10 @@ class Domain implements ManagesDomain {
 				'is_available' => true,
 				'package'      => [
 					'id' => 123,
+					'term_fees' => [
+						12 => '20.00',
+						24 => '38.00',
+					]
 				],
 			],
 			'alternatives' => [
@@ -127,7 +131,8 @@ class Domain implements ManagesDomain {
 					'package'      => [
 						'id'        => 456,
 						'term_fees' => [
-							12 => '20.00',
+							24 => '46.00',
+							36 => '64.00',
 						],
 					],
 				],

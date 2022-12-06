@@ -32,11 +32,23 @@ mix.webpackConfig({
 	plugins: [
 		new webpack.BannerPlugin(banner),
 	],
+	externals: {
+		'@wordpress/element': 'wp.element',
+		'@wordpress/components': 'wp.components',
+		'@wordpress/hooks': 'wp.hooks',
+		'@wordpress/i18n': 'wp.i18n',
+		underscore: '_',
+		react: 'React',
+		'react-dom': 'ReactDOM',
+	},
 	resolve: {
 		alias: {
 			'@sb': __dirname + '/assets/js/store-details',
 		}
-	}
+	},
+	watchOptions: {
+		ignored: ['node_modules/*/!(@moderntribe/*)/**/'],
+	},
 });
 
 // Enable BrowserSync.
@@ -54,7 +66,5 @@ mix.js('assets/js/sitebuilder.js', '/')
 	.eslint()
 	.react();
 
-
-
-mix.copyDirectory('node_modules/@moderntribe/sitebuilder/dist/assets/', `${ public_path }/sitebuilder/`)
-mix.copyDirectory('node_modules/@moderntribe/storebuilder/dist/assets/', `${ public_path }/store-details/`)
+mix.copyDirectory('node_modules/@moderntribe/sitebuilder/dist/assets/', `${public_path}/sitebuilder/`)
+mix.copyDirectory('node_modules/@moderntribe/storebuilder/dist/assets/', `${public_path}/store-details/`)

@@ -11,5 +11,8 @@
         "@wordpress/i18n-text-domain": [ "error", {
             "allowedTextDomain": [ "wme-sitebuilder" ]
         } ]
-    }
+    },
+	"parserOptions": {
+		"requireConfigFile": false
+	}
 }
