@@ -87,13 +87,13 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		? Number(searchParams.get('step'))
 		: 1;
 
-	const retryVerfication = searchParams.get('retry');
+	const retryVerification = searchParams.get('retry');
 
 	useEffect(() => {
-		if (retryVerfication === 'true') {
+		if (retryVerification === 'true') {
 			submitDomainVerification();
 		}
-	}, [retryVerfication]);
+	}, [retryVerification]);
 
 	useEffect(() => {
 		if (activeStep === 2) {
