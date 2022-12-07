@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Link, Typography, useTheme } from '@mui/material';
 import { CardSelectGroup, CardSelectItem, WizardSectionTitle } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';

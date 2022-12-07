@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from '@wordpress/element';
 import { SiteBuilderContext, SiteBuilderContextInterface } from '@sb/contexts/SiteBuilderProvider';
 
 export function useSiteBuilder() {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import { IMAGE_DIR } from '@sb/constants';
 import { __ } from '@wordpress/i18n';

@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Link, Typography } from '@mui/material';
 import { CheckCircle, Warning } from '@mui/icons-material';
@@ -14,7 +13,7 @@ export interface GoLiveStatusRowInterface extends Omit<SetupCardRowInterface, 't
 }
 
 interface StatusWrapperInterface {
-	children?: ReactNode;
+	children?: React.ReactNode;
 }
 
 interface GoLiveStatusInterface {

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from '@wordpress/element';
 import { WizardContext, WizardProviderContextInterface } from '../contexts/WizardProvider';
 
 export function useWizard() {

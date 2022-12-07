@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import { lazy } from '@wordpress/element';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { theme as WME_THEME } from '@moderntribe/wme-ui';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';

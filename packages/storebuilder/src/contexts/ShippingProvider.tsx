@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from '@wordpress/element';
 import ShippingScreenData, {
 	ShippingScreenDataInterface
 } from '@shipping/data/shipping-screen-data';

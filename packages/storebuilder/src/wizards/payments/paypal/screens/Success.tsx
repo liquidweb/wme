@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from '@wordpress/element';
 import { Box, Typography, useTheme } from '@mui/material';
 import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { NextStepTile } from '@store/components';

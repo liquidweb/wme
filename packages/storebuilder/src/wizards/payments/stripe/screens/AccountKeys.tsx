@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from '@wordpress/element';
 import { Box, useTheme, CircularProgress, Stack } from '@mui/material';
 import { WizardSectionTitle, Form, FormField, TextInput } from '@moderntribe/wme-ui';
 import { usePaymentsStripe } from '@store/hooks';

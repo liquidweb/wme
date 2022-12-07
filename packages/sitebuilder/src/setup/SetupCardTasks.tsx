@@ -1,4 +1,3 @@
-import React from 'react';
 import { SetupCardTask, GoLiveStatus, GoLiveStatusRowInterface } from '@sb/setup';
 
 export interface SetupCardTasksInterface {

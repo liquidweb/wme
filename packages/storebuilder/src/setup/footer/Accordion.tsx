@@ -1,4 +1,3 @@
-import React from 'react';
 import {
 	SetupCardAccordion as WmeSetupCardAccordion
 } from '@moderntribe/wme-ui';

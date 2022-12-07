@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import { useState } from '@wordpress/element';
 import { Typography, Grid, Box, Link } from '@mui/material';
 import { PlayArrow } from '@mui/icons-material';
 import { VideoEmbed } from '@moderntribe/wme-ui';
@@ -58,7 +58,7 @@ export interface LearnProductTypesInterface {
 	exampleProducts: ColumnLinkInterface[];
 }
 
-const LearnProductTypes: FC<LearnProductTypesInterface> = (props) => {
+const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 	const { exampleProducts = [] } = props;
 	const hasExampleProducts = exampleProducts.length > 0;
 

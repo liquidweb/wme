@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from '@wordpress/element';
 import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';
 

@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import { useState } from '@wordpress/element';
 import { Typography, Grid, Box, Link } from '@mui/material';
 import { PlayArrow } from '@mui/icons-material';
 import { VideoEmbed } from '@moderntribe/wme-ui';
@@ -27,7 +27,7 @@ export interface LearnShippingInterface {
 	type: 'learn-shipping';
 }
 
-const LearnShipping: FC<LearnShippingInterface> = () => {
+const LearnShipping: React.FC<LearnShippingInterface> = () => {
 	const [modalOpen, setModalOpen] = useState(false);
 
 	return <>

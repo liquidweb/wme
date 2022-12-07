@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from '@wordpress/element';
 
 export interface StoreBuilderStateInterface {
 	scrollPosition: number;

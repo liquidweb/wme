@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import { useState } from '@wordpress/element';
 import {
 	SetupCardListItem,
 	VideoEmbed
@@ -33,7 +33,7 @@ export interface ColumnLinkInterface {
 	modalTitle?: string;
 }
 
-const ColumnLink: FC<ColumnLinkInterface> = (props) => {
+const ColumnLink: React.FC<ColumnLinkInterface> = (props) => {
 	const {
 		title,
 		url,

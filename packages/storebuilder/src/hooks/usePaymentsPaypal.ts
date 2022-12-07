@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from '@wordpress/element';
 import { PaymentsPaypalContext, PaymentsPaypalProviderContextInterface } from '@store/contexts/PaymentsPaypalProvider';
 
 export function usePaymentsPaypal() {

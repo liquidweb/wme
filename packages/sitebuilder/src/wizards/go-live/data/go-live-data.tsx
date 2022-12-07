@@ -1,4 +1,3 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { GO_LIVE_PROPS } from '@sb/constants';
 import { Start, VerifyDomain, UpdateSiteUrl, ConnectWithNexcess, FindDomain, ClaimYourDomain } from '../screens';

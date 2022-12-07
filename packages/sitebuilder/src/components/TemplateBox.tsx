@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { ActiveOverlay } from './index';
 import { useLookAndFeel } from '@sb/hooks/useLookAndFeel';

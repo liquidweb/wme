@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext } from '@wordpress/element';
 import { StoreBuilderContext, StoreBuilderContextInterface } from '@store/contexts/StoreBuilderProvider';
 
 export function useStoreBuilder() {

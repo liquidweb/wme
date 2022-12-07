@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from '@wordpress/element';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@store/utils/handleTelemetryRequest';
 import { PAYPAL_PLUGIN_SLUG, STRIPE_PLUGIN_SLUG, USPS_PLUGIN_SLUG, WIZARDS } from '@store/constants';

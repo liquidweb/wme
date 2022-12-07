@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from '@wordpress/element';
 import { Stack, Typography, MenuItem, SelectChangeEvent } from '@mui/material';
 import {
 	CardSelectGroup,

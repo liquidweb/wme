@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from '@wordpress/element';
 import { GO_LIVE_PROPS } from '@sb/constants';
 
 export interface SiteBuilderStateInterface {
