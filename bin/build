@@ -50,9 +50,9 @@ if [[ -z $( which rsync ) ]]; then
 	exit 1
 fi
 
-# Make sure we have pnpm available.
-if [[ -z $( which pnpm ) ]]; then
-	error "Exiting: Could not find pnpm, please install it and try again."
+# Make sure we have npm available.
+if [[ -z $( which npm ) ]]; then
+	error "Exiting: Could not find npm, please install it and try again."
 	exit 1
 fi
 
@@ -87,8 +87,8 @@ export MIX_BUILD_DIR="./dist/wme-sitebuilder/assets"
 
 # Build production-ready assets with Laravel Mix.
 step "Building production assets"
-pnpm install
-pnpm run production
+npm install
+npm run production
 
 # Finally, create the output zip file.
 #
