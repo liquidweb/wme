@@ -80,10 +80,10 @@ class GoLive extends Wizard {
 		return [
 			'canBeClosed'           => true,
 			'autoLaunch'            => false,
-			'domainRegistrationUrl' => esc_url( 'https://www.nexcess.net/domain-registration/' ),
+			'domainRegistrationUrl' => esc_url_raw( 'https://www.nexcess.net/domain-registration/' ),
 			'verifyingUrl'          => $this->getData()->get( 'verifying_domain', '' ),
-			'domainSearchUrl'       => esc_url( 'https://my.nexcess.net/domain-search' ),
-			'purchaseFlowUrl'       => esc_url( apply_filters( 'wme_sitebuilder_golive_purchase_url', '' ) ),
+			'domainSearchUrl'       => esc_url_raw( 'https://my.nexcess.net/domain-search' ),
+			'purchaseFlowUrl'       => esc_url_raw( apply_filters( 'wme_sitebuilder_golive_purchase_url', '' ) ),
 		];
 	}
 
