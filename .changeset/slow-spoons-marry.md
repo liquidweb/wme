@@ -3,4 +3,4 @@
 "@moderntribe/storebuilder": patch
 ---
 
-Removes react and react-dom as peerDependencies, in favor of @wordpress/element"
+Updates tsconfig to simplify use of react imports within components
