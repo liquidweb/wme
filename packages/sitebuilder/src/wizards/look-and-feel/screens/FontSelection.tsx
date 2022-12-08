@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { useLookAndFeelFonts, useLookAndFeel } from '@sb/hooks';

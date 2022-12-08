@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@store/utils/handleTelemetryRequest';
 import { PAYPAL_PLUGIN_SLUG, STRIPE_PLUGIN_SLUG, USPS_PLUGIN_SLUG, WIZARDS } from '@store/constants';
@@ -97,7 +97,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		if (typeof targetStep !== 'number') {
 			return;
 		}
-		setSearchParams({ step: String(targetStep) });
+		searchParams.set('step', String(targetStep));
+		setSearchParams(searchParams);
 	};
 
 	const goToNextStep = () => {

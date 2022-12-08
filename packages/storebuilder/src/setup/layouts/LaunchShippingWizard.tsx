@@ -1,4 +1,3 @@
-import React from 'react';
 import { SetupCardTaskCta } from '@moderntribe/wme-ui';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useNavigate } from 'react-router-dom';

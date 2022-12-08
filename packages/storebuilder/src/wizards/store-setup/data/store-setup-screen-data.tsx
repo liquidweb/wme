@@ -1,6 +1,4 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
-
 import { StoreLocation, StoreDetails, Complete } from '../screens';
 
 type KeysOfUnion<T> = T extends T ? keyof T: never;

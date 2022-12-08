@@ -1,4 +1,3 @@
-import React, { FC, ReactNode } from 'react';
 import {
 	Wizard,
 	WizardHeader,
@@ -12,10 +11,10 @@ import { StoreBuilderLogo } from '@store/logos';
 interface SimpleModalInterface {
 	open: boolean;
 	onClose: () => void;
-	children: ReactNode;
+	children: React.ReactNode;
 }
 
-const SimpleModal: FC<SimpleModalInterface> = (props) => {
+const SimpleModal: React.FC<SimpleModalInterface> = (props) => {
 	const {
 		open,
 		onClose,

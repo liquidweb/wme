@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@sb/utils/handleTelemetryRequest';
 import { WIZARDS } from '@sb/constants';
@@ -83,7 +83,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		if (typeof targetStep !== 'number') {
 			return;
 		}
-		setSearchParams({ step: String(targetStep) });
+		searchParams.set('step', String(targetStep));
+		setSearchParams(searchParams);
 	};
 
 	const goToNextStep = () => {

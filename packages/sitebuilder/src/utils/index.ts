@@ -4,3 +4,4 @@ export * from './generateNewPassword';
 export * from './getWizardCloseArgs';
 export * from './uploadImage';
 export * from './handleTelemetryRequest';
+export * from './parseDomainListItem';

@@ -28,6 +28,7 @@ const RouteAdapter: React.FC<RouteProps> = ({ children }) => {
     }),
     [navigate],
   );
+  // @ts-ignore
   return children({ history: adaptedHistory, location });
 };
 

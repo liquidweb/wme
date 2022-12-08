@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import GoLiveData, { GoLiveInterface } from '@sb/wizards/go-live/data/go-live-data';
@@ -15,7 +15,7 @@ export interface GoLiveProviderContextInterface {
 	setIsLoading: (loading: boolean) => void;
 	getHasDomainNextText: (hasDomain: string) => void;
 	setHasDomain: (hasDomain: string) => void;
-	setShowGetDomain: (show: boolean) => void;
+	setShowPurchaseNavigation: (show: boolean) => void;
 }
 
 export interface DomainVerficationSuccessInterface {
@@ -72,6 +72,7 @@ export const GoLiveContext = createContext<GoLiveProviderContextInterface | null
 
 const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	const [goLiveState, setGoLiveState] = useState<GoLiveInterface>(GoLiveData());
+	const { selectedDomains } = goLiveState;
 
 	const goLiveNonce = GO_LIVE_PROPS.ajax?.nonce || '';
 	const goLiveAction = GO_LIVE_PROPS.ajax?.action || '';
@@ -80,6 +81,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
+	const purchaseNavigation = searchParams.get('purchase') === 'true';
 
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
@@ -94,46 +96,35 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [retryVerfication]);
 
 	useEffect(() => {
+		if (activeStep === 2) {
+			if (purchaseNavigation) {
+				if (selectedDomains.length === 0) {
+					searchParams.set('step', '1');
+					setSearchParams(searchParams);
+				}
+			}
+		}
 		if (activeStep === 3) {
-			if (! capturedDomain) {
-				navigate('/wizard/go-live');
-			}
+			if (! purchaseNavigation) {
+				if (! capturedDomain) {
+					navigate('/wizard/go-live');
+				}
 
-			if (
-				goLiveState.verificationStatus && ! (
-					goLiveState.verificationStatus === 'connected' ||
+				if (
+					goLiveState.verificationStatus && ! (
+						goLiveState.verificationStatus === 'connected' ||
 					goLiveState.verificationStatus === 'advanced'
-				)
-			) {
-				navigate('/wizard/go-live');
-			}
+					)
+				) {
+					navigate('/wizard/go-live');
+				}
 
-			if (goLiveState.verificationStatus === 'error') {
-				navigate('/wizard/go-live?step=2');
+				if (goLiveState.verificationStatus === 'error') {
+					navigate('/wizard/go-live?step=2');
+				}
 			}
 		}
-
-		if (activeStep === 1 && goLiveState.hasDomain !== null) {
-			const { steps, hasDomain, showGetDomain } = goLiveState;
-
-			steps[ 0 ].nextText = continueStr;
-			steps[ 0 ].hideBack = true;
-
-			if (hasDomain === 'no') {
-				steps[ 0 ].nextText = showGetDomain ? haveDomain : getDomain;
-			}
-
-			if (hasDomain === 'no' && showGetDomain) {
-				steps[ 0 ].disableNext = true;
-				steps[ 0 ].hideBack = false;
-			}
-
-			setGoLiveState({
-				...goLiveState,
-				steps
-			});
-		}
-	}, [activeStep, goLiveState.showGetDomain]);
+	}, [activeStep, purchaseNavigation]);
 
 	const submitGoLiveForm = () => {
 		const { steps, showLogoutButton } = goLiveState;
@@ -312,7 +303,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	const getHasDomainNextText = (hasDomain:string) => {
 		switch (hasDomain) {
 		case 'yes':
-			return goLiveState.showGetDomain ? haveDomain : continueStr;
+			return haveDomain;
 		case 'no':
 			return getDomain;
 		default:
@@ -331,14 +322,13 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setShowGetDomain = (show:boolean) => {
-		const { steps } = goLiveState;
-		steps[ 0 ].nextText = haveDomain;
-		setGoLiveState({
-			...goLiveState,
-			showGetDomain: show,
-			steps
-		});
+	const setShowPurchaseNavigation = (show: boolean) => {
+		if (show) {
+			searchParams.set('purchase', 'true');
+		} else {
+			searchParams.delete('purchase');
+		}
+		setSearchParams(searchParams);
 	};
 
 	return (
@@ -349,7 +339,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			submitDomainVerification,
 			setIsLoading,
 			setHasDomain,
-			setShowGetDomain,
+			setShowPurchaseNavigation,
 			handleDomainVerificationRequest,
 			getHasDomainNextText
 		} }>

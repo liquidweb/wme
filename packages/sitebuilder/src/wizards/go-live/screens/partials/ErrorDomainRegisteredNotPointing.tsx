@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Checkbox, FormLabel, Link, Typography, useTheme } from '@mui/material';
 import { OpenInNew, Refresh } from '@mui/icons-material';
 import { ErrorStatusMessage } from '.';

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Box, Grid, CircularProgress } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { useLookAndFeel } from '@sb/hooks';
