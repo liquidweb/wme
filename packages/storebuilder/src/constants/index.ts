@@ -35,26 +35,26 @@ export const PAYPAL_PLUGIN_SLUG = 'woocommerce-paypal-payments';
 export const STRIPE_PLUGIN_SLUG = 'woocommerce-gateway-stripe';
 
 export const WP_101_HOW_TO_LINKS = [{
-	title: __('Simple', 'nexcess-mapps'),
-	modalTitle: __('Simple Product Overview', 'nexcess-mapps'),
+	title: __('Simple', 'moderntribe-storebuilder'),
+	modalTitle: __('Simple Product Overview', 'moderntribe-storebuilder'),
 	url: 'wp101:woocommerce-simple-product',
 	target: '_blank',
 },
 {
-	title: __('Variable', 'nexcess-mapps'),
-	modalTitle: __('Variable Product Overview', 'nexcess-mapps'),
+	title: __('Variable', 'moderntribe-storebuilder'),
+	modalTitle: __('Variable Product Overview', 'moderntribe-storebuilder'),
 	url: 'wp101:woocommerce-variable-products',
 	target: '_blank',
 },
 {
-	title: __('Grouped', 'nexcess-mapps'),
-	modalTitle: __('Grouped Product Overview', 'nexcess-mapps'),
+	title: __('Grouped', 'moderntribe-storebuilder'),
+	modalTitle: __('Grouped Product Overview', 'moderntribe-storebuilder'),
 	url: 'wp101:woocommerce-grouped-product',
 	target: '_blank',
 },
 {
-	title: __('Downloadable', 'nexcess-mapps'),
-	modalTitle: __('Downloadable Product Overview', 'nexcess-mapps'),
+	title: __('Downloadable', 'moderntribe-storebuilder'),
+	modalTitle: __('Downloadable Product Overview', 'moderntribe-storebuilder'),
 	url: 'wp101:woocommerce-downloadable-products',
 	target: '_blank',
 }];

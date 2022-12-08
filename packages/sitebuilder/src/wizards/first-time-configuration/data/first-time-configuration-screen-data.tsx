@@ -46,34 +46,34 @@ export interface FtcScreenDataInterface extends FtcWizardObjectInterface {
 const stepsData: Array<StepInterface> = [
 	{
 		id: 0,
-		label: __('Start', 'nexcess-mapps'),
+		label: __('Start', 'moderntribe-sitebuilder'),
 		hideSkip: true,
-		nextText: __('Get Started', 'nexcess-mapps'),
+		nextText: __('Get Started', 'moderntribe-sitebuilder'),
 		hideBack: true,
 		hidePagination: true,
 		screen: <Start />
 	},
 	{
 		id: 1,
-		label: __('Username & Password', 'nexcess-mapps'),
+		label: __('Username & Password', 'moderntribe-sitebuilder'),
 		disableNext: true,
 		hideSkip: true,
-		nextText: __('Next', 'nexcess-mapps'),
+		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <UsernamePassword />
 	},
 	{
 		id: 2,
-		label: __('Site Details', 'nexcess-mapps'),
+		label: __('Site Details', 'moderntribe-sitebuilder'),
 		hideSkip: true,
-		nextText: __('Next', 'nexcess-mapps'),
+		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <SiteDetails />
 	},
 	{
 		id: 3,
-		label: __('Complete', 'nexcess-mapps'),
+		label: __('Complete', 'moderntribe-sitebuilder'),
 		hideSkip: true,
 		hidePagination: true,
-		nextText: __('Save & Exit Setup', 'nexcess-mapps'),
+		nextText: __('Save & Exit Setup', 'moderntribe-sitebuilder'),
 		screen: <Complete />
 	}
 ];

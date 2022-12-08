@@ -19,7 +19,7 @@ const LaunchShippingWizard = () => {
 		fullWidth={ true }
 		startIcon={ <AddCircleOutlineIcon /> }
 		onClick={ handleOnClick }
-	>{ __('Add another way to ship', 'nexcess-mapps') }</SetupCardTaskCta>;
+	>{ __('Add another way to ship', 'moderntribe-storebuilder') }</SetupCardTaskCta>;
 };
 
 export default LaunchShippingWizard;

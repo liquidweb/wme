@@ -64,7 +64,7 @@ const AddShippingMethod = () => {
 							<Chip
 								size="small"
 								color="success"
-								label={ __('Active', 'nexcess-mapps') }
+								label={ __('Active', 'moderntribe-storebuilder') }
 							/>
 						}
 						primary={

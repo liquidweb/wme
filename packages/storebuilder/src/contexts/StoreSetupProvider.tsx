@@ -241,7 +241,7 @@ const StoreSetupProvider = ({
 		const locales = getLocales();
 		const locale = locales && typeof region === 'string' && region in locales && (locales as LocalesInterface)[ region ];
 
-		return locale && locale?.state?.label ? locale.state.label	: __('State', 'nexcess-mapps');
+		return locale && locale?.state?.label ? locale.state.label	: __('State', 'moderntribe-storebuilder');
 	};
 
 	const getSelectedRegion = () => {
