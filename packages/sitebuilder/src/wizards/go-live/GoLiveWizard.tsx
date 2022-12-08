@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { useTheme } from '@mui/material';
 import { __ } from '@wordpress/i18n';

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@sb/utils/handleTelemetryRequest';
 import { WIZARDS } from '@sb/constants';

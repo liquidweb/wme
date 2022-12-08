@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Link, Dialog, DialogContent, Typography } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 

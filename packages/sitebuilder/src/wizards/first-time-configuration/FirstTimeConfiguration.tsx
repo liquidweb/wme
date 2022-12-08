@@ -1,4 +1,3 @@
-import React from 'react';
 import FirstTimeConfigurationWizard from '@ftc/FirstTimeConfigurationWizard';
 import FirstTimeConfigurationProvider from '@sb/contexts/FirstTimeConfigurationProvider';
 

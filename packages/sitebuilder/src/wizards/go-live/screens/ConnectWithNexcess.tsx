@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import {
 	Box,
 	List,
@@ -47,7 +47,7 @@ const ConnectWithNexcess = () => {
 					{ selectedDomains.map((domain, index) => {
 						const domainListItem = parseDomainListItem(domain, true);
 						return (
-							<React.Fragment key={ domain.domain }>
+							<Fragment key={ domain.domain }>
 								<ListItemCheckout { ...domainListItem } sx={ {
 									backgroundColor: 'sidebar.background',
 									padding: '12px 24px',
@@ -65,7 +65,7 @@ const ConnectWithNexcess = () => {
 									<Box sx={ { paddingTop: '8px', paddingBottom: '8px' } }>
 									</Box>
 								) }
-							</React.Fragment>
+							</Fragment>
 
 						);
 					}) }

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import GoLiveData, { GoLiveInterface } from '@sb/wizards/go-live/data/go-live-data';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, useTheme, SelectChangeEvent } from '@mui/material';
 import {
 	Form,
