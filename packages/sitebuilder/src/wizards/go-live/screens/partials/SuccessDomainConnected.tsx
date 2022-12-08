@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from '@mui/material';
 import { GoLiveStringData } from '@go-live/data/constants';
 

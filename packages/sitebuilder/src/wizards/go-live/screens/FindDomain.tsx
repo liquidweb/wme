@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, Fragment } from 'react';
 import { Box, Divider, IconButton, InputAdornment, List, ThemeProvider, createTheme } from '@mui/material';
 import { ListItemCheckout, TextInput, WizardSectionTitle } from '@moderntribe/wme-ui';
 import { Search } from '@mui/icons-material';
@@ -36,7 +36,7 @@ const FindDomain = () => {
 	} } = GoLiveStringData;
 
 	const { search, setSearch, data: domains = [], selectedDomains, toggleSelectedDomain, isFetching, isError, error } = useFindDomain();
-	const [internalSearch, setInternalSearch] = React.useState(search);
+	const [internalSearch, setInternalSearch] = useState(search);
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
@@ -111,14 +111,14 @@ const FindDomain = () => {
 						const selected = selectedDomains.some((_) => _.domain === domain.domain);
 						const domainListItem = parseDomainListItem(domain, selected);
 						return (
-							<React.Fragment key={ domain.domain }>
+							<Fragment key={ domain.domain }>
 								<ListItemCheckout { ...domainListItem } disableGutters onClick={ () => toggleSelectedDomain(domain) } />
 								{ index < domains.length - 1 && (
 									<Box sx={ { paddingTop: '8px', paddingBottom: '8px' } }>
 										<Divider />
 									</Box>
 								) }
-							</React.Fragment>
+							</Fragment>
 						);
 					}) }
 					{

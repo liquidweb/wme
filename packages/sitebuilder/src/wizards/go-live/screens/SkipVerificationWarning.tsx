@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import {
 	Button,
 	Link,
@@ -25,7 +24,7 @@ export interface SkipVerificationWarningInterface {
 	save: () => void;
 }
 
-const SkipVerificationWarning: FC<SkipVerificationWarningInterface> = (props) => {
+const SkipVerificationWarning: React.FC<SkipVerificationWarningInterface> = (props) => {
 	const {
 		open,
 		onClose,

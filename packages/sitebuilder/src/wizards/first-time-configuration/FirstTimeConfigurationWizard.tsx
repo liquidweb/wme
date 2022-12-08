@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';

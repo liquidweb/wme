@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { handleActionRequest } from '@moderntribe/wme-utils';
 import { GO_LIVE_PROPS } from '@sb/constants';
@@ -70,7 +70,7 @@ export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 			};
 		});
 	}
-	React.useEffect(() => {
+	useEffect(() => {
 		setGoLiveState((prevGoLiveState) => {
 			const { stepsAlternative } = prevGoLiveState;
 			if (selectedDomains.length) {
