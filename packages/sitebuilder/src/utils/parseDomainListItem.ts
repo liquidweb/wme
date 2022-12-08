@@ -22,7 +22,7 @@ function getPrice(termFees: DomainTermFees, isAvailable: boolean) {
 	const price = termFees[ shortestTerm ];
 
 	// eslint-disable-next-line @wordpress/i18n-translator-comments
-	const perYear = _n('year', 'years', termToYear, 'nexcess-mapps');
+	const perYear = _n('year', 'years', termToYear, 'moderntribe-sitebuilder');
 
 	return sprintf('%1$s / %2$s %3$s',
 		price,

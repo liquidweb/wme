@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 
 export const ActiveOverlay = (props:any) => {
 	const { themeName } = props;
-	const activeText = __('Active', 'nexcess-mapps');
+	const activeText = __('Active', 'moderntribe-sitebuilder');
 	const checkbox = `${ IMAGE_DIR }check.svg`;
 
 	const overlaySx = {

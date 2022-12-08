@@ -171,7 +171,7 @@ const VerifyDomain = () => {
 				</FormControl>
 				<FormHelperText>
 					{ `${ screenNotice } ` }
-					<Link href="email:storebuilder@nexcess.net">{ __('storebuilder@nexcess.net', 'nexcess-mapps') }</Link>.
+					<Link href="email:storebuilder@nexcess.net">{ __('storebuilder@nexcess.net', 'moderntribe-sitebuilder') }</Link>.
 				</FormHelperText>
 				{ <Box mt={ 3 }>
 
