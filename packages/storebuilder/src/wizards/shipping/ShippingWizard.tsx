@@ -49,16 +49,16 @@ const ShippingWizard = () => {
 				steps={ steps }
 				activeStep={ stepIndex }
 				isLoading={ isLoading }
-				loadingText={ __('Loading…', 'nexcess-mapps') }
+				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				isLastStep={ ! error && providersActivated }
 				onNext={ handleOnNext }
 				save={ handleOnSave }
 				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
-				backText={ __('Back', 'nexcess-mapps') }
-				skipText={ __('Skip', 'nexcess-mapps') }
+				backText={ __('Back', 'moderntribe-storebuilder') }
+				skipText={ __('Skip', 'moderntribe-storebuilder') }
 				nextText={
-					steps[ stepIndex ].nextText || __('Next', 'nexcess-mapps')
+					steps[ stepIndex ].nextText || __('Next', 'moderntribe-storebuilder')
 				}
 			/>
 		</>

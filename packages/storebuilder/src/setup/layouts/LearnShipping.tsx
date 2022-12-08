@@ -7,9 +7,9 @@ import { SimpleModal } from '@store/components';
 import { pxToRem } from '@moderntribe/wme-utils';
 import { IMAGE_DIR } from '@store/constants';
 
-const videoAriaLabel = __('Click to play video', 'nexcess-mapps');
-const videoOverline = __('3 Minutes', 'nexcess-mapps');
-const videoHeadline = __('Understanding Flat Rate Shipping in Storebuilder', 'nexcess-mapps');
+const videoAriaLabel = __('Click to play video', 'moderntribe-storebuilder');
+const videoOverline = __('3 Minutes', 'moderntribe-storebuilder');
+const videoHeadline = __('Understanding Flat Rate Shipping in Storebuilder', 'moderntribe-storebuilder');
 
 const linkSx = {
 	color: 'text.link',
@@ -122,7 +122,7 @@ const LearnShipping: React.FC<LearnShippingInterface> = () => {
 			<Box mt={ 4 } width="100%">
 				<Typography variant="h4" mb={ 2 }>{ videoHeadline }</Typography>
 				<Typography variant="body2">
-					{ __('When setting up shipping in StoreBuilder, there are three concepts to understand: Flat Rate Shipping, Shipping Zones, and Shipping Classes. This video describes each and how they interact to ensure customers are charged correctly to ship their purchases.', 'nexcess-mapps') }
+					{ __('When setting up shipping in StoreBuilder, there are three concepts to understand: Flat Rate Shipping, Shipping Zones, and Shipping Classes. This video describes each and how they interact to ensure customers are charged correctly to ship their purchases.', 'moderntribe-storebuilder') }
 				</Typography>
 			</Box>
 		</SimpleModal>

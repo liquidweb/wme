@@ -33,7 +33,7 @@ const SimpleModal: React.FC<SimpleModalInterface> = (props) => {
 						logoSrc={ <StoreBuilderLogo /> }
 					/>
 					<ExitButton onClick={ onClose }>
-						<span>{ __('Exit to Setup', 'nexcess-mapps') }</span>
+						<span>{ __('Exit to Setup', 'moderntribe-storebuilder') }</span>
 					</ExitButton>
 				</>
 			</WizardHeader>

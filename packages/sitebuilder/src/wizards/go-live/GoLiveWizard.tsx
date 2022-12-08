@@ -107,10 +107,10 @@ const GoLiveWizard = () => {
 				save={ handleSave }
 				onClickStep={ ({ id }) => goToStep(id) }
 				hideFooter={ false }
-				backText={ __('Back', 'nexcess-mapps') }
-				skipText={ __('Skip', 'nexcess-mapps') }
-				nextText={ steps[ stepIndex ].nextText || __('Next', 'nexcess-mapps') }
-				loadingText={ steps[ stepIndex ].loadingText || __('Loading', 'nexcess-mapps') }
+				backText={ __('Back', 'moderntribe-sitebuilder') }
+				skipText={ __('Skip', 'moderntribe-sitebuilder') }
+				nextText={ steps[ stepIndex ].nextText || __('Next', 'moderntribe-sitebuilder') }
+				loadingText={ steps[ stepIndex ].loadingText || __('Loading', 'moderntribe-sitebuilder') }
 				isLoading={ createPurchaseFlow.isLoading }
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }

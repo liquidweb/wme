@@ -33,19 +33,19 @@ const PaymentsStripeScreenData = (): PaymentsStripeInterface => ({
 			id: 0,
 			label: paymentsStripeConsts.getStarted.label,
 			hideSkip: true,
-			nextText: __('Next', 'nexcess-mapps'),
+			nextText: __('Next', 'moderntribe-storebuilder'),
 			hideBack: true,
 			screen: <GetStarted />,
 		},
 		{
 			id: 1,
 			label: paymentsStripeConsts.accountKeys.label,
-			nextText: __('Next', 'nexcess-mapps'),
+			nextText: __('Next', 'moderntribe-storebuilder'),
 			screen: <AccountKeys />,
 		},
 		{
 			id: 2,
-			nextText: __('Complete', 'nexcess-mapps'),
+			nextText: __('Complete', 'moderntribe-storebuilder'),
 			hidePagination: true,
 			screen: <Success />
 		}

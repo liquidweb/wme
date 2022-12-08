@@ -67,7 +67,7 @@ const StoreSetupWizard = () => {
 				steps={ steps }
 				activeStep={ stepIndex }
 				isLoading={ isLoading }
-				loadingText={ __('Loading…', 'nexcess-mapps') }
+				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				isLastStep={ activeStep === lastStep }
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
@@ -76,10 +76,10 @@ const StoreSetupWizard = () => {
 				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
 				hideFooter={ false }
 				hideSkip={ isScreenTouched() }
-				backText={ __('Back', 'nexcess-mapps') }
-				skipText={ __('Skip', 'nexcess-mapps') }
+				backText={ __('Back', 'moderntribe-storebuilder') }
+				skipText={ __('Skip', 'moderntribe-storebuilder') }
 				nextText={
-					steps[ stepIndex ].nextText || __('Next', 'nexcess-mapps')
+					steps[ stepIndex ].nextText || __('Next', 'moderntribe-storebuilder')
 				}
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }

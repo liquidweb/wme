@@ -165,7 +165,7 @@ const UsernamePassword = () => {
 										<IconButton
 											aria-label={ __(
 												'copy to clipboard',
-												'nexcess-mapps'
+												'moderntribe-sitebuilder'
 											) }
 											onClick={ () =>
 												copyToClipboard(adminUrl)

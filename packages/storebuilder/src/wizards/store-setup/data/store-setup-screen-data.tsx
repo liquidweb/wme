@@ -111,23 +111,23 @@ export interface StoreSetupScreenDataInterface extends StoreSetupWizardObjectInt
 const stepsData: Array<StoreSetupStepInterface> = [
 	{
 		id: 0,
-		label: __('Location', 'nexcess-mapps'),
+		label: __('Location', 'moderntribe-storebuilder'),
 		hideBack: true,
-		nextText: __('Next', 'nexcess-mapps'),
+		nextText: __('Next', 'moderntribe-storebuilder'),
 		screen: <StoreLocation />
 	},
 	{
 		id: 1,
-		label: __('Your Store', 'nexcess-mapps'),
-		nextText: __('Next', 'nexcess-mapps'),
+		label: __('Your Store', 'moderntribe-storebuilder'),
+		nextText: __('Next', 'moderntribe-storebuilder'),
 		screen: <StoreDetails />
 	},
 	{
 		id: 2,
-		label: __('Complete', 'nexcess-mapps'),
+		label: __('Complete', 'moderntribe-storebuilder'),
 		hideSkip: true,
 		hidePagination: true,
-		nextText: __('Save & Exit Setup', 'nexcess-mapps'),
+		nextText: __('Save & Exit Setup', 'moderntribe-storebuilder'),
 		screen: <Complete />
 	}
 ];

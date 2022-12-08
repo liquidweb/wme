@@ -17,7 +17,7 @@ const ClaimYourDomain = () => {
 	const [searchParams] = useSearchParams();
 
 	// TODO: Make it works with more than one domain.
-	const domain = searchParams.get('domain') || __('The domain', 'nexcess-mapps');
+	const domain = searchParams.get('domain') || __('The domain', 'moderntribe-sitebuilder');
 	const title = sprintf('%1$s %2$s',
 		domain,
 		screenTitle

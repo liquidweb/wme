@@ -17,8 +17,8 @@ const PoweredByNexcessFooter = () => {
 
 	return (
 		<Typography sx={ footerSx }>
-			{ `${ __('Powered by', 'nexcess-mapps') } ` }
-			<Link underline="hover" href="https://www.nexcess.net/" target="_blank">{ __('Nexcess', 'nexcess-mapps') }</Link>
+			{ `${ __('Powered by', 'moderntribe-sitebuilder') } ` }
+			<Link underline="hover" href="https://www.nexcess.net/" target="_blank">{ __('Nexcess', 'moderntribe-sitebuilder') }</Link>
 		</Typography>
 	);
 };
