@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from '@wordpress/element';
+import { createContext, useState, useEffect } from 'react';
 import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@sb/utils/handleTelemetryRequest';
 import { WIZARDS } from '@sb/constants';

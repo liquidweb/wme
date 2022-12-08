@@ -1,4 +1,4 @@
-import { lazy } from '@wordpress/element';
+import { lazy } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { Wizard } from '@moderntribe/wme-ui';
 

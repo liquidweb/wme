@@ -1,4 +1,4 @@
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { VideoEmbed } from '@moderntribe/wme-ui';
 import { Box, Link, Typography } from '@mui/material';
 import type { SxProps } from '@mui/material/styles';

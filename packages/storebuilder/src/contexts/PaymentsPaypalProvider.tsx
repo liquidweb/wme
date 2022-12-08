@@ -1,4 +1,4 @@
-import { createContext, useState } from '@wordpress/element';
+import { createContext, useState } from 'react';
 import PaymentsPaypalScreenData, { PaymentsPaypalInterface } from '@store/wizards/payments/paypal/data/paypal-screen-data';
 import { handleActionRequest } from '@moderntribe/wme-utils';
 import { PAYMENTS_PAYPAL_PROPS } from '@store/constants';

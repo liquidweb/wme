@@ -1,4 +1,4 @@
-import { useContext } from '@wordpress/element';
+import { useContext } from 'react';
 import { GoLiveContext, GoLiveProviderContextInterface } from '@sb/contexts/GoLiveProvider';
 
 export function useGoLive() {

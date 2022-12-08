@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { ProgressBar, WizardSectionTitle } from '@moderntribe/wme-ui';
 import { randomInt } from '@moderntribe/wme-utils';

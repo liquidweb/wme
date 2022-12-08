@@ -1,4 +1,4 @@
-import { useEffect, useRef } from '@wordpress/element';
+import { useEffect, useRef } from 'react';
 import { useLookAndFeel, useWizard } from '@sb/hooks';
 
 const IframeDisplay = () => {

@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from '@wordpress/element';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import {
 	Box,
 	FormControl,

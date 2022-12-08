@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useWizard, usePaymentsPaypal } from '@store/hooks';

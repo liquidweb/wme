@@ -1,4 +1,4 @@
-import { lazy } from '@wordpress/element';
+import { lazy } from 'react';
 import {
 	Routes,
 	Route,

@@ -1,4 +1,4 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { handleActionRequest } from '@moderntribe/wme-utils';
 import { GO_LIVE_PROPS } from '@sb/constants';

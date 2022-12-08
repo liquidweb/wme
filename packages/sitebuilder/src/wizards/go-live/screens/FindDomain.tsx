@@ -1,4 +1,4 @@
-import { useState, Fragment } from '@wordpress/element';
+import { useState, Fragment } from 'react';
 import { Box, Divider, IconButton, InputAdornment, List, ThemeProvider, createTheme } from '@mui/material';
 import { ListItemCheckout, TextInput, WizardSectionTitle } from '@moderntribe/wme-ui';
 import { Search } from '@mui/icons-material';

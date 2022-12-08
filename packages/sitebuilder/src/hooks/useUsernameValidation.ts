@@ -1,4 +1,4 @@
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { useFirstTimeConfiguration } from './useFirstTimeConfiguration';
 import { handleActionRequest } from '@moderntribe/wme-utils';
 import { FtcStringData } from '@sb/wizards/first-time-configuration/data/constants';

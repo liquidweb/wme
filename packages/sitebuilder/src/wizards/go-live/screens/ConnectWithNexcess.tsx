@@ -1,4 +1,4 @@
-import { Fragment } from '@wordpress/element';
+import { Fragment } from 'react';
 import {
 	Box,
 	List,

@@ -1,4 +1,4 @@
-import { useState } from '@wordpress/element';
+import { useState } from 'react';
 import { Typography, Grid, Box, Link } from '@mui/material';
 import { PlayArrow } from '@mui/icons-material';
 import { VideoEmbed } from '@moderntribe/wme-ui';

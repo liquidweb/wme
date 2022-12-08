@@ -1,4 +1,4 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect } from 'react';
 import { IconButton, Alert } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
 import { Add, DeleteOutline } from '@mui/icons-material';

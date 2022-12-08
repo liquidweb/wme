@@ -1,4 +1,4 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { SetupCards } from '@store/setup';

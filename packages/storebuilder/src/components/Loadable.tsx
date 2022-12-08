@@ -1,4 +1,4 @@
-import { Suspense } from '@wordpress/element';
+import { Suspense } from 'react';
 import { Loading } from './Loading';
 
 const Loadable = <T extends { fullscreen?: boolean }>(Component: React.ComponentType<T>) => (props: T) => {

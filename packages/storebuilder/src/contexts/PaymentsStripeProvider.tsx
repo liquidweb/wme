@@ -1,4 +1,4 @@
-import { createContext, useState } from '@wordpress/element';
+import { createContext, useState } from 'react';
 import PaymentsStripeScreenData, { PaymentsStripeInterface } from '@store/wizards/payments/stripe/data/stripe-screen-data';
 import { handleActionRequest } from '@moderntribe/wme-utils';
 import { PAYMENTS_STRIPE_PROPS } from '@store/constants';

@@ -1,4 +1,4 @@
-import { useContext } from '@wordpress/element';
+import { useContext } from 'react';
 import { PaymentsStripeContext, PaymentsStripeProviderContextInterface } from '@store/contexts/PaymentsStripeProvider';
 
 export function usePaymentsStripe() {
