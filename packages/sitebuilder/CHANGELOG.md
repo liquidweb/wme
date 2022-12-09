@@ -1,5 +1,11 @@
 # @moderntribe/sitebuilder
 
+## 1.6.1
+
+### Patch Changes
+
+- 534180d: Updates tsconfig to simplify use of react imports within components
+
 ## 1.6.0
 
 ### Minor Changes
