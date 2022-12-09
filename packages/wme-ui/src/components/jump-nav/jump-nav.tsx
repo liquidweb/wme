@@ -7,9 +7,9 @@ import { styled } from '@mui/material/styles';
 interface JumpNavProps extends BoxProps {
   title?: string;
   links: Array<{
-    id: number;
+    id: string;
     label: string;
-    href: string;
+    onClick: () => void;
     remainingTasks?: number;
   }>;
 }
@@ -32,6 +32,7 @@ const JumpNavLink = styled(Link)<LinkProps>(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 4,
+  cursor: 'pointer',
   '&:hover, &:active': {
     color: theme.palette.primary.main,
   },
@@ -40,6 +41,7 @@ const JumpNavLink = styled(Link)<LinkProps>(({ theme }) => ({
 const LinkLabel = styled('span')(() => ({
   textDecoration: 'underline',
   textUnderlineOffset: 2,
+  fontSize: '.875rem',
 }));
 
 const TaskNumber = styled(Box)<BoxProps>(({ theme }) => ({
@@ -58,9 +60,9 @@ export default function JumpNav(props: JumpNavProps) {
 
   return (
     <JumpNavContainer {...rest}>
-      {title && <Typography sx={{ fontWeight: 500 }}>{title}</Typography>}
+      {title && <Typography sx={{ fontWeight: 500, fontSize: '.875rem' }}>{title}</Typography>}
       {links?.map((link) => (
-        <JumpNavLink href={link.href} underline="none">
+        <JumpNavLink onClick={link.onClick} underline="none">
           <LinkLabel>{link.label}</LinkLabel>
           {(link?.remainingTasks && link.remainingTasks > 0) && (
           <TaskNumber>{link.remainingTasks}</TaskNumber>

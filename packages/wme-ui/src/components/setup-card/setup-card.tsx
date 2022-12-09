@@ -9,11 +9,6 @@ const StyledSetupCard = styled(Card, {
   margin: `${theme.spacing(2)} auto`,
   maxWidth: theme.spacing(100),
   boxShadow: '0 0 8px rgba(0, 0, 0, 0.05)',
-
-  '& .MuiCardContent-root': {
-    marginTop: theme.spacing(4),
-    paddingTop: `0 ${theme.spacing(4)} ${theme.spacing(4)}`,
-  },
 }));
 
 export default function SetupCard(props: CardProps) {

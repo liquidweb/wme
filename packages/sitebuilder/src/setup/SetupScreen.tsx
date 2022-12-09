@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { SetupCards } from '@sb/setup';
-import { SetupData } from '@sb/setup/data/constants';
-import { StoreBuilderLogo } from '@sb/logos';
-import { useSiteBuilder } from '@sb/hooks';
-
-const { screen } = SetupData;
+import { DetailsHeader } from '@sb/components';
+import { useSiteBuilder, useJumpNav } from '@sb/hooks';
 
 const SetupScreen = () => {
 	const { siteBuilderState: { scrollPosition }, setScrollPosition } = useSiteBuilder();
+	const { JumpNav, links } = useJumpNav();
 
 	useEffect(() => {
 		window.scrollTo(0, scrollPosition);
@@ -29,16 +26,11 @@ const SetupScreen = () => {
 
 	return (
 		<Box pt={ 3 } pl={ '12px' } pr={ 4 }>
-			<StoreBuilderLogo />
-			<WizardSectionTitle
-				heading={ screen.title }
-				headingVariant="h1"
-				copy={ screen.intro }
-				copyVariant="body2"
-				bookend
-				sx={ { marginTop: 4 } }
-			/>
-			<SetupCards />
+			<DetailsHeader />
+			<Box sx={ { maxWidth: '800px', margin: 'auto' } }>
+				<JumpNav title="Jump To:" links={ links } />
+				<SetupCards />
+			</Box>
 		</Box>
 	);
 };

@@ -54,6 +54,15 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 			},
 			action: "onclick action testing",
 		},
+		isComplete: {
+			control: "boolean",
+			description: "If this task is complete",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
 		icon: {
 			control: false,
 			description: "MUI icon component.",
@@ -335,6 +344,39 @@ const MySetupCardTask = () => {
 					]}
 				/>
 			}
+		/>
+	);
+};
+```
+
+### Task that is completed
+
+<Canvas>
+	<Story
+		name="Completed"
+		args={{
+			title: "Example completed task",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			isComplete: true,
+			icon: <CalendarMonthIcon />,
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardTask } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
+const MySetupCardTask = () => {
+	return (
+		<SetupCardTask
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			isComplete={true}
 		/>
 	);
 };

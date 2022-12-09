@@ -39,9 +39,7 @@ const StyledSetupCardAccordion = styled(Accordion, {
     },
   },
   '& .MuiAccordionDetails-root': {
-    padding: `0 0 ${theme.spacing(3)} 0`,
-    margin: `0 ${theme.spacing(3)}`,
-    borderColor: theme.palette.border.ui,
+    padding: 0,
   },
 }));
 
