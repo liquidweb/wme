@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SetupCardTask as WmeSetupCardTask } from '@moderntribe/wme-ui';
 import { isValidUrl } from '@moderntribe/wme-utils';
-import { Avatar } from '@mui/material';
+import { Icon } from '@mui/material';
 import { IMAGE_DIR } from '@sb/constants';
 
 const getAvatarProps = (props: SetupCardRowInterface) => {
@@ -13,19 +13,18 @@ const getAvatarProps = (props: SetupCardRowInterface) => {
 	return {
 		alt: props?.title,
 		src: `${ IMAGE_DIR + props.icon }`,
+		width: '100%',
 	};
 };
 
 const SetupCardTask = (props: SetupCardRowInterface) => {
 	const {
-		type,
 		url,
 		wizardHash,
 		...rest
 	} = props;
 
 	const avatarProps = getAvatarProps(props);
-	const isVariant = type === 'task' || type === 'action';
 
 	const navigate = useNavigate();
 
@@ -41,8 +40,7 @@ const SetupCardTask = (props: SetupCardRowInterface) => {
 		{ ...rest }
 		onClick={ ! validUrl && wizardHash ? handleOnClick : undefined }
 		href={ validUrl ? url : undefined }
-		variant={ isVariant ? type : 'task' }
-		avatar={ Object.keys(avatarProps).length > 0 && <Avatar { ...avatarProps } /> }
+		icon={ Object.keys(avatarProps).length > 0 && (<Icon><img { ...avatarProps } alt="icon" /></Icon>) }
 	/>;
 };
 

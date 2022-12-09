@@ -68,6 +68,7 @@ declare global {
 		disabled?: boolean;
 		disableText?: string;
 		wizardHash?: string;
+		complete?: boolean;
 	}
 
 	interface SetupCardInterface {
@@ -78,6 +79,7 @@ declare global {
 		time?: string;
 		rows: SetupCardRowInterface[];
 		footers?: any;
+		slug: string;
 	}
 
 	interface HandleActionPayloadInterface {

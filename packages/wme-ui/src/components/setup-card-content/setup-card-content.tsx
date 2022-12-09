@@ -5,11 +5,12 @@ import { styled } from '@mui/material/styles';
 const SetupCardContentWrapper = styled(CardContent, {
   name: 'WmeSetupCardContent',
   slot: 'Root',
-  // @ts-ignore: No Unused Parameters - props is passed but not used.
-  overridesResolver: (props, styles) => [
-    styles.root,
-  ],
-})({});
+})(({ theme }) => ({
+  padding: `${theme.spacing(2)} 0 ${theme.spacing(3)} 0`,
+  margin: `0 ${theme.spacing(3)}`,
+  borderTop: '1px solid',
+  borderColor: theme.palette.border.ui,
+}));
 
 const SetupCardContent: React.FC<CardContentProps> = (props) => {
   const { children, ...rest } = props;

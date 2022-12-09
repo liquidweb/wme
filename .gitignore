@@ -46,6 +46,7 @@ build-module/
 build-style/
 build-types/
 dist/
+packages/wme-ui/storybook-static/
 
 # Project files
 node_modules/

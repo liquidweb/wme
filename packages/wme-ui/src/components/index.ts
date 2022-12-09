@@ -163,8 +163,5 @@ export * from './list-item-checkout';
 export { default as TemplateSelectGroup } from './template-select-group';
 export * from './template-select-group';
 
-export { default as TemplateSelectItem } from './template-select-item';
-export * from './template-select-item';
-
 export { default as JumpNav } from './jump-nav';
 export * from './jump-nav';
