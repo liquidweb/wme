@@ -1,5 +1,11 @@
 # @moderntribe/storebuilder
 
+## 1.5.1
+
+### Patch Changes
+
+- 534180d: Updates tsconfig to simplify use of react imports within components
+
 ## 1.5.0
 
 ### Minor Changes
