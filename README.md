@@ -1,33 +1,40 @@
-# Wordpress Made Easy monorepo
+# Wordpress Made Easy: Monorepo
 
-This guide allows you to make changes in the monorepo and have them reflected directly in the (wme-sitebuilder)[https://github.com/moderntribe/wme-sitebuilder] plugin.
+This guide allows you to make changes in the monorepo and have them 
+reflected directly in the [wme-sitebuilder](https://github.com/moderntribe/wme-sitebuilder) plugin.
 
-### Get started
+## Prerequisites
+- Install [yalc](https://github.com/wclr/yalc)
+- Install pnpm using [their documentation](https://pnpm.io/installation) or [homebrew](https://formulae.brew.sh/formula/pnpm#default)
 
-1. Add webpack to `packages/sitebuilder` and `packages/storebuilder`. If you have webpack installed globally you can possibly skip this step
-2. Run `pnpm install`
-3. Run `pnpm build`
+## Get started with local development
+Create "watched" development builds and make them available as 
+packages through yalc. 
 
-- If you have built the project in the past and the build is failing now, remove all the `dist` folders and turbo cache files in each project.
+1. Run `pnpm install`
+2. Run `pnpm dev`
 
-### Linking for local dev
+*Note:* If you've built the project in the past and the build is now failing, 
+run `pnpm clean:hard` , then retry the "get started" steps.
 
-1. Build the project (see Get Started)
-2. Install [yalc](https://github.com/wclr/yalc)
-3. Run the `dev` script in the monorepo:
+## Using monorepo packages for local development
+After the `dev` build has successfully completed, yalc should will have 
+published the following packages for use in other local projects:
 ```
-pnpm run dev
-```
-4. Go to your local Wordpress & wme-sitebuilder plugin and install the yalc package: `yalc add @moderntribe/sitebuilder` or `yalc add @moderntribe/storebuilder`
-6. Start `watch` in the plugin: 
-```
-npm watch
+@moderntribe/sitebuilder
+@moderntribe/storebuilder
+@moderntribe/wme-ui
 ```
 
-After these steps, this is the expected pipeline:
+You can now use these packages by running `yalc add [package]` in the 
+desired project.
 
+See the [WME Sitebuilder documentation](https://github.com/moderntribe/wme-sitebuilder#readme) for more explicit directions.
+
+## After these steps, this is the expected pipeline:
 - Make a change in the monorepo
 - A new bundle will be generated in the monorepo
-- Because a new bundle has been generated in the monorepo and it's linked using yalc, a new bundle will be generated in the plugin
+- Because a new bundle has been generated in the monorepo and it's linked 
+using yalc, a new bundle will be generated in the plugin
 - Reload the page
 - See your change
