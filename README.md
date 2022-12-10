@@ -3,7 +3,7 @@
 Pre-requisites: Install [yalc](https://github.com/wclr/yalc)
 
 ## Getting started with local development
-*IMPORTANT:* First follow the "get started" section of the [monorepo](https://github.com/moderntribe/wme#readme).
+**IMPORTANT:** First follow the "get started" section of the [monorepo](https://github.com/moderntribe/wme#readme).
 
 ### Update webpack watch options
 In order to prevent webpack from ignoring changes to our `@moderntribe` 
