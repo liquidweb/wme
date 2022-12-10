@@ -33,14 +33,16 @@
     "dependencies": {
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
-        "@moderntribe/sitebuilder": "^1.6.0-alpha.11",
-        "@moderntribe/storebuilder": "^1.4.2",
+        "@moderntribe/sitebuilder": "^1.6.0",
+        "@moderntribe/storebuilder": "^1.5.0",
         "@mui/icons-material": "^5.10.9",
         "@mui/lab": "^5.0.0-alpha.107",
         "@mui/material": "^5.10.13",
         "@mui/utils": "^5.10.9",
         "@wordpress/html-entities": "^3.21.0",
         "prettier": "^2.7.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "react-router-dom": "^6.4.3"
     },
     "devDependencies": {
