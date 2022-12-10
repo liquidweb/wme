@@ -14,7 +14,7 @@ packages through yalc.
 1. Run `pnpm install`
 2. Run `pnpm dev`
 
-*Note:* If you've built the project in the past and the build is now failing, 
+**Note:** If you've built the project in the past and the build is now failing, 
 run `pnpm clean:hard` , then retry the "get started" steps.
 
 ## Using monorepo packages for local development
