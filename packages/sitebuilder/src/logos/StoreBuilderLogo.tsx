@@ -1,5 +1,3 @@
-import React from 'react';
-
 const StoreBuilderLogo = () => (
 	<svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path d="M18.7816 23.7764H15.4199L3.36171 5.09602V23.7764H0V0H3.36171L15.4199 18.7853V0H18.7816V23.7764Z" fill="black" />

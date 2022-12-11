@@ -1,4 +1,3 @@
-import React from 'react';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import ScreenWrapper from '@ftc/ScreenWrapper';
 import { FtcStringData } from '@ftc/data/constants';

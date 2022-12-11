@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useWizard, usePaymentsPaypal } from '@store/hooks';
@@ -32,8 +32,8 @@ const PaymentsPaypalWizard = () => {
 	const paypalNonce = PAYMENTS_PAYPAL_PROPS.ajax.nonce || '';
 	const paypalAction = PAYMENTS_PAYPAL_PROPS.ajax.action || '';
 	const supportLink = PAYMENTS_PAYPAL_PROPS.plugin.adminUrl;
-	const API_ERROR_MESSAGE = __('API credentials must be entered to save the settings.', 'nexcess-mapps');
-	const CALLBACK_ERROR_MESSAGE = __('Something went wrong, please try again using the PayPal plugin settings or contact PayPal support', 'nexcess-mapps');
+	const API_ERROR_MESSAGE = __('API credentials must be entered to save the settings.', 'moderntribe-storebuilder');
+	const CALLBACK_ERROR_MESSAGE = __('Something went wrong, please try again using the PayPal plugin settings or contact PayPal support', 'moderntribe-storebuilder');
 	const paypal = 'PayPal';
 
 	// PayPal variables.
@@ -180,11 +180,11 @@ const PaymentsPaypalWizard = () => {
 
 	let nextText = '';
 	if (activeStep === 1) {
-		nextText = __('Activate PayPal', 'nexcess-mapps');
+		nextText = __('Activate PayPal', 'moderntribe-storebuilder');
 	} else if (activeStep === 2) {
-		nextText = __('Next', 'nexcess-mapps');
+		nextText = __('Next', 'moderntribe-storebuilder');
 	} else {
-		nextText = __('Complete', 'nexcess-mapps');
+		nextText = __('Complete', 'moderntribe-storebuilder');
 	}
 
 	let errorComponent;
@@ -213,7 +213,7 @@ const PaymentsPaypalWizard = () => {
 				onNext={ handleNext }
 				nextText={ nextText }
 				isLoading={ isLoading }
-				loadingText={ __('Loading…', 'nexcess-mapps') }
+				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				disableNext={ error }
 				isLastStep={ activeStep === stepsMax ? true : false }
 				hideFooter={ false }
@@ -228,7 +228,7 @@ const PaymentsPaypalWizard = () => {
 				data-paypal-button="true"
 				data-securewindowmsg="Don't see the secure PayPal browser? We'll help you re-launch the window to complete your flow.You might need to enable pop-ups in your browser in order to continue." data-securebuttonmsg="Continue" data-ppcp-button-initialized="true"
 			>
-				{ __('PayPal Oauth Button', 'nexcess-mapps') }
+				{ __('PayPal Oauth Button', 'moderntribe-storebuilder') }
 			</a>
 		</>
 	);

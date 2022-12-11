@@ -1,4 +1,3 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { Box, Typography } from '@mui/material';
 import { CardSelectGroup, CardSelectItem, Chip } from '@moderntribe/wme-ui';
@@ -65,7 +64,7 @@ const AddShippingMethod = () => {
 							<Chip
 								size="small"
 								color="success"
-								label={ __('Active', 'nexcess-mapps') }
+								label={ __('Active', 'moderntribe-storebuilder') }
 							/>
 						}
 						primary={

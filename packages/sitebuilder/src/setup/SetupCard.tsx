@@ -1,4 +1,3 @@
-import React from 'react';
 import { SetupCardAccordion, SetupCardContent } from '@moderntribe/wme-ui';
 import { SetupCardTasks, SetupCardFooter } from '@sb/setup';
 

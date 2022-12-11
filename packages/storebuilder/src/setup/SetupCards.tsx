@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import { SetupCard } from '@store/setup';
 import { CARDS } from '@store/constants';

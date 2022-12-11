@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import { useWizard } from '@sb/hooks';
 

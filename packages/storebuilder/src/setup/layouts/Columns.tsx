@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { ColumnLinkList, ColumnLinkListInterface } from '@store/components';
 
@@ -10,7 +9,7 @@ export interface ColumnsInterface {
 	columns: ColumnLinkListInterface[];
 }
 
-const Columns: FC<ColumnsInterface> = (props) => {
+const Columns: React.FC<ColumnsInterface> = (props) => {
 	const {
 		title = '',
 		intro = '',

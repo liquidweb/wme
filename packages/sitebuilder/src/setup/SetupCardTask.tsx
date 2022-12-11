@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SetupCardTask as WmeSetupCardTask } from '@moderntribe/wme-ui';
 import { isValidUrl } from '@moderntribe/wme-utils';

@@ -1,10 +1,9 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { IMAGE_DIR } from '@sb/constants';
 
 export const PoweredByKadence = () => {
-	const POWERED_BY = __('Powered by Kadence', 'nexcess-mapps');
+	const POWERED_BY = __('Powered by Kadence', 'moderntribe-sitebuilder');
 	const kadenceLogo = `${ IMAGE_DIR }kadence-icon.svg`;
 	const kadenceAlt = 'kadence logo';
 

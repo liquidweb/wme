@@ -1,4 +1,3 @@
-import React from 'react';
 import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { Box, Typography } from '@mui/material';
 import { lookAndFeelConsts } from '@look-and-feel/data/constants';

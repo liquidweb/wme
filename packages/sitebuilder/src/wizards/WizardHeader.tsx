@@ -1,4 +1,3 @@
-import React from 'react';
 import { WizardHeader as WmeWizardHeader, Logo, ExitButton } from '@moderntribe/wme-ui';
 import { useLocation } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';
@@ -6,7 +5,7 @@ import { useWizard } from '@sb/hooks';
 import { StoreBuilderLogo } from '@sb/logos';
 import { ModalDeviceSelection } from '@sb/components';
 
-const EXIT_TEXT = __('Exit to Setup', 'nexcess-mapps');
+const EXIT_TEXT = __('Exit to Setup', 'moderntribe-sitebuilder');
 export interface WizardHeaderInterface {
   hideExit?: boolean;
 }

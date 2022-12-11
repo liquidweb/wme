@@ -1,4 +1,3 @@
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { WatchLater, CheckCircle } from '@mui/icons-material';
 import {
@@ -31,7 +30,7 @@ const SetupCard = (props: SetupCardInterface) => {
 					size="small"
 					color={ completed ? 'success' : 'info' }
 					icon={ completed ? <CheckCircle /> : <WatchLater /> }
-					label={ completed ? __('Completed', 'nexcess-mapps') : time }
+					label={ completed ? __('Completed', 'moderntribe-storebuilder') : time }
 				/> }
 			/>
 			<SetupCardContent sx={ {

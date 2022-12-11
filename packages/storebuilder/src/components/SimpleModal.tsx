@@ -1,4 +1,3 @@
-import React, { FC, ReactNode } from 'react';
 import {
 	Wizard,
 	WizardHeader,
@@ -12,10 +11,10 @@ import { StoreBuilderLogo } from '@store/logos';
 interface SimpleModalInterface {
 	open: boolean;
 	onClose: () => void;
-	children: ReactNode;
+	children: React.ReactNode;
 }
 
-const SimpleModal: FC<SimpleModalInterface> = (props) => {
+const SimpleModal: React.FC<SimpleModalInterface> = (props) => {
 	const {
 		open,
 		onClose,
@@ -34,7 +33,7 @@ const SimpleModal: FC<SimpleModalInterface> = (props) => {
 						logoSrc={ <StoreBuilderLogo /> }
 					/>
 					<ExitButton onClick={ onClose }>
-						<span>{ __('Exit to Setup', 'nexcess-mapps') }</span>
+						<span>{ __('Exit to Setup', 'moderntribe-storebuilder') }</span>
 					</ExitButton>
 				</>
 			</WizardHeader>

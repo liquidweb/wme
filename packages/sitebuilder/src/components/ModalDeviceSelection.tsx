@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, SvgIcon } from '@mui/material';
 import { DesktopWindows, TabletMac, PhoneIphone } from '@mui/icons-material';
 import { useWizard } from '@sb/hooks';

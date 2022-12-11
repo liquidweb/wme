@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { __ } from '@wordpress/i18n';
 import { ActiveOverlay } from './index';
 import { useLookAndFeel } from '@sb/hooks/useLookAndFeel';
@@ -12,7 +11,7 @@ export const TemplateBox = (props:any) => {
 
 	const { setTemplateValue } = useLookAndFeel();
 
-	const PREVIEW_TEXT = __('Preview', 'nexcess-mapps');
+	const PREVIEW_TEXT = __('Preview', 'moderntribe-sitebuilder');
 
 	const templateBlock = {
 		position: 'relative',

@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import { useState } from 'react';
 import { VideoEmbed } from '@moderntribe/wme-ui';
 import { Box, Link, Typography } from '@mui/material';
 import type { SxProps } from '@mui/material/styles';
@@ -9,7 +9,7 @@ export interface VideoLinkInterface extends ColumnLinkInterface {
 	sx?: SxProps;
 }
 
-const VideoLink: FC<VideoLinkInterface> = (props) => {
+const VideoLink: React.FC<VideoLinkInterface> = (props) => {
 	const {
 		title,
 		url,
