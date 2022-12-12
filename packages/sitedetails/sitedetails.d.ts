@@ -45,7 +45,7 @@ declare module '*.svg' {
 
 declare global {
   interface Window {
-    sitebuilder_store_details: any;
+    site_details: any;
     wp: any;
     wpApiSettings: any;
 		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;
@@ -80,14 +80,12 @@ declare global {
     button?: SetupRowTaskButtonInterface;
 	}
 
-	interface SetupCardInterface {
+	interface SetupCardAccordionInterface {
 		id: string;
-		title: string;
-		intro?: string;
-		completed: boolean;
-		time?: string;
-		rows: SetupCardRowInterface[];
-		footers?: any;
+		header: string;
+		subHeader?: string;
+		chipBackground?: ChipProps['color'];
+		chipText?: string;
 	}
 
 	interface HandleActionPayloadInterface {

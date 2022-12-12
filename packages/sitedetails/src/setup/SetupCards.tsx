@@ -1,11 +1,20 @@
 import { Box } from '@mui/material';
-import { SetupCard } from '@store/setup';
+import { SiteVisibility } from '@store/setup/cards';
 import { CARDS } from '@store/constants';
 
 const SetupCards = () => (
 	<Box mt={ 4 }>
 		{
-			CARDS.map((card: SetupCardInterface) => <SetupCard key={ card.id } { ...card } />)
+			CARDS.map((card: SetupCardAccordionInterface) => {
+				switch (card.id) {
+				case 'site-visibility':
+					return <SiteVisibility key={ card.id } { ...card } />;
+				case 'google-analytics':
+					return <>Analytics</>;
+				default:
+					return <></>;
+				}
+			})
 		}
 	</Box>
 );
