@@ -1,0 +1,7 @@
+body.toplevel_page_storebuilderapp .notice-warning {
+	display: none;
+}
+
+body.toplevel_page_storebuilderapp.storebuilderapp--loaded .notice-warning {
+	display: block;
+}

@@ -1,0 +1,93 @@
+.template-block {
+	position: relative;
+	width: 100%;
+}
+
+.template-block-name {
+	position: absolute;
+	bottom: 15px;
+	left: 50%;
+	font-size: 14px;
+	font-weight: 600;
+	text-align: center;
+	opacity: 0;
+	transition: 0.5s ease;
+	transform: translate(-50%, 0);
+}
+
+.template-block::before {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	content: "";
+	background-color: rgba(0, 0, 0, 0);
+	transition: 0.5s ease;
+}
+
+.template-block:hover::before {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.template-block:focus::before {
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.template-block:hover
+.template-block-btn {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.template-block:focus
+.template-block-btn {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.template-block:hover
+.template-block-name {
+	opacity: 1;
+}
+
+.template-block:focus
+.template-block-name {
+	opacity: 1;
+}
+
+.template-block-image {
+	max-width: 100%;
+	opacity: 1;
+	transition: 0.5s ease;
+
+	&:hover {
+		box-sizing: border-box;
+		cursor: pointer;
+		border: 1px solid #ebeefe;
+		opacity: 0.3;
+	}
+
+	&:focus {
+		box-sizing: border-box;
+		cursor: pointer;
+		border: 1px solid #ebeefe;
+		opacity: 0.3;
+	}
+}
+
+.template-block-btn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 8px 18px;
+	font-size: 16px;
+	color: $primary-white;
+	text-align: center;
+	background-color: $primary-dark;
+	border-radius: 4px;
+	opacity: 0;
+	transform: translate(-50%, -50%);
+}

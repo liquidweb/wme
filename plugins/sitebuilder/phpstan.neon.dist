@@ -1,0 +1,66 @@
+# Configuration for PHPStan
+# https://phpstan.org/config-reference
+
+includes:
+	# @see https://github.com/phpstan/phpstan-src/blob/master/conf/bleedingEdge.neon
+	- phar://phpstan.phar/conf/bleedingEdge.neon
+	# Include this extension
+	- wme-sitebuilder/vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+	level: max
+	inferPrivatePropertyTypeFromConstructor: true
+
+	# Define global constants.
+	bootstrapFiles:
+		- %currentWorkingDirectory%/tests/phpstan-bootstrap.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce/vendor/autoload.php
+
+	# Files that aren't autoloaded but should be considered.
+	scanFiles:
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce/includes/abstracts/abstract-wc-data.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce/includes/abstracts/abstract-wc-product.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce/includes/class-wc-customer.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce/includes/legacy/abstract-wc-legacy-product.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce/includes/legacy/class-wc-legacy-customer.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce-gateway-stripe/woocommerce-gateway-stripe.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce-gateway-stripe/includes/connect/class-wc-stripe-connect.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce-paypal-payments/modules/ppcp-button/src/Endpoint/EndpointInterface.php
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/wpackagist-plugin/woocommerce-paypal-payments/modules/ppcp-onboarding/src/Endpoint/LoginSellerEndpoint.php
+
+	# Paths to be analyzed.
+	paths:
+		- %currentWorkingDirectory%/wme-sitebuilder.php
+		- %currentWorkingDirectory%/wme-sitebuilder/
+	excludes_analyse:
+		- %currentWorkingDirectory%/wme-sitebuilder/vendor/*
+
+	# Additional checks.
+	polluteScopeWithLoopInitialAssignments: true
+	polluteScopeWithAlwaysIterableForeach: true
+	polluteCatchScopeWithTryAssignments: true
+	checkAlwaysTrueCheckTypeFunctionCall: true
+	checkAlwaysTrueInstanceof: true
+	checkAlwaysTrueStrictComparison: true
+	checkExplicitMixedMissingReturn: true
+	checkFunctionNameCase: true
+	checkMissingClosureNativeReturnTypehintRule: false
+	reportMaybesInMethodSignatures: true
+	reportStaticMethodSignatures: true
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+	checkUninitializedProperties: true
+	checkMissingIterableValueType: false
+
+	# Unfortunately, DocBlocks can't be relied upon.
+	treatPhpDocTypesAsCertain: false
+
+	# Error patterns that should be ignored.
+	ignoreErrors:
+		# Uses func_get_args()
+		- '#^Function apply_filters invoked with [34567] parameters, 2 required\.$#'
+
+		# WordPress coding standards dictate that we *not* use @return void
+		- '#Method .+ has no return typehint specified#'
+
+		# WooCommerce classes will be loaded externally.
+		- '#Function (WC\S*|get_woocommerce_\S+) not found\.#i'

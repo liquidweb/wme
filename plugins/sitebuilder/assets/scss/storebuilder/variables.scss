@@ -1,0 +1,38 @@
+/*
+ * COLORS
+ */
+
+// App primary
+$primary-main: #303f9f;
+$primary-dark: #2a3353;
+$error-main: "#F44336";
+$primary-white: #fff;
+$error-main: "#F44336";
+
+// App text
+$text-primary: rgba(0, 0, 0, 0.87);
+$text-secondary: rgba(0, 0, 0, 0.6);
+
+// Various
+$border-color: rgba(0, 0, 0, 0.23);
+$input-disabled: rgba(63, 81, 181, 0.08);
+
+/**
+ * MARGINS, PADDINGS, BORDERS
+ */
+$padding-xl: 32px;
+$padding-l: 24px;
+$padding-m: 16px;
+$padding-s: 8px;
+$padding-xs: 4px;
+
+$margin-xl: 32px;
+$margin-l: 24px;
+$margin-m: 16px;
+$margin-s: 8px;
+$margin-xs: 4px;
+
+$border-radius-l: 8px;
+$border-radius-m: 4px;
+$border-radius-s: 2px;
+$border-radius-circle-size: 50%;

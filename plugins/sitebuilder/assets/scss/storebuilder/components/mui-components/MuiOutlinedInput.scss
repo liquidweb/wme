@@ -1,0 +1,30 @@
+.MuiInputBase-input.MuiOutlinedInput-input {
+	padding: 5px 12px;
+	border: none;
+
+	& ~ .MuiOutlinedInput-notchedOutline {
+		border-color: $border-color;
+		border-width: 1px;
+	}
+
+	&:focus,
+	&:focus-visible {
+		border-color: $primary-dark;
+		outline: none;
+		box-shadow: none;
+
+		& ~ .MuiOutlinedInput-notchedOutline {
+			border-color: $primary-dark;
+		}
+	}
+
+	&.Mui-disabled {
+		background-color: transparent;
+		border-color: transparent;
+
+		& ~ .MuiOutlinedInput-notchedOutline {
+			background-color: $input-disabled;
+			border-color: transparent;
+		}
+	}
+}
