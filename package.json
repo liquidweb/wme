@@ -15,7 +15,9 @@
 		"url": "https://github.com/moderntribe/wme/issues"
 	},
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"plugins/*",
+		"tooling/*"
 	],
 	"scripts": {
 		"build": "turbo run build",

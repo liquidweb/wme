@@ -47,9 +47,9 @@
         "phpmd/phpmd": "^2.13",
         "szepeviktor/phpstan-wordpress": "^0.7",
         "wp-coding-standards/wpcs": "^2.1",
-        "wpackagist-plugin/woocommerce": ">=4.3",
-        "wpackagist-plugin/woocommerce-gateway-stripe": "6.4.1",
-        "wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
+		"wpackagist-plugin/woocommerce": ">=7.1",
+		"wpackagist-plugin/woocommerce-gateway-stripe": "6.4.1",
+		"wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
     },
     "scripts": {
         "build:plugin": [
@@ -98,7 +98,17 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-    "extra": {
-        "installer-disable": true
-    }
+	"extra": {
+		"installer-paths": {
+			"external/wp-content/mu-plugins/{$name}/": [
+				"type:wordpress-muplugin"
+			],
+			"external/wp-content/plugins/{$name}/": [
+				"type:wordpress-plugin"
+			],
+			"external/wp-content/themes/{$name}/": [
+				"type:wordpress-theme"
+			]
+		}
+	}
 }

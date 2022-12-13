@@ -66,5 +66,5 @@ mix.js('assets/js/sitebuilder.js', '/')
 	.eslint()
 	.react();
 
-mix.copyDirectory('node_modules/@moderntribe/sitebuilder/dist/assets/', `${public_path}/sitebuilder/`)
-mix.copyDirectory('node_modules/@moderntribe/storebuilder/dist/assets/', `${public_path}/store-details/`)
+mix.copyDirectory('../../packages/sitebuilder/dist/assets/', `${public_path}/sitebuilder/`);
+mix.copyDirectory('../../packages/storebuilder/dist/assets/', `${public_path}/store-details/`);

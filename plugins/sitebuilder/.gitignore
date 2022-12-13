@@ -1,5 +1,6 @@
 # External dependencies.
 /wme-sitebuilder/vendor/
+/external/
 node_modules
 
 # Artifacts.

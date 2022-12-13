@@ -3,30 +3,23 @@
 ## Getting started with local development
 **IMPORTANT:** First follow the "get started" section of the [monorepo](https://github.com/moderntribe/wme#readme).
 
-Prerequisites: Install [yalc](https://github.com/wclr/yalc)
+### Prerequisites
 
-### Update webpack watch options
-In order to prevent webpack from ignoring changes to our `@moderntribe`
-packages, we need to tell webpack to _not_ ignore them:
-```
-// webpack.mix.js
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or a local docker installation.)
+* [pnpm](https://pnpm.io/)
+* npx
+  * `npx --version`
+  * If not found, install with `npm install -g npx`
 
-mix.webpackConfig({
-	// ...
-	watchOptions: {
-		ignored: ['node_modules/*/!(@moderntribe/*)/**/'],
-	},
-});
-```
+### Start the local environment
 
-### Install and add monorpo packages
-1. Run `npm install`
-2. Use yalc to add monorepo packages
-```
-yalc add @moderntribe/sitebuilder
-yalc add @moderntribe/storebuilder
-yalc add @moderntribe/wme-ui
-```
+This plugin uses [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) for local development and testing.
+
+1. After running `pnpm install` and `pnpm turbo build` from the base monorepo directory, you can start the local WordPress environment.
+2. From the `plugins/sitebuider` folder, run `pnpm run env:dev` and wait for Docker to complete initializing the site.
+3. Navigate your browser to `http://localhost:8888/wp-admin/`
+   * Username: admin
+   * Password: password
 
 ### Enable BrowserSync
 1. Create a `.env` file in the root of the project
@@ -37,6 +30,6 @@ MIX_PROXY_URL=sitebuilder-dev.local
 
 ### Watch project
 ```
-npm run watch
+pnpm run watch
 ```
 

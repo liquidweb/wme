@@ -34,6 +34,7 @@ npm-debug.log
 .env.development.local
 .env.test.local
 .env.production.local
+.wp-env.override.json
 
 # Build files
 *.sql
