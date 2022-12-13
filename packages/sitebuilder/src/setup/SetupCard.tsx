@@ -5,9 +5,8 @@ const SetupCard = (props: SetupCardInterface) => {
 	const {
 		title = '',
 		intro = '',
-		time = '',
 		rows = [],
-		footers = [],
+		footer,
 		completed = false,
 		id = '',
 	} = props;
@@ -18,13 +17,13 @@ const SetupCard = (props: SetupCardInterface) => {
 			header={ title }
 			subHeader={ intro }
 			isComplete={ completed }
-			chipText={ time }
+			chipText={ `${ rows?.filter((row) => row.type === 'task' && ! row.completed)?.length }` }
 			chipBackground="primary"
 		>
 			<SetupCardContent>
-				<SetupCardTasks rows={ rows } completed={ completed } />
+				<SetupCardTasks rows={ rows } />
 			</SetupCardContent>
-			<SetupCardFooter footers={ footers } />
+			{ footer && <SetupCardFooter footer={ footer } /> }
 		</SetupCardAccordion>
 	);
 };

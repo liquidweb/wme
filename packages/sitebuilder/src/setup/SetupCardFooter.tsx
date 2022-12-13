@@ -1,31 +1,34 @@
-import { SetupCardFooter as WmeSetupCardFooter } from '@moderntribe/wme-ui';
-import { LookAndFeelFooter, LookAndFeelFooterInterface } from './footer';
+import { ContentAccordion, SetupCardFooter } from '@moderntribe/wme-ui';
+import { FooterLinks, FooterColumns } from './footer';
 
-type SetupCardFooterRenderProps = LookAndFeelFooterInterface;
-
-export interface SetupCardFooterPropsInterface {
-	footers?: SetupCardFooterRenderProps;
+export interface SetupCardFooterInterface {
+	footer: SetupCardFooter;
 }
 
-const renderFooterRow = (row: SetupCardFooterRenderProps) => {
-	switch (row.id) {
-	case 'look-and-feel-wizard':
-		return <LookAndFeelFooter key={ row.id } { ...row } />;
-	}
-};
+const Footer = (props: SetupCardFooterInterface) => {
+	const { footer } = props;
 
-const SetupCardFooter = (props: SetupCardFooterPropsInterface): React.ReactElement => {
-	const { footers } = props;
+	const renderContent = () => {
+		return footer.rows.map((row, index) => {
+			if (row.type === 'columns') {
+				return <FooterColumns key={ index } { ...row } />;
+			} else if (row.type === 'links') {
+				return <FooterLinks key={ index } { ...row } />;
+			}
 
-	if (! Array.isArray(footers) || footers.length === 0) {
-		return <></>;
-	}
+			return <div key={ index } />;
+		});
+	};
 
 	return (
-		<WmeSetupCardFooter>
-			{ footers.map((footer) => renderFooterRow(footer)) }
-		</WmeSetupCardFooter>
+		<SetupCardFooter>
+			{ footer.collapsible ? (
+				<ContentAccordion title={ footer.collapsibleLabel } id={ footer.collapsibleLabel }>
+					{ renderContent() }
+				</ContentAccordion>
+			) : renderContent() }
+		</SetupCardFooter>
 	);
 };
 
-export default SetupCardFooter;
+export default Footer;
