@@ -1,5 +1,11 @@
 # @moderntribe/sitebuilder
 
+## 1.6.2
+
+### Patch Changes
+
+- 5682a8d: Replaces text from Go Live wizard screen
+
 ## 1.6.1
 
 ### Patch Changes
