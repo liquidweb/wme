@@ -34,7 +34,7 @@ export const GoLiveStringData = {
 	},
 	updateSiteUrl: {
 		screenTitle: __('You\'re ready to go live with', 'moderntribe-sitebuilder'),
-		screenDescription: __('Once we begin, this process may take a few minutes. When the process is complete, you will need to log in again on the new live domain', 'moderntribe-sitebuilder'),
+		screenDescription: __('This process will take a few minutes. You\'ll be logged out when it completes and will need to login again on your new domain.', 'moderntribe-sitebuilder'),
 		launchImgAltText: __('Go live rocket', 'moderntribe-sitebuilder'),
 		descriptionProcessing: __('This can take a few minutes. You can log out now, or we will just log out upon completion.', 'moderntribe-sitebuilder'),
 		loginUrlLabelText: __('Copy Your New Login URL', 'moderntribe-sitebuilder'),
