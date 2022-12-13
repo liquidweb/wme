@@ -62,7 +62,7 @@ export default function JumpNav(props: JumpNavProps) {
     <JumpNavContainer {...rest}>
       {title && <Typography sx={{ fontWeight: 500, fontSize: '.875rem' }}>{title}</Typography>}
       {links?.map((link) => (
-        <JumpNavLink onClick={link.onClick} underline="none">
+        <JumpNavLink onClick={link.onClick} underline="none" key={link.id}>
           <LinkLabel>{link.label}</LinkLabel>
           {(link?.remainingTasks && link.remainingTasks > 0) && (
           <TaskNumber>{link.remainingTasks}</TaskNumber>
