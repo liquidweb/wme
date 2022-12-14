@@ -68,12 +68,12 @@ jobs:
   
       - name: Launch wp-env e2e environment
         working-directory: plugins/wme-sitebuilder
-        run: pnpm env:test
+        run: pnpm env:dev
   
       - name: Run Sitebuilder End to End tests.
         timeout-minutes: 15
         working-directory: plugins/wme-sitebuilder
-        run: pnpm exec playwright test --config=tests/e2e/playwright.config.ts
+        run: pnpm test
                
       - name: Generate Playwright E2E Test report.
         if: success() || failure()
