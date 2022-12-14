@@ -30,7 +30,7 @@ const SetupCards = ({ showJumpNav } : { showJumpNav: boolean }) => {
 		flushSync(() => {
 			setCardList(
 				cardList.map((card) => {
-					// If toggle is fired from JumpNav and is already expanded, do not close it
+					// If toggle is fired from JumpNav and the accordion is already expanded, do not close it
 					if (card.id === id) {
 						return { ...card, expanded: (! scrollTo || ! card.expanded) ? ! card.expanded : true };
 					}
