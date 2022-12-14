@@ -1,5 +1,11 @@
 # @moderntribe/sitebuilder
 
+## 1.6.3
+
+### Patch Changes
+
+- 15fb8ef: Content change for Go Live ClaimYourDomain.tsx
+
 ## 1.6.2
 
 ### Patch Changes
