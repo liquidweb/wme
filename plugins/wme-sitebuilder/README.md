@@ -1,11 +1,12 @@
 # Wordpress Made Easy: Sitebuilder
 
 ## Getting started with local development
+
 **IMPORTANT:** First follow the "get started" section of the [monorepo](https://github.com/moderntribe/wme#readme).
 
 ### Prerequisites
 
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or a local docker installation.)
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or a local docker installation)
 * [pnpm](https://pnpm.io/)
 * npx
   * `npx --version`
@@ -35,7 +36,7 @@ pnpm run watch
 
 ### Testing
 
-This plugin uses a combination of [Playwright](playwright.dev/) and [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
+This plugin uses a combination of [Playwright](https://playwright.dev/) and [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
 to perform automated end-to-end testing in a browser. Before running the testing the first time, you'll need to install
 the browsers playwright needs.
 
