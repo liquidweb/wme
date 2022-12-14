@@ -18,7 +18,7 @@
 	"env": {
 		"development": {},
 		"tests": {
-			"port": 8889,
+			"port": 8891,
 			"config": {
 				"ALTERNATE_WP_CRON": false,
 				"WP_TESTS_EMAIL": "admin@example.org"

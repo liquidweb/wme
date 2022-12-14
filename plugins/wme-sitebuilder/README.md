@@ -33,3 +33,30 @@ MIX_PROXY_URL=sitebuilder-dev.local
 pnpm run watch
 ```
 
+### Testing
+
+This plugin uses a combination of [Playwright](playwright.dev/) and [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
+to perform automated end-to-end testing in a browser. Before running the testing the first time, you'll need to install
+the browsers playwright needs.
+
+```
+# To only install Chrome which is used by default
+npx playwright install chromium
+
+OR
+
+# To install all browsers (Chrome, Firefox, Webkit)
+npx playwright install
+```
+
+Start the local WordPress dev and testing environments
+
+```
+pnpm run env:dev
+```
+
+Run the test suite
+
+```
+pnpm run env:test
+```
