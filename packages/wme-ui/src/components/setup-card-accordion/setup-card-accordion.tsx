@@ -15,6 +15,7 @@ export interface SetupCardAccordionProps extends AccordionProps, Pick<SetupCardH
   header?: string,
   subHeader?: string;
   children: NonNullable<React.ReactNode>
+  toggleOpen?: (arg0?: string) => void;
 }
 
 const StyledSetupCardAccordion = styled(Accordion, {
@@ -52,6 +53,7 @@ export default function SetupCardAccordion(props: SetupCardAccordionProps) {
     chipBackground,
     chipText,
     isComplete,
+    toggleOpen,
     ...rest
   } = props;
 
@@ -59,6 +61,7 @@ export default function SetupCardAccordion(props: SetupCardAccordionProps) {
     <SetupCard>
       <StyledSetupCardAccordion className="WmeSetupCardAccordion-root" {...rest}>
         <AccordionSummary
+          {... toggleOpen ? { onClick: () => toggleOpen(id) } : {}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls={id}
           id={id}

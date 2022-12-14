@@ -73,6 +73,7 @@ declare global {
 		title: string;
 		intro?: string;
 		completed: boolean;
+		navTitle: string;
 		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
 		footer?: SetupCardFooter;
 	}

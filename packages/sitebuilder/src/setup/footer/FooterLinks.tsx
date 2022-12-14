@@ -3,8 +3,6 @@ import { Grid, Link, Typography } from '@mui/material';
 const FooterLinks = (props: SetupCardFooterRowLinks) => {
 	const { title, links } = props;
 
-	console.log('links', props);
-
 	return (
 		<Grid container spacing={ 2 } sx={ { alignItems: 'center' } }>
 			<Grid item>
