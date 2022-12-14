@@ -1,0 +1,133 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Pill, PillGroup } from "..";
+
+<Meta
+	title="Data Display/PillGroup"
+	component={PillGroup}
+	argTypes={{
+		label: {
+			control: "text",
+			description: "A label to describe the list",
+			table: {
+				type: {
+					summary: "text",
+				},
+			},
+		},
+		pills: {
+			label: { control: "text" },
+			active: { control: "boolean" },
+		},
+		onSelect: {
+			control: false,
+			description:
+				"Callback fired when a pill is clicked and the active state changes.",
+			table: {
+				type: {
+					summary: "func",
+				},
+			},
+			action: "Callback with pill statuses",
+		},
+	}}
+	decorators={[
+		(Story) => (
+			<div style={{ maxWidth: 400 }}>
+				<Story />
+			</div>
+		),
+	]}
+/>
+
+export const Template = (args) => <PillGroup {...args} />;
+
+# Pill Group
+
+A PillGroup will handle a group of Pills, formatting them and returning a list of updated active statuses on every select.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React from 'react';
+import { PillGroup } from '@moderntribe/wme';
+
+const myPillGroup = () => {
+  <>
+    <h1>Pill Group</h1>
+    <PillGroup
+		pills={[
+			{
+				label: 'Quirky',
+				active: false
+			},
+			{
+				label: 'Calm',
+				active: false
+			}
+		]}
+		onSelect={(pills) => console.log(pills)}
+    />
+  </>
+};
+
+export default myPillGroup;
+```
+
+## Pill Group
+
+<Canvas>
+	<Story
+		name="PillGroup"
+		args={{
+			label: "Describe your personality",
+			pills: [
+				{
+					label: "Quirky",
+					active: false,
+				},
+				{
+					label: "Calm",
+					active: false,
+				},
+				{
+					label: "Spicy",
+					active: false,
+				},
+				{
+					label: "Classic",
+					active: false,
+				},
+				{
+					label: "Lorum",
+					active: true,
+				},
+				{
+					label: "Ipsum",
+					active: true,
+				},
+				{
+					label: "Elegant",
+					active: false,
+				},
+				{
+					label: "Dolor",
+					active: false,
+				},
+				{
+					label: "Justo",
+					active: false,
+				},
+				{
+					label: "Elit",
+					active: false,
+				},
+			],
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>

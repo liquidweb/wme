@@ -1,4 +1,3 @@
-import React from 'react';
 import { WizardSectionTitle, FormField, TextInput, Form } from '@moderntribe/wme-ui';
 import { Stack } from '@mui/material';
 import FileUpload from '@ftc/FileUpload';

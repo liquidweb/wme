@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useWizard, usePaymentsStripe } from '@store/hooks';
@@ -99,11 +99,11 @@ const PaymentsStripeWizard = () => {
 
 	let nextText = '';
 	if (activeStep === 1) {
-		nextText = __('Connect Stripe', 'nexcess-mapps');
+		nextText = __('Connect Stripe', 'moderntribe-storebuilder');
 	} else if (activeStep === 2) {
-		nextText = __('Next', 'nexcess-mapps');
+		nextText = __('Next', 'moderntribe-storebuilder');
 	} else {
-		nextText = __('Complete', 'nexcess-mapps');
+		nextText = __('Complete', 'moderntribe-storebuilder');
 	}
 
 	let errorComponent;
@@ -132,7 +132,7 @@ const PaymentsStripeWizard = () => {
 				onNext={ handleNext }
 				nextText={ nextText }
 				isLoading={ isLoading }
-				loadingText={ __('Loading…', 'nexcess-mapps') }
+				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				disableNext={ error }
 				isLastStep={ activeStep === stepsMax ? true : false }
 				hideFooter={ false }

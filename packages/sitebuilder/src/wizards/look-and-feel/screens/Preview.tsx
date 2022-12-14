@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import IframeDisplay from '@look-and-feel/IframeDisplay';
 

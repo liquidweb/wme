@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Link, Dialog, DialogContent, Typography } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 
@@ -17,11 +16,11 @@ const exitButtonSx = {
 	},
 };
 
-const warningHeadline = __('You have unsaved changes', 'nexcess-mapps');
-const warningContent = __('Exiting now will discard any unsaved changes. You can resume configuration at any time, but we wanted to let you know.', 'nexcess-mapps');
-const exitButton = __('Exit', 'nexcess-mapps');
-const continueButton = __('Continue Working', 'nexcess-mapps');
-// const WARNING_IMG_ALT_TEXT = __('Caution', 'nexcess-mapps');
+const warningHeadline = __('You have unsaved changes', 'moderntribe-sitebuilder');
+const warningContent = __('Exiting now will discard any unsaved changes. You can resume configuration at any time, but we wanted to let you know.', 'moderntribe-sitebuilder');
+const exitButton = __('Exit', 'moderntribe-sitebuilder');
+const continueButton = __('Continue Working', 'moderntribe-sitebuilder');
+// const WARNING_IMG_ALT_TEXT = __('Caution', 'moderntribe-sitebuilder');
 
 const WizardCloseWarning: React.FC<WizardModalCloseWarning> = (props) => {
 	const { open } = props;

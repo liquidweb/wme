@@ -1,4 +1,3 @@
-import React from 'react';
 import { ErrorStatusMessage } from '.';
 import { Link, Typography } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';

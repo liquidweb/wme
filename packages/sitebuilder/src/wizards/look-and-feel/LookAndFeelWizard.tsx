@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { WizardFooter } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
@@ -61,9 +61,9 @@ const LookAndFeelWizard = () => {
 				onSkip={ handleOnSkip }
 				isLastStep={ activeStep === lastStep }
 				hideFooter={ false }
-				backText={ __('Back', 'nexcess-mapps') }
-				skipText={ __('Skip', 'nexcess-mapps') }
-				nextText={ steps[ stepIndex ].nextText || __('Next', 'nexcess-mapps') }
+				backText={ __('Back', 'moderntribe-sitebuilder') }
+				skipText={ __('Skip', 'moderntribe-sitebuilder') }
+				nextText={ steps[ stepIndex ].nextText || __('Next', 'moderntribe-sitebuilder') }
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }
 		</>

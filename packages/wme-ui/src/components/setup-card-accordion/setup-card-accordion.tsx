@@ -4,45 +4,77 @@ import {
   AccordionProps,
   AccordionSummary,
   AccordionDetails,
-  Typography,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { styled } from '@mui/material/styles';
+import { SetupCardHeader, SetupCard } from '..';
+import type { SetupCardHeaderProps } from '../setup-card-header/setup-card-header';
+
+export interface SetupCardAccordionProps extends AccordionProps, Pick<SetupCardHeaderProps, 'chipBackground' | 'chipText' | 'isComplete'> {
+  header?: string,
+  subHeader?: string;
+  children: NonNullable<React.ReactNode>
+}
 
 const StyledSetupCardAccordion = styled(Accordion, {
   name: 'WmeSetupCardAccordion',
   slot: 'Root',
-})<AccordionProps>(({ theme }) => ({
-  '& .MuiAccordionSummary-root.Mui-focusVisible': {
-    backgroundColor: 'transparent',
-    outline: 'auto',
-    outlineColor: theme.palette.primary,
+})<SetupCardAccordionProps>(({ theme }) => ({
+  '& .MuiAccordionSummary-root': {
+    padding: 0,
+    '&.Mui-focusVisible': {
+      backgroundColor: 'transparent',
+      outline: 'auto',
+      outlineColor: theme.palette.primary,
+    },
+    '& .MuiAccordionSummary-contentGutters': {
+      margin: 0,
+    },
+  },
+  '& .MuiAccordionSummary-expandIconWrapper': {
+    marginRight: 30,
+    '& .MuiSvgIcon-root': {
+      color: theme.palette.text.primary,
+    },
+  },
+  '& .MuiAccordionDetails-root': {
+    padding: 0,
   },
 }));
 
-const SetupCardAccordion: React.FC<AccordionProps> = (props) => {
+export default function SetupCardAccordion(props: SetupCardAccordionProps) {
   const {
     id,
-    title,
+    header,
+    subHeader,
     children,
+    chipBackground,
+    chipText,
+    isComplete,
     ...rest
   } = props;
 
   return (
-    <StyledSetupCardAccordion className="WmeSetupCardAccordion-root" {...rest}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls={id}
-        id={id}
-      >
-        <Typography variant="body2" fontWeight="600">{ title }</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        { children }
-      </AccordionDetails>
-    </StyledSetupCardAccordion>
+    <SetupCard>
+      <StyledSetupCardAccordion className="WmeSetupCardAccordion-root" {...rest}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls={id}
+          id={id}
+        >
+          <SetupCardHeader
+            title={header}
+            subheader={subHeader}
+            chipBackground={chipBackground}
+            chipText={chipText}
+            isComplete={isComplete}
+          />
+        </AccordionSummary>
+        <AccordionDetails>
+          { children }
+        </AccordionDetails>
+      </StyledSetupCardAccordion>
+    </SetupCard>
   );
-};
-
-export default SetupCardAccordion;
+}

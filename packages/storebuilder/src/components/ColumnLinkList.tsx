@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { SetupCardList } from '@moderntribe/wme-ui';
 import { ColumnLink, ColumnLinkInterface } from '@store/components';
 
@@ -7,7 +6,7 @@ export interface ColumnLinkListInterface {
 	links: ColumnLinkInterface[];
 }
 
-const ColumnLinkList: FC<ColumnLinkListInterface> = (props) => {
+const ColumnLinkList: React.FC<ColumnLinkListInterface> = (props) => {
 	const {
 		links = []
 	} = props;

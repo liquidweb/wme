@@ -1,6 +1,6 @@
-import React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../src/theme';
+import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "../src/theme";
 
 export const parameters = {
 	actions: { argTypesRegex: "^on[A-Z].*" },
@@ -13,22 +13,23 @@ export const parameters = {
 	options: {
 		storySort: {
 			order: [
-				'Documentation',
-				'Foundation',
-				'Buttons',
-				'Data Display',
-				'Input',
-				'Navigation',
-				'Setup Cards',
+				"Documentation",
+				"Foundation",
+				"Buttons",
+				"Data Display",
+				"Input",
+				"Navigation",
+				"Setup Cards",
+				"Setup Card v2",
 			],
 		},
 	},
-}
+};
 
 export const decorators = [
-  Story => (
-    <ThemeProvider theme={ theme }>
-      <Story />
-    </ThemeProvider>
-  ),
+	(Story) => (
+		<ThemeProvider theme={theme}>
+			<Story />
+		</ThemeProvider>
+	),
 ];

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
 import { IMAGE_DIR } from '@store/constants';
 import { sharedPaymentScreensConst } from '@payments/shared-screens/data/constants';

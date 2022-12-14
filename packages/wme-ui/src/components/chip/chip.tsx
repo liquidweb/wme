@@ -22,6 +22,27 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
     marginLeft: theme.spacing(-0.5),
   },
 
+  '&.MuiChip-colorSuccess': {
+    backgroundColor: theme.palette.success.light,
+    color: theme.palette.success.dark,
+  },
+  '&.MuiChip-colorPrimary': {
+    backgroundColor: `${theme.palette.primary.light}7d`,
+    color: theme.palette.primary.dark,
+  },
+  '&.MuiChip-colorWarning': {
+    backgroundColor: theme.palette.warning.light,
+    color: theme.palette.warning.dark,
+  },
+  '&.MuiChip-colorError': {
+    backgroundColor: `${theme.palette.error.light}7d`,
+    color: theme.palette.error.dark,
+  },
+  '&.MuiChip-colorSecondary': {
+    backgroundColor: theme.palette.secondary.light,
+    color: theme.palette.text.white,
+  },
+
   ...(size === 'small'
   && {
     '& .MuiChip-icon': {
@@ -29,10 +50,6 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
       marginLeft: theme.spacing(-0.25),
     },
   }),
-  '&.MuiChip-colorSuccess': {
-    backgroundColor: theme.palette.success.light,
-    color: theme.palette.success.dark,
-  },
 }));
 
 export default function Chip(props: ChipProps) {

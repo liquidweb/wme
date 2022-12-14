@@ -1,432 +1,383 @@
-import {
-  ArgsTable,
-  Story,
-  Canvas,
-  Meta,
-} from '@storybook/addon-docs';
-import { action as actionAddon } from '@storybook/addon-actions';
-import LinkTo from '@storybook/addon-links/react';
-import { Avatar } from '@mui/material';
-import { SetupCardTask, Button, SplitButton } from '..';
-import taskIcon from '../../stories/images/task-icon.png';
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { action as actionAddon } from "@storybook/addon-actions";
+import LinkTo from "@storybook/addon-links/react";
+import { SetupCardTask, Button, SplitButton } from "..";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 <Meta
-  title="Setup Cards/SetupCardTask"
-  component={SetupCardTask}
-  argTypes={{
-    disabled: {
-      control: 'boolean',
-      defaultValue: false,
-      description: 'If `true`, the component is disabled.',
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: {
-          summary: `false`,
-        }
-      }
-    },
-    variant: {
-      control: {
-        type: 'inline-radio',
-        options: ['task', 'action'],
-      }, 
-      defaultValue: 'task',
-      table: {
-        type: {
-          summary: 'string',
-          detail: "'task' | 'action'",
-        },
-      },
-      description: 'Setup Card Task type',
-    },
-    title: {
-      control: 'text',
-      defaultValue: 'Example task title',
-      description: 'The title content for component.',
-      table: {
-        type: {
-          summary: 'string',
-        },
-      }
-    },
-    intro: {
-      control: 'text',
-      defaultValue: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      description: 'The intro content for component.',
-      table: {
-        type: {
-          summary: 'string',
-        },
-      }
-    },
-    taskCta: {
-      control: 'text',
-      defaultValue: 'Learn More',
-      description: 'The CTA content for `task` variant.',
-      table: {
-        type: {
-          summary: 'string',
-        },
-      }
-    },
-    avatar: {
-      control: false,
-      description: 'MUI Avatar component.',
-      table: {
-        type: {
-          summary: 'node'
-        }
-      }
-    },
-    href: {
-      control: 'text',
-      defaultValue: '',
-      description: 'The URL to link to when the task is clicked.',
-      table: {
-        type: {
-          summary: 'string',
-        },
-      }
-    },
-    button: {
-      control: false,
-      description: 'Button or SplitButton component.',
-      table: {
-        type: {
-          summary: 'node'
-        }
-      }
-    },
-    onClick: {
-      control: false,
-      description: 'Callback fired when the component, or button is clicked.',
-      table: {
-        type: {
-          summary: 'func',
-        },
-      },
-      action: 'onclick action testing'
-    },
-    sx: {
-      control: false,
-      description: 'The system prop that allows defining system overrides as well as additional CSS styles.',
-      table: {
-        type: {
-          summary: 'Array<func | object | bool> | func | object',
-        }
-      }
-    }
-  }}
-  decorators={[
-    (Story) => (
-      <div style={{ maxWidth: 800, margin: '0 auto'}}>
-        <Story />
-      </div>
-    ),
-  ]}
+	title="Setup Cards/SetupCardTask"
+	component={SetupCardTask}
+	argTypes={{
+		title: {
+			control: "text",
+			description: "The title content for component.",
+			table: {
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		intro: {
+			control: "text",
+			description: "A short blurb about the task.",
+			table: {
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		href: {
+			control: "text",
+			description: "The URL to link to when the task is clicked.",
+			table: {
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		taskCta: {
+			control: "text",
+			description: "The hover pop-up text for tasks without a button",
+			table: {
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		onClick: {
+			control: false,
+			description: "Callback fired when the component is clicked.",
+			table: {
+				type: {
+					summary: "func",
+				},
+			},
+			action: "onclick action testing",
+		},
+		isComplete: {
+			control: "boolean",
+			description: "If this task is complete",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		icon: {
+			control: false,
+			description: "MUI icon component.",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+	}}
+	decorators={[
+		(Story) => (
+			<div style={{ maxWidth: 800, margin: "0 auto" }}>
+				<Story />
+			</div>
+		),
+	]}
 />
 
-export const Template = (args) => (
-  <SetupCardTask {...args} />
-);
+export const Template = (args) => <SetupCardTask {...args} />;
 
 # Setup Card Task
-SetupCardTasks are used in the WME <LinkTo kind="setup-cards-setupcard--actions">SetupCard</LinkTo>. 
-They come in two styles: text based CTAs (Tasks) that launch the wizard modal and button CTAs (Actions)
-that launch non-wizard functionality such as navigating the user to a 
-specific part of the admin area.
+
+SetupCardTasks are used in the WME <LinkTo kind="setup-cards-setupcard--actions">SetupCard</LinkTo>.
+They come in two styles: 1) An arrow with hover-over text that launches the wizard modal and 2) A button
+that launch non-wizard functionality such as navigating the user to a specific part of the admin area.
 
 ## Props
+
 <ArgsTable story="." />
 
 ## Usage
-- The `avatar` prop expects the <a href="https://mui.com/material-ui/api/avatar/" target="_blank">MUI Avatar</a> component, see the MUI documentation for details.
-  - If using an image for the avatar, we recommend a 128 x 128 PNG with transparent background, and the image/icon visually centered.
-- The `button` prop expects either the WME <LinkTo kind="buttons-button--primary">Button</LinkTo> or <LinkTo kind="buttons-splitbutton--primary">SplitButton</LinkTo> component.
-<br/><br/>
+
+-   The `icon` prop expects the <a href="https://mui.com/material-ui/material-icons/" target="_blank">MUI Icon</a> component, see the MUI documentation for details.
+-   The `button` prop expects either the WME <LinkTo kind="buttons-button--primary">Button</LinkTo> or <LinkTo kind="buttons-splitbutton--primary">SplitButton</LinkTo> component.
+
+<br />
 
 ## Variants
-<br/>
 
-### Action with Button
-- The `onClick` event handler can either be attributed the `SetupCardTask` or the `SetupCardTask`'s button component.
+<br />
+
+### Task with Href
 
 <Canvas>
-  <Story
-    name="Action with Button"
-    args={{
-      variant: 'action',
-      title: 'Example action with button',
-      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      avatar: <Avatar src={taskIcon} />,
-      button: <Button variant="contained" color="primary">Click Me</Button>
-    }}
-  >
-    {Template.bind({})}
-  </Story>
+	<Story
+		name="With Href"
+		args={{
+			href: "https://tri.be",
+			title: "Example task with href",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			icon: <CalendarMonthIcon />,
+			taskCta: "Learn More",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
 </Canvas>
 
-```
-import React from 'react';
-import { SetupCardTask, Button } from '@moderntribe/wme';
-import { Avatar } from '@mui/material';
+```jsx
+import React from "react";
+import { SetupCardTask } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const MySetupCardTask = () => {
-  const handleButtonClick = () => {
-    // you can handle the actual click however you need to
-    console.log('Button was clicked');
-  }
-
-  return (
-    <SetupCardTask
-      variant="task"
-      avatar={
-        <Avatar src="/path/to/image.png" />
-      }
-      title="Example action with button"
-      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
-      // onClick={handleButtonClick} <- This would work, too
-      button={
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleButtonClick}
-        >Click Me</Button>
-      }
-    />
-  );
-};
-```
-
-### Action with Button (Disabled)
-
-<Canvas>
-  <Story
-    name="Action with Button Disabled"
-    args={{
-      disabled: true,
-      variant: 'action',
-      title: 'Example action with disabled button',
-      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      avatar: <Avatar src={taskIcon} />,
-      button: <Button variant="contained" color="primary">Click Me</Button>
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-```
-import React from 'react';
-import { SetupCardTask, Button } from '@moderntribe/wme';
-import { Avatar } from '@mui/material';
-
-const MySetupCardTask = () => {
-  const handleButtonClick = () => {
-    // you can handle the actual click however you need to
-    console.log('Button was clicked');
-  }
-
-  return (
-    <SetupCardTask
-      variant="action"
-      disabled
-      avatar={
-        <Avatar src="/path/to/image.png" />
-      }
-      title="Example action with disabled button"
-      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
-      button={
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleButtonClick}
-        >Click Me</Button>
-      }
-    />
-  );
-};
-```
-
-### Action with SplitButton
-
-<Canvas>
-  <Story
-    name="Action with SplitButton"
-    args={{
-      variant: 'action',
-      title: 'Example action with split button',
-      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      avatar: <Avatar src={taskIcon} />,
-      button: <SplitButton
-        color="primary"
-        selectedIndex={0}
-        options={['Create a merge commit', 'Squash and merge', 'Rebase and merge']}
-      />
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-
-```
-import React from 'react';
-import { SetupCardTask, SplitButton } from '@moderntribe/wme';
-import { Avatar } from '@mui/material';
-
-const MySetupCardTask = (props) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const { options } = props;
-
-  const handleIndexChange = (index:number) => {
-    setSelectedIndex(index);
-  };
-
-  const handleButtonClick = () => {
-    // you can handle the actual click however you need to
-    console.log(`${options[selectedIndex]} was clicked`);
-  }
-
-  return (
-    <SetupCardTask
-      variant="action"
-      avatar={
-        <Avatar src="/path/to/image.png" />
-      }
-      title="Example action with split button"
-      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
-      button={
-        <SplitButton
-          color="primary"
-          selectedIndex={0}
-          handleClick={handleButtonClick}
-          handleIndexChange={handleIndexChange}
-          options={options}
-        />
-      }
-    />
-  );
-};
-```
-
-### Task Disabled 
-<Canvas>
-  <Story
-    name="Task Disabled"
-    args={{
-      href: 'https://tri.be',
-      variant: 'task',
-      title: 'Example disabled task',
-      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      taskCta: 'Learn More',
-      disabled: true,
-      avatar: <Avatar src={taskIcon} />,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-```
-import React from 'react';
-import { SetupCardTask } from '@moderntribe/wme';
-import { Avatar } from '@mui/material';
-
-const MySetupCardTask = () => {
-  return (
-    <SetupCardTask
-      variant="task"
-      disabled,
-      avatar={
-        <Avatar src="/path/to/image.png" />
-      }
-      title="Example disabled task"
-      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
-    />
-  );
+	return (
+		<SetupCardTask
+			href="https://tri.be"
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			taskCta="Learn More",
+		/>
+	);
 };
 ```
 
 ### Task with onClick
-Use the `onClick` property to provide callback functionality to your `SetupCardTask`. Most commonly, this will be used to open a <LinkTo kind="wizard-wizard--bookend">Wizard</LinkTo>.
 
 <Canvas>
-  <Story
-    name="Task with onClick"
-    args={{
-      title: 'Example task with onClick',
-      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      variant: 'task',
-      taskCta: 'Learn More',
-      avatar: <Avatar src={taskIcon} />,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
+	<Story
+		name="On Click"
+		args={{
+			title: "Example task with an onClick",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			icon: <CalendarMonthIcon />,
+			taskCta: "Click away!",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
 </Canvas>
 
-```
-import React from 'react';
-import { SetupCardTask } from '@moderntribe/wme';
-import { Avatar } from '@mui/material';
+```jsx
+import React from "react";
+import { SetupCardTask } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const MySetupCardTask = () => {
-  const handleClick = () => {
-    console.log('Click handled');
-  }
-
-  return (
-    <SetupCardTask
-      variant="task"
-      avatar={
-        <Avatar src="/path/to/image.png" />
-      }
-      title="Example task with onClick"
-      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
-      onClick={handleClick}
-    />
-  );
+	return (
+		<SetupCardTask
+			onClick={(e) => console.log('task clicked')}
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			taskCta="Learn More",
+		/>
+	);
 };
 ```
 
-### Task with href 
-Use the `href` property to make `SetupCardComponent` link.
+### Disabled task
 
 <Canvas>
-  <Story
-    name="Task with href"
-    args={{
-      href: 'https://tri.be',
-      variant: 'task',
-      title: 'Example task with href',
-      intro: 'Aenean eu leo quam pellentesque ornare sem lacinia.',
-      taskCta: 'Learn More',
-      avatar: <Avatar src={taskIcon} />,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
+	<Story
+		name="Disabled"
+		args={{
+			title: "Example task is disabled",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			icon: <CalendarMonthIcon />,
+			disabled: true,
+			taskCta: "Learn More",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
 </Canvas>
 
-```
-import React from 'react';
-import { SetupCardTask } from '@moderntribe/wme';
-import { Avatar } from '@mui/material';
+```jsx
+import React from "react";
+import { SetupCardTask } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const MySetupCardTask = () => {
-  return (
-    <SetupCardTask
-      variant="task"
-      href="https://tri.be"
-      avatar={
-        <Avatar src="/path/to/image.png" />
-      }
-      title="Example task with href"
-      intro="Aenean eu leo quam pellentesque ornare sem lacinia."
-    />
-  );
+	return (
+		<SetupCardTask
+			disabled={true}
+			href="https://tri.be"
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			taskCta="Learn More",
+		/>
+	);
+};
+```
+
+### Task with a button
+
+<Canvas>
+	<Story
+		name="With Button"
+		args={{
+			title: "Example task with a Button",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			icon: <CalendarMonthIcon />,
+			button: (
+				<Button variant="contained" color="primary">
+					Click Me
+				</Button>
+			),
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardTask, Button } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
+const MySetupCardTask = () => {
+	return (
+		<SetupCardTask
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			button={
+				<Button variant="contained" color="primary" onClick={() => console.log('clicked')}>
+					Click Me
+				</Button>
+			}
+		/>
+	);
+};
+```
+
+### Disabled task with a button
+
+<Canvas>
+	<Story
+		name="Disabled With Button"
+		args={{
+			title: "Example task and button are disabled",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			icon: <CalendarMonthIcon />,
+			disabled: true,
+			button: (
+				<Button variant="contained" color="primary">
+					Click Me
+				</Button>
+			),
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardTask, Button } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
+const MySetupCardTask = () => {
+	return (
+		<SetupCardTask
+			disabled={true}
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			button={
+				<Button variant="contained" color="primary" onClick={() => console.log('clicked')}>
+					Click Me
+				</Button>
+			}
+		/>
+	);
+};
+```
+
+### Task with a split button
+
+<Canvas>
+	<Story
+		name="Split Button"
+		args={{
+			title: "Example task with a Split Button",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			icon: <CalendarMonthIcon />,
+			button: (
+				<SplitButton
+					color="primary"
+					selectedIndex={0}
+					options={[
+						"Create a merge commit",
+						"Squash and merge",
+						"Rebase and merge",
+					]}
+				/>
+			),
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardTask, SplitButton } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
+const MySetupCardTask = () => {
+	return (
+		<SetupCardTask
+			disabled={true}
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			button={
+				<SplitButton
+					onClick={() => console.log('clicked')}
+					color="primary"
+					selectedIndex={0}
+					options={[
+						"Create a merge commit",
+						"Squash and merge",
+						"Rebase and merge",
+					]}
+				/>
+			}
+		/>
+	);
+};
+```
+
+### Task that is completed
+
+<Canvas>
+	<Story
+		name="Completed"
+		args={{
+			title: "Example completed task",
+			intro: "Aenean eu leo quam pellentesque ornare sem lacinia.",
+			isComplete: true,
+			icon: <CalendarMonthIcon />,
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardTask } from "@moderntribe/wme";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+
+const MySetupCardTask = () => {
+	return (
+		<SetupCardTask
+			icon={<CalendarMonthIcon />},
+			title="Example task with href"
+			intro="Aenean eu leo quam pellentesque ornare sem lacinia."
+			isComplete={true}
+		/>
+	);
 };
 ```

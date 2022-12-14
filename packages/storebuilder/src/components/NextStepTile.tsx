@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, styled } from '@mui/material';
 
 const StyledTile = styled(Box, {

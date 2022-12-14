@@ -1,4 +1,3 @@
-import React from 'react';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { StoreSetupStringData } from '@setup/data/constants';

@@ -16,7 +16,7 @@ export const kadenceImport = async (data: HandleKadencePayloadInterface) => {
 			});
 		return response;
 	} catch (err:any) {
-		alert(__('Something went wrong with importing this template. Please refresh and try again.', 'nexcess-mapps'));
+		alert(__('Something went wrong with importing this template. Please refresh and try again.', 'moderntribe-sitebuilder'));
 		console.error('Kadence API request failed with status: ' + err?.status + ' Status Text: ' + err?.statusText + ' ' + err?.responseText);
 	}
 };
