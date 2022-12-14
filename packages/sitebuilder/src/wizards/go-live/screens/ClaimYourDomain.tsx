@@ -43,7 +43,7 @@ const ClaimYourDomain = () => {
 				{ title }
 			</Typography>
 			<Typography
-				variant="body1"
+				variant="body2"
 				component="p"
 				ml={ 'auto' }
 				mr={ 'auto' }
