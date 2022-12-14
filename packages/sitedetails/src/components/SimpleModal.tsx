@@ -6,7 +6,6 @@ import {
 } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import WizardContent from '@store/wizards/WizardContent';
-import { StoreBuilderLogo } from '@store/logos';
 
 interface SimpleModalInterface {
 	open: boolean;
@@ -30,7 +29,6 @@ const SimpleModal: React.FC<SimpleModalInterface> = (props) => {
 				<>
 					<Logo
 						width="100"
-						logoSrc={ <StoreBuilderLogo /> }
 					/>
 					<ExitButton onClick={ onClose }>
 						<span>{ __('Exit to Setup', 'moderntribe-storebuilder') }</span>

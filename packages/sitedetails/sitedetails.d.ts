@@ -86,6 +86,7 @@ declare global {
 		subHeader?: string;
 		chipBackground?: ChipProps['color'];
 		chipText?: string;
+		expanded?: boolean;
 	}
 
 	interface HandleActionPayloadInterface {

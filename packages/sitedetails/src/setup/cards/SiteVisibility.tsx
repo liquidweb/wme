@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import {
+	Button,
 	CheckboxInput,
 	Form,
 	FormField,
@@ -9,7 +10,7 @@ import {
 	SetupCardAccordion,
 	SetupCardContent
 } from '@moderntribe/wme-ui';
-import {Box, styled} from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 import type { SetupCardAccordionProps } from '@moderntribe/wme-ui/src/components/setup-card-accordion/setup-card-accordion';
 
@@ -48,6 +49,7 @@ const SiteVisibility = (props: SetupCardAccordionProps) => {
 			subHeader={ subHeader }
 			chipBackground={ chipBackground }
 			chipText={ chipText }
+			defaultExpanded={ true }
 			{ ...rest }
 		>
 			<SetupCardContent>
@@ -81,7 +83,7 @@ const SiteVisibility = (props: SetupCardAccordionProps) => {
 							/>
 						}
 					/>
-					<PasswordWrapper mt={ 2 }>
+					<PasswordWrapper mt={ 2 } mb={3}>
 						<FormField
 							field={
 								<PasswordInput
@@ -96,6 +98,11 @@ const SiteVisibility = (props: SetupCardAccordionProps) => {
 							helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-storebuilder') }
 						/>
 					</PasswordWrapper>
+					<Button
+						variant="contained"
+						color="secondary">
+						{ __('Save', 'moderntribe-storebuilder') }
+					</Button>
 				</Form>
 			</SetupCardContent>
 		</SetupCardAccordion>

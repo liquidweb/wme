@@ -14,7 +14,6 @@ import type { SetupCardHeaderProps } from '../setup-card-header/setup-card-heade
 export interface SetupCardAccordionProps extends AccordionProps, Pick<SetupCardHeaderProps, 'chipBackground' | 'chipText' | 'isComplete'> {
   header?: string,
   subHeader?: string;
-  children: NonNullable<React.ReactNode>
 }
 
 const StyledSetupCardAccordion = styled(Accordion, {
