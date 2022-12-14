@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
+import SendIcon from '@mui/icons-material/Send';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
 
@@ -18,6 +19,8 @@ export interface WizardFooterProps extends BoxProps {
   backText?: string;
   onBack?: () => void;
   nextText?: string;
+  nextStartIcon?: ReactNode;
+  nextEndIcon?: ReactNode;
   onNext?: () => void;
   skipText?: string;
   onSkip?: () => void;
@@ -158,6 +161,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     backText,
     onBack,
     nextText,
+    nextEndIcon,
+    nextStartIcon,
     onNext,
     skipText,
     onSkip,
@@ -261,6 +266,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                       onClick={isLastStep ? save : onNext}
                       disabled={(disableNext || currStep?.disableNext || disable)}
                       className={nextButtonClassName}
+                      endIcon={nextEndIcon}
+                      startIcon={nextStartIcon}
                     >
                       {nextText}
                     </Button>
