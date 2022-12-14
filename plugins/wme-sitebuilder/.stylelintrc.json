@@ -4,8 +4,9 @@
 		"@wordpress/stylelint-config"
 	],
 	"ignoreFiles": [
-		"node_modules",
-		"nexcess-mapps/vendor",
+		"node_modules/",
+		"external/",
+		"wme-sitebuilder/vendor",
 		"assets/scss/storebuilder/components/mui-components/**/*.scss"
 	],
 	"plugins": [
