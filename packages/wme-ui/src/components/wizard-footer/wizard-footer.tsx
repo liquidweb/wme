@@ -146,6 +146,7 @@ const StyledLoadingButton = styled(LoadingButton, {
   slot: 'Root',
 })(({ theme }) => ({
   textTransform: 'none',
+  paddingLeft: theme.spacing(5),
   '&.MuiButtonBase-root': {
     color: theme.palette.text.white,
     backgroundColor: theme.palette.text.disabled,
@@ -249,7 +250,6 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                     loading
                     variant="contained"
                     loadingPosition="start"
-                    startIcon={<ChevronRight />}
                   >
                     {loadingText}
                   </StyledLoadingButton>
