@@ -46,7 +46,7 @@ export const GoLiveStringData = {
 	},
 	claimYourDomain: {
 		screenTitle: __('is all yours!', 'moderntribe-sitebuilder'),
-		screenDescription: __('While a new domain is often ready for use within an hour, it can take up to 8 hours to completely process.', 'moderntribe-sitebuilder'),
+		screenDescription: __('We need a little time to update the entire internet about your purchase. You\'ll be able to connect your domain when we\'re done. This typically takes an hour but can take up to 8 hours to complete.', 'moderntribe-sitebuilder'),
 	},
 	errorDomainGeneral: {
 		accountContent: __('It looks like we\'re having trouble connecting your domain.', 'moderntribe-sitebuilder'),
