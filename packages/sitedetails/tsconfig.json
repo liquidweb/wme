@@ -5,10 +5,7 @@
 
 		"baseUrl": ".",
 		"paths": {
-			"@store/*": ["src/*"],
-			"@setup/*": ["src/wizards/store-setup/*"],
-			"@shipping/*": ["src/wizards/shipping/*"],
-			"@payments/*": ["src/wizards/payments/*"]
+			"@site/*": ["src/*"],
 		},
 
 		/* Projects */

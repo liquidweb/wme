@@ -6,20 +6,14 @@ import {
 	SetupCardHeader,
 	SetupCardContent
 } from '@moderntribe/wme-ui';
-import { useSetupCard } from '@store/hooks';
-import { SetupCardLayout, SetupCardFooter } from '@store/setup';
 
 const SetupCard = (props: SetupCardInterface) => {
 	const {
 		title = '',
 		intro = '',
 		time = '',
-		rows = [],
-		footers = [],
 		completed = false,
 	} = props;
-
-	const { firstRowType, lastRowType } = useSetupCard(props);
 
 	return (
 		<WmeSetupCard>
@@ -33,15 +27,7 @@ const SetupCard = (props: SetupCardInterface) => {
 					label={ completed ? __('Completed', 'moderntribe-storebuilder') : time }
 				/> }
 			/>
-			<SetupCardContent sx={ {
-				'&.WmeSetupCardContent-root': {
-					marginTop: (firstRowType && firstRowType === 'task') ? '16px' : '32px',
-					paddingBottom: (lastRowType && lastRowType === 'task') ? '20px' : '32px',
-				}
-			} }>
-				<SetupCardLayout rows={ rows } completed={ completed } />
-			</SetupCardContent>
-			<SetupCardFooter footers={ footers } />
+			<SetupCardContent />
 		</WmeSetupCard>
 	);
 };

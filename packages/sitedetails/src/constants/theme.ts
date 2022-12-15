@@ -129,12 +129,14 @@ let theme = {
 	},
 	components: {
 		MuiChip: {
-			styleOverrides: {
-				color: 'black',
-				icon: {
-					color: 'currentColor'
-				}
-			}
+			variants: [
+				{
+					props: { variant: 'error' },
+					style: {
+						color: '#ffffff',
+					},
+				},
+			]
 		},
 		MuiStep: {
 			styleOverrides: {
@@ -357,4 +359,4 @@ theme = deepmerge(theme, {
 	}
 });
 
-export const SB_THEME = theme;
+export const SD_THEME = theme;

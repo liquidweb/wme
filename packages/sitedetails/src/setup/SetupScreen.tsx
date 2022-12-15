@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import { SetupCards } from '@store/setup';
-import { NexcessLogo } from '@store/logos';
+import { SetupCards } from '@site/setup';
+import { NexcessLogo } from '@site/logos';
 
 const SetupScreen = () => {
 	return (
