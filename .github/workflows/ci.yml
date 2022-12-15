@@ -48,8 +48,8 @@ jobs:
         id: composer-cache
         working-directory: plugins/wme-sitebuilder
         run: |
-          echo "composer-files-dir=$(composer config cache-files-dir) >> $GITHUB_OUTPUT"
-          echo "composer-vendor-dir=$(readlink -f wme-sitebuilder/vendor $(composer config vendor-dir)) >> $GITHUB_OUTPUT"
+          echo "composer-files-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+          echo "composer-vendor-dir=$(readlink -f wme-sitebuilder/vendor $(composer config vendor-dir))" >> $GITHUB_OUTPUT
 
       - name: Cache Node Modules
         id: cache-node-modules
