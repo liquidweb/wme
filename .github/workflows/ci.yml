@@ -3,20 +3,18 @@ name: "CI/CD: Install, Build, and Lint"
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+      - 'release/**'
   pull_request:
     types: [opened, synchronize]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   build:
-    name: Build and Test
+    name: Build and Install Dependencies
     timeout-minutes: 15
     runs-on: ubuntu-latest
- 
+    
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -52,5 +50,51 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Lint
-        run: pnpm lint
+  lint:
+    name: Lint JS and PHP
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+    - name: Lint
+      run: pnpm lint
+    
+  e2e-tests:
+    name: End to End Testing
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    needs: build
+    env:
+      ALLURE_REPORT_DIR: ${{ github.workspace }}/plugins/wme-sitebuilder/tests/results/allure-report
+      ALLURE_RESULTS_DIR: ${{ github.workspace }}/plugins/wme-sitebuilder/tests/results/allure-results
+      DEFAULT_TIMEOUT_OVERRIDE: 30000
+    steps:
+      - name: Install Playwright dependencies
+        run: |
+          npx playwright install chromium firefox webkit --with-deps
+
+      - name: Launch wp-env e2e environment
+        working-directory: plugins/wme-sitebuilder
+        run: pnpm env:dev
+
+      - name: Run Sitebuilder End to End tests.
+        timeout-minutes: 15
+        working-directory: plugins/wme-sitebuilder
+        run: pnpm test
+
+      - name: Generate Playwright E2E Test report.
+        if: success() || failure()
+        working-directory: plugins/wme-sitebuilder
+        run: pnpm exec allure generate --clean ${{ env.ALLURE_RESULTS_DIR }} --output ${{ env.ALLURE_REPORT_DIR }}
+
+      - name: Archive E2E test report
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.E2E_ARTIFACT }}
+          path: |
+            ${{ env.ALLURE_RESULTS_DIR }}
+            ${{ env.ALLURE_REPORT_DIR }}
+          if-no-files-found: ignore
+          retention-days: 5
