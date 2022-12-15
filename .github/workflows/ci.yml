@@ -41,15 +41,18 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      - name: Cache Node Modules
-        id: cache-node-modules
+      - name: Cache Build Assets
+        id: cache-build-assets
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
+          path: |
+            '**/dist'
+            '**/node_modules'
+            '**/vendor'
           key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Install dependencies
-        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-build-assets.outputs.cache-hit != 'true' }}
+        name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -76,15 +79,18 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      - name: Cache Node Modules
-        id: cache-node-modules
+      - name: Cache Build Assets
+        id: cache-build-assets
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
+          path: |
+            '**/dist'
+            '**/node_modules'
+            '**/vendor'
           key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Install dependencies
-        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-build-assets.outputs.cache-hit != 'true' }}
+        name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -119,15 +125,18 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      - name: Cache Node Modules
-        id: cache-node-modules
+      - name: Cache Build Assets
+        id: cache-build-assets
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
+          path: |
+            '**/dist'
+            '**/node_modules'
+            '**/vendor'
           key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Install dependencies
-        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+      - if: ${{ steps.cache-build-assets.outputs.cache-hit != 'true' }}
+        name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
