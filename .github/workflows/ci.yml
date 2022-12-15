@@ -46,10 +46,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            '**/dist'
             '**/node_modules'
-            '**/vendor'
-          key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+            'plugins/wme-sitebuilder/wme-sitebuilder/vendor'
+          key: build-assets-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - if: ${{ steps.cache-build-assets.outputs.cache-hit != 'true' }}
         name: Install dependencies
@@ -84,10 +83,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            '**/dist'
             '**/node_modules'
-            '**/vendor'
-          key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+            'plugins/wme-sitebuilder/wme-sitebuilder/vendor'
+          key: build-assets-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - if: ${{ steps.cache-build-assets.outputs.cache-hit != 'true' }}
         name: Install dependencies
@@ -130,10 +128,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            '**/dist'
             '**/node_modules'
-            '**/vendor'
-          key: node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+            'plugins/wme-sitebuilder/wme-sitebuilder/vendor'
+          key: build-assets-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - if: ${{ steps.cache-build-assets.outputs.cache-hit != 'true' }}
         name: Install dependencies
