@@ -79,6 +79,17 @@ import * as SetupCardFooterStories from "../setup-card-footer/setup-card-footer.
 				},
 			},
 		},
+		toggleOpen: {
+			control: false,
+			description:
+				"Expands or closes the accordion onClick. This must be used with the `expanded` prop to control the accordion.",
+			table: {
+				type: {
+					summary: "func",
+				},
+			},
+			action: "Toggle accordion open/close status",
+		},
 	}}
 	decorators={[
 		(Story) => (
