@@ -367,6 +367,8 @@ importers:
       '@wordpress/html-entities': ^3.22.0
       '@wordpress/i18n': ^4.22.0
       '@wordpress/stylelint-config': ^19.1.0
+      allure-commandline: ^2.20.1
+      allure-playwright: ^2.0.0-beta.20
       browser-sync: ^2.27.10
       browser-sync-webpack-plugin: ^2.3.0
       eslint: ^8.29.0
@@ -422,6 +424,8 @@ importers:
       '@wordpress/html-entities': 3.22.0
       '@wordpress/i18n': 4.22.0
       '@wordpress/stylelint-config': 19.1.0_stylelint@13.13.1
+      allure-commandline: 2.20.1
+      allure-playwright: 2.0.0-beta.20
       browser-sync: 2.27.10
       browser-sync-webpack-plugin: 2.3.0_aixsb247ixctxgkty3s4kg7kf4
       eslint: 8.29.0
@@ -6797,6 +6801,25 @@ packages:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
       uri-js: 4.4.1
+
+  /allure-commandline/2.20.1:
+    resolution: {integrity: sha512-QKdPUgnS4q6V0MWsZl6miveuoIo84sR4+Olh0N2JY+UWawpxnXHqWcHUtHedOJx9vCewTi3nSkBUiuOuUmn6Dw==}
+    hasBin: true
+    dev: true
+
+  /allure-js-commons/2.0.0-beta.20:
+    resolution: {integrity: sha512-ZUSa75s1LEhoIOTgNJhB463t+GURPKkB92HNqSWvFImxU0SojdT7JbgaQ4Ku+qhY5VFMsWmZJt6TAYo5t7ZR4A==}
+    dependencies:
+      mkdirp: 1.0.4
+      properties: 1.2.1
+      uuid: 8.3.2
+    dev: true
+
+  /allure-playwright/2.0.0-beta.20:
+    resolution: {integrity: sha512-RELEsiK4b4h+K4E2GzYqp3yEOR4OA+gUQi/PInIFtaDPKG4BYo0b28iqox+xrDILNce7NhmMC8Q/uqBGl33B4w==}
+    dependencies:
+      allure-js-commons: 2.0.0-beta.20
+    dev: true
 
   /ansi-align/3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
@@ -16117,6 +16140,11 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+
+  /properties/1.2.1:
+    resolution: {integrity: sha512-qYNxyMj1JeW54i/EWEFsM1cVwxJbtgPp8+0Wg9XjNaK6VE/c4oRi6PNu5p7w1mNXEIQIjV5Wwn8v8Gz82/QzdQ==}
+    engines: {node: '>=0.10'}
+    dev: true
 
   /property-information/5.6.0:
     resolution: {integrity: sha512-YUHSPk+A30YPv+0Qf8i9Mbfe/C0hdPXk1s1jPVToV8pk8BQtpw10ct89Eo7OWkutrwqvT0eicAxlOg3dOAu8JA==}

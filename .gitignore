@@ -60,15 +60,13 @@ tsconfig.tsbuildinfo
 
 # Playwright output & working files
 /plugins/wme-sitebuilder/tests/e2e/output
-/plugins/wme-sitebuilder/tests/e2e/report
 /plugins/wme-sitebuilder/tests/e2e/storage
-/plugins/wme-sitebuilder/tests/e2e/test-results.json
+/plugins/wme-sitebuilder/tests/results
 
 # Node Package Dependencies
 package-lock.json
 
 # Composer
-vendor/
 bin/composer/**/vendor/
 lib/vendor/
 contributors.md

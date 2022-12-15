@@ -1,25 +1,27 @@
 const { devices } = require('@playwright/test');
-const { BASE_URL, CI, DEFAULT_TIMEOUT_OVERRIDE, E2E_MAX_FAILURES } = process.env;
+const { ALLURE_RESULTS_DIR, BASE_URL, CI, DEFAULT_TIMEOUT_OVERRIDE, E2E_MAX_FAILURES } = process.env;
 
 const config = {
 	timeout: DEFAULT_TIMEOUT_OVERRIDE ? Number(DEFAULT_TIMEOUT_OVERRIDE) : 90 * 1000,
 	expect: { timeout: 20 * 1000 },
-	outputDir: './report',
+	outputDir: './output',
 	globalSetup: require.resolve('./global-setup'),
 	globalTeardown: require.resolve('./global-teardown'),
 	testDir: 'tests',
 	retries: CI ? 4 : 2,
 	workers: 4,
 	reporter: [
-		['list'],
+		[process.env.CI ? 'github' : 'list'],
 		[
-			'html',
+			'allure-playwright',
 			{
-				outputFolder: 'output',
-				open: CI ? 'never' : 'always',
+				outputFolder:
+					ALLURE_RESULTS_DIR ?? 'tests/results/allure-results',
+				detail: true,
+				suiteTitle: true,
 			},
 		],
-		['json', { outputFile: 'test-results.json' }],
+		['json', { outputFile: '../results/results.json' }],
 	],
 	maxFailures: E2E_MAX_FAILURES ? Number(E2E_MAX_FAILURES) : 0,
 	use: {
