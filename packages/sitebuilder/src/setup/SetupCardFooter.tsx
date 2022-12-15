@@ -1,11 +1,11 @@
-import { ContentAccordion, SetupCardFooter } from '@moderntribe/wme-ui';
+import { ContentAccordion, SetupCardFooter as WmeSetupFooter } from '@moderntribe/wme-ui';
 import { FooterLinks, FooterColumns } from './footer';
 
 export interface SetupCardFooterInterface {
 	footer: SetupCardFooter;
 }
 
-const Footer = (props: SetupCardFooterInterface) => {
+const SetupCardFooter = (props: SetupCardFooterInterface) => {
 	const { footer } = props;
 
 	const renderContent = () => {
@@ -21,14 +21,14 @@ const Footer = (props: SetupCardFooterInterface) => {
 	};
 
 	return (
-		<SetupCardFooter>
+		<WmeSetupFooter>
 			{ footer.collapsible ? (
 				<ContentAccordion title={ footer.collapsibleLabel } id={ footer.collapsibleLabel }>
 					{ renderContent() }
 				</ContentAccordion>
 			) : renderContent() }
-		</SetupCardFooter>
+		</WmeSetupFooter>
 	);
 };
 
-export default Footer;
+export default SetupCardFooter;
