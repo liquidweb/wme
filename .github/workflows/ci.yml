@@ -14,7 +14,9 @@ jobs:
     name: Build and Install Dependencies
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    
+    outputs:
+      pnpm-cache-dir: ${{ steps.pnpm-cache.outputs.PNPM_CACHE_DIR }}
+
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -56,8 +58,37 @@ jobs:
     needs: build
     
     steps:
-    - name: Lint
-      run: pnpm lint
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+          run_install: false
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{needs.build.outputs.pnpm-cache-dir}}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Lint
+        run: pnpm lint
     
   e2e-tests:
     name: End to End Testing
@@ -70,6 +101,35 @@ jobs:
       ALLURE_RESULTS_DIR: ${{ github.workspace }}/plugins/wme-sitebuilder/tests/results/allure-results
       DEFAULT_TIMEOUT_OVERRIDE: 30000
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+          run_install: false
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{needs.build.outputs.pnpm-cache-dir}}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+            
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
       - name: Install Playwright dependencies
         run: |
           npx playwright install chromium firefox webkit --with-deps
