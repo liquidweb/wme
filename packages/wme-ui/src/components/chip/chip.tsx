@@ -27,8 +27,8 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
     color: theme.palette.success.dark,
   },
   '&.MuiChip-colorPrimary': {
-    backgroundColor: `${theme.palette.primary.light}7d`,
-    color: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.text.white,
   },
   '&.MuiChip-colorWarning': {
     backgroundColor: theme.palette.warning.light,

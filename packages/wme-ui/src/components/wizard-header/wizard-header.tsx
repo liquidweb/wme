@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-interface WizardHeaderProps {
+export interface WizardHeaderProps {
   children: ReactElement;
 }
 
@@ -14,7 +14,8 @@ const WizardHeaderContainer = styled(Box, {
   slot: 'Root',
 })(({ theme }) => ({
   display: 'flex',
-  marginBottom: theme.spacing(2),
+  paddingTop: theme.spacing(2),
+  paddingBottom: theme.spacing(2),
   justifyContent: 'space-between',
   alignItems: 'center',
   position: 'relative',

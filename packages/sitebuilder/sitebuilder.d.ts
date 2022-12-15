@@ -57,18 +57,15 @@ declare global {
   }
 
 	interface SetupCardRowInterface {
+		completed?: boolean;
 		id: string;
-		type: 'task' | 'action';
-		variant?: string;
+		type: 'task';
 		title?: string;
 		intro?: string;
 		icon?: React.ReactElement | string;
 		taskCta?: string;
 		url?: string;
-		disabled?: boolean;
-		disableText?: string;
 		wizardHash?: string;
-		complete?: boolean;
 	}
 
 	interface SetupCardInterface {
@@ -76,10 +73,50 @@ declare global {
 		title: string;
 		intro?: string;
 		completed: boolean;
-		time?: string;
-		rows: SetupCardRowInterface[];
-		footers?: any;
-		slug: string;
+		navTitle: string;
+		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
+		footer?: SetupCardFooter;
+	}
+
+	interface SetupCardFooter {
+		collapsible: boolean;
+		collapsibleLabel?: string;
+		rows: (SetupCardFooterRowColumns | SetupCardFooterRowLinks | SetupCardRowGoLIveInterface)[]
+	}
+
+	interface SetupCardFooterRowColumns {
+		type: 'columns';
+		gridColumns: number,
+		columns: SetupCardFooterColumn[];
+	}
+
+	interface SetupCardFooterRowLinks {
+		type: 'links';
+		title: string;
+		links: SetupCardLink[];
+	}
+
+	interface SetupCardFooterRowText{
+		type: 'text';
+		text: string;
+	}
+
+	interface SetupCardLink {
+		href: string;
+		label: string;
+	}
+
+	interface SetupCardFooterColumn {
+		heading?: string;
+		paragraph?: string;
+		list: ListProps[];
+		image: string;
+	}
+
+	interface SetupCardRowGoLIveInterface {
+		completed: boolean;
+		id: string;
+		type: 'launch-domain-status';
 	}
 
 	interface HandleActionPayloadInterface {
@@ -120,6 +157,7 @@ declare global {
 		disable?: boolean;
 		hidePagination?: boolean;
 	}
+
 	export interface Domain {
 		domain: string
 		is_available: boolean
