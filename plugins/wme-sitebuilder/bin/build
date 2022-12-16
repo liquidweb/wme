@@ -87,7 +87,7 @@ export MIX_BUILD_DIR="./dist/wme-sitebuilder/assets"
 
 # Build production-ready assets with Laravel Mix.
 step "Building production assets"
-pnpm install
+pnpm install --frozen-lockfile
 pnpm run production
 
 # Finally, create the output zip file.

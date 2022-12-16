@@ -16,6 +16,7 @@
 	},
 	"scripts": {
 		"build": "pnpm run production",
+		"build:plugin": "composer build:plugin",
 		"dev": "pnpm run development",
 		"development": "mix",
 		"env:destroy": "pnpm wp-env destroy",

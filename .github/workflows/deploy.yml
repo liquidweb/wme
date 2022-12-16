@@ -1,0 +1,72 @@
+name: "Deploy to Environments"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
+            
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+          run_install: false
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8.0'
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - name: Cache Composer Files
+        id: composer-cache
+        working-directory: plugins/wme-sitebuilder
+        run: |
+          echo "composer-files-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ steps.composer-cache.outputs.composer-files-dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+        name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Deploy to Nexcess
+        run: |
+          ssh-keyscan main.sitebuilder.crows.dev >> ~/.ssh/known_hosts
+          ./bin/deploy-to-nexcess.sh -s ab47a470_2@main.sitebuilder.crows.dev

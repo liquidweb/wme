@@ -21,6 +21,7 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
+		"build:plugin": "turbo run build:plugin",
 		"clean": "pnpm -r --parallel exec rimraf dist .turbo tsconfig.tsbuildinfo",
 		"clean:hard": "pnpm -r --parallel exec rimraf dist .turbo node_modules && rm -rf node_modules",
 		"dev": "turbo run dev",
