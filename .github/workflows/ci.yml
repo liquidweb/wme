@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+      - 1.0-branch
+      - 2.0-branch
       - 'release/**'
   pull_request:
     types: [opened, synchronize]
@@ -220,3 +222,10 @@ jobs:
             ${{ env.ALLURE_REPORT_DIR }}
           if-no-files-found: ignore
           retention-days: 5
+  
+  deploy:
+    if: ${{ github.ref_name == 'main' || github.ref_name == '1.0-branch' || github.ref_name == '2.0-branch' }}
+    name: Deploy to Test Sites    
+    needs: [build, lint, e2e-tests]
+    uses: ./.github/workflows/deploy.yml
+

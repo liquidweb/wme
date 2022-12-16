@@ -1,16 +1,32 @@
 name: "Deploy to Environments"
-
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        required: true
+        
+env:
+  ENVIRONMENTS: '{
+    "main": {
+        "name": "qa-main"
+        "url": "https://main.sitebuilder.crows.dev/"
+    },
+    "1.0-branch": {
+        "name": "qa-v1"
+        "url": "https://v1.sitebuilder.crows.dev/"
+    },
+    "2.0-branch": {
+        "name": "qa-v2"
+        "url": "https://v2.sitebuilder.crows.dev/"
+    },
+  }'
+  
 
-jobs:
-  deploy:
+jobs:  
+  deployment:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ fromJSON(env.ENVIRONMENTS) }}.$GITHUB_REF_NAME.name
+      url: ${{ fromJSON(env.ENVIRONMENTS) }}.$GITHUB_REF_NAME.url
     
-    steps:
+    steps:        
       - uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: |
