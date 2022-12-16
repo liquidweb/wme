@@ -26,7 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       composer-files-dir: ${{ steps.composer-cache.outputs.composer-files-dir }}
-      composer-vendor-dir: ${{ steps.composer-cache.outputs.composer-vendor-dir }}
 
     steps:
       - name: Check out code
@@ -44,12 +43,17 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
           
-      - name: Get Composer Cache Directories
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8.0'
+          
+      - name: Cache Composer Files
         id: composer-cache
         working-directory: plugins/wme-sitebuilder
         run: |
           echo "composer-files-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-          echo "composer-vendor-dir=$(readlink -f $(composer config vendor-dir))" >> $GITHUB_OUTPUT
 
       - name: Cache Node Modules
         id: cache-node-modules
@@ -63,7 +67,6 @@ jobs:
         with:
           path: |
             ${{ steps.composer-cache.outputs.composer-files-dir }}
-            ${{ steps.composer-cache.outputs.composer-vendor-dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
@@ -103,12 +106,17 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8.0'
+
       - name: Cache Composer Dependencies
         uses: actions/cache@v3
         with:
           path: |
             ${{needs.build.outputs.composer-files-dir}}
-            ${{needs.build.outputs.composer-vendor-dir}}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
@@ -148,6 +156,12 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
+          
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8.0'
 
       - name: Cache Node Modules
         id: cache-node-modules
@@ -161,7 +175,6 @@ jobs:
         with:
           path: |
             ${{needs.build.outputs.composer-files-dir}}
-            ${{needs.build.outputs.composer-vendor-dir}}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
