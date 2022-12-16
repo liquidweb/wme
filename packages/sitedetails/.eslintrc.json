@@ -25,10 +25,7 @@
             "alias": {
                 "extensions": [".js", ".jsx", ".ts", ".tsx"],
 								"map": [
-									["@store", "./src"],
-									["@setup", "./src/wizards/store-setup"],
-									["@shipping", "./src/wizards/shipping"],
-									["@payments", "./src/wizards/payments"]
+									["@site", "./src"]
 								]
             }
         },

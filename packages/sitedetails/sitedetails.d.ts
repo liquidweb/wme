@@ -48,14 +48,6 @@ declare global {
 		site_details: any;
 		wp: any;
 		wpApiSettings: any;
-		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;
-		PayPal?: any;
-	}
-
-	interface StoreBuilderAjaxObject {
-		action: string;
-		nonce: string;
-		url: string;
 	}
 
 	interface SetupCardAccordionInterface {
