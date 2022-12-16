@@ -18,7 +18,6 @@ const PasswordWrapper = styled(Box)(() => ({
 }));
 
 const SiteVisibility = () => {
-
 	const [visibilityValues, setVisibilityValues] = useState({
 		hideSearchEngines: false,
 		restrictAccess: false,
@@ -63,26 +62,31 @@ const SiteVisibility = () => {
 						/>
 					}
 				/>
-				<PasswordWrapper mt={ 2 } mb={3}>
-					<FormField
-						field={
-							<PasswordInput
-								name="password"
-								value={ visibilityValues.password }
-								chipColor="error"
-								chipLabel="weak"
-								onChange={ handleChange }
+				{ visibilityValues.restrictAccess && (
+					<>
+						<PasswordWrapper mt={ 2 } mb={ 3 }>
+							<FormField
+								field={
+									<PasswordInput
+										name="password"
+										value={ visibilityValues.password }
+										chipColor="error"
+										chipLabel="weak"
+										onChange={ handleChange }
+									/>
+								}
+								label={ __('Password', 'moderntribe-storebuilder') }
+								helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-storebuilder') }
 							/>
-						}
-						label={ __('Password', 'moderntribe-storebuilder') }
-						helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-storebuilder') }
-					/>
-				</PasswordWrapper>
-				<Button
-					variant="contained"
-					color="secondary">
-					{ __('Save', 'moderntribe-storebuilder') }
-				</Button>
+						</PasswordWrapper>
+
+						<Button
+							variant="contained"
+							color="secondary">
+							{ __('Save', 'moderntribe-storebuilder') }
+						</Button>
+					</>
+				) }
 			</Form>
 		</SetupCardContent>
 	);
