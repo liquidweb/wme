@@ -29,9 +29,9 @@ const GoogleAnalytics = () => {
 				<StyledFormField
 					label={
 						<>
-							{ __('Google Analytics Code', 'moderntribe-storebuilder') }
+							{ __('Google Analytics Code', 'moderntribe-sitebuilder') }
 							{ ' ' }
-							<Link href="/">{ __('(How do I set this up?)', 'moderntribe-storebuilder') }</Link>
+							<Link href="/">{ __('(How do I set this up?)', 'moderntribe-sitebuilder') }</Link>
 						</>
 					}
 					field={
@@ -41,14 +41,14 @@ const GoogleAnalytics = () => {
 							name="analyticsScript"
 							multiline
 							minRows={ 5 }
-							placeholder={ __('Paste your code from Google here', 'moderntribe-storebuilder') }
+							placeholder={ __('Paste your code from Google here', 'moderntribe-sitebuilder') }
 						/>
 					}
 				/>
 				<Button
 					variant="contained"
 					color="secondary">
-					{ __('Save', 'moderntribe-storebuilder') }
+					{ __('Save', 'moderntribe-sitebuilder') }
 				</Button>
 			</Form>
 		</SetupCardContent>

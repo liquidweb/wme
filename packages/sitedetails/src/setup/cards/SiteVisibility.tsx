@@ -10,6 +10,8 @@ import {
 	SetupCardContent
 } from '@moderntribe/wme-ui';
 import { Box, styled } from '@mui/material';
+import { getPasswordStrength } from '@site/utils';
+import { UsePasswordStrengthColor } from '@site/hooks';
 
 const PasswordWrapper = styled(Box)(() => ({
 	'& .MuiInputBase-root': {
@@ -24,10 +26,24 @@ const SiteVisibility = () => {
 		password: '',
 	});
 
+	const [passwordStrength, setPasswordStrength] = useState<PasswordStrengthTypes>('');
+	const [passwordStrengthColor, setPasswordStrengthColor] = useState<PasswordStrengthColorTypes>('');
+
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setVisibilityValues({
 			...visibilityValues,
 			[ event.target.name ]: event.target.type === 'checkbox' ? event.target.checked : event.target.value });
+	};
+
+	const handlePasswordChange = (
+		event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+	) => {
+		const strength = getPasswordStrength(event.target.value);
+		const chipColor = UsePasswordStrengthColor(strength);
+
+		setPasswordStrength(strength);
+		setPasswordStrengthColor(chipColor);
+		setVisibilityValues({ ...visibilityValues, password: event.target.value });
 	};
 
 	return (
@@ -43,7 +59,7 @@ const SiteVisibility = () => {
 									name="hideSearchEngines"
 								/>
 							}
-							label={ __('Hide my sites from search engines, and whatever else.', 'moderntribe-storebuilder') }
+							label={ __('Hide my sites from search engines, and whatever else.', 'moderntribe-sitebuilder') }
 						/>
 					}
 				/>
@@ -57,7 +73,7 @@ const SiteVisibility = () => {
 									name="restrictAccess"
 								/>
 							}
-							label={ __('Restrict access to visitors with the password.', 'moderntribe-storebuilder') }
+							label={ __('Restrict access to visitors with the password.', 'moderntribe-sitebuilder') }
 							checked={ visibilityValues.restrictAccess }
 						/>
 					}
@@ -70,20 +86,20 @@ const SiteVisibility = () => {
 									<PasswordInput
 										name="password"
 										value={ visibilityValues.password }
-										chipColor="error"
-										chipLabel="weak"
-										onChange={ handleChange }
+										chipColor={ passwordStrengthColor }
+										chipLabel={ passwordStrength }
+										onChange={ handlePasswordChange }
 									/>
 								}
-								label={ __('Password', 'moderntribe-storebuilder') }
-								helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-storebuilder') }
+								label={ __('Password', 'moderntribe-sitebuilder') }
+								helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-sitebuilder') }
 							/>
 						</PasswordWrapper>
 
 						<Button
 							variant="contained"
 							color="secondary">
-							{ __('Save', 'moderntribe-storebuilder') }
+							{ __('Save', 'moderntribe-sitebuilder') }
 						</Button>
 					</>
 				) }

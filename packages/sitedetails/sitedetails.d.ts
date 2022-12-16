@@ -58,4 +58,13 @@ declare global {
 		chipText?: string;
 		expanded?: boolean;
 	}
+
+	interface PasswordStatusItemInterface {
+		label: string;
+		color: string;
+	}
+
+	type PasswordStrengthTypes = 'weak' | 'medium' | 'strong' | '';
+
+	type PasswordStrengthColorTypes = 'success' | 'warning' | 'error' | '';
 }

@@ -37,7 +37,7 @@
         "no-unused-vars": "off",
 				"@typescript-eslint/no-unused-vars": "error",
 				"@wordpress/i18n-text-domain": [ "warn", {
-					"allowedTextDomain": [ "moderntribe-storebuilder" ]
+					"allowedTextDomain": [ "moderntribe-sitebuilder" ]
 				} ],
         "array-bracket-spacing": ["warn", "never"],
         "block-spacing": ["warn", "always"],
