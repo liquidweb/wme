@@ -1,6 +1,6 @@
 name: "Deploy to Environments"
 on:
-  workflow_dispatch:
+  workflow_call:
         
 env:
   ENVIRONMENTS: '{
