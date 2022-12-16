@@ -23,8 +23,8 @@ jobs:
   deployment:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ fromJSON(env.ENVIRONMENTS) }}.$GITHUB_REF_NAME.name
-      url: ${{ fromJSON(env.ENVIRONMENTS) }}.$GITHUB_REF_NAME.url
+      name: ${{ fromJSON($ENVIRONMENTS) }}.$GITHUB_REF_NAME.name
+      url: ${{ fromJSON($ENVIRONMENTS) }}.$GITHUB_REF_NAME.url
     
     steps:        
       - uses: webfactory/ssh-agent@v0.7.0
