@@ -74,8 +74,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
-        name: Install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -127,8 +126,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
-        name: Install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -188,8 +186,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
-        name: Install dependencies
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
