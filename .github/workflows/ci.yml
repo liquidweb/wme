@@ -49,6 +49,9 @@ jobs:
           tools: composer:v2
           php-version: '8.0'
           
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          
       - name: Cache Composer Files
         id: composer-cache
         working-directory: plugins/wme-sitebuilder
@@ -98,6 +101,15 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
+          
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:v2
+          php-version: '8.0'
+
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
       - name: Cache Node Modules
         id: cache-node-modules
@@ -105,12 +117,6 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          tools: composer:v2
-          php-version: '8.0'
 
       - name: Cache Composer Dependencies
         uses: actions/cache@v3
@@ -162,6 +168,9 @@ jobs:
         with:
           tools: composer:v2
           php-version: '8.0'
+          
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
       - name: Cache Node Modules
         id: cache-node-modules
