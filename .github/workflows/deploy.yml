@@ -3,28 +3,17 @@ on:
   workflow_call:
         
 env:
-  ENVIRONMENTS: '{
-    "main": {
-        "name": "qa-main"
-        "url": "https://main.sitebuilder.crows.dev/"
-    },
-    "1.0-branch": {
-        "name": "qa-v1"
-        "url": "https://v1.sitebuilder.crows.dev/"
-    },
-    "2.0-branch": {
-        "name": "qa-v2"
-        "url": "https://v2.sitebuilder.crows.dev/"
-    },
-  }'
+  ENV_NAME: ${{ github.ref_name == 'main' && 'qa-main' || github.ref_name == '1.0-branch' && 'qa-v1' || github.ref_name == '2.0-branch' && 'qa-v2' }}
+  ENV_SUBDOMAIN: ${{ github.ref_name == 'main' && 'main' || github.ref_name == '1.0-branch' && 'v1' || github.ref_name == '2.0-branch' && 'v2' }}
+  ENV_DOMAIN: 'sitebuilder.crows.dev/'
   
 
 jobs:  
   deployment:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ fromJSON(ENVIRONMENTS) }}.$GITHUB_REF_NAME.name
-      url: ${{ fromJSON(ENVIRONMENTS) }}.$GITHUB_REF_NAME.url
+      name: $ENV_NAME
+      url: "https://$ENV_SUBDOMAIN.$ENV_DOMAIN"
     
     steps:        
       - uses: webfactory/ssh-agent@v0.7.0
