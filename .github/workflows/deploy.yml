@@ -6,23 +6,26 @@ on:
         description: 'The Private SSH Key to use for accessing the deployment server.'
         required: true
   workflow_dispatch:
-    environment:
-      description: 'Deployment Environment'
-      type: environment
-      required: true
+    inputs:
+      environment:
+        description: 'Deployment Environment'
+        required: true
+        type: environment
 
 env:
-  ENV_NAME: ${{ github.ref_name == 'main' && 'qa-main' || github.ref_name == '1.0-branch' && 'qa-v1' || github.ref_name == '2.0-branch' && 'qa-v2' }}
-  ENV_SUBDOMAIN: ${{ github.ref_name == 'main' && 'main' || github.ref_name == '1.0-branch' && 'v1' || github.ref_name == '2.0-branch' && 'v2' }}
-  ENV_DOMAIN: 'sitebuilder.crows.dev'
+  USER: 'ab47a470_2'
+  ENVIRONMENT_NAME: ${{ github.ref_name == 'main' && 'qa-main' || github.ref_name == '1.0-branch' && 'qa-v1' || github.ref_name == '2.0-branch' && 'qa-v2' }}
+  SUBDOMAIN: ${{ github.ref_name == 'main' && 'main' || github.ref_name == '1.0-branch' && 'v1' || github.ref_name == '2.0-branch' && 'v2' }}
+  TLD: 'sitebuilder.crows.dev'
+  FULL_DOMAIN: $(echo ${SUBDOMAIN}.${TLD})
   
 
 jobs:  
   deployment:
     runs-on: ubuntu-latest
     environment:
-      name: $ENV_NAME
-      url: "https://$ENV_SUBDOMAIN.$ENV_DOMAIN"
+      name: $ENVIRONMENT_NAME
+      url: $(echo https://${FULL_DOMAIN})
     
     steps:        
       - uses: webfactory/ssh-agent@v0.7.0
@@ -80,5 +83,5 @@ jobs:
 
       - name: Deploy to Nexcess
         run: |
-          ssh-keyscan ${{ $ENV_SUBDOMAIN.$ENV_DOMAIN }} >> ~/.ssh/known_hosts
-          ./bin/deploy-to-nexcess.sh -s ab47a470_2@${{ $ENV_SUBDOMAIN.$ENV_DOMAIN }}
+          ssh-keyscan ${FULL_DOMAIN} >> ~/.ssh/known_hosts
+          ./bin/deploy-to-nexcess.sh -s ab47a470_2@${FULL_DOMAIN}
