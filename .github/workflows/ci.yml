@@ -227,4 +227,6 @@ jobs:
     name: Deploy to Test Sites    
     needs: [build, lint, e2e-tests]
     uses: ./.github/workflows/deploy.yml
+    secrets:
+      ssh-key: ${{ secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
 

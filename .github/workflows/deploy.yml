@@ -1,11 +1,20 @@
 name: "Deploy to Environments"
 on:
   workflow_call:
-        
+    secrets:
+      ssh-key:
+        description: 'The Private SSH Key to use for accessing the deployment server.'
+        required: true
+  workflow_dispatch:
+    environment:
+      description: 'Deployment Environment'
+      type: environment
+      required: true
+
 env:
   ENV_NAME: ${{ github.ref_name == 'main' && 'qa-main' || github.ref_name == '1.0-branch' && 'qa-v1' || github.ref_name == '2.0-branch' && 'qa-v2' }}
   ENV_SUBDOMAIN: ${{ github.ref_name == 'main' && 'main' || github.ref_name == '1.0-branch' && 'v1' || github.ref_name == '2.0-branch' && 'v2' }}
-  ENV_DOMAIN: 'sitebuilder.crows.dev/'
+  ENV_DOMAIN: 'sitebuilder.crows.dev'
   
 
 jobs:  
@@ -18,8 +27,7 @@ jobs:
     steps:        
       - uses: webfactory/ssh-agent@v0.7.0
         with:
-          ssh-private-key: |
-            ${{ secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.ssh-key || secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
             
       - name: Check Out Code
         uses: actions/checkout@v3
@@ -72,5 +80,5 @@ jobs:
 
       - name: Deploy to Nexcess
         run: |
-          ssh-keyscan main.sitebuilder.crows.dev >> ~/.ssh/known_hosts
-          ./bin/deploy-to-nexcess.sh -s ab47a470_2@main.sitebuilder.crows.dev
+          ssh-keyscan ${{ $ENV_SUBDOMAIN.$ENV_DOMAIN }} >> ~/.ssh/known_hosts
+          ./bin/deploy-to-nexcess.sh -s ab47a470_2@${{ $ENV_SUBDOMAIN.$ENV_DOMAIN }}
