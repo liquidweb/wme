@@ -1,5 +1,4 @@
-# Workflow name
-name: "CI/CD: Install, Build, and Lint"
+name: "CI/CD"
 
 on:
   push:
@@ -30,7 +29,7 @@ jobs:
       composer-files-dir: ${{ steps.composer-cache.outputs.composer-files-dir }}
 
     steps:
-      - name: Check out code
+      - name: Check Out Code
         uses: actions/checkout@v3
 
       - name: Setup pnpm
@@ -39,35 +38,35 @@ jobs:
           version: 7
           run_install: false
 
-      - name: Setup Node.js environment
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
           
-      - name: Setup PHP, with composer and extensions
+      - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
           php-version: '8.0'
           
-      - name: Setup problem matchers for PHP
+      - name: Setup Problem Matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           
-      - name: Cache Composer Files
+      - name: Get Cache Files Directory
         id: composer-cache
         working-directory: plugins/wme-sitebuilder
         run: |
           echo "composer-files-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - name: Cache Node Modules
+      - name: Prepare Node Modules Cache
         id: cache-node-modules
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Cache Composer Dependencies
+      - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
         with:
           path: |
@@ -76,7 +75,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -88,7 +87,7 @@ jobs:
     needs: build
     
     steps:
-      - name: Check out code
+      - name: Check Out Code
         uses: actions/checkout@v3
 
       - name: Setup pnpm
@@ -97,29 +96,29 @@ jobs:
           version: 7
           run_install: false
 
-      - name: Setup Node.js environment
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
           
-      - name: Setup PHP, with composer and extensions
+      - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
           php-version: '8.0'
 
-      - name: Setup problem matchers for PHP
+      - name: Setup Problem Matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - name: Cache Node Modules
+      - name: Prepare Node Modules Cache
         id: cache-node-modules
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Cache Composer Dependencies
+      - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
         with:
           path: |
@@ -128,7 +127,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
@@ -138,7 +137,7 @@ jobs:
         run: pnpm lint
     
   e2e-tests:
-    name: End to End Testing
+    name: End-to-End Testing (via Playwright)
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -148,7 +147,7 @@ jobs:
       ALLURE_RESULTS_DIR: ${{ github.workspace }}/plugins/wme-sitebuilder/tests/results/allure-results
       DEFAULT_TIMEOUT_OVERRIDE: 30000
     steps:
-      - name: Check out code
+      - name: Check Out Code
         uses: actions/checkout@v3
 
       - name: Setup pnpm
@@ -157,29 +156,29 @@ jobs:
           version: 7
           run_install: false
 
-      - name: Setup Node.js environment
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
           
-      - name: Setup PHP, with composer and extensions
+      - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
           php-version: '8.0'
           
-      - name: Setup problem matchers for PHP
+      - name: Setup Problem Matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - name: Cache Node Modules
+      - name: Prepare Node Modules Cache
         id: cache-node-modules
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Cache Composer Dependencies
+      - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
         with:
           path: |
@@ -188,31 +187,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
 
-      - name: Install Playwright dependencies
+      - name: Install Playwright Dependencies
         run: |
           npx playwright install chromium --with-deps
 
-      - name: Launch wp-env e2e environment
+      - name: Launch wp-env End-to-End Environment
         working-directory: plugins/wme-sitebuilder
         run: pnpm env:dev
 
-      - name: Run Sitebuilder End to End tests.
+      - name: Run Sitebuilder End-to-End tests
         timeout-minutes: 15
         working-directory: plugins/wme-sitebuilder
         run: pnpm test
 
-      - name: Generate Playwright E2E Test report.
+      - name: Generate Playwright E2E Test Report
         if: success() || failure()
         working-directory: plugins/wme-sitebuilder
         run: pnpm exec allure generate --clean ${{ env.ALLURE_RESULTS_DIR }} --output ${{ env.ALLURE_REPORT_DIR }}
 
-      - name: Archive E2E test report
+      - name: Archive E2E Test Report
         if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
