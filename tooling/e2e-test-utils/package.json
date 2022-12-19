@@ -26,9 +26,10 @@
 	"main": "src/index.ts",
 	"module": "src/index.ts",
 	"dependencies": {
-		"@wordpress/api-fetch": "^6.19.0",
-		"@wordpress/keycodes": "^3.22.0",
-		"@wordpress/url": "^3.23.0",
+		"@playwright/test": "^1.29.0",
+		"@wordpress/api-fetch": "^6.20.0",
+		"@wordpress/keycodes": "^3.23.0",
+		"@wordpress/url": "^3.24.0",
 		"change-case": "^4.1.2",
 		"form-data": "^4.0.0",
 		"mime": "^3.0.0"
@@ -37,7 +38,7 @@
 		"@playwright/test": ">=1"
 	},
 	"devDependencies": {
-		"@types/node": "^18.7.16"
+		"@types/node": "^18.11.17"
 	},
 	"publishConfig": {
 		"access": "public"
