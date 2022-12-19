@@ -21,7 +21,7 @@ jobs:
           ssh-private-key: |
             ${{ secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
             
-      - name: Check out code
+      - name: Check Out Code
         uses: actions/checkout@v3
 
       - name: Setup pnpm
@@ -30,35 +30,35 @@ jobs:
           version: 7
           run_install: false
 
-      - name: Setup Node.js environment
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      - name: Setup PHP, with composer and extensions
+      - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
           php-version: '8.0'
 
-      - name: Setup problem matchers for PHP
+      - name: Setup Problem Matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-      - name: Cache Composer Files
+      - name: Get Cache Files Directory
         id: composer-cache
         working-directory: plugins/wme-sitebuilder
         run: |
           echo "composer-files-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - name: Cache Node Modules
+      - name: Prepare Node Modules Cache
         id: cache-node-modules
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Cache Composer Dependencies
+      - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
         with:
           path: |
@@ -67,8 +67,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
-        name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Deploy to Nexcess
