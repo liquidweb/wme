@@ -12,7 +12,7 @@ on:
     types: [opened, synchronize]
     
 env:
-  E2E_ARTIFACT: e2e-run-${{ github.run_number }}
+  E2E_ARTIFACT: e2e-run-${{ github.run_id }}-${{ github.run_number }}
 
 # Cancels all previous workflow runs for pull requests that have not completed.
 concurrency:
@@ -196,7 +196,7 @@ jobs:
 
       - name: Install Playwright dependencies
         run: |
-          npx playwright install chromium firefox webkit --with-deps
+          npx playwright install chromium --with-deps
 
       - name: Launch wp-env e2e environment
         working-directory: plugins/wme-sitebuilder
