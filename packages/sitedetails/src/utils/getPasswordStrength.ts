@@ -8,12 +8,12 @@ export function getPasswordStrength(password: string) {
 	switch (strength) {
 	case 1:
 	case 2:
-		return 'weak';
+		return { label: 'weak', color: 'error' };
 	case 3:
-		return 'medium';
+		return { label: 'medium', color: 'warning' };
 	case 4:
-		return 'strong';
+		return { label: 'strong', color: 'success' };
 	default:
-		return 'weak';
+		return { label: 'weak', color: 'error' };
 	}
 }

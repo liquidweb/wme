@@ -59,12 +59,9 @@ declare global {
 		expanded?: boolean;
 	}
 
-	interface PasswordStatusItemInterface {
-		label: string;
-		color: string;
+	interface PasswordStrengthType {
+		label: 'weak' | 'medium' | 'strong';
+		color: 'error' | 'warning' | 'success';
 	}
 
-	type PasswordStrengthTypes = 'weak' | 'medium' | 'strong' | '';
-
-	type PasswordStrengthColorTypes = 'success' | 'warning' | 'error' | '';
 }

@@ -11,7 +11,6 @@ import {
 } from '@moderntribe/wme-ui';
 import { Box, styled } from '@mui/material';
 import { getPasswordStrength } from '@site/utils';
-import { UsePasswordStrengthColor } from '@site/hooks';
 
 const PasswordWrapper = styled(Box)(() => ({
 	'& .MuiInputBase-root': {
@@ -26,8 +25,7 @@ const SiteVisibility = () => {
 		password: '',
 	});
 
-	const [passwordStrength, setPasswordStrength] = useState<PasswordStrengthTypes>('');
-	const [passwordStrengthColor, setPasswordStrengthColor] = useState<PasswordStrengthColorTypes>('');
+	const [passwordStrength, setPasswordStrength] = useState<PasswordStrengthType>();
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setVisibilityValues({
@@ -39,10 +37,8 @@ const SiteVisibility = () => {
 		event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
 	) => {
 		const strength = getPasswordStrength(event.target.value);
-		const chipColor = UsePasswordStrengthColor(strength);
 
-		setPasswordStrength(strength);
-		setPasswordStrengthColor(chipColor);
+		setPasswordStrength(strength as PasswordStrengthType);
 		setVisibilityValues({ ...visibilityValues, password: event.target.value });
 	};
 
@@ -86,8 +82,8 @@ const SiteVisibility = () => {
 									<PasswordInput
 										name="password"
 										value={ visibilityValues.password }
-										chipColor={ passwordStrengthColor }
-										chipLabel={ passwordStrength }
+										chipColor={ passwordStrength?.color }
+										chipLabel={ passwordStrength?.label }
 										onChange={ handlePasswordChange }
 									/>
 								}
