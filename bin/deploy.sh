@@ -4,28 +4,36 @@
 #
 # USAGE:
 #
-#   deploy-to-nexcess [-s <server>]
+#   deploy
 #
-# server
-#   The remote server. This can accept anything that can be used by the scp/ssh commands.
+# Requires the existence of a '.deployment-mappings.json' file in the root of the project with the following format:
 #
-#   Multiple values may be passed using either JSON-encoded or comma-separated strings,
-#   but be aware that the same path will be used for all targets!
+# {
+# 	"targets": {
+#		"target.id": {
+#			"type": "nexcess",
+#			"host": "abcdefghi1023.nxcli.io",
+#			"user": "abcdef123_4",
+#			"path": "~/zyxwvu0987.nxcli.io/html/wp-content/plugins",
+#			"url": "https://main.sitebuilder.crows.dev"
+#		}
+#	},
+#	"branches": {
+#		"main": {
+#			"targets": [
+#				"target.id"
+#			]
+#		}
+#	}
+# }
 #
-# EXAMPLES:
-#
-#   deploy-to-test -s someuser@example.com
-#   deploy-to-test -s someuser@example.com,someuser@example.net
-#   deploy-to-test -s '["someuser@example.com", "someuser@example.net"]'
-#   deploy-to-test -s '{"dotcom": "someuser@example.com", "dotnet": "someuser@example.net"}'
 
 # Set defaults.
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" >/dev/null 2>&1 && pwd)"
 plugin_source="${project_root}/plugins/wme-sitebuilder"
-timestamp="$(date +"%s")"
 exit_code=0
 
-# Make sure that we have the nexcess-mapps directory and main file.
+# Make sure that we have the wme-sitebuilder directory and main file.
 if [[ ! -d "${plugin_source}/wme-sitebuilder" || ! -f "${plugin_source}/wme-sitebuilder.php" ]]; then
 	echo "Could not find the wme-sitebuilder directory or main file." >&2
 	exit 1
@@ -51,56 +59,32 @@ function success() {
 # Output usage message to the terminal.
 #######################################
 function usage() {
-	local underline
-	local nounderline
-
-	underline=$(tput smul)
-	nounderline=$(tput rmul)
-
 	printf "
-	%s [-s ${underline}value${nounderline}]
+	%s
 	-h
 		Show this help menu.
-	-s ${underline}value${nounderline}
-		The remote server. This can accept any value that can be used by the scp/ssh commands.
-		Multiple values may be passed using either JSON-encoded or comma-separated strings,
-		but be aware that the same path will be used for all targets!
 " "$1" | $PAGER
 }
 
 declare -a TARGET_SERVERS
 
-branch="$(git branch --show-current)"
-
 # Parse options
-while getopts ":c:hp:s:" opt; do
+while getopts ":h:" opt; do
   case $opt in
 	h)
 		usage "$(basename "$0")"
 		exit
 		;;
-	s)
-		# Handle JSON representations of target servers.
-		if jq type <<< "$OPTARG" &>/dev/null; then
-			# shellcheck disable=SC2207
-			IFS=$'\n' TARGET_SERVERS+=( $(jq -r '.[]' <<< "$OPTARG") )
-		else
-			IFS=',' read -ra SERVERS <<< "$OPTARG"
-			for i in "${SERVERS[@]}"; do
-				TARGET_SERVERS+=( "$i" )
-			done
-		fi
-		;;
 	\?)
 		echo "Invalid option: -$OPTARG" >&2
 		exit 1
 		;;
-	:)
-		echo "Option -$OPTARG requires an argument." >&2
-		exit 1
-		;;
   esac
 done
+
+branch="$(git branch --show-current)"
+# shellcheck disable=SC2207
+TARGET_SERVERS=( $(jq -r -c ".branches.${branch}.targets[] as \$targetServers | .targets | .[\$targetServers]" .deployment-mappings.json) )
 
 # Abort if there's nothing to do.
 if [ "${#TARGET_SERVERS[@]}" -eq 0 ]; then
@@ -116,16 +100,19 @@ pnpm build:plugin
 
 # Iterate through the target servers, deploying to each one.
 for TARGET_SERVER in "${TARGET_SERVERS[@]}"; do
-	printf "\n\\033[0;36mDeploying to %s\\033[0;0m\n" "$TARGET_SERVER"
+    HOST_TYPE=$(echo "$TARGET_SERVER" | jq -r '.type' )
+    REMOTE_HOST=$(echo "$TARGET_SERVER" | jq -r '.host' )
+    REMOTE_USER=$(echo "$TARGET_SERVER" | jq -r '.user' )
+    REMOTE_PATH=$(echo "$TARGET_SERVER" | jq -r '.path' )
+    URL=$(echo "$TARGET_SERVER" | jq -r '.url' )
 
-	REMOTE_HOST="$(echo "$TARGET_SERVER" | sed -n 's/^[^@]*@//p')"
-	remote_path="$(echo "$REMOTE_HOST"/html/wp-content/plugins)"
+	printf "\n\\033[0;36mDeploying to %s on %s\\033[0;0m\n" "$URL" "$HOST_TYPE"
 
 # Assemble the command to be run on the target servers.
 remote_command=$(cat <<EOF
 set -x;
-cd '${remote_path}';
-wp plugin install --activate wme-sitebuilder.zip;
+cd ${REMOTE_PATH};
+wp plugin install --force --activate wme-sitebuilder.zip;
 rm wme-sitebuilder.zip;
 [ "\$(wp plugin list --name=wme-sitebuilder --field=version)" = "${plugin_version}" ];
 EOF
@@ -136,10 +123,10 @@ EOF
 
 	# Copy the archive to the remote server.
 	scp -o "ConnectTimeout=15" -o "BatchMode=yes" \
-		"${plugin_source}/wme-sitebuilder.zip" "${TARGET_SERVER}:${remote_path}" \
+		"${plugin_source}/wme-sitebuilder.zip" "${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}" \
 		|| { error "Unable to copy file to destination server" && continue; }
 
-	if ssh -o "ConnectTimeout=15" -o "BatchMode=yes" "${TARGET_SERVER}" "$remote_command"; then
+	if ssh -o "ConnectTimeout=15" -o "BatchMode=yes" "${REMOTE_USER}@${REMOTE_HOST}" "$remote_command"; then
 		success 'The plugin has been updated successfully!'
 	fi
 done
