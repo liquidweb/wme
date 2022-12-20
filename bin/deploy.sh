@@ -84,7 +84,7 @@ done
 
 branch="$(git branch --show-current)"
 # shellcheck disable=SC2207
-TARGET_SERVERS=( $(jq -r -c ".branches.${branch}.targets[] as \$targetServers | .targets | .[\$targetServers]" .deployment-mappings.json) )
+TARGET_SERVERS=( $(jq -r -c ".branches.${branch}.targets[] as \$targetServers | .targets | .[\$targetServers]" .deploy-targets.json) )
 
 # Abort if there's nothing to do.
 if [ "${#TARGET_SERVERS[@]}" -eq 0 ]; then
