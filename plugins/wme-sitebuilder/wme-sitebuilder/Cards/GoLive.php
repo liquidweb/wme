@@ -62,7 +62,7 @@ class GoLive extends Card {
 				'intro'      => __( 'Don\'t own a domain? Purchase a custom domain for your site.', 'wme-sitebuilder' ),
 				'icon'       => 'setup-icon-launch.png',
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-				'wizardHash' => '/wizard/go-live?purchase=true',
+				'wizardHash' => '/wizard/go-live-purchase',
 			];
 
 			$details['rows'][] = [
@@ -73,7 +73,7 @@ class GoLive extends Card {
                 /* TODO: Update icon. */
                 'icon'       => 'setup-icon-setup.png',
                 'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-                'wizardHash' => '/wizard/go-live?step=2',
+                'wizardHash' => '/wizard/go-live-connect',
             ];
 		}
 

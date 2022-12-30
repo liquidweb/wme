@@ -33,20 +33,8 @@ const localData: GoLiveInterface = {
 	steps: [
 		{
 			id: 0,
-			label: __('Start', 'moderntribe-sitebuilder'),
-			hideBack: true,
-			hideSkip: true,
-			nextText: __('Continue', 'moderntribe-sitebuilder'),
-			loadingText: __('Saving', 'moderntribe-sitebuilder'),
-			backText: __('Back', 'moderntribe-sitebuilder'),
-			disable: true,
-			disableNext: true,
-			screen: <Start />,
-		},
-		{
-			id: 1,
 			label: __('Verify Domain', 'moderntribe-sitebuilder'),
-			hideBack: false,
+			hideBack: true,
 			hideSkip: true,
 			nextText: __('Continue', 'moderntribe-sitebuilder'),
 			loadingText: __('Verifying…', 'moderntribe-sitebuilder'),
@@ -56,7 +44,7 @@ const localData: GoLiveInterface = {
 			disableNext: true,
 		},
 		{
-			id: 2,
+			id: 1,
 			label: __('Update Site URL', 'moderntribe-sitebuilder'),
 			hideBack: false,
 			hideSkip: true,

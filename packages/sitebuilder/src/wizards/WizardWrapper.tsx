@@ -16,6 +16,8 @@ import { useWizard } from '@sb/hooks/useWizard';
 // Lazy Wizards.
 const FtcWizard = Loadable(lazy(() => import('@ftc/FirstTimeConfiguration')));
 const GoLiveWizard = Loadable(lazy(() => import('@go-live/GoLiveWizard')));
+const DomainPurchaseWizard = Loadable(lazy(() => import('@go-live/domain-purchase/DomainPurchaseWizard')));
+const DomainConnectWizard = Loadable(lazy(() => import('@go-live/domain-connect/DomainConnectWizard')));
 const LookAndFeelWizard = Loadable(lazy(() => import('@look-and-feel/LookAndFeelWizard')));
 
 const WizardWrapper = () => {
@@ -51,7 +53,8 @@ const WizardWrapper = () => {
 				<Routes>
 					<Route path="/ftc" element={ <FtcWizard /> } />
 					<Route path="/look-and-feel" element={ <LookAndFeelProvider><LookAndFeelWizard /></LookAndFeelProvider> } />
-					<Route path="/go-live" element={ <GoLiveProvider><GoLiveWizard /></GoLiveProvider> } />
+					<Route path="/go-live-purchase" element={ <GoLiveProvider><DomainPurchaseWizard /></GoLiveProvider> } />
+					<Route path="/go-live-connect" element={ <GoLiveProvider><DomainConnectWizard /></GoLiveProvider> } />
 					<Route path="*" element={ <Navigate to="/" /> } />
 				</Routes>
 			</WizardContent>
