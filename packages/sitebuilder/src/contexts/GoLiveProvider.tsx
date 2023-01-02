@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import { removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
 import GoLiveData, { GoLiveInterface } from '@sb/wizards/go-live/data/go-live-data';
 import { GoLiveStringData } from '@go-live/data/constants';
@@ -81,22 +81,24 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
-	const purchaseNavigation = searchParams.get('purchase') === 'true';
+
+	const { pathname } = useLocation();
+	const purchaseNavigation = pathname.includes('purchase');
 
 	const activeStep = searchParams.get('step')
 		? Number(searchParams.get('step'))
 		: 1;
 
-	const retryVerfication = searchParams.get('retry');
+	const retryVerification = searchParams.get('retry');
 
 	useEffect(() => {
-		if (retryVerfication === 'true') {
+		if (retryVerification === 'true') {
 			submitDomainVerification();
 		}
-	}, [retryVerfication]);
+	}, [retryVerification]);
 
 	useEffect(() => {
-		if (activeStep === 2) {
+		if (activeStep === 1) {
 			if (purchaseNavigation) {
 				if (selectedDomains.length === 0) {
 					searchParams.set('step', '1');
@@ -104,10 +106,10 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 				}
 			}
 		}
-		if (activeStep === 3) {
+		if (activeStep === 2) {
 			if (! purchaseNavigation) {
 				if (! capturedDomain) {
-					navigate('/wizard/go-live');
+					navigate('/wizard/go-live-connect');
 				}
 
 				if (
@@ -116,18 +118,18 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 					goLiveState.verificationStatus === 'advanced'
 					)
 				) {
-					navigate('/wizard/go-live');
+					navigate('/wizard/go-live-connect');
 				}
 
 				if (goLiveState.verificationStatus === 'error') {
-					navigate('/wizard/go-live?step=2');
+					navigate('/wizard/go-live-connect?step=2');
 				}
 			}
 		}
 	}, [activeStep, purchaseNavigation]);
 
 	const submitGoLiveForm = () => {
-		const { steps, showLogoutButton } = goLiveState;
+		const { stepsDomainConnect: steps, showLogoutButton } = goLiveState;
 		const handleError = () => {
 			// eslint-disable-next-line no-alert
 			alert(errorMessage);
@@ -145,7 +147,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 		setGoLiveState({
 			...goLiveState,
-			steps,
+			stepsDomainConnect: steps,
 			isLoading: true,
 			showLogoutButton: true,
 			verificationStatus: 'connecting',
@@ -163,7 +165,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 			setGoLiveState({
 				...goLiveState,
-				steps,
+				stepsDomainConnect: steps,
 				isLoading: false,
 				showLogoutButton: false,
 				verificationStatus: 'default',
@@ -198,7 +200,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const handleDomainVerificationRequest = () => {
-		const { steps } = goLiveState;
+		const { stepsDomainConnect: steps } = goLiveState;
 
 		const data = removeNulls({
 			_wpnonce: goLiveNonce,
@@ -312,13 +314,13 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const setHasDomain = (hasDomain:string) => {
-		const { steps } = goLiveState;
+		const { stepsDomainConnect: steps } = goLiveState;
 		steps[ 0 ].disableNext = hasDomain === null;
 		steps[ 0 ].nextText = getHasDomainNextText(hasDomain);
 		setGoLiveState({
 			...goLiveState,
 			hasDomain,
-			steps
+			stepsDomainConnect: steps
 		});
 	};
 
