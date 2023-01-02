@@ -16,7 +16,7 @@ const DomainPurchaseWizard = () => {
 		closeAll } = useWizard();
 	const {
 		goLiveState: {
-			stepsAlternative,
+			stepsDomainPurchase,
 			selectedDomains,
 			lastStep,
 			showLogoutButton,
@@ -74,7 +74,7 @@ const DomainPurchaseWizard = () => {
 		}
 	};
 
-	const steps = stepsAlternative;
+	const steps = stepsDomainPurchase;
 
 	return (
 		<>

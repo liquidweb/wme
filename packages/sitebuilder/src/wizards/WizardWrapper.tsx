@@ -15,7 +15,6 @@ import { useWizard } from '@sb/hooks/useWizard';
 
 // Lazy Wizards.
 const FtcWizard = Loadable(lazy(() => import('@ftc/FirstTimeConfiguration')));
-const GoLiveWizard = Loadable(lazy(() => import('@go-live/GoLiveWizard')));
 const DomainPurchaseWizard = Loadable(lazy(() => import('@go-live/domain-purchase/DomainPurchaseWizard')));
 const DomainConnectWizard = Loadable(lazy(() => import('@go-live/domain-connect/DomainConnectWizard')));
 const LookAndFeelWizard = Loadable(lazy(() => import('@look-and-feel/LookAndFeelWizard')));

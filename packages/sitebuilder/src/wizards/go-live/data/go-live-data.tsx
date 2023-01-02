@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { GO_LIVE_PROPS } from '@sb/constants';
-import { Start, VerifyDomain, UpdateSiteUrl, ConnectWithNexcess, FindDomain, ClaimYourDomain } from '../screens';
+import { VerifyDomain, UpdateSiteUrl, ConnectWithNexcess, FindDomain, ClaimYourDomain } from '../screens';
 
 export interface GoLiveInterface {
 	isLoading: boolean;
@@ -14,8 +14,8 @@ export interface GoLiveInterface {
 	verificationErrorType: boolean | string;
 	verificationMessage: string;
 	showLogoutButton: boolean;
-	steps: Array<StepInterface>;
-	stepsAlternative: Array<StepInterface>;
+	stepsDomainConnect: Array<StepInterface>;
+	stepsDomainPurchase: Array<StepInterface>;
 }
 
 const localData: GoLiveInterface = {
@@ -30,7 +30,7 @@ const localData: GoLiveInterface = {
 	verificationErrorType: false,
 	verificationMessage: '',
 	showLogoutButton: false,
-	steps: [
+	stepsDomainConnect: [
 		{
 			id: 0,
 			label: __('Verify Domain', 'moderntribe-sitebuilder'),
@@ -56,7 +56,7 @@ const localData: GoLiveInterface = {
 			disableNext: false,
 		},
 	],
-	stepsAlternative: [
+	stepsDomainPurchase: [
 		{
 			id: 0,
 			label: __('Start', 'moderntribe-sitebuilder'),

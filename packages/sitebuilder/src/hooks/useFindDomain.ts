@@ -72,29 +72,29 @@ export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 	}
 	useEffect(() => {
 		setGoLiveState((prevGoLiveState) => {
-			const { stepsAlternative } = prevGoLiveState;
+			const { stepsDomainPurchase } = prevGoLiveState;
 			if (selectedDomains.length) {
-				stepsAlternative[ 0 ].nextText = `${ checkout } (${ selectedDomains.length })`;
-				stepsAlternative[ 0 ].disableNext = false;
+				stepsDomainPurchase[ 0 ].nextText = `${ checkout } (${ selectedDomains.length })`;
+				stepsDomainPurchase[ 0 ].disableNext = false;
 			} else {
-				stepsAlternative[ 0 ].nextText = checkout;
-				stepsAlternative[ 0 ].disableNext = true;
+				stepsDomainPurchase[ 0 ].nextText = checkout;
+				stepsDomainPurchase[ 0 ].disableNext = true;
 			}
 			return {
 				...prevGoLiveState,
-				stepsAlternative,
+				stepsDomainPurchase,
 			};
 		});
 	}, [selectedDomains.length]);
 
 	function emptySelectedDomains() {
 		setGoLiveState((prevGoLiveState) => {
-			const { stepsAlternative } = prevGoLiveState;
-			stepsAlternative[ 0 ].nextText = checkout;
-			stepsAlternative[ 0 ].disableNext = true;
+			const { stepsDomainPurchase } = prevGoLiveState;
+			stepsDomainPurchase[ 0 ].nextText = checkout;
+			stepsDomainPurchase[ 0 ].disableNext = true;
 			return {
 				...prevGoLiveState,
-				stepsAlternative,
+				stepsDomainPurchase,
 				selectedDomains: [],
 			};
 		});
