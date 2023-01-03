@@ -9,9 +9,6 @@ import { useSiteBuilder } from '@sb/hooks';
 type DomainVerificationResponseType = DomainVerificationSuccessInterface | DomainVerificationErrorInterface;
 
 const { goLiveProviderText: {
-	getDomain,
-	haveDomain,
-	continueStr,
 	errorMessage,
 	errorMessageVerification,
 	errorNotPointed,
@@ -255,28 +252,6 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const getHasDomainNextText = (hasDomain:string) => {
-		switch (hasDomain) {
-		case 'yes':
-			return haveDomain;
-		case 'no':
-			return getDomain;
-		default:
-			return continueStr;
-		}
-	};
-
-	const setHasDomain = (hasDomain:string) => {
-		const { steps } = goLiveState;
-		steps[ 0 ].disableNext = hasDomain === null;
-		steps[ 0 ].nextText = getHasDomainNextText(hasDomain);
-		setGoLiveState({
-			...goLiveState,
-			hasDomain,
-			steps
-		});
-	};
-
 	const setShowPurchaseNavigation = (show: boolean) => {
 		if (show) {
 			searchParams.set('purchase', 'true');
@@ -293,10 +268,8 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 			submitGoLiveForm,
 			submitDomainVerification,
 			setIsLoading,
-			setHasDomain,
 			setShowPurchaseNavigation,
 			handleDomainVerificationRequest,
-			getHasDomainNextText
 		} }>
 			{ children }
 		</DomainConnectContext.Provider>
