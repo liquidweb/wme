@@ -9,7 +9,7 @@ import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
 
 import {
 	ErrorStatusMessage
-} from './partials';
+} from '@go-live/partials';
 
 const loadingSx = {
 	'@keyframes fadeIn': {

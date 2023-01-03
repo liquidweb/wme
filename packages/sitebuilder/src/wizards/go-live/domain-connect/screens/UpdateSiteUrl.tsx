@@ -15,7 +15,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { copyToClipboard } from '@sb/utils';
 import { ContentCopy } from '@mui/icons-material';
 import { IMAGE_DIR } from '@sb/constants';
-import { GoLiveStringData } from '../data/constants';
+import { GoLiveStringData } from '@go-live/data/constants';
 
 const UpdateSiteUrl = () => {
 	const { siteBuilderState: { capturedDomain = '' } } = useSiteBuilder();

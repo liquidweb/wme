@@ -9,7 +9,7 @@ import { ListItemCheckout, WizardSectionTitle } from '@moderntribe/wme-ui';
 
 import { useDomainPurchase } from '@sb/hooks';
 import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
-import { GoLiveStringData } from '../data/constants';
+import { GoLiveStringData } from '@go-live/data/constants';
 
 const ConnectWithNexcess = () => {
 	const {

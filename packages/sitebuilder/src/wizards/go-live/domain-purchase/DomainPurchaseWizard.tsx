@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 import { useWizard, useDomainPurchase, useCreatePurchaseFlow } from '@sb/hooks';
-import { SkipVerificationWarning } from '@go-live/screens';
+import { SkipVerificationWarning } from '@go-live/partials';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
 const DomainPurchaseWizard = () => {

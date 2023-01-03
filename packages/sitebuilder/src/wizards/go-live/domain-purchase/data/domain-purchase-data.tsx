@@ -4,7 +4,7 @@ import {
 	ConnectWithNexcess,
 	FindDomain,
 	ClaimYourDomain
-} from '@sb/wizards/go-live/screens';
+} from '@go-live/domain-purchase/screens';
 
 export interface DomainPurchaseInterface {
 	isLoading: boolean;
@@ -37,7 +37,7 @@ const localData: DomainPurchaseInterface = {
 		{
 			id: 0,
 			label: __('Start', 'moderntribe-sitebuilder'),
-			hideBack: false,
+			hideBack: true,
 			hideSkip: true,
 			nextText: __('Checkout', 'moderntribe-sitebuilder'),
 			loadingText: __('Saving', 'moderntribe-sitebuilder'),

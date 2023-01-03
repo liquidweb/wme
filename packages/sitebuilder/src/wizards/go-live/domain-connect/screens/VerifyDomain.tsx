@@ -21,9 +21,9 @@ import {
 	ErrorDomainRegisteredNotPointing,
 	ErrorDomainGeneral,
 	ErrorDomainNotRegistered
-} from './partials';
+} from '@sb/wizards/go-live/partials';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
-import { GoLiveStringData } from '../data/constants';
+import { GoLiveStringData } from '@go-live/data/constants';
 import { useDomainConnect, useSiteBuilder } from '@sb/hooks';
 import { IMAGE_DIR } from '@sb/constants';
 

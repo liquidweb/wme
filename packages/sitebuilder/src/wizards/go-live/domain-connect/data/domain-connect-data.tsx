@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { GO_LIVE_PROPS } from '@sb/constants';
-import { VerifyDomain, UpdateSiteUrl } from '@sb/wizards/go-live/screens';
+import { VerifyDomain, UpdateSiteUrl } from '@go-live/domain-connect/screens';
 
 export interface DomainConnectInterface {
 	isLoading: boolean;
