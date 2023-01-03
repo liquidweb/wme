@@ -1,38 +1,13 @@
 import { createContext, useState, useEffect } from 'react';
-import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
-import GoLiveData, { GoLiveInterface } from '@sb/wizards/go-live/data/go-live-data';
+import DomainPurchaseData from '@sb/wizards/go-live/domain-purchase/data/domain-purchase-data';
 import { GoLiveStringData } from '@go-live/data/constants';
 import { GO_LIVE_PROPS, SITEBUILDER } from '@sb/constants';
 import { useSiteBuilder } from '@sb/hooks';
 
-export interface GoLiveProviderContextInterface {
-	goLiveState: GoLiveInterface;
-	setGoLiveState: React.Dispatch<React.SetStateAction<GoLiveInterface>>;
-	submitGoLiveForm: () => void;
-	submitDomainVerification: () => void;
-	handleDomainVerificationRequest: () => void;
-	setIsLoading: (loading: boolean) => void;
-	getHasDomainNextText: (hasDomain: string) => void;
-	setHasDomain: (hasDomain: string) => void;
-	setShowPurchaseNavigation: (show: boolean) => void;
-}
-
-export interface DomainVerficationSuccessInterface {
-	domain: string;
-	is_registered: boolean;
-	is_pointed: boolean;
-	uses_local_nameservers: boolean;
-	can_setup: boolean;
-	nameservers: string[];
-}
-
-export interface DomainVerificationErrorInterface {
-	code: string;
-	message: string;
-}
-
-type DomainVerificationResponseType = DomainVerficationSuccessInterface | DomainVerificationErrorInterface;
+type DomainPurchaseInterface = GoLiveInterface;
+type DomainVerificationResponseType = DomainVerificationSuccessInterface | DomainVerificationErrorInterface;
 
 const { goLiveProviderText: {
 	getDomain,
@@ -68,10 +43,10 @@ const verificationResponse: DomainVerificationResponseTypes = {
 	}
 } as const;
 
-export const GoLiveContext = createContext<GoLiveProviderContextInterface | null>(null);
+export const DomainPurchaseContext = createContext<GoLiveProviderContextInterface | null>(null);
 
-const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
-	const [goLiveState, setGoLiveState] = useState<GoLiveInterface>(GoLiveData());
+const DomainPurchaseProvider = ({ children }: { children: React.ReactNode }) => {
+	const [goLiveState, setGoLiveState] = useState<DomainPurchaseInterface>(DomainPurchaseData());
 	const { selectedDomains } = goLiveState;
 
 	const goLiveNonce = GO_LIVE_PROPS.ajax?.nonce || '';
@@ -79,7 +54,6 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const { siteBuilderState: { capturedDomain } } = useSiteBuilder();
 
-	const navigate = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const { pathname } = useLocation();
@@ -106,30 +80,10 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 				}
 			}
 		}
-		if (activeStep === 2) {
-			if (! purchaseNavigation) {
-				if (! capturedDomain) {
-					navigate('/wizard/go-live-connect');
-				}
-
-				if (
-					goLiveState.verificationStatus && ! (
-						goLiveState.verificationStatus === 'connected' ||
-					goLiveState.verificationStatus === 'advanced'
-					)
-				) {
-					navigate('/wizard/go-live-connect');
-				}
-
-				if (goLiveState.verificationStatus === 'error') {
-					navigate('/wizard/go-live-connect?step=2');
-				}
-			}
-		}
 	}, [activeStep, purchaseNavigation]);
 
 	const submitGoLiveForm = () => {
-		const { stepsDomainConnect: steps, showLogoutButton } = goLiveState;
+		const { steps, showLogoutButton } = goLiveState;
 		const handleError = () => {
 			// eslint-disable-next-line no-alert
 			alert(errorMessage);
@@ -147,7 +101,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 		setGoLiveState({
 			...goLiveState,
-			stepsDomainConnect: steps,
+			steps,
 			isLoading: true,
 			showLogoutButton: true,
 			verificationStatus: 'connecting',
@@ -165,7 +119,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 
 			setGoLiveState({
 				...goLiveState,
-				stepsDomainConnect: steps,
+				steps,
 				isLoading: false,
 				showLogoutButton: false,
 				verificationStatus: 'default',
@@ -191,7 +145,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 		return 'code' in response || 'domain' in response;
 	};
 
-	const isDomainVerificationSuccess = (response: any): response is DomainVerficationSuccessInterface => {
+	const isDomainVerificationSuccess = (response: any): response is DomainVerificationSuccessInterface => {
 		return 'domain' in response;
 	};
 
@@ -200,7 +154,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const handleDomainVerificationRequest = () => {
-		const { stepsDomainConnect: steps } = goLiveState;
+		const { steps } = goLiveState;
 
 		const data = removeNulls({
 			_wpnonce: goLiveNonce,
@@ -314,13 +268,13 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const setHasDomain = (hasDomain:string) => {
-		const { stepsDomainConnect: steps } = goLiveState;
+		const { steps } = goLiveState;
 		steps[ 0 ].disableNext = hasDomain === null;
 		steps[ 0 ].nextText = getHasDomainNextText(hasDomain);
 		setGoLiveState({
 			...goLiveState,
 			hasDomain,
-			stepsDomainConnect: steps
+			steps
 		});
 	};
 
@@ -334,7 +288,7 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	return (
-		<GoLiveContext.Provider value={ {
+		<DomainPurchaseContext.Provider value={ {
 			goLiveState,
 			setGoLiveState,
 			submitGoLiveForm,
@@ -346,8 +300,8 @@ const GoLiveProvider = ({ children }: { children: React.ReactNode }) => {
 			getHasDomainNextText
 		} }>
 			{ children }
-		</GoLiveContext.Provider>
+		</DomainPurchaseContext.Provider>
 	);
 };
 
-export default GoLiveProvider;
+export default DomainPurchaseProvider;

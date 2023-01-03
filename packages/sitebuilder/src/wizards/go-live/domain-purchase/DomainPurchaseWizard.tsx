@@ -3,7 +3,7 @@ import { WizardFooter } from '@moderntribe/wme-ui';
 import { useTheme } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
-import { useWizard, useGoLive, useCreatePurchaseFlow } from '@sb/hooks';
+import { useWizard, useDomainPurchase, useCreatePurchaseFlow } from '@sb/hooks';
 import { SkipVerificationWarning } from '@go-live/screens';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
@@ -16,7 +16,7 @@ const DomainPurchaseWizard = () => {
 		closeAll } = useWizard();
 	const {
 		goLiveState: {
-			stepsDomainPurchase,
+			steps,
 			selectedDomains,
 			lastStep,
 			showLogoutButton,
@@ -24,7 +24,7 @@ const DomainPurchaseWizard = () => {
 		},
 		setShowPurchaseNavigation,
 		setGoLiveState
-	} = useGoLive();
+	} = useDomainPurchase();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
 	const createPurchaseFlow = useCreatePurchaseFlow();
@@ -73,8 +73,6 @@ const DomainPurchaseWizard = () => {
 			closeAll();
 		}
 	};
-
-	const steps = stepsDomainPurchase;
 
 	return (
 		<>

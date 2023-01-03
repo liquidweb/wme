@@ -3,7 +3,7 @@ import { WizardFooter } from '@moderntribe/wme-ui';
 import { useTheme } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
-import { useWizard, useGoLive } from '@sb/hooks';
+import { useWizard, useDomainConnect } from '@sb/hooks';
 import { SkipVerificationWarning } from '@go-live/screens';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 
@@ -11,12 +11,12 @@ const DomainConnectWizard = () => {
 	const { wizardState: { showCloseWarning }, goToNextStep, goToPreviousStep, goToStep } = useWizard();
 	const {
 		goLiveState: {
-			stepsDomainConnect: stepsOriginal,
+			steps,
 			lastStep,
 			showLogoutButton,
 			verificationStatus
 		}, submitGoLiveForm
-	} = useGoLive();
+	} = useDomainConnect();
 	const [showVerificationWarning, setShowVerificationWarning] = useState<boolean>(false);
 	const theme = useTheme();
 	const [searchParams] = useSearchParams();
@@ -52,8 +52,6 @@ const DomainConnectWizard = () => {
 			submitGoLiveForm();
 		}
 	};
-
-	const steps = stepsOriginal;
 
 	return (
 		<>

@@ -188,6 +188,59 @@ declare global {
 		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;
 		PayPal?: any;
 	}
+
+	export interface GoLiveInterface {
+		isLoading: boolean;
+		verifyingUrl: string;
+		lastStep: number;
+		hasDomain: string | null;
+		selectedDomains: Domain[];
+		searchDomain: string;
+		skipDnsVerification: boolean;
+		verificationStatus: string;
+		verificationErrorType: boolean | string;
+		verificationMessage: string;
+		showLogoutButton: boolean;
+		steps: Array<StepInterface>;
+	}
+
+	export interface GoLiveProviderContextInterface {
+		goLiveState: GoLiveInterface;
+		setGoLiveState: React.Dispatch<React.SetStateAction<GoLiveInterface>>;
+		submitGoLiveForm: () => void;
+		submitDomainVerification: () => void;
+		handleDomainVerificationRequest: () => void;
+		setIsLoading: (loading: boolean) => void;
+		getHasDomainNextText: (hasDomain: string) => void;
+		setHasDomain: (hasDomain: string) => void;
+		setShowPurchaseNavigation: (show: boolean) => void;
+	}
+
+	export interface DomainVerificationSuccessInterface {
+		domain: string;
+		is_registered: boolean;
+		is_pointed: boolean;
+		uses_local_nameservers: boolean;
+		can_setup: boolean;
+		nameservers: string[];
+	}
+
+	export interface DomainVerificationErrorInterface {
+		code: string;
+		message: string;
+	}
+
+	export interface GoLiveProviderContextInterface {
+		goLiveState: DomainConnectInterface;
+		setGoLiveState: React.Dispatch<React.SetStateAction<DomainConnectInterface>>;
+		submitGoLiveForm: () => void;
+		submitDomainVerification: () => void;
+		handleDomainVerificationRequest: () => void;
+		setIsLoading: (loading: boolean) => void;
+		getHasDomainNextText: (hasDomain: string) => void;
+		setHasDomain: (hasDomain: string) => void;
+		setShowPurchaseNavigation: (show: boolean) => void;
+	}
 }
 
 declare function getPasswordStrength(password: string): 'weak' | 'medium' | 'strong';

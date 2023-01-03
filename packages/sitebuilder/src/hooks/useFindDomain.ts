@@ -4,7 +4,7 @@ import { handleActionRequest } from '@moderntribe/wme-utils';
 import { GO_LIVE_PROPS } from '@sb/constants';
 import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
 
-import { useGoLive } from './useGoLive';
+import { useDomainPurchase } from '@sb/hooks/useDomainPurchase';
 
 type UseFindDomainProps = {
 	maxSelectedDomains: number;
@@ -30,7 +30,7 @@ export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 	const {
 		goLiveState: { selectedDomains, searchDomain: search },
 		setGoLiveState,
-	} = useGoLive();
+	} = useDomainPurchase();
 	const { maxSelectedDomains = 1 } = props || {};
 	const { goLiveProviderText: { checkout } } = GoLiveStringData;
 
@@ -72,38 +72,38 @@ export function useFindDomain(props?: UseFindDomainProps): UseFindDomain {
 	}
 	useEffect(() => {
 		setGoLiveState((prevGoLiveState) => {
-			const { stepsDomainPurchase } = prevGoLiveState;
+			const { steps } = prevGoLiveState;
 			if (selectedDomains.length) {
-				stepsDomainPurchase[ 0 ].nextText = `${ checkout } (${ selectedDomains.length })`;
-				stepsDomainPurchase[ 0 ].disableNext = false;
+				steps[ 0 ].nextText = `${ checkout } (${ selectedDomains.length })`;
+				steps[ 0 ].disableNext = false;
 			} else {
-				stepsDomainPurchase[ 0 ].nextText = checkout;
-				stepsDomainPurchase[ 0 ].disableNext = true;
+				steps[ 0 ].nextText = checkout;
+				steps[ 0 ].disableNext = true;
 			}
 			return {
 				...prevGoLiveState,
-				stepsDomainPurchase,
+				steps,
 			};
 		});
 	}, [selectedDomains.length]);
 
 	function emptySelectedDomains() {
 		setGoLiveState((prevGoLiveState) => {
-			const { stepsDomainPurchase } = prevGoLiveState;
-			stepsDomainPurchase[ 0 ].nextText = checkout;
-			stepsDomainPurchase[ 0 ].disableNext = true;
+			const { steps } = prevGoLiveState;
+			steps[ 0 ].nextText = checkout;
+			steps[ 0 ].disableNext = true;
 			return {
 				...prevGoLiveState,
-				stepsDomainPurchase,
+				steps,
 				selectedDomains: [],
 			};
 		});
 	}
 
 	function setSearch(newSearch: string) {
-		setGoLiveState((prevGoLiceState) => {
+		setGoLiveState((prevGoLiveState) => {
 			return {
-				...prevGoLiceState,
+				...prevGoLiveState,
 				searchDomain: newSearch,
 			};
 		});

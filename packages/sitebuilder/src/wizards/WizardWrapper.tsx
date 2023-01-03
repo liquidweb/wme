@@ -8,7 +8,8 @@ import WizardContent from './WizardContent';
 import Loadable from '@sb/components/Loadable';
 
 import LookAndFeelProvider from '@sb/contexts/LookAndFeelProvider';
-import GoLiveProvider from '@sb/contexts/GoLiveProvider';
+import DomainPurchaseProvider from '@sb/contexts/DomainPurchaseProvider';
+import DomainConnectProvider from '@sb/contexts/DomainConnectProvider';
 
 import { getWizardCloseArgs } from '@sb/utils';
 import { useWizard } from '@sb/hooks/useWizard';
@@ -52,8 +53,8 @@ const WizardWrapper = () => {
 				<Routes>
 					<Route path="/ftc" element={ <FtcWizard /> } />
 					<Route path="/look-and-feel" element={ <LookAndFeelProvider><LookAndFeelWizard /></LookAndFeelProvider> } />
-					<Route path="/go-live-purchase" element={ <GoLiveProvider><DomainPurchaseWizard /></GoLiveProvider> } />
-					<Route path="/go-live-connect" element={ <GoLiveProvider><DomainConnectWizard /></GoLiveProvider> } />
+					<Route path="/go-live-purchase" element={ <DomainPurchaseProvider><DomainPurchaseWizard /></DomainPurchaseProvider> } />
+					<Route path="/go-live-connect" element={ <DomainConnectProvider><DomainConnectWizard /></DomainConnectProvider> } />
 					<Route path="*" element={ <Navigate to="/" /> } />
 				</Routes>
 			</WizardContent>
