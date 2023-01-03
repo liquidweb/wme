@@ -29,9 +29,9 @@ const loadingSx = {
 };
 
 const FindDomain = () => {
-	const { start: {
-		screenTitle2: title,
-		screenDescription2: description,
+	const { findDomain: {
+		title,
+		description,
 		defaultError
 	} } = GoLiveStringData;
 
