@@ -1,0 +1,20 @@
+/* stylelint-disable */
+.toplevel_page_storebuilderapp #wpwrap {
+	background-color: #fff;
+}
+/* stylelint-enable */
+
+#storebuilderapp-setup {
+	color: #333;
+}
+
+/* A11Y */
+.screen-reader-only:not(:focus):not(:active) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

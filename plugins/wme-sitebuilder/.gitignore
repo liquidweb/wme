@@ -1,0 +1,36 @@
+# External dependencies.
+/wme-sitebuilder/vendor/
+/external/
+node_modules
+
+# Artifacts.
+/dist
+/wme-sitebuilder/assets/*
+/tests/coverage/
+
+# Local overrides.
+.php-cs-fixer.php
+phpcs.xml
+phpunit.xml
+wp-cli.local.yml
+
+# Cache files.
+.php_cs.cache
+.php-cs-fixer.cache
+.phpunit.result.cache
+.stylelintcache
+
+# Archives and dumps.
+*.sql
+*.tar.gz
+*.zip
+
+# System files.
+.DS_Store
+Thumbs.db
+.idea
+
+.env
+.vscode/settings.json
+.yalc
+yalc.lock
