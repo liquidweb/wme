@@ -90,10 +90,9 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 			return;
 		}
 
-		const previousText = steps[ 2 ].nextText;
-
-		steps[ 2 ].hideBack = true;
-		steps[ 2 ].nextText = 'Log Out';
+		const previousText = steps[ 1 ].nextText;
+		steps[ 1 ].hideBack = true;
+		steps[ 1 ].nextText = 'Log Out';
 
 		setGoLiveState({
 			...goLiveState,
@@ -111,7 +110,7 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 
 		handleActionRequest(data).catch(() => {
-			steps[ 2 ].nextText = previousText;
+			steps[ 1 ].nextText = previousText;
 
 			setGoLiveState({
 				...goLiveState,
@@ -169,10 +168,10 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 				? getDomainVerificationError(response)
 				: verificationResponse.general;
 
-			steps[ 1 ].disableNext = false;
+			steps[ 0 ].disableNext = false;
 
 			if (isVerificationError(error)) {
-				steps[ 1 ].disableNext = true;
+				steps[ 0 ].disableNext = true;
 
 				setGoLiveState((previousGoLiveState) => ({
 					...previousGoLiveState,

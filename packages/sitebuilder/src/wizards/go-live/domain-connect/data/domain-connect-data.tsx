@@ -20,7 +20,7 @@ export interface DomainConnectInterface {
 const localData: DomainConnectInterface = {
 	isLoading: false,
 	verifyingUrl: '',
-	lastStep: 3,
+	lastStep: 2,
 	hasDomain: null,
 	selectedDomains: [],
 	searchDomain: '',
