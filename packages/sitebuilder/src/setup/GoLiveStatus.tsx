@@ -71,7 +71,7 @@ const GoLiveStatus: React.FC<GoLiveStatusInterface> = (props) => {
 	const domain = SITEBUILDER.site_url.replace(/^https?:\/\//, '');
 
 	const retryVerificationStep = () => {
-		navigate('/wizard/go-live?step=2&retry=true');
+		navigate('/wizard/go-live-connect?step=1&retry=true');
 	};
 
 	return <SetupCardInfoRow
@@ -81,7 +81,7 @@ const GoLiveStatus: React.FC<GoLiveStatusInterface> = (props) => {
 				variant="body2"
 				underline="hover"
 				sx={ { cursor: 'pointer' } }
-				onClick={ () => completed ? navigate('/wizard/go-live') : retryVerificationStep() }
+				onClick={ () => completed ? navigate('/wizard/go-live-connect') : retryVerificationStep() }
 			>{ completed ? goLiveStatus.manage : goLiveStatus.tryAgain }</Link>
 		) }
 	/>;
