@@ -7,9 +7,9 @@ import {
 } from '@mui/material';
 import { ListItemCheckout, WizardSectionTitle } from '@moderntribe/wme-ui';
 
-import { useGoLive } from '@sb/hooks';
+import { useDomainPurchase } from '@sb/hooks';
 import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
-import { GoLiveStringData } from '../data/constants';
+import { GoLiveStringData } from '@go-live/data/constants';
 
 const ConnectWithNexcess = () => {
 	const {
@@ -21,7 +21,7 @@ const ConnectWithNexcess = () => {
 
 	const {
 		goLiveState,
-	} = useGoLive();
+	} = useDomainPurchase();
 
 	const {
 		selectedDomains,

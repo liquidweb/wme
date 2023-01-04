@@ -26,7 +26,7 @@
 	"main": "src/index.ts",
 	"module": "src/index.ts",
 	"dependencies": {
-		"@playwright/test": "^1.29.0",
+		"@playwright/test": "^1.29.1",
 		"@wordpress/api-fetch": "^6.20.0",
 		"@wordpress/keycodes": "^3.23.0",
 		"@wordpress/url": "^3.24.0",
@@ -35,7 +35,7 @@
 		"mime": "^3.0.0"
 	},
 	"peerDependencies": {
-		"@playwright/test": ">=1"
+		"@playwright/test": ">=1 < 2"
 	},
 	"devDependencies": {
 		"@types/node": "^18.11.17"

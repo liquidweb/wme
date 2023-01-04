@@ -51,20 +51,62 @@ class GoLive extends Card {
 					'type' => 'launch-domain-status',
 				],
 			],
+			'footers'   => $this->footer(),
 		];
 
 		if ( ! $this->wizard->isComplete() ) {
 			$details['rows'][] = [
 				'id'         => 'site-domain-wizard',
 				'type'       => 'task',
-				'title'      => __( 'Publish your site with a custom domain', 'wme-sitebuilder' ),
-				'intro'      => __( 'Update your store URL with a custom domain you own', 'wme-sitebuilder' ),
+				'title'      => __( 'Purchase a domain', 'wme-sitebuilder' ),
+				'intro'      => __( 'Don\'t own a domain? Purchase a custom domain for your site.', 'wme-sitebuilder' ),
 				'icon'       => 'setup-icon-launch.png',
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-				'wizardHash' => '/wizard/go-live',
+				'wizardHash' => '/wizard/go-live-purchase',
 			];
+
+			$details['rows'][] = [
+                'id'         => 'site-domain-wizard',
+                'type'       => 'task',
+                'title'      => __( 'Connect your domain', 'wme-sitebuilder' ),
+                'intro'      => __( 'Already own a domain? Update your store URL with your custom domain.', 'wme-sitebuilder' ),
+                /* TODO: Update icon. */
+                'icon'       => 'setup-icon-setup.png',
+                'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
+                'wizardHash' => '/wizard/go-live-connect',
+            ];
 		}
 
 		return $details;
+	}
+
+	protected function footer() {
+		$footer_messages = [
+			[
+				'title'    => __( 'Our Guide To Going Live', 'wme-sitebuilder' ),
+				/* TODO: Update link. */
+				'url'      => 'https://www.nexcess.net/help/no-code-website-builder',
+				'target'   => '_blank',
+				'dashicon' => '',
+			],
+			[
+				'title'    => __( 'Collect Your Free Domain', 'wme-sitebuilder' ),
+				/* TODO: Update link. */
+				'url'      => 'https://www.nexcess.net/blog/how-to-purchase-a-domain/',
+				'target'   => '_blank',
+				'dashicon' => '',
+			],
+		];
+
+
+		return [
+			[
+				'id'       => 'site-domain-wizard',
+				'type'     => 'site-domain-footer',
+				'title'    => __( 'Need help?', 'wme-sitebuilder' ),
+				'message'  => '',
+				'messages' => $footer_messages,
+			],
+		];
 	}
 }

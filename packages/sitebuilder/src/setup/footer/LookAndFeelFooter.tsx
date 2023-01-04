@@ -1,19 +1,7 @@
 import { Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-export interface FooterMessageInterface {
-	title: string;
-	url: string;
-	target?: string;
-	dashicon?: string;
-}
-export interface LookAndFeelFooterInterface {
-	id: string;
-	title?: string;
-	messages?: FooterMessageInterface[];
-}
-
-const LinkOrButton = (props: FooterMessageInterface) => {
+const LinkOrButton = (props: SetupCardFooterMessageInterface) => {
 	const {
 		title,
 		url
@@ -39,7 +27,7 @@ const LinkOrButton = (props: FooterMessageInterface) => {
 	);
 };
 
-const LookAndFeelFooter = (props: LookAndFeelFooterInterface) => {
+const LookAndFeelFooter = (props: SetupCardFooterInterface) => {
 	const {
 		messages = [],
 	} = props;

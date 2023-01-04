@@ -8,18 +8,18 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { useGoLive, useSiteBuilder } from '@sb/hooks';
+import { useDomainConnect, useSiteBuilder } from '@sb/hooks';
 import { Loading } from '@sb/components';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
 import { __, sprintf } from '@wordpress/i18n';
 import { copyToClipboard } from '@sb/utils';
 import { ContentCopy } from '@mui/icons-material';
 import { IMAGE_DIR } from '@sb/constants';
-import { GoLiveStringData } from '../data/constants';
+import { GoLiveStringData } from '@go-live/data/constants';
 
 const UpdateSiteUrl = () => {
 	const { siteBuilderState: { capturedDomain = '' } } = useSiteBuilder();
-	const { goLiveState: { isLoading } } = useGoLive();
+	const { goLiveState: { isLoading } } = useDomainConnect();
 	const {
 		updateSiteUrl: {
 			screenTitle,

@@ -1,8 +1,12 @@
 import { __ } from '@wordpress/i18n';
 import { GO_LIVE_PROPS } from '@sb/constants';
-import { Start, VerifyDomain, UpdateSiteUrl, ConnectWithNexcess, FindDomain, ClaimYourDomain } from '../screens';
+import {
+	ConnectWithNexcess,
+	FindDomain,
+	ClaimYourDomain
+} from '@go-live/domain-purchase/screens';
 
-export interface GoLiveInterface {
+export interface DomainPurchaseInterface {
 	isLoading: boolean;
 	verifyingUrl: string;
 	lastStep: number;
@@ -15,10 +19,9 @@ export interface GoLiveInterface {
 	verificationMessage: string;
 	showLogoutButton: boolean;
 	steps: Array<StepInterface>;
-	stepsAlternative: Array<StepInterface>;
 }
 
-const localData: GoLiveInterface = {
+const localData: DomainPurchaseInterface = {
 	isLoading: false,
 	verifyingUrl: '',
 	lastStep: 3,
@@ -35,44 +38,6 @@ const localData: GoLiveInterface = {
 			id: 0,
 			label: __('Start', 'moderntribe-sitebuilder'),
 			hideBack: true,
-			hideSkip: true,
-			nextText: __('Continue', 'moderntribe-sitebuilder'),
-			loadingText: __('Saving', 'moderntribe-sitebuilder'),
-			backText: __('Back', 'moderntribe-sitebuilder'),
-			disable: true,
-			disableNext: true,
-			screen: <Start />,
-		},
-		{
-			id: 1,
-			label: __('Verify Domain', 'moderntribe-sitebuilder'),
-			hideBack: false,
-			hideSkip: true,
-			nextText: __('Continue', 'moderntribe-sitebuilder'),
-			loadingText: __('Verifying…', 'moderntribe-sitebuilder'),
-			backText: __('Back', 'moderntribe-sitebuilder'),
-			screen: <VerifyDomain />,
-			disable: true,
-			disableNext: true,
-		},
-		{
-			id: 2,
-			label: __('Update Site URL', 'moderntribe-sitebuilder'),
-			hideBack: false,
-			hideSkip: true,
-			nextText: __('Begin Site URL Update', 'moderntribe-sitebuilder'),
-			loadingText: __('Processing', 'moderntribe-sitebuilder'),
-			backText: __('Back', 'moderntribe-sitebuilder'),
-			screen: <UpdateSiteUrl />,
-			disable: true,
-			disableNext: false,
-		},
-	],
-	stepsAlternative: [
-		{
-			id: 0,
-			label: __('Start', 'moderntribe-sitebuilder'),
-			hideBack: false,
 			hideSkip: true,
 			nextText: __('Checkout', 'moderntribe-sitebuilder'),
 			loadingText: __('Saving', 'moderntribe-sitebuilder'),
@@ -108,7 +73,7 @@ const localData: GoLiveInterface = {
 	]
 };
 
-const goLiveScreenData = (): GoLiveInterface => {
+const domainPurchaseScreenData = (): DomainPurchaseInterface => {
 	const serverData = GO_LIVE_PROPS;
 
 	return Object.assign(
@@ -118,4 +83,4 @@ const goLiveScreenData = (): GoLiveInterface => {
 	);
 };
 
-export default goLiveScreenData;
+export default domainPurchaseScreenData;

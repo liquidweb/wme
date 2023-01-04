@@ -1,7 +1,7 @@
 import { SetupCardFooter as WmeSetupCardFooter } from '@moderntribe/wme-ui';
-import { LookAndFeelFooter, LookAndFeelFooterInterface } from './footer';
+import { LookAndFeelFooter, SiteDomainFooter } from './footer';
 
-type SetupCardFooterRenderProps = LookAndFeelFooterInterface;
+type SetupCardFooterRenderProps = SetupCardFooterInterface;
 
 export interface SetupCardFooterPropsInterface {
 	footers?: SetupCardFooterRenderProps;
@@ -9,6 +9,8 @@ export interface SetupCardFooterPropsInterface {
 
 const renderFooterRow = (row: SetupCardFooterRenderProps) => {
 	switch (row.id) {
+	case 'site-domain-wizard':
+		return <SiteDomainFooter key={ row.id } { ...row } />;
 	case 'look-and-feel-wizard':
 		return <LookAndFeelFooter key={ row.id } { ...row } />;
 	}
