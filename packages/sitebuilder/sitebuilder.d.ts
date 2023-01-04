@@ -229,18 +229,6 @@ declare global {
 		code: string;
 		message: string;
 	}
-
-	export interface GoLiveProviderContextInterface {
-		goLiveState: DomainConnectInterface;
-		setGoLiveState: React.Dispatch<React.SetStateAction<DomainConnectInterface>>;
-		submitGoLiveForm: () => void;
-		submitDomainVerification: () => void;
-		handleDomainVerificationRequest: () => void;
-		setIsLoading: (loading: boolean) => void;
-		getHasDomainNextText: (hasDomain: string) => void;
-		setHasDomain: (hasDomain: string) => void;
-		setShowPurchaseNavigation: (show: boolean) => void;
-	}
 }
 
 declare function getPasswordStrength(password: string): 'weak' | 'medium' | 'strong';
