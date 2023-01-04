@@ -8,10 +8,8 @@ export function useDomainConnect() {
 		submitGoLiveForm,
 		submitDomainVerification,
 		setIsLoading,
-		setHasDomain,
 		setShowPurchaseNavigation,
 		handleDomainVerificationRequest,
-		getHasDomainNextText
 	} = useContext(DomainConnectContext) as GoLiveProviderContextInterface;
 	return {
 		goLiveState,
@@ -19,9 +17,7 @@ export function useDomainConnect() {
 		submitGoLiveForm,
 		submitDomainVerification,
 		setIsLoading,
-		setHasDomain,
 		setShowPurchaseNavigation,
 		handleDomainVerificationRequest,
-		getHasDomainNextText
 	};
 }

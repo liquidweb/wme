@@ -211,8 +211,6 @@ declare global {
 		submitDomainVerification: () => void;
 		handleDomainVerificationRequest: () => void;
 		setIsLoading: (loading: boolean) => void;
-		getHasDomainNextText: (hasDomain: string) => void;
-		setHasDomain: (hasDomain: string) => void;
 		setShowPurchaseNavigation: (show: boolean) => void;
 	}
 
