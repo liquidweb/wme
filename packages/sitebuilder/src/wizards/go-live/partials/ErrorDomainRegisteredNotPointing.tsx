@@ -1,12 +1,12 @@
 import { Box, Checkbox, FormLabel, Link, Typography, useTheme } from '@mui/material';
 import { OpenInNew, Refresh } from '@mui/icons-material';
 import { ErrorStatusMessage } from '.';
-import { useGoLive } from '@sb/hooks';
+import { useDomainConnect } from '@sb/hooks';
 import { GoLiveStringData } from '@go-live/data/constants';
 
 const ErrorDomainRegisteredNotPointing = () => {
 	const theme = useTheme();
-	const { goLiveState, setGoLiveState } = useGoLive();
+	const { goLiveState, setGoLiveState } = useDomainConnect();
 	const { verificationStatus, skipDnsVerification, steps } = goLiveState;
 	const { errorDomainRegisteredNotPointing: {
 		helpHeadlinePart1,

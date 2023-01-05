@@ -9,7 +9,7 @@ import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
 
 import {
 	ErrorStatusMessage
-} from './partials';
+} from '@go-live/partials';
 
 const loadingSx = {
 	'@keyframes fadeIn': {
@@ -29,9 +29,9 @@ const loadingSx = {
 };
 
 const FindDomain = () => {
-	const { start: {
-		screenTitle2: title,
-		screenDescription2: description,
+	const { findDomain: {
+		title,
+		description,
 		defaultError
 	} } = GoLiveStringData;
 
