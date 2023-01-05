@@ -85,19 +85,11 @@ class GoLive extends Card {
 			[
 				'title'    => __( 'Our Guide To Going Live', 'wme-sitebuilder' ),
 				/* TODO: Update link. */
-				'url'      => 'https://www.nexcess.net/help/no-code-website-builder',
-				'target'   => '_blank',
-				'dashicon' => '',
-			],
-			[
-				'title'    => __( 'Collect Your Free Domain', 'wme-sitebuilder' ),
-				/* TODO: Update link. */
-				'url'      => 'https://www.nexcess.net/blog/how-to-purchase-a-domain/',
+				'url'      => 'https://www.nexcess.net/help/guide-to-going-live-with-storebuilder/',
 				'target'   => '_blank',
 				'dashicon' => '',
 			],
 		];
-
 
 		return [
 			[
