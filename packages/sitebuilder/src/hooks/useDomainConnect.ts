@@ -1,27 +1,23 @@
 import { useContext } from 'react';
-import { GoLiveContext, GoLiveProviderContextInterface } from '@sb/contexts/GoLiveProvider';
+import { DomainConnectContext } from '@sb/contexts/DomainConnectProvider';
 
-export function useGoLive() {
+export function useDomainConnect() {
 	const {
 		goLiveState,
 		setGoLiveState,
 		submitGoLiveForm,
 		submitDomainVerification,
 		setIsLoading,
-		setHasDomain,
 		setShowPurchaseNavigation,
 		handleDomainVerificationRequest,
-		getHasDomainNextText
-	} = useContext(GoLiveContext) as GoLiveProviderContextInterface;
+	} = useContext(DomainConnectContext) as GoLiveProviderContextInterface;
 	return {
 		goLiveState,
 		setGoLiveState,
 		submitGoLiveForm,
 		submitDomainVerification,
 		setIsLoading,
-		setHasDomain,
 		setShowPurchaseNavigation,
 		handleDomainVerificationRequest,
-		getHasDomainNextText
 	};
 }

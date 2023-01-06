@@ -119,6 +119,19 @@ declare global {
 		type: 'launch-domain-status';
 	}
 
+	interface SetupCardFooterInterface {
+		id: string;
+		title?: string;
+		messages?: FooterMessageInterface[];
+	}
+
+	interface SetupCardFooterMessageInterface {
+		title: string;
+		url: string;
+		target?: string;
+		dashicon?: string;
+	}
+
 	interface HandleActionPayloadInterface {
 		_wpnonce: string;
 		action: string;
@@ -214,6 +227,45 @@ declare global {
 	interface Window {
 		ppcp_onboarding_productionCallback: (authCode: string, sharedId: string) => void;
 		PayPal?: any;
+	}
+
+	export interface GoLiveInterface {
+		isLoading: boolean;
+		verifyingUrl: string;
+		lastStep: number;
+		hasDomain: string | null;
+		selectedDomains: Domain[];
+		searchDomain: string;
+		skipDnsVerification: boolean;
+		verificationStatus: string;
+		verificationErrorType: boolean | string;
+		verificationMessage: string;
+		showLogoutButton: boolean;
+		steps: Array<StepInterface>;
+	}
+
+	export interface GoLiveProviderContextInterface {
+		goLiveState: GoLiveInterface;
+		setGoLiveState: React.Dispatch<React.SetStateAction<GoLiveInterface>>;
+		submitGoLiveForm: () => void;
+		submitDomainVerification: () => void;
+		handleDomainVerificationRequest: () => void;
+		setIsLoading: (loading: boolean) => void;
+		setShowPurchaseNavigation: (show: boolean) => void;
+	}
+
+	export interface DomainVerificationSuccessInterface {
+		domain: string;
+		is_registered: boolean;
+		is_pointed: boolean;
+		uses_local_nameservers: boolean;
+		can_setup: boolean;
+		nameservers: string[];
+	}
+
+	export interface DomainVerificationErrorInterface {
+		code: string;
+		message: string;
 	}
 }
 

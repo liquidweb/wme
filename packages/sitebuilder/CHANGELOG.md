@@ -1,5 +1,11 @@
 # @moderntribe/sitebuilder
 
+## 1.7.0
+
+### Minor Changes
+
+- 0413284: Updates Go Live card and splits the Go Live wizard into two concerns: domain purchase and domain connection.
+
 ## 1.6.3
 
 ### Patch Changes

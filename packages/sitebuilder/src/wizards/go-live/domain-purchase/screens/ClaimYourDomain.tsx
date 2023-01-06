@@ -5,7 +5,7 @@ import {
 import { __, sprintf } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 import { IMAGE_DIR } from '@sb/constants';
-import { GoLiveStringData } from '../data/constants';
+import { GoLiveStringData } from '@go-live/data/constants';
 
 const ClaimYourDomain = () => {
 	const {
