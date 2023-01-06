@@ -104,6 +104,7 @@ declare global {
 	interface SetupCardLink {
 		href: string;
 		label: string;
+		target: string;
 	}
 
 	interface SetupCardFooterColumn {
