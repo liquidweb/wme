@@ -1,4 +1,3 @@
-
 import { ContentAccordion, SetupCardFooter as WmeSetupFooter } from '@moderntribe/wme-ui';
 import { FooterLinks, FooterColumns } from './footer';
 
