@@ -120,19 +120,6 @@ declare global {
 		type: 'launch-domain-status';
 	}
 
-	interface SetupCardFooterInterface {
-		id: string;
-		title?: string;
-		messages?: FooterMessageInterface[];
-	}
-
-	interface SetupCardFooterMessageInterface {
-		title: string;
-		url: string;
-		target?: string;
-		dashicon?: string;
-	}
-
 	interface HandleActionPayloadInterface {
 		_wpnonce: string;
 		action: string;
