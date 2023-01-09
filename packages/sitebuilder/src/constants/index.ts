@@ -7,7 +7,6 @@ export const ASSETS_URL = SITEBUILDER.assets_url;
 export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
 export const CARDS: SetupCardInterface[] = SITEBUILDER.cards || [];
-//export const CARDS: SetupCardInterface[] = cardsJson;
 
 export const WIZARDS = SITEBUILDER.wizards || {};
 
