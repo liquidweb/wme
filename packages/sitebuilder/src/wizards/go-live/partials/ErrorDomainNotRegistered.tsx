@@ -1,7 +1,7 @@
 import { Typography, Link } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { ErrorStatusMessage } from '.';
-import { useGoLive, useSiteBuilder } from '@sb/hooks';
+import { useDomainConnect, useSiteBuilder } from '@sb/hooks';
 import { sprintf } from '@wordpress/i18n';
 import { NEXCESS_DOMAIN_SEARCH_URL } from '@sb/constants';
 import { GoLiveStringData } from '@go-live/data/constants';
@@ -9,7 +9,7 @@ import { GoLiveStringData } from '@go-live/data/constants';
 const ErrorDomainNotRegistered = () => {
 	const {
 		goLiveState: { verificationMessage }
-	} = useGoLive();
+	} = useDomainConnect();
 
 	const {
 		siteBuilderState: { capturedDomain = '' }

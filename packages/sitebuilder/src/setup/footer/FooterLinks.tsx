@@ -10,7 +10,7 @@ const FooterLinks = (props: SetupCardFooterRowLinks) => {
 			</Grid>
 			{ links.map((link) => (
 				<Grid item key={ link.href }>
-					<Link href={ link.href } variant="body1">
+					<Link href={ link.href } target={ link.target ? link.target : '__self' } variant="body1">
 						{ link.label }
 					</Link>
 				</Grid>

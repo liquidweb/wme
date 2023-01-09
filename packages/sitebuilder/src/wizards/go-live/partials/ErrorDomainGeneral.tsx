@@ -2,11 +2,11 @@ import { ErrorStatusMessage } from '.';
 import { Link, Typography } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { NEXCESS_SUPPORT_URL } from '@sb/constants';
-import { useGoLive } from '@sb/hooks';
+import { useDomainConnect } from '@sb/hooks';
 import { GoLiveStringData } from '@go-live/data/constants';
 
 const ErrorDomainGeneral = () => {
-	const { goLiveState: { verificationMessage } } = useGoLive();
+	const { goLiveState: { verificationMessage } } = useDomainConnect();
 	const { errorDomainGeneral: { accountContent, accountCta } } = GoLiveStringData;
 	return (
 		<>
