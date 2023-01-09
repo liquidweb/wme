@@ -66,7 +66,7 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 			let wizardProp = '' as string;
 			setWizardStarted(true);
 
-			if (currentWizard === 'go-live') {
+			if (currentWizard?.startsWith('go-live')) {
 				wizardProp = 'golive';
 			} else {
 				wizardProp = currentWizard?.replaceAll('-', '_') as string;
