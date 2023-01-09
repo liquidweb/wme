@@ -127,7 +127,7 @@ declare global {
 	interface SetupCardFooter {
 		collapsible: boolean;
 		collapsibleLabel?: string;
-		rows: (SetupCardFooterRowColumns | SetupCardFooterRowLinks | SetupCardFooterRowColumns | SetupCardRowLearnProductsInterface)[]
+		rows: (SetupCardFooterRowColumns | SetupCardFooterRowLinks | SetupCardRowLearnProductsInterface)[]
 	}
 
 	interface SetupCardFooterRowColumns {
