@@ -13,7 +13,7 @@ import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
 import SendIcon from '@mui/icons-material/Send';
 import { Button } from '..';
-import { useMaxActiveStep } from '../../hooks';
+import { useMaxActiveStep } from '../../../hooks';
 
 export interface WizardFooterProps extends BoxProps {
   backText?: string;

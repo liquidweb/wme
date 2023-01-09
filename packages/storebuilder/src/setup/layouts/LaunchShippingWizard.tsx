@@ -1,17 +1,13 @@
 import { SetupCardTaskCta } from '@moderntribe/wme-ui';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useNavigate } from 'react-router-dom';
-import { __ } from '@wordpress/i18n';
 
-export interface LaunchShippingWizardInterface {
-	id: string;
-	type: 'launch-shipping-wizard';
-}
-
-const LaunchShippingWizard = () => {
+const LaunchShippingWizard: React.FC<SetupRowButtonInterface> = (props) => {
 	const navigate = useNavigate();
+	const { wizardHash, title } = props;
+
 	const handleOnClick = () => {
-		navigate('/wizard/shipping');
+		navigate(wizardHash);
 	};
 
 	return <SetupCardTaskCta
@@ -19,7 +15,7 @@ const LaunchShippingWizard = () => {
 		fullWidth={ true }
 		startIcon={ <AddCircleOutlineIcon /> }
 		onClick={ handleOnClick }
-	>{ __('Add another way to ship', 'moderntribe-storebuilder') }</SetupCardTaskCta>;
+	>{ title }</SetupCardTaskCta>;
 };
 
 export default LaunchShippingWizard;

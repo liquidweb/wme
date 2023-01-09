@@ -1,47 +1,34 @@
 import { __ } from '@wordpress/i18n';
-import { WatchLater, CheckCircle } from '@mui/icons-material';
 import {
-	Chip,
 	SetupCard as WmeSetupCard,
 	SetupCardHeader,
 	SetupCardContent
 } from '@moderntribe/wme-ui';
-import { useSetupCard } from '@store/hooks';
-import { SetupCardLayout, SetupCardFooter } from '@store/setup';
+import { SetupCardFooter, SetupCardLayout } from '@store/setup';
 
 const SetupCard = (props: SetupCardInterface) => {
 	const {
 		title = '',
 		intro = '',
-		time = '',
+		chipText = '',
 		rows = [],
-		footers = [],
-		completed = false,
+		completed,
+		footer,
 	} = props;
-
-	const { firstRowType, lastRowType } = useSetupCard(props);
 
 	return (
 		<WmeSetupCard>
 			<SetupCardHeader
 				title={ title }
 				subheader={ intro }
-				action={ time && <Chip
-					size="small"
-					color={ completed ? 'success' : 'info' }
-					icon={ completed ? <CheckCircle /> : <WatchLater /> }
-					label={ completed ? __('Completed', 'moderntribe-storebuilder') : time }
-				/> }
+				chipBackground={ completed ? 'success' : 'info' }
+				chipText={ completed ? __('Completed', 'moderntribe-storebuilder') : chipText }
+				isComplete={ completed }
 			/>
-			<SetupCardContent sx={ {
-				'&.WmeSetupCardContent-root': {
-					marginTop: (firstRowType && firstRowType === 'task') ? '16px' : '32px',
-					paddingBottom: (lastRowType && lastRowType === 'task') ? '20px' : '32px',
-				}
-			} }>
-				<SetupCardLayout rows={ rows } completed={ completed } />
+			<SetupCardContent>
+				<SetupCardLayout rows={ rows } />
 			</SetupCardContent>
-			<SetupCardFooter footers={ footers } />
+			{ footer && <SetupCardFooter footer={ footer } /> }
 		</WmeSetupCard>
 	);
 };

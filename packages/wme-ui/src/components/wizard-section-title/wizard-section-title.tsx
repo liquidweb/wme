@@ -5,7 +5,7 @@ import {
   Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { pxToRem } from '../../utils';
+import { pxToRem } from '../../../utils';
 
 interface WizardSectionTitleProps extends BoxProps {
   heading?: string;

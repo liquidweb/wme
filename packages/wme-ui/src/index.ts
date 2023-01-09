@@ -1,4 +1,4 @@
-export * from './components';
+export * from './hoc/components';
 export * from './theme';
 export * from './hooks';
 export * from './hoc';

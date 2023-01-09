@@ -1,34 +1,37 @@
-import { SetupCardFooter as WmeSetupCardFooter } from '@moderntribe/wme-ui';
-import { Accordion, AccordionInterface, PaymentHelp, PaymentHelpInterface } from '@store/setup/footer';
+import { ContentAccordion, SetupCardFooter as WmeSetupFooter } from '@moderntribe/wme-ui';
+import FooterLinks from './footer/FooterLinks';
+import FooterColumns from './footer/FooterColumns';
+import { LearnProductTypes } from './layouts';
 
-type FooterRowType = AccordionInterface | PaymentHelpInterface;
-
-export interface SetupCardFooterPropsInterface {
-	footers?: FooterRowType;
+export interface SetupCardFooterInterface {
+	footer: SetupCardFooter;
 }
 
-const renderFooterRow = (row: FooterRowType) => {
-	switch (row.type) {
-	case 'accordion':
-		return <Accordion key={ row.id } { ...row } />;
-	case 'gateway-help':
-		return <PaymentHelp key={ row.id } { ...row } />;
-	default:
-		return <></>;
-	}
-};
+const SetupCardFooter = (props: SetupCardFooterInterface) => {
+	const { footer } = props;
 
-const SetupCardFooter = (props: SetupCardFooterPropsInterface): React.ReactElement => {
-	const { footers } = props;
+	const renderContent = () => {
+		return footer.rows.map((row, index) => {
+			if (row.type === 'columns') {
+				return <FooterColumns key={ index } { ...row } />;
+			} else if (row.type === 'links') {
+				return <FooterLinks key={ index } { ...row } />;
+			} else if (row.type === 'learn-product-types') {
+				return <LearnProductTypes key={ index } { ...row } />;
+			}
 
-	if (! Array.isArray(footers) || footers.length === 0) {
-		return <></>;
-	}
+			return <div key={ index } />;
+		});
+	};
 
 	return (
-		<WmeSetupCardFooter>
-			{ footers.map((footer) => renderFooterRow(footer)) }
-		</WmeSetupCardFooter>
+		<WmeSetupFooter>
+			{ footer.collapsible ? (
+				<ContentAccordion title={ footer.collapsibleLabel } id={ footer.collapsibleLabel }>
+					{ renderContent() }
+				</ContentAccordion>
+			) : renderContent() }
+		</WmeSetupFooter>
 	);
 };
 
