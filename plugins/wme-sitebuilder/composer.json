@@ -1,0 +1,114 @@
+{
+    "name": "moderntribe/wme-sitebuilder",
+    "description": "Easily build and configure a site.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Modern Tribe Incubator Team"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/moderntribe/wme-sitebuilder/issues",
+        "source": "https://github.com/moderntribe/wme-sitebuilder"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tribe\\WME\\Sitebuilder\\": "wme-sitebuilder/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^5.6 || ^7.0 || ^8.0",
+        "composer-runtime-api": "^2",
+        "composer/installers": "~1.0 || ^2.0",
+        "psr/log": "^1.1",
+        "stellarwp/container": "^0.1.1"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "friendsofphp/php-cs-fixer": "^3.12",
+        "phpcompatibility/phpcompatibility-wp": "^2.0",
+        "phpmd/phpmd": "^2.13",
+        "szepeviktor/phpstan-wordpress": "^0.7",
+        "wp-coding-standards/wpcs": "^2.1",
+		"wpackagist-plugin/woocommerce": ">=7.1",
+		"wpackagist-plugin/woocommerce-gateway-stripe": "6.4.1",
+		"wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
+    },
+    "scripts": {
+        "build:plugin": [
+            "bash bin/build wme-sitebuilder.zip"
+        ],
+		"fix:standards": [
+			"phpcbf --cache",
+			"php-cs-fixer fix -v --diff"
+		],
+        "test": [
+            "@test:all"
+        ],
+        "test:all": [
+            "@test:standards",
+            "@test:analysis"
+        ],
+        "test:analysis": [
+            "phpstan analyse -c phpstan.neon.dist --memory-limit=768M"
+        ],
+        "test:coverage": [
+            "phpdbg -qrr -d memory_limit=-1 ./wme-sitebuilder/vendor/bin/phpunit --coverage-html=tests/coverage --coverage-text --colors=always"
+        ],
+        "test:standards": [
+            "phpcs --cache",
+            "php-cs-fixer fix -v --diff --dry-run"
+        ]
+    },
+    "scripts-descriptions": {
+		"build:plugin": "Export a .zip archive of the production-ready plugin from the current HEAD.",
+        "test": "Run all automated tests (alias of 'test:all').",
+        "test:all": "Run all automated tests (test:standards, test:analysis).",
+        "test:analysis": "Perform static code analysis on the codebase.",
+        "test:coverage": "Generate code coverage reports in tests/coverage.",
+        "test:standards": "Check coding standards."
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "vendor-dir": "wme-sitebuilder/vendor",
+        "bin-dir": "wme-sitebuilder/vendor/bin",
+        "platform": {
+            "php": "7.4"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+	"extra": {
+		"installer-paths": {
+			"external/wp-content/mu-plugins/{$name}/": [
+				"type:wordpress-muplugin"
+			],
+			"external/wp-content/plugins/{$name}/": [
+				"type:wordpress-plugin"
+			],
+			"external/wp-content/themes/{$name}/": [
+				"type:wordpress-theme"
+			]
+		}
+	}
+}

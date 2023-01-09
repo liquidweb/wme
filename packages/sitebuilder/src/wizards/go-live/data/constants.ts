@@ -12,16 +12,9 @@ export const GoLiveStringData = {
 		errorNotRegistered: __('This domain is not registered.', 'moderntribe-sitebuilder'),
 		errorGeneral: __('We\'re unable to connect your domain.', 'moderntribe-sitebuilder'),
 	},
-	start: {
-		screenTitle1: __('Set your site domain', 'moderntribe-sitebuilder'),
-		screenTitle2: __('Find the perfect domain.', 'moderntribe-sitebuilder'),
-		screenDescription1: __('Let\'s get your site set up with the perfect domain. If you don\'t already have one, don\'t worry - we can help you out.', 'moderntribe-sitebuilder'),
-		screenDescription2: __('Enter the domain name you want your store to have, and we\'ll see if it\'s available. If it isn\'t, we\'ll make suggestions about ones that are.', 'moderntribe-sitebuilder'),
-		actionLabel: __('Have you purchased your custom domain?', 'moderntribe-sitebuilder'),
-		actionTitle1: __('Yes! I have my own custom domain.', 'moderntribe-sitebuilder'),
-		actionTitle2: __('No, I need one!', 'moderntribe-sitebuilder'),
-		actionContent1: __('If you have your own domain already then you\'re ready to connect and go live.', 'moderntribe-sitebuilder'),
-		actionContent2: __('Nexcess will help you find and own your perfect domain name.', 'moderntribe-sitebuilder'),
+	findDomain: {
+		title: __('Find the perfect domain.', 'moderntribe-sitebuilder'),
+		description: __('Enter the domain name you want your store to have, and we\'ll see if it\'s available. If it isn\'t, we\'ll make suggestions about ones that are.', 'moderntribe-sitebuilder'),
 		defaultError: __('Something went wrong, please try again', 'moderntribe-sitebuilder')
 	},
 	verifyDomain: {
@@ -34,9 +27,9 @@ export const GoLiveStringData = {
 	},
 	updateSiteUrl: {
 		screenTitle: __('You\'re ready to go live with', 'moderntribe-sitebuilder'),
-		screenDescription: __('Once we begin, this process may take a few minutes. When the process is complete, you will need to log in again on the new live domain', 'moderntribe-sitebuilder'),
+		screenDescription: __('Once we begin, this process may take a few minutes. When the process is complete, you will need to log in again on the new live domain.', 'moderntribe-sitebuilder'),
+		descriptionProcessing: __('This process will take a few minutes. You\'ll be logged out when it completes and will need to log in again on your new domain.', 'moderntribe-sitebuilder'),
 		launchImgAltText: __('Go live rocket', 'moderntribe-sitebuilder'),
-		descriptionProcessing: __('This can take a few minutes. You can log out now, or we can will just log out upon completion.', 'moderntribe-sitebuilder'),
 		loginUrlLabelText: __('Copy Your New Login URL', 'moderntribe-sitebuilder'),
 		loginUrlHelperText: __('Copy and save this URL. Once your domain is connected you\'ll need it to login.', 'moderntribe-sitebuilder')
 	},
@@ -46,7 +39,7 @@ export const GoLiveStringData = {
 	},
 	claimYourDomain: {
 		screenTitle: __('is all yours!', 'moderntribe-sitebuilder'),
-		screenDescription: __('While a new domain is often ready for use within an hour, it can take up to 8 hours to completely process.', 'moderntribe-sitebuilder'),
+		screenDescription: __('We need a little time to update the entire internet about your purchase. You\'ll be able to connect your domain when we\'re done. This typically takes an hour but can take up to 8 hours to complete.', 'moderntribe-sitebuilder'),
 	},
 	errorDomainGeneral: {
 		accountContent: __('It looks like we\'re having trouble connecting your domain.', 'moderntribe-sitebuilder'),
