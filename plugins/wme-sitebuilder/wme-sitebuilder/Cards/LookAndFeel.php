@@ -42,7 +42,7 @@ class LookAndFeel extends Card {
 			'id'        => 'look-and-feel',
 			'navTitle'  => __( 'Design', 'wme-sitebuilder' ),
 			'title'     => __( 'Design', 'wme-sitebuilder' ),
-			'intro'     => __( 'Curabitur blandit tempus porttitor.', 'wme-sitebuilder' ),
+			'intro'     => __( 'It\'s all about appearances.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
 			'rows'      => $this->rows(),
 			'footers'   => $this->footer(),
@@ -77,7 +77,7 @@ class LookAndFeel extends Card {
 				'type'       => 'task',
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
 				'title'      => __( 'Change your font styles and colors', 'wme-sitebuilder' ),
-				'intro'      => __( 'Lorem ipsum dolor sit.', 'wme-sitebuilder' ),
+				'intro'      => __( 'Choose a design to start with and customize.', 'wme-sitebuilder' ),
 				'wizardHash' => '/wizard/look-and-feel',
 			],
 		];

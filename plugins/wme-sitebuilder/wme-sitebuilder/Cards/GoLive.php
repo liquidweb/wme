@@ -42,7 +42,7 @@ class GoLive extends Card {
 			'id'        => 'launch-domain',
 			'navTitle'     => __( 'Domain', 'wme-sitebuilder' ),
 			'title'     => __( 'Your Domain', 'wme-sitebuilder' ),
-			'intro'     => __( 'Vivamus sagittis lacus vel augue laoreet.', 'wme-sitebuilder' ),
+			'intro'     => __( 'Go live with a custom domain, whether you purchased with Nexcess or elsewhere.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
 			'rows'      => [
 				[
