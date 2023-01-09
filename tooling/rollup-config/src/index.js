@@ -9,7 +9,6 @@ import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import copy from 'rollup-plugin-copy'
-import execute from "rollup-plugin-shell";
 
 const pkg = JSON.parse(readFileSync(resolve(cwd(), './package.json')));
 const isProd = process.env.NODE_ENV === 'production';
@@ -47,10 +46,6 @@ export const esmConfig = defineConfig({
     }),
     ...defaultPlugins,
     typescript({ tsconfig: resolve(cwd(), './tsconfig.json'), outputToFilesystem: true }),
-    execute({
-      commands: process.env.yalc === 'true' ? ['yalc push --sig'] : [],
-      hook: 'writeBundle'
-    })
   ],
   external: ['react', 'react-dom', 'styled-components', 'use-query-params'],
 });

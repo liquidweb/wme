@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
-interface SelectInputProps extends SelectProps {
+type SelectInputProps = SelectProps & {
   placeholder?: string;
   width?: string | number;
 }

@@ -135,6 +135,8 @@ const SplitButton: React.FC<SplitButtonProps> = (props) => {
         transition
         disablePortal
         placement="bottom-start"
+        onResize={undefined}
+        onResizeCapture={undefined}
       >
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>

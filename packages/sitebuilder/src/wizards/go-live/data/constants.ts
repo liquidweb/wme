@@ -12,16 +12,9 @@ export const GoLiveStringData = {
 		errorNotRegistered: __('This domain is not registered.', 'moderntribe-sitebuilder'),
 		errorGeneral: __('We\'re unable to connect your domain.', 'moderntribe-sitebuilder'),
 	},
-	start: {
-		screenTitle1: __('Set your site domain', 'moderntribe-sitebuilder'),
-		screenTitle2: __('Find the perfect domain.', 'moderntribe-sitebuilder'),
-		screenDescription1: __('Let\'s get your site set up with the perfect domain. If you don\'t already have one, don\'t worry - we can help you out.', 'moderntribe-sitebuilder'),
-		screenDescription2: __('Enter the domain name you want your store to have, and we\'ll see if it\'s available. If it isn\'t, we\'ll make suggestions about ones that are.', 'moderntribe-sitebuilder'),
-		actionLabel: __('Have you purchased your custom domain?', 'moderntribe-sitebuilder'),
-		actionTitle1: __('Yes! I have my own custom domain.', 'moderntribe-sitebuilder'),
-		actionTitle2: __('No, I need one!', 'moderntribe-sitebuilder'),
-		actionContent1: __('If you have your own domain already then you\'re ready to connect and go live.', 'moderntribe-sitebuilder'),
-		actionContent2: __('Nexcess will help you find and own your perfect domain name.', 'moderntribe-sitebuilder'),
+	findDomain: {
+		title: __('Find the perfect domain.', 'moderntribe-sitebuilder'),
+		description: __('Enter the domain name you want your store to have, and we\'ll see if it\'s available. If it isn\'t, we\'ll make suggestions about ones that are.', 'moderntribe-sitebuilder'),
 		defaultError: __('Something went wrong, please try again', 'moderntribe-sitebuilder')
 	},
 	verifyDomain: {

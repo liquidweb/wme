@@ -21,10 +21,10 @@ import {
 	ErrorDomainRegisteredNotPointing,
 	ErrorDomainGeneral,
 	ErrorDomainNotRegistered
-} from './partials';
+} from '@sb/wizards/go-live/partials';
 import { WizardSectionTitle } from '@moderntribe/wme-ui';
-import { GoLiveStringData } from '../data/constants';
-import { useGoLive, useSiteBuilder } from '@sb/hooks';
+import { GoLiveStringData } from '@go-live/data/constants';
+import { useDomainConnect, useSiteBuilder } from '@sb/hooks';
 import { IMAGE_DIR } from '@sb/constants';
 
 const loadingSx = {
@@ -60,7 +60,7 @@ const VerifyDomain = () => {
 		goLiveState,
 		setGoLiveState,
 		submitDomainVerification,
-	} = useGoLive();
+	} = useDomainConnect();
 
 	const {
 		siteBuilderState,
