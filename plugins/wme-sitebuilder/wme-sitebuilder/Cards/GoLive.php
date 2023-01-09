@@ -40,31 +40,58 @@ class GoLive extends Card {
 	public function props() {
 		$details = [
 			'id'        => 'launch-domain',
-			'title'     => __( 'Go Live with a domain', 'wme-sitebuilder' ),
-			// phpcs:ignore Generic.Files.LineLength.TooLong
-			'intro'     => __( 'Go live with a custom domain, whether you purchased with Nexcess or elsewhere.', 'wme-sitebuilder' ),
+			'navTitle'     => __( 'Domain', 'wme-sitebuilder' ),
+			'title'     => __( 'Your Domain', 'wme-sitebuilder' ),
+			'intro'     => __( 'Vivamus sagittis lacus vel augue laoreet.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
-			'time'      => $this->wizard->isComplete() ? __( 'Complete', 'wme-sitebuilder' ) : '',
 			'rows'      => [
 				[
 					'id'   => 'launch-domain-status',
 					'type' => 'launch-domain-status',
 				],
 			],
+			'footer' => $this->footer(),
 		];
 
 		if ( ! $this->wizard->isComplete() ) {
 			$details['rows'][] = [
 				'id'         => 'site-domain-wizard',
 				'type'       => 'task',
-				'title'      => __( 'Publish your site with a custom domain', 'wme-sitebuilder' ),
-				'intro'      => __( 'Update your store URL with a custom domain you own', 'wme-sitebuilder' ),
-				'icon'       => 'setup-icon-launch.png',
+				'title'      => __( 'Purchase a domain', 'wme-sitebuilder' ),
+				'intro'      => __( 'Don\'t own a domain? Purchase a custom domain for your site.', 'wme-sitebuilder' ),
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-				'wizardHash' => '/wizard/go-live',
+				'wizardHash' => '/wizard/go-live-purchase',
+			];
+
+			$details['rows'][] = [
+				'id'         => 'site-domain-wizard',
+				'type'       => 'task',
+				'title'      => __( 'Connect your domain', 'wme-sitebuilder' ),
+				'intro'      => __( 'Already own a domain? Update your store URL with your custom domain.', 'wme-sitebuilder' ),
+				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
+				'wizardHash' => '/wizard/go-live-connect',
 			];
 		}
 
 		return $details;
+	}
+
+	protected function footer() {
+		return [
+			'collapsible' => false,
+			'rows'        => [
+				[
+					'type'  => 'links',
+					'title' => __( 'Need help?', 'wme-sitebuilder' ),
+					'links' => [
+						[
+							'label'  => __( 'Our Guide To Going Live', 'wme-sitebuilder' ),
+							'target' => '__blank',
+							'href'   => 'https://www.nexcess.net/help/guide-to-going-live-with-storebuilder/',
+						]
+					]
+				]
+			]
+		];
 	}
 }
