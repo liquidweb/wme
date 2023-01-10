@@ -10,7 +10,7 @@
 
 - Updated dependencies
   - @moderntribe/wme-ui@3.0.0
-  - @moderntribe/wme-utils@1.0.0
+  - @moderntribe/wme-utils@2.0.0
 
 ## 1.7.0
 
