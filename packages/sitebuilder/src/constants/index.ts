@@ -1,5 +1,3 @@
-import cardsJson from "./cards.json";
-
 export const SITEBUILDER = window.sitebuilder;
 
 export const ASSETS_URL = SITEBUILDER.assets_url;
