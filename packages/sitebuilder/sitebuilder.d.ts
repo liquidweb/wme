@@ -149,6 +149,9 @@ declare global {
 		hideSkip?: boolean;
 		hideNext?: boolean;
 		label?: string;
+		title?: string;
+		description?: string;
+		icon?: React.ReactNode;
 		nextText?: string;
 		loadingText?: string;
 		backText?: string;

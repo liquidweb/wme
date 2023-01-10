@@ -1,6 +1,8 @@
 import { __ } from '@wordpress/i18n';
 
-import { Start, UsernamePassword, SiteDetails, Complete } from '../screens';
+import { UsernamePassword, SiteDetails, Complete } from '../screens';
+
+import { UserIcon, EditIcon } from '@sb/icons';
 
 export interface FtcSiteLogoObjectInterface {
 	id: string;
@@ -46,30 +48,28 @@ export interface FtcScreenDataInterface extends FtcWizardObjectInterface {
 const stepsData: Array<StepInterface> = [
 	{
 		id: 0,
-		label: __('Start', 'moderntribe-sitebuilder'),
-		hideSkip: true,
-		nextText: __('Get Started', 'moderntribe-sitebuilder'),
-		hideBack: true,
-		hidePagination: true,
-		screen: <Start />
-	},
-	{
-		id: 1,
 		label: __('Username & Password', 'moderntribe-sitebuilder'),
+		title: __('Username & Password', 'moderntribe-sitebuilder'),
+		description: __('Welcome to your site! Let’s make it yours by getting you a username and password that\'s unique to you.', 'moderntribe-sitebuilder'),
+		icon: <UserIcon />,
 		disableNext: true,
 		hideSkip: true,
+		hideBack: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <UsernamePassword />
 	},
 	{
-		id: 2,
+		id: 1,
 		label: __('Site Details', 'moderntribe-sitebuilder'),
+		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
+		description: __('Tell us a bit about your site and we can start setting up everything you\'ll need.', 'moderntribe-sitebuilder'),
+		icon: <EditIcon />,
 		hideSkip: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <SiteDetails />
 	},
 	{
-		id: 3,
+		id: 2,
 		label: __('Complete', 'moderntribe-sitebuilder'),
 		hideSkip: true,
 		hidePagination: true,
@@ -108,7 +108,7 @@ const formItemsData: FtcFormItemsInterface = {
 
 const localData: FtcScreenDataInterface = {
 	isLoading: false,
-	lastStep: 4,
+	lastStep: 3,
 	id: '',
 	completed: false,
 	adminUrl: '',
