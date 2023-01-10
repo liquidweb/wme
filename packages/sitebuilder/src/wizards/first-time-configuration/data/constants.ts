@@ -10,6 +10,7 @@ export const FtcStringData = {
 	},
 	usernamePassword: {
 		title: __('Username & Password', 'moderntribe-sitebuilder'),
+		description: __('Welcome to your site! Let’s make it yours by getting you a username and password that\'s unique to you.', 'moderntribe-sitebuilder'),
 		loginUrlLabelText: __('Login URL', 'moderntribe-sitebuilder'),
 		loginUrlHelperLink: 'https://www.nexcess.net/storebuilder',
 		loginUrlHelperLinkText: __(

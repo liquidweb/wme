@@ -4,17 +4,18 @@ import {
 	Form,
 	FormField,
 	TextInput,
-	WizardSectionTitle
+	WizardSidebar
 } from '@moderntribe/wme-ui';
 import {
 	Box,
-	Chip,
+	Chip, Grid,
 	IconButton,
 	InputAdornment,
 	Link,
 	Stack
 } from '@mui/material';
 import { ContentCopy, Visibility, VisibilityOff } from '@mui/icons-material';
+import { UserIcon } from '@sb/icons';
 import { __ } from '@wordpress/i18n';
 
 import { useFirstTimeConfiguration, useUsernameValidation } from '@sb/hooks';
@@ -148,173 +149,193 @@ const UsernamePassword = () => {
 	};
 
 	return (
-		<ScreenWrapper sx={ { maxWidth: 425 } }>
-			<WizardSectionTitle
-				heading={ usernamePassword.title }
-				headingVariant="h2"
-			/>
-			<Form>
-				<Stack spacing={ 3 }>
-					<FormField
-						field={
-							<TextInput
-								defaultValue={ adminUrl }
-								disabled
-								endAdornment={
-									<InputAdornment position="end">
-										<IconButton
-											aria-label={ __(
-												'copy to clipboard',
-												'moderntribe-sitebuilder'
-											) }
-											onClick={ () =>
-												copyToClipboard(adminUrl)
-											}
-											sx={ {
-												marginRight: '-12px',
-												opacity: '0.5'
-											} }
-										>
-											<ContentCopy />
-										</IconButton>
-									</InputAdornment>
-								}
-								fullWidth
-								required
-							/>
-						}
-						helperText={
-							<>
-								{ usernamePassword.loginUrlHelperText }{ ' ' }
-								<Link
-									href={ usernamePassword.loginUrlHelperLink }
-								>
-									{ usernamePassword.loginUrlHelperLink }
-								</Link>
-							</>
-						}
-						label={ usernamePassword.loginUrlLabelText }
-					/>
-					<FormField
-						error={ ! usernamePermitted }
-						field={
-							<TextInput
-								disabled={ completed }
-								fullWidth
-								onChange={ handleUsernameChange }
-								placeholder={
-									usernamePassword.usernamePlaceholderText
-								}
-								required
-								value={
-									! completed && ! usernameChanged
-										? ''
-										: username
-								}
-							/>
-						}
-						errorMessage={
-							! usernamePermitted ? usernameMessage : undefined
-						}
-						label={
-							! completed
-								? usernamePassword.usernameLabelTextFirst
-								: usernamePassword.usernameLabelText
-						}
-					/>
-					<FormField
-						field={
-							(! completed || createNewPassword) && (
-								<TextInput
-									endAdornment={
-										<InputAdornment position="end">
-											{ passwordStrength &&
-												password.length > 0 && (
-												<Chip
-													label={
-														passwordStatus[
-															passwordStrength
-														].label
+		<Grid container sx={ { position: 'absolute', inset: 0, width: 'auto' } }>
+			<Grid item xs={ 2.5 } sx={ {
+				display: 'flex',
+				flexDirection: 'column',
+				position: 'relative',
+				zIndex: 2
+			} }>
+				<WizardSidebar
+					heading={ usernamePassword.title }
+					body={ usernamePassword.description }
+					icon={ <UserIcon /> }
+				/>
+			</Grid>
+			<Grid
+				item
+				xs={ 9.5 }
+				sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				} }>
+				<ScreenWrapper sx={ { maxWidth: 425 } }>
+					<Form>
+						<Stack spacing={ 3 }>
+							<FormField
+								field={
+									<TextInput
+										defaultValue={ adminUrl }
+										disabled
+										endAdornment={
+											<InputAdornment position="end">
+												<IconButton
+													aria-label={ __(
+														'copy to clipboard',
+														'moderntribe-sitebuilder'
+													) }
+													onClick={ () =>
+														copyToClipboard(adminUrl)
 													}
-													size="small"
 													sx={ {
-														color: 'white',
-														...passwordStatus[
-															passwordStrength
-														].sx
+														marginRight: '-12px',
+														opacity: '0.5'
 													} }
-												/>
-											) }
-											<IconButton
-												aria-label="toggle password visibility"
-												edge="end"
-												onClick={ () =>
-													setShowPassword(
-														! showPassword
-													)
-												}
-												onMouseDown={
-													handleMouseDownPassword
-												}
-											>
-												{ showPassword ? (
-													<VisibilityOff />
-												) : (
-													<Visibility />
-												) }
-											</IconButton>
-										</InputAdornment>
-									}
-									fullWidth
-									onChange={ handlePasswordChange }
-									placeholder={
-										usernamePassword.passwordPlaceholderText
-									}
-									type={ showPassword ? 'text' : 'password' }
-									value={ password }
-								/>
-							)
-						}
-						helperText={
-							! completed || createNewPassword
-								? usernamePassword.passwordHelperText
-								: undefined
-						}
-						label={
-							! completed
-								? usernamePassword.passwordLabelTextFirst
-								: 'Password'
-						}
-					>
-						{ completed && createNewPassword && (
-							<Button
-								onClick={ () => setCreateNewPassword(false) }
-								sx={ {
-									mt: 2,
-									width: '100%'
-								} }
-								variant="outlined"
+												>
+													<ContentCopy />
+												</IconButton>
+											</InputAdornment>
+										}
+										fullWidth
+										required
+									/>
+								}
+								helperText={
+									<>
+										{ usernamePassword.loginUrlHelperText }{ ' ' }
+										<Link
+											href={ usernamePassword.loginUrlHelperLink }
+										>
+											{ usernamePassword.loginUrlHelperLink }
+										</Link>
+									</>
+								}
+								label={ usernamePassword.loginUrlLabelText }
+							/>
+							<FormField
+								error={ ! usernamePermitted }
+								field={
+									<TextInput
+										disabled={ completed }
+										fullWidth
+										onChange={ handleUsernameChange }
+										placeholder={
+											usernamePassword.usernamePlaceholderText
+										}
+										required
+										value={
+											! completed && ! usernameChanged
+												? ''
+												: username
+										}
+									/>
+								}
+								errorMessage={
+									! usernamePermitted ? usernameMessage : undefined
+								}
+								label={
+									! completed
+										? usernamePassword.usernameLabelTextFirst
+										: usernamePassword.usernameLabelText
+								}
+							/>
+							<FormField
+								field={
+									(! completed || createNewPassword) && (
+										<TextInput
+											endAdornment={
+												<InputAdornment position="end">
+													{ passwordStrength &&
+														password.length > 0 && (
+														<Chip
+															label={
+																passwordStatus[
+																	passwordStrength
+																].label
+															}
+															size="small"
+															sx={ {
+																color: 'white',
+																...passwordStatus[
+																	passwordStrength
+																].sx
+															} }
+														/>
+													) }
+													<IconButton
+														aria-label="toggle password visibility"
+														edge="end"
+														onClick={ () =>
+															setShowPassword(
+																! showPassword
+															)
+														}
+														onMouseDown={
+															handleMouseDownPassword
+														}
+													>
+														{ showPassword ? (
+															<VisibilityOff />
+														) : (
+															<Visibility />
+														) }
+													</IconButton>
+												</InputAdornment>
+											}
+											fullWidth
+											onChange={ handlePasswordChange }
+											placeholder={
+												usernamePassword.passwordPlaceholderText
+											}
+											type={ showPassword ? 'text' : 'password' }
+											value={ password }
+										/>
+									)
+								}
+								helperText={
+									! completed || createNewPassword
+										? usernamePassword.passwordHelperText
+										: undefined
+								}
+								label={
+									! completed
+										? usernamePassword.passwordLabelTextFirst
+										: 'Password'
+								}
 							>
-								{ usernamePassword.cancelNewPasswordText }
-							</Button>
-						) }
-						{ completed && ! createNewPassword && (
-							<Box>
-								<Button
-									onClick={ () => setCreateNewPassword(true) }
-									sx={ {
-										width: '100%'
-									} }
-									variant="outlined"
-								>
-									{ usernamePassword.setNewPasswordText }
-								</Button>
-							</Box>
-						) }
-					</FormField>
-				</Stack>
-			</Form>
-		</ScreenWrapper>
+								{ completed && createNewPassword && (
+									<Button
+										onClick={ () => setCreateNewPassword(false) }
+										sx={ {
+											mt: 2,
+											width: '100%'
+										} }
+										variant="outlined"
+									>
+										{ usernamePassword.cancelNewPasswordText }
+									</Button>
+								) }
+								{ completed && ! createNewPassword && (
+									<Box>
+										<Button
+											onClick={ () => setCreateNewPassword(true) }
+											sx={ {
+												width: '100%'
+											} }
+											variant="outlined"
+										>
+											{ usernamePassword.setNewPasswordText }
+										</Button>
+									</Box>
+								) }
+							</FormField>
+						</Stack>
+					</Form>
+				</ScreenWrapper>
+			</Grid>
+		</Grid>
 	);
 };
 
