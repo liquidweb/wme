@@ -57,7 +57,14 @@ const FirstTimeConfigurationWizard = () => {
 		<>
 			{ steps[ stepIndex ].screen }
 			<WizardFooter
-				sx={ { position: 'fixed' } }
+				sx={ {
+					position: 'fixed',
+					bottom: 0,
+					left: '20.833333%',
+					right: 0,
+					marginInline: 0,
+					backgroundColor: 'transparent'
+				} }
 				steps={ steps }
 				activeStep={ stepIndex }
 				isLoading={ isLoading }
