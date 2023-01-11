@@ -26,10 +26,11 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 
 	return (
 		<WmeWizardHeader>
-			<Box px={ 3 } sx={ {
+			<Box sx={ {
 				display: 'flex',
 				justifyContent: 'space-between',
 				width: '100%',
+				px: 3
 			} }>
 				<Logo
 					width="100"
