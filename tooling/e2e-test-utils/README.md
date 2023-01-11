@@ -35,27 +35,6 @@ const admin = new Admin( { page, pageUtils } );
 await admin.visitAdminPage( 'options-general.php' );
 ```
 
-### Editor
-
-End to end test utilities for the WordPress Block Editor.
-
-To use these utilities, instantiate them within each test file:
-```js
-test.use( {
-	editor: async ( { page }, use ) => {
-		await use( new Editor( { page, hasIframe: true } ) );
-	},
-} );
-```
-
-The `hasIframe` property denotes whether the editor canvas uses an Iframe, as the site editor currently does. Omit this for non-iframe editors.
-
-Within a test or test utility, use the `canvas` property to select elements within the iframe canvas:
-
-```js
-await editor.canvas.locator( 'role=document[name="Paragraph block"i]' )
-```
-
 ### PageUtils
 
 Generic Playwright utilities for interacting with web pages.
