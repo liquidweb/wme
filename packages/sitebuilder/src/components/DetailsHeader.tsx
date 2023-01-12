@@ -5,6 +5,7 @@ import { Button } from '@moderntribe/wme-ui';
 
 const DetailsHeader = () => {
 	const handleClick = () => {
+		// eslint-disable-next-line no-alert
 		alert('This does nothing - what should be here?');
 	};
 

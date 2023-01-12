@@ -40,10 +40,10 @@ class LookAndFeel extends Card {
 	public function props() {
 		return [
 			'id'        => 'look-and-feel',
-			'title'     => __( 'Design your site', 'wme-sitebuilder' ),
+			'navTitle'  => __( 'Design', 'wme-sitebuilder' ),
+			'title'     => __( 'Design', 'wme-sitebuilder' ),
 			'intro'     => __( 'It\'s all about appearances.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
-			'time'      => __( '3 Minutes', 'wme-sitebuilder' ),
 			'rows'      => $this->rows(),
 			'footers'   => $this->footer(),
 		];
@@ -66,7 +66,6 @@ class LookAndFeel extends Card {
 					'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
 					'title'   => __( 'Fonts & Colors', 'wme-sitebuilder' ),
 					'intro'   => __( 'Further customize the look of your site.', 'wme-sitebuilder' ),
-					'icon'    => 'setup-icon-palette.png',
 					'url'     => $customizer_url,
 				],
 			];
@@ -77,9 +76,8 @@ class LookAndFeel extends Card {
 				'id'         => 'look-and-feel-wizard',
 				'type'       => 'task',
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-				'title'      => __( 'Select A Starter Template', 'wme-sitebuilder' ),
+				'title'      => __( 'Change your font styles and colors', 'wme-sitebuilder' ),
 				'intro'      => __( 'Choose a design to start with and customize.', 'wme-sitebuilder' ),
-				'icon'       => 'setup-icon-design.png',
 				'wizardHash' => '/wizard/look-and-feel',
 			],
 		];
