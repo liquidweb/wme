@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { WizardFooter } from '@moderntribe/wme-ui';
+import { WizardFooter, WizardSidebar } from '@moderntribe/wme-ui';
 import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 
 import { useWizard, useFirstTimeConfiguration } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
+import { Grid } from '@mui/material';
 
 const FirstTimeConfigurationWizard = () => {
 	const {
@@ -54,10 +55,41 @@ const FirstTimeConfigurationWizard = () => {
 	};
 
 	return (
-		<>
-			{ steps[ stepIndex ].screen }
+		<Grid container sx={ { position: 'absolute', inset: 0 } }>
+			{ activeStep !== lastStep && (
+				<Grid item xs={ 2.5 } sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					position: 'relative',
+					zIndex: 2
+				} }>
+					<WizardSidebar
+						heading={ steps[ stepIndex ].label || '' }
+						body={ steps[ stepIndex ].description || '' }
+						icon={ steps[ stepIndex ].icon }
+					/>
+				</Grid>
+			) }
+			<Grid
+				item
+				xs={ activeStep === lastStep ? 12 : 9.5 }
+				sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				} }>
+				{ steps[ stepIndex ].screen }
+			</Grid>
 			<WizardFooter
-				sx={ { position: 'fixed' } }
+				sx={ {
+					position: 'fixed',
+					bottom: 0,
+					left: activeStep === lastStep ? 0 : '20.833333%',
+					right: 0,
+					marginInline: 0,
+					backgroundColor: 'transparent'
+				} }
 				steps={ steps }
 				activeStep={ stepIndex }
 				isLoading={ isLoading }
@@ -75,7 +107,7 @@ const FirstTimeConfigurationWizard = () => {
 				}
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }
-		</>
+		</Grid>
 	);
 };
 

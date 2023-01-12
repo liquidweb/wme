@@ -8,11 +8,14 @@ import {
   Dialog,
   DialogProps,
   DialogContent,
-  Box,
+  Grid,
   Paper,
   PaperProps,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { WizardFooter, WizardSidebar } from '..';
+import type { WizardSidebarProps } from '../wizard-sidebar/wizard-sidebar';
+import type { WizardFooterProps } from '../wizard-footer/wizard-footer';
 
 interface WmePaperProps extends PaperProps {
   ref?: Ref<HTMLDivElement>;
@@ -21,22 +24,38 @@ interface WmePaperProps extends PaperProps {
 interface WmeDialogProps extends DialogProps {
   children?: ReactNode;
   bgStyles?: {};
-  logoSrc?: string;
-  logoAlt?: string;
+  SidebarProps?: WizardSidebarProps;
+  FooterProps?: WizardFooterProps;
   exit?: ReactElement;
   PaperProps?: WmePaperProps;
 }
 
-const StyledDialogContent = styled(DialogContent, {
-  name: 'WmeWizard',
-  slot: 'DialogContent',
+const StyledDialogGridContainer = styled(Grid, {
+  name: 'WmeWizardGrid',
+  slot: 'Root',
 })(() => ({
-  padding: '16px 32px',
-  overflowY: 'auto',
-  overflowX: 'hidden',
+  height: '100%',
+}));
+
+const SidebarContainer = styled(Grid, {
+  name: 'SidebarContainer',
+  slot: 'Root',
+})(() => ({
   display: 'flex',
   flexDirection: 'column',
-  height: '100%',
+  position: 'relative',
+}));
+
+const WizardContainer = styled(
+  Grid,
+  {
+    name: 'WizardContainer',
+    slot: 'Root',
+  },
+)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
 }));
 
 const PaperComponent = forwardRef((props: WmePaperProps, ref: Ref<HTMLDivElement>) => (
@@ -47,11 +66,13 @@ const Wizard = forwardRef((props: WmeDialogProps, ref: Ref<HTMLDivElement>) => {
   const {
     children,
     bgStyles,
-    logoSrc,
-    logoAlt,
+    SidebarProps,
+    FooterProps,
     exit,
     ...rest
   } = props;
+
+  const hasSidebar = SidebarProps !== undefined;
 
   return (
     <Dialog
@@ -61,11 +82,23 @@ const Wizard = forwardRef((props: WmeDialogProps, ref: Ref<HTMLDivElement>) => {
       PaperComponent={PaperComponent}
       PaperProps={{ ref }}
     >
-      <Box sx={{ ...bgStyles }}>
-        <StyledDialogContent className="WmeWizard-dialogContent">
+      <StyledDialogGridContainer container>
+        {hasSidebar && (
+          <SidebarContainer item xs={2.5}>
+            <WizardSidebar {...SidebarProps} />
+          </SidebarContainer>
+        )}
+        <WizardContainer
+          item
+          xs={hasSidebar ? 9.5 : 12}
+          sx={bgStyles}
+        >
           {children}
-        </StyledDialogContent>
-      </Box>
+          {FooterProps && (
+            <WizardFooter {...FooterProps} />
+          )}
+        </WizardContainer>
+      </StyledDialogGridContainer>
     </Dialog>
   );
 });

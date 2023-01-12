@@ -165,19 +165,19 @@ export type WMEVariants = keyof typeof typographyVariants;
 let themeWME = createTheme({
   palette: {
     primary: {
-      main: '#0047FF',
-      dark: '#0033B8',
-      light: '#7A9FFF',
+      main: '#7000FF',
+      dark: '#5A00CD',
+      light: '#9A76F3',
     },
     secondary: {
-      main: '#A91CFF',
-      dark: '#6E08AD',
-      light: '#D99CFF',
+      main: '#000000',
+      dark: '#2A222F',
+      light: '#605666',
     },
     success: {
-      main: '#4FB669',
-      dark: '#11772A',
-      light: '#EDF7ED',
+      main: '#1B8F6D',
+      dark: '#0F5741',
+      light: '#BFE3BE',
     },
     text: {
       primary: '#000000',
@@ -185,33 +185,33 @@ let themeWME = createTheme({
       disabled: '#757575',
       white: '#FFFFFF',
       placeholder: '#757575',
-      link: '#0047FF',
+      link: '#0500FF',
     },
     border: {
-      ui: '#C4C4C4',
+      ui: '#DFDFDF',
       layout: '#C4C4C4',
       dark: '#000000',
     },
     error: {
-      main: '#FF0000',
+      main: '#DF3416',
       dark: '#AA0000',
       light: '#FF9492',
     },
     warning: {
-      main: '#EC6C20',
-      dark: '#E3521B',
-      light: '#FD9826',
+      main: '#EC563D',
+      dark: '#B53200',
+      light: '#FFDACA',
     },
     info: {
-      main: '#158ACE',
-      dark: '#085796',
-      light: '#E9F5FE',
+      main: '#0500FF',
+      dark: '#020129',
+      light: '#ADD7FA',
     },
     background: {
       primary: '#FFFFFF',
       secondary: '#FAFAFA',
       hover: '#F5F5F5',
-      dark: '#2A3353',
+      dark: '#000000',
       grey: '#F5F5F5',
       disabled: '#F0F1F9',
     },
@@ -245,6 +245,14 @@ themeWME = createTheme(themeWME, {
           '& .MuiTooltip-arrow': {
             color: themeWME.palette.background.dark,
           },
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: themeWME.palette.text.link,
+          textDecorationColor: themeWME.palette.text.link,
         },
       },
     },

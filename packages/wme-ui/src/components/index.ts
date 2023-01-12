@@ -13,6 +13,9 @@ export * from './setup-card';
 export { default as SetupCardAccordion } from './setup-card-accordion';
 export * from './setup-card-accordion';
 
+export { default as ContentAccordion } from './content-accordion';
+export * from './content-accordion';
+
 export { default as SetupCardHeader } from './setup-card-header';
 export * from './setup-card-header';
 
@@ -52,6 +55,12 @@ export * from './setup-card-list-item';
 export { default as Chip } from './chip';
 export * from './chip';
 
+export { default as Pill } from './pill';
+export * from './pill';
+
+export { default as PillGroup } from './pill-group';
+export * from './pill-group';
+
 export { default as ProgressBar } from './progress-bar';
 export * from './progress-bar';
 
@@ -81,6 +90,9 @@ export * from './wizard-header';
 
 export { default as WizardSectionTitle } from './wizard-section-title';
 export * from './wizard-section-title';
+
+export { default as WizardSidebar } from './wizard-sidebar';
+export * from './wizard-sidebar';
 
 export { default as WizardFooter } from './wizard-footer';
 export * from './wizard-footer';
@@ -150,3 +162,9 @@ export * from './switch';
 
 export { default as ListItemCheckout } from './list-item-checkout';
 export * from './list-item-checkout';
+
+export { default as TemplateSelectGroup } from './template-select-group';
+export * from './template-select-group';
+
+export { default as JumpNav } from './jump-nav';
+export * from './jump-nav';

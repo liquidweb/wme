@@ -30,7 +30,7 @@ const StyleCardSelectItem = styled(ToggleButton, {
   }),
   '&.MuiButtonBase-root.MuiToggleButton-root.Mui-selected': {
     backgroundColor: 'transparent',
-    borderColor: theme.palette.primary.light,
+    borderColor: theme.palette.secondary.main,
     borderWidth: 1,
     borderStyle: 'solid',
   },
@@ -44,12 +44,12 @@ const StyleCardSelectItem = styled(ToggleButton, {
       border: `1px solid ${theme.palette.border.ui}`,
     },
     '&:hover, &:focus': {
-      borderColor: theme.palette.primary.main,
+      borderColor: theme.palette.secondary.dark,
       backgroundColor: 'transparent',
     },
     '& + .MuiButtonBase-root.WmeCardSelectItem-root.Mui-selected': {
       backgroundColor: 'transparent',
-      borderColor: theme.palette.primary.light,
+      borderColor: theme.palette.secondary.main,
       borderWidth: 1,
       borderStyle: 'solid',
     },
@@ -84,12 +84,12 @@ const StyleCardSelectCompleteIcon = styled('div', {
   width: theme.spacing(2.75),
   height: theme.spacing(2.75),
   borderRadius: '50%',
-  backgroundColor: alpha(theme.palette.primary.light, 0.2),
+  backgroundColor: theme.palette.secondary.main,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   '& .MuiSvgIcon-root': {
-    color: theme.palette.primary.main,
+    color: theme.palette.text.white,
     fontSize: '1.4em',
   },
 }));

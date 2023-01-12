@@ -11,13 +11,16 @@ import { styled } from '@mui/material/styles';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
+import SendIcon from '@mui/icons-material/Send';
 import { Button } from '..';
 import { useMaxActiveStep } from '../../hooks';
 
-interface WizardFooterProps extends BoxProps {
+export interface WizardFooterProps extends BoxProps {
   backText?: string;
   onBack?: () => void;
   nextText?: string;
+  nextStartIcon?: ReactNode;
+  nextEndIcon?: ReactNode;
   onNext?: () => void;
   skipText?: string;
   onSkip?: () => void;
@@ -56,14 +59,11 @@ const WizardFooterContainer = styled(Box, {
   display: 'flex',
   alignItems: 'center',
   marginTop: 'auto',
-  position: 'absolute',
   justifyContent: 'center',
-  left: theme.spacing(2),
-  right: theme.spacing(2),
-  bottom: 0,
+  marginLeft: theme.spacing(2),
+  marginRight: theme.spacing(2),
   padding: `${theme.spacing(2)} ${theme.spacing(2)}`,
   backgroundColor: theme.palette.background.primary,
-  borderTop: `1px solid ${theme.palette.border.layout}`,
 }));
 
 const Prev = styled(Box, {
@@ -110,14 +110,49 @@ const StyledStepper = styled(Stepper, {
 const StyledStepButton = styled(StepButton, {
   name: 'WmeStepButton',
   slot: 'Root',
-})(() => ({
+})(({ theme }) => ({
   '& .MuiStepLabel-root': {
     '& .MuiStepLabel-iconContainer': {
       '& .MuiSvgIcon-root': {
+        color: theme.palette.secondary.main,
         width: '18px',
         height: '18px',
       },
     },
+    '& .MuiStepLabel-labelContainer': {
+      '& .MuiStepLabel-label': {
+        fontWeight: 500,
+      },
+    },
+    '&.Mui-disabled': {
+      '& .MuiStepLabel-iconContainer': {
+        '& .MuiSvgIcon-root': {
+          color: theme.palette.text.disabled,
+        },
+      },
+      '& .MuiStepLabel-label.Mui-disabled': {
+        color: theme.palette.text.disabled,
+      },
+      '&:hover': {
+        '& .MuiStepLabel-labelContainer': {
+          textDecoration: 'underline',
+          textDecorationColor: theme.palette.text.disabled,
+          cursor: 'pointer',
+        },
+      },
+    },
+  },
+}));
+
+const StyledLoadingButton = styled(LoadingButton, {
+  name: 'WmeLoadingButton',
+  slot: 'Root',
+})(({ theme }) => ({
+  textTransform: 'none',
+  paddingLeft: theme.spacing(5),
+  '&.MuiButtonBase-root': {
+    color: theme.palette.text.white,
+    backgroundColor: theme.palette.text.disabled,
   },
 }));
 
@@ -126,6 +161,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     backText,
     onBack,
     nextText,
+    nextEndIcon,
+    nextStartIcon,
     onNext,
     skipText,
     onSkip,
@@ -164,6 +201,7 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                 startIcon={<ArrowBack />}
                 onClick={onBack}
                 disabled={disable}
+                sx={{ marginLeft: -1 }}
               >
                 {backText}
               </Button>
@@ -213,14 +251,13 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
               }
               {
                 isLoading ? (
-                  <LoadingButton
+                  <StyledLoadingButton
                     loading
                     variant="contained"
                     loadingPosition="start"
-                    startIcon={<ChevronRight />}
                   >
                     {loadingText}
-                  </LoadingButton>
+                  </StyledLoadingButton>
                 )
                   : (
                     <Button
@@ -229,7 +266,8 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
                       onClick={isLastStep ? save : onNext}
                       disabled={(disableNext || currStep?.disableNext || disable)}
                       className={nextButtonClassName}
-                      endIcon={<ChevronRight />}
+                      endIcon={nextEndIcon}
+                      startIcon={nextStartIcon}
                     >
                       {nextText}
                     </Button>

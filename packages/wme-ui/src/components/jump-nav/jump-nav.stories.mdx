@@ -1,0 +1,113 @@
+import { useState } from "react";
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { JumpNav } from "..";
+import { Box, Typography } from "@mui/material";
+import backArrow from "../../stories/assets/back-arrow.svg";
+
+<Meta
+	title="Navigation/JumpNav"
+	component={JumpNav}
+	argTypes={{
+		title: {
+			control: {
+				type: "text",
+			},
+			description: "Text for jump nav title",
+		},
+		links: {
+			control: "object",
+			description:
+				"Array of links. Each link should be an object containing the properties shown in the control.",
+			table: {
+				type: {
+					summary: "Array",
+				},
+			},
+		},
+	}}
+/>
+
+export const Template = (args) => {
+	return <JumpNav {...args} />;
+};
+
+# Jump Navigation
+
+Component displaying a list of anchor links for creating a navigation in a single page for the sections.
+
+Links should be passed in as an array of objects, as modeled below.
+
+```
+const links = [
+	{
+		id: 0,
+		label: "label 1",
+	},
+    {
+        id: 1,
+        label: "label 2",
+        remainingTasks: 3
+    },
+];
+```
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React from 'react';
+import { JumpNav } from '@moderntribe/wme';
+
+export const MyJumpNav = (props) => {
+  return (
+    <JumpNav {...props} />
+  );
+};
+```
+
+## Canvas
+
+<Canvas>
+	<Story
+		name="Default"
+		args={{
+			title: "Jump to:",
+			links: [
+				{
+					id: 0,
+					label: "The Basics",
+					onClick: (e) => console.log(e.target),
+				},
+				{
+					id: 1,
+					label: "Design",
+					onClick: (e) => console.log(e.target),
+					remainingTasks: 2,
+				},
+				{
+					id: 2,
+					label: "Content",
+					onClick: (e) => console.log(e.target),
+					remainingTasks: 3,
+				},
+				{
+					id: 3,
+					label: "Domain",
+					onClick: (e) => console.log(e.target),
+					remainingTasks: 1,
+				},
+				{
+					id: 4,
+					label: "Goals",
+					onClick: (e) => console.log(e.target),
+					remainingTasks: 3,
+				},
+			],
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>

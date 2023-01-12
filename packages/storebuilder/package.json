@@ -1,6 +1,6 @@
 {
 	"name": "@moderntribe/storebuilder",
-	"version": "1.5.2",
+	"version": "2.0.0",
 	"description": "StoreBuilder foundation",
 	"source": "src/index.tsx",
 	"main": "dist/umd/index.js",

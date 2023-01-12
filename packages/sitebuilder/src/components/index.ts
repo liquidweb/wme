@@ -6,3 +6,5 @@ export * from './PoweredByKadence';
 export * from './ModalDeviceSelection';
 export * from './Loadable';
 export * from './Loading';
+export * from './DetailsHeader';
+export * from './JumpNav';

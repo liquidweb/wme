@@ -1,165 +1,217 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Grid, Link, Typography } from "@mui/material";
+import { ExpandMore, Visibility } from "@mui/icons-material";
+import { theme } from "../../theme";
 import {
-  ArgsTable,
-  Story,
-  Canvas,
-  Meta,
-} from '@storybook/addon-docs';
-import {
-  Grid,
-  Link,
-  Typography,
-} from '@mui/material';
-import { ExpandMore, Visibility } from '@mui/icons-material';
-import { theme } from '../../theme';
-import { SetupCardFooter, SetupCardList, SetupCardListItem, SetupCardAccordion } from '..';
+	SetupCardFooter,
+	SetupCardList,
+	SetupCardListItem,
+	ContentAccordion,
+} from "..";
 
 <Meta
-  title="Setup Cards/SetupCardFooter"
-  component={SetupCardFooter}
-  decorators={[
-    (Story) => (
-      <div style={{ maxWidth: 800, margin: '0 auto' }}>
-        <Story />
-      </div>
-    ),
-  ]}
-  argTypes={{
-    children: {
-      control: false,
-      description: 'The content of the component.',
-      table: {
-        type: {
-          summary: 'node',
-        },
-      }
-    }
-  }}
+	title="Setup Cards/SetupCardFooter"
+	component={SetupCardFooter}
+	decorators={[
+		(Story) => (
+			<div style={{ maxWidth: 800, margin: "0 auto" }}>
+				<Story />
+			</div>
+		),
+	]}
+	argTypes={{
+		children: {
+			control: false,
+			description: "The content of the component.",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+	}}
 />
 
 export const FooterWithLinks = () => (
-  <SetupCardFooter>
-    <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-      <Grid item>
-        <Typography fontWeight={600} variant="body1">Footer Message?</Typography>
-      </Grid>
-      <Grid item>
-        <Link href="#link-one" variant="body1">Link One</Link>
-      </Grid>
-      <Grid item>
-        <Link href="#link-two" variant="body1">Link Two</Link>
-      </Grid>
-      <Grid item>
-        <Link href="#link-three" variant="body1">Link Three</Link>
-      </Grid>
-    </Grid>
-  </SetupCardFooter>
+	<SetupCardFooter>
+		<Grid container spacing={2} sx={{ alignItems: "center" }}>
+			<Grid item>
+				<Typography fontWeight={600} variant="body1">
+					Footer Message?
+				</Typography>
+			</Grid>
+			<Grid item>
+				<Link href="#link-one" variant="body1">
+					Link One
+				</Link>
+			</Grid>
+			<Grid item>
+				<Link href="#link-two" variant="body1">
+					Link Two
+				</Link>
+			</Grid>
+			<Grid item>
+				<Link href="#link-three" variant="body1">
+					Link Three
+				</Link>
+			</Grid>
+		</Grid>
+	</SetupCardFooter>
 );
 
 export const FooterWithText = () => (
-  <SetupCardFooter>
-    <Typography fontWeight={600} variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.</Typography>
-  </SetupCardFooter>
+	<SetupCardFooter>
+		<Typography fontWeight={600} variant="body1">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat
+			felis, consectetur et velit non, fermentum vulputate sapien. Morbi
+			rhoncus a metus et scelerisque.
+		</Typography>
+	</SetupCardFooter>
 );
 
 export const FooterWithAccordion = () => (
-  <SetupCardFooter>
-    <SetupCardAccordion
-      id="footer-accordion"
-      title="Expand This Section"
-    >
-      <Grid container spacing={6}>
-        <Grid item xs={6}>
-          <img
-            style={{ width: '100%', height: 'auto', borderRadius: theme.shape.borderRadius }}
-            src="https://picsum.photos/600/250"
-            alt="Test"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Typography variant="overline">3 Minutes</Typography>
-          <Typography variant="h3" mb={1}>
-            Lorem ipsum dolor sit ametconsectetur adipiscing elit
-          </Typography>
-          <Typography variant="caption">
-            Duis mollis, est non commodo luctus, nisi erat porttitor
-            ligula, eget lacinia odio sem nec elit. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam.
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid container rowSpacing={3} columnSpacing={8} mt={0}>
-        <Grid item md={4}>
-          <Typography fontWeight={600} mb={2}>Column One</Typography>
-          <SetupCardList>
-            <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-          </SetupCardList>
-        </Grid>
-        <Grid item md={4}>
-          <Typography fontWeight={600} mb={2}>Column Two</Typography>
-          <SetupCardList>
-            <SetupCardListItem title="Testing with icon title" href="#testing-link" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-          </SetupCardList>
-        </Grid>
-        <Grid item md={4}>
-          <Typography fontWeight={600} mb={2}>Column Three</Typography>
-          <SetupCardList>
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-            <SetupCardListItem title="Testing with icon title" href="#test-two" icon={<Visibility />} />
-          </SetupCardList>
-        </Grid>
-      </Grid>
-    </SetupCardAccordion>
-  </SetupCardFooter>
+	<SetupCardFooter>
+		<ContentAccordion id="footer-accordion" title="Expand This Section">
+			<Grid container spacing={6}>
+				<Grid item xs={6}>
+					<img
+						style={{
+							width: "100%",
+							height: "auto",
+							borderRadius: theme.shape.borderRadius,
+						}}
+						src="https://picsum.photos/600/250"
+						alt="Test"
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<Typography variant="overline">3 Minutes</Typography>
+					<Typography variant="h3" mb={1}>
+						Lorem ipsum dolor sit ametconsectetur adipiscing elit
+					</Typography>
+					<Typography variant="caption">
+						Duis mollis, est non commodo luctus, nisi erat porttitor
+						ligula, eget lacinia odio sem nec elit. Cras justo odio,
+						dapibus ac facilisis in, egestas eget quam.
+					</Typography>
+				</Grid>
+			</Grid>
+			<Grid container rowSpacing={3} columnSpacing={8} mt={0}>
+				<Grid item md={4}>
+					<Typography fontWeight={600} mb={2}>
+						Column One
+					</Typography>
+					<SetupCardList>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#testing-link"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+					</SetupCardList>
+				</Grid>
+				<Grid item md={4}>
+					<Typography fontWeight={600} mb={2}>
+						Column Two
+					</Typography>
+					<SetupCardList>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#testing-link"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+					</SetupCardList>
+				</Grid>
+				<Grid item md={4}>
+					<Typography fontWeight={600} mb={2}>
+						Column Three
+					</Typography>
+					<SetupCardList>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+						<SetupCardListItem
+							title="Testing with icon title"
+							href="#test-two"
+							icon={<Visibility />}
+						/>
+					</SetupCardList>
+				</Grid>
+			</Grid>
+		</ContentAccordion>
+	</SetupCardFooter>
 );
 
 # Setup Card Footer
+
 A task card footer that allows users to store additional footnoted information such
-as links or additional helper text. If used, they always come last in a Task Card. 
+as links or additional helper text. If used, they always come last in a Task Card.
 
 ## Props
+
 <ArgsTable story="." />
 
 ## Footer With Links
+
 <Canvas>
-  <Story name="FooterWithLinks">
-    {FooterWithLinks.bind({})}
-  </Story>
+	<Story name="FooterWithLinks">{FooterWithLinks.bind({})}</Story>
 </Canvas>
 
 ## Footer With Text
 
 <Canvas>
-  <Story name="FooterWithText">
-    {FooterWithText.bind({})}
-  </Story>
+	<Story name="FooterWithText">{FooterWithText.bind({})}</Story>
 </Canvas>
 
 ## Footer With Accordion
 
 <Canvas>
-  <Story name="FooterWithAccordion">
-    {FooterWithAccordion.bind({})}
-  </Story>
+	<Story name="FooterWithAccordion">{FooterWithAccordion.bind({})}</Story>
 </Canvas>
 
 ```
 import React from 'react';
-import { SetupCardFooter, SetupCardAccordion } from '@moderntribe/wme';
+import { SetupCardFooter, ContentAccordion } from '@moderntribe/wme';
 
 const MySetupCardFooter = () => (
   <SetupCardFooter>
-    <SetupCardAccordion
+    <ContentAccordion
       id="my-footer-accordion"
       title="Click to see more"
     >
       <p>Content to be revealed goes here!</p>
-    </SetupCardAccordion>
+    </ContentAccordion>
   </SetupCardFooter>
 );
 ```

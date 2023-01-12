@@ -1,0 +1,429 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import {
+	SetupCardAccordion,
+	SetupCardTask,
+	Button,
+	SetupCardContent,
+} from "..";
+import { Typography } from "@mui/material";
+import * as SetupCardFooterStories from "../setup-card-footer/setup-card-footer.stories.mdx";
+
+<Meta
+	title="Setup Cards/SetupCardAccordion"
+	component={SetupCardAccordion}
+	parameters={{
+		backgrounds: {
+			default: "light",
+		},
+	}}
+	argTypes={{
+		header: {
+			type: "string",
+			description: "The title of the accordion.",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		subHeader: {
+			type: "string",
+			description: "The subtitle of the accordion.",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		id: {
+			type: "string",
+			description: "The unique Id for this accordion.",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		isComplete: {
+			control: "boolean",
+			description: "Shows a green mark if true",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		chipBackground: {
+			control: "select",
+			options: [
+				"info",
+				"primary",
+				"success",
+				"secondary",
+				"error",
+				"warning",
+			],
+			description: "The background color of the chip",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		chipText: {
+			type: "string",
+			description: "The content of the chip.",
+			table: {
+				type: {
+					summary: "node",
+				},
+			},
+		},
+		toggleOpen: {
+			control: false,
+			description:
+				"Expands or closes the accordion onClick. This must be used with the `expanded` prop to control the accordion.",
+			table: {
+				type: {
+					summary: "func",
+				},
+			},
+			action: "Toggle accordion open/close status",
+		},
+	}}
+	decorators={[
+		(Story) => (
+			<div style={{ maxWidth: 800, margin: "0 auto" }}>
+				<Story />
+			</div>
+		),
+	]}
+/>
+
+export const Template = (args) => (
+	<SetupCardAccordion {...args}>
+		<SetupCardContent>
+			<SetupCardTask
+				title="This is a task"
+				intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				isComplete
+			/>
+			<SetupCardTask
+				title="This is a task"
+				intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+			/>
+			<SetupCardTask
+				title="This is a task"
+				intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				button={<Button variant="contained">Click me</Button>}
+			/>
+		</SetupCardContent>
+	</SetupCardAccordion>
+);
+
+# Setup Card Header
+
+The Wizard header features the logo and the ability to exit.
+
+## Props
+
+<ArgsTable story="." />
+
+## Single accordion
+
+<Canvas>
+	<Story
+		name="Default"
+		args={{
+			header: "Example Card Header",
+			subHeader: "Donec ullamcorper nulla non metus auctor fringilla.",
+			id: "test123",
+		}}
+	>
+		{Template.bind()}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardAccordion, SetupCardContent } from "@moderntribe/wme";
+
+const MySetupCardAccordion = () => (
+	<SetupCardAccordion
+		id="my-footer-accordion"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+	</SetupCardAccordion>
+);
+```
+
+## Single accordion with chip
+
+<Canvas>
+	<Story
+		name="With Chip"
+		args={{
+			header: "Example Card Header",
+			subHeader: "Donec ullamcorper nulla non metus auctor fringilla.",
+			id: "test123",
+			chipText: "chip",
+			chipBackground: "info",
+		}}
+	>
+		{Template.bind()}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardAccordion, SetupCardContent } from "@moderntribe/wme";
+
+const MySetupCardAccordion = () => (
+	<SetupCardAccordion
+		id="my-footer-accordion"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+		chipBackground="info"
+		chipText="chip"
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+	</SetupCardAccordion>
+);
+```
+
+## Single accordion with chip
+
+<Canvas>
+	<Story
+		name="With Complete Checkmark"
+		args={{
+			header: "Example Card Header",
+			subHeader: "Donec ullamcorper nulla non metus auctor fringilla.",
+			id: "test123",
+			isComplete: true,
+		}}
+	>
+		{Template.bind()}
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardAccordion, SetupCardContent } from "@moderntribe/wme";
+
+const MySetupCardAccordion = () => (
+	<SetupCardAccordion
+		id="my-footer-accordion"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+		isComplete={true}
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+	</SetupCardAccordion>
+);
+```
+
+## Single accordion with footer
+
+<Canvas>
+	<Story
+		name="With Footer"
+		args={{
+			header: "Example Card Header",
+			subHeader: "Donec ullamcorper nulla non metus auctor fringilla.",
+			id: "test123",
+			isComplete: true,
+		}}
+	>
+		<SetupCardAccordion
+			header="Example Card Header"
+			subHeader="Donec ullamcorper nulla non metus auctor fringilla."
+			chipText="chip"
+			id="test3"
+		>
+			<SetupCardContent>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+					isComplete
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+			</SetupCardContent>
+			<SetupCardFooterStories.FooterWithText />
+		</SetupCardAccordion>
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardAccordion, SetupCardContent } from "@moderntribe/wme";
+
+const MySetupCardAccordion = () => (
+	<SetupCardAccordion
+		id="my-footer-accordion"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+		chipBackground="info"
+		chipText="chip"
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+		<SetupCardFooter>
+			<p>Footer stuff</p>
+		<SetupCardFooter>
+	</SetupCardAccordion>
+);
+```
+
+## List of accordions
+
+<Canvas>
+	<Story name="List">
+		<SetupCardAccordion
+			header="Example Card Header"
+			subHeader="Donec ullamcorper nulla non metus auctor fringilla."
+			chipText="chip"
+			id="test3"
+		>
+			<SetupCardContent>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+					isComplete
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+			</SetupCardContent>
+		</SetupCardAccordion>
+		<SetupCardAccordion
+			header="Example Card Header"
+			subHeader="Donec ullamcorper nulla non metus auctor fringilla."
+			isComplete
+			id="test3"
+		>
+			<SetupCardContent>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+					button={<Button variant="contained">Click me</Button>}
+				/>
+			</SetupCardContent>
+		</SetupCardAccordion>
+		<SetupCardAccordion
+			header="Example Card Header"
+			subHeader="Donec ullamcorper nulla non metus auctor fringilla."
+			chipText="chip"
+			chipBackground="primary"
+			id="test3"
+		>
+			<SetupCardContent>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+			</SetupCardContent>
+		</SetupCardAccordion>
+		<SetupCardAccordion
+			header="Example Card Header"
+			subHeader="Donec ullamcorper nulla non metus auctor fringilla."
+			id="test3"
+		>
+			<SetupCardContent>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+					isComplete
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+				/>
+				<SetupCardTask
+					title="This is a task"
+					intro="Aenean eu leo quam pellentesque ornare sem lacinia"
+					button={<Button variant="contained">Click me</Button>}
+				/>
+			</SetupCardContent>
+		</SetupCardAccordion>
+	</Story>
+</Canvas>
+
+```jsx
+import React from "react";
+import { SetupCardAccordion } from "@moderntribe/wme";
+
+const MySetupCardAccordion = () => (
+	<SetupCardAccordion
+		id="my-footer-accordion1"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+		chipBackground="info"
+		chipText="chip"
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+	</SetupCardAccordion>
+	<SetupCardAccordion
+		id="my-footer-accordion2"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+		isComplete={true}
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+	</SetupCardAccordion>
+	<SetupCardAccordion
+		id="my-footer-accordion3"
+		header="Click to see more"
+		subHeader="Clicking the accordion will open the content"
+		chipBackground="error"
+		chipText="chip"
+	>
+		<SetupCardContent>
+			<p>Content to be revealed goes here!</p>
+		</SetupCardContent>
+	</SetupCardAccordion>
+);
+```
+
+## Single accordion

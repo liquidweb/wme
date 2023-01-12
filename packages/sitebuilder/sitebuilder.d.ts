@@ -57,16 +57,14 @@ declare global {
   }
 
 	interface SetupCardRowInterface {
+		completed?: boolean;
 		id: string;
-		type: 'task' | 'action';
-		variant?: string;
+		type: 'task';
 		title?: string;
 		intro?: string;
 		icon?: React.ReactElement | string;
 		taskCta?: string;
 		url?: string;
-		disabled?: boolean;
-		disableText?: string;
 		wizardHash?: string;
 	}
 
@@ -75,22 +73,51 @@ declare global {
 		title: string;
 		intro?: string;
 		completed: boolean;
-		time?: string;
-		rows: SetupCardRowInterface[];
-		footers?: any;
+		navTitle: string;
+		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
+		footer?: SetupCardFooter;
 	}
 
-	interface SetupCardFooterInterface {
-		id: string;
-		title?: string;
-		messages?: FooterMessageInterface[];
+	interface SetupCardFooter {
+		collapsible: boolean;
+		collapsibleLabel?: string;
+		rows: (SetupCardFooterRowColumns | SetupCardFooterRowLinks | SetupCardRowGoLIveInterface)[]
 	}
 
-	interface SetupCardFooterMessageInterface {
+	interface SetupCardFooterRowColumns {
+		type: 'columns';
+		gridColumns: number,
+		columns: SetupCardFooterColumn[];
+	}
+
+	interface SetupCardFooterRowLinks {
+		type: 'links';
 		title: string;
-		url: string;
-		target?: string;
-		dashicon?: string;
+		links: SetupCardLink[];
+	}
+
+	interface SetupCardFooterRowText{
+		type: 'text';
+		text: string;
+	}
+
+	interface SetupCardLink {
+		href: string;
+		label: string;
+		target: string;
+	}
+
+	interface SetupCardFooterColumn {
+		heading?: string;
+		paragraph?: string;
+		list: ListProps[];
+		image: string;
+	}
+
+	interface SetupCardRowGoLIveInterface {
+		completed: boolean;
+		id: string;
+		type: 'launch-domain-status';
 	}
 
 	interface HandleActionPayloadInterface {
@@ -122,6 +149,9 @@ declare global {
 		hideSkip?: boolean;
 		hideNext?: boolean;
 		label?: string;
+		title?: string;
+		description?: string;
+		icon?: React.ReactNode;
 		nextText?: string;
 		loadingText?: string;
 		backText?: string;
@@ -131,6 +161,7 @@ declare global {
 		disable?: boolean;
 		hidePagination?: boolean;
 	}
+
 	export interface Domain {
 		domain: string
 		is_available: boolean

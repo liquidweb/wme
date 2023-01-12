@@ -44,10 +44,10 @@ const StyledListItemCheckout = styled(MuiListItem, {
 const PrimaryText = styled(Typography, {
   name: 'WmeListItemCheckout',
   slot: 'Primary',
-})<TypographyProps & { selected?: boolean }>(({ theme, selected }) => ({
+})<TypographyProps & { selected?: boolean }>(({ theme }) => ({
   display: 'block',
   fontWeight: 600,
-  color: selected ? theme.palette.primary.dark : theme.palette.text.primary,
+  color: theme.palette.text.primary,
   flexGrow: 1,
   fontSize: '0.88rem',
 }));
@@ -72,11 +72,20 @@ const StyledListItemCheckoutContentInner = styled(Box, {
   marginRight: theme.spacing(1),
 }));
 
+const StyledAddToCartIcon = styled(AddShoppingCartIcon, {
+  name: 'WmeListItemCheckout',
+  slot: 'AddShoppingCartIcon',
+})(({ theme }) => ({
+  '&:hover': {
+    color: theme.palette.primary.main,
+  },
+}));
+
 const StyledCheckCircleIcon = styled(CheckCircleIcon, {
   name: 'WmeListItemCheckout',
   slot: 'CheckCircleIcon',
 })(({ theme }) => ({
-  color: theme.palette.primary.dark,
+  color: theme.palette.secondary.main,
 }));
 
 const StyledChip = styled(Chip, {
@@ -94,7 +103,7 @@ const ListItemCheckout: React.FC<WmeListItemCheckoutProps> = (props) => {
     chipLabel,
     disabled,
     selected,
-    icon = <AddShoppingCartIcon />,
+    icon = <StyledAddToCartIcon />,
     iconDisabled = <NotInterestedIcon />,
     iconSelected = <StyledCheckCircleIcon />,
     onClick,

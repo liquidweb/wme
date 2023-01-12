@@ -1,5 +1,17 @@
 # @moderntribe/wme-sitebuilder
 
+## 2.0.0
+
+### Major Changes
+
+- Preparing for the testing and release of Sitebuilder 2.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @moderntribe/sitebuilder@2.0.0
+  - @moderntribe/storebuilder@2.0.0
+
 ## 0.5.1
 
 ### Patch Changes

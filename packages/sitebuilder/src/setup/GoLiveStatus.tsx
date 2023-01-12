@@ -37,7 +37,11 @@ const iconSx = {
 	marginRight: '4px',
 };
 
-const StatusWrapper: React.FC<StatusWrapperInterface> = ({ children }) => <Box component="span" sx={ { display: 'flex', alignItems: 'center' } }>{ children }</Box>;
+const StatusWrapper: React.FC<StatusWrapperInterface> = ({ children }) => (
+	<Box component="span" sx={ { display: 'flex', alignItems: 'center' } }>
+		{ children }
+	</Box>
+);
 
 const StandardStatus: React.FC<StandardStatusInterface> = ({ domain, completed }) => (
 	<StatusWrapper>
@@ -75,6 +79,7 @@ const GoLiveStatus: React.FC<GoLiveStatusInterface> = (props) => {
 	};
 
 	return <SetupCardInfoRow
+		sx={ { marginBottom: '8px' } }
 		primary={ ! completed && !! capturedDomain ? <RetryStatus domain={ capturedDomain } /> : <StandardStatus domain={ domain } completed={ completed } /> }
 		secondary={ (completed || !! capturedDomain) && (
 			<Link

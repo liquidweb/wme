@@ -6,10 +6,12 @@ import {
 } from '@storybook/addon-docs';
 import { useState } from 'react';
 import {
+  ExitButton,
   Wizard,
   Button,
   WizardSectionTitle,
   WizardHeader,
+  WizardSidebar,
   WizardFooter,
   TextInput,
   PasswordInput,
@@ -19,6 +21,7 @@ import {
   FormField
 } from '..';
 import welcomeImage from '../../stories/images/ftc-welcome.png';
+
 import {
   Box,
   Typography,
@@ -64,7 +67,7 @@ import * as WizardFooterStories from '../wizard-footer/wizard-footer.stories.mdx
 export const BOOKEND_INTRO_TEXT = 'Let\'s set up a few basic details about your store. You can skip any of these steps and come back to them later if you\'re not ready to complete them yet.';
 export const BOOKEND_TITLE_TEXT = 'Welcome to StoreBuilder for WordPress!';
 export const WELCOME_IMG_ALT = 'welcome icon party emoji';
-export const BG_STYLES = { 
+export const BG_STYLES = {
   backgroundImage: `url(${window.location.origin}/images/setup-modal-background.png)`,
   backgroundPosition: 'top left',
   backgroundRepeat: 'no-repeat',
@@ -117,7 +120,7 @@ export const Fullscreen = (args) => {
                 <TextInput sx={{ marginRight: '5px' }} />
               }
               label="Username"
-            /> 
+            />
           </Grid>
           <Grid item xs={12}>
             <FormField
@@ -175,54 +178,25 @@ export const Sidebar = (args) => {
     <>
     <Typography>Change the <i>open</i> prop in "Controls" to open/close the wizard.</Typography>
     {DOCS_NOTE}
-    <Wizard {...args}>
-      <WizardHeader {...WizardHeaderStories.defaultStory.args} />
-      <Grid container spacing={ 2 } sx={{ marginBottom: '20px' }}>
-        <Grid item xs={ 2.5 } sx={{ display: 'flex', flexDirection: 'column' }}>
-          <WizardSectionTitle
-            heading="Kadence Starter Theme"
-            copy="Select a theme to view"
-            headingVariant="h3"
-          />
-          <FormField
-            field={
-              <SelectInput 
-                onChange={handleChange}
-                selectValue={item}
-                sx={{ marginBottom: '20px' }}
-                value={item}
-                width={200}
-              >
-              { themes.map((theme) => {
-                return <MenuItem id={theme.id} value={theme.value} key={theme.key}>{theme.value}</MenuItem>
-              }) }
-              </SelectInput>
-            }
-          />
-          <Button
-            variant="contained"
-            color="secondary"
-            sx={{ width: '200px' }}
-            onClick={() => console.log('Next Step Button Clicked')}
-          >Next Step</Button>
-        </Grid>
-        <Grid item xs={ 9.5 }>
-          <iframe
-            id="kadence-starter-preview"
-            title="kadence-starter-preview"
-            src={getTheme(item)}
-            style={{
-              display:'block',
-              width: '100%',
-              height: '75vh',
-              margin: '0 auto',
-              borderRadius: '4px',
-            }}
-          />
-        </Grid>
-      </Grid>
-      <WizardFooter {...WizardFooterStories.defaultStory.args}>
-      </WizardFooter>
+    <Wizard
+      {...args}
+      SidebarProps={{
+        heading: "Kadence Starter Themes",
+        body: "Nam erat felis, consectetur et velit non, fermentum vulputate sapien. Morbi rhoncus a metus et scelerisque.",
+      }}
+    >
+      <WizardHeader {...WizardHeaderStories.defaultStory.args}>
+        <span />
+        <ExitButton onClick={() => console.log('Exit Button Clicked')}>
+          Exit to Setup
+        </ExitButton>
+      </WizardHeader>
+      <Box sx={{
+        backgroundColor: '#F5F5F5',
+        flex: 1,
+        margin: '13px 22px'
+      }}/>
+      <WizardFooter {...WizardFooterStories.defaultStory.args} />
     </Wizard>
     </>
   );
@@ -237,13 +211,13 @@ Since this is for building a Wizard, the Modal will always expand to fullscreen.
 
 ## Sidebar Layout
 For a sidebar layout, we recommend using MUI's Grid component. Here's an example:
-```    
+```
 <Wizard {...props}>
   <WizardHeader heading="Wizard Heading" />
-  
-  // Outer grid container 
+
+  // Outer grid container
   <Grid container spacing={ 2 }>
-    
+
     // Left Sidebar grid start
     <Grid item xs={ 2.5 }>
       <WizardSectionTitle

@@ -40,18 +40,17 @@ class GoLive extends Card {
 	public function props() {
 		$details = [
 			'id'        => 'launch-domain',
-			'title'     => __( 'Go Live with a domain', 'wme-sitebuilder' ),
-			// phpcs:ignore Generic.Files.LineLength.TooLong
+			'navTitle'     => __( 'Domain', 'wme-sitebuilder' ),
+			'title'     => __( 'Your Domain', 'wme-sitebuilder' ),
 			'intro'     => __( 'Go live with a custom domain, whether you purchased with Nexcess or elsewhere.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
-			'time'      => $this->wizard->isComplete() ? __( 'Complete', 'wme-sitebuilder' ) : '',
 			'rows'      => [
 				[
 					'id'   => 'launch-domain-status',
 					'type' => 'launch-domain-status',
 				],
 			],
-			'footers'   => $this->footer(),
+			'footer' => $this->footer(),
 		];
 
 		if ( ! $this->wizard->isComplete() ) {
@@ -60,44 +59,39 @@ class GoLive extends Card {
 				'type'       => 'task',
 				'title'      => __( 'Purchase a domain', 'wme-sitebuilder' ),
 				'intro'      => __( 'Don\'t own a domain? Purchase a custom domain for your site.', 'wme-sitebuilder' ),
-				'icon'       => 'setup-icon-connect.png',
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
 				'wizardHash' => '/wizard/go-live-purchase',
 			];
 
 			$details['rows'][] = [
-                'id'         => 'site-domain-wizard',
-                'type'       => 'task',
-                'title'      => __( 'Connect your domain', 'wme-sitebuilder' ),
-                'intro'      => __( 'Already own a domain? Update your store URL with your custom domain.', 'wme-sitebuilder' ),
-                'icon'       => 'setup-icon-launch.png',
-                'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-                'wizardHash' => '/wizard/go-live-connect',
-            ];
+				'id'         => 'site-domain-wizard',
+				'type'       => 'task',
+				'title'      => __( 'Connect your domain', 'wme-sitebuilder' ),
+				'intro'      => __( 'Already own a domain? Update your store URL with your custom domain.', 'wme-sitebuilder' ),
+				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
+				'wizardHash' => '/wizard/go-live-connect',
+			];
 		}
 
 		return $details;
 	}
 
 	protected function footer() {
-		$footer_messages = [
-			[
-				'title'    => __( 'Our Guide To Going Live', 'wme-sitebuilder' ),
-				/* TODO: Update link. */
-				'url'      => 'https://www.nexcess.net/help/guide-to-going-live-with-storebuilder/',
-				'target'   => '_blank',
-				'dashicon' => '',
-			],
-		];
-
 		return [
-			[
-				'id'       => 'site-domain-wizard',
-				'type'     => 'site-domain-footer',
-				'title'    => __( 'Need help?', 'wme-sitebuilder' ),
-				'message'  => '',
-				'messages' => $footer_messages,
-			],
+			'collapsible' => false,
+			'rows'        => [
+				[
+					'type'  => 'links',
+					'title' => __( 'Need help?', 'wme-sitebuilder' ),
+					'links' => [
+						[
+							'label'  => __( 'Our Guide To Going Live', 'wme-sitebuilder' ),
+							'target' => '__blank',
+							'href'   => 'https://www.nexcess.net/help/guide-to-going-live-with-storebuilder/',
+						]
+					]
+				]
+			]
 		];
 	}
 }

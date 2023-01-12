@@ -34,6 +34,9 @@ const SetupCardFooterWrapper = styled(Box, {
     paddingRight: 0,
     paddingLeft: 0,
   },
+  '& .MuiTypography-body1': {
+    fontSize: theme.typography.pxToRem(14),
+  },
 }));
 
 const SetupCardFooter: React.FC<BoxProps> = (props) => {

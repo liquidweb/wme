@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { WizardSectionTitle } from '@moderntribe/wme-ui';
-import { SetupCards } from '@sb/setup';
-import { SetupData } from '@sb/setup/data/constants';
-import { StoreBuilderLogo } from '@sb/logos';
+import { DetailsHeader } from '@sb/components';
 import { useSiteBuilder } from '@sb/hooks';
-
-const { screen } = SetupData;
+import { SetupCards } from '@sb/setup';
 
 const SetupScreen = () => {
 	const { siteBuilderState: { scrollPosition }, setScrollPosition } = useSiteBuilder();
@@ -29,16 +25,8 @@ const SetupScreen = () => {
 
 	return (
 		<Box pt={ 3 } pl={ '12px' } pr={ 4 }>
-			<StoreBuilderLogo />
-			<WizardSectionTitle
-				heading={ screen.title }
-				headingVariant="h1"
-				copy={ screen.intro }
-				copyVariant="body2"
-				bookend
-				sx={ { marginTop: 4 } }
-			/>
-			<SetupCards />
+			<DetailsHeader />
+			<SetupCards showJumpNav />
 		</Box>
 	);
 };
