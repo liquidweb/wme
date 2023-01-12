@@ -1,5 +1,11 @@
 # @moderntribe/wme-utils
 
+## 2.0.0
+
+### Major Changes
+
+- Preparing for the testing and release of Sitebuilder 2.0
+
 ## 0.2.0
 
 ### Minor Changes
