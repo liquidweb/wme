@@ -76,7 +76,6 @@ declare global {
 		type: 'task';
 		title?: string;
 		intro?: string;
-		icon?: React.ReactElement | string;
 		taskCta?: string;
 		url?: string;
 		wizardHash?: string;
@@ -94,8 +93,8 @@ declare global {
 		title: string;
 	}
 
-	interface SetupRowLearnProductsInterface extends SetupCardRowInterface {
-		type: 'learn-product-types';
+	interface SetupRowLearnInterface extends SetupCardRowInterface {
+		type: 'learn-types';
 		exampleProducts?: {
 			title?: string;
 			products: ColumnLinkInterface[];
@@ -120,8 +119,8 @@ declare global {
 
 	interface SetupRowTaskButtonInterface {
 		label: string;
-		href?: string;
-		backgroundColor?: string;
+		href: string;
+		backgroundColor: string;
 	}
 
 	interface SetupCardFooter {

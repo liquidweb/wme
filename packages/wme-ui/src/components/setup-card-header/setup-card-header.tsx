@@ -4,12 +4,12 @@ import { Box, BoxProps, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Chip } from '..';
 import type { ChipProps } from '../chip';
-import { showDeprecatedWarning } from '../../../utils';
+import { showDeprecatedWarning } from '../../utils';
 
 export interface SetupCardHeaderProps extends BoxProps {
   title?: string;
   subheader?: string;
-  chipText?: string;
+  chipText?: React.ReactNode | string;
   isComplete?: boolean;
   chipBackground?: ChipProps['color']
   // Depreacated props

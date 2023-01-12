@@ -1,7 +1,7 @@
 export default [
 	{
 		id: 'store-setup',
-		title: 'Store Setup',
+		title: 'Store setup',
 		intro: 'This is where the fun begins.',
 		completed: false,
 		chipText: '5 Minutes',
@@ -13,10 +13,62 @@ export default [
 				taskCta: 'Get Started',
 				title: 'Set your currency, address, and store type.',
 				intro: 'Tell us a little bit about your store.',
-				icon: 'setup-icon-store-setup.png',
 				wizardHash: '/wizard/store-setup'
 			}
 		]
+	},
+	{
+		id: 'config-payments',
+		title: 'Configure payments',
+		intro: 'Don\'t leave money on the table.',
+		completed: false,
+		chipText: '5 Minutes',
+		rows: [
+			{
+				completed: false,
+				id: 'setup-stripe',
+				type: 'task',
+				title: 'Set up Stripe',
+				intro: 'Charge credit cards and pay low merchant fees.',
+				button: {
+					href: 'https://www.stripe.com',
+					backgroundColor: '#645FF4',
+					label: 'Connect Stripe'
+				}
+			},
+			{
+				completed: false,
+				id: 'setup-stripe',
+				type: 'task',
+				title: 'Set up Paypal',
+				intro: 'Receive payments via PayPal.',
+				button: {
+					href: 'https://www.paypal.com',
+					backgroundColor: '#182C70',
+					label: 'Connect Paypal'
+				}
+			}
+		],
+		footer: {
+			collapsible: false,
+			rows: [
+				{
+					type: 'links',
+					title: 'Need help with payments?',
+					links: [
+						{
+							href: 'https://www.stripe.com/help',
+							label: 'Help with Stripe'
+						},
+						{
+							href: 'https://www.paypal.com/help',
+							label: 'Help with Paypal'
+						}
+					]
+				}
+			]
+
+		}
 	},
 	{
 		id: 'manage-products',
@@ -97,7 +149,7 @@ export default [
 				type: 'learn-product-types',
 				title: 'Learn more about Product Types',
 				overline: '2 Minutes',
-				headline: 'Understanding Types of Products in Storebuilder',
+				headline: 'Types of Products and how to choose between them',
 				videoData: {
 					placeholderImage: 'setup-product-types-poster.png',
 					ariaLabel: 'Click to play video',
@@ -128,7 +180,28 @@ export default [
 							url: 'wp101:woocommerce-downloadable-products',
 						}
 					],
-				}
+				},
+				// exampleProducts: {
+				// 	title: 'Examples in your store',
+				// 	links: [
+				// 		{
+				// 			title: 'Simple',
+				// 			url: '#',
+				// 		},
+				// 		{
+				// 			title: 'Variable',
+				// 			url: '#',
+				// 		},
+				// 		{
+				// 			title: 'Grouped',
+				// 			url: '#',
+				// 		},
+				// 		{
+				// 			title: 'Downloadable',
+				// 			url: '#',
+				// 		}
+				// 	]
+				// },
 			}
 		]
 	},
@@ -144,7 +217,6 @@ export default [
 				taskCta: 'Flat Rate Settings',
 				title: 'Flat Rate Shipping',
 				intro: 'Charge a fixed rate of your choosing for shipping.',
-				icon: 'setup-icon-shipping.png',
 				url: 'http://localhost:8888/wp-admin/admin.php?page=wc-settings&tab=shipping'
 			},
 			{

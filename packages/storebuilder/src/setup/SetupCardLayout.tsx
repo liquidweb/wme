@@ -2,7 +2,7 @@ import {
 	SetupCardTask,
 	Columns,
 	LaunchShippingWizard,
-	LearnProductTypes
+	LearnTypes
 } from '@store/setup/layouts';
 
 export interface SetupCardLayoutInterface {
@@ -21,8 +21,8 @@ const SetupCardLayout: React.FC<SetupCardLayoutInterface> = (props) => {
 						return <Columns key={ row.id } { ...row } />;
 					case 'button':
 						return <LaunchShippingWizard key={ row.id } { ...row } />;
-					case 'learn-product-types':
-						return <LearnProductTypes key={ row.id } { ...row } />;
+					case 'learn-types':
+						return <LearnTypes key={ row.id } { ...row } />;
 					case 'task':
 						return <SetupCardTask key={ row.id } { ...row } />;
 					default:

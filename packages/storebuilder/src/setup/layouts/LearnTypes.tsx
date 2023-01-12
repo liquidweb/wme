@@ -51,13 +51,14 @@ const smallLinkSx = Object.assign(
 	}
 );
 
-const LearnProductTypes: React.FC<SetupRowLearnProductsInterface> = (props) => {
+const LearnTypes: React.FC<SetupRowLearnInterface> = (props) => {
 	const { title, overline, headline, videoData, wp101, exampleProducts } = props;
 
 	const hasExampleProducts = exampleProducts && exampleProducts.products.length > 0;
 
 	const [modalOpen, setModalOpen] = useState(false);
 
+	console.log('exampleProducts', exampleProducts);
 	return <>
 		<Grid container columnSpacing={ 6 } rowSpacing={ 0 } mt={ 3 }>
 			<Grid item xs={ 12 }>
@@ -205,4 +206,4 @@ const LearnProductTypes: React.FC<SetupRowLearnProductsInterface> = (props) => {
 	</>;
 };
 
-export default LearnProductTypes;
+export default LearnTypes;

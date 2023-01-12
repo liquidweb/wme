@@ -1,7 +1,7 @@
 import { ContentAccordion, SetupCardFooter as WmeSetupFooter } from '@moderntribe/wme-ui';
 import FooterLinks from './footer/FooterLinks';
 import FooterColumns from './footer/FooterColumns';
-import { LearnProductTypes } from './layouts';
+import { LearnTypes } from './layouts';
 
 export interface SetupCardFooterInterface {
 	footer: SetupCardFooter;
@@ -16,8 +16,8 @@ const SetupCardFooter = (props: SetupCardFooterInterface) => {
 				return <FooterColumns key={ index } { ...row } />;
 			} else if (row.type === 'links') {
 				return <FooterLinks key={ index } { ...row } />;
-			} else if (row.type === 'learn-product-types') {
-				return <LearnProductTypes key={ index } { ...row } />;
+			} else if (row.type === 'learn-types') {
+				return <LearnTypes key={ index } { ...row } />;
 			}
 
 			return <div key={ index } />;
