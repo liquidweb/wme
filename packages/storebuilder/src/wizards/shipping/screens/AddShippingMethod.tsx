@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { Box, Typography } from '@mui/material';
 import { CardSelectGroup, CardSelectItem, Chip } from '@moderntribe/wme-ui';
-import { pxToRem } from '@moderntribe/wme-utils';
 import { IMAGE_DIR, USPS_PLUGIN_SLUG } from '@store/constants';
 import { useShipping } from '@store/hooks';
 
@@ -16,7 +15,6 @@ const cardSx = {
 
 const AddShippingMethod = () => {
 	const { addShippingMethod: {
-		title,
 		card1,
 		card2
 	} } = ShippingStringData;
@@ -38,15 +36,6 @@ const AddShippingMethod = () => {
 	return (
 		<Box sx={ { maxWidth: 544 } }>{
 			<>
-				<Typography
-					sx={ { fontSize: pxToRem(32) } }
-					variant="h3"
-					component="h2"
-					textAlign="center"
-					mb={ 4.5 }
-				>
-					{ title }
-				</Typography>
 				<CardSelectGroup
 					sx={ cardSx }
 					cardColumns={ 2 }
