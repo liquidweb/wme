@@ -119,9 +119,9 @@ const FirstTimeConfigurationProvider = ({
 		form.password.isValid = passwordIsValid;
 
 		if (! completed) {
-			steps[ 1 ].disableNext = ! usernameIsValid || ! passwordIsValid;
+			steps[ 0 ].disableNext = ! usernameIsValid || ! passwordIsValid;
 		} else {
-			steps[ 1 ].disableNext = !! (form.password.value && ! passwordIsValid);
+			steps[ 0 ].disableNext = !! (form.password.value && ! passwordIsValid);
 		}
 
 		setFtcState({
