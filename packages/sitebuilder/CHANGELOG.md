@@ -12,6 +12,13 @@
   - @moderntribe/wme-ui@3.0.0
   - @moderntribe/wme-utils@2.0.0
 
+## 1.7.1
+
+### Patch Changes
+
+- 9ccf6b6: Adds fix to handle null domain search package property
+- 18a78d5: Type fix for Loadable component and removes outdated local dev code.
+
 ## 1.7.0
 
 ### Minor Changes
