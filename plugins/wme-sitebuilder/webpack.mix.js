@@ -46,9 +46,6 @@ mix.webpackConfig({
 			'@sb': __dirname + '/assets/js/store-details',
 		}
 	},
-	watchOptions: {
-		ignored: ['node_modules/*/!(@moderntribe/*)/**/'],
-	},
 });
 
 // Enable BrowserSync.

@@ -60,7 +60,7 @@ class GoLive extends Card {
 				'type'       => 'task',
 				'title'      => __( 'Purchase a domain', 'wme-sitebuilder' ),
 				'intro'      => __( 'Don\'t own a domain? Purchase a custom domain for your site.', 'wme-sitebuilder' ),
-				'icon'       => 'setup-icon-launch.png',
+				'icon'       => 'setup-icon-connect.png',
 				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
 				'wizardHash' => '/wizard/go-live-purchase',
 			];
@@ -70,8 +70,7 @@ class GoLive extends Card {
                 'type'       => 'task',
                 'title'      => __( 'Connect your domain', 'wme-sitebuilder' ),
                 'intro'      => __( 'Already own a domain? Update your store URL with your custom domain.', 'wme-sitebuilder' ),
-                /* TODO: Update icon. */
-                'icon'       => 'setup-icon-setup.png',
+                'icon'       => 'setup-icon-launch.png',
                 'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
                 'wizardHash' => '/wizard/go-live-connect',
             ];
@@ -85,19 +84,11 @@ class GoLive extends Card {
 			[
 				'title'    => __( 'Our Guide To Going Live', 'wme-sitebuilder' ),
 				/* TODO: Update link. */
-				'url'      => 'https://www.nexcess.net/help/no-code-website-builder',
-				'target'   => '_blank',
-				'dashicon' => '',
-			],
-			[
-				'title'    => __( 'Collect Your Free Domain', 'wme-sitebuilder' ),
-				/* TODO: Update link. */
-				'url'      => 'https://www.nexcess.net/blog/how-to-purchase-a-domain/',
+				'url'      => 'https://www.nexcess.net/help/guide-to-going-live-with-storebuilder/',
 				'target'   => '_blank',
 				'dashicon' => '',
 			],
 		];
-
 
 		return [
 			[

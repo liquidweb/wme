@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Loading } from './Loading';
 
-const Loadable = <T extends { fullscreen?: boolean }>(Component: React.ComponentType<T>) => (props: T) => {
+const Loadable = <T extends { fullscreen?: boolean }>(Component: React.FunctionComponent<T>) => (props: T) => {
 	const {
 		fullscreen,
 	} = props;
