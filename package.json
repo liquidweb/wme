@@ -47,7 +47,7 @@
 		"@babel/runtime": "^7.20.7",
 		"@changesets/cli": "^2.26.0",
 		"@moderntribe/eslint-config-custom": "workspace:0.1.0",
-		"@moderntribe/wme-ui": "workspace:2.3.0",
+		"@moderntribe/wme-ui": "workspace:*",
 		"@storybook/addon-actions": "^6.5.15",
 		"@storybook/addon-docs": "^6.5.15",
 		"@storybook/addon-essentials": "^6.5.15",
