@@ -6,13 +6,6 @@ import { SimpleModal, VideoLink } from '@store/components';
 import { pxToRem } from '@moderntribe/wme-utils';
 import { IMAGE_DIR } from '@store/constants';
 
-// const sectionHeadline = __('Learn more about Product Types', 'moderntribe-storebuilder');
-// const videoAriaLabel = __('Click to play video', 'moderntribe-storebuilder');
-// const videoOverline = __('2 Minutes', 'moderntribe-storebuilder');
-// const videoHeadline = __('Understanding Types of Products in Storebuilder', 'moderntribe-storebuilder');
-// const howToHeadline = __('How To Set Up Products', 'moderntribe-storebuilder');
-// const exampleHeadline = __('Examples In Your Store', 'moderntribe-storebuilder');
-
 const listSx = {
 	m: 0,
 	lineHeight: '20px',
@@ -54,11 +47,10 @@ const smallLinkSx = Object.assign(
 const LearnTypes: React.FC<SetupRowLearnInterface> = (props) => {
 	const { title, overline, headline, videoData, wp101, exampleProducts } = props;
 
-	const hasExampleProducts = exampleProducts && exampleProducts.products.length > 0;
+	const hasExampleProducts = exampleProducts && exampleProducts.products?.length > 0;
 
 	const [modalOpen, setModalOpen] = useState(false);
 
-	console.log('exampleProducts', exampleProducts);
 	return <>
 		<Grid container columnSpacing={ 6 } rowSpacing={ 0 } mt={ 3 }>
 			<Grid item xs={ 12 }>

@@ -145,8 +145,8 @@ export default [
 				]
 			},
 			{
-				id: 'learn-product-types',
-				type: 'learn-product-types',
+				id: 'learn-types',
+				type: 'learn-types',
 				title: 'Learn more about Product Types',
 				overline: '2 Minutes',
 				headline: 'Types of Products and how to choose between them',
@@ -181,27 +181,27 @@ export default [
 						}
 					],
 				},
-				// exampleProducts: {
-				// 	title: 'Examples in your store',
-				// 	links: [
-				// 		{
-				// 			title: 'Simple',
-				// 			url: '#',
-				// 		},
-				// 		{
-				// 			title: 'Variable',
-				// 			url: '#',
-				// 		},
-				// 		{
-				// 			title: 'Grouped',
-				// 			url: '#',
-				// 		},
-				// 		{
-				// 			title: 'Downloadable',
-				// 			url: '#',
-				// 		}
-				// 	]
-				// },
+				exampleProducts: {
+					title: 'Examples in your store',
+					products: [
+						{
+							title: 'Simple',
+							url: '#',
+						},
+						{
+							title: 'Variable',
+							url: '#',
+						},
+						{
+							title: 'Grouped',
+							url: '#',
+						},
+						{
+							title: 'Downloadable',
+							url: '#',
+						}
+					]
+				},
 			}
 		]
 	},
@@ -231,7 +231,7 @@ export default [
 			collapsibleLabel: 'Learn more about Shipping',
 			rows: [
 				{
-					type: 'learn-product-types',
+					type: 'learn-types',
 					title: 'Learn more about Product Types',
 					overline: '3 Minutes',
 					headline: 'Understanding Flat Rate Shipping in Storebuilder',

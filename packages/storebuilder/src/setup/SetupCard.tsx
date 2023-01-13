@@ -5,6 +5,7 @@ import {
 } from '@moderntribe/wme-ui';
 import { WatchLater } from '@mui/icons-material';
 import { SetupCardFooter, SetupCardLayout } from '@store/setup';
+import { useCallback } from 'react';
 
 const SetupCard = (props: SetupCardInterface) => {
 	const {
@@ -17,7 +18,19 @@ const SetupCard = (props: SetupCardInterface) => {
 		footer,
 	} = props;
 
-	// TODO: Start here with the Icon and exampleProducts
+	const getText = useCallback(() => {
+		if (completed) {
+			return __('Completed', 'moderntribe-storebuilder');
+		} else if (chipText) {
+			return (
+				<span style={ { display: 'flex', alignItems: 'center' } }>
+					<span style={ { marginRight: '5px' } }>{ chipText }</span>
+					<WatchLater style={ { height: '20px' } } />
+				</span>
+			);
+		}
+		return undefined;
+	}, [chipText, completed]);
 
 	return (
 		<SetupCardAccordion
@@ -25,7 +38,7 @@ const SetupCard = (props: SetupCardInterface) => {
 			header={ title }
 			subHeader={ intro }
 			isComplete={ completed }
-			chipText={ completed ? __('Completed', 'moderntribe-storebuilder') : <span>{ chipText }{ ' ' }<WatchLater /></span> }
+			chipText={ getText() }
 			chipBackground={ completed ? 'success' : 'info' }
 		>
 			<SetupCardContent>
