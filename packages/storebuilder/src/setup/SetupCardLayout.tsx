@@ -1,16 +1,12 @@
 import {
 	SetupCardTask,
 	Columns,
-	ColumnsInterface,
 	LaunchShippingWizard,
-	LaunchShippingWizardInterface,
-	LearnProductTypes,
-	LearnProductTypesInterface
+	LearnTypes
 } from '@store/setup/layouts';
 
 export interface SetupCardLayoutInterface {
-	rows: Array<SetupCardRowInterface | LaunchShippingWizardInterface | ColumnsInterface | LearnProductTypesInterface>;
-	completed?: boolean;
+	rows: SetupCardInterface['rows'];
 }
 
 const SetupCardLayout: React.FC<SetupCardLayoutInterface> = (props) => {
@@ -23,12 +19,14 @@ const SetupCardLayout: React.FC<SetupCardLayoutInterface> = (props) => {
 					switch (row.type) {
 					case 'columns':
 						return <Columns key={ row.id } { ...row } />;
-					case 'launch-shipping-wizard':
-						return <LaunchShippingWizard key={ row.id } />;
-					case 'learn-product-types':
-						return <LearnProductTypes key={ row.id } { ...row } />;
-					default:
+					case 'button':
+						return <LaunchShippingWizard key={ row.id } { ...row } />;
+					case 'learn-types':
+						return <LearnTypes key={ row.id } { ...row } />;
+					case 'task':
 						return <SetupCardTask key={ row.id } { ...row } />;
+					default:
+						return <div />;
 					}
 				})
 			}

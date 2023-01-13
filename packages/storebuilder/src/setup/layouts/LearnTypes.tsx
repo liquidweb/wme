@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { Typography, Grid, Box, Link } from '@mui/material';
 import { PlayArrow } from '@mui/icons-material';
 import { VideoEmbed } from '@moderntribe/wme-ui';
-import { __ } from '@wordpress/i18n';
-import { SimpleModal, VideoLink, ColumnLinkInterface } from '@store/components';
+import { SimpleModal, VideoLink } from '@store/components';
 import { pxToRem } from '@moderntribe/wme-utils';
-import { IMAGE_DIR, WP_101_HOW_TO_LINKS } from '@store/constants';
+import { IMAGE_DIR } from '@store/constants';
 
-const sectionHeadline = __('Learn more about Product Types', 'moderntribe-storebuilder');
-const videoAriaLabel = __('Click to play video', 'moderntribe-storebuilder');
-const videoOverline = __('2 Minutes', 'moderntribe-storebuilder');
-const videoHeadline = __('Understanding Types of Products in Storebuilder', 'moderntribe-storebuilder');
-const howToHeadline = __('How To Set Up Products', 'moderntribe-storebuilder');
-const exampleHeadline = __('Examples In Your Store', 'moderntribe-storebuilder');
+// const sectionHeadline = __('Learn more about Product Types', 'moderntribe-storebuilder');
+// const videoAriaLabel = __('Click to play video', 'moderntribe-storebuilder');
+// const videoOverline = __('2 Minutes', 'moderntribe-storebuilder');
+// const videoHeadline = __('Understanding Types of Products in Storebuilder', 'moderntribe-storebuilder');
+// const howToHeadline = __('How To Set Up Products', 'moderntribe-storebuilder');
+// const exampleHeadline = __('Examples In Your Store', 'moderntribe-storebuilder');
 
 const listSx = {
 	m: 0,
@@ -52,29 +51,25 @@ const smallLinkSx = Object.assign(
 	}
 );
 
-export interface LearnProductTypesInterface {
-	id: string;
-	type: 'learn-product-types';
-	exampleProducts: ColumnLinkInterface[];
-}
+const LearnTypes: React.FC<SetupRowLearnInterface> = (props) => {
+	const { title, overline, headline, videoData, wp101, exampleProducts } = props;
 
-const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
-	const { exampleProducts = [] } = props;
-	const hasExampleProducts = exampleProducts.length > 0;
+	const hasExampleProducts = exampleProducts && exampleProducts.products.length > 0;
 
 	const [modalOpen, setModalOpen] = useState(false);
 
+	console.log('exampleProducts', exampleProducts);
 	return <>
 		<Grid container columnSpacing={ 6 } rowSpacing={ 0 } mt={ 3 }>
 			<Grid item xs={ 12 }>
-				<Typography variant="h4" component="h3" mb={ 2 }>{ sectionHeadline }</Typography>
+				{ title && <Typography variant="h4" component="h3" mb={ 2 }>{ title }</Typography> }
 			</Grid>
 			<Grid item xs={ 12 } sm={ 6 }>
 				<Link
 					component="button"
 					aria-haspopup="dialog"
 					onClick={ () => setModalOpen(true) }
-					aria-label={ videoAriaLabel }
+					aria-label={ videoData.ariaLabel }
 					sx={ {
 						position: 'relative',
 						display: 'block',
@@ -90,8 +85,8 @@ const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 							aspectRatio: '2 / 1',
 							backgroundColor: 'grey.200',
 						} }
-						src={ `${ IMAGE_DIR }setup-product-types-poster.png` }
-						alt={ videoHeadline }
+						src={ `${ IMAGE_DIR }${ videoData.placeholderImage }` }
+						alt={ headline }
 						loading="lazy"
 					/>
 					<Box sx={ {
@@ -125,7 +120,7 @@ const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 					variant="overline"
 					mb={ 1 }
 					sx={ { lineHeight: 1, fontSize: pxToRem(10) } }
-				>{ videoOverline }</Typography>
+				>{ overline }</Typography>
 				<Typography
 					variant="h3"
 					mb={ 1 }
@@ -147,10 +142,10 @@ const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 							)
 						}
 						onClick={ () => setModalOpen(true) }
-					>{ videoHeadline }</Link>
+					>{ headline }</Link>
 				</Typography>
 				<Grid container spacing={ 2 }>
-					<Grid item xs={ 12 } sm={ hasExampleProducts ? 6 : 12 } sx={ { lineHeight: 2 } }>
+					{ wp101 && <Grid item xs={ 12 } sm={ hasExampleProducts ? 6 : 12 } sx={ { lineHeight: 2 } }>
 						<Typography
 							component="p"
 							sx={ {
@@ -160,18 +155,18 @@ const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 								fontWeight: 600,
 								marginBottom: '4px'
 							} }
-						>{ howToHeadline }</Typography>
+						>{ wp101.header }</Typography>
 						<Box component="ul" sx={ listSx }>
 							{
-								WP_101_HOW_TO_LINKS.map((link, index) => (
+								wp101.links.map((link, index) => (
 									<Box key={ index } component="li">
 										<VideoLink sx={ smallLinkSx } { ... link } />
 									</Box>
 								))
 							}
 						</Box>
-					</Grid>
-					{ exampleProducts.length > 0 && <Grid item xs={ 6 }>
+					</Grid> }
+					{ hasExampleProducts && exampleProducts.products?.length > 0 && <Grid item xs={ 6 }>
 						<Typography
 							component="p"
 							sx={ {
@@ -181,9 +176,9 @@ const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 								fontWeight: 600,
 								marginBottom: '4px'
 							} }
-						>{ exampleHeadline }</Typography>
+						>{ exampleProducts.title }</Typography>
 						<Box component="ul" sx={ listSx }>
-							{ exampleProducts.map((link, index) => (
+							{ exampleProducts.products.map((link, index) => (
 								<Box key={ index } component="li">
 									<Link
 										underline="hover"
@@ -202,15 +197,13 @@ const LearnProductTypes: React.FC<LearnProductTypesInterface> = (props) => {
 			open={ modalOpen }
 			onClose={ () => setModalOpen(false) }
 		>
-			<VideoEmbed src="https://www.youtube.com/embed/YwjYtoE5UMQ" />
+			<VideoEmbed src={ videoData.src } />
 			<Box mt={ 4 } width="100%">
-				<Typography variant="h4" mb={ 2 }>{ videoHeadline }</Typography>
-				<Typography variant="body2">
-					{ __('There are 4 main types of products to choose from when adding products in StoreBuilder. This video describes each, and what each one is used for.', 'moderntribe-storebuilder') }
-				</Typography>
+				<Typography variant="h4" mb={ 2 }>{ headline }</Typography>
+				<Typography variant="body2">{ videoData.description }</Typography>
 			</Box>
 		</SimpleModal>
 	</>;
 };
 
-export default LearnProductTypes;
+export default LearnTypes;
