@@ -40,19 +40,20 @@ class PaymentGateways extends Card {
 	public function props() {
 		return [
 			'id'        => 'payment-gateways',
-			'title'     => __( 'Configure payment', 'wme-sitebuilder' ),
+			'title'     => __( 'Configure payments', 'wme-sitebuilder' ),
 			'intro'     => __( 'Don\'t leave money on the table.', 'wme-sitebuilder' ),
 			'completed' => false,
-			'time'      => '',
+			'chipText'  => __( '5 minutes', 'wme-sitebuilder' ),
 			'rows'      => $this->rows(),
-			'footers'   => [
-				[
-					'id'       => 'gateway-help',
-					'type'     => 'gateway-help',
-					'title'    => __( 'Need help with payments?', 'wme-sitebuilder' ),
-					'message'  => '',
-					'messages' => $this->footer_messages(),
-				],
+			'footer'    => [
+				'collapsible' => false,
+				'rows'        => [
+					[
+						'type'  => 'links',
+						'title' => __( 'Need help with payments?', 'wme-sitebuilder' ),
+//						'links' => $this->footer_messages(),
+					],
+				]
 			],
 		];
 	}
