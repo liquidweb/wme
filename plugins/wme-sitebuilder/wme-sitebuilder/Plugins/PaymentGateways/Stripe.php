@@ -72,20 +72,27 @@ class Stripe extends Plugin {
 	 * @return array
 	 */
 	public function card_row_props() {
+		$button_props = [
+			'label'           => __( 'Connect Stripe', 'wme-sitebuilder' ),
+			'backgroundColor' => '#645FF3',
+			'href'            => add_query_arg( 'page', 'sitebuilder-store-details#/wizard/payments-stripe', admin_url( 'admin.php' ) ),
+		];
+
+		if ( $this->connected ) {
+			$button_props = [
+				'label'           => __( 'Manage Stripe', 'wme-sitebuilder' ),
+				'backgroundColor' => '#000000',
+				'href'            => $this->admin_url,
+			];
+		}
+
 		return [
-			'id'          => 'payments-stripe',
-			'type'        => 'action',
-			'title'       => __( 'Connect Stripe', 'wme-sitebuilder' ),
-			'intro'       => __( 'Charge credit cards and pay low merchant fees.', 'wme-sitebuilder' ),
-			'icon'        => 'setup-icon-stripe.png',
-			'disableText' => __( 'Manage Stripe', 'wme-sitebuilder' ),
-			'adminUrl'    => $this->admin_url,
-			'connected'   => $this->connected,
-			'button'      => [
-				'label'           => __( 'Connect Stripe', 'wme-sitebuilder' ),
-				'backgroundColor' => '#645FF3',
-			],
-			'wizardHash'  => '/wizard/payments-stripe',
+			'id'        => 'payments-stripe',
+			'type'      => 'task',
+			'title'     => __( 'Set Up Stripe', 'wme-sitebuilder' ),
+			'intro'     => __( 'Charge credit cards and pay low merchant fees.', 'wme-sitebuilder' ),
+			'connected' => $this->connected,
+			'button'    => $button_props,
 		];
 	}
 
@@ -96,10 +103,8 @@ class Stripe extends Plugin {
 	 */
 	public function card_footer_props() {
 		return [
-			'title'    => __( 'Help with Stripe', 'wme-sitebuilder' ),
-			'url'      => 'wp101:woocommerce-stripe',
-			'target'   => '_self',
-			'dashicon' => '',
+			'label' => __( 'Help with Stripe', 'wme-sitebuilder' ),
+			'href'  => 'wp101:woocommerce-stripe',
 		];
 	}
 

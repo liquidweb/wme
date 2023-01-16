@@ -51,7 +51,7 @@ class PaymentGateways extends Card {
 					[
 						'type'  => 'links',
 						'title' => __( 'Need help with payments?', 'wme-sitebuilder' ),
-//						'links' => $this->footer_messages(),
+						'links' => $this->footer_messages(),
 					],
 				]
 			],
