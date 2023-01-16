@@ -215,6 +215,9 @@ class GoLive extends Wizard {
 			) );
 		}
 
+		do_action( 'wme_event_wizard_started', 'domain_purchase' );
+		do_action( 'wme_event_wizard_telemetry', 'domain_purchase', 'search', $domain );
+
 		return wp_send_json_success( $response_body );
 	}
 
@@ -283,6 +286,8 @@ class GoLive extends Wizard {
 			) );
 		}
 
+		do_action( 'wme_event_wizard_telemetry', 'domain_purchase', 'purchase_flow', $request_domains );
+
 		wp_send_json_success( $response_body );
 	}
 
@@ -318,6 +323,9 @@ class GoLive extends Wizard {
 		$this->getData()
 			->set( 'purchased_domains', $domains )
 			->save();
+
+		do_action( 'wme_event_wizard_telemetry', 'domain_purchase', 'purchased', $domains );
+		do_action( 'wme_event_wizard_completed', 'domain_purchase' );
 
 		return wp_send_json_success();
 	}
