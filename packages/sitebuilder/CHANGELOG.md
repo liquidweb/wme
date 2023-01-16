@@ -1,5 +1,11 @@
 # @moderntribe/sitebuilder
 
+## 1.7.2
+
+### Patch Changes
+
+- 95b3ab4: Add purchase domain icon to setup screen card
+
 ## 1.7.1
 
 ### Patch Changes
