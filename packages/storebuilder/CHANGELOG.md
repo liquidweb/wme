@@ -1,5 +1,23 @@
 # @moderntribe/storebuilder
 
+## 2.0.0
+
+### Major Changes
+
+- Preparing for the testing and release of Sitebuilder 2.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @moderntribe/wme-ui@3.0.0
+  - @moderntribe/wme-utils@2.0.0
+
+## 1.5.2
+
+### Patch Changes
+
+- 18a78d5: Type fix for Loadable component and removes outdated local dev code.
+
 ## 1.5.1
 
 ### Patch Changes

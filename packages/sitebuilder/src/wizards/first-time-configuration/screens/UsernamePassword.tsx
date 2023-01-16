@@ -230,21 +230,21 @@ const UsernamePassword = () => {
 										<InputAdornment position="end">
 											{ passwordStrength &&
 												password.length > 0 && (
-												<Chip
-													label={
-														passwordStatus[
-															passwordStrength
-														].label
-													}
-													size="small"
-													sx={ {
-														color: 'white',
-														...passwordStatus[
-															passwordStrength
-														].sx
-													} }
-												/>
-											) }
+													<Chip
+														label={
+															passwordStatus[
+																passwordStrength
+																].label
+														}
+														size="small"
+														sx={ {
+															color: 'white',
+															...passwordStatus[
+																passwordStrength
+																].sx
+														} }
+													/>
+												) }
 											<IconButton
 												aria-label="toggle password visibility"
 												edge="end"

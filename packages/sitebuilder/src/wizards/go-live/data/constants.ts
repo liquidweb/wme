@@ -83,5 +83,6 @@ export const GoLiveStringData = {
 		taken: __('Taken', 'moderntribe-sitebuilder'),
 		selected: __('Selected', 'moderntribe-sitebuilder'),
 		available: __('Available', 'moderntribe-sitebuilder'),
+		unavailable: __('Unavailable', 'moderntribe-sitebuilder'),
 	}
 };
