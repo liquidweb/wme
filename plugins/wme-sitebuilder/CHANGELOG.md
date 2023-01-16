@@ -1,5 +1,17 @@
 # @moderntribe/wme-sitebuilder
 
+## 0.6.0
+
+### Minor Changes
+
+- 7338a75: Add tracking events to the new Domain Purchase portion of the GoLive Wizard.
+
+### Patch Changes
+
+- 95b3ab4: Add purchase domain icon to setup screen card
+- Updated dependencies [95b3ab4]
+  - @moderntribe/sitebuilder@1.7.2
+
 ## 0.5.1
 
 ### Patch Changes
