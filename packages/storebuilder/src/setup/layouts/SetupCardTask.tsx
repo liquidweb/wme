@@ -1,33 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import { SetupCardTask as WmeSetupCardTask, Button } from '@moderntribe/wme-ui';
-import { Avatar } from '@mui/material';
-import { IMAGE_DIR } from '@store/constants';
+import { Button, SetupCardTask as WmeSetupCardTask } from '@moderntribe/wme-ui';
 import { isValidUrl } from '@moderntribe/wme-utils';
 
-const getAvatarProps = (props: SetupCardRowInterface) => {
-	if (! props?.icon) {
-		return {};
-	}
+type SetupCardTaskInterface = SetupCardRowInterface | SetupRowColumnsInterface | SetupRowButtonInterface | SetupRowLearnInterface;
 
-	return {
-		alt: props?.title,
-		src: `${ IMAGE_DIR + props.icon }`,
-	};
-};
-
-const SetupCardTask = (props: SetupCardRowInterface) => {
+const SetupCardTask = (props: SetupCardTaskInterface) => {
 	const {
-		type,
-		button,
 		url,
-		connected = false,
-		disableText = '',
 		wizardHash,
+		button,
 		...rest
 	} = props;
-
-	const avatarProps = getAvatarProps(props);
-	const isVariant = type === 'task' || type === 'action';
 
 	const navigate = useNavigate();
 
@@ -39,36 +22,20 @@ const SetupCardTask = (props: SetupCardRowInterface) => {
 		}
 	};
 
-	return (
-		<WmeSetupCardTask
-			{ ...rest }
-			onClick={ ! validUrl ? handleOnClick : undefined }
-			href={ validUrl ? url : undefined }
-			variant={ isVariant ? type : 'task' }
-			avatar={
-				Object.keys(avatarProps).length > 0 && (
-					<Avatar { ...avatarProps } />
-				)
-			}
-			button={
-				button && (
-					<Button
-						variant="contained"
-						color="primary"
-						onClick={ ! connected ? handleOnClick : undefined }
-						href={ connected && validUrl ? url : undefined }
-						sx={ {
-							...(button.backgroundColor && {
-								backgroundColor: button.backgroundColor,
-							}),
-						} }
-					>
-						{ connected && disableText ? disableText : button.label }
-					</Button>
-				)
-			}
-		/>
-	);
+	return <WmeSetupCardTask
+		{ ...rest }
+		onClick={ ! validUrl && wizardHash ? handleOnClick : undefined }
+		href={ validUrl ? url : undefined }
+		button={ button && <FormattedButton label={ button?.label } href={ button?.href } backgroundColor={ button?.backgroundColor } /> }
+	/>;
 };
+
+function FormattedButton({ href, label, backgroundColor }: { href?: string, label?: string, backgroundColor?: string}) {
+	const textColor = backgroundColor ? '#FFF' : '#000';
+
+	return (
+		<Button href={ href } style={ { backgroundColor, color: textColor } }>{ label }</Button>
+	);
+}
 
 export default SetupCardTask;
