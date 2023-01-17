@@ -9,7 +9,7 @@ import { showDeprecatedWarning } from '../../utils';
 export interface SetupCardHeaderProps extends BoxProps {
   title?: string;
   subheader?: string;
-  chipText?: string;
+  chipText?: React.ReactNode | string;
   isComplete?: boolean;
   chipBackground?: ChipProps['color']
   // Depreacated props

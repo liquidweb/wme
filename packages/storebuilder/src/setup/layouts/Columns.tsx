@@ -1,15 +1,7 @@
 import { Grid, Typography } from '@mui/material';
-import { ColumnLinkList, ColumnLinkListInterface } from '@store/components';
+import { ColumnLinkList } from '@store/components';
 
-export interface ColumnsInterface {
-	id: string;
-	type: 'columns';
-	title?: string;
-	intro?: string;
-	columns: ColumnLinkListInterface[];
-}
-
-const Columns: React.FC<ColumnsInterface> = (props) => {
+const Columns: React.FC<SetupRowColumnsInterface> = (props) => {
 	const {
 		title = '',
 		intro = '',
