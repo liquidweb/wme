@@ -1,5 +1,13 @@
 # @moderntribe/sitebuilder
 
+## 2.0.1
+
+### Patch Changes
+
+- 95b3ab4: Add purchase domain icon to setup screen card
+- c270205: \* Changes CARDS constant to draw data from backend and not JSON
+  - Updates backend data structure returns for updated frontend requirements
+
 ## 2.0.0
 
 ### Major Changes
