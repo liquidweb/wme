@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - 1.0-branch
-      - 2.0-branch
     tags:
       - '*'
 
@@ -43,6 +42,8 @@ jobs:
           # ↓ the user signed under the split commit
           user_name: "bswatson"
           user_email: "bwatson@liquidweb.com"
+          
+          branch: '${{ github.ref_name }}'
       
       # with tag
       -
