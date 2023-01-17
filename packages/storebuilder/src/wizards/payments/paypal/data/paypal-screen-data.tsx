@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { paymentsPaypalConsts } from './constants';
 
 import { GetStarted, AccountKeys, Success } from '../screens';
-import { PAYMENTS_PAYPAL_PROPS } from '@store/constants';
+import {IMAGE_DIR, PAYMENTS_PAYPAL_PROPS} from '@store/constants';
 
 export interface PaymentsPaypalInterface {
 	keys: {
@@ -45,6 +45,9 @@ const PaymentsPaypalScreenData = (): PaymentsPaypalInterface => ({
 		{
 			id: 0,
 			label: paymentsPaypalConsts.getStarted.label,
+			title: __('Get started with PayPal', 'moderntribe-storebuilder'),
+			description: __('Choose an additional card processing method and/or continue to connect your paypal account.', 'moderntribe-storebuilder'),
+			icon: <img src={ ` ${ IMAGE_DIR }paypal-logo-alternative.png ` } width={ 120 } alt={ 'Paypal logo' } />,
 			hideSkip: true,
 			nextText: __('Next', 'moderntribe-storebuilder'),
 			hideBack: true,
@@ -53,6 +56,9 @@ const PaymentsPaypalScreenData = (): PaymentsPaypalInterface => ({
 		{
 			id: 1,
 			label: paymentsPaypalConsts.accountKeys.label,
+			title: __('Your PayPal Account Keys', 'moderntribe-storebuilder'),
+			description: __('Nice! Now that you\'ve activated, we\'ve imported your keys here for you. These keys are specific to your account and will ensure you\'re all set to accept payments on your store.', 'moderntribe-storebuilder'),
+			icon: <img src={ ` ${ IMAGE_DIR }paypal-logo-alternative.png ` } width={ 120 } alt={ 'Paypal logo' } />,
 			nextText: __('Next', 'moderntribe-storebuilder'),
 			screen: <AccountKeys />,
 		},

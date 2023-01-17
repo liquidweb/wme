@@ -14,9 +14,8 @@ const Success = () => {
 		manageBtnText,
 		manageTitleText,
 		nextStepImageAlt
-	}, getStarted: { stripeAlt } } = paymentsStripeConsts;
+	} } = paymentsStripeConsts;
 	const theme = useTheme();
-	const stripeIcon = `${ IMAGE_DIR }stripe-logo.png`;
 	const nextStepImage = `${ IMAGE_DIR }manage-payment-settings.png`;
 
 	useEffect(() => {
@@ -29,38 +28,50 @@ const Success = () => {
 	}, []);
 
 	return (
-		<Box sx={ { maxWidth: 500 } }>
-			<WizardSectionTitle
-				heading={ heading }
-				headingVariant={ 'h2' }
-				copy={ copy }
-				iconSrc={ stripeIcon }
-				iconAlt={ stripeAlt }
-				bookend={ true }
-			/>
-			<NextStepTile>
-				<img width="200" src={ nextStepImage } alt={ nextStepImageAlt } />
-				<Typography
-					variant="h3"
-					component="h3"
-					mb={ 2 }
-					sx={ {
-						fontWeight: 500,
-						maxWidth: '190px',
-						letterSpacing: '-0.05em',
-						marginTop: theme.spacing(4),
-						color: theme.palette.text.primary,
-					} }
-					align={ 'center' }>
-					{ manageTitleText }
-				</Typography>
-				<Button
-					onClick={ () => window.location.href = PAYMENTS_STRIPE_PROPS?.plugin?.adminUrl }
-					variant="contained"
-					sx={ { backgroundColor: 'primary.dark' } }
-				>
-					{ manageBtnText }
-				</Button>
+		<Box sx={ { maxWidth: 828 } }>
+			<Typography
+				variant="h3"
+				mb={ 2 }>
+				{ heading }
+			</Typography>
+			<NextStepTile variant="horizontal">
+				<Box sx={ { borderRadius: '8px', overflow: 'hidden', display: 'inline-flex' } }>
+					<img width="120" src={ nextStepImage } alt={ nextStepImageAlt } />
+				</Box>
+				<Box sx={ {
+					display: 'flex',
+					alignItems: 'center',
+					gap: theme.spacing(3)
+				} }>
+					<Box>
+						<Typography
+							variant="h3"
+							component="h3"
+							mb={ 2 }
+							sx={ {
+								fontWeight: 500,
+								maxWidth: '290px',
+								letterSpacing: '-0.05em',
+								color: theme.palette.text.primary,
+							} }>
+							{ manageTitleText }
+						</Typography>
+						<Typography
+							variant={ 'body2' }
+							mb={ 2 }
+							sx={ {
+								maxWidth: '380px',
+							} }>
+							{ copy }
+						</Typography>
+					</Box>
+					<Button
+						onClick={ () => window.location.href = PAYMENTS_STRIPE_PROPS?.plugin?.adminUrl }
+						variant="contained"
+						sx={ { backgroundColor: 'text.primary', whiteSpace: 'nowrap' } }>
+						{ manageBtnText }
+					</Button>
+				</Box>
 			</NextStepTile>
 		</Box>
 	);

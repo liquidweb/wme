@@ -24,17 +24,14 @@ const GetStarted = () => {
 
 	if (dropdownItems) {
 		return (
-			<Box sx={ { maxWidth: 500 } }>
+			<Box sx={ { maxWidth: 415, width: '100%' } }>
 				<WizardSectionTitle
 					iconSrc={ paypalIcon }
 					iconAlt={ paypalAlt }
-					heading={ heading }
-					headingVariant={ 'h2' }
-					copy={ copy }
 					bookend={ true }
 					sx={ { mb: theme.spacing(4) } }
 				/>
-				<Form sx={ { px: theme.spacing(4) } }>
+				<Form>
 					<FormFieldLabel>{ dropdownLabel }</FormFieldLabel>
 					<SelectInput
 						variant="outlined"

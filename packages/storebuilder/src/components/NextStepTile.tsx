@@ -1,23 +1,33 @@
 import { Box, styled } from '@mui/material';
 
+interface NextStepTileProps {
+	variant?: 'vertical' | 'horizontal';
+	children: React.ReactNode;
+}
+
 const StyledTile = styled(Box, {
 	name: 'WmeNextStepTile',
 	slot: 'root',
-})(({ theme }) => ({
+})<NextStepTileProps>(({ theme, variant }) => ({
 	backgroundColor: theme.palette.sidebar.background,
-	backgroundPosition: 'top -50px right',
-	backgroundRepeat: 'no-repeat',
-	width: '280px',
-	position: 'absolute',
-	right: 0,
-	height: 'calc(100vh - 180px)',
-	top: '50%',
-	transform: 'translateY(-50%)',
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'center',
-	flexDirection: 'column',
-
+	justifyContent: variant === 'horizontal' ? 'space-between' : 'center',
+	flexDirection: variant === 'horizontal' ? 'row' : 'column',
+	...(variant === 'horizontal' && {
+		gap: theme.spacing(3),
+		padding: theme.spacing(3),
+	}),
+	...(variant === 'vertical' && {
+		backgroundPosition: 'top -50px right',
+		right: 0,
+		backgroundRepeat: 'no-repeat',
+		top: '50%',
+		transform: 'translateY(-50%)',
+		height: 'calc(100vh - 180px)',
+		position: 'absolute',
+		width: '280px',
+	}),
 	'& .MuiButton-endIcon': {
 		position: 'absolute',
 		transition: 'all ease .3s',
@@ -26,9 +36,14 @@ const StyledTile = styled(Box, {
 	},
 }));
 
-export const NextStepTile = ({ children }: { children: React.ReactNode }) => {
+export const NextStepTile: React.FC<NextStepTileProps> = (props) => {
+	const {
+		variant = 'vertical',
+		children
+	} = props;
+
 	return (
-		<StyledTile className="WmeNextStepTileRoot">
+		<StyledTile className="WmeNextStepTileRoot" variant={ variant }>
 			{ children }
 		</StyledTile>
 	);

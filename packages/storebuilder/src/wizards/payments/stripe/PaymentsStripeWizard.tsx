@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { useEffect } from 'react';
-import { WizardFooter } from '@moderntribe/wme-ui';
+import { WizardFooter, WizardSidebar } from '@moderntribe/wme-ui';
+import { Grid } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useWizard, usePaymentsStripe } from '@store/hooks';
 import { useSearchParams } from 'react-router-dom';
@@ -119,13 +120,46 @@ const PaymentsStripeWizard = () => {
 	};
 
 	return (
-		<>
-			{
-				error
-					? errorComponent
-					: steps[ stepIndex ]?.screen
-			}
+		<Grid container sx={ { position: 'absolute', inset: 0 } }>
+			{ activeStep > 1 && (
+				<Grid item xs={ 2.5 } sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					position: 'relative',
+					zIndex: 2
+				} }>
+					<WizardSidebar
+						heading={ steps[ stepIndex ].title || '' }
+						body={ steps[ stepIndex ].description || '' }
+						subtext={ steps[ stepIndex ].subtext }
+						subtextIcon={ steps[ stepIndex ].subtextIcon }
+					/>
+				</Grid>
+			) }
+			<Grid
+				item
+				xs={ activeStep === 1 ? 12 : 9.5 }
+				sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				} }>
+				{
+					error
+						? errorComponent
+						: steps[ stepIndex ]?.screen
+				}
+			</Grid>
 			<WizardFooter
+				sx={ {
+					position: 'fixed',
+					bottom: 0,
+					left: activeStep === 1 ? 0 : '20.833333%',
+					right: 0,
+					marginInline: 0,
+					backgroundColor: 'transparent'
+				} }
 				activeStep={ stepIndex }
 				steps={ steps }
 				save={ handleSave }
@@ -134,10 +168,10 @@ const PaymentsStripeWizard = () => {
 				isLoading={ isLoading }
 				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				disableNext={ error }
-				isLastStep={ activeStep === stepsMax ? true : false }
+				isLastStep={ activeStep === stepsMax }
 				hideFooter={ false }
 			/>
-		</>
+		</Grid>
 	);
 };
 
