@@ -25,13 +25,10 @@ class ManageProducts extends Card {
 			'title'     => __( 'Manage your products', 'wme-sitebuilder' ),
 			'intro'     => __( 'Give the people what they want.', 'wme-sitebuilder' ),
 			'completed' => false,
-			'time'      => '',
 			'rows'      => [
 				[
 					'id'      => 'manage-products-row-1',
 					'type'    => 'columns',
-					'title'   => '',
-					'intro'   => '',
 					'columns' => [
 						[
 							'title' => __( 'Add Products', 'wme-sitebuilder' ),
@@ -99,9 +96,46 @@ class ManageProducts extends Card {
 					],
 				],
 				[
-					'id'              => 'learn-product-types',
-					'type'            => 'learn-product-types',
-					'exampleProducts' => $this->get_example_products(),
+					'id'              => 'learn-types',
+					'type'            => 'learn-types',
+					'title'           => __( 'Learn more about Product Types', 'wme-sitebuilder' ),
+					'overline'        => __( '2 Minutes', 'wme-sitebuilder' ),
+					'headline'        => __( 'Types of Products and how to choose between them', 'wme-sitebuilder' ),
+					'videoData'       => [
+						'placeholderImage' => 'setup-product-types-poster.png',
+						'ariaLabel'        => __( 'Click to play video', 'wme-sitebuilder' ),
+						'src'              => 'https://www.youtube.com/embed/YwjYtoE5UMQ',
+						'description'      => __( 'There are 4 main types of products to choose from when adding products in StoreBuilder. This video describes each, and what each one is used for.', 'wme-sitebuilder' ),
+					],
+					'wp101'           => [
+						'header' => __( 'How To Set Up Products', 'wme-sitebuilder' ),
+						'links'  => [
+							[
+								'title'      => __( 'Simple', 'wme-sitebuilder' ),
+								'modalTitle' => __( 'Simple Product Overview', 'wme-sitebuilder' ),
+								'url'        => 'wp101:woocommerce-simple-product',
+							],
+							[
+								'title'      => __( 'Variable', 'wme-sitebuilder' ),
+								'modalTitle' => __( 'Variable Product Overview', 'wme-sitebuilder' ),
+								'url'        => 'wp101:woocommerce-variable-products',
+							],
+							[
+								'title'      => __( 'Grouped', 'wme-sitebuilder' ),
+								'modalTitle' => __( 'Grouped Product Overview', 'wme-sitebuilder' ),
+								'url'        => 'wp101:woocommerce-grouped-product',
+							],
+							[
+								'title'      => __( 'Downloadable', 'wme-sitebuilder' ),
+								'modalTitle' => __( 'Downloadable Product Overview', 'wme-sitebuilder' ),
+								'url'        => 'wp101:woocommerce-simple-product',
+							],
+						]
+					],
+					'exampleProducts' => [
+						'title'    => __( 'Examples in your store', 'wme-sitebuilder' ),
+						'products' => $this->get_example_products(),
+					]
 				],
 			],
 		];
