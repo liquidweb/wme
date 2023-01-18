@@ -71,20 +71,26 @@ class PayPal extends Plugin {
 	 * @return array
 	 */
 	public function card_row_props() {
-		return [
-			'id'          => 'payments-paypal',
-			'type'        => 'action',
-			'title'       => __( 'Connect PayPal', 'wme-sitebuilder' ),
-			'intro'       => __( 'Receive payments via PayPal.', 'wme-sitebuilder' ),
-			'icon'        => 'setup-icon-paypal.png',
-			'disableText' => __( 'Manage PayPal', 'wme-sitebuilder' ),
-			'adminUrl'    => $this->admin_url,
-			'connected'   => $this->connected,
-			'button'      => [
+		$button_props = [
+			'connected' => [
+				'label'           => __( 'Manage PayPal', 'wme-sitebuilder' ),
+				'backgroundColor' => '#000000',
+				'href'            => $this->admin_url,
+			],
+			'setup'     => [
 				'label'           => __( 'Connect PayPal', 'wme-sitebuilder' ),
 				'backgroundColor' => '#172C70',
-			],
-			'wizardHash'  => '/wizard/payments-paypal',
+				'href'            => add_query_arg( 'page', 'sitebuilder-store-details#/wizard/payments-paypal', admin_url( 'admin.php' ) ),
+			]
+		];
+
+		return [
+			'id'        => 'payments-paypal',
+			'type'      => 'task',
+			'title'     => __( 'Set Up PayPal', 'wme-sitebuilder' ),
+			'intro'     => __( 'Receive payments via PayPal.', 'wme-sitebuilder' ),
+			'connected' => $this->connected,
+			'button'    => $button_props[ $this->connected ? 'connected' : 'setup' ],
 		];
 	}
 
@@ -95,10 +101,8 @@ class PayPal extends Plugin {
 	 */
 	public function card_footer_props() {
 		return [
-			'title'    => __( 'Help with Paypal', 'wme-sitebuilder' ),
-			'url'      => 'wp101:woocommerce-paypal-standard',
-			'target'   => '_self',
-			'dashicon' => '',
+			'label' => __( 'Help with Paypal', 'wme-sitebuilder' ),
+			'href'  => 'wp101:woocommerce-paypal-standard',
 		];
 	}
 
