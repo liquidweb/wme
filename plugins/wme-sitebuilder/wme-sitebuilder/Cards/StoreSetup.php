@@ -43,7 +43,7 @@ class StoreSetup extends Card {
 			'title'     => __( 'Store Setup', 'wme-sitebuilder' ),
 			'intro'     => __( 'This is where the fun begins.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
-			'time'      => __( '5 Minutes', 'wme-sitebuilder' ),
+			'chipText'  => __( '5 Minutes', 'wme-sitebuilder' ),
 			'rows'      => [
 				[
 					'id'         => 'store-setup-wizard',
@@ -51,7 +51,6 @@ class StoreSetup extends Card {
 					'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
 					'title'      => __( 'Set your currency, address, and store type.', 'wme-sitebuilder' ),
 					'intro'      => __( 'Tell us a little bit about your store.', 'wme-sitebuilder' ),
-					'icon'       => 'setup-icon-store-setup.png',
 					'wizardHash' => '/wizard/store-setup',
 				],
 			],
