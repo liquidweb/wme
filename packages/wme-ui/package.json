@@ -50,7 +50,7 @@
 	},
 	"scripts": {
 		"build": "rollup --config node:@moderntribe/rollup-config --environment NODE_ENV:production",
-		"dev": "yalc=true rollup --config node:@moderntribe/rollup-config --watch",
+		"dev": "rollup --config node:@moderntribe/rollup-config --watch",
 		"storybook": "start-storybook -p 6006 -s public",
 		"build-storybook": "build-storybook -s public",
 		"chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
