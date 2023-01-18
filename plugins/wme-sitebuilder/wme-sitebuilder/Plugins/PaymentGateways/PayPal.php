@@ -73,14 +73,14 @@ class PayPal extends Plugin {
 	public function card_row_props() {
 		$button_props = [
 			'connected' => [
-				'label'           => __( 'Connect PayPal', 'wme-sitebuilder' ),
-				'backgroundColor' => '#172C70',
-				'href'            => add_query_arg( 'page', 'sitebuilder-store-details#/wizard/payments-paypal', admin_url( 'admin.php' ) ),
-			],
-			'setup'     => [
 				'label'           => __( 'Manage PayPal', 'wme-sitebuilder' ),
 				'backgroundColor' => '#000000',
 				'href'            => $this->admin_url,
+			],
+			'setup'     => [
+				'label'           => __( 'Connect PayPal', 'wme-sitebuilder' ),
+				'backgroundColor' => '#172C70',
+				'href'            => add_query_arg( 'page', 'sitebuilder-store-details#/wizard/payments-paypal', admin_url( 'admin.php' ) ),
 			]
 		];
 
