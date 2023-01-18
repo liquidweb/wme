@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { WizardFooter } from '@moderntribe/wme-ui';
+import { WizardFooter, WizardSidebar } from '@moderntribe/wme-ui';
+import { Grid } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 
@@ -30,7 +31,7 @@ const StoreSetupWizard = () => {
 		: 1;
 	const stepIndex = activeStep >= 1 ? activeStep - 1 : 0;
 
-	// Warn users if the begin to navigate away.
+	// Warn users if they begin to navigate away.
 	useEffect(() => {
 		addEventListener('beforeunload', beforeUnloadListener);
 		return () => removeEventListener('beforeunload', beforeUnloadListener);
@@ -60,10 +61,41 @@ const StoreSetupWizard = () => {
 	};
 
 	return (
-		<>
-			{ steps[ stepIndex ].screen }
+		<Grid container sx={ { position: 'absolute', inset: 0 } }>
+			{ activeStep !== lastStep && (
+				<Grid item xs={ 2.5 } sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					position: 'relative',
+					zIndex: 2
+				} }>
+					<WizardSidebar
+						heading={ steps[ stepIndex ].title || '' }
+						body={ steps[ stepIndex ].description || '' }
+						icon={ steps[ stepIndex ].icon || '' }
+					/>
+				</Grid>
+			) }
+			<Grid
+				item
+				xs={ activeStep === lastStep ? 12 : 9.5 }
+				sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				} }>
+				{ steps[ stepIndex ].screen }
+			</Grid>
 			<WizardFooter
-				sx={ { position: 'fixed' } }
+				sx={ {
+					position: 'fixed',
+					bottom: 0,
+					left: activeStep === lastStep ? 0 : '20.833333%',
+					right: 0,
+					marginInline: 0,
+					backgroundColor: 'transparent'
+				} }
 				steps={ steps }
 				activeStep={ stepIndex }
 				isLoading={ isLoading }
@@ -83,7 +115,7 @@ const StoreSetupWizard = () => {
 				}
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }
-		</>
+		</Grid>
 	);
 };
 
