@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { StoreLocation, StoreDetails, Complete } from '../screens';
+import { EditIcon } from '@store/icons';
 
 type KeysOfUnion<T> = T extends T ? keyof T: never;
 
@@ -75,20 +76,6 @@ export interface StoreSetupFormValueInterface {
 	isValid: boolean;
 }
 
-export interface StoreSetupStepInterface {
-	id: number;
-	hideBack?: boolean;
-	hideSkip?: boolean;
-	hideNext?: boolean;
-	label?: string;
-	nextText?: string;
-	hidePagination?: boolean;
-	screen?: React.ReactNode;
-	disableNext?: boolean;
-	disableAll?: boolean;
-	disable?: boolean;
-}
-
 export interface StoreSetupFormItemsInterface {
 	addressLineOne: StoreSetupFormValueInterface;
 	addressLineTwo: StoreSetupFormValueInterface;
@@ -104,14 +91,17 @@ export interface StoreSetupFormItemsInterface {
 export interface StoreSetupScreenDataInterface extends StoreSetupWizardObjectInterface {
 	isLoading: boolean;
 	lastStep: number;
-	steps: Array<StoreSetupStepInterface>;
+	steps: Array<StepInterface>;
 	form: StoreSetupFormItemsInterface;
 }
 
-const stepsData: Array<StoreSetupStepInterface> = [
+const stepsData: Array<StepInterface> = [
 	{
 		id: 0,
 		label: __('Location', 'moderntribe-storebuilder'),
+		icon: <EditIcon />,
+		title: __('Where\'s your store located?', 'moderntribe-storebuilder'),
+		description: __('We need this even if you don\'t have a physical store. Your store address is where you are. We use this to calculate taxes, and we need this for transaction-related emails. It\'s all about being a good store owner.', 'moderntribe-storebuilder'),
 		hideBack: true,
 		nextText: __('Next', 'moderntribe-storebuilder'),
 		screen: <StoreLocation />
@@ -119,6 +109,9 @@ const stepsData: Array<StoreSetupStepInterface> = [
 	{
 		id: 1,
 		label: __('Your Store', 'moderntribe-storebuilder'),
+		icon: <EditIcon />,
+		title: __('About your store', 'moderntribe-storebuilder'),
+		description: __('Last step! A few more details about your store.', 'moderntribe-storebuilder'),
 		nextText: __('Next', 'moderntribe-storebuilder'),
 		screen: <StoreDetails />
 	},

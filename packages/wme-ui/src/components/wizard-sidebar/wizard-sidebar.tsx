@@ -15,7 +15,7 @@ const WizardSidebarContainer = styled(Box, {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  padding: `${theme.spacing(3)} ${theme.spacing(2)}`,
+  padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
   backgroundColor: theme.palette.background.dark,
   color: theme.palette.text.white,
   height: '100%',
