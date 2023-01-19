@@ -9,8 +9,7 @@ import {
 import {
 	Form,
 	FormField,
-	TextInput,
-	WizardSectionTitle
+	TextInput
 } from '@moderntribe/wme-ui';
 import Search from '@mui/icons-material/Search';
 import ScreenWrapper from '@setup/ScreenWrapper';
@@ -19,8 +18,6 @@ import { StoreSetupStringData } from '@setup/data/constants';
 import { StoreSetupFormItemsInterface } from '@setup/data/store-setup-screen-data';
 
 const { storeLocation: {
-	title,
-	copy,
 	addressLineOnePlaceholder,
 	addressLineOneLabel,
 	addressLineTwoLabel,
@@ -78,12 +75,6 @@ const StoreLocation = () => {
 
 	return (
 		<ScreenWrapper sx={ { maxWidth: 425 } }>
-			<WizardSectionTitle
-				heading={ title }
-				headingVariant="h2"
-				copy={ copy }
-				sx={ { mb: 4 } }
-			/>
 			<Form>
 				<Stack spacing={ 2 }>
 					<FormField
