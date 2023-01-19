@@ -3,7 +3,7 @@ import {
 	Form,
 	FormFieldLabel,
 	SelectInput,
-	MenuItem,
+	MenuItem
 } from '@moderntribe/wme-ui';
 import { paymentsPaypalConsts, dropdownItems } from '../data/constants';
 import { usePaymentsPaypal } from '@store/hooks';

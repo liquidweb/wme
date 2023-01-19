@@ -5,8 +5,7 @@ import {
 	CardSelectItem,
 	Form,
 	FormField,
-	SelectInput,
-	WizardSectionTitle
+	SelectInput
 } from '@moderntribe/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';

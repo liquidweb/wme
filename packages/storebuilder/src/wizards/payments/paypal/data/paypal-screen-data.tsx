@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { paymentsPaypalConsts } from './constants';
 
 import { GetStarted, AccountKeys, Success } from '../screens';
-import {IMAGE_DIR, PAYMENTS_PAYPAL_PROPS} from '@store/constants';
+import { IMAGE_DIR, PAYMENTS_PAYPAL_PROPS } from '@store/constants';
 
 export interface PaymentsPaypalInterface {
 	keys: {
