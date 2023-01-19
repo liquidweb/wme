@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import cardJson from './cards.json';
 
 export const STOREBUILDER = window.sitebuilder_store_details;
 
@@ -6,7 +7,9 @@ export const ASSETS_URL = STOREBUILDER.assets_url;
 
 export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
-export const CARDS: SetupCardInterface[] = STOREBUILDER.cards || [];
+// export const CARDS: SetupCardInterface[] = STOREBUILDER.cards || [];
+// @ts-ignore
+export const CARDS: SetupCardInterface[] = cardJson || [];
 
 export const WIZARDS = STOREBUILDER.wizards || {};
 

@@ -3,8 +3,6 @@ import { IMAGE_DIR } from '@store/constants';
 
 export const StoreSetupStringData = {
 	storeLocation: {
-		title: __('Where\'s your store located?', 'moderntribe-storebuilder'),
-		copy: __('We need this even if you don\'t have a physical store. Your store address is where you are. We use this to calculate taxes, and we need this for transaction-related emails. It\'s all about being a good store owner.', 'moderntribe-storebuilder'),
 		addressLineOnePlaceholder: __('Your Address', 'moderntribe-storebuilder'),
 		addressLineOneLabel: __('Address line 1', 'moderntribe-storebuilder'),
 		addressLineTwoLabel: __('Address line 2 (optional)', 'moderntribe-storebuilder'),
@@ -15,8 +13,6 @@ export const StoreSetupStringData = {
 		postCodeLabel: __('Postcode/Zip', 'moderntribe-storebuilder')
 	},
 	storeDetails: {
-		title: __('About your store', 'moderntribe-storebuilder'),
-		copy: __('Last step! A few more details about your store.', 'moderntribe-storebuilder'),
 		currencyLabelText: __('What Currency will you use?', 'moderntribe-storebuilder'),
 		currencyPlaceholderText: __('Select', 'moderntribe-storebuilder'),
 		currencyHelperText: __('The currency in which your product’s prices will be displayed. You can change this later.', 'moderntribe-storebuilder'),

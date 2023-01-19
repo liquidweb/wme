@@ -32,6 +32,7 @@ const Task = styled(Box, {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'nowrap',
+  cursor: 'default',
 
   '& .MuiCardActionArea-root': {
     padding: `${theme.spacing(3)} ${theme.spacing(1)}`,
