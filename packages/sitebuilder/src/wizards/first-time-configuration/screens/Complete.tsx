@@ -1,7 +1,7 @@
 import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
 import { Box, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
-import ScreenWrapper from '@ftc/ScreenWrapper';
+import ScreenWrapper from '@sb/wizards/first-time-configuration/components/ScreenWrapper';
 import { KadenceIcon } from '@sb/logos';
 import { FtcStringData } from '@ftc/data/constants';
 import { IMAGE_DIR } from '@sb/constants';

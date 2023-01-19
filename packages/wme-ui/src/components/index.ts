@@ -1,3 +1,6 @@
+export { default as AutoComplete } from './autocomplete';
+export * from './autocomplete';
+
 export { default as Button } from './button';
 export * from './button';
 

@@ -1,6 +1,5 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
-import { useWizard } from '@sb/hooks';
 
 import FtcScreenData, {
 	FtcScreenDataInterface,
@@ -41,13 +40,6 @@ const FirstTimeConfigurationProvider = ({
 	children: React.ReactNode;
 }) => {
 	const [ftcState, setFtcState] = useState<FtcScreenDataInterface>(ftcData);
-	const { setHideExit } = useWizard();
-
-	useEffect(() => {
-		if (! ftcState.completed) {
-			setHideExit(true);
-		}
-	}, []);
 
 	const submitForm = (isNextLookAndFeel: boolean = false) => {
 		function handleError() {
@@ -62,7 +54,9 @@ const FirstTimeConfigurationProvider = ({
 			sub_action: 'finish',
 			logo: formValues.logoId.touched ? formValues.logoId.value : null,
 			siteName: formValues.siteName.touched ? formValues.siteName.value : null,
-			tagLine: formValues.tagline.touched ? formValues.tagline.value : null,
+			// tagLine: formValues.tagline.touched ? formValues.tagline.value : null,
+			industry: formValues.industry.touched ? formValues.industry.value : null,
+			subIndustry: formValues.subIndustry.touched ? formValues.subIndustry.value : null,
 			username: ! ftcState.completed && formValues.username.touched ? formValues.username.value : null,
 			password: formValues.password.touched ? formValues.password.value : null,
 		});

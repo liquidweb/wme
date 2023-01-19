@@ -20,7 +20,7 @@ import { __ } from '@wordpress/i18n';
 import { useFirstTimeConfiguration, useUsernameValidation } from '@sb/hooks';
 import { copyToClipboard, getPasswordStrength, generateNewPassword } from '@sb/utils';
 
-import ScreenWrapper from '@ftc/ScreenWrapper';
+import ScreenWrapper from '@sb/wizards/first-time-configuration/components/ScreenWrapper';
 import { FtcStringData } from '@ftc/data/constants';
 
 const { usernamePassword } = FtcStringData;

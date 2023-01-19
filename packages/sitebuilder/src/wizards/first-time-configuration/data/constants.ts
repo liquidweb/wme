@@ -55,6 +55,9 @@ export const FtcStringData = {
 			'Use a (short) tagline to tell visitors more about what makes your site unique.',
 			'moderntribe-sitebuilder'
 		),
+		siteIndustryText: __('What Industry are you in?', 'moderntribe-sitebuilder'),
+		siteIndustryPlaceholder: __('Choose a category…', 'moderntribe-sitebuilder'),
+		siteSubIndustryText: __('Can you be more specific?', 'moderntribe-sitebuilder'),
 		siteLogoLabelText: __('Your Logo', 'moderntribe-sitebuilder'),
 		siteLogoHelperText: __(
 			'Your logo will be displayed in the site header and the site icon. Square and landscape orientations work best.',

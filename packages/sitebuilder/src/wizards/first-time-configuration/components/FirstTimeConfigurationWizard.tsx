@@ -19,7 +19,8 @@ const FirstTimeConfigurationWizard = () => {
 		goToNextStep,
 		goToPreviousStep,
 		goToStep,
-		setShowCloseWarning
+		setShowCloseWarning,
+		setHideExit,
 	} = useWizard();
 
 	const [searchParams] = useSearchParams();
@@ -31,8 +32,10 @@ const FirstTimeConfigurationWizard = () => {
 		if (searchParams.get('step')) {
 			const activeStep = Number(searchParams.get('step'));
 			setStepIndex(activeStep >= 1 ? activeStep - 1 : 0);
+			setHideExit(activeStep > 1 ? true : false);
 		} else {
 			setStepIndex(0);
+			setHideExit(false);
 		}
 	}, [searchParams.get('step')]);
 
@@ -57,9 +60,6 @@ const FirstTimeConfigurationWizard = () => {
 	}, [hasStepped]);
 
 	const handleOnNext = () => {
-		if (isLastStep) {
-			return;
-		}
 		goToNextStep();
 	};
 

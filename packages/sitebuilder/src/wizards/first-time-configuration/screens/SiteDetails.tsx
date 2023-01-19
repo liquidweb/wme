@@ -1,17 +1,17 @@
-import { WizardSectionTitle, FormField, TextInput, Form } from '@moderntribe/wme-ui';
-import { Stack } from '@mui/material';
-import FileUpload from '@ftc/FileUpload';
-import ScreenWrapper from '@ftc/ScreenWrapper';
+import { WizardSectionTitle, FormField, Form, TextInput, SelectInput, MenuItem } from '@moderntribe/wme-ui';
+import { Autocomplete, Stack, TextField } from '@mui/material';
+import FileUpload from '@sb/wizards/first-time-configuration/components/FileUpload';
+import ScreenWrapper from '@sb/wizards/first-time-configuration/components/ScreenWrapper';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import { FtcFormItemsInterface } from '@ftc/data/first-time-configuration-screen-data';
 import { FtcStringData } from '@ftc/data/constants';
+import { useState } from 'react';
 
 const { siteDetails } = FtcStringData;
 
 const SiteDetails = () => {
-	const { ftcState: { form }, setFormValue } = useFirstTimeConfiguration();
-	const siteName = form.siteName.value;
-	const tagline = form.tagline.value;
+	const { ftcState: { form, industryVerticals }, setFormValue } = useFirstTimeConfiguration();
+	const [subVerticals, setSubVerticals] = useState<string[]>([]);
 
 	const handleChange = (prop: keyof FtcFormItemsInterface) => (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
 		setFormValue(prop, event.target.value);
@@ -19,6 +19,20 @@ const SiteDetails = () => {
 
 	const setLogo = (id: string) => {
 		setFormValue('logoId', id);
+	};
+
+	const verticalChange = (vertical: string | null) => {
+		console.log('vertical', vertical);
+		setFormValue('industry', (vertical || ''));
+		if (! vertical) {
+			setSubVerticals([]);
+		} else {
+			setSubVerticals(industryVerticals[ (vertical || '') ]);
+		}
+	};
+
+	const subVerticalChange = (category: string) => {
+		setFormValue('subIndustry', category);
 	};
 
 	return (
@@ -36,7 +50,7 @@ const SiteDetails = () => {
 								onChange={ handleChange('siteName') }
 								placeholder={ siteDetails.siteNameLabelText }
 								required
-								value={ siteName }
+								value={ form.siteName.value }
 							/>
 						}
 						helperText={ siteDetails.siteNameHelperText }
@@ -44,16 +58,36 @@ const SiteDetails = () => {
 					/>
 					<FormField
 						field={
-							<TextInput
-								fullWidth
-								onChange={ handleChange('tagline') }
-								placeholder={ siteDetails.siteTagnamePlaceholderText }
-								required
-								value={ tagline }
+							<Autocomplete
+								id="search-industry"
+								value={ form.industry.value }
+								onChange={ (_event: any, newValue: string | null) => {
+									verticalChange(newValue);
+								} }
+								disablePortal
+								options={ Object.keys(industryVerticals) }
+								renderInput={ (params) => <TextField { ...params } /> }
 							/>
 						}
-						helperText={ siteDetails.siteTaglineHelperText }
-						label={ siteDetails.siteTagnameLabelText }
+						label={ siteDetails.siteIndustryText }
+					/>
+					<FormField
+						field={
+							<SelectInput
+								fullWidth
+								onChange={ (e) => subVerticalChange(e.target.value as string) }
+								placeholder={ siteDetails.siteIndustryPlaceholder }
+								required
+								value={ form.subIndustry.value }
+							>
+								{ subVerticals.map((vert) => (
+									<MenuItem key={ vert } value={ vert }>
+										{ vert }
+									</MenuItem>
+								)) }
+							</SelectInput>
+						}
+						label={ siteDetails.siteSubIndustryText }
 					/>
 					<FormField
 						field={

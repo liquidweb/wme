@@ -1,0 +1,50 @@
+import { useState } from "react";
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { AutoComplete } from "..";
+
+<Meta title="Forms/AutoComplete" component={AutoComplete} />
+
+export const Template = (args) => {
+	const [item, setItem] = useState("");
+	const handleChange = (arg) => {
+		setItem(arg?.value || arg);
+	};
+	return <AutoComplete onChange={handleChange} {...args} />;
+};
+
+# SelectInput
+
+A styled version of <a href="https://mui.com/material-ui/react-autocomplete/" target="_blank">MUI's Autocomplete</a>, so you can use any prop provided there.
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React, { useState } from 'react';
+import { AutoComplete } from '@moderntribe/wme';
+
+const MyAutoCompleteInput = (props) => (
+  <AutoComplete {...props} />
+);
+
+export default MyAutoCompleteInput;
+```
+
+## Canvas
+
+<Canvas>
+	<Story
+		name="Base"
+		args={{
+			options: ["Option 1", "Option 2", "Option 3"],
+			sx: { width: 300 },
+			placeholder: "Search for options",
+			id: "autocomplete-text",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>
