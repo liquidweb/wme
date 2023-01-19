@@ -104,7 +104,7 @@ const PaymentsStripeWizard = () => {
 	} else if (activeStep === 2) {
 		nextText = __('Next', 'moderntribe-storebuilder');
 	} else {
-		nextText = __('Complete', 'moderntribe-storebuilder');
+		nextText = __('Save & Complete', 'moderntribe-storebuilder');
 	}
 
 	let errorComponent;

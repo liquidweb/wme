@@ -15,8 +15,9 @@ const StyledTile = styled(Box, {
 	justifyContent: variant === 'horizontal' ? 'space-between' : 'center',
 	flexDirection: variant === 'horizontal' ? 'row' : 'column',
 	...(variant === 'horizontal' && {
-		gap: theme.spacing(3),
+		gap: theme.spacing(4),
 		padding: theme.spacing(3),
+		borderRadius: theme.shape.borderRadius,
 	}),
 	...(variant === 'vertical' && {
 		backgroundPosition: 'top -50px right',

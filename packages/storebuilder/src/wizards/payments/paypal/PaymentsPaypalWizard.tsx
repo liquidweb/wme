@@ -202,23 +202,23 @@ const PaymentsPaypalWizard = () => {
 
 	return (
 		<Grid container sx={ { position: 'absolute', inset: 0 } }>
-			{ activeStep !== stepsMax && (
-				<Grid item xs={ 2.5 } sx={ {
-					display: 'flex',
-					flexDirection: 'column',
-					position: 'relative',
-					zIndex: 2
-				} }>
-					<WizardSidebar
-						heading={ steps[ stepIndex ].title || '' }
-						body={ steps[ stepIndex ].description || '' }
-						icon={ steps[ stepIndex ].icon }
-					/>
-				</Grid>
-			) }
+			<Grid item xs={ 2.5 } sx={ {
+				display: 'flex',
+				flexDirection: 'column',
+				position: 'relative',
+				zIndex: 2
+			} }>
+				<WizardSidebar
+					heading={ steps[ stepIndex ].title || '' }
+					body={ steps[ stepIndex ].description || '' }
+					icon={ steps[ stepIndex ].icon }
+					subtext={ steps[ stepIndex ].subtext }
+					subtextIcon={ steps[ stepIndex ].subtextIcon }
+				/>
+			</Grid>
 			<Grid
 				item
-				xs={ activeStep === stepsMax ? 12 : 9.5 }
+				xs={ 9.5 }
 				sx={ {
 					display: 'flex',
 					flexDirection: 'column',
@@ -235,7 +235,7 @@ const PaymentsPaypalWizard = () => {
 				sx={ {
 					position: 'fixed',
 					bottom: 0,
-					left: activeStep === stepsMax ? 0 : '20.833333%',
+					left: '20.833333%',
 					right: 0,
 					marginInline: 0,
 					backgroundColor: 'transparent'

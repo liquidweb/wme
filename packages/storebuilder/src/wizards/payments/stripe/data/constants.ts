@@ -18,7 +18,7 @@ export const paymentsStripeConsts = {
 		label: __('Your Account Keys', 'moderntribe-storebuilder')
 	},
 	success: {
-		heading: __('Next Up:', 'moderntribe-storebuilder'),
+		heading: __('Next Up', 'moderntribe-storebuilder'),
 		copy: __('Now that we’re set up, you can further customize your Stripe settings in the Stripe Settings page.', 'moderntribe-storebuilder'),
 		manageTitleText: __('Configure Payment Settings', 'moderntribe-storebuilder'),
 		manageBtnText: __('Manage Stripe Payment Settings', 'moderntribe-storebuilder'),
