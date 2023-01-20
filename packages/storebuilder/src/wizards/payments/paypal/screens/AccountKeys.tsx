@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Box, useTheme, CircularProgress, Stack } from '@mui/material';
-import { WizardSectionTitle, Form, FormField, TextInput } from '@moderntribe/wme-ui';
+import { Box, CircularProgress, Stack } from '@mui/material';
+import { Form, FormField, TextInput } from '@moderntribe/wme-ui';
 import { usePaymentsPaypal } from '@store/hooks';
 import { paymentsPaypalConsts } from '../data/constants';
 import { handleActionRequest } from '@moderntribe/wme-utils';
@@ -19,14 +19,11 @@ const AccountKeys = () => {
 	const paypalNonce = PAYMENTS_PAYPAL_PROPS.ajax.nonce || '';
 	const paypalAction = PAYMENTS_PAYPAL_PROPS.ajax.action || '';
 	const { accountKeys: {
-		heading,
-		copy,
 		liveEmailAddress,
 		liveMerchantId,
 		liveClientId,
 		liveClientSecretKey
 	} } = paymentsPaypalConsts;
-	const theme = useTheme();
 
 	useEffect(() => {
 		const fetchKeys = async () => {
@@ -58,13 +55,7 @@ const AccountKeys = () => {
 	}, []);
 
 	return (
-		<Box sx={ { maxWidth: 500 } }>
-			<WizardSectionTitle
-				heading={ heading }
-				headingVariant={ 'h2' }
-				copy={ copy }
-				sx={ { mb: theme.spacing(5) } }
-			/>
+		<Box sx={ { maxWidth: 415, width: '100%' } }>
 			{
 				! isLoading
 					? <Form>

@@ -18,9 +18,9 @@ export const paymentsStripeConsts = {
 		label: __('Your Account Keys', 'moderntribe-storebuilder')
 	},
 	success: {
-		heading: __('You\'re ready to accept Payments with Stripe on your Store!', 'moderntribe-storebuilder'),
-		copy: __('That was easy. Your Stripe account is connected. You can manage your Stripe payment settings to configure checkout experience, transaction preferences and more.', 'moderntribe-storebuilder'),
-		manageTitleText: __('Next up: Configure Payment Settings', 'moderntribe-storebuilder'),
+		heading: __('Next Up', 'moderntribe-storebuilder'),
+		copy: __('Now that we’re set up, you can further customize your Stripe settings in the Stripe Settings page.', 'moderntribe-storebuilder'),
+		manageTitleText: __('Configure Payment Settings', 'moderntribe-storebuilder'),
 		manageBtnText: __('Manage Stripe Payment Settings', 'moderntribe-storebuilder'),
 		nextStepImageAlt: __('different brands of credit cards', 'moderntribe-storebuilder')
 	}

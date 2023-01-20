@@ -10,8 +10,8 @@ type DomainListItem = {
 	selected: boolean,
 }
 
-function getPrice(termFees: DomainTermFees, isAvailable: boolean) {
-	if (! isAvailable) {
+function getPrice(termFees: DomainTermFees | undefined, isAvailable: boolean) {
+	if (! termFees || ! isAvailable) {
 		return undefined;
 	}
 
@@ -31,8 +31,11 @@ function getPrice(termFees: DomainTermFees, isAvailable: boolean) {
 	);
 }
 
-function getChipLabel(isAvailable: boolean, isSelected: boolean) {
-	if (! isAvailable) {
+function getChipLabel(domain: Domain, isSelected: boolean) {
+	if (! domain.package) {
+		return GoLiveStringData.domainItems.unavailable;
+	}
+	if (! domain.is_available) {
 		return GoLiveStringData.domainItems.taken;
 	}
 	if (isSelected) {
@@ -52,8 +55,8 @@ export function parseDomainListItem(domain: Domain, selected: boolean): DomainLi
 	return ({
 		name: domain.domain,
 		disabled: ! domain.is_available,
-		price: getPrice(domain.package.term_fees, domain.is_available),
-		chipLabel: getChipLabel(domain.is_available, selected),
+		price: getPrice(domain.package?.term_fees, domain.is_available),
+		chipLabel: getChipLabel(domain, selected),
 		chipColor: getChipColor(domain.is_available, selected),
 		selected,
 	});

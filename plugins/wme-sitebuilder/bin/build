@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+#
+# Create a distributable copy of the WME Sitebuilder plugin as wme-sitebuilder.zip.
+#
+# USAGE:
+#
+#   build
+
+set -e
+
+# Set up colors.
+color_cyan="\033[0;36m"
+color_green="\033[0;32m"
+color_red="\033[0;31m"
+color_reset="\033[0;0m"
+
+################################################################
+# Print an error message to STDERR, colored red.
+#
+# Note that this function will not exit the script!
+################################################################
+function error() {
+	printf "${color_red}%s${color_reset}\n" "$1" >&2
+}
+
+################################################################
+# Delineate steps of the build process with blocks of cyan text.
+################################################################
+function step() {
+	printf "\n${color_cyan}%s${color_reset}\n" "$1"
+}
+
+# Make sure that we have the wme-sitebuilder directory and main file.
+if [[ ! -d "wme-sitebuilder" || ! -f "wme-sitebuilder.php" ]]; then
+	error "Could not find the wme-sitebuilder directory or main file."
+	exit 1
+fi
+
+# Make sure that we have composer available.
+if [[ -z $( which composer ) ]]; then
+	error "Exiting: Could not find composer, please install it and try again."
+	echo "Could not find the composer executable." >&2
+	exit 1
+fi
+
+# Make sure we have rysnc available.
+if [[ -z $( which rsync ) ]]; then
+	error "Exiting: Could not find rysnc, please install it and try again."
+	echo "Could not find the rsync executable." >&2
+	exit 1
+fi
+
+# Make sure we have pnpm available.
+if [[ -z $( which pnpm ) ]]; then
+	error "Exiting: Could not find pnpm, please install it and try again."
+	exit 1
+fi
+
+# First, clear the old build.
+if [[ -d "dist" ]]; then
+	echo "Removing previous dist/ directory"
+	rm -rf ./dist
+fi
+
+# Make our dist folder to store the built files.
+mkdir -p dist
+
+# Copy the requisite files from the repository into dist.
+step "Copying files"
+cp wme-sitebuilder.php dist/wme-sitebuilder.php
+cp composer.json dist/composer.json
+cp composer.lock dist/composer.lock
+
+# Copy over everything from wme-sitebuilder/ into dist/, without the vendor folder or single files.
+rsync --recursive --verbose --exclude='vendor' --exclude='.*' ./wme-sitebuilder dist/
+
+# Install the production dependencies with an optimized autoloader.
+step "Installing production dependencies"
+composer install --working-dir=dist --no-dev --no-progress --optimize-autoloader
+
+# We don't need to distribute Composer files.
+rm dist/composer.json
+rm dist/composer.lock
+
+# Set Laraval Mix build dir to assets folder.
+export MIX_BUILD_DIR="./dist/wme-sitebuilder/assets"
+
+# Build production-ready assets with Laravel Mix.
+step "Building production assets"
+pnpm install --frozen-lockfile
+pnpm run production
+
+# Finally, create the output zip file.
+#
+# Important: This needs to be run from within the dist/ directory, or the resulting archive will
+# have an additional level of file hierarchy that will break the plugin!
+output_file="wme-sitebuilder.zip"
+step "Building ${output_file}"
+
+# Remove the existing archive, if one exists.
+if [ -f "$output_file" ]; then
+	echo "Removing existing ${output_file} archive"
+	rm "$output_file"
+fi
+
+cd dist || exit 1;
+zip --quiet --recurse-paths --no-dir-entries "../${output_file}" .
+
+# Test the archive structure.
+step "Testing ${output_file}"
+archive_contents=$( zipinfo -1 "../${output_file}" )
+
+if ! grep -qx 'wme-sitebuilder.php' <<< "$archive_contents"; then
+	error "${output_file} should have 'wme-sitebuilder.php' at the root of the archive."
+	printf "Expected \"wme-sitebuilder.php\", found \"%s\"\n" "$( grep 'wme-sitebuilder.php$' <<< "$archive_contents" )" >&2
+	exit 1
+fi
+
+echo -e "${color_green}${output_file} has been built successfully!${color_reset}"

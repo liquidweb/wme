@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<ruleset name="Coding standards for WME Sitebuilder">
+	<!--
+		Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
+		Annotated ruleset: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+	-->
+
+	<!-- What to scan: -->
+	<file>./wme-sitebuilder</file>     <!-- The rest of the plugin files. -->
+	<file>./wme-sitebuilder.php</file> <!-- Main plugin file.-->
+	<file>./tests</file>               <!-- Test files. -->
+
+	<exclude-pattern>./wme-sitebuilder/vendor</exclude-pattern>
+
+	<!-- Show progresss & use colors. -->
+	<arg value="sp"/>
+	<arg name="colors"/>
+
+	<!-- Enables parallel processing when available for faster results. -->
+	<arg name="parallel" value="8"/>
+
+	<!-- Strip the file paths down to the relevant bit and only apply to .php files. -->
+	<arg name="basepath" value="./"/>
+	<arg name="extensions" value="php"/>
+
+    <!--
+        Set range of supported PHP versions.
+        It's recommended that you leave off the maximum version in most cases,
+        e.g. "5.6-" means "We support PHP 5.6 or newer".
+        Reference: https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions
+     -->
+    <config name="testVersion" value="5.6-"/>
+
+    <!--
+        Set the minimum supported WordPress version.
+        Reference: https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#minimum-wp-version-to-check-for-usage-of-deprecated-functions-classes-and-function-parameters
+     -->
+    <config name="minimum_supported_wp_version" value="6.0"/>
+
+	<!-- - - - - - - - - - -->
+	<!-- Rules             -->
+	<!-- - - - - - - - - - -->
+
+	<!-- No PHP syntax errors. -->
+	<rule ref="Generic.PHP.Syntax"/>
+
+	<!-- PHPCompatibilityWP -->
+	<!-- https://github.com/PHPCompatibility/PHPCompatibilityWP -->
+	<rule ref="PHPCompatibilityWP" />
+
+	<!-- WordPress Coding Standards -->
+	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
+	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
+	<rule ref="WordPress-Extra">
+		<!-- Short array syntax is actually *preferred*. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+
+		<!-- Prevent closures from looking really bad. -->
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
+
+		<!-- Don't want to abide by the silly file name structure of WP Core. -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+
+		<!-- Function, variable, method naming. -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedNamespaceFound" />
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+
+		<!-- Allow any case for hooks. -->
+		<exclude name="WordPress.NamingConventions.ValidHookName.NotLowercase" />
+
+		<!-- Short ternaries are fine. -->
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+	</rule>
+
+	<!-- WordPress Docs Coding Standards -->
+	<rule ref="WordPress-Docs">
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
+		<exclude name="Squiz.Commenting.ClassComment.Missing" />
+		<exclude name="Squiz.Commenting.FileComment.Missing" />
+		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
+		<exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen" />
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
+		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint" />
+
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!-- Spacing before/after control structures. -->
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing" />
+
+	<!-- Allow our hook structure, which uses \ as seperators, along with - for use in Something\\WP-CLI\\Something hooks. -->
+	<rule ref="WordPress.NamingConventions.ValidHookName">
+		<properties>
+			<property name="blank_line_check" value="true" />
+			<property name="additionalWordDelimiters" value="\\-/_.:" />
+		</properties>
+	</rule>
+
+	<!-- Disallow long array syntax. -->
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+
+	<!-- Namespacing required for classes. -->
+	<rule ref="PSR1.Classes.ClassDeclaration" />
+
+	<rule ref="Generic.Commenting.Todo.CommentFound">
+		<message>Please review this TODO comment: %s</message>
+  	<severity>3</severity>
+ 	</rule>
+
+	<rule ref="Squiz.Commenting.InlineComment.InvalidEndChar">
+		<type>warning</type>
+	</rule>
+
+
+	<!-- Translation & localization -->
+
+	<!-- Rules for localization text-domain. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="wme-sitebuilder" />
+		</properties>
+	</rule>
+
+</ruleset>
+

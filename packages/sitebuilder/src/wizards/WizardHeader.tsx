@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { useWizard } from '@sb/hooks';
 import { StoreBuilderLogo } from '@sb/logos';
 import { ModalDeviceSelection } from '@sb/components';
+import { Box } from '@mui/material';
 
 const EXIT_TEXT = __('Exit to Setup', 'moderntribe-sitebuilder');
 export interface WizardHeaderInterface {
@@ -25,7 +26,12 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 
 	return (
 		<WmeWizardHeader>
-			<>
+			<Box sx={ {
+				display: 'flex',
+				justifyContent: 'space-between',
+				width: '100%',
+				px: 3
+			} }>
 				<Logo
 					width="100"
 					logoSrc={ <StoreBuilderLogo /> }
@@ -37,7 +43,7 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 						<span>{ EXIT_TEXT }</span>
 					</ExitButton>
 				}
-			</>
+			</Box>
 		</WmeWizardHeader>
 	);
 };

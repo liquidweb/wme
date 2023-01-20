@@ -1,5 +1,50 @@
 # @moderntribe/sitebuilder
 
+## 2.0.1
+
+### Patch Changes
+
+- 95b3ab4: Add purchase domain icon to setup screen card
+- c270205: \* Changes CARDS constant to draw data from backend and not JSON
+  - Updates backend data structure returns for updated frontend requirements
+
+## 2.0.0
+
+### Major Changes
+
+- Preparing for the testing and release of Sitebuilder 2.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @moderntribe/wme-ui@3.0.0
+  - @moderntribe/wme-utils@2.0.0
+
+## 1.7.1
+
+### Patch Changes
+
+- 9ccf6b6: Adds fix to handle null domain search package property
+- 18a78d5: Type fix for Loadable component and removes outdated local dev code.
+
+## 1.7.0
+
+### Minor Changes
+
+- 0413284: Updates Go Live card and splits the Go Live wizard into two concerns: domain purchase and domain connection.
+
+## 1.6.3
+
+### Patch Changes
+
+- 15fb8ef: Content change for Go Live ClaimYourDomain.tsx
+
+## 1.6.2
+
+### Patch Changes
+
+- 5682a8d: Replaces text from Go Live wizard screen
+
 ## 1.6.1
 
 ### Patch Changes

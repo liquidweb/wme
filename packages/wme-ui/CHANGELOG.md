@@ -1,5 +1,11 @@
 # @moderntribe/wme-ui
 
+## 3.0.0
+
+### Major Changes
+
+- Preparing for the testing and release of Sitebuilder 2.0
+
 ## 2.3.0
 
 ### Minor Changes
