@@ -1,22 +1,17 @@
-import { Box, useTheme, SelectChangeEvent } from '@mui/material';
+import { Box, Link, SelectChangeEvent, Typography } from '@mui/material';
 import {
 	Form,
 	FormFieldLabel,
 	SelectInput,
-	MenuItem,
-	InputHelperText,
-	WizardSectionTitle
+	MenuItem
 } from '@moderntribe/wme-ui';
-import { IMAGE_DIR } from '@store/constants';
 import { paymentsPaypalConsts, dropdownItems } from '../data/constants';
 import { usePaymentsPaypal } from '@store/hooks';
 
 // PayPal Get Started Wizard screen
 const GetStarted = () => {
-	const theme = useTheme();
 	const { paymentsPaypalState: { plan }, setPlan } = usePaymentsPaypal();
-	const { getStarted: { heading, copy, dropdownLabel, helperText, paypalAlt } } = paymentsPaypalConsts;
-	const paypalIcon = `${ IMAGE_DIR }paypal-logo.png`;
+	const { getStarted: { dropdownLabel, helperText, helperLink, helperLinkText } } = paymentsPaypalConsts;
 
 	const handlePlanChange = (event: SelectChangeEvent<unknown>) => {
 		setPlan(event.target.value as string);
@@ -24,17 +19,8 @@ const GetStarted = () => {
 
 	if (dropdownItems) {
 		return (
-			<Box sx={ { maxWidth: 500 } }>
-				<WizardSectionTitle
-					iconSrc={ paypalIcon }
-					iconAlt={ paypalAlt }
-					heading={ heading }
-					headingVariant={ 'h2' }
-					copy={ copy }
-					bookend={ true }
-					sx={ { mb: theme.spacing(4) } }
-				/>
-				<Form sx={ { px: theme.spacing(4) } }>
+			<Box sx={ { maxWidth: 415, width: '100%' } }>
+				<Form>
 					<FormFieldLabel>{ dropdownLabel }</FormFieldLabel>
 					<SelectInput
 						variant="outlined"
@@ -52,7 +38,9 @@ const GetStarted = () => {
 						}
 						) }
 					</SelectInput>
-					<InputHelperText>{ helperText }</InputHelperText>
+					<Typography align="center" variant="body2" sx={ { mt: 3 } }>
+						{ helperText } <Link href={ helperLink } target="_blank">{ helperLinkText }</Link>
+					</Typography>
 				</Form>
 			</Box>
 		);
