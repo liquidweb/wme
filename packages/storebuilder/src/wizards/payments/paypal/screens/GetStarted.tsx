@@ -11,7 +11,7 @@ import { usePaymentsPaypal } from '@store/hooks';
 // PayPal Get Started Wizard screen
 const GetStarted = () => {
 	const { paymentsPaypalState: { plan }, setPlan } = usePaymentsPaypal();
-	const { getStarted: { dropdownLabel, helperText, helperLinkText } } = paymentsPaypalConsts;
+	const { getStarted: { dropdownLabel, helperText, helperLink, helperLinkText } } = paymentsPaypalConsts;
 
 	const handlePlanChange = (event: SelectChangeEvent<unknown>) => {
 		setPlan(event.target.value as string);
@@ -39,7 +39,7 @@ const GetStarted = () => {
 						) }
 					</SelectInput>
 					<Typography align="center" variant="body2" sx={ { mt: 3 } }>
-						{ helperText } <Link href="https://www.paypal.com" target="_blank">{ helperLinkText }</Link>
+						{ helperText } <Link href={ helperLink } target="_blank">{ helperLinkText }</Link>
 					</Typography>
 				</Form>
 			</Box>

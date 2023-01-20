@@ -14,6 +14,7 @@ export const paymentsPaypalConsts = {
 		label: __('Connect Your Account', 'moderntribe-storebuilder'),
 		dropdownLabel: __('PayPal Plans', 'moderntribe-storebuilder'),
 		helperText: __('Not sure what plan is right for you?', 'moderntribe-storebuilder'),
+		helperLink: __('https://woocommerce.com/products/woocommerce-paypal-payments/', 'moderntribe-storebuilder'),
 		helperLinkText: __('See Plan Details.', 'moderntribe-storebuilder'),
 		standardPayments: __('Standard Card Processing', 'moderntribe-storebuilder'),
 		advancedPayments: __('Advanced Card Processing', 'moderntribe-storebuilder'),
