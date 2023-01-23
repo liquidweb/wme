@@ -50,6 +50,7 @@ try {
 	]);
 
 	$wme_sitebuilder->init();
+	$wme_sitebuilder->set_admin_color_scheme();
 } catch ( \Exception $e ) {
 	$message = $e instanceof SitebuilderException
 		? 'WME Sitebuilder generated an error: %s'
