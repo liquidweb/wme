@@ -3,6 +3,7 @@
 namespace Tribe\WME\Sitebuilder;
 
 use Psr\Log\LoggerInterface;
+use Tribe\WME\Sitebuilder\Concerns\HasAssets;
 use Tribe\WME\Sitebuilder\Contracts\LoadsConditionally;
 use Tribe\WME\Sitebuilder\Modules\Module;
 
@@ -10,7 +11,7 @@ use Tribe\WME\Sitebuilder\Modules\Module;
  * The base plugin class.
  */
 class Plugin {
-
+	use HasAssets;
 	/**
 	 * The plugin's DI container instance.
 	 *
@@ -51,6 +52,8 @@ class Plugin {
 	public function init() {
 		// Load all registered modules.
 		$this->loadModules();
+
+		$this->add_admin_color_scheme();
 
 		return $this;
 	}
@@ -132,5 +135,29 @@ class Plugin {
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Add the new admin color scheme.
+	 */
+	public function add_admin_color_scheme() {
+		return wp_admin_css_color(
+			'sitebuilder',
+			'WME Sitebuilder',
+			$this->getAssetSource( 'admin/admin-color-scheme.css' ),
+			['#000000', '#ffffff', '#5a00cd' , '#232a2c']
+		);
+	}
+
+	/**
+	 * Set the new admin color scheme to the current user
+	 */
+	public function set_admin_color_scheme() {
+		$user_id = get_current_user_id();
+		$args = [
+			'ID' => $user_id,
+			'admin_color' => 'sitebuilder'
+		];
+		wp_update_user( $args );
 	}
 }
