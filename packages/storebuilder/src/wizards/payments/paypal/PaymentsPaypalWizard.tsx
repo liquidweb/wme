@@ -19,7 +19,7 @@ interface OauthInterface {
 }
 
 const PaymentsPaypalWizard = () => {
-	const { currentStep, goToNextStep, closeAll } = useWizard();
+	const { currentStep, goToNextStep, goToPreviousStep, closeAll } = useWizard();
 	const { paymentsPaypalState: {
 		steps,
 		plan,
@@ -179,15 +179,6 @@ const PaymentsPaypalWizard = () => {
 
 	const stepsMax = steps.length;
 
-	let nextText = '';
-	if (activeStep === 1) {
-		nextText = __('Activate PayPal', 'moderntribe-storebuilder');
-	} else if (activeStep === 2) {
-		nextText = __('Next', 'moderntribe-storebuilder');
-	} else {
-		nextText = __('Complete', 'moderntribe-storebuilder');
-	}
-
 	let errorComponent;
 	if (activeStep === 1) {
 		errorComponent = <ErrorPluginInstall supportLink={ supportLink } />;
@@ -244,7 +235,9 @@ const PaymentsPaypalWizard = () => {
 				steps={ steps }
 				save={ handleSave }
 				onNext={ handleNext }
-				nextText={ nextText }
+				onBack={ goToPreviousStep }
+				nextText={ steps[ stepIndex ].nextText }
+				backText={ __('Back', 'moderntribe-storebuilder') }
 				isLoading={ isLoading }
 				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				disableNext={ error }

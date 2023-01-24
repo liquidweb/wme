@@ -33,7 +33,7 @@ const PaymentsStripeScreenData = (): PaymentsStripeInterface => ({
 			id: 0,
 			label: paymentsStripeConsts.getStarted.label,
 			hideSkip: true,
-			nextText: __('Next', 'moderntribe-storebuilder'),
+			nextText: __('Connect Stripe', 'moderntribe-storebuilder'),
 			hideBack: true,
 			screen: <GetStarted />,
 		},
@@ -45,6 +45,7 @@ const PaymentsStripeScreenData = (): PaymentsStripeInterface => ({
 			subtext: <img src={ ` ${ IMAGE_DIR }stripe-logo-white.png ` } alt={ 'Stripe logo' } />,
 			subtextIcon: null,
 			nextText: __('Next', 'moderntribe-storebuilder'),
+			hideBack: true,
 			screen: <AccountKeys />,
 		},
 		{
@@ -53,7 +54,7 @@ const PaymentsStripeScreenData = (): PaymentsStripeInterface => ({
 			description: __('That was easy. Your Stripe account is connected. You can manage your Stripe payment settings to configure checkout experience, transaction preferences and more.', 'moderntribe-storebuilder'),
 			subtext: <img src={ ` ${ IMAGE_DIR }stripe-logo-white.png ` } alt={ 'Stripe logo' } />,
 			subtextIcon: null,
-			nextText: __('Complete', 'moderntribe-storebuilder'),
+			nextText: __('Save & Complete', 'moderntribe-storebuilder'),
 			hidePagination: true,
 			screen: <Success />
 		}

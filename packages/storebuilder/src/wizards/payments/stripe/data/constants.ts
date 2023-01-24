@@ -2,8 +2,6 @@ import { __ } from '@wordpress/i18n';
 
 export const paymentsStripeConsts = {
 	getStarted: {
-		heading: __('Get started with Stripe', 'moderntribe-storebuilder'),
-		copy: __('Connect or create a Stripe account to accept payments directly onsite, including Payment Request buttons (such as Apple Pay and Google Pay), iDEAL, SEPA, Sofort, and more international payment methods.', 'moderntribe-storebuilder'),
 		terms: __('By clicking "Connect Stripe", you agree to the Terms of Service.', 'moderntribe-storebuilder'),
 		label: __('Connect Your Account', 'moderntribe-storebuilder'),
 		stripeAlt: __('stripe logo', 'moderntribe-storebuilder')
