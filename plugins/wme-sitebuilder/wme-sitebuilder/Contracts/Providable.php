@@ -15,13 +15,6 @@ interface Providable {
 	public function boot();
 
 	/**
-	 * Configure additional container definitions.
-	 *
-	 * @return array<string|class-string,callable|class-string|object> A mapping of identifiers to callables.
-	 */
-	public function config();
-
-	/**
 	 * Registers action/filter listeners to hook
 	 * into WordPress.
 	 *

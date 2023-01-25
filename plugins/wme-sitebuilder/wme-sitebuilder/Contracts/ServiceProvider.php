@@ -16,6 +16,13 @@ abstract class ServiceProvider implements Providable {
 	}
 
 	/**
+	 * Configure additional container definitions.
+	 *
+	 * @return array<string|class-string,callable|class-string|object> A mapping of identifiers to callables.
+	 */
+	abstract protected function config();
+
+	/**
 	 * Add all the additional container definitions.
 	 *
 	 * @return void
