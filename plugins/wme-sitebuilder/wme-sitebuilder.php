@@ -14,6 +14,8 @@
 
 namespace Tribe\WME\Sitebuilder;
 
+use Tribe\WME\Sitebuilder\Admin\ColorScheme\ColorSchemeServiceProvider;
+use Tribe\WME\Sitebuilder\Admin\User\UserServiceProvider;
 use Tribe\WME\Sitebuilder\Exceptions\SitebuilderException;
 use Tribe\WME\Sitebuilder\Services\Logger;
 
@@ -44,10 +46,15 @@ try {
 	/** @var Plugin $wme_sitebuilder */
 	$wme_sitebuilder = Container::getInstance()->get( Plugin::class );
 
-	$wme_sitebuilder->registerModules([
+	$wme_sitebuilder->registerServiceProviders( [
+		UserServiceProvider::class,
+		ColorSchemeServiceProvider::class,
+	] );
+
+	$wme_sitebuilder->registerModules( [
 		Modules\SiteBuilder::class,
 		Modules\StoreDetails::class,
-	]);
+	] );
 
 	$wme_sitebuilder->init();
 } catch ( \Exception $e ) {
