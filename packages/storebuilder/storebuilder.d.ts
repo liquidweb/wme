@@ -185,6 +185,7 @@ declare global {
 		title?: string;
 		description?: string;
 		subtext?: React.ReactNode;
+		subtextIcon?: React.ReactNode;
 		icon?: React.ReactNode;
 		nextText?: string;
 		loadingText?: string;

@@ -57,6 +57,7 @@ if (process.env.MIX_PROXY_URL) {
 	mix.browserSync({
 		proxy: process.env.MIX_PROXY_URL,
 		files: [`${__dirname}/**/*.js`, `${__dirname}/dist/**/*.*`],
+		reloadDebounce: 2000,
 	});
 }
 

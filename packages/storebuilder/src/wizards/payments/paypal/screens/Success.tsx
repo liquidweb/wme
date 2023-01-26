@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
-import { WizardSectionTitle, Button } from '@moderntribe/wme-ui';
+import { Button } from '@moderntribe/wme-ui';
 import { NextStepTile } from '@store/components';
 import { paymentsPaypalConsts } from '../data/constants';
 import { PAYMENTS_PAYPAL_PROPS, IMAGE_DIR, PAYPAL_PLUGIN_SLUG } from '@store/constants';
@@ -10,12 +10,10 @@ const Success = () => {
 	const [successScreenTouched, setSuccessScreenTouched] = useState<boolean>(false);
 	const { success: {
 		heading,
-		copy,
 		manageBtnText,
 		manageTitleText,
-		imageAlt
-	}, getStarted: { paypalAlt } } = paymentsPaypalConsts;
-	const paypalIcon = `${ IMAGE_DIR }paypal-logo.png`;
+		copy,
+	} } = paymentsPaypalConsts;
 	const nextStepImage = `${ IMAGE_DIR }manage-payment-settings-paypal.png`;
 
 	const theme = useTheme();
@@ -30,38 +28,48 @@ const Success = () => {
 	}, []);
 
 	return (
-		<Box sx={ { maxWidth: 500 } }>
-			<WizardSectionTitle
-				heading={ heading }
-				headingVariant={ 'h2' }
-				copy={ copy }
-				iconSrc={ paypalIcon }
-				iconAlt={ paypalAlt }
-				bookend={ true }
-			/>
-			<NextStepTile>
-				<img width="200" src={ nextStepImage } alt={ imageAlt } />
-				<Typography
-					variant="h3"
-					component="h3"
-					mb={ 2 }
-					sx={ {
-						fontWeight: 500,
-						maxWidth: '190px',
-						letterSpacing: '-0.05em',
-						marginTop: theme.spacing(4),
-						color: theme.palette.text.primary,
-					} }
-					align={ 'center' }>
-					{ manageTitleText }
-				</Typography>
-				<Button
-					onClick={ () => window.location.href = PAYMENTS_PAYPAL_PROPS?.plugin?.adminUrl }
-					variant="contained"
-					sx={ { backgroundColor: 'primary.dark' } }
-				>
-					{ manageBtnText }
-				</Button>
+		<Box sx={ { maxWidth: 678 } }>
+			<Typography
+				variant="h4"
+				mb={ 3 }>
+				{ heading }
+			</Typography>
+			<NextStepTile variant="horizontal">
+				<Box sx={ {
+					borderRadius: '8px',
+					overflow: 'hidden',
+					display: 'inline-flex',
+					filter: 'drop-shadow(0px 0px 32px rgba(0, 0, 0, 0.1))'
+				} }>
+					<img width="180" src={ nextStepImage } alt={ manageTitleText } />
+				</Box>
+				<Box>
+					<Typography
+						variant="h3"
+						component="h3"
+						mb={ 2 }
+						sx={ {
+							fontWeight: 500,
+							maxWidth: '290px',
+							letterSpacing: '-0.05em',
+							color: theme.palette.text.primary,
+						} }>
+						{ manageTitleText }
+					</Typography>
+					<Typography
+						variant={ 'body2' }
+						mb={ 2 }
+						sx={ {
+							maxWidth: '380px',
+						} }>
+						{ copy }
+					</Typography>
+					<Button
+						onClick={ () => window.location.href = PAYMENTS_PAYPAL_PROPS?.plugin?.adminUrl }
+						variant="contained">
+						{ manageBtnText }
+					</Button>
+				</Box>
 			</NextStepTile>
 		</Box>
 	);

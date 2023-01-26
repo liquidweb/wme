@@ -2,8 +2,6 @@ import { __ } from '@wordpress/i18n';
 
 export const paymentsStripeConsts = {
 	getStarted: {
-		heading: __('Get started with Stripe', 'moderntribe-storebuilder'),
-		copy: __('Connect or create a Stripe account to accept payments directly onsite, including Payment Request buttons (such as Apple Pay and Google Pay), iDEAL, SEPA, Sofort, and more international payment methods.', 'moderntribe-storebuilder'),
 		terms: __('By clicking "Connect Stripe", you agree to the Terms of Service.', 'moderntribe-storebuilder'),
 		label: __('Connect Your Account', 'moderntribe-storebuilder'),
 		stripeAlt: __('stripe logo', 'moderntribe-storebuilder')
@@ -18,9 +16,9 @@ export const paymentsStripeConsts = {
 		label: __('Your Account Keys', 'moderntribe-storebuilder')
 	},
 	success: {
-		heading: __('You\'re ready to accept Payments with Stripe on your Store!', 'moderntribe-storebuilder'),
-		copy: __('That was easy. Your Stripe account is connected. You can manage your Stripe payment settings to configure checkout experience, transaction preferences and more.', 'moderntribe-storebuilder'),
-		manageTitleText: __('Next up: Configure Payment Settings', 'moderntribe-storebuilder'),
+		heading: __('Next Up', 'moderntribe-storebuilder'),
+		copy: __('Now that we’re set up, you can further customize your Stripe settings in the Stripe Settings page.', 'moderntribe-storebuilder'),
+		manageTitleText: __('Configure Payment Settings', 'moderntribe-storebuilder'),
 		manageBtnText: __('Manage Stripe Payment Settings', 'moderntribe-storebuilder'),
 		nextStepImageAlt: __('different brands of credit cards', 'moderntribe-storebuilder')
 	}

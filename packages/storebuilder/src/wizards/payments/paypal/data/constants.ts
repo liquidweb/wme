@@ -13,7 +13,9 @@ export const paymentsPaypalConsts = {
 		copy: __('Choose an additional card processing method and/or continue to connect your paypal account.', 'moderntribe-storebuilder'),
 		label: __('Connect Your Account', 'moderntribe-storebuilder'),
 		dropdownLabel: __('PayPal Plans', 'moderntribe-storebuilder'),
-		helperText: __('Not sure what plan is right for you? See Plan Details.', 'moderntribe-storebuilder'),
+		helperText: __('Not sure what plan is right for you?', 'moderntribe-storebuilder'),
+		helperLink: __('https://woocommerce.com/products/woocommerce-paypal-payments/', 'moderntribe-storebuilder'),
+		helperLinkText: __('See Plan Details.', 'moderntribe-storebuilder'),
 		standardPayments: __('Standard Card Processing', 'moderntribe-storebuilder'),
 		advancedPayments: __('Advanced Card Processing', 'moderntribe-storebuilder'),
 		paypalAlt: __('paypal logo', 'moderntribe-storebuilder')
@@ -28,11 +30,11 @@ export const paymentsPaypalConsts = {
 		liveClientSecretKey: __('Live Client Secret Key', 'moderntribe-storebuilder')
 	},
 	success: {
-		heading: __('You\'re ready to accept PayPal Payments on your Store!', 'moderntribe-storebuilder'),
-		copy: __('That was easy. Your PayPal account is connected. If you\'d like you can customize your PayPal settings further in the WordPress Admin.', 'moderntribe-storebuilder'),
+		heading: __('Next Up', 'moderntribe-storebuilder'),
+		copy: __('Now that we’re set up, you can further customize your PayPal settings in the PayPal Settings page.', 'moderntribe-storebuilder'),
 		nextText: __('Complete', 'moderntribe-storebuilder'),
 		manageTitleText: __('Customize PayPal Settings', 'moderntribe-storebuilder'),
-		manageBtnText: __('PayPal Payment Settings', 'moderntribe-storebuilder'),
+		manageBtnText: __('Manage PayPal Payment Settings', 'moderntribe-storebuilder'),
 		imageAlt: __('sample checkout page for PayPal', 'moderntribe-storebuilder')
 	}
 };

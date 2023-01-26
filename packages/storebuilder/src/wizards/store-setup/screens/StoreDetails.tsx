@@ -5,8 +5,7 @@ import {
 	CardSelectItem,
 	Form,
 	FormField,
-	SelectInput,
-	WizardSectionTitle
+	SelectInput
 } from '@moderntribe/wme-ui';
 import ScreenWrapper from '@setup/ScreenWrapper';
 import { useStoreSetup } from '@store/hooks';
@@ -18,8 +17,6 @@ import {
 } from '@setup/data/constants';
 
 const { storeDetails: {
-	title,
-	copy,
 	currencyLabelText,
 	currencyHelperText,
 	productTypesLabelText,
@@ -71,12 +68,6 @@ const StoreDetails = () => {
 
 	return (
 		<ScreenWrapper sx={ { maxWidth: 425 } }>
-			<WizardSectionTitle
-				heading={ title }
-				headingVariant="h2"
-				copy={ copy }
-				sx={ { mb: 2 } }
-			/>
 			<Form>
 				<Stack spacing={ 2 } sx={ { '& .WmeFormFieldLabel-root': { mb: 2 } } }>
 					<FormField

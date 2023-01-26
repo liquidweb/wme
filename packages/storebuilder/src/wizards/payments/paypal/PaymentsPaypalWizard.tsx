@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { useEffect } from 'react';
-import { WizardFooter } from '@moderntribe/wme-ui';
+import { WizardFooter, WizardSidebar } from '@moderntribe/wme-ui';
+import { Grid } from '@mui/material';
 import { __ } from '@wordpress/i18n';
 import { useWizard, usePaymentsPaypal } from '@store/hooks';
 import { useSearchParams } from 'react-router-dom';
@@ -18,7 +19,7 @@ interface OauthInterface {
 }
 
 const PaymentsPaypalWizard = () => {
-	const { currentStep, goToNextStep, closeAll } = useWizard();
+	const { currentStep, goToNextStep, goToPreviousStep, closeAll } = useWizard();
 	const { paymentsPaypalState: {
 		steps,
 		plan,
@@ -26,7 +27,7 @@ const PaymentsPaypalWizard = () => {
 		pluginInstalled,
 		error,
 		isLoading,
-		oauthUrls
+		oauthUrls,
 	}, setOauthUrls, installPlugin, setError, setIsLoading } = usePaymentsPaypal();
 	const [searchParams] = useSearchParams();
 	const paypalNonce = PAYMENTS_PAYPAL_PROPS.ajax.nonce || '';
@@ -178,15 +179,6 @@ const PaymentsPaypalWizard = () => {
 
 	const stepsMax = steps.length;
 
-	let nextText = '';
-	if (activeStep === 1) {
-		nextText = __('Activate PayPal', 'moderntribe-storebuilder');
-	} else if (activeStep === 2) {
-		nextText = __('Next', 'moderntribe-storebuilder');
-	} else {
-		nextText = __('Complete', 'moderntribe-storebuilder');
-	}
-
 	let errorComponent;
 	if (activeStep === 1) {
 		errorComponent = <ErrorPluginInstall supportLink={ supportLink } />;
@@ -200,22 +192,56 @@ const PaymentsPaypalWizard = () => {
 	};
 
 	return (
-		<>
-			{
-				error
-					? errorComponent
-					: steps[ stepIndex ]?.screen
-			}
+		<Grid container sx={ { position: 'absolute', inset: 0 } }>
+			<Grid item xs={ 2.5 } sx={ {
+				display: 'flex',
+				flexDirection: 'column',
+				position: 'relative',
+				zIndex: 2
+			} }>
+				<WizardSidebar
+					heading={ steps[ stepIndex ].title || '' }
+					body={ steps[ stepIndex ].description || '' }
+					icon={ steps[ stepIndex ].icon }
+					subtext={ steps[ stepIndex ].subtext }
+					subtextIcon={ steps[ stepIndex ].subtextIcon }
+				/>
+			</Grid>
+			<Grid
+				item
+				xs={ 9.5 }
+				sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					alignItems: 'center',
+				} }>
+				{
+					error
+						? errorComponent
+						: steps[ stepIndex ]?.screen
+				}
+			</Grid>
 			<WizardFooter
+				sx={ {
+					position: 'fixed',
+					bottom: 0,
+					left: '20.833333%',
+					right: 0,
+					marginInline: 0,
+					backgroundColor: 'transparent'
+				} }
 				activeStep={ stepIndex }
 				steps={ steps }
 				save={ handleSave }
 				onNext={ handleNext }
-				nextText={ nextText }
+				onBack={ goToPreviousStep }
+				nextText={ steps[ stepIndex ].nextText }
+				backText={ __('Back', 'moderntribe-storebuilder') }
 				isLoading={ isLoading }
 				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				disableNext={ error }
-				isLastStep={ activeStep === stepsMax ? true : false }
+				isLastStep={ activeStep === stepsMax }
 				hideFooter={ false }
 			/>
 			<a
@@ -230,7 +256,7 @@ const PaymentsPaypalWizard = () => {
 			>
 				{ __('PayPal Oauth Button', 'moderntribe-storebuilder') }
 			</a>
-		</>
+		</Grid>
 	);
 };
 
