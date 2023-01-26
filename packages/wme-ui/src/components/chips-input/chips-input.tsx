@@ -57,10 +57,10 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  //   useEffect(() => {
-  //     selectedTags(selectedItems);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [selectedItems]);
+  useEffect(() => {
+    selectedTags(selectedItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedItems]);
 
   useEffect(() => {
     if (Array.isArray(tags)) {
