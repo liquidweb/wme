@@ -23,7 +23,7 @@ export type CustomAutoCompleteProps<T> = {
   >;
 }
 
-export type AutocompleteInputProps = Omit<CustomAutoCompleteProps<AutocompleteOption>['autocompleteProps'], 'renderInput'> & {
+export type AutocompleteInputProps = Omit<CustomAutoCompleteProps<AutocompleteOption>['autocompleteProps'], 'renderInput' | 'onChange'> & {
     onChange: (arg: any) => void;
     placeholder?: string;
 };
@@ -48,12 +48,15 @@ const StyledAutocomplete = styled(Autocomplete, {
     },
   },
   '& .MuiAutocomplete-inputRoot': {
-    paddingTop: 3,
-    paddingBottom: 3,
+    height: 40,
+    padding: '3px 12px',
+    '& .MuiAutocomplete-input': {
+      padding: 0,
+    },
   },
 }));
 
-const AutoCompletePaper: React.FC<PaperProps> = (props) => (
+export const AutoCompletePaper: React.FC<PaperProps> = (props) => (
   <Paper
     {...props}
     sx={{
@@ -93,6 +96,7 @@ const AutoCompleteInput: React.FC<AutocompleteInputProps> = (props) => {
 
   const componentProps: CustomAutoCompleteProps<AutocompleteOption> = {
     autocompleteProps: {
+      disableClearable: true,
       PaperComponent: AutoCompletePaper,
       //   @ts-ignore - this error is because we're on v5-alpha of MUI
       ListboxProps: MenuProps,

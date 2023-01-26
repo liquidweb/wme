@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-import { UsernamePassword, SiteDetails, Complete } from '../screens';
+import { UsernamePassword, SiteDetails, Complete, IndustryScreen, GoalsScreen, StyleScreen } from '../screens';
 
 import { UserIcon, EditIcon, GoalIcon, MessageIcon, StyleIcon } from '@sb/icons';
 
@@ -9,10 +9,14 @@ export interface FtcSiteLogoObjectInterface {
 	url: string;
 }
 export interface FtcSiteObject {
-	siteName: string;
 	logo: FtcSiteLogoObjectInterface;
+	siteName: string;
 	industry: string;
 	subIndustry: string;
+	siteDescription: string;
+	sitePersonality: string;
+	siteKeywords: string[];
+	goals: string[];
 }
 
 export interface FtcWizardObjectInterface {
@@ -25,19 +29,20 @@ export interface FtcWizardObjectInterface {
 	ajax: SiteBuilderAjaxObject;
 }
 
-export interface FtcFormValueInterface {
-	value: string;
+export interface FtcFormValueInterface<T> {
+	value: T;
 	touched: boolean;
 	isValid: boolean;
 }
 
-export interface FtcFormItemsInterface {
-	username: FtcFormValueInterface;
-	password: FtcFormValueInterface;
-	logoId: FtcFormValueInterface;
-	siteName: FtcFormValueInterface;
-	industry: FtcFormValueInterface;
-	subIndustry: FtcFormValueInterface;
+type FormItems<T> = {
+  [Property in keyof T]: FtcFormValueInterface<T[Property]>;
+};
+
+export interface FtcFormItemsInterface extends Omit<FormItems<FtcSiteObject>, 'logo'> {
+	username: FtcFormValueInterface<string>;
+	password: FtcFormValueInterface<string>;
+	logoId: FtcFormValueInterface<string>;
 }
 
 export interface FtcScreenDataInterface extends FtcWizardObjectInterface {
@@ -46,13 +51,14 @@ export interface FtcScreenDataInterface extends FtcWizardObjectInterface {
 	steps: Array<StepInterface>;
 	form: FtcFormItemsInterface;
 	industryVerticals: Record<string, string[]>;
+	personalityOptions: string[];
 }
 
 const stepsData: Array<StepInterface> = [
 	{
 		id: 0,
 		label: __('Login', 'moderntribe-sitebuilder'),
-		title: __('Login', 'moderntribe-sitebuilder'),
+		title: __('Username and Password', 'moderntribe-sitebuilder'),
 		description: __('Welcome to your site! Let\'s make it yours by getting you a username and password that\'s unique to you.', 'moderntribe-sitebuilder'),
 		icon: <UserIcon />,
 		disableNext: true,
@@ -62,31 +68,33 @@ const stepsData: Array<StepInterface> = [
 		screen: <UsernamePassword />
 	},
 	{
-		id: 1,
-		label: __('Details', 'moderntribe-sitebuilder'),
-		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
-		description: __('Tell us a bit about your site and we can start setting up everything you\'ll need.', 'moderntribe-sitebuilder'),
-		icon: <EditIcon />,
-		hideSkip: true,
-		nextText: __('Next', 'moderntribe-sitebuilder'),
-		screen: <SiteDetails />
-	},
-	{
-		id: 2,
-		label: __('Content', 'moderntribe-sitebuilder'),
+		id: 3,
+		label: __('Industry', 'moderntribe-sitebuilder'),
 		title: __('In your own words, tell us about your business.', 'moderntribe-sitebuilder'),
 		description: __('We\'ll leverage AI writing to help get you started. This will fill your site with placeholder copy that you can change, tweak, or use to your hearts content.', 'moderntribe-sitebuilder'),
 		icon: <MessageIcon />,
 		hideSkip: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
-		screen: <SiteDetails />
+		screen: <IndustryScreen />
 	},
 	{
-		id: 3,
+		id: 2,
 		label: __('Goals', 'moderntribe-sitebuilder'),
 		title: __('What are the goals of this site?', 'moderntribe-sitebuilder'),
 		description: __('Based on your industry we\'ve got some recommendations of what you may need to accomplish your business goals.', 'moderntribe-sitebuilder'),
+		footerHelpText: __('Not sure what you need right now? That’s okay! You can add and remove stuff like this at anytime.', 'moderntribe-sitebuilder'),
 		icon: <GoalIcon />,
+		hideSkip: false,
+		nextText: __('Next', 'moderntribe-sitebuilder'),
+		screen: <GoalsScreen />
+	},
+	{
+		id: 1,
+		label: __('Site', 'moderntribe-sitebuilder'),
+		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
+		description: __('Tell us a bit about your site and we can start setting up everything you\'ll need.', 'moderntribe-sitebuilder'),
+		icon: <EditIcon />,
+		disableNext: true,
 		hideSkip: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <SiteDetails />
@@ -99,7 +107,7 @@ const stepsData: Array<StepInterface> = [
 		icon: <StyleIcon />,
 		hideSkip: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
-		screen: <SiteDetails />
+		screen: <StyleScreen />
 	},
 	{
 		id: 5,
@@ -142,6 +150,26 @@ const formItemsData: FtcFormItemsInterface = {
 		touched: false,
 		isValid: true
 	},
+	siteDescription: {
+		value: '',
+		touched: false,
+		isValid: true
+	},
+	sitePersonality: {
+		value: '',
+		touched: false,
+		isValid: true
+	},
+	siteKeywords: {
+		value: [],
+		touched: false,
+		isValid: true
+	},
+	goals: {
+		value: [],
+		touched: false,
+		isValid: true
+	}
 };
 
 const industryVerticals: Record<string, string[]> = {
@@ -154,7 +182,7 @@ const industryVerticals: Record<string, string[]> = {
 	Health: ['Doctor', 'Dentist', 'Veterinary', 'Clinic'],
 	Travel: ['Tourism', 'Hotel & Lodging'],
 	Entertainment: ['Professional Blog', 'Podcast'],
-	Events: ['Conference,Venue', 'Single Event', 'Event Planning'],
+	Events: ['Conference', 'Venue', 'Single Event', 'Event Planning'],
 	Education: ['School', 'Informal Education', 'Coaching'],
 	'Food and Drinks': ['Restaurant', 'Cafe', 'Bar', 'Chef & Catering'],
 	'Online Store': ['Accessories & Jewelry', 'Fashion', 'Home Goods', 'Kids', 'Pets', 'Arts & Crafts'],
@@ -163,9 +191,11 @@ const industryVerticals: Record<string, string[]> = {
 	Other: [],
 };
 
+const personalityOptions: string[] = ['Quirky', 'Calm', 'Spicy', 'Classic', 'Elegant', 'Funny', 'Witty'];
+
 const localData: FtcScreenDataInterface = {
 	isLoading: false,
-	lastStep: stepsData.length,
+	lastStep: stepsData.length - 1,
 	id: '',
 	completed: false,
 	adminUrl: '',
@@ -178,6 +208,10 @@ const localData: FtcScreenDataInterface = {
 		},
 		industry: '',
 		subIndustry: '',
+		siteDescription: '',
+		sitePersonality: '',
+		siteKeywords: [],
+		goals: [],
 	},
 	previewLogo: {
 		id: '',
@@ -191,6 +225,7 @@ const localData: FtcScreenDataInterface = {
 	steps: stepsData,
 	form: formItemsData,
 	industryVerticals,
+	personalityOptions,
 };
 
 const setInitialFormValues = (
@@ -200,18 +235,27 @@ const setInitialFormValues = (
 		username,
 		site: {
 			logo: { id },
-			siteName,
-			industry,
-			subIndustry
+			siteName = '',
+			industry = '',
+			subIndustry = '',
+			siteDescription = '',
+			sitePersonality = '',
+			siteKeywords = [],
+			goals = [],
 		}
 	} = wizardData;
 
 	const form = formItemsData;
+
 	form.username.value = username;
 	form.logoId.value = String(id);
 	form.siteName.value = siteName;
-	form.industry.value = industry || '';
-	form.subIndustry.value = subIndustry || '';
+	form.industry.value = industry;
+	form.subIndustry.value = subIndustry;
+	form.siteDescription.value = siteDescription;
+	form.sitePersonality.value = sitePersonality;
+	form.siteKeywords.value = siteKeywords;
+	form.goals.value = goals;
 
 	return form;
 };

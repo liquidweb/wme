@@ -7,6 +7,7 @@ import { WizardSidebar } from '@sb/components';
 import { useWizard, useFirstTimeConfiguration } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import { Grid } from '@mui/material';
+import { ArrowForward } from '@mui/icons-material';
 
 const FirstTimeConfigurationWizard = () => {
 	const {
@@ -32,10 +33,10 @@ const FirstTimeConfigurationWizard = () => {
 		if (searchParams.get('step')) {
 			const activeStep = Number(searchParams.get('step'));
 			setStepIndex(activeStep >= 1 ? activeStep - 1 : 0);
-			setHideExit(activeStep > 1 ? true : false);
+			setHideExit(activeStep === 1 ? true : false);
 		} else {
 			setStepIndex(0);
-			setHideExit(false);
+			setHideExit(true);
 		}
 	}, [searchParams.get('step')]);
 
@@ -75,7 +76,7 @@ const FirstTimeConfigurationWizard = () => {
 		<Grid container sx={ { position: 'absolute', inset: 0 } }>
 			<WizardSidebar
 				show={ ! isLastStep }
-				label={ currentScreen.label }
+				label={ currentScreen.title }
 				description={ currentScreen.description }
 				icon={ currentScreen.icon }
 			/>
@@ -114,6 +115,7 @@ const FirstTimeConfigurationWizard = () => {
 				nextText={
 					currentScreen.nextText || __('Next', 'moderntribe-sitebuilder')
 				}
+				nextEndIcon={ <ArrowForward /> }
 			/>
 			{ showCloseWarning && <WizardCloseWarning open={ showCloseWarning } /> }
 		</Grid>

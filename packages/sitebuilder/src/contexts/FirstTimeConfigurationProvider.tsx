@@ -9,17 +9,23 @@ import FtcScreenData, {
 import { SITEBUILDER_URL } from '@sb/constants';
 import { FtcStringData } from '@ftc/data/constants';
 
+export type setFormValueFn = (prop: keyof FtcFormItemsInterface, value: string | string[]) => void;
+export type submitFormFn = (isNextLookAndFeel?: boolean) => void;
+export type resetFormValueFn = (prop: keyof FtcFormItemsInterface) => void;
+export type setIsLoadingFn = (isLoading: boolean) => void;
+export type setLogoValueFn = (id: string, url: string) => void;
+export type validateUsernamePasswordFn = (usernameIsValid: boolean, passwordIsValid: boolean) => void;
+export type shouldAllowNextStepFn = (prop: any | any[], activeStep: number) => void;
+
 export interface FtcProviderContextInterface {
 	ftcState: FtcScreenDataInterface;
-	setFormValue: (prop: keyof FtcFormItemsInterface, value: string) => void;
-	submitForm: (isNextLookAndFeel?: boolean) => void;
-	resetFormValue: (prop: keyof FtcFormItemsInterface) => void;
-	setIsLoading: (isLoading: boolean) => void;
-	setLogoValue: (id: string, url: string) => void;
-	validateUsernamePassword: (
-		usernameIsValid: boolean,
-		passwordIsValid: boolean
-	) => void;
+	setFormValue: setFormValueFn,
+	submitForm: submitFormFn;
+	resetFormValue: resetFormValueFn;
+	setIsLoading:setIsLoadingFn;
+	setLogoValue: setLogoValueFn;
+	validateUsernamePassword: validateUsernamePasswordFn;
+	shouldAllowNextStep:shouldAllowNextStepFn;
 }
 
 export interface FtcUsernamePasswordInterface {
@@ -34,14 +40,10 @@ export const FirstTimeConfigurationContext = createContext<
 	FtcProviderContextInterface | FtcScreenDataInterface | null
 >(ftcData);
 
-const FirstTimeConfigurationProvider = ({
-	children
-}: {
-	children: React.ReactNode;
-}) => {
+const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
 	const [ftcState, setFtcState] = useState<FtcScreenDataInterface>(ftcData);
 
-	const submitForm = (isNextLookAndFeel: boolean = false) => {
+	const submitForm: submitFormFn = (isNextLookAndFeel = false) => {
 		function handleError() {
 			// eslint-disable-next-line no-alert
 			alert(submitFormContent.errorMessage);
@@ -68,11 +70,7 @@ const FirstTimeConfigurationProvider = ({
 		}).catch(() => handleError());
 	};
 
-	const setFormValue = (
-		prop: keyof FtcFormItemsInterface,
-		value: string,
-		touched: boolean = true
-	) => {
+	const setFormValue: setFormValueFn = (prop, value, touched = true) => {
 		if (ftcState.form[ prop ].value === value) {
 			return;
 		}
@@ -86,7 +84,7 @@ const FirstTimeConfigurationProvider = ({
 		});
 	};
 
-	const resetFormValue = (prop: keyof FtcFormItemsInterface) => {
+	const resetFormValue: resetFormValueFn = (prop) => {
 		const formData = ftcState.form;
 		formData[ prop ].value = '';
 		formData[ prop ].touched = false;
@@ -97,34 +95,35 @@ const FirstTimeConfigurationProvider = ({
 		});
 	};
 
-	const setIsLoading = (isLoading: boolean) => {
+	const setIsLoading: setIsLoadingFn = (isLoading) => {
 		setFtcState({
 			...ftcState,
 			isLoading
 		});
 	};
 
-	const validateUsernamePassword = (
-		usernameIsValid: boolean,
-		passwordIsValid: boolean
-	) => {
-		const { steps, form, completed } = ftcState;
-		form.username.isValid = usernameIsValid;
-		form.password.isValid = passwordIsValid;
-
-		if (! completed) {
-			steps[ 0 ].disableNext = ! usernameIsValid || ! passwordIsValid;
-		} else {
-			steps[ 0 ].disableNext = !! (form.password.value && ! passwordIsValid);
-		}
-
+	const shouldAllowNextStep: shouldAllowNextStepFn = (criteria, activeStep) => {
+		const { steps } = ftcState;
+		steps[ activeStep ].disableNext = criteria;
 		setFtcState({
 			...ftcState,
 			steps
 		});
 	};
 
-	const setLogoValue = (id: string, url: string) => {
+	const validateUsernamePassword: validateUsernamePasswordFn = (usernameIsValid, passwordIsValid) => {
+		const { form, completed } = ftcState;
+		form.username.isValid = usernameIsValid;
+		form.password.isValid = passwordIsValid;
+
+		if (! completed) {
+			shouldAllowNextStep(! usernameIsValid || ! passwordIsValid, 0);
+		} else {
+			shouldAllowNextStep(!! (form.password.value && ! passwordIsValid), 0);
+		}
+	};
+
+	const setLogoValue: setLogoValueFn = (id, url) => {
 		const { previewLogo } = ftcState;
 		previewLogo.id = id;
 		previewLogo.url = url;
@@ -144,7 +143,8 @@ const FirstTimeConfigurationProvider = ({
 				resetFormValue,
 				setIsLoading,
 				setLogoValue,
-				validateUsernamePassword
+				validateUsernamePassword,
+				shouldAllowNextStep,
 			} }
 		>
 			{ children }

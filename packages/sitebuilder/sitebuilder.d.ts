@@ -151,6 +151,7 @@ declare global {
 		label?: string;
 		title?: string;
 		description?: string;
+		footerHelpText?: string;
 		icon?: React.ReactNode;
 		nextText?: string;
 		loadingText?: string;
