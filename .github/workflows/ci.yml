@@ -240,10 +240,14 @@ jobs:
 
       - name: Build
         run: pnpm build
-
+        
+      - name: Get installed Playwright version
+        run: |
+          echo "playwright_version=$(pnpm list -r --parseable | grep -m 1 playwright+test | cut -d "@" -f3)" >> $GITHUB_ENV
+          
       - name: Install Playwright Dependencies
         run: |
-          npx playwright install chromium --with-deps
+          npx playwright@${{ env.playwright_version }} install chromium --with-deps
 
       - name: Launch wp-env End-to-End Environment
         working-directory: plugins/wme-sitebuilder
