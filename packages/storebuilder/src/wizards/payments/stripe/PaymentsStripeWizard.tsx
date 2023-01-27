@@ -11,7 +11,7 @@ import { ErrorKeys } from '@payments/shared-screens';
 import { ErrorPluginInstall } from '@payments/stripe/screens';
 
 const PaymentsStripeWizard = () => {
-	const { goToNextStep, closeAll } = useWizard();
+	const { goToNextStep, goToPreviousStep, closeAll } = useWizard();
 	const { paymentsStripeState: {
 		steps,
 		pluginActive,
@@ -98,15 +98,6 @@ const PaymentsStripeWizard = () => {
 
 	const stepsMax = steps.length;
 
-	let nextText = '';
-	if (activeStep === 1) {
-		nextText = __('Connect Stripe', 'moderntribe-storebuilder');
-	} else if (activeStep === 2) {
-		nextText = __('Next', 'moderntribe-storebuilder');
-	} else {
-		nextText = __('Save & Complete', 'moderntribe-storebuilder');
-	}
-
 	let errorComponent;
 	if (activeStep === 1) {
 		errorComponent = <ErrorPluginInstall supportLink={ supportLink } />;
@@ -163,8 +154,10 @@ const PaymentsStripeWizard = () => {
 				activeStep={ stepIndex }
 				steps={ steps }
 				save={ handleSave }
+				onBack={ goToPreviousStep }
 				onNext={ handleNext }
-				nextText={ nextText }
+				nextText={ steps[ stepIndex ].nextText }
+				backText={ __('Back', 'moderntribe-storebuilder') }
 				isLoading={ isLoading }
 				loadingText={ __('Loading…', 'moderntribe-storebuilder') }
 				disableNext={ error }

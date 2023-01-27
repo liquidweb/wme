@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Box, useTheme, CircularProgress, Stack } from '@mui/material';
-import { WizardSectionTitle, Form, FormField, TextInput } from '@moderntribe/wme-ui';
+import { Box, CircularProgress, Stack } from '@mui/material';
+import { Form, FormField, TextInput } from '@moderntribe/wme-ui';
 import { usePaymentsStripe } from '@store/hooks';
 import { paymentsStripeConsts } from '../data/constants';
 import { PAYMENTS_STRIPE_PROPS } from '@store/constants';
@@ -18,14 +18,11 @@ const AccountKeys = () => {
 	const stripeNonce = PAYMENTS_STRIPE_PROPS.ajax.nonce || '';
 	const stripeAction = PAYMENTS_STRIPE_PROPS.ajax.action || '';
 	const { accountKeys: {
-		heading,
-		copy,
 		livePublishableKey,
 		liveSecretKey,
 		livePublishableHelper,
 		liveSecretHelper
 	} } = paymentsStripeConsts;
-	const theme = useTheme();
 
 	useEffect(() => {
 		const fetchKeys = async () => {
@@ -55,16 +52,10 @@ const AccountKeys = () => {
 	}, []);
 
 	return (
-		<Box sx={ { maxWidth: 500 } }>
-			<WizardSectionTitle
-				heading={ heading }
-				headingVariant={ 'h2' }
-				copy={ copy }
-				sx={ { mb: theme.spacing(5) } }
-			/>
+		<Box sx={ { maxWidth: 415, width: '100%' } }>
 			{
 				! isLoading
-					? 		<Form>
+					? 	<Form>
 						<Stack spacing={ 2 }>
 							<FormField
 								field={ <TextInput
