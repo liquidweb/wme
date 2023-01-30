@@ -9,7 +9,7 @@ on:
       - 'release/**'
   pull_request:
     types: [opened, synchronize]
-    
+
 env:
   E2E_ARTIFACT: e2e-run-${{ github.run_id }}-${{ github.run_number }}
 
@@ -43,16 +43,16 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-          
+
       - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
           php-version: '8.0'
-          
+
       - name: Setup Problem Matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          
+
       - name: Get Cache Files Directory
         id: composer-cache
         working-directory: plugins/wme-sitebuilder
@@ -74,7 +74,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-            
+      
       # Install playwright's binary under custom directory to cache
       - name: Set Playwright path (non-windows)
         if: runner.os != 'Windows'
@@ -117,7 +117,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-          
+
       - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -142,7 +142,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-            
+      
       # Install playwright's binary under custom directory to cache
       - name: Set Playwright path (non-windows)
         if: runner.os != 'Windows'
@@ -167,7 +167,7 @@ jobs:
 
       - name: Lint
         run: pnpm lint
-    
+  
   e2e-tests:
     name: End-to-End Testing (via Playwright)
     runs-on: ubuntu-latest
@@ -193,13 +193,13 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-          
+
       - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
         with:
           tools: composer:v2
           php-version: '8.0'
-          
+
       - name: Setup Problem Matchers for PHP
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
@@ -218,7 +218,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-            
+      
       # Install playwright's binary under custom directory to cache
       - name: Set Playwright path (non-windows)
         if: runner.os != 'Windows'
@@ -241,9 +241,13 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Get installed Playwright version
+        run: |
+          echo "playwright_version=$(pnpm list -r --parseable | grep -m 1 playwright+test | cut -d "@" -f3)" >> $GITHUB_ENV
+
       - name: Install Playwright Dependencies
         run: |
-          npx playwright install chromium --with-deps
+          npx playwright@${{ env.playwright_version }} install chromium --with-deps
 
       - name: Launch wp-env End-to-End Environment
         working-directory: plugins/wme-sitebuilder
@@ -272,7 +276,7 @@ jobs:
   
   deploy:
     if: ${{ github.ref_name == 'main' || github.ref_name == '1.0-branch' || github.ref_name == '2.0-branch' }}
-    name: Deploy to Test Sites    
+    name: Deploy to Test Sites
     needs: [build, lint, e2e-tests]
     uses: ./.github/workflows/deploy.yml
     secrets:
