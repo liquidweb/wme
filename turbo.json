@@ -5,8 +5,11 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
+		"perms": {
+			"dependsOn": ["^build"]
+		},
 		"build:plugin": {
-			"dependsOn": ["^perms", "^build", "^build:plugin"],
+			"dependsOn": ["^build", "^perms", "^build:plugin"],
 			"outputs": ["dist/**"]
 		},
 		"dev": {
