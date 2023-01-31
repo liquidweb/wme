@@ -6,7 +6,7 @@
 			"outputs": ["dist/**"]
 		},
 		"build:plugin": {
-			"dependsOn": ["^build", "^build:plugin"],
+			"dependsOn": ["^perms", "^build", "^build:plugin"],
 			"outputs": ["dist/**"]
 		},
 		"dev": {
