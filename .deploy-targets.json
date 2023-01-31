@@ -7,6 +7,13 @@
 			"path": "~/ad11899d57.nxcli.io/html/wp-content/plugins",
 			"url": "https://main.sitebuilder.crows.dev"
 		},
+		"feature/update-supported-plugin-version-logic": {
+			"type": "nexcess",
+			"host": "e09d3d55c5.nxcli.io",
+			"user": "ab47a470_2",
+			"path": "~/ad11899d57.nxcli.io/html/wp-content/plugins",
+			"url": "https://main.sitebuilder.crows.dev"
+		},
 		"v1": {
 			"type": "nexcess",
 			"host": "e09d3d55c5.nxcli.io",
