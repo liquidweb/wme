@@ -26,7 +26,12 @@ abstract class Plugin {
 	/**
 	 * @var string
 	 */
-	protected $supported_version = '';
+	protected $min_supported_version = '';
+
+	/**
+	 * @var string
+	 */
+	protected $max_supported_version = '';
 
 	/**
 	 * Construct.
@@ -84,6 +89,7 @@ abstract class Plugin {
 	 * @return bool
 	 */
 	public function isVersionSupported() {
-		return $this->isPluginVersion( $this->plugin_path, $this->supported_version );
+		return $this->isPluginInVersionRange( $this->plugin_path, $this->min_supported_version, $this->max_supported_version );
 	}
+
 }

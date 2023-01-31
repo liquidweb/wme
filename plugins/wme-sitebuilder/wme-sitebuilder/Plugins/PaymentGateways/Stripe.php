@@ -3,13 +3,13 @@
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
 use Tribe\WME\Sitebuilder\Plugins\Plugin;
-use WC_Stripe_Connect;
 
 /**
  * @property string[] $keys
  * @property string   $oauth_url
  * @property string   $slug
- * @property string   $supported_version
+ * @property string   $min_supported_version
+ * @property string   $max_supported_version*
  */
 class Stripe extends Plugin {
 
@@ -26,7 +26,12 @@ class Stripe extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $supported_version = '6.9.0';
+	protected $min_supported_version = '6.5.0';
+
+	/**
+	 * @var string
+	 */
+	protected $max_supported_version = '7.0.2';
 
 	/**
 	 * @var string
@@ -146,7 +151,7 @@ class Stripe extends Plugin {
 		$connect   = $stripe->connect;
 		$connected = $connect->is_connected();
 		$oauth_url = $connect->get_oauth_url();
-		$options   = get_option( WC_Stripe_Connect::SETTINGS_OPTION, [] );
+		$options   = get_option( \WC_Stripe_Connect::SETTINGS_OPTION, [] );
 
 		if ( is_wp_error( $oauth_url ) ) {
 			$oauth_url = '';

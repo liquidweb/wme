@@ -67,33 +67,37 @@ class PaymentGatewayPayPal extends Wizard {
 
 	/**
 	 * Telemetry: wizard started.
+	 *
+	 * @return never
 	 */
 	public function telemetryWizardStarted() {
 		do_action( 'wme_event_wizard_started', sprintf( 'payment-%s', $this->plugin->slug ) );
 
-		return wp_send_json_success();
+		wp_send_json_success();
 	}
 
 	/**
 	 * AJAX: Install plugin.
+	 *
+	 * @return never
 	 */
 	public function installPlugin() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			return wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
-		$response = $this->makeCommand('wp plugin install', [
+		$response = $this->makeCommand( 'wp plugin install', [
 			$this->plugin->slug,
 			'--activate',
-			sprintf( '--version=%s', $this->plugin->supported_version ),
+			sprintf( '--version=%s', $this->plugin->max_supported_version ),
 			'--force',
-		])->execute();
+		] )->execute();
 
 		if ( ! $response->wasSuccessful() ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-wpcli-error',
 				sprintf(
 					/* Translators: %1$s is the exit code from WP CLI; %2$s is output from WP CLI. */
@@ -101,7 +105,7 @@ class PaymentGatewayPayPal extends Wizard {
 					sanitize_text_field( $response->getExitCode() ),
 					sanitize_text_field( $response->getOutput() )
 				)
-			), 500);
+			), 500 );
 		}
 
 		wp_send_json_success( null, 200 );
@@ -112,10 +116,10 @@ class PaymentGatewayPayPal extends Wizard {
 	 */
 	public function getKeys() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		wp_send_json_success( $this->plugin->keys );
@@ -126,10 +130,10 @@ class PaymentGatewayPayPal extends Wizard {
 	 */
 	public function oauthProps() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		$data = [
@@ -142,11 +146,13 @@ class PaymentGatewayPayPal extends Wizard {
 
 	/**
 	 * Telemetry: wizard completed.
+	 *
+	 * @return never
 	 */
 	public function telemetryWizardCompleted() {
 		do_action( 'wme_event_wizard_started', sprintf( 'payment-%s', $this->plugin->slug ) );
 
-		return wp_send_json_success();
+		wp_send_json_success();
 	}
 
 	/**
