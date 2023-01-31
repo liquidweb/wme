@@ -33,7 +33,7 @@ class PaymentGatewayStripe extends Wizard {
 	/**
 	 * Construct.
 	 *
-	 * @param Stripe $plugin
+	 * @param  Stripe  $plugin
 	 */
 	public function __construct( Stripe $plugin ) {
 		$this->plugin = $plugin;
@@ -83,29 +83,29 @@ class PaymentGatewayStripe extends Wizard {
 	 */
 	public function installPlugin() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
-		$response = $this->makeCommand('wp plugin install', [
+		$response = $this->makeCommand( 'wp plugin install', [
 			$this->plugin->slug,
 			'--activate',
 			sprintf( '--version=%s', $this->plugin->supported_version ),
 			'--force',
-		])->execute();
+		] )->execute();
 
 		if ( ! $response->wasSuccessful() ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-wpcli-error',
 				sprintf(
-					/* Translators: %1$s is the exit code from WP CLI; %2$s is output from WP CLI. */
+				/* Translators: %1$s is the exit code from WP CLI; %2$s is output from WP CLI. */
 					__( 'Encountered WP CLI exit code "%1$s" with output "%2$s".', 'wme-sitebuilder' ),
 					sanitize_text_field( $response->getExitCode() ),
 					sanitize_text_field( $response->getOutput() )
 				)
-			), 500);
+			), 500 );
 		}
 
 		wp_send_json_success( null, 200 );
@@ -118,10 +118,10 @@ class PaymentGatewayStripe extends Wizard {
 	 */
 	public function oauthUrl() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		wp_send_json_success( $this->plugin->oauth_url, 200 );
@@ -134,10 +134,10 @@ class PaymentGatewayStripe extends Wizard {
 	 */
 	public function getKeys() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		wp_send_json_success( $this->plugin->keys );
@@ -165,9 +165,9 @@ class PaymentGatewayStripe extends Wizard {
 	 *
 	 * Redirect completion of Stripe oAuth workflow back into wizard.
 	 *
-	 * @see WC_Stripe_Connect::maybe_handle_redirect()
+	 * @param  string  $location
 	 *
-	 * @param string $location
+	 * @see WC_Stripe_Connect::maybe_handle_redirect()
 	 *
 	 * @return string
 	 */
@@ -188,4 +188,5 @@ class PaymentGatewayStripe extends Wizard {
 			'page' => $query_param_page,
 		], admin_url( 'admin.php' ) );
 	}
+
 }
