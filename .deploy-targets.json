@@ -35,6 +35,11 @@
 				"main"
 			]
 		},
+		"feature/update-supported-plugin-version-logic": {
+			"targets": [
+				"feature/update-supported-plugin-version-logic"
+			]
+		},
 		"1.0-branch": {
 			"targets": [
 				"v1"	
