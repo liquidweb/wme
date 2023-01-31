@@ -49,8 +49,8 @@
         "szepeviktor/phpstan-wordpress": "^0.7",
         "wp-coding-standards/wpcs": "^2.1",
 		"wpackagist-plugin/woocommerce": ">=7.1",
-		"wpackagist-plugin/woocommerce-gateway-stripe": "6.4.1",
-		"wpackagist-plugin/woocommerce-paypal-payments": "1.9.0"
+		"wpackagist-plugin/woocommerce-gateway-stripe": "6.9.0",
+		"wpackagist-plugin/woocommerce-paypal-payments": "1.9.4"
     },
     "scripts": {
         "build:plugin": [
