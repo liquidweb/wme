@@ -66,5 +66,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Set Permissions
+        run: chmod +x plugins/wme-sitebuilder/wme-sitebuilder/vendor/wp-cli/wp-cli/bin/wp
+        
       - name: Deploy Branch
         run: ./bin/deploy.sh
