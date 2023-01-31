@@ -67,19 +67,23 @@ class PaymentGatewayPayPal extends Wizard {
 
 	/**
 	 * Telemetry: wizard started.
+	 *
+	 * @return never
 	 */
 	public function telemetryWizardStarted() {
 		do_action( 'wme_event_wizard_started', sprintf( 'payment-%s', $this->plugin->slug ) );
 
-		return wp_send_json_success();
+		wp_send_json_success();
 	}
 
 	/**
 	 * AJAX: Install plugin.
+	 *
+	 * @return never
 	 */
 	public function installPlugin() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			return wp_send_json_error(new WP_Error(
+			wp_send_json_error(new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
 			), 403);
@@ -109,6 +113,8 @@ class PaymentGatewayPayPal extends Wizard {
 
 	/**
 	 * AJAX: Provide PayPal keys.
+	 *
+	 * @return never
 	 */
 	public function getKeys() {
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -123,6 +129,8 @@ class PaymentGatewayPayPal extends Wizard {
 
 	/**
 	 * AJAX: Provide oAuth properties.
+	 *
+	 * @return never
 	 */
 	public function oauthProps() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
@@ -142,11 +150,13 @@ class PaymentGatewayPayPal extends Wizard {
 
 	/**
 	 * Telemetry: wizard completed.
+	 *
+	 * @return never
 	 */
 	public function telemetryWizardCompleted() {
 		do_action( 'wme_event_wizard_started', sprintf( 'payment-%s', $this->plugin->slug ) );
 
-		return wp_send_json_success();
+		wp_send_json_success();
 	}
 
 	/**
