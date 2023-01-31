@@ -7,8 +7,10 @@
 
 namespace Tribe\WME\Sitebuilder\Support;
 
-class ConsoleCommand {
+use OutOfRangeException;
+use const Tribe\WME\Sitebuilder\VENDOR_DIR;
 
+class ConsoleCommand {
 	/**
 	 * Arguments that have been passed to the command.
 	 *
@@ -95,7 +97,7 @@ class ConsoleCommand {
 		$priority = (int) $priority;
 
 		if ( $priority < -20 || $priority > 19 ) {
-			throw new \OutOfRangeException(
+			throw new OutOfRangeException(
 				'The priority levels for the "nice" command range from -20—19. Run `man nice` for details.'
 			);
 		}
@@ -118,7 +120,7 @@ class ConsoleCommand {
 		$timeout = (int) $timeout;
 
 		if ( $timeout <= 0 ) {
-			throw new \OutOfRangeException( 'Timeout values must be greater than 0.' );
+			throw new OutOfRangeException( 'Timeout values must be greater than 0.' );
 		}
 
 		$this->timeout = $timeout;
@@ -139,7 +141,7 @@ class ConsoleCommand {
 	protected function parseArguments( array $arguments = [] ) {
 		array_walk( $arguments, function ( &$value, $key ) {
 			if ( is_int( $key ) ) {
-				$value = $value;
+				// Do nothing, keep original value.
 			} elseif ( is_array( $value ) ) {
 				$value = sprintf( '%s=%s', $key, implode( ',', $value ) );
 			} elseif ( is_bool( $value ) ) {
@@ -176,21 +178,14 @@ class ConsoleCommand {
 			return self::$wpBinary;
 		}
 
-		/*
-		 * Construct an escaped string that expands the current PHP and WP-CLI binary paths.
-		 *
-		 * Note that we're using the PHP_BINDIR constant and adding "/php" instead of PHP_BINARY,
-		 * as the latter will point to PHP-FPM.
-		 *
-		 * The expected output of this will look something like:
-		 *
-		 *     /opt/remi/php73/root/usr/bin/php /usr/local/bin/wp
-		 */
+		// Set the wp-cli cache directory to a known writable location.
+		putenv( sprintf( 'WP_CLI_CACHE_DIR=%s.wp-cli/cache', get_temp_dir() ) );
+
+		// Run wp cli from our vendor folder, this is actually a bash script that calls wp under the hood.
 		self::$wpBinary = sprintf(
 			'%1$s %2$s',
-			escapeshellarg( PHP_BINDIR . '/php' ),
-			// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.system_calls_shell_exec
-			escapeshellarg( trim( (string) shell_exec( 'command -v wp' ) ) )
+			escapeshellarg( VENDOR_DIR . 'wp-cli/wp-cli/bin/wp' ),
+			escapeshellarg( '--path=' . ABSPATH )
 		);
 
 		return self::$wpBinary;
