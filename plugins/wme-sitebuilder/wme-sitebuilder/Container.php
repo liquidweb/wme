@@ -5,6 +5,7 @@ namespace Tribe\WME\Sitebuilder;
 use PhpZip\ZipFile;
 use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
+use Symfony\Component\Filesystem\Filesystem;
 use Tribe\WME\Sitebuilder\Factories\WizardFactory;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
@@ -98,6 +99,7 @@ class Container extends BaseContainer {
 
 			// Plugin Downloader.
 			ZipFile::class                       => null,
+			Filesystem::class                    => null,
 			Support\Downloader\Downloader::class => null,
 			Support\Downloader\Plugin::class     => null,
 			Support\Downloader\Extractor::class  => static function ( $app ) {
@@ -110,7 +112,8 @@ class Container extends BaseContainer {
 			Support\Downloader\Installer::class  => static function ( $app ) {
 				return new Support\Downloader\Installer(
 					$app->make( Support\Downloader\Downloader::class ),
-					$app->make( Support\Downloader\Extractor::class )
+					$app->make( Support\Downloader\Extractor::class ),
+					$app->make( Filesystem::class )
 				);
 			},
 
