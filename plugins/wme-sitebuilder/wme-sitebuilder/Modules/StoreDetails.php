@@ -7,10 +7,11 @@ use Tribe\WME\Sitebuilder\Concerns\HasAssets;
 use Tribe\WME\Sitebuilder\Concerns\HasWordPressDependencies;
 use Tribe\WME\Sitebuilder\Container;
 use Tribe\WME\Sitebuilder\Contracts\LoadsConditionally;
+use Tribe\WME\Sitebuilder\Factories\WizardFactory;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
-use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal as PaymentGatewayPayPalWizard;
-use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe as PaymentGatewayStripeWizard;
+use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal;
+use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe;
 use Tribe\WME\Sitebuilder\Wizards\Shipping as ShippingWizard;
 use Tribe\WME\Sitebuilder\Wizards\StoreSetup as StoreSetupWizard;
 
@@ -50,6 +51,17 @@ class StoreDetails extends Module implements LoadsConditionally {
 	protected $position = 3;
 
 	/**
+	 * @var \Tribe\WME\Sitebuilder\Factories\WizardFactory
+	 */
+	protected $wizardFactory;
+
+	public function __construct( array $cards, WizardFactory $wizardFactory ) {
+		$this->wizardFactory = $wizardFactory;
+
+		parent::__construct( $cards );
+	}
+
+	/**
 	 * Only load this module if WooCommerce is installed.
 	 *
 	 * @return bool True if the extension should load, false otherwise.
@@ -59,7 +71,7 @@ class StoreDetails extends Module implements LoadsConditionally {
 	}
 
 	/**
-	 * Setup the Module.
+	 * Set up the Module.
 	 */
 	public function setup() {
 		$this->menu_title = __( 'Store Details', 'wme-sitebuilder' );
@@ -95,12 +107,12 @@ class StoreDetails extends Module implements LoadsConditionally {
 
 		if ( ! $stripe->isInstalled() || $stripe->isVersionSupported() ) {
 			$plugins['stripe'] = $stripe;
-			$this->wizards[]   = new PaymentGatewayStripeWizard( $stripe );
+			$this->wizards[]   = $this->wizardFactory->make( PaymentGatewayStripe::class );
 		}
 
 		if ( ! $paypal->isInstalled() || $paypal->isVersionSupported() ) {
 			$plugins['paypal'] = $paypal;
-			$this->wizards[]   = new PaymentGatewayPayPalWizard( $paypal );
+			$this->wizards[]   = $this->wizardFactory->make( PaymentGatewayPayPal::class );
 		}
 
 		if ( empty( $plugins ) ) {

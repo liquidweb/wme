@@ -2,8 +2,10 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
+use Exception;
 use Tribe\WME\Sitebuilder\Concerns\InvokesCli;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
+use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
 use WP_Error;
 
 class PaymentGatewayStripe extends Wizard {
@@ -31,12 +33,19 @@ class PaymentGatewayStripe extends Wizard {
 	protected $plugin;
 
 	/**
+	 * @var \Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller
+	 */
+	protected $pluginInstaller;
+
+	/**
 	 * Construct.
 	 *
-	 * @param Stripe $plugin
+	 * @param  Stripe                                                     $plugin
+	 * @param  \Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller  $pluginInstaller
 	 */
-	public function __construct( Stripe $plugin ) {
+	public function __construct( Stripe $plugin, PluginInstaller $pluginInstaller ) {
 		$this->plugin = $plugin;
+		$this->pluginInstaller = $pluginInstaller;
 
 		parent::__construct();
 	}
@@ -89,21 +98,15 @@ class PaymentGatewayStripe extends Wizard {
 			), 403 );
 		}
 
-		$response = $this->makeCommand( 'wp plugin install', [
-			$this->plugin->slug,
-			'--activate',
-			sprintf( '--version=%s', $this->plugin->max_supported_version ),
-			'--force',
-		] )->execute();
-
-		if ( ! $response->wasSuccessful() ) {
+		try {
+			$this->pluginInstaller->install( $this->plugin->slug, $this->plugin->max_supported_version );
+		} catch ( Exception $e ) {
 			wp_send_json_error( new WP_Error(
 				'mapps-wpcli-error',
 				sprintf(
-					/* Translators: %1$s is the exit code from WP CLI; %2$s is output from WP CLI. */
-					__( 'Encountered WP CLI exit code "%1$s" with output "%2$s".', 'wme-sitebuilder' ),
-					sanitize_text_field( $response->getExitCode() ),
-					sanitize_text_field( $response->getOutput() )
+					/* Translators: %1$s is the error message */
+					__( 'Encountered error installing plugin with output "%1$s".', 'wme-sitebuilder' ),
+					sanitize_text_field( $e->getMessage() )
 				)
 			), 500 );
 		}
