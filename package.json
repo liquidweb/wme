@@ -22,7 +22,6 @@
 	"scripts": {
 		"build": "turbo run build",
 		"build:plugin": "turbo run build:plugin",
-		"perms": "chmod +x plugins/wme-sitebuilder/wme-sitebuilder/vendor/wp-cli/wp-cli/bin/wp",
 		"clean": "pnpm -r --parallel exec rimraf dist .turbo tsconfig.tsbuildinfo",
 		"clean:hard": "pnpm -r --parallel exec rimraf dist .turbo node_modules && rm -rf node_modules",
 		"dev": "turbo run dev",
