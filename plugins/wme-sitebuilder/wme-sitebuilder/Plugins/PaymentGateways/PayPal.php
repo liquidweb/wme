@@ -31,7 +31,7 @@ class PayPal extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $max_supported_version = '2.0.1';
+	protected $max_supported_version = '2.0.2';
 
 	/**
 	 * @var string
