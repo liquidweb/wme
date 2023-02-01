@@ -6,7 +6,6 @@ use PhpZip\ZipFile;
 use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
 use Symfony\Component\Filesystem\Filesystem;
-use Tribe\WME\Sitebuilder\Factories\WizardFactory;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
 use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
@@ -71,19 +70,19 @@ class Container extends BaseContainer {
 			Contracts\ManagesDomain::class        => Services\Domain::class,
 
 			// Factories.
-			Factories\WizardFactory::class        => function () {
-				return new WizardFactory( $this );
+			Contracts\Factory::class    => function () {
+				return new Factories\Factory( $this );
 			},
 
 			// Pages.
-			Modules\StoreDetails::class           => static function ( $app ) {
+			Modules\StoreDetails::class => static function ( $app ) {
 				return new Modules\StoreDetails(
 					[
 						$app->make( Cards\StoreSetup::class ),
 						$app->make( Cards\ManageProducts::class ),
 						$app->make( Cards\Shipping::class ),
 					],
-					$app->make( WizardFactory::class )
+					$app->make( Contracts\Factory::class )
 				);
 			},
 

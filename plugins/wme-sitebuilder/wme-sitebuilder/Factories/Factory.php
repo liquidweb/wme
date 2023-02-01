@@ -3,8 +3,9 @@
 namespace Tribe\WME\Sitebuilder\Factories;
 
 use StellarWP\Container\Container;
+use Tribe\WME\Sitebuilder\Contracts\Factory as FactoryContract;
 
-class WizardFactory {
+class Factory implements FactoryContract {
 
 	/**
 	 * @param  \StellarWP\Container\Container  $container
@@ -16,11 +17,13 @@ class WizardFactory {
 	}
 
 	/**
-	 * Create a Wizard Instance.
+	 * Create an instance using the container.
 	 *
-	 * @param  class-string  $class  The container class definition.
+	 * @template T of object
 	 *
-	 * @return \Tribe\WME\Sitebuilder\Wizards\Wizard
+	 * @param  class-string<T>  $class  The container class id.
+	 *
+	 * @return T
 	 */
 	public function make( $class ) {
 		return $this->container->make( $class );
