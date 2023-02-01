@@ -101,7 +101,10 @@ class Container extends BaseContainer {
 			Support\Downloader\Downloader::class => null,
 			Support\Downloader\Plugin::class     => null,
 			Support\Downloader\Extractor::class  => static function ( $app ) {
-				return new Support\Downloader\Extractor( $app->make( ZipFile::class ), ABSPATH );
+				return new Support\Downloader\Extractor(
+					$app->make( ZipFile::class ),
+					ABSPATH
+				);
 			},
 
 			Support\Downloader\Installer::class  => static function ( $app ) {
