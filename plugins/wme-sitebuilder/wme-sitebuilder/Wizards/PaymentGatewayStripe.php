@@ -44,7 +44,7 @@ class PaymentGatewayStripe extends Wizard {
 	 * @param  \Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller  $pluginInstaller
 	 */
 	public function __construct( Stripe $plugin, PluginInstaller $pluginInstaller ) {
-		$this->plugin = $plugin;
+		$this->plugin          = $plugin;
 		$this->pluginInstaller = $pluginInstaller;
 
 		parent::__construct();
