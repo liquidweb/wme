@@ -38,29 +38,29 @@ class Container extends BaseContainer {
 			},
 
 			// Cards.
-			Cards\FirstTimeConfiguration::class   => function ( $app ) {
+			Cards\FirstTimeConfiguration::class   => static function ( $app ) {
 				return new Cards\FirstTimeConfiguration(
 					$app->make( Wizards\FirstTimeConfiguration::class )
 				);
 			},
-			Cards\GoLive::class                   => function ( $app ) {
+			Cards\GoLive::class                   => static function ( $app ) {
 				return new Cards\GoLive(
 					$app->make( Wizards\GoLive::class )
 				);
 			},
-			Cards\LookAndFeel::class              => function ( $app ) {
+			Cards\LookAndFeel::class              => static function ( $app ) {
 				return new Cards\LookAndFeel(
 					$app->make( Wizards\LookAndFeel::class )
 				);
 			},
 			Cards\ManageProducts::class           => null,
 			Cards\PaymentGateways::class          => null,
-			Cards\Shipping::class                 => function ( $app ) {
+			Cards\Shipping::class                 => static function ( $app ) {
 				return new Cards\Shipping(
 					$app->make( Plugins\Shipping::class )
 				);
 			},
-			Cards\StoreSetup::class               => function ( $app ) {
+			Cards\StoreSetup::class               => static function ( $app ) {
 				return new Cards\StoreSetup(
 					$app->make( Wizards\StoreSetup::class )
 				);
@@ -75,7 +75,7 @@ class Container extends BaseContainer {
 			},
 
 			// Pages.
-			Modules\StoreDetails::class           => function ( $app ) {
+			Modules\StoreDetails::class           => static function ( $app ) {
 				return new Modules\StoreDetails(
 					[
 						$app->make( Cards\StoreSetup::class ),
@@ -86,7 +86,7 @@ class Container extends BaseContainer {
 				);
 			},
 
-			Modules\SiteBuilder::class            => function ( $app ) {
+			Modules\SiteBuilder::class            => static function ( $app ) {
 				return new Modules\SiteBuilder(
 					[
 						$app->make( Cards\FirstTimeConfiguration::class ),
@@ -130,7 +130,7 @@ class Container extends BaseContainer {
 
 			// Wizards.
 			Wizards\FirstTimeConfiguration::class => null,
-			Wizards\GoLive::class                 => function ( $app ) {
+			Wizards\GoLive::class                 => static function ( $app ) {
 				return new Wizards\GoLive(
 					$app->make( Contracts\ManagesDomain::class )
 				);
@@ -148,7 +148,7 @@ class Container extends BaseContainer {
 					$app->make( PluginInstaller::class )
 				);
 			},
-			Wizards\Shipping::class               => function ( $app ) {
+			Wizards\Shipping::class               => static function ( $app ) {
 				return new Wizards\Shipping(
 					$app->make( Plugins\Shipping::class )
 				);
