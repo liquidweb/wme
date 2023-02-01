@@ -8,16 +8,16 @@ use PhpZip\ZipFile;
 class Extractor {
 
 	/**
+	 * @var \PhpZip\ZipFile
+	 */
+	protected $zip;
+
+	/**
 	 * The server path to the root of the project.
 	 *
 	 * @var string
 	 */
 	protected $project_root;
-
-	/**
-	 * @var \PhpZip\ZipFile
-	 */
-	protected $zip;
 
 	public function __construct( ZipFile $zip, $project_root ) {
 		$this->zip          = $zip;
