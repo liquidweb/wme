@@ -42,6 +42,7 @@
         "nelexa/zip": "^4.0",
         "psr/log": "^1.1",
         "stellarwp/container": "^0.1.1",
+        "symfony/filesystem": "^5.4",
         "symfony/polyfill-php80": "^1.27",
         "wp-cli/wp-cli-bundle": "*"
     },
