@@ -89,7 +89,7 @@ abstract class Plugin {
 	 * @return bool
 	 */
 	public function isVersionSupported() {
-		return $this->isPluginInVersionRange( $this->plugin_path, $this->min_supported_version, $this->max_supported_version );
+		return $this->isPluginVersionInRange( $this->plugin_path, $this->min_supported_version, $this->max_supported_version );
 	}
 
 }

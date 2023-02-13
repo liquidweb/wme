@@ -84,7 +84,7 @@ trait HasWordPressDependencies {
 	 *
 	 * @return bool
 	 */
-	public function isPluginInVersionRange( $plugin, $min_version, $max_version ) {
+	public function isPluginVersionInRange( $plugin, $min_version, $max_version ) {
 		$actual_version = $this->getPluginVersion( $plugin );
 
 		if ( empty( $actual_version ) ) {
