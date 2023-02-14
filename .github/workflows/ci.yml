@@ -133,6 +133,9 @@ jobs:
           tools: composer:v2
           php-version: '8.0'
 
+      - name: Set up Problem Matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+        
       - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
         with:
