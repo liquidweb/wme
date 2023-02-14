@@ -37,6 +37,12 @@ jobs:
         with:
           version: 7
           run_install: false
+          
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT          
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v3
@@ -63,8 +69,10 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
@@ -111,6 +119,12 @@ jobs:
         with:
           version: 7
           run_install: false
+          
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT               
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v3
@@ -131,8 +145,10 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
@@ -188,6 +204,12 @@ jobs:
           version: 7
           run_install: false
 
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT   
+          
       - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
@@ -207,8 +229,10 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Prepare Composer Dependencies Cache
         uses: actions/cache@v3
