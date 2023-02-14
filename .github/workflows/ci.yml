@@ -70,7 +70,7 @@ jobs:
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            node_modules
+            **/node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
@@ -83,25 +83,20 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-      
-      # Install playwright's binary under custom directory to cache
-      - name: Set Playwright path (non-windows)
-        if: runner.os != 'Windows'
-        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/playwright-bin" >> $GITHUB_ENV
-      - name: Set Playwright path (windows)
-        if: runner.os == 'Windows'
-        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME\.cache\playwright-bin" >> $env:GITHUB_ENV
 
       - name: Cache Playwright's binary
         uses: actions/cache@v3
+        id: playwright-cache
         with:
           # Playwright removes unused browsers automatically
           # So does not need to add playwright version to key
           key: ${{ runner.os }}-playwright-bin-v1
-          path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
+          path: |
+            ~/.cache/ms-playwright
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Build
         run: pnpm build
@@ -147,7 +142,7 @@ jobs:
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            node_modules
+            **/node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
@@ -160,25 +155,20 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-      
-      # Install playwright's binary under custom directory to cache
-      - name: Set Playwright path (non-windows)
-        if: runner.os != 'Windows'
-        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/playwright-bin" >> $GITHUB_ENV
-      - name: Set Playwright path (windows)
-        if: runner.os == 'Windows'
-        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME\.cache\playwright-bin" >> $env:GITHUB_ENV
 
       - name: Cache Playwright's binary
         uses: actions/cache@v3
+        id: playwright-cache
         with:
           # Playwright removes unused browsers automatically
           # So does not need to add playwright version to key
           key: ${{ runner.os }}-playwright-bin-v1
-          path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
+          path: |
+            ~/.cache/ms-playwright
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Build
         run: pnpm build
@@ -232,7 +222,7 @@ jobs:
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            node_modules
+            **/node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
@@ -245,25 +235,20 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-      
-      # Install playwright's binary under custom directory to cache
-      - name: Set Playwright path (non-windows)
-        if: runner.os != 'Windows'
-        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/playwright-bin" >> $GITHUB_ENV
-      - name: Set Playwright path (windows)
-        if: runner.os == 'Windows'
-        run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME\.cache\playwright-bin" >> $env:GITHUB_ENV
 
       - name: Cache Playwright's binary
         uses: actions/cache@v3
+        id: playwright-cache
         with:
           # Playwright removes unused browsers automatically
           # So does not need to add playwright version to key
           key: ${{ runner.os }}-playwright-bin-v1
-          path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
+          path: |
+            ~/.cache/ms-playwright
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Build
         run: pnpm build
@@ -273,6 +258,7 @@ jobs:
           echo "playwright_version=$(pnpm list -r --parseable | grep -m 1 playwright+test | cut -d "@" -f3)" >> $GITHUB_ENV
 
       - name: Install Playwright Dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: |
           pnpx playwright@${{ env.playwright_version }} install chromium --with-deps
 
