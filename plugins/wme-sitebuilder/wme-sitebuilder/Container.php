@@ -2,8 +2,15 @@
 
 namespace Tribe\WME\Sitebuilder;
 
+use PhpZip\ZipFile;
 use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
+use Symfony\Component\Filesystem\Filesystem;
+use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
+use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
+use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
+use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal;
+use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe;
 
 class Container extends BaseContainer {
 
@@ -31,29 +38,29 @@ class Container extends BaseContainer {
 			},
 
 			// Cards.
-			Cards\FirstTimeConfiguration::class   => function ( $app ) {
+			Cards\FirstTimeConfiguration::class   => static function ( $app ) {
 				return new Cards\FirstTimeConfiguration(
 					$app->make( Wizards\FirstTimeConfiguration::class )
 				);
 			},
-			Cards\GoLive::class                   => function ( $app ) {
+			Cards\GoLive::class                   => static function ( $app ) {
 				return new Cards\GoLive(
 					$app->make( Wizards\GoLive::class )
 				);
 			},
-			Cards\LookAndFeel::class              => function ( $app ) {
+			Cards\LookAndFeel::class              => static function ( $app ) {
 				return new Cards\LookAndFeel(
 					$app->make( Wizards\LookAndFeel::class )
 				);
 			},
 			Cards\ManageProducts::class           => null,
 			Cards\PaymentGateways::class          => null,
-			Cards\Shipping::class                 => function ( $app ) {
+			Cards\Shipping::class                 => static function ( $app ) {
 				return new Cards\Shipping(
 					$app->make( Plugins\Shipping::class )
 				);
 			},
-			Cards\StoreSetup::class               => function ( $app ) {
+			Cards\StoreSetup::class               => static function ( $app ) {
 				return new Cards\StoreSetup(
 					$app->make( Wizards\StoreSetup::class )
 				);
@@ -62,18 +69,24 @@ class Container extends BaseContainer {
 			// Default implementations of contracts.
 			Contracts\ManagesDomain::class        => Services\Domain::class,
 
+			// Factories.
+			Contracts\Factory::class    => function () {
+				return new Factories\Factory( $this );
+			},
+
 			// Pages.
-			Modules\StoreDetails::class           => function ( $app ) {
+			Modules\StoreDetails::class => static function ( $app ) {
 				return new Modules\StoreDetails(
 					[
 						$app->make( Cards\StoreSetup::class ),
 						$app->make( Cards\ManageProducts::class ),
 						$app->make( Cards\Shipping::class ),
-					]
+					],
+					$app->make( Contracts\Factory::class )
 				);
 			},
 
-			Modules\SiteBuilder::class            => function ( $app ) {
+			Modules\SiteBuilder::class            => static function ( $app ) {
 				return new Modules\SiteBuilder(
 					[
 						$app->make( Cards\FirstTimeConfiguration::class ),
@@ -83,8 +96,38 @@ class Container extends BaseContainer {
 				);
 			},
 
+			// Plugin Downloader.
+			ZipFile::class                       => null,
+			Filesystem::class                    => null,
+			Support\Downloader\Downloader::class => null,
+			Support\Downloader\Plugin::class     => null,
+			Support\Downloader\Extractor::class  => static function ( $app ) {
+				return new Support\Downloader\Extractor(
+					$app->make( ZipFile::class ),
+					ABSPATH
+				);
+			},
+
+			Support\Downloader\Installer::class  => static function ( $app ) {
+				return new Support\Downloader\Installer(
+					$app->make( Support\Downloader\Downloader::class ),
+					$app->make( Support\Downloader\Extractor::class ),
+					$app->make( Filesystem::class )
+				);
+			},
+
+			Support\Downloader\PluginInstaller::class => static function ( $app ) {
+				return new PluginInstaller(
+					$app->make( Support\Downloader\Plugin::class ),
+					$app->make( Support\Downloader\Installer::class )
+				);
+			},
+
 			// Plugins.
 			Plugins\Shipping::class               => null,
+			Plugins\PaymentGateways\PayPal::class => null,
+			Plugins\PaymentGateways\Stripe::class => null,
+
 
 			// Services.
 			Services\Domain::class                => null,
@@ -92,15 +135,25 @@ class Container extends BaseContainer {
 
 			// Wizards.
 			Wizards\FirstTimeConfiguration::class => null,
-			Wizards\GoLive::class                 => function ( $app ) {
+			Wizards\GoLive::class                 => static function ( $app ) {
 				return new Wizards\GoLive(
 					$app->make( Contracts\ManagesDomain::class )
 				);
 			},
 			Wizards\LookAndFeel::class            => null,
-			Wizards\PaymentGatewayPayPal::class   => null,
-			Wizards\PaymentGatewayStripe::class   => null,
-			Wizards\Shipping::class               => function ( $app ) {
+			Wizards\PaymentGatewayPayPal::class   => static function( $app ) {
+				return new PaymentGatewayPayPal(
+					$app->make( PayPal::class ),
+					$app->make( PluginInstaller::class )
+				);
+			},
+			Wizards\PaymentGatewayStripe::class   => static function( $app ) {
+				return new PaymentGatewayStripe(
+					$app->make( Stripe::class ),
+					$app->make( PluginInstaller::class )
+				);
+			},
+			Wizards\Shipping::class               => static function ( $app ) {
 				return new Wizards\Shipping(
 					$app->make( Plugins\Shipping::class )
 				);

@@ -2,8 +2,10 @@
 
 namespace Tribe\WME\Sitebuilder\Wizards;
 
+use Exception;
 use Tribe\WME\Sitebuilder\Concerns\InvokesCli;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
+use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
 use WP_Error;
 
 class PaymentGatewayStripe extends Wizard {
@@ -31,12 +33,19 @@ class PaymentGatewayStripe extends Wizard {
 	protected $plugin;
 
 	/**
+	 * @var \Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller
+	 */
+	protected $pluginInstaller;
+
+	/**
 	 * Construct.
 	 *
-	 * @param Stripe $plugin
+	 * @param  Stripe                                                     $plugin
+	 * @param  \Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller  $pluginInstaller
 	 */
-	public function __construct( Stripe $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct( Stripe $plugin, PluginInstaller $pluginInstaller ) {
+		$this->plugin          = $plugin;
+		$this->pluginInstaller = $pluginInstaller;
 
 		parent::__construct();
 	}
@@ -67,41 +76,39 @@ class PaymentGatewayStripe extends Wizard {
 
 	/**
 	 * Telemetry: wizard started.
+	 *
+	 * @return never
 	 */
 	public function telemetryWizardStarted() {
 		do_action( 'wme_event_wizard_started', sprintf( 'payment-%s', $this->plugin->slug ) );
 
-		return wp_send_json_success();
+		wp_send_json_success();
 	}
 
 	/**
 	 * AJAX: Install plugin.
+	 *
+	 * @return never
 	 */
 	public function installPlugin() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			return wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
-		$response = $this->makeCommand('wp plugin install', [
-			$this->plugin->slug,
-			'--activate',
-			sprintf( '--version=%s', $this->plugin->supported_version ),
-			'--force',
-		])->execute();
-
-		if ( ! $response->wasSuccessful() ) {
-			wp_send_json_error(new WP_Error(
+		try {
+			$this->pluginInstaller->install( $this->plugin->slug, $this->plugin->max_supported_version );
+		} catch ( Exception $e ) {
+			wp_send_json_error( new WP_Error(
 				'mapps-wpcli-error',
 				sprintf(
-					/* Translators: %1$s is the exit code from WP CLI; %2$s is output from WP CLI. */
-					__( 'Encountered WP CLI exit code "%1$s" with output "%2$s".', 'wme-sitebuilder' ),
-					sanitize_text_field( $response->getExitCode() ),
-					sanitize_text_field( $response->getOutput() )
+					/* Translators: %1$s is the error message */
+					__( 'Encountered error installing plugin with output "%1$s".', 'wme-sitebuilder' ),
+					sanitize_text_field( $e->getMessage() )
 				)
-			), 500);
+			), 500 );
 		}
 
 		wp_send_json_success( null, 200 );
@@ -112,10 +119,10 @@ class PaymentGatewayStripe extends Wizard {
 	 */
 	public function oauthUrl() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		wp_send_json_success( $this->plugin->oauth_url, 200 );
@@ -126,10 +133,10 @@ class PaymentGatewayStripe extends Wizard {
 	 */
 	public function getKeys() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(new WP_Error(
+			wp_send_json_error( new WP_Error(
 				'mapps-capabilities-failure',
 				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
-			), 403);
+			), 403 );
 		}
 
 		wp_send_json_success( $this->plugin->keys );
@@ -137,11 +144,13 @@ class PaymentGatewayStripe extends Wizard {
 
 	/**
 	 * Telemetry: wizard completed.
+	 *
+	 * @return never
 	 */
 	public function telemetryWizardCompleted() {
 		do_action( 'wme_event_wizard_completed', sprintf( 'payment-%s', $this->plugin->slug ) );
 
-		return wp_send_json_success();
+		wp_send_json_success();
 	}
 
 	/**

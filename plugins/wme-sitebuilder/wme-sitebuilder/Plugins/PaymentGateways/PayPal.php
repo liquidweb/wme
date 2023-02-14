@@ -8,7 +8,8 @@ use Tribe\WME\Sitebuilder\Plugins\Plugin;
  * @property string[] $keys
  * @property string[] $oauth_urls
  * @property string   $slug
- * @property string   $supported_version
+ * @property string   $min_supported_version
+ * @property string   $max_supported_version
  */
 class PayPal extends Plugin {
 
@@ -25,7 +26,12 @@ class PayPal extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $supported_version = '1.9.4';
+	protected $min_supported_version = '1.9.1';
+
+	/**
+	 * @var string
+	 */
+	protected $max_supported_version = '2.0.2';
 
 	/**
 	 * @var string
