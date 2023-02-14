@@ -96,7 +96,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Build
         run: pnpm build
@@ -168,7 +167,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Build
         run: pnpm build
@@ -248,7 +246,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
 
       - name: Build
         run: pnpm build
