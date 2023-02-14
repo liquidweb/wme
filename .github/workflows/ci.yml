@@ -254,6 +254,7 @@ jobs:
         run: pnpm build
 
       - name: Get installed Playwright version
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: |
           echo "playwright_version=$(pnpm list -r --parseable | grep -m 1 playwright+test | cut -d "@" -f3)" >> $GITHUB_ENV
 
