@@ -32,6 +32,12 @@ jobs:
       - name: Check Out Code
         uses: actions/checkout@v3
 
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+          
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
@@ -42,13 +48,7 @@ jobs:
         id: pnpm-cache
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT          
-
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
@@ -113,6 +113,12 @@ jobs:
     steps:
       - name: Check Out Code
         uses: actions/checkout@v3
+        
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'        
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
@@ -125,12 +131,6 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT               
-
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
 
       - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
@@ -197,7 +197,13 @@ jobs:
     steps:
       - name: Check Out Code
         uses: actions/checkout@v3
-
+      
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+          
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
@@ -208,13 +214,7 @@ jobs:
         id: pnpm-cache
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT   
-          
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT         
 
       - name: Setup PHP, with Composer and Extensions
         uses: shivammathur/setup-php@v2
