@@ -268,7 +268,7 @@ jobs:
 
       - name: Install Playwright Dependencies
         run: |
-          pnpm dlx playwright@${{ env.playwright_version }} install chromium --with-deps
+          pnpx playwright@${{ env.playwright_version }} install chromium --with-deps
 
       - name: Launch wp-env End-to-End Environment
         working-directory: plugins/wme-sitebuilder
