@@ -76,22 +76,22 @@ trait HasWordPressDependencies {
 	}
 
 	/**
-	 * Verify that plugin is installed and the version is supported.
+	 * Verify that plugin is installed and the version is within a supported range.
 	 *
-	 * @uses $this->getPluginVersion()
-	 *
-	 * @param string $plugin           The directory/file path.
-	 * @param string $expected_version The version to check against.
+	 * @param  string  $plugin       The directory/file path.
+	 * @param  string  $min_version  The minimum plugin version supported.
+	 * @param  string  $max_version  The maximum plugin version supported.
 	 *
 	 * @return bool
 	 */
-	public function isPluginVersion( $plugin, $expected_version ) {
+	public function isPluginVersionInRange( $plugin, $min_version, $max_version ) {
 		$actual_version = $this->getPluginVersion( $plugin );
 
 		if ( empty( $actual_version ) ) {
 			return false;
 		}
 
-		return $actual_version === $expected_version;
+		return version_compare( $actual_version, $min_version, '>=' ) && version_compare( $actual_version, $max_version, '<=' );
 	}
+
 }
