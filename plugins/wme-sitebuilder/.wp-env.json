@@ -5,6 +5,7 @@
 		"https://downloads.wordpress.org/theme/kadence.latest-stable.zip"
 	],
 	"mappings": {
+		"wp-cli.yml": "./wp-cli.yml",
 		"wp-content/plugins/sitebuilder": ".",
 		"wp-content/plugins": "./external/wp-content/plugins"
 	},
@@ -13,7 +14,8 @@
 		"WP_DEBUG_LOG": true,
 		"WP_DEBUG_DISPLAY": true,
 		"SCRIPT_DEBUG": false,
-		"ALTERNATE_WP_CRON": true
+		"ALTERNATE_WP_CRON": true,
+		"WP_DISABLE_FATAL_ERROR_HANDLER": true
 	},
 	"env": {
 		"development": {},

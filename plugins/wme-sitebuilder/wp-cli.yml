@@ -1,0 +1,2 @@
+# Working directory inside the docker container.
+path: /var/www/html
