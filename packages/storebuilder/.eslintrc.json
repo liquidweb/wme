@@ -25,10 +25,10 @@
             "alias": {
                 "extensions": [".js", ".jsx", ".ts", ".tsx"],
 								"map": [
-									["@store", "./src"],
-									["@setup", "./src/wizards/store-setup"],
-									["@shipping", "./src/wizards/shipping"],
-									["@payments", "./src/wizards/payments"]
+									["@store", "./packages/storebuilder/src"],
+									["@setup", "./packages/storebuilder/scr/wizards/store-setup"],
+									["@shipping", "./packages/storebuilder/src/wizards/shipping"],
+									["@payments", "./packages/storebuilder/src/wizards/payments"]
 								]
             }
         },
