@@ -19,6 +19,7 @@ const getAvatarProps = (props: SetupCardRowInterface) => {
 const SetupCardTask = (props: SetupCardRowInterface) => {
 	const {
 		url,
+		target,
 		wizardHash,
 		...rest
 	} = props;
@@ -39,6 +40,7 @@ const SetupCardTask = (props: SetupCardRowInterface) => {
 		{ ...rest }
 		onClick={ ! validUrl && wizardHash ? handleOnClick : undefined }
 		href={ validUrl ? url : undefined }
+		target={ validUrl ? target : undefined }
 		icon={ Object.keys(avatarProps).length > 0 && (<Icon><img { ...avatarProps } alt="icon" /></Icon>) }
 	/>;
 };
