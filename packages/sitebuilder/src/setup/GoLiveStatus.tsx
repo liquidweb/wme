@@ -79,7 +79,7 @@ const GoLiveStatus: React.FC<GoLiveStatusInterface> = (props) => {
 	};
 
 	return <SetupCardInfoRow
-		sx={ { marginBottom: '8px' } }
+		sx={ { mb: 3 } }
 		primary={ ! completed && !! capturedDomain ? <RetryStatus domain={ capturedDomain } /> : <StandardStatus domain={ domain } completed={ completed } /> }
 		secondary={ (completed || !! capturedDomain) && (
 			<Link
