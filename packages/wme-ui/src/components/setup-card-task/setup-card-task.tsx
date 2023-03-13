@@ -15,6 +15,7 @@ export interface SetupCardTaskProps extends BoxProps {
   icon?: React.ReactNode;
   button?: React.ReactElement;
   href?: string;
+  target?: '_blank' | '_self';
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
   taskCta?: string;
@@ -89,6 +90,7 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
     intro,
     icon,
     href,
+    target,
     onClick,
     button,
     disabled,
@@ -107,7 +109,13 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
 
   return (
     <Task className="WmeTask-root">
-      <CardContentWrapper href={href} onClick={onClick} button={button} disabled={disabled}>
+      <CardContentWrapper
+        href={href}
+        target={target}
+        onClick={onClick}
+        button={button}
+        disabled={disabled}
+      >
         <Box className="WmeTask-content">
           {icon && <TaskIcon className="WmeTaskIcon-wrapper">{icon}</TaskIcon>}
           <Box sx={{ mr: 2 }}>
@@ -115,7 +123,12 @@ const SetupCardTask = (props: SetupCardTaskProps) => {
             {intro && <Typography variant="body1">{intro}</Typography>}
           </Box>
         </Box>
-        <SetupCardAction button={actionElement} taskCta={taskCta} isComplete={isComplete} />
+        <SetupCardAction
+          button={actionElement}
+          target={target}
+          taskCta={taskCta}
+          isComplete={isComplete}
+        />
       </CardContentWrapper>
     </Task>
   );

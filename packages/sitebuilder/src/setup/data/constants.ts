@@ -7,7 +7,7 @@ export const SetupData = {
 	},
 	goLiveStatus: {
 		manage: __('Manage', 'moderntribe-sitebuilder'),
-		statusMessage: __('Your site is currently at', 'moderntribe-sitebuilder'),
+		statusMessage: __('Your site domain is', 'moderntribe-sitebuilder'),
 		tryAgain: __('Try Again', 'moderntribe-sitebuilder'),
 		verifyMsgPart1: __('We were unable to verify', 'moderntribe-sitebuilder'),
 		verifyMsgPart2: __('Try again in 8-12 hrs after your last attempt.', 'moderntribe-sitebuilder'),

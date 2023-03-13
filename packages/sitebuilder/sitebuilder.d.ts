@@ -65,6 +65,7 @@ declare global {
 		icon?: React.ReactElement | string;
 		taskCta?: string;
 		url?: string;
+		target?: '_blank' | '_self';
 		wizardHash?: string;
 	}
 
