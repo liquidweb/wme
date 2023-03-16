@@ -1,5 +1,9 @@
-import { createContext, useState } from 'react';
-import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
+import { createContext, useEffect, useState } from 'react';
+import {
+	beforeUnloadListener,
+	removeNulls,
+	handleActionRequest
+} from '@moderntribe/wme-utils';
 
 import FtcScreenData, {
 	FtcScreenDataInterface,
@@ -9,23 +13,32 @@ import FtcScreenData, {
 import { SITEBUILDER_URL } from '@sb/constants';
 import { FtcStringData } from '@ftc/data/constants';
 
-export type setFormValueFn = (prop: keyof FtcFormItemsInterface, value: string | string[]) => void;
+export type setFormValueFn = (
+	prop: keyof FtcFormItemsInterface,
+	value: string | string[]
+) => void;
 export type submitFormFn = (isNextLookAndFeel?: boolean) => void;
 export type resetFormValueFn = (prop: keyof FtcFormItemsInterface) => void;
 export type setIsLoadingFn = (isLoading: boolean) => void;
 export type setLogoValueFn = (id: string, url: string) => void;
-export type validateUsernamePasswordFn = (usernameIsValid: boolean, passwordIsValid: boolean) => void;
-export type shouldAllowNextStepFn = (prop: any | any[], activeStep: number) => void;
+export type validateUsernamePasswordFn = (
+	usernameIsValid: boolean,
+	passwordIsValid: boolean
+) => void;
+export type shouldBlockNextStepFn = (
+	prop: any | any[],
+	activeStep: number
+) => void;
 
 export interface FtcProviderContextInterface {
 	ftcState: FtcScreenDataInterface;
-	setFormValue: setFormValueFn,
+	setFormValue: setFormValueFn;
 	submitForm: submitFormFn;
 	resetFormValue: resetFormValueFn;
-	setIsLoading:setIsLoadingFn;
+	setIsLoading: setIsLoadingFn;
 	setLogoValue: setLogoValueFn;
 	validateUsernamePassword: validateUsernamePasswordFn;
-	shouldAllowNextStep:shouldAllowNextStepFn;
+	shouldBlockNextStep: shouldBlockNextStepFn;
 }
 
 export interface FtcUsernamePasswordInterface {
@@ -40,8 +53,14 @@ export const FirstTimeConfigurationContext = createContext<
 	FtcProviderContextInterface | FtcScreenDataInterface | null
 >(ftcData);
 
-const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+const FirstTimeConfigurationProvider: React.FC<{
+	children: React.ReactNode;
+}> = ({ children }) => {
 	const [ftcState, setFtcState] = useState<FtcScreenDataInterface>(ftcData);
+
+	useEffect(() => {
+		console.log('FTC state change', ftcState);
+	}, [ftcState]);
 
 	const submitForm: submitFormFn = (isNextLookAndFeel = false) => {
 		function handleError() {
@@ -55,19 +74,34 @@ const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({
 			action: ftcState?.ajax?.action ? ftcState.ajax.action : '',
 			sub_action: 'finish',
 			logo: formValues.logoId.touched ? formValues.logoId.value : null,
-			siteName: formValues.siteName.touched ? formValues.siteName.value : null,
+			siteName: formValues.siteName.touched
+				? formValues.siteName.value
+				: null,
 			// tagLine: formValues.tagline.touched ? formValues.tagline.value : null,
-			industry: formValues.industry.touched ? formValues.industry.value : null,
-			subIndustry: formValues.subIndustry.touched ? formValues.subIndustry.value : null,
-			username: ! ftcState.completed && formValues.username.touched ? formValues.username.value : null,
-			password: formValues.password.touched ? formValues.password.value : null,
+			industry: formValues.industry.touched
+				? formValues.industry.value
+				: null,
+			subIndustry: formValues.subIndustry.touched
+				? formValues.subIndustry.value
+				: null,
+			username:
+				! ftcState.completed && formValues.username.touched
+					? formValues.username.value
+					: null,
+			password: formValues.password.touched
+				? formValues.password.value
+				: null
 		});
 
-		handleActionRequest(data).then(() => {
-			removeEventListener('beforeunload', beforeUnloadListener);
-			const navigateTo = isNextLookAndFeel ? '#/wizard/look-and-feel' : '';
-			window.location.assign(`${ SITEBUILDER_URL }${ navigateTo }`);
-		}).catch(() => handleError());
+		handleActionRequest(data)
+			.then(() => {
+				removeEventListener('beforeunload', beforeUnloadListener);
+				const navigateTo = isNextLookAndFeel
+					? '#/wizard/look-and-feel'
+					: '';
+				window.location.assign(`${ SITEBUILDER_URL }${ navigateTo }`);
+			})
+			.catch(() => handleError());
 	};
 
 	const setFormValue: setFormValueFn = (prop, value, touched = true) => {
@@ -75,7 +109,7 @@ const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({
 			return;
 		}
 
-		const formData = ftcState.form;
+		const formData = { ...ftcState.form };
 		formData[ prop ].value = value;
 		formData[ prop ].touched = touched;
 		setFtcState({
@@ -102,24 +136,30 @@ const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({
 		});
 	};
 
-	const shouldAllowNextStep: shouldAllowNextStepFn = (criteria, activeStep) => {
-		const { steps } = ftcState;
-		steps[ activeStep ].disableNext = criteria;
+	const shouldBlockNextStep: shouldBlockNextStepFn = (
+		criteria,
+		activeStep
+	) => {
+		const { steps } = { ...ftcState };
+		steps[ activeStep ].disableNext = Boolean(criteria);
 		setFtcState({
 			...ftcState,
 			steps
 		});
 	};
 
-	const validateUsernamePassword: validateUsernamePasswordFn = (usernameIsValid, passwordIsValid) => {
+	const validateUsernamePassword: validateUsernamePasswordFn = (
+		usernameIsValid,
+		passwordIsValid
+	) => {
 		const { form, completed } = ftcState;
 		form.username.isValid = usernameIsValid;
 		form.password.isValid = passwordIsValid;
 
 		if (! completed) {
-			shouldAllowNextStep(! usernameIsValid || ! passwordIsValid, 0);
+			shouldBlockNextStep(! usernameIsValid || ! passwordIsValid, 0);
 		} else {
-			shouldAllowNextStep(!! (form.password.value && ! passwordIsValid), 0);
+			shouldBlockNextStep(!! (form.password.value && ! passwordIsValid), 0);
 		}
 	};
 
@@ -132,6 +172,7 @@ const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({
 			...ftcState,
 			previewLogo
 		});
+		shouldBlockNextStep(false, 3);
 	};
 
 	return (
@@ -144,7 +185,7 @@ const FirstTimeConfigurationProvider: React.FC<{children: React.ReactNode}> = ({
 				setIsLoading,
 				setLogoValue,
 				validateUsernamePassword,
-				shouldAllowNextStep,
+				shouldBlockNextStep
 			} }
 		>
 			{ children }

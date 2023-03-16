@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { InputBaseProps, styled, TextField } from '@mui/material';
 import { Chip } from '..';
 
@@ -54,24 +54,12 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
   selectedTags,
   ...rest
 }) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  useEffect(() => {
-    selectedTags(selectedItems);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedItems]);
-
-  useEffect(() => {
-    if (Array.isArray(tags)) {
-      setSelectedItems(tags);
-    }
-  }, [tags]);
-
   const deleteChip = (item: string) => () => {
-    const newSelectedItem = [...selectedItems];
+    const newSelectedItem = [...tags];
     newSelectedItem.splice(newSelectedItem.indexOf(item), 1);
-    setSelectedItems(newSelectedItem);
+    selectedTags(newSelectedItem);
   };
 
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
@@ -82,23 +70,23 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
 
     if (isEnter || isComma) {
       evt.preventDefault();
-      const newSelectedItem = [...selectedItems];
-      const duplicatedValues = newSelectedItem.indexOf(inputValue.trim());
+      const newSelectedItems = [...tags];
+      const duplicatedValues = newSelectedItems.indexOf(inputValue.trim());
 
       if (duplicatedValues !== -1) {
         setInputValue('');
         return;
       }
 
-      newSelectedItem.push(trimmedInput.replace(',', ''));
-      setSelectedItems(newSelectedItem);
+      newSelectedItems.push(trimmedInput.replace(',', ''));
+      selectedTags(newSelectedItems);
       setInputValue('');
     }
 
     if (
-      isBackspace && inputValue.length === 0 && selectedItems.length > 0
+      isBackspace && inputValue.length === 0 && tags.length > 0
     ) {
-      setSelectedItems(selectedItems.slice(0, selectedItems.length - 1));
+      selectedTags(tags.slice(0, tags.length - 1));
     }
   };
 
@@ -108,7 +96,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
       InputProps={{
         fullWidth: true,
         autoComplete: 'false',
-        startAdornment: selectedItems.map((item) => (
+        startAdornment: tags.map((item) => (
           <Chip
             size="small"
             key={item}

@@ -9,3 +9,4 @@ export * from './Loading';
 export * from './DetailsHeader';
 export * from './JumpNav';
 export * from './WizardSidebar';
+export * from "./WizardExitButton";

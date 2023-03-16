@@ -1,8 +1,21 @@
 import { __ } from '@wordpress/i18n';
 
-import { UsernamePassword, SiteDetails, Complete, IndustryScreen, GoalsScreen, StyleScreen } from '../screens';
+import {
+	UsernamePassword,
+	SiteDetails,
+	Processing,
+	IndustryScreen,
+	GoalsScreen,
+	StyleScreen
+} from '../screens';
 
-import { UserIcon, EditIcon, GoalIcon, MessageIcon, StyleIcon } from '@sb/icons';
+import {
+	UserIcon,
+	EditIcon,
+	GoalIcon,
+	MessageIcon,
+	StyleIcon
+} from '@sb/icons';
 
 export interface FtcSiteLogoObjectInterface {
 	id: string;
@@ -11,12 +24,14 @@ export interface FtcSiteLogoObjectInterface {
 export interface FtcSiteObject {
 	logo: FtcSiteLogoObjectInterface;
 	siteName: string;
+	tagline: string;
 	industry: string;
 	subIndustry: string;
 	siteDescription: string;
 	sitePersonality: string;
 	siteKeywords: string[];
 	goals: string[];
+	template: string;
 }
 
 export interface FtcWizardObjectInterface {
@@ -36,10 +51,11 @@ export interface FtcFormValueInterface<T> {
 }
 
 type FormItems<T> = {
-  [Property in keyof T]: FtcFormValueInterface<T[Property]>;
+	[Property in keyof T]: FtcFormValueInterface<T[Property]>;
 };
 
-export interface FtcFormItemsInterface extends Omit<FormItems<FtcSiteObject>, 'logo'> {
+export interface FtcFormItemsInterface
+	extends Omit<FormItems<FtcSiteObject>, 'logo'> {
 	username: FtcFormValueInterface<string>;
 	password: FtcFormValueInterface<string>;
 	logoId: FtcFormValueInterface<string>;
@@ -59,30 +75,44 @@ const stepsData: Array<StepInterface> = [
 		id: 0,
 		label: __('Login', 'moderntribe-sitebuilder'),
 		title: __('Username and Password', 'moderntribe-sitebuilder'),
-		description: __('Welcome to your site! Let\'s make it yours by getting you a username and password that\'s unique to you.', 'moderntribe-sitebuilder'),
+		description: __(
+			'Welcome to your site! Let\'s make it yours by getting you a username and password that\'s unique to you.',
+			'moderntribe-sitebuilder'
+		),
 		icon: <UserIcon />,
 		disableNext: true,
 		hideSkip: true,
 		hideBack: true,
+		hideExit: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <UsernamePassword />
 	},
 	{
 		id: 3,
 		label: __('Industry', 'moderntribe-sitebuilder'),
-		title: __('In your own words, tell us about your business.', 'moderntribe-sitebuilder'),
-		description: __('We\'ll leverage AI writing to help get you started. This will fill your site with placeholder copy that you can change, tweak, or use to your hearts content.', 'moderntribe-sitebuilder'),
+		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
 		icon: <MessageIcon />,
+		disableNext: true,
 		hideSkip: true,
+		hideExit: false,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <IndustryScreen />
 	},
 	{
 		id: 2,
 		label: __('Goals', 'moderntribe-sitebuilder'),
-		title: __('What are the goals of this site?', 'moderntribe-sitebuilder'),
-		description: __('Based on your industry we\'ve got some recommendations of what you may need to accomplish your business goals.', 'moderntribe-sitebuilder'),
-		footerHelpText: __('Not sure what you need right now? That’s okay! You can add and remove stuff like this at anytime.', 'moderntribe-sitebuilder'),
+		title: __(
+			'What are the goals of this site?',
+			'moderntribe-sitebuilder'
+		),
+		description: __(
+			'Based on your industry we\'ve got some recommendations of what you may need to accomplish your business goals.',
+			'moderntribe-sitebuilder'
+		),
+		footerHelpText: __(
+			'Not sure what you need right now? That\'s okay! You can add and remove stuff like this at anytime.',
+			'moderntribe-sitebuilder'
+		),
 		icon: <GoalIcon />,
 		hideSkip: false,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
@@ -92,10 +122,12 @@ const stepsData: Array<StepInterface> = [
 		id: 1,
 		label: __('Site', 'moderntribe-sitebuilder'),
 		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
-		description: __('Tell us a bit about your site and we can start setting up everything you\'ll need.', 'moderntribe-sitebuilder'),
+		description: __(
+			'Tell us a bit about your site and we can start setting up everything you\'ll need.',
+			'moderntribe-sitebuilder'
+		),
 		icon: <EditIcon />,
 		disableNext: true,
-		hideSkip: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <SiteDetails />
 	},
@@ -103,19 +135,32 @@ const stepsData: Array<StepInterface> = [
 		id: 4,
 		label: __('Style', 'moderntribe-sitebuilder'),
 		title: __('Lets talk style.', 'moderntribe-sitebuilder'),
-		description: __('Grab a starter template to get you going, but don\'t worry, you\'ll be able to update fonts, colors, imagery… You get the idea. We could keep listing things but let\'s keep moving.', 'moderntribe-sitebuilder'),
+		description: __(
+			'Grab a starter template to get you going, but don\'t worry, you\'ll be able to update fonts, colors, imagery… You get the idea. We could keep listing things but let\'s keep moving.',
+			'moderntribe-sitebuilder'
+		),
+		footerHelpText: __(
+			'You\'ll be able to change all of this at any time down to the smallest detail (if you want).',
+			'moderntribe-sitebuilder'
+		),
 		icon: <StyleIcon />,
 		hideSkip: true,
+		disableNext: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <StyleScreen />
 	},
 	{
 		id: 5,
-		label: __('Complete', 'moderntribe-sitebuilder'),
+		label: __('Processing', 'moderntribe-sitebuilder'),
 		hideSkip: true,
 		hidePagination: true,
+		hideSidebar: true,
+		hideExit: true,
+		hideFooter: true,
+		hideNext: true,
+		hideBack: true,
 		nextText: __('Save & Exit Setup', 'moderntribe-sitebuilder'),
-		screen: <Complete />
+		screen: <Processing />
 	}
 ];
 
@@ -136,6 +181,11 @@ const formItemsData: FtcFormItemsInterface = {
 		isValid: true
 	},
 	siteName: {
+		value: '',
+		touched: false,
+		isValid: true
+	},
+	tagline: {
 		value: '',
 		touched: false,
 		isValid: true
@@ -169,6 +219,11 @@ const formItemsData: FtcFormItemsInterface = {
 		value: [],
 		touched: false,
 		isValid: true
+	},
+	template: {
+		value: '',
+		touched: false,
+		isValid: true
 	}
 };
 
@@ -185,17 +240,32 @@ const industryVerticals: Record<string, string[]> = {
 	Events: ['Conference', 'Venue', 'Single Event', 'Event Planning'],
 	Education: ['School', 'Informal Education', 'Coaching'],
 	'Food and Drinks': ['Restaurant', 'Cafe', 'Bar', 'Chef & Catering'],
-	'Online Store': ['Accessories & Jewelry', 'Fashion', 'Home Goods', 'Kids', 'Pets', 'Arts & Crafts'],
+	'Online Store': [
+		'Accessories & Jewelry',
+		'Fashion',
+		'Home Goods',
+		'Kids',
+		'Pets',
+		'Arts & Crafts'
+	],
 	Personal: ['Personal website or business card'],
 	Landing: ['Promotional', 'Coming Soon'],
-	Other: [],
+	Other: []
 };
 
-const personalityOptions: string[] = ['Quirky', 'Calm', 'Spicy', 'Classic', 'Elegant', 'Funny', 'Witty'];
+const personalityOptions: string[] = [
+	'Quirky',
+	'Calm',
+	'Spicy',
+	'Classic',
+	'Elegant',
+	'Funny',
+	'Witty'
+];
 
 const localData: FtcScreenDataInterface = {
 	isLoading: false,
-	lastStep: stepsData.length - 1,
+	lastStep: stepsData.length,
 	id: '',
 	completed: false,
 	adminUrl: '',
@@ -206,12 +276,14 @@ const localData: FtcScreenDataInterface = {
 			id: '',
 			url: ''
 		},
+		tagline: '',
 		industry: '',
 		subIndustry: '',
 		siteDescription: '',
 		sitePersonality: '',
 		siteKeywords: [],
 		goals: [],
+		template: ''
 	},
 	previewLogo: {
 		id: '',
@@ -225,7 +297,7 @@ const localData: FtcScreenDataInterface = {
 	steps: stepsData,
 	form: formItemsData,
 	industryVerticals,
-	personalityOptions,
+	personalityOptions
 };
 
 const setInitialFormValues = (
@@ -236,12 +308,14 @@ const setInitialFormValues = (
 		site: {
 			logo: { id },
 			siteName = '',
+			tagline = '',
 			industry = '',
 			subIndustry = '',
 			siteDescription = '',
 			sitePersonality = '',
 			siteKeywords = [],
 			goals = [],
+			template = ''
 		}
 	} = wizardData;
 
@@ -250,12 +324,14 @@ const setInitialFormValues = (
 	form.username.value = username;
 	form.logoId.value = String(id);
 	form.siteName.value = siteName;
+	form.tagline.value = tagline;
 	form.industry.value = industry;
 	form.subIndustry.value = subIndustry;
 	form.siteDescription.value = siteDescription;
 	form.sitePersonality.value = sitePersonality;
 	form.siteKeywords.value = siteKeywords;
 	form.goals.value = goals;
+	form.template.value = template;
 
 	return form;
 };

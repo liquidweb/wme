@@ -161,6 +161,9 @@ declare global {
 		disableAll?: boolean;
 		disable?: boolean;
 		hidePagination?: boolean;
+		hideExit?: boolean;
+		hideSidebar?: boolean;
+		hideFooter?: boolean;
 	}
 
 	export interface Domain {

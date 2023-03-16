@@ -1,6 +1,5 @@
 import { FormField, MenuItem, SelectInput, TextInput, Form, AutoComplete, ChipInput } from '@moderntribe/wme-ui';
-import { Stack } from '@mui/material';
-import ScreenWrapper from '@sb/wizards/first-time-configuration/components/ScreenWrapper';
+import { Box, Stack } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { FtcStringData } from '@ftc/data/constants';
@@ -8,7 +7,7 @@ import { FtcFormItemsInterface } from '../data/first-time-configuration-screen-d
 const { industryDetails } = FtcStringData;
 
 const Industry = () => {
-	const { ftcState: { form, isLoading, personalityOptions, industryVerticals }, setFormValue, shouldAllowNextStep } = useFirstTimeConfiguration();
+	const { ftcState: { form, personalityOptions, industryVerticals }, setFormValue, shouldBlockNextStep } = useFirstTimeConfiguration();
 	const [subVerticals, setSubVerticals] = useState<string[]>([]);
 	const [showTextInput, setShowTextInput] = useState(false);
 
@@ -20,13 +19,15 @@ const Industry = () => {
 		setFormValue(prop, value);
 	};
 
+	// I'm not sure why this doesn't work
 	useEffect(() => {
-		if (! form || isLoading) {
+		console.log('form change', form);
+		if (! form) {
 			return;
 		}
-
-		shouldAllowNextStep(form.siteDescription.value && form.sitePersonality.value && form.siteKeywords.value, 3);
-	}, [form, isLoading]);
+		// shouldBlockNextStep(!form.siteDescription.value || !form.sitePersonality.value || !form.siteKeywords.value, 3);
+		shouldBlockNextStep(false, 1);
+	}, [form.siteDescription, form.sitePersonality, form.siteKeywords]);
 
 	const verticalChange = useCallback((vertical: string | null) => {
 		setFormValue('industry', (vertical || ''));
@@ -47,8 +48,12 @@ const Industry = () => {
 		setFormValue('subIndustry', category);
 	};
 
+	const updateKeywords = (tags: string[]) => {
+		setFormValue('siteKeywords', tags)
+	};
+
 	return (
-		<ScreenWrapper sx={ { maxWidth: 425, width: 425 } }>
+		<Box sx={ { maxWidth: 425, width: 425 } }>
 			<Form>
 				<Stack spacing={ 2 }>
 					<FormField
@@ -107,14 +112,14 @@ const Industry = () => {
 					<FormField
 						field={
 							<ChipInput
-								selectedTags={ (tags: string[]) => setFormValue('siteKeywords', tags) }
-								placeholder={ 'Blog, tech...' }
+								selectedTags={ updateKeywords }
+								placeholder={ industryDetails.keywordsPlaceholder }
 								required
 								tags={ form.siteKeywords.value }
 							/>
 						}
-						helperText={ 'Separate each keyword with a comma' }
-						label={ 'Keywords' }
+						helperText={ industryDetails.keywordsHelperText }
+						label={ industryDetails.keywordsLabel }
 					/>
 					<FormField
 						field={
@@ -122,18 +127,18 @@ const Industry = () => {
 								fullWidth
 								onChange={ (e) => handleSelectChange('sitePersonality', e.target.value as string[]) }
 								value={ form.sitePersonality.value }
-								placeholder={ 'Select an option...' }
+								placeholder={ industryDetails.personalityPlaceholder }
 							>
 								{ personalityOptions.map((item) => (
 									<MenuItem id={ item } key={ item } value={ item }>{ item }</MenuItem>
 								)) }
 							</SelectInput>
 						}
-						label={ 'Describe your personality' }
+						label={ industryDetails.personalityLabel }
 					/>
 				</Stack>
 			</Form>
-		</ScreenWrapper>
+		</Box>
 	);
 };
 

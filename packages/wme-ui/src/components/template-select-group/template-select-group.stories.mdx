@@ -50,19 +50,51 @@ export const Template = (args) => {
 			value={selectedTemplate}
 			className={isHovered ? 'is-hovered' : ''}
 		>
-			{[...Array(8)].map((value, index) =>
-				<TemplateSelectItem
-					buttonLabel="Start With This Style"
-					buttonSelectedLabel="Selected"
-					imageSrc={templatePreviewImage}
-					selected={selectedTemplate === index}
-					imageAlt={`Theme ${index} preview image`}
-					onClick={()=>handleTemplateChange(index)}
-					onMouseEnter={()=>handleTemplateHover(true)}
-					onMouseLeave={()=>handleTemplateHover(false)}
-					key={index}
-				/>
-			)}
+			<TemplateSelectItem
+				buttonLabel="Start With This Style"
+				buttonSelectedLabel="Selected"
+				imageSrc={templatePreviewImage}
+				selected={selectedTemplate === 1}
+				imageAlt={`Theme ${1} preview image`}
+				onClick={()=>handleTemplateChange(1)}
+			/>
+			<TemplateSelectItem
+				buttonLabel="Start With This Style"
+				buttonSelectedLabel="Selected"
+				websiteSrc={'http://tri.be/'}
+				selected={selectedTemplate === 2}
+				onClick={() => handleTemplateChange(2)}
+			/>
+			<TemplateSelectItem
+				buttonLabel="Start With This Style"
+				buttonSelectedLabel="Selected"
+				imageSrc={templatePreviewImage}
+				imageAlt={`Theme ${1} preview image`}
+				selected={selectedTemplate === 3}
+				onClick={() => handleTemplateChange(3)}
+			/>
+			<TemplateSelectItem
+				buttonLabel="Start With This Style"
+				buttonSelectedLabel="Selected"
+				websiteSrc={'http://tri.be/'}
+				selected={selectedTemplate === 4}
+				onClick={() => handleTemplateChange(4)}
+			/>
+			<TemplateSelectItem
+				buttonLabel="Start With This Style"
+				buttonSelectedLabel="Selected"
+				imageSrc={templatePreviewImage}
+				imageAlt={`Theme ${1} preview image`}
+				selected={selectedTemplate === 5}
+				onClick={() => handleTemplateChange(5)}
+			/>
+			<TemplateSelectItem
+				buttonLabel="Start With This Style"
+				buttonSelectedLabel="Selected"
+				websiteSrc={'http://tri.be/'}
+				selected={selectedTemplate === 6}
+				onClick={() => handleTemplateChange(6)}
+			/>
 		</TemplateSelectGroup>
 	);
 };

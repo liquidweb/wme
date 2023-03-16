@@ -1,24 +1,51 @@
 import { Grid } from '@mui/material';
 import { WizardSidebar as Sidebar } from '@moderntribe/wme-ui';
 
-export const WizardSidebar = (props: { show: boolean; label?: string; description?: string; icon: React.ReactNode }) => {
-	const { show = false, label = '', description = '', icon } = props;
+export interface WizardSidebarProps {
+	show: boolean;
+	label?: string;
+	description?: string;
+	icon: React.ReactNode;
+	subText?: string;
+	logo: React.ReactNode;
+}
+
+export const WizardSidebar = (props: WizardSidebarProps) => {
+	const { show = false, label = '', description = '', icon, subText, logo } = props;
 
 	if (! show) {
 		return null;
 	}
-
-	return (<Grid item xs={ 2.5 } sx={ {
-		display: 'flex',
-		flexDirection: 'column',
-		position: 'relative',
-		zIndex: 2
-	} }>
-		<Sidebar
-			heading={ label }
-			body={ description }
-			icon={ icon }
-		/>
-	</Grid>
+	/* 
+	*  The outer grid item is used for page spacing and the inner grid item is 
+	*  to size and display the sidebar in a fixed position 
+	*/  
+	return (
+		<Grid item xs={ 2.5 } sx={ {
+			display: 'flex',
+			flexDirection: 'column',
+			position: 'relative',
+			zIndex: 2
+		} }>
+			<Grid item 
+				xs={ 2.5 } 
+				sx={ {
+					display: 'flex',
+					flexDirection: 'column',
+					position: 'fixed',
+					top: 0,
+					left: 0,
+					height: '100vh'
+				} }
+			>
+				<Sidebar
+					logo={logo}
+					heading={ label }
+					body={ description }
+					icon={ icon }
+					subtext={ subText }
+				/>
+			</Grid>
+		</Grid>
 	);
 };

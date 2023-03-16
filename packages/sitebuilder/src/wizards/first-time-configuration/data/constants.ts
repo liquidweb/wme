@@ -13,11 +13,12 @@ export const FtcStringData = {
 			'moderntribe-sitebuilder'
 		),
 		siteNameLabelText: __('Site Name', 'moderntribe-sitebuilder'),
+		siteNameHelpText: __('What do you want your site to be called? Most templates will display this in the site header.', 'moderntribe-sitebuilder'),
 		usernameLabelTextFirst: __('Choose a Username', 'moderntribe-sitebuilder'),
-		usernameLabelText: __('Username', 'moderntribe-sitebuilder'),
-		usernamePlaceholderText: __('Your Username…', 'moderntribe-sitebuilder'),
+		usernameLabelText: __('Your Username', 'moderntribe-sitebuilder'),
+		usernamePlaceholderText: __('Your username', 'moderntribe-sitebuilder'),
 		passwordLabelTextFirst: __('Your Password', 'moderntribe-sitebuilder'),
-		passwordPlaceholderText: __('Your Password…', 'moderntribe-sitebuilder'),
+		passwordPlaceholderText: __('6+ characters', 'moderntribe-sitebuilder'),
 		setNewPasswordText: __('Set New Password', 'moderntribe-sitebuilder'),
 		cancelNewPasswordText: __('Cancel', 'moderntribe-sitebuilder'),
 		passwordStatus: {
@@ -30,14 +31,7 @@ export const FtcStringData = {
 		title: __('Let\'s set up your store', 'moderntribe-sitebuilder'),
 		maxFileSize: '20 MB',
 		siteTagnameLabelText: __('Tagline', 'moderntribe-sitebuilder'),
-		siteTagnamePlaceholderText: __(
-			'Tell us a bit about your store',
-			'moderntribe-sitebuilder'
-		),
-		siteTaglineHelperText: __(
-			'Use a (short) tagline to tell visitors more about what makes your site unique.',
-			'moderntribe-sitebuilder'
-		),
+		siteTagnamePlaceholderText: __('Just another wordpress site...', 'moderntribe-sitebuilder'),
 		siteLogoLabelText: __('Your Logo', 'moderntribe-sitebuilder'),
 		siteLogoHelperText: __(
 			'Your logo will be displayed in the site header and the site icon. Square and landscape orientations work best.',
@@ -51,28 +45,25 @@ export const FtcStringData = {
 		defaultError: __(
 			'Something went wrong with the file upload, please try again',
 			'moderntribe-sitebuilder'
-		)
+		),
+		goalsSelectText:  __('Select all that apply', 'moderntribe-sitebuilder')
 	},
 	industryDetails: {
 		businessDescriptionLabel: __('What\'s your mission statement?', 'moderntribe-sitebuilder'),
 		businessDescriptionPlaceholder: __('My business is…', 'moderntribe-sitebuilder'),
-		personalityLabel: __('Describe your personality', 'moderntribe-sitebuilder'),
 		siteIndustryText: __('What Industry are you in?', 'moderntribe-sitebuilder'),
 		siteIndustryPlaceholder: __('Category…', 'moderntribe-sitebuilder'),
 		siteSubIndustryText: __('Can you be more specific?', 'moderntribe-sitebuilder'),
 		siteSubIndustryPlaceholder: __('Subcategory…', 'moderntribe-sitebuilder'),
+		personalityLabel: __('Describe your personality', 'moderntribe-sitebuilder'),
+		personalityPlaceholder: __('Select an option...', 'moderntribe-sitebuilder'),
+		keywordsLabel: __('Keywords', 'moderntribe-sitebuilder'),
+		keywordsPlaceholder: __('Blog, tech...', 'moderntribe-sitebuilder'),
+		keywordsHelperText: __('Separate each keyword with a comma',  'moderntribe-sitebuilder'),
 	},
-	complete: {
-		title: __('Nice work! Let\'s keep going.', 'moderntribe-sitebuilder'),
-		description: __(
-			'Save and Continue to configure your site\'s design, payment options, shipping and more.',
-			'moderntribe-sitebuilder'
-		),
-		imgSrc: '',
-		designStepTitleText: __('Next up: Design your Site', 'moderntribe-sitebuilder'),
-		designStepButtonText: __('Go to Step 2: Design', 'moderntribe-sitebuilder'),
-		poweredByText: __('Powered by', 'moderntribe-sitebuilder'),
-		sidebarImgSrc: ''
+	processing: {
+		title: __('Nice Choices.', 'moderntribe-sitebuilder'),
+		description: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
 	},
 	usernameValidation: {
 		errorMessage: __('There was an error validating your username.', 'moderntribe-sitebuilder'),

@@ -37,8 +37,7 @@ export const WizardContext =
 	createContext<WizardProviderContextInterface | null>(null);
 
 const WizardProvider = ({ children }: { children: React.ReactNode }) => {
-	const [wizardState, setWizardState] =
-		useState<WizardProviderStateInterface>(initialState);
+	const [wizardState, setWizardState] = useState<WizardProviderStateInterface>(initialState);
 	const [searchParams, setSearchParams] = useSearchParams({ step: '1' });
 	const currentStep = searchParams.get('step')
 		? Number(searchParams.get('step'))

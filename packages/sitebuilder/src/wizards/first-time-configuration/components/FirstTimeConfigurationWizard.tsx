@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { WizardFooter } from '@moderntribe/wme-ui';
+import { ExitButton, WizardFooter } from '@moderntribe/wme-ui';
 import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
-import { WizardSidebar } from '@sb/components';
+import { WizardExitButton, WizardSidebar } from '@sb/components';
 import { useWizard, useFirstTimeConfiguration } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import { Grid } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
+import PlaceholderLogo from '@sb/logos/PlaceholderLogo';
+import ScreenWrapper from './ScreenWrapper';
 
 const FirstTimeConfigurationWizard = () => {
 	const {
@@ -21,7 +23,7 @@ const FirstTimeConfigurationWizard = () => {
 		goToPreviousStep,
 		goToStep,
 		setShowCloseWarning,
-		setHideExit,
+		closeAll
 	} = useWizard();
 
 	const [searchParams] = useSearchParams();
@@ -33,16 +35,14 @@ const FirstTimeConfigurationWizard = () => {
 		if (searchParams.get('step')) {
 			const activeStep = Number(searchParams.get('step'));
 			setStepIndex(activeStep >= 1 ? activeStep - 1 : 0);
-			setHideExit(activeStep === 1 ? true : false);
 		} else {
 			setStepIndex(0);
-			setHideExit(true);
 		}
 	}, [searchParams.get('step')]);
 
 	useEffect(() => {
 		if (! isLoading && stepIndex !== undefined) {
-			setIsLastStep((stepIndex + 1) === lastStep);
+			setIsLastStep(stepIndex + 1 === lastStep);
 			setCurrentScreen(steps[ stepIndex ]);
 		}
 	}, [lastStep, isLoading, stepIndex, steps]);
@@ -68,6 +68,14 @@ const FirstTimeConfigurationWizard = () => {
 		submitForm();
 	};
 
+	const handleExitClick = () => {
+		if (showCloseWarning !== null) {
+			setShowCloseWarning(true);
+			return;
+		}
+		closeAll();
+	};
+
 	if (! currentScreen) {
 		return <div />;
 	}
@@ -75,30 +83,30 @@ const FirstTimeConfigurationWizard = () => {
 	return (
 		<Grid container sx={ { position: 'absolute', inset: 0 } }>
 			<WizardSidebar
-				show={ ! isLastStep }
+				logo={ <PlaceholderLogo /> }
+				show={ ! currentScreen.hideSidebar }
 				label={ currentScreen.title }
 				description={ currentScreen.description }
 				icon={ currentScreen.icon }
+				subText={ currentScreen.footerHelpText }
 			/>
-			<Grid
-				item
-				xs={ isLastStep ? 12 : 9.5 }
-				sx={ {
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					alignItems: 'center',
-				} }>
-				{ currentScreen.screen }
+			<Grid item xs={ currentScreen.hideSidebar ? 12 : 9.5 }>
+				{ ! currentScreen.hideExit && (
+					<WizardExitButton
+						onExit={ handleExitClick }
+						text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
+					/>
+				) }
+				<ScreenWrapper>{ currentScreen.screen }</ScreenWrapper>
 			</Grid>
 			<WizardFooter
 				sx={ {
 					position: 'fixed',
 					bottom: 0,
-					left: isLastStep ? 0 : '20.833333%',
+					left: currentScreen.hideSidebar ? 0 : '20.833333%',
 					right: 0,
 					marginInline: 0,
-					backgroundColor: 'transparent'
+					backgroundColor: 'white'
 				} }
 				steps={ steps }
 				activeStep={ stepIndex || 0 }
@@ -107,13 +115,17 @@ const FirstTimeConfigurationWizard = () => {
 				isLastStep={ isLastStep }
 				onBack={ goToPreviousStep }
 				onNext={ handleOnNext }
+				onSkip={ handleOnNext }
 				save={ handleOnSave }
-				onClickStep={ ({ id }: { id: string | number }) => goToStep(Number(id) + 1) }
-				hideFooter={ false }
+				onClickStep={ ({ id }: { id: string | number }) =>
+					goToStep(Number(id) + 1)
+				}
+				hideFooter={ currentScreen.hideFooter ?? false }
 				backText={ __('Back', 'moderntribe-sitebuilder') }
 				skipText={ __('Skip', 'moderntribe-sitebuilder') }
 				nextText={
-					currentScreen.nextText || __('Next', 'moderntribe-sitebuilder')
+					currentScreen.nextText ||
+					__('Next', 'moderntribe-sitebuilder')
 				}
 				nextEndIcon={ <ArrowForward /> }
 			/>
