@@ -42,7 +42,8 @@ const StyleSelection = () => {
 	};
 
 	return (
-		<Box sx={ { margin: '0px 30px' } }>
+		// Padding/margin doesn't take effect here - using a percent width instead
+		<Box sx={ { width: '95%' } }>
 			<TemplateSelectGroup>
 				{ templateData.map((template) => (
 					<TemplateSelectItem

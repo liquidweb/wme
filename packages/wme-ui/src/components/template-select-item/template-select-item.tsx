@@ -101,14 +101,16 @@ export default function TemplateSelectItem(props: TemplateSelectItemProps) {
     websiteSrc,
     ...rest
   } = props;
+  const [embedScale, setEmbedScale] = useState(0.2);
   const containerRef = useRef();
 
-  const embedScale = (containerRef.current
+  useEffect(() => {
+    console.log('container change', containerRef?.current);
+    if (containerRef && containerRef.current) {
       // @ts-ignore
-      && containerRef.current.clientWidth
-      // @ts-ignore
-      && containerRef.current.clientWidth / embedWidth)
-    || 0.2;
+      setEmbedScale(containerRef.current.clientWidth / embedWidth);
+    }
+  }, [containerRef]);
 
   return (
     <TemplateItemContainer className={selected ? 'is-selected' : ''} {...rest} ref={containerRef}>
