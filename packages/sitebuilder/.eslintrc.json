@@ -25,10 +25,10 @@
             "alias": {
                 "extensions": [".js", ".jsx", ".ts", ".tsx"],
 								"map": [
-									["@sb", "./packages/sitebuilder/src"],
-									["@look-and-feel", "./packages/sitebuilder/src/wizards/look-and-feel"],
-									["@ftc", "./packages/sitebuilder/src/wizards/first-time-configuration"],
-									["@go-live", "./packages/sitebuilder/src/wizards/go-live"]
+									["@sb", "./src"],
+									["@look-and-feel", "./src/wizards/look-and-feel"],
+									["@ftc", "./src/wizards/first-time-configuration"],
+									["@go-live", "./src/wizards/go-live"]
 								]
             }
         },
