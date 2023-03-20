@@ -7,8 +7,7 @@ import {
   TypographyProps,
 } from '@mui/material';
 import { styled } from '@mui/system';
-import ChevronRight from '@mui/icons-material/ChevronRight';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { CheckCircle, ChevronRight, Launch } from '@mui/icons-material';
 import type { SetupCardTaskProps } from './setup-card-task';
 
 const ArrowWrapper = styled(Box, {
@@ -39,7 +38,7 @@ const PopupAction = styled(Typography, {
   },
 }));
 
-const CompleteCheckmark = styled(CheckCircleIcon, {
+const CompleteCheckmark = styled(CheckCircle, {
   name: 'WmeCheckmark',
   slot: 'Root',
 })(({ theme }) => ({
@@ -49,8 +48,10 @@ const CompleteCheckmark = styled(CheckCircleIcon, {
   color: theme.palette.success.main,
 }));
 
-const SetupCardAction = (props: Pick<SetupCardTaskProps, 'button' | 'taskCta' | 'isComplete'>) => {
-  const { button, taskCta, isComplete } = props;
+const SetupCardAction = (props: Pick<SetupCardTaskProps, 'button' | 'target' | 'taskCta' | 'isComplete'>) => {
+  const {
+    button, target, taskCta, isComplete,
+  } = props;
 
   if (isComplete) {
     return (
@@ -62,6 +63,16 @@ const SetupCardAction = (props: Pick<SetupCardTaskProps, 'button' | 'taskCta' | 
 
   if (button) {
     return button;
+  }
+
+  if (target === '_blank') {
+    return (
+      <ArrowWrapper>
+        <Launch
+          sx={{ fontSize: '1rem' }}
+        />
+      </ArrowWrapper>
+    );
   }
 
   return (
