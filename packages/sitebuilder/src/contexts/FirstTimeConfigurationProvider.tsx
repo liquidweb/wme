@@ -73,7 +73,9 @@ const FirstTimeConfigurationProvider: React.FC<{
 			siteName: formValues.siteName.touched
 				? formValues.siteName.value
 				: null,
-			// tagLine: formValues.tagline.touched ? formValues.tagline.value : null,
+			tagLine: formValues.tagline.touched
+				? formValues.tagline.value
+				: null,
 			industry: formValues.industry.touched
 				? formValues.industry.value
 				: null,
@@ -86,6 +88,19 @@ const FirstTimeConfigurationProvider: React.FC<{
 					: null,
 			password: formValues.password.touched
 				? formValues.password.value
+				: null,
+			siteDescription: formValues.siteDescription.touched
+				? formValues.siteDescription.value
+				: null,
+			sitePersonality: formValues.sitePersonality.touched
+				? formValues.sitePersonality.value
+				: null,
+			siteKeywords: formValues.siteKeywords.touched
+				? formValues.siteKeywords.value
+				: null,
+			goals: formValues.goals.touched ? formValues.goals.value : null,
+			template: formValues.template.touched
+				? formValues.template.value
 				: null
 		});
 
