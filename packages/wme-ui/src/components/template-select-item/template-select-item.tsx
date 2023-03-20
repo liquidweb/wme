@@ -105,7 +105,6 @@ export default function TemplateSelectItem(props: TemplateSelectItemProps) {
   const containerRef = useRef();
 
   useEffect(() => {
-    console.log('container change', containerRef?.current);
     if (containerRef && containerRef.current) {
       // @ts-ignore
       setEmbedScale(containerRef.current.clientWidth / embedWidth);

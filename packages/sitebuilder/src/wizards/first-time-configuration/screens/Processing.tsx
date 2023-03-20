@@ -4,11 +4,10 @@ import { useFirstTimeConfiguration } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { IMAGE_DIR } from '@sb/constants';
 import { useEffect, useState } from 'react';
-const { processing } = FtcStringData;
+const { processing: processingStep } = FtcStringData;
 
 const Processing = () => {
 	const { submitForm } = useFirstTimeConfiguration();
-	const { processing } = FtcStringData;
 
 	const [percentDone, setPercentDone] = useState(0);
 
@@ -35,19 +34,22 @@ const Processing = () => {
 						margin: 'auto'
 					} }
 				>
-					<img src={ `${ IMAGE_DIR }processing_image.png` } />
+					<img
+						src={ `${ IMAGE_DIR }processing_image.png` }
+						alt="placeholder site"
+					/>
 				</Box>
 				<Typography component="h3" align="center" variant="h3">
-					{ processing.title }
+					{ processingStep.title }
 				</Typography>
 				<ProgressBar
 					color="primary"
-					statusMessage={ processing.statusMessage }
+					statusMessage={ processingStep.statusMessage }
 					value={ percentDone }
 				/>
 				<Box component="div" sx={ { maxWidth: 415, padding: '0 64px' } }>
 					<Typography align="center" variant="body2">
-						{ processing.description }
+						{ processingStep.description }
 					</Typography>
 				</Box>
 			</Stack>

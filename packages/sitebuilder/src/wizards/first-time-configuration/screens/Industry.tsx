@@ -1,4 +1,12 @@
-import { FormField, MenuItem, SelectInput, TextInput, Form, AutoComplete, ChipInput } from '@moderntribe/wme-ui';
+import {
+	FormField,
+	MenuItem,
+	SelectInput,
+	TextInput,
+	Form,
+	AutoComplete,
+	ChipInput
+} from '@moderntribe/wme-ui';
 import { Box, Stack } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import { useCallback, useEffect, useState } from 'react';
@@ -7,30 +15,41 @@ import { FtcFormItemsInterface } from '../data/first-time-configuration-screen-d
 const { industryDetails } = FtcStringData;
 
 const Industry = () => {
-	const { ftcState: { form, personalityOptions, industryVerticals }, setFormValue, shouldBlockNextStep } = useFirstTimeConfiguration();
+	const {
+		ftcState: { form, personalityOptions, industryVerticals },
+		setFormValue,
+		shouldBlockNextStep
+	} = useFirstTimeConfiguration();
 	const [subVerticals, setSubVerticals] = useState<string[]>([]);
 	const [showTextInput, setShowTextInput] = useState(false);
 
-	const handleInputChange = (prop: keyof FtcFormItemsInterface) => (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-		setFormValue(prop, event.target.value);
-	};
+	const handleInputChange =
+		(prop: keyof FtcFormItemsInterface) =>
+			(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+				setFormValue(prop, event.target.value);
+			};
 
-	const handleSelectChange = (prop: keyof FtcFormItemsInterface, value: string[]) => {
+	const handleSelectChange = (
+		prop: keyof FtcFormItemsInterface,
+		value: string[]
+	) => {
 		setFormValue(prop, value);
 	};
 
-	// I'm not sure why this doesn't work
 	useEffect(() => {
-		console.log('form change', form);
 		if (! form) {
 			return;
 		}
-		// shouldBlockNextStep(!form.siteDescription.value || !form.sitePersonality.value || !form.siteKeywords.value, 3);
-		shouldBlockNextStep(false, 1);
+		shouldBlockNextStep(
+			! form.siteDescription.value ||
+				! form.sitePersonality.value ||
+				! form.siteKeywords.value,
+			3
+		);
 	}, [form.siteDescription, form.sitePersonality, form.siteKeywords]);
 
 	const verticalChange = useCallback((vertical: string | null) => {
-		setFormValue('industry', (vertical || ''));
+		setFormValue('industry', vertical || '');
 		setFormValue('subIndustry', '');
 
 		if (! vertical) {
@@ -39,7 +58,7 @@ const Industry = () => {
 		} else if (vertical === 'Other') {
 			setShowTextInput(true);
 		} else {
-			setSubVerticals(industryVerticals[ (vertical || '') ]);
+			setSubVerticals(industryVerticals[ vertical || '' ]);
 			setShowTextInput(false);
 		}
 	}, []);
@@ -64,35 +83,47 @@ const Industry = () => {
 								onChange={ verticalChange }
 								disablePortal
 								options={ Object.keys(industryVerticals) }
-								placeholder={ industryDetails.siteIndustryPlaceholder }
+								placeholder={
+									industryDetails.siteIndustryPlaceholder
+								}
 							/>
 						}
 						label={ industryDetails.siteIndustryText }
 					/>
 					<FormField
-						field={ showTextInput ? (
-							<TextInput
-								fullWidth
-								onChange={ handleInputChange('subIndustry') }
-								placeholder={ industryDetails.siteSubIndustryPlaceholder }
-								required
-								value={ form.subIndustry.value }
-							/>
-						) : (
-							<SelectInput
-								fullWidth
-								onChange={ (e) => subVerticalChange(e.target.value as string) }
-								placeholder={ industryDetails.siteSubIndustryPlaceholder }
-								required
-								value={ form.subIndustry.value }
-							>
-								{ subVerticals.map((vert) => (
-									<MenuItem key={ vert } value={ vert }>
-										{ vert }
-									</MenuItem>
-								)) }
-							</SelectInput>
-						) }
+						field={
+							showTextInput ? (
+								<TextInput
+									fullWidth
+									onChange={ handleInputChange('subIndustry') }
+									placeholder={
+										industryDetails.siteSubIndustryPlaceholder
+									}
+									required
+									value={ form.subIndustry.value }
+								/>
+							) : (
+								<SelectInput
+									fullWidth
+									onChange={ (e) =>
+										subVerticalChange(
+											e.target.value as string
+										)
+									}
+									placeholder={
+										industryDetails.siteSubIndustryPlaceholder
+									}
+									required
+									value={ form.subIndustry.value }
+								>
+									{ subVerticals.map((vert) => (
+										<MenuItem key={ vert } value={ vert }>
+											{ vert }
+										</MenuItem>
+									)) }
+								</SelectInput>
+							)
+						}
 						label={ industryDetails.siteSubIndustryText }
 					/>
 					<FormField
@@ -102,7 +133,9 @@ const Industry = () => {
 								multiline
 								minRows={ 3 }
 								onChange={ handleInputChange('siteDescription') }
-								placeholder={ industryDetails.businessDescriptionPlaceholder }
+								placeholder={
+									industryDetails.businessDescriptionPlaceholder
+								}
 								required
 								value={ form.siteDescription.value }
 							/>
@@ -113,7 +146,9 @@ const Industry = () => {
 						field={
 							<ChipInput
 								selectedTags={ updateKeywords }
-								placeholder={ industryDetails.keywordsPlaceholder }
+								placeholder={
+									industryDetails.keywordsPlaceholder
+								}
 								required
 								tags={ form.siteKeywords.value }
 							/>
@@ -125,12 +160,21 @@ const Industry = () => {
 						field={
 							<SelectInput
 								fullWidth
-								onChange={ (e) => handleSelectChange('sitePersonality', e.target.value as string[]) }
+								onChange={ (e) =>
+									handleSelectChange(
+										'sitePersonality',
+										e.target.value as string[]
+									)
+								}
 								value={ form.sitePersonality.value }
-								placeholder={ industryDetails.personalityPlaceholder }
+								placeholder={
+									industryDetails.personalityPlaceholder
+								}
 							>
 								{ personalityOptions.map((item) => (
-									<MenuItem id={ item } key={ item } value={ item }>{ item }</MenuItem>
+									<MenuItem id={ item } key={ item } value={ item }>
+										{ item }
+									</MenuItem>
 								)) }
 							</SelectInput>
 						}

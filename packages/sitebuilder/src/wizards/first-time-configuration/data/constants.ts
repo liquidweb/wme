@@ -64,7 +64,7 @@ export const FtcStringData = {
 	processing: {
 		title: __('Nice Choices.', 'moderntribe-sitebuilder'),
 		description: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
-		statusMessage: __('Importing your colors...', 'moderntribe-sitebuilder'),
+		statusMessage: __('Importing your colors…', 'moderntribe-sitebuilder'),
 	},
 	usernameValidation: {
 		errorMessage: __('There was an error validating your username.', 'moderntribe-sitebuilder'),
