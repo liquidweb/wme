@@ -49,7 +49,7 @@ const Industry = () => {
 	};
 
 	const updateKeywords = (tags: string[]) => {
-		setFormValue('siteKeywords', tags)
+		setFormValue('siteKeywords', tags);
 	};
 
 	return (

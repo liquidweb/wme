@@ -44,7 +44,7 @@ const SiteDetails = () => {
 					<FormField
 						field={
 							<TextInput
-								onChange={ handleChange("tagline") }
+								onChange={ handleChange('tagline') }
 								fullWidth
 								placeholder={ siteDetails.siteTagnamePlaceholderText }
 								required

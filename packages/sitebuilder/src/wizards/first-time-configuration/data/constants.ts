@@ -31,7 +31,7 @@ export const FtcStringData = {
 		title: __('Let\'s set up your store', 'moderntribe-sitebuilder'),
 		maxFileSize: '20 MB',
 		siteTagnameLabelText: __('Tagline', 'moderntribe-sitebuilder'),
-		siteTagnamePlaceholderText: __('Just another wordpress site...', 'moderntribe-sitebuilder'),
+		siteTagnamePlaceholderText: __('Just another wordpress site…', 'moderntribe-sitebuilder'),
 		siteLogoLabelText: __('Your Logo', 'moderntribe-sitebuilder'),
 		siteLogoHelperText: __(
 			'Your logo will be displayed in the site header and the site icon. Square and landscape orientations work best.',
@@ -46,7 +46,7 @@ export const FtcStringData = {
 			'Something went wrong with the file upload, please try again',
 			'moderntribe-sitebuilder'
 		),
-		goalsSelectText:  __('Select all that apply', 'moderntribe-sitebuilder')
+		goalsSelectText: __('Select all that apply', 'moderntribe-sitebuilder')
 	},
 	industryDetails: {
 		businessDescriptionLabel: __('What\'s your mission statement?', 'moderntribe-sitebuilder'),
@@ -56,14 +56,15 @@ export const FtcStringData = {
 		siteSubIndustryText: __('Can you be more specific?', 'moderntribe-sitebuilder'),
 		siteSubIndustryPlaceholder: __('Subcategory…', 'moderntribe-sitebuilder'),
 		personalityLabel: __('Describe your personality', 'moderntribe-sitebuilder'),
-		personalityPlaceholder: __('Select an option...', 'moderntribe-sitebuilder'),
+		personalityPlaceholder: __('Select an option…', 'moderntribe-sitebuilder'),
 		keywordsLabel: __('Keywords', 'moderntribe-sitebuilder'),
-		keywordsPlaceholder: __('Blog, tech...', 'moderntribe-sitebuilder'),
-		keywordsHelperText: __('Separate each keyword with a comma',  'moderntribe-sitebuilder'),
+		keywordsPlaceholder: __('Blog, tech…', 'moderntribe-sitebuilder'),
+		keywordsHelperText: __('Separate each keyword with a comma', 'moderntribe-sitebuilder'),
 	},
 	processing: {
 		title: __('Nice Choices.', 'moderntribe-sitebuilder'),
 		description: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
+		statusMessage: __('Importing your colors...', 'moderntribe-sitebuilder'),
 	},
 	usernameValidation: {
 		errorMessage: __('There was an error validating your username.', 'moderntribe-sitebuilder'),

@@ -4,6 +4,7 @@ import { useFirstTimeConfiguration } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { IMAGE_DIR } from '@sb/constants';
 import { useEffect, useState } from 'react';
+const { processing } = FtcStringData;
 
 const Processing = () => {
 	const { submitForm } = useFirstTimeConfiguration();
@@ -41,7 +42,7 @@ const Processing = () => {
 				</Typography>
 				<ProgressBar
 					color="primary"
-					statusMessage="Importing your colors..."
+					statusMessage={ processing.statusMessage }
 					value={ percentDone }
 				/>
 				<Box component="div" sx={ { maxWidth: 415, padding: '0 64px' } }>

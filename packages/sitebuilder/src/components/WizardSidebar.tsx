@@ -16,10 +16,10 @@ export const WizardSidebar = (props: WizardSidebarProps) => {
 	if (! show) {
 		return null;
 	}
-	/* 
-	*  The outer grid item is used for page spacing and the inner grid item is 
-	*  to size and display the sidebar in a fixed position 
-	*/  
+	/*
+	*  The outer grid item is used for page spacing and the inner grid item is
+	*  to size and display the sidebar in a fixed position
+	*/
 	return (
 		<Grid item xs={ 2.5 } sx={ {
 			display: 'flex',
@@ -27,8 +27,8 @@ export const WizardSidebar = (props: WizardSidebarProps) => {
 			position: 'relative',
 			zIndex: 2
 		} }>
-			<Grid item 
-				xs={ 2.5 } 
+			<Grid item
+				xs={ 2.5 }
 				sx={ {
 					display: 'flex',
 					flexDirection: 'column',
@@ -39,7 +39,7 @@ export const WizardSidebar = (props: WizardSidebarProps) => {
 				} }
 			>
 				<Sidebar
-					logo={logo}
+					logo={ logo }
 					heading={ label }
 					body={ description }
 					icon={ icon }

@@ -58,10 +58,6 @@ const FirstTimeConfigurationProvider: React.FC<{
 }> = ({ children }) => {
 	const [ftcState, setFtcState] = useState<FtcScreenDataInterface>(ftcData);
 
-	useEffect(() => {
-		console.log('FTC state change', ftcState);
-	}, [ftcState]);
-
 	const submitForm: submitFormFn = (isNextLookAndFeel = false) => {
 		function handleError() {
 			// eslint-disable-next-line no-alert

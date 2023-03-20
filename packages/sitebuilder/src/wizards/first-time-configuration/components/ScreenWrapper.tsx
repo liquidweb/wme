@@ -14,7 +14,7 @@ const ScreenWrapper: any = styled(Box, {
 	alignItems: 'center',
 	marginTop: mTop,
 	marginBottom: mBottom,
-	minHeight: `calc(100vh - ${mTop} - ${mBottom})`,
+	minHeight: `calc(100vh - ${ mTop } - ${ mBottom })`,
 	'& .WmeFormRoot': {
 		marginTop: '16px',
 	},
