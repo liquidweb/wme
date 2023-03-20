@@ -12,16 +12,6 @@ import { TemplateSelectGroup, TemplateSelectItem } from '..';
 	title="Misc/TemplateSelectGroup"
 	component={TemplateSelectGroup}
 	argTypes={{
-		value: {
-			control: false,
-			defaultValue: '0',
-			description: 'The currently selected value within the group. The value must have reference equality with the option in order to be selected.',
-			table: {
-				type: {
-					summary: 'any',
-				},
-			}
-		},
 		children: {
 			control: false,
 			description: 'The content of the component.',
@@ -47,7 +37,6 @@ export const Template = (args) => {
 	return (
 		<TemplateSelectGroup
 			{...args}
-			value={selectedTemplate}
 			className={isHovered ? 'is-hovered' : ''}
 		>
 			<TemplateSelectItem
