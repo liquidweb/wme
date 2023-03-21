@@ -31,7 +31,12 @@ const GoogleAnalytics = () => {
 						<>
 							{ __('Google Analytics Code', 'moderntribe-sitebuilder') }
 							{ ' ' }
-							<Link href="/">{ __('(How do I set this up?)', 'moderntribe-sitebuilder') }</Link>
+							<Link
+								href="/"
+								target="_blank"
+								rel="noopener">
+								{ __('(How do I set this up?)', 'moderntribe-sitebuilder') }
+							</Link>
 						</>
 					}
 					field={
@@ -47,7 +52,7 @@ const GoogleAnalytics = () => {
 				/>
 				<Button
 					variant="contained"
-					color="secondary">
+					color="primary">
 					{ __('Save', 'moderntribe-sitebuilder') }
 				</Button>
 			</Form>

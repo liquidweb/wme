@@ -45,18 +45,19 @@ declare module '*.svg' {
 
 declare global {
 	interface Window {
-		site_details: any;
+		site_settings: any;
 		wp: any;
 		wpApiSettings: any;
 	}
 
 	interface SetupCardAccordionInterface {
 		id: string;
-		header: string;
-		subHeader?: string;
-		chipBackground?: ChipProps['color'];
-		chipText?: string;
-		expanded?: boolean;
+		title: string;
+		intro?: string;
+		completed: boolean;
+		navTitle: string;
+		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
+		footer?: SetupCardFooter;
 	}
 
 	interface PasswordStrengthType {

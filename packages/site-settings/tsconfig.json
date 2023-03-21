@@ -108,7 +108,7 @@
 	},
 	"include": [
 		"src/**/*",
-		"sitedetails.d.ts"
+		"site-settings.d.ts"
 	],
 	"exclude": [
 		"build",

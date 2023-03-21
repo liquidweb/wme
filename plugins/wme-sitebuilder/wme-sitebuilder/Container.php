@@ -43,14 +43,17 @@ class Container extends BaseContainer {
 					$app->make( Wizards\FirstTimeConfiguration::class )
 				);
 			},
-			Cards\GoLive::class                   => static function ( $app ) {
+			Cards\GoLive::class => static function ($app) {
 				return new Cards\GoLive(
-					$app->make( Wizards\GoLive::class )
+					$app->make(Wizards\GoLive::class)
 				);
 			},
-			Cards\LookAndFeel::class              => static function ( $app ) {
+			Cards\GoogleAnalytics::class => static function () {
+				return new Cards\GoogleAnalytics();
+			},
+			Cards\LookAndFeel::class => static function ($app) {
 				return new Cards\LookAndFeel(
-					$app->make( Wizards\LookAndFeel::class )
+					$app->make(Wizards\LookAndFeel::class)
 				);
 			},
 			Cards\ManageProducts::class           => null,
@@ -86,12 +89,20 @@ class Container extends BaseContainer {
 				);
 			},
 
-			Modules\SiteBuilder::class            => static function ( $app ) {
+			Modules\SiteBuilder::class => static function ($app) {
 				return new Modules\SiteBuilder(
 					[
-						$app->make( Cards\FirstTimeConfiguration::class ),
-						$app->make( Cards\LookAndFeel::class ),
-						$app->make( Cards\GoLive::class ),
+						$app->make(Cards\FirstTimeConfiguration::class),
+						$app->make(Cards\LookAndFeel::class),
+						$app->make(Cards\GoLive::class),
+					]
+				);
+			},
+
+			Modules\SiteSettings::class => static function ($app) {
+				return new Modules\SiteSettings(
+					[
+						$app->make(Cards\GoogleAnalytics::class),
 					]
 				);
 			},

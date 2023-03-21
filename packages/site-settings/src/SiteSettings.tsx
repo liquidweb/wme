@@ -5,10 +5,10 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Loadable from '@site/components/Loadable';
 
 const SetupScreen = Loadable(lazy(() => import('@site/setup/SetupScreen')));
-const storeBuilderTheme = createTheme(WME_THEME);
+const siteSettingsTheme = createTheme(WME_THEME);
 
-const SiteDetails = () => (
-	<ThemeProvider theme={ storeBuilderTheme }>
+const SiteSettings = () => (
+	<ThemeProvider theme={ siteSettingsTheme }>
 		<HashRouter>
 			<Routes>
 				<Route path="/" element={ <SetupScreen fullscreen={ true } /> } />
@@ -17,4 +17,4 @@ const SiteDetails = () => (
 	</ThemeProvider>
 );
 
-export default SiteDetails;
+export default SiteSettings;
