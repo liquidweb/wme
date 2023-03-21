@@ -67,6 +67,7 @@ declare global {
 		url?: string;
 		target?: '_blank' | '_self';
 		wizardHash?: string;
+		target?: string;
 	}
 
 	interface SetupCardInterface {

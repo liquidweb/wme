@@ -49,11 +49,7 @@ const StyledChipInput = styled(TextField, {
   },
 }));
 
-const ChipsInput: React.FC<ChipsInputProps> = ({
-  tags,
-  selectedTags,
-  ...rest
-}) => {
+const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...rest }) => {
   const [inputValue, setInputValue] = useState('');
 
   const deleteChip = (item: string) => () => {
@@ -71,7 +67,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
     if (isEnter || isComma) {
       evt.preventDefault();
       const newSelectedItems = [...tags];
-      const duplicatedValues = newSelectedItems.indexOf(inputValue.trim());
+      const duplicatedValues = newSelectedItems.indexOf(trimmedInput);
 
       if (duplicatedValues !== -1) {
         setInputValue('');
@@ -83,9 +79,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
       setInputValue('');
     }
 
-    if (
-      isBackspace && inputValue.length === 0 && tags.length > 0
-    ) {
+    if (isBackspace && inputValue.length === 0 && tags.length > 0) {
       selectedTags(tags.slice(0, tags.length - 1));
     }
   };
@@ -97,13 +91,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({
         fullWidth: true,
         autoComplete: 'false',
         startAdornment: tags.map((item) => (
-          <Chip
-            size="small"
-            key={item}
-            tabIndex={-1}
-            label={item}
-            onDelete={deleteChip(item)}
-          />
+          <Chip size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
         )),
         value: inputValue,
         onKeyUp: handleKeyDown,

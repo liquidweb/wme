@@ -36,11 +36,17 @@ import { ChipInput } from "..";
 	}}
 />
 
-export const Template = (args) => (
-	<div style={{ width: 350 }}>
-		<ChipInput {...args} />
-	</div>
-);
+export const Template = (args) => {
+	const [tags, setTags] = React.useState(args.tags);
+	const handleSelect = (listOfChips) => {
+    	setTags(listOfChips);
+    }
+	return (
+		<div style={{ width: 350 }}>
+			<ChipInput {...args} tags={tags} selectedTags={ handleSelect } />
+		</div>
+		);
+};
 
 # Text Input
 
@@ -60,16 +66,23 @@ A styled version of <a href="https://mui.com/material-ui/api/input-base/" target
 import React from 'react';
 import { ChipInput } from '@moderntribe/wme';
 
-const handleSelect = (listOfChips) => {
-	console.log(listOfChips);
-}
+export const MyChipInput = (props) => {
+	const [tags, setTags] = useState([]);
 
-export const MyChipInput = (props) => (
-  <ChipInput
-	tags={['chip 1', 'chip 2']}
-    placeholder="Placeholder text"
-  />
-)
+	const handleSelect = (listOfChips) => {
+		console.log(listOfChips);
+		setTags(listOfChips);
+	}
+
+	return (
+		<ChipInput
+			selectedTags={ handleSelect }
+			placeholder="Type tags here..."
+			tags={ tags }
+		/>
+	);
+
+}
 
 export default MyChipInput;
 ```
