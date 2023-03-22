@@ -20,7 +20,6 @@ export const GoLiveStringData = {
 	verifyDomain: {
 		screenTitle: __('Verify your domain', 'moderntribe-sitebuilder'),
 		screenDescription: __('We\'ll verify your domain and get it ready to use. This can take a while, but don\'t worry - we\'ll walk you through it.', 'moderntribe-sitebuilder'),
-		screenNotice: __('If you\'re using a subdomain (ex: store.example.com), please stop here and reach out to support at', 'moderntribe-sitebuilder'),
 		goLiveLabelText: __('Enter the domain you want to connect', 'moderntribe-sitebuilder'),
 		goLivePlaceholderText: __('yourdomain.com', 'moderntribe-sitebuilder'),
 		errorDomainFormat: __('The domain entered does not appear to be a valid format.', 'moderntribe-sitebuilder'),
