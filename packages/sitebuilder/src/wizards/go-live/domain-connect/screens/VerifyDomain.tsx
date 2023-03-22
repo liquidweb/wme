@@ -88,6 +88,11 @@ const VerifyDomain = () => {
 			capturedDomain: event.target.value
 		});
 
+		const { steps } = goLiveState;
+		// Any change in domain name requires new verification to proceed.
+		steps[ 0 ].disableNext = true;
+		steps[ 1 ].disableNext = true;
+
 		setGoLiveState({
 			...goLiveState,
 			verificationStatus: 'default',
