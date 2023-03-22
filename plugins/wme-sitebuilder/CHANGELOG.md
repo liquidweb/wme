@@ -1,5 +1,13 @@
 # @moderntribe/wme-sitebuilder
 
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies [b30c0c0]
+- Updated dependencies [e2a3343]
+  - @moderntribe/sitebuilder@1.7.3
+
 ## 0.6.0
 
 ### Minor Changes
