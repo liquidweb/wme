@@ -76,7 +76,7 @@ export const cards: SetupCardInterface[] = [
 				id: 'content-4',
 				type: 'task',
 				taskCta: 'Get Started',
-				title: 'Publish your Blog Page',
+				title: 'Publish your First Blog Post',
 				intro: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 				wizardHash: '#' // Idk what goes here
 			}

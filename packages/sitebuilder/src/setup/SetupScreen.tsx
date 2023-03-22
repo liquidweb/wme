@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useSiteBuilder } from '@sb/hooks';
 import { SetupCards } from '@sb/setup';
 import { SetupData } from '@sb/setup/data/constants';
@@ -29,8 +29,13 @@ const SetupScreen = () => {
 
 	return (
 		<Box pt={ 3 } pl={ '12px' } pr={ 4 }>
-			<Box textAlign="center">{ screen.title }</Box>
-
+			<Typography
+				variant="h2"
+				textAlign="center"
+				sx={ { marginTop: '16px', marginBottom: '32px' } }
+			>
+				{ screen.title }
+			</Typography>
 			<SetupCards showJumpNav />
 		</Box>
 	);
