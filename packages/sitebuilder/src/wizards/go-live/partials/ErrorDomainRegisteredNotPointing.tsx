@@ -42,6 +42,8 @@ const ErrorDomainRegisteredNotPointing = () => {
 	const handleSkipDnsVerification = () => {
 		const currentStatus = ! skipDnsVerification ? 'advanced' : 'error';
 
+		// Manage current and final screen's next button.
+		steps[ 0 ].disableNext = !! skipDnsVerification;
 		steps[ 1 ].disableNext = !! skipDnsVerification;
 
 		setGoLiveState({

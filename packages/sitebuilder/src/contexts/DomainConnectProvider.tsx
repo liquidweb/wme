@@ -169,9 +169,11 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 				: verificationResponse.general;
 
 			steps[ 0 ].disableNext = false;
+			steps[ 1 ].disableNext = false;
 
 			if (isVerificationError(error)) {
 				steps[ 0 ].disableNext = true;
+				steps[ 1 ].disableNext = true;
 
 				setGoLiveState((previousGoLiveState) => ({
 					...previousGoLiveState,
@@ -187,6 +189,7 @@ const DomainConnectProvider = ({ children }: { children: React.ReactNode }) => {
 
 			setGoLiveState((previousGoLiveState) => ({
 				...previousGoLiveState,
+				steps,
 				isLoading: false,
 				verificationStatus: 'connected',
 				verificationMessage: '',
