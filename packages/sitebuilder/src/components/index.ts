@@ -7,3 +7,5 @@ export * from './ModalDeviceSelection';
 export * from './Loadable';
 export * from './Loading';
 export * from './JumpNav';
+export * from './WizardSidebar';
+export * from './WizardExitButton';

@@ -7,7 +7,6 @@ export type { ChipProps } from '@mui/material';
 const StyledChip = styled(MuiChip)<ChipProps>(({
   size, theme,
 }) => ({
-  flexDirection: 'row-reverse',
   backgroundColor: theme.palette.info.light,
   color: theme.palette.info.dark,
 

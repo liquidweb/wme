@@ -1,6 +1,9 @@
-import { createContext, useState, useEffect } from 'react';
-import { beforeUnloadListener, removeNulls, handleActionRequest } from '@moderntribe/wme-utils';
-import { useWizard } from '@sb/hooks';
+import { createContext, useState } from 'react';
+import {
+	beforeUnloadListener,
+	removeNulls,
+	handleActionRequest
+} from '@moderntribe/wme-utils';
 
 import FtcScreenData, {
 	FtcScreenDataInterface,
@@ -10,17 +13,32 @@ import FtcScreenData, {
 import { SITEBUILDER_URL } from '@sb/constants';
 import { FtcStringData } from '@ftc/data/constants';
 
+export type setFormValueFn = (
+	prop: keyof FtcFormItemsInterface,
+	value: string | string[]
+) => void;
+export type submitFormFn = (isNextLookAndFeel?: boolean) => void;
+export type resetFormValueFn = (prop: keyof FtcFormItemsInterface) => void;
+export type setIsLoadingFn = (isLoading: boolean) => void;
+export type setLogoValueFn = (id: string, url: string) => void;
+export type validateUsernamePasswordFn = (
+	usernameIsValid: boolean,
+	passwordIsValid: boolean
+) => void;
+export type shouldBlockNextStepFn = (
+	prop: any | any[],
+	activeStep: number
+) => void;
+
 export interface FtcProviderContextInterface {
 	ftcState: FtcScreenDataInterface;
-	setFormValue: (prop: keyof FtcFormItemsInterface, value: string) => void;
-	submitForm: (isNextLookAndFeel?: boolean) => void;
-	resetFormValue: (prop: keyof FtcFormItemsInterface) => void;
-	setIsLoading: (isLoading: boolean) => void;
-	setLogoValue: (id: string, url: string) => void;
-	validateUsernamePassword: (
-		usernameIsValid: boolean,
-		passwordIsValid: boolean
-	) => void;
+	setFormValue: setFormValueFn;
+	submitForm: submitFormFn;
+	resetFormValue: resetFormValueFn;
+	setIsLoading: setIsLoadingFn;
+	setLogoValue: setLogoValueFn;
+	validateUsernamePassword: validateUsernamePasswordFn;
+	shouldBlockNextStep: shouldBlockNextStepFn;
 }
 
 export interface FtcUsernamePasswordInterface {
@@ -35,21 +53,12 @@ export const FirstTimeConfigurationContext = createContext<
 	FtcProviderContextInterface | FtcScreenDataInterface | null
 >(ftcData);
 
-const FirstTimeConfigurationProvider = ({
-	children
-}: {
+const FirstTimeConfigurationProvider: React.FC<{
 	children: React.ReactNode;
-}) => {
+}> = ({ children }) => {
 	const [ftcState, setFtcState] = useState<FtcScreenDataInterface>(ftcData);
-	const { setHideExit } = useWizard();
 
-	useEffect(() => {
-		if (! ftcState.completed) {
-			setHideExit(true);
-		}
-	}, []);
-
-	const submitForm = (isNextLookAndFeel: boolean = false) => {
+	const submitForm: submitFormFn = (isNextLookAndFeel = false) => {
 		function handleError() {
 			// eslint-disable-next-line no-alert
 			alert(submitFormContent.errorMessage);
@@ -61,29 +70,57 @@ const FirstTimeConfigurationProvider = ({
 			action: ftcState?.ajax?.action ? ftcState.ajax.action : '',
 			sub_action: 'finish',
 			logo: formValues.logoId.touched ? formValues.logoId.value : null,
-			siteName: formValues.siteName.touched ? formValues.siteName.value : null,
-			tagLine: formValues.tagline.touched ? formValues.tagline.value : null,
-			username: ! ftcState.completed && formValues.username.touched ? formValues.username.value : null,
-			password: formValues.password.touched ? formValues.password.value : null,
+			siteName: formValues.siteName.touched
+				? formValues.siteName.value
+				: null,
+			tagLine: formValues.tagline.touched
+				? formValues.tagline.value
+				: null,
+			industry: formValues.industry.touched
+				? formValues.industry.value
+				: null,
+			subIndustry: formValues.subIndustry.touched
+				? formValues.subIndustry.value
+				: null,
+			username:
+				! ftcState.completed && formValues.username.touched
+					? formValues.username.value
+					: null,
+			password: formValues.password.touched
+				? formValues.password.value
+				: null,
+			siteDescription: formValues.siteDescription.touched
+				? formValues.siteDescription.value
+				: null,
+			sitePersonality: formValues.sitePersonality.touched
+				? formValues.sitePersonality.value
+				: null,
+			siteKeywords: formValues.siteKeywords.touched
+				? formValues.siteKeywords.value
+				: null,
+			goals: formValues.goals.touched ? formValues.goals.value : null,
+			template: formValues.template.touched
+				? formValues.template.value
+				: null
 		});
 
-		handleActionRequest(data).then(() => {
-			removeEventListener('beforeunload', beforeUnloadListener);
-			const navigateTo = isNextLookAndFeel ? '#/wizard/look-and-feel' : '';
-			window.location.assign(`${ SITEBUILDER_URL }${ navigateTo }`);
-		}).catch(() => handleError());
+		handleActionRequest(data)
+			.then(() => {
+				removeEventListener('beforeunload', beforeUnloadListener);
+				const navigateTo = isNextLookAndFeel
+					? '#/wizard/look-and-feel'
+					: '';
+				window.location.assign(`${ SITEBUILDER_URL }${ navigateTo }`);
+			})
+			.catch(() => handleError());
 	};
 
-	const setFormValue = (
-		prop: keyof FtcFormItemsInterface,
-		value: string,
-		touched: boolean = true
-	) => {
+	const setFormValue: setFormValueFn = (prop, value, touched = true) => {
 		if (ftcState.form[ prop ].value === value) {
 			return;
 		}
 
-		const formData = ftcState.form;
+		const formData = { ...ftcState.form };
 		formData[ prop ].value = value;
 		formData[ prop ].touched = touched;
 		setFtcState({
@@ -92,7 +129,7 @@ const FirstTimeConfigurationProvider = ({
 		});
 	};
 
-	const resetFormValue = (prop: keyof FtcFormItemsInterface) => {
+	const resetFormValue: resetFormValueFn = (prop) => {
 		const formData = ftcState.form;
 		formData[ prop ].value = '';
 		formData[ prop ].touched = false;
@@ -103,34 +140,41 @@ const FirstTimeConfigurationProvider = ({
 		});
 	};
 
-	const setIsLoading = (isLoading: boolean) => {
+	const setIsLoading: setIsLoadingFn = (isLoading) => {
 		setFtcState({
 			...ftcState,
 			isLoading
 		});
 	};
 
-	const validateUsernamePassword = (
-		usernameIsValid: boolean,
-		passwordIsValid: boolean
+	const shouldBlockNextStep: shouldBlockNextStepFn = (
+		criteria,
+		activeStep
 	) => {
-		const { steps, form, completed } = ftcState;
-		form.username.isValid = usernameIsValid;
-		form.password.isValid = passwordIsValid;
-
-		if (! completed) {
-			steps[ 0 ].disableNext = ! usernameIsValid || ! passwordIsValid;
-		} else {
-			steps[ 0 ].disableNext = !! (form.password.value && ! passwordIsValid);
-		}
-
+		const { steps } = { ...ftcState };
+		steps[ activeStep ].disableNext = Boolean(criteria);
 		setFtcState({
 			...ftcState,
 			steps
 		});
 	};
 
-	const setLogoValue = (id: string, url: string) => {
+	const validateUsernamePassword: validateUsernamePasswordFn = (
+		usernameIsValid,
+		passwordIsValid
+	) => {
+		const { form, completed } = ftcState;
+		form.username.isValid = usernameIsValid;
+		form.password.isValid = passwordIsValid;
+
+		if (! completed) {
+			shouldBlockNextStep(! usernameIsValid || ! passwordIsValid, 0);
+		} else {
+			shouldBlockNextStep(!! (form.password.value && ! passwordIsValid), 0);
+		}
+	};
+
+	const setLogoValue: setLogoValueFn = (id, url) => {
 		const { previewLogo } = ftcState;
 		previewLogo.id = id;
 		previewLogo.url = url;
@@ -139,6 +183,7 @@ const FirstTimeConfigurationProvider = ({
 			...ftcState,
 			previewLogo
 		});
+		shouldBlockNextStep(false, 3);
 	};
 
 	return (
@@ -150,7 +195,8 @@ const FirstTimeConfigurationProvider = ({
 				resetFormValue,
 				setIsLoading,
 				setLogoValue,
-				validateUsernamePassword
+				validateUsernamePassword,
+				shouldBlockNextStep
 			} }
 		>
 			{ children }

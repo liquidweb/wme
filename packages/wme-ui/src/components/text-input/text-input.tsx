@@ -28,6 +28,10 @@ const StyledTextInput = styled(InputBase, {
       backgroundColor: theme.palette.background.disabled,
       boxShadow: 'none',
     },
+    '&.MuiInputBase-inputMultiline': {
+      paddingTop: 8,
+      paddingBottom: 8,
+    },
   },
   '&.MuiInputBase-adornedEnd .MuiInputBase-input': {
     paddingRight: '35px',
