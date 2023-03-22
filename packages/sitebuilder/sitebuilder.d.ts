@@ -67,6 +67,7 @@ declare global {
 		url?: string;
 		target?: '_blank' | '_self';
 		wizardHash?: string;
+		target?: string;
 	}
 
 	interface SetupCardInterface {
@@ -152,6 +153,7 @@ declare global {
 		label?: string;
 		title?: string;
 		description?: string;
+		footerHelpText?: string;
 		icon?: React.ReactNode;
 		nextText?: string;
 		loadingText?: string;
@@ -161,6 +163,9 @@ declare global {
 		disableAll?: boolean;
 		disable?: boolean;
 		hidePagination?: boolean;
+		hideExit?: boolean;
+		hideSidebar?: boolean;
+		hideFooter?: boolean;
 	}
 
 	export interface Domain {

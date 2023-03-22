@@ -101,7 +101,6 @@ const StyleCardSelectIcon = styled('div', {
 })(({ theme }) => ({
   width: theme.spacing(7),
   height: theme.spacing(7),
-  marginBottom: theme.spacing(2),
   borderRadius: '50%',
   backgroundColor: theme.palette.grey[100],
   display: 'flex',

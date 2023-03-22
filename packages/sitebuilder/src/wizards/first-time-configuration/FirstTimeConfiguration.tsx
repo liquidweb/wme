@@ -1,4 +1,4 @@
-import FirstTimeConfigurationWizard from '@ftc/FirstTimeConfigurationWizard';
+import FirstTimeConfigurationWizard from '@sb/wizards/first-time-configuration/components/FirstTimeConfigurationWizard';
 import FirstTimeConfigurationProvider from '@sb/contexts/FirstTimeConfigurationProvider';
 
 const FirstTimeConfiguration = () => (

@@ -1,20 +1,19 @@
-import type React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  styled,
-  Box,
-  BoxProps,
-  IconProps,
-  Typography,
+  styled, Box, BoxProps, IconProps, Typography,
 } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
+const embedWidth = 1280;
+
 interface TemplateSelectItemProps extends BoxProps {
-  imageSrc: string;
-  imageAlt: string;
-  buttonLabel: string;
-  buttonSelectedLabel: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  buttonLabel?: string;
+  buttonSelectedLabel?: string;
   selected: boolean;
+  websiteSrc?: string;
 }
 
 const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
@@ -56,6 +55,16 @@ const TemplateItemImage = styled('img')(() => ({
   width: '100%',
 }));
 
+const TemplateItemEmbed = styled('iframe')(() => ({
+  position: 'absolute',
+  width: embedWidth,
+  height: 2000,
+  transform: 'scale(0.2)',
+  transformOrigin: '0 0',
+  border: 0,
+  overflow: 'hidden',
+}));
+
 const TemplateItemButton = styled(Box)<BoxProps>(({ theme }) => ({
   position: 'absolute',
   bottom: 0,
@@ -86,28 +95,38 @@ export default function TemplateSelectItem(props: TemplateSelectItemProps) {
   const {
     imageSrc,
     imageAlt,
-    buttonLabel,
-    buttonSelectedLabel,
+    buttonLabel = 'Start With This Style',
+    buttonSelectedLabel = 'Selected',
     selected,
+    websiteSrc,
     ...rest
   } = props;
+  const [embedScale, setEmbedScale] = useState(0.2);
+  const containerRef = useRef();
+
+  useEffect(() => {
+    if (containerRef && containerRef.current) {
+      // @ts-ignore
+      setEmbedScale(containerRef.current.clientWidth / embedWidth);
+    }
+  }, [containerRef]);
 
   return (
-    <TemplateItemContainer
-      className={selected ? 'is-selected' : ''}
-      {...rest}
-    >
-      <TemplateItemImage
-        src={imageSrc}
-        alt={imageAlt}
-        loading="lazy"
-      />
+    <TemplateItemContainer className={selected ? 'is-selected' : ''} {...rest} ref={containerRef}>
+      {imageSrc && <TemplateItemImage src={imageSrc} alt={imageAlt} loading="lazy" />}
+      {websiteSrc && !imageSrc && (
+        <TemplateItemEmbed
+          src={websiteSrc}
+          title={websiteSrc}
+          style={{ transform: `scale(${embedScale})` }}
+          seamless
+          scrolling="no"
+        />
+      )}
       <TemplateItemButton>
         <Typography color="common.white">
           {selected ? buttonSelectedLabel : buttonLabel}
-          {selected && (
-          <TemplateItemCheck />
-          )}
+          {selected && <TemplateItemCheck />}
         </Typography>
       </TemplateItemButton>
     </TemplateItemContainer>

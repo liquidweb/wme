@@ -3,8 +3,7 @@ import {
 	Button,
 	Form,
 	FormField,
-	TextInput,
-	WizardSectionTitle
+	TextInput
 } from '@moderntribe/wme-ui';
 import {
 	Box,
@@ -20,7 +19,6 @@ import { __ } from '@wordpress/i18n';
 import { useFirstTimeConfiguration, useUsernameValidation } from '@sb/hooks';
 import { copyToClipboard, getPasswordStrength, generateNewPassword } from '@sb/utils';
 
-import ScreenWrapper from '@ftc/ScreenWrapper';
 import { FtcStringData } from '@ftc/data/constants';
 
 const { usernamePassword } = FtcStringData;
@@ -148,11 +146,7 @@ const UsernamePassword = () => {
 	};
 
 	return (
-		<ScreenWrapper sx={ { maxWidth: 425 } }>
-			<WizardSectionTitle
-				heading={ usernamePassword.title }
-				headingVariant="h2"
-			/>
+		<Box sx={ { maxWidth: 425 } }>
 			<Form>
 				<Stack spacing={ 3 }>
 					<FormField
@@ -196,6 +190,18 @@ const UsernamePassword = () => {
 						label={ usernamePassword.loginUrlLabelText }
 					/>
 					<FormField
+						field={
+							<TextInput
+								fullWidth
+								onChange={ (e) => setFormValue('siteName', e.target.value) }
+								placeholder={ usernamePassword.siteNameLabelText }
+								required
+								value={ ftcState.form.siteName.value }
+							/>
+						}
+						label={ usernamePassword.siteNameLabelText }
+					/>
+					<FormField
 						error={ ! usernamePermitted }
 						field={
 							<TextInput
@@ -206,11 +212,7 @@ const UsernamePassword = () => {
 									usernamePassword.usernamePlaceholderText
 								}
 								required
-								value={
-									! completed && ! usernameChanged
-										? ''
-										: username
-								}
+								value={ username }
 							/>
 						}
 						errorMessage={
@@ -275,16 +277,7 @@ const UsernamePassword = () => {
 								/>
 							)
 						}
-						helperText={
-							! completed || createNewPassword
-								? usernamePassword.passwordHelperText
-								: undefined
-						}
-						label={
-							! completed
-								? usernamePassword.passwordLabelTextFirst
-								: 'Password'
-						}
+						label={ usernamePassword.passwordLabelTextFirst }
 					>
 						{ completed && createNewPassword && (
 							<Button
@@ -314,7 +307,7 @@ const UsernamePassword = () => {
 					</FormField>
 				</Stack>
 			</Form>
-		</ScreenWrapper>
+		</Box>
 	);
 };
 
