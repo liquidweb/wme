@@ -1,5 +1,12 @@
 # @moderntribe/sitebuilder
 
+## 1.7.3
+
+### Patch Changes
+
+- b30c0c0: Removes subdomain notice from domain connect flow
+- e2a3343: Domain verification bug fix
+
 ## 1.7.2
 
 ### Patch Changes
