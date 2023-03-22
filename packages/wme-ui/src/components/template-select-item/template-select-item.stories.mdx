@@ -12,7 +12,7 @@ import { TemplateSelectItem } from '..';
 	component={TemplateSelectItem}
 	argTypes={{
 		imageSrc: {
-			control: 'string',
+			control: 'text',
 			description: 'Path to src of image',
 			table: {
 				type: {
@@ -23,6 +23,15 @@ import { TemplateSelectItem } from '..';
 		imageAlt: {
 			control: 'text',
 			description: 'alt text for template image',
+			table: {
+				type: {
+					summary: 'string',
+				},
+			}
+		},
+		websiteSrc: {
+			control: 'text',
+			description: 'The URL of the website you want to embed',
 			table: {
 				type: {
 					summary: 'string',
@@ -86,7 +95,8 @@ its child buttons when given its own `value` prop.
 ## Props
 <ArgsTable story="."/>
 
-## Canvas
+## Template item with image
+
 <Canvas>
 	<Story
 		name="Default"
@@ -100,4 +110,20 @@ its child buttons when given its own `value` prop.
 	>
 		{Template.bind({})}
 	</Story>
+</Canvas>
+
+## Template item with an iframe
+
+<Canvas>
+	<Story
+		name="iframe"
+		args={{
+			websiteSrc: 'https://tri.be/',
+			buttonLabel: 'Start With This Style',
+			buttonSelectedLabel: 'Selected',
+			selected: false,
+		}}
+	>
+    {Template.bind({})}
+  </Story>
 </Canvas>
