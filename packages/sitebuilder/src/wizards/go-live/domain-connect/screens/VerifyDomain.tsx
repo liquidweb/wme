@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
-import { __ } from '@wordpress/i18n';
 import {
 	Box,
 	FormControl,
 	FormLabel,
 	IconButton,
 	TextField,
-	InputAdornment,
-	Link,
-	FormHelperText
+	InputAdornment
 } from '@mui/material';
 import {
 	ArrowForward,
@@ -49,7 +46,6 @@ const VerifyDomain = () => {
 		verifyDomain: {
 			screenTitle,
 			screenDescription,
-			screenNotice,
 			goLiveLabelText,
 			goLivePlaceholderText,
 			errorDomainFormat
@@ -174,10 +170,6 @@ const VerifyDomain = () => {
 						</IconButton> }
 					</Box>
 				</FormControl>
-				<FormHelperText>
-					{ `${ screenNotice } ` }
-					<Link href="email:storebuilder@nexcess.net">{ __('storebuilder@nexcess.net', 'moderntribe-sitebuilder') }</Link>.
-				</FormHelperText>
 				{ <Box mt={ 3 }>
 
 					{ (verificationStatus === 'error' && ! validDomain) && <ErrorStatusMessage message={ errorDomainFormat } /> }
