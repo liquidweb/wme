@@ -8,8 +8,6 @@ const Container = styled(Box)<BoxProps>(({ theme }) => ({
 	margin: `${ theme.spacing(5) } auto`,
 }));
 
-const ACCORDION_TIMEOUT = 150;
-
 const SetupCards = () => {
 	return (
 		<Container>
@@ -21,7 +19,6 @@ const SetupCards = () => {
 							id={ card.id }
 							header={ card.title }
 							subHeader={ card.intro }
-							TransitionProps={ { timeout: ACCORDION_TIMEOUT } }
 						>
 							{
 								((card.id === 'site-visibility') && <SiteVisibility />) ||
