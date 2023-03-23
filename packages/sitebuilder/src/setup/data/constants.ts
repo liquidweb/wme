@@ -2,8 +2,7 @@ import { __ } from '@wordpress/i18n';
 
 export const SetupData = {
 	screen: {
-		title: __('Set up your site.', 'moderntribe-sitebuilder'),
-		intro: __('Our set up wizard will help you get the most out of your store.', 'moderntribe-sitebuilder')
+		title: __('Site Set Up', 'moderntribe-sitebuilder'),
 	},
 	goLiveStatus: {
 		manage: __('Manage', 'moderntribe-sitebuilder'),
