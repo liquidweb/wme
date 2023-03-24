@@ -1,4 +1,5 @@
 import { JumpNav as WmeJumpNav } from '@moderntribe/wme-ui';
+import { Box } from '@mui/material';
 import { SetupCardAccordionInterface } from '@sb/setup';
 import { useEffect, useState } from 'react';
 
@@ -11,7 +12,6 @@ interface JumpNavItemInterface {
 	id: string;
 	label: string;
 	onClick: () => void;
-	remainingTasks: number;
 }
 
 const JumpNav = (props: JumpNavInterface) => {
@@ -21,16 +21,15 @@ const JumpNav = (props: JumpNavInterface) => {
 
 	useEffect(() => {
 		if (cards && cards.length > 0) {
-			setLinks(cards.map((card, index) => {
-				const remainingTasks = card.rows?.filter((row) => row.type === 'task' && ! row.completed);
-
-				return {
-					id: card.id,
-					label: card.navTitle,
-					onClick: () => onItemClick(index),
-					remainingTasks: remainingTasks.length
-				};
-			}));
+			setLinks(
+				cards.map((card, index) => {
+					return {
+						id: card.id,
+						label: card.navTitle,
+						onClick: () => onItemClick(index)
+					};
+				})
+			);
 		}
 	}, [cards]);
 
@@ -39,7 +38,9 @@ const JumpNav = (props: JumpNavInterface) => {
 	}
 
 	return (
-		<WmeJumpNav title="Jump To:" links={ links } />
+		<Box sx={ { display: 'flex', justifyContent: 'center' } }>
+			<WmeJumpNav title="Jump To:" links={ links } />
+		</Box>
 	);
 };
 
