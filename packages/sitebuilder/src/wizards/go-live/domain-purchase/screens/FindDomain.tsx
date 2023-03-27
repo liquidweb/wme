@@ -5,7 +5,7 @@ import { Search } from '@mui/icons-material';
 import { IMAGE_DIR } from '@sb/constants';
 import { useFindDomain } from '@sb/hooks';
 import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
-import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
+//import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
 
 import {
 	ErrorStatusMessage
@@ -109,7 +109,7 @@ const FindDomain = () => {
 				} }>
 					{ domains.map((domain, index) => {
 						const selected = selectedDomains.some((_) => _.domain === domain.domain);
-						const domainListItem = parseDomainListItem(domain, selected);
+						const domainListItem = {};
 						return (
 							<Fragment key={ domain.domain }>
 								<ListItemCheckout { ...domainListItem } disableGutters onClick={ () => toggleSelectedDomain(domain) } />

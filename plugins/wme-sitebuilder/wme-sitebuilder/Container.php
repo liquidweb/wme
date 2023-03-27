@@ -94,7 +94,6 @@ class Container extends BaseContainer {
 					[
 						$app->make(Cards\FirstTimeConfiguration::class),
 						$app->make(Cards\LookAndFeel::class),
-						$app->make(Cards\GoLive::class),
 					]
 				);
 			},
@@ -103,6 +102,7 @@ class Container extends BaseContainer {
 				return new Modules\SiteSettings(
 					[
 						$app->make(Cards\GoogleAnalytics::class),
+						$app->make(Cards\GoLive::class),
 					]
 				);
 			},

@@ -1,1 +1,1 @@
-export { default as NexcessLogo } from './NexcessLogo';
+export { default as StoreBuilderLogo } from './StoreBuilderLogo';

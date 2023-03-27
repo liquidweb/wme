@@ -25,7 +25,8 @@
             "alias": {
                 "extensions": [".js", ".jsx", ".ts", ".tsx"],
 								"map": [
-									["@site", "./src"]
+									["@site", "./src"],
+									["@go-live", "./src/wizards/go-live"]
 								]
             }
         },
