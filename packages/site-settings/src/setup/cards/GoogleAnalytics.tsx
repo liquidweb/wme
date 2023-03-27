@@ -24,39 +24,37 @@ const GoogleAnalytics = () => {
 	};
 
 	return (
-		<SetupCardContent>
-			<Form>
-				<StyledFormField
-					label={
-						<>
-							{ __('Google Analytics Code', 'moderntribe-sitebuilder') }
-							{ ' ' }
-							<Link
-								href="/"
-								target="_blank"
-								rel="noopener">
-								{ __('(How do I set this up?)', 'moderntribe-sitebuilder') }
-							</Link>
-						</>
-					}
-					field={
-						<TextInput
-							value={ analyticsScript }
-							onChange={ handleChange }
-							name="analyticsScript"
-							multiline
-							minRows={ 5 }
-							placeholder={ __('Paste your code from Google here', 'moderntribe-sitebuilder') }
-						/>
-					}
-				/>
-				<Button
-					variant="contained"
-					color="primary">
-					{ __('Save', 'moderntribe-sitebuilder') }
-				</Button>
-			</Form>
-		</SetupCardContent>
+		<Form>
+			<StyledFormField
+				label={
+					<>
+						{ __('Google Analytics Code', 'moderntribe-sitebuilder') }
+						{ ' ' }
+						<Link
+							href="/"
+							target="_blank"
+							rel="noopener">
+							{ __('(How do I set this up?)', 'moderntribe-sitebuilder') }
+						</Link>
+					</>
+				}
+				field={
+					<TextInput
+						value={ analyticsScript }
+						onChange={ handleChange }
+						name="analyticsScript"
+						multiline
+						minRows={ 5 }
+						placeholder={ __('Paste your code from Google here', 'moderntribe-sitebuilder') }
+					/>
+				}
+			/>
+			<Button
+				variant="contained"
+				color="primary">
+				{ __('Save', 'moderntribe-sitebuilder') }
+			</Button>
+		</Form>
 	);
 };
 

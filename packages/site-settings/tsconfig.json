@@ -6,6 +6,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@site/*": ["src/*"],
+			"@go-live/*": ["src/wizards/go-live/*"]
 		},
 
 		/* Projects */

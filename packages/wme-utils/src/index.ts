@@ -5,3 +5,4 @@ export { objToFormData } from './objToFormData';
 export { pxToRem } from './pxToRem';
 export { randomInt } from './randomInt';
 export { removeNulls } from './removeNulls';
+export { handleTelemetryRequest } from './handleTelemetryRequest';

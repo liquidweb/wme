@@ -8,7 +8,7 @@ import {
 import { ListItemCheckout, WizardSectionTitle } from '@moderntribe/wme-ui';
 
 import { useDomainPurchase } from '@sb/hooks';
-import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
+//import { parseDomainListItem } from '@sb/utils/parseDomainListItem';
 import { GoLiveStringData } from '@go-live/data/constants';
 
 const ConnectWithNexcess = () => {
@@ -45,7 +45,7 @@ const ConnectWithNexcess = () => {
 			>
 				<List>
 					{ selectedDomains.map((domain, index) => {
-						const domainListItem = parseDomainListItem(domain, true);
+						const domainListItem = {};
 						return (
 							<Fragment key={ domain.domain }>
 								<ListItemCheckout { ...domainListItem } sx={ {
