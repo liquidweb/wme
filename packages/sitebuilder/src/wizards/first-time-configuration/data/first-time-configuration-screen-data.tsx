@@ -88,7 +88,7 @@ const stepsData: Array<StepInterface> = [
 		screen: <UsernamePassword />
 	},
 	{
-		id: 3,
+		id: 1,
 		label: __('Industry', 'moderntribe-sitebuilder'),
 		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
 		icon: <MessageIcon />,
@@ -119,7 +119,7 @@ const stepsData: Array<StepInterface> = [
 		screen: <GoalsScreen />
 	},
 	{
-		id: 1,
+		id: 3,
 		label: __('Site', 'moderntribe-sitebuilder'),
 		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
 		description: __(
