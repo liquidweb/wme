@@ -6,7 +6,8 @@ import {
 	Processing,
 	IndustryScreen,
 	GoalsScreen,
-	StyleScreen
+	StyleScreen,
+	StyleReview
 } from '../screens';
 
 import {
@@ -159,8 +160,20 @@ const stepsData: Array<StepInterface> = [
 		hideFooter: true,
 		hideNext: true,
 		hideBack: true,
-		nextText: __('Save & Exit Setup', 'moderntribe-sitebuilder'),
+		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <Processing />
+	},
+	{
+		id: 6,
+		label: __('Review', 'moderntribe-sitebuilder'),
+		title: __('This is beginning of something really awesome.', 'moderntribe-sitebuilder'),
+		description: __(
+			'You\'ve got a great start on a digital presence for your business.\n\nWe\'ve set up a starter navigation for you based on what we know so far. Hit "Save & Continue" and we can start really making it yours.',
+			'moderntribe-sitebuilder'
+		),
+		hideExit: false,
+		nextText: __('Save & Continue', 'moderntribe-sitebuilder'),
+		screen: <StyleReview />
 	}
 ];
 
