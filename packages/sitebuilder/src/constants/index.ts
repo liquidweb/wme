@@ -23,8 +23,4 @@ export const GO_LIVE_PROPS = SITEBUILDER.wizards.golive;
 
 export const NEXCESS_SUPPORT_URL = SITEBUILDER.support_url;
 
-export const NEXCESS_DOMAIN_REGISTRATION_URL = GO_LIVE_PROPS.domainRegistrationUrl;
-
-export const NEXCESS_DOMAIN_SEARCH_URL = GO_LIVE_PROPS.domainSearchUrl;
-
 export * from './theme';
