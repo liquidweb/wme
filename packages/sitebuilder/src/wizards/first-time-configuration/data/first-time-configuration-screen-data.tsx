@@ -168,10 +168,12 @@ const stepsData: Array<StepInterface> = [
 		label: __('Review', 'moderntribe-sitebuilder'),
 		title: __('This is beginning of something really awesome.', 'moderntribe-sitebuilder'),
 		description: __(
-			'You\'ve got a great start on a digital presence for your business.\n\nWe\'ve set up a starter navigation for you based on what we know so far. Hit "Save & Continue" and we can start really making it yours.',
+			'You\'ve got a great start on a digital presence for your business. We\'ve set up a starter navigation for you based on what we know so far. Hit "Save & Continue" and we can start really making it yours.',
 			'moderntribe-sitebuilder'
 		),
 		hideExit: false,
+		hideSkip: true,
+		hideBack: true,
 		nextText: __('Save & Continue', 'moderntribe-sitebuilder'),
 		screen: <StyleReview />
 	}

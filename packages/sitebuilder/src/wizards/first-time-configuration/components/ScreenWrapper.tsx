@@ -14,10 +14,12 @@ const ScreenWrapper: any = styled(Box, {
 	alignItems: 'center',
 	marginTop: screenTopMargin,
 	marginBottom: screenBottomMargin,
+	height: `calc(100vh - ${ screenTopMargin } - ${ screenBottomMargin })`,
 	minHeight: `calc(100vh - ${ screenTopMargin } - ${ screenBottomMargin })`,
 	'& .WmeFormRoot': {
 		marginTop: '16px'
-	}
+	},
+	position: 'relative'
 }));
 
 export default ScreenWrapper;

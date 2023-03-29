@@ -2,16 +2,30 @@ import { Box, SvgIcon } from '@mui/material';
 import { DesktopWindows, TabletMac, PhoneIphone } from '@mui/icons-material';
 import { useWizard } from '@sb/hooks';
 
-interface DevicesInterface {
-	desktop: typeof SvgIcon;
-	tablet: typeof SvgIcon;
-	mobile: typeof SvgIcon;
+export interface DeviceInterface {
+		icon: typeof SvgIcon;
+		width: string;
+}
+
+export interface DevicesInterface {
+	desktop: DeviceInterface;
+	tablet: DeviceInterface;
+	mobile: DeviceInterface;
 }
 
 const devices:DevicesInterface = {
-	desktop: DesktopWindows,
-	tablet: TabletMac,
-	mobile: PhoneIphone,
+	desktop: {
+		icon: DesktopWindows,
+		width: '100%',
+	},
+	tablet: {
+		icon: TabletMac,
+		width: '768px',
+	},
+	mobile: {
+		icon: PhoneIphone,
+		width: '480px',
+	},
 };
 
 const deviceSx = {
@@ -26,22 +40,32 @@ const deviceSx = {
 	}
 };
 
+const wrapperSx = {
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	zIndex: 1,
+};
+
 export const ModalDeviceSelection = () => {
 	const { setActiveDevice, wizardState: { activeDevice } } = useWizard();
 
-	const handleDeviceClick = (nextDevice: string) => {
-		if (nextDevice === activeDevice) {
+	const handleDeviceClick = (nextDevice: keyof DevicesInterface) => {
+		if (nextDevice === activeDevice.breakpoint) {
 			return;
 		}
-		setActiveDevice(nextDevice);
+		setActiveDevice({
+			breakpoint: nextDevice,
+			width: devices[ nextDevice ].width
+		});
 	};
 
-	return <Box sx={ { display: 'flex', alignItems: 'center' } }>
-		{ (Object.keys(devices) as Array<keyof typeof devices>).map((key) => {
-			const DeviceName = devices[ key ];
+	return <Box sx={ wrapperSx }>
+		{ (Object.keys(devices) as Array<keyof typeof devices>).map((key: keyof DevicesInterface) => {
+			const DeviceName = devices[ key ].icon;
 			return <DeviceName
 				key={ key }
-				sx={ activeDevice === key ? deviceSx.active : deviceSx.default }
+				sx={ activeDevice.breakpoint === key ? deviceSx.active : deviceSx.default }
 				onClick={ () => handleDeviceClick(key) }
 			/>;
 		}) }
