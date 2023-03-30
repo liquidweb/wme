@@ -42,9 +42,6 @@ const initialState: WizardProviderStateInterface = {
 	showCloseWarning: null,
 	activeDevice: { breakpoint: 'desktop', width: '100%' },
 	hasStepped: false,
-	error: {
-		showError: true,
-	}
 };
 
 export const WizardContext =
