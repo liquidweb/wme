@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material';
-import { useFirstTimeConfiguration, useWizard } from '@sb/hooks';
+import { useWizard } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { WizardExitButton } from '@sb/components';
 import { __ } from '@wordpress/i18n';
