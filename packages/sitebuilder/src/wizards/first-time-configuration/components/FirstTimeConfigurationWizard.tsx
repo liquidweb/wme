@@ -10,6 +10,7 @@ import { Grid } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
 import PlaceholderLogo from '@sb/logos/PlaceholderLogo';
 import ScreenWrapper from './ScreenWrapper';
+import { ErrorScreen } from '../screens';
 
 const FirstTimeConfigurationWizard = () => {
 	const {
@@ -18,7 +19,7 @@ const FirstTimeConfigurationWizard = () => {
 	} = useFirstTimeConfiguration();
 
 	const {
-		wizardState: { showCloseWarning, hasStepped },
+		wizardState: { showCloseWarning, hasStepped, error },
 		goToNextStep,
 		goToPreviousStep,
 		goToStep,
@@ -97,6 +98,7 @@ const FirstTimeConfigurationWizard = () => {
 						text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
 					/>
 				) }
+				{ error && error.showError && <ErrorScreen logo={ <PlaceholderLogo /> } /> }
 				<ScreenWrapper>{ currentScreen.screen }</ScreenWrapper>
 			</Grid>
 			<WizardFooter
