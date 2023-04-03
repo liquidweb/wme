@@ -14,10 +14,6 @@ export const GO_LIVE_PROPS = SITE_SETTINGS.wizards.golive;
 
 export const NEXCESS_SUPPORT_URL = SITE_SETTINGS.support_url;
 
-export const NEXCESS_DOMAIN_REGISTRATION_URL = GO_LIVE_PROPS.domainRegistrationUrl;
-
-export const NEXCESS_DOMAIN_SEARCH_URL = GO_LIVE_PROPS.domainSearchUrl;
-
 export const SITE_DOMAIN_DATA = {
 	screen: {
 		title: __('Site Set Up', 'moderntribe-sitebuilder'),
