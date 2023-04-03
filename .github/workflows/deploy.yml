@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:        
-      - uses: webfactory/ssh-agent@v0.8.0
+      - uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.ssh-key || secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
             

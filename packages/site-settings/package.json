@@ -19,7 +19,8 @@
 	"author": "",
 	"dependencies": {
 		"@moderntribe/wme-ui": "workspace:*",
-		"@moderntribe/wme-utils": "workspace:*"
+		"@moderntribe/wme-utils": "workspace:*",
+		"@tanstack/react-query": "^4.14.3"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.9.3",
