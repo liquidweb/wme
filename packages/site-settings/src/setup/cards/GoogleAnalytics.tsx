@@ -4,8 +4,7 @@ import {
 	Button,
 	Form,
 	FormField,
-	TextInput,
-	SetupCardContent
+	TextInput
 } from '@moderntribe/wme-ui';
 import { Link, styled } from '@mui/material';
 
