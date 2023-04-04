@@ -30,8 +30,8 @@ class SiteVisibility extends Card {
 	 */
 	public function props() {
 		$details = [
-			'id'        => 'site-visibility',
-			'navTitle'     => __( 'Site Visibility', 'wme-sitebuilder' ),
+			'id'        => $this->card_slug,
+			'navTitle'  => __( 'Site Visibility', 'wme-sitebuilder' ),
 			'title'     => __( 'Site Visibility', 'wme-sitebuilder' ),
 			'intro'     => __( 'Limit who can access your site online.', 'wme-sitebuilder' ),
 			// TODO: Temporary until we have a way to get the site visibility.
