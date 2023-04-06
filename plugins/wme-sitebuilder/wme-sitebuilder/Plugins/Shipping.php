@@ -24,17 +24,6 @@ class Shipping {
 		 */
 		$this->plugins['elex-usps-shipping-method'] = [
 			'active' => (bool) $this->isPluginActive( 'elex-usps-shipping-method/usps-woocommerce-shipping.php' ),
-			'card'   => [
-				'id'          => 'usps',
-				'type'        => 'task',
-				'taskCta'     => __( 'USPS Settings', 'wme-sitebuilder' ),
-				'title'       => __( 'USPS', 'wme-sitebuilder' ),
-				'intro'       => __( 'Shipping rates based on address and cart content through USPS.', 'wme-sitebuilder' ),
-				'icon'        => 'setup-icon-usps.png',
-				'disabled'    => false,
-				'disableText' => '',
-				'url'         => admin_url( 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' ),
-			],
 		];
 	}
 
@@ -45,5 +34,27 @@ class Shipping {
 	 */
 	public function getPlugins() {
 		return $this->plugins;
+	}
+
+	/**
+	 * Is USPS active?
+	 *
+	 * @return bool
+	 */
+	public function isUspsActive() {
+		return $this->plugins['elex-usps-shipping-method']['active'];
+	}
+
+	/**
+	 * Get properties for footer message.
+	 *
+	 * @return array
+	 */
+	public function card_footer_props() {
+		// TODO: Temporary until we have the real links.
+		return [
+			'label' => __( 'Help with USPS', 'wme-sitebuilder' ),
+			'href'  => '#',
+		];
 	}
 }
