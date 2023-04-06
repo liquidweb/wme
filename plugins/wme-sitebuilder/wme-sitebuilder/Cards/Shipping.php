@@ -38,6 +38,15 @@ class Shipping extends Card {
 	 * @return array
 	 */
 	public function props() {
+		$button_props = [
+			'usps'     => [
+				'label'           => __( 'Add USPS', 'wme-sitebuilder' ),
+				'backgroundColor' => '#004B87',
+				// TODO: Redirect user to an action that installs and activates the plugin.
+				'href'            => admin_url( 'admin.php?page=wc-settings&tab=shipping' ),
+			]
+		];
+
 		// Flat rate is built-in to WooCommerce.
 		$rows = [
 			[
@@ -47,6 +56,17 @@ class Shipping extends Card {
 				'title'   => __( 'Flat Rate Shipping', 'wme-sitebuilder' ),
 				'intro'   => __( 'Charge a fixed rate of your choosing for shipping.', 'wme-sitebuilder' ),
 				'url'     => admin_url( 'admin.php?page=wc-settings&tab=shipping' ),
+			],
+			[
+				'id'          => 'usps',
+				'type'        => 'task',
+				'taskCta'     => __( 'USPS Settings', 'wme-sitebuilder' ),
+				'title'       => __( 'USPS', 'wme-sitebuilder' ),
+				'intro'       => __( 'Shipping rates based on address and cart content through USPS.', 'wme-sitebuilder' ),
+				'disabled'    => false,
+				'disableText' => '',
+				'url'         => $this->plugins->isUspsActive() ? admin_url( 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' ) : null,
+				'button'      => ! $this->plugins->isUspsActive() ? $button_props['usps'] : null,
 			],
 		];
 
@@ -59,16 +79,6 @@ class Shipping extends Card {
 			$rows[] = $plugin['card'];
 		}
 
-		// If there are additional options, make wizard available.
-		if ( 1 === count( $rows ) && 0 < count( $this->plugins->getPlugins() ) ) {
-			$rows[] = [
-				'id'         => 'shipping-wizard',
-				'type'       => 'button',
-				'wizardHash' => '/wizard/shipping',
-				'title'      => __( 'Add another way to ship', 'wme-sitebuilder' ),
-			];
-		}
-
 		return [
 			'id'        => 'shipping-configuration',
 			'title'     => __( 'Configure shipping', 'wme-sitebuilder' ),
@@ -76,86 +86,26 @@ class Shipping extends Card {
 			'completed' => false,
 			'rows'      => $rows,
 			'footer'    => [
-				'collapsible'      => true,
-				'collapsibleLabel' => __( 'Learn more about Shipping', 'wme-sitebuilder' ),
-				'rows'             => [
+				'collapsible' => false,
+				'rows'        => [
 					[
-						'type'      => 'learn-types',
-						'title'     => 'Is this needed here?',
-						'overline'  => __( '3 Minutes', 'wme-sitebuilder' ),
-						'headline'  => __( 'Understanding Flat Rate Shipping in Storebuilder', 'wme-sitebuilder' ),
-						'videoData' => [
-							'placeholderImage' => 'setup-shipping-poster.png',
-							'ariaLabel'        => __( 'Click to play video', 'wme-sitebuilder' ),
-							'src'              => 'https://www.youtube.com/embed/EXMe2i7OSQM',
-							'description'      => __( 'When setting up shipping in StoreBuilder, there are three concepts to understand: Flat Rate Shipping, Shipping Zones, and Shipping Classes. This video describes each and how they interact to ensure customers are charged correctly to ship their purchases.', 'wme-sitebuilder' ),
-						]
+						'type'  => 'links',
+						'title' => __( 'Need help with shipping?', 'wme-sitebuilder' ),
+						'links' => $this->footer_messages(),
 					],
-					[
-						'type'        => 'columns',
-						'gridColumns' => 3,
-						'columns'     => [
-							[
-								'heading' => __( 'Shipping Zones', 'wme-sitebuilder' ),
-								'list'    => [
-									[
-										'icon'   => 'Add',
-										'title'  => __( 'Set up Shipping Zones', 'wme-sitebuilder' ),
-										'url'    => admin_url( 'admin.php?page=wc-settings&tab=shipping' ),
-										'target' => '_self',
-									],
-									[
-										'icon'   => 'LocalLibrary',
-										'title'  => __( 'WooCommerce: Shipping Zones Docs', 'wme-sitebuilder' ),
-										'url'    => 'https://woocommerce.com/document/setting-up-shipping-zones/',
-										'target' => '_blank',
-									],
-								],
-							],
-							[
-								'heading' => __( 'Shipping Classes', 'wme-sitebuilder' ),
-								'list'    => [
-									[
-										'icon'   => 'Add',
-										'title'  => __( 'Set up Shipping Classes', 'wme-sitebuilder' ),
-										'url'    => admin_url( 'admin.php?page=wc-settings&tab=shipping&section=classes' ),
-										'target' => '_self',
-									],
-									[
-										'icon'   => 'School',
-										'title'  => __( 'Tutorial: Shipping Classes', 'wme-sitebuilder' ),
-										'url'    => 'wp101:woocommerce-shipping-classes',
-										'target' => '_self',
-									],
-									[
-										'icon'   => 'LocalLibrary',
-										'title'  => __( 'WooCommerce: Shipping Classes Docs', 'wme-sitebuilder' ),
-										'url'    => 'https://woocommerce.com/document/product-shipping-classes/',
-										'target' => '_blank',
-									],
-								],
-							],
-							[
-								'heading' => __( 'Shipping Calculations', 'wme-sitebuilder' ),
-								'list'    => [
-									[
-										'icon'   => 'Add',
-										'title'  => __( 'Set Flat Rate shipping calculations', 'wme-sitebuilder' ),
-										'url'    => admin_url( 'admin.php?page=wc-settings&tab=shipping&section=options' ),
-										'target' => '_blank',
-									],
-									[
-										'icon'   => 'School',
-										'title'  => __( 'Tutorial: Flat Rate Shipping', 'wme-sitebuilder' ),
-										'url'    => 'wp101:woocommerce-flat-rate-shipping',
-										'target' => '_self',
-									],
-								],
-							],
-						]
-					]
-				],
+				]
 			],
+		];
+	}
+
+	/**
+	 * Get card footer messages.
+	 *
+	 * @return array[]
+	 */
+	protected function footer_messages() {
+		return [
+			$this->plugins->card_footer_props()
 		];
 	}
 }
