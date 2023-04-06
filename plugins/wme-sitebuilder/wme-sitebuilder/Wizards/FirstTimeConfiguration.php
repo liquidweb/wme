@@ -8,12 +8,19 @@ class FirstTimeConfiguration extends Wizard {
 
 	use StoresData;
 
-	const FIELD_LOGO      = 'logo';
-	const FIELD_PASSWORD  = 'password';
-	const FIELD_SITENAME  = 'siteName';
-	const FIELD_TAGLINE   = 'tagLine';
-	const FIELD_USERNAME  = 'username';
-	const DATA_STORE_NAME = '_sitebuilder_ftc';
+	const FIELD_LOGO             = 'logo';
+	const FIELD_PASSWORD         = 'password';
+	const FIELD_SITENAME         = 'siteName';
+	const FIELD_TAGLINE          = 'tagLine';
+	const FIELD_INDUSTRY         = 'industry';
+	const FIELD_SUBINDUSTRY      = 'subIndustry';
+	const FIELD_SITE_DESCRIPTION = 'siteDescription';
+	const FIELD_SITE_PERSONALITY = 'sitePersonality';
+	const FIELD_SITE_KEYWORDS    = 'siteKeywords';
+	const FIELD_GOALS            = 'goals';
+	const FIELD_TEMPLATE         = 'template';
+	const FIELD_USERNAME         = 'username';
+	const DATA_STORE_NAME        = '_sitebuilder_ftc';
 
 	/**
 	 * @var string
@@ -88,6 +95,13 @@ class FirstTimeConfiguration extends Wizard {
 					'id'  => $this->getLogoId(),
 					'url' => $this->getLogoUrl(),
 				],
+				'industry'        => $this->getIndustry(),
+				'subIndustry'     => $this->getSubIndustry(),
+				'siteDescription' => $this->getSiteDescription(),
+				'sitePersonality' => $this->getSitePersonality(),
+				'siteKeywords'    => $this->getSiteKeywords(),
+				'goals'           => $this->getGoals(),
+				'template'        => $this->getTemplate(),
 			],
 		];
 	}
@@ -118,6 +132,13 @@ class FirstTimeConfiguration extends Wizard {
 			self::FIELD_LOGO,
 			self::FIELD_SITENAME,
 			self::FIELD_TAGLINE,
+			self::FIELD_INDUSTRY,
+			self::FIELD_SUBINDUSTRY,
+			self::FIELD_SITE_DESCRIPTION,
+			self::FIELD_SITE_PERSONALITY,
+			self::FIELD_SITE_KEYWORDS,
+			self::FIELD_GOALS,
+			self::FIELD_TEMPLATE,
 		];
 
 		foreach ( $fields as $field ) {
@@ -320,9 +341,13 @@ class FirstTimeConfiguration extends Wizard {
 			return;
 		}
 
-		if ( ! update_option( 'blogname', $sitename ) ) {
-			$this->errors[] = [ self::FIELD_SITENAME => __( 'Invalid Sitename', 'wme-sitebuilder' ) ];
+		$this->getData()->set( 'blogname', $sitename );
+
+		if ( update_option( 'blogname', $sitename ) ) {
+			return;
 		}
+
+		$this->errors[] = [ self::FIELD_SITENAME => __( 'Unable to save the Site Name', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -350,9 +375,253 @@ class FirstTimeConfiguration extends Wizard {
 			return;
 		}
 
-		if ( ! update_option( 'blogdescription', $tagline ) ) {
-			$this->errors[] = [ self::FIELD_TAGLINE => __( 'Invalid Tagline', 'wme-sitebuilder' ) ];
+		$this->getData()->set( 'blogdescription', $tagline );
+
+		if ( update_option( 'blogdescription', $tagline ) ) {
+			return;
 		}
+
+		$this->errors[] = [ self::FIELD_TAGLINE => __( 'Unable to save the Site Description', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the site industry.
+	 *
+	 * @return string
+	 */
+	public function getIndustry() {
+		if ( empty( $this->fields[ self::FIELD_INDUSTRY ] ) ) {
+			$this->fields[ self::FIELD_INDUSTRY ] = get_option( 'site_industry', '' );
+		}
+
+		return $this->fields[ self::FIELD_INDUSTRY ];
+	}
+
+	/**
+	 * Set the site industry.
+	 *
+	 * @param string $industry
+	 */
+	public function setIndustry( $industry ) {
+		$industry = filter_var( $industry, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $industry === $this->getIndustry() ) {
+			return;
+		}
+
+		$this->getData()->set( 'industry', $industry );
+
+		if ( update_option( 'site_industry', $industry ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_INDUSTRY => __( 'Unable to save the Site Industry', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the site sub-industry.
+	 *
+	 * @return string
+	 */
+	public function getSubIndustry() {
+		if ( empty( $this->fields[ self::FIELD_SUBINDUSTRY ] ) ) {
+			$this->fields[ self::FIELD_SUBINDUSTRY ] = get_option( 'site_sub_industry', '' );
+		}
+
+		return $this->fields[ self::FIELD_SUBINDUSTRY ];
+	}
+
+	/**
+	 * Set the site sub-industry.
+	 *
+	 * @param string $subindustry
+	 */
+	public function setSubIndustry( $subindustry ) {
+		$subindustry = filter_var( $subindustry, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $subindustry === $this->getSubindustry() ) {
+			return;
+		}
+
+		$this->getData()->set( 'subindustry', $subindustry );
+
+		if ( update_option( 'site_sub_industry', $subindustry ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_SUBINDUSTRY => __( 'Unable to save the Site Sub-Industry', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the site description.
+	 *
+	 * @return string
+	 */
+	public function getSiteDescription() {
+		if ( empty( $this->fields[ self::FIELD_SITE_DESCRIPTION ] ) ) {
+			$this->fields[ self::FIELD_SITE_DESCRIPTION ] = get_option( 'site_description', '' );
+		}
+
+		return $this->fields[ self::FIELD_SITE_DESCRIPTION ];
+	}
+
+	/**
+	 * Set the site description.
+	 *
+	 * @param string $description
+	 */
+	public function setSiteDescription( $description ) {
+		$description = filter_var( $description, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $description === $this->getSiteDescription() ) {
+			return;
+		}
+
+		$this->getData()->set( 'site_description', $description );
+
+		if ( update_option( 'site_description', $description ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_SITE_DESCRIPTION => __( 'Unable to save the Site Description', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the site personality.
+	 *
+	 * @return string
+	 */
+	public function getSitePersonality() {
+		if ( empty( $this->fields[ self::FIELD_SITE_PERSONALITY ] ) ) {
+			$this->fields[ self::FIELD_SITE_PERSONALITY ] = get_option( 'site_personality', '' );
+		}
+
+		return $this->fields[ self::FIELD_SITE_PERSONALITY ];
+	}
+
+	/**
+	 * Set the site personality.
+	 *
+	 * @param string $personality
+	 */
+	public function setSitePersonality( $personality ) {
+		$personality = filter_var( $personality, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $personality === $this->getSitePersonality() ) {
+			return;
+		}
+
+		$this->getData()->set( 'site_personality', $personality );
+
+		if ( update_option( 'site_personality', $personality ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_SITE_PERSONALITY => __( 'Unable to save the Site Personality', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the site keywords.
+	 *
+	 * @return array
+	 */
+	public function getSiteKeywords() {
+		if ( empty( $this->fields[ self::FIELD_SITE_KEYWORDS ] ) ) {
+			$this->fields[ self::FIELD_SITE_KEYWORDS ] = get_option( 'site_keywords', '' );
+		}
+
+		$keywords = explode( ', ', $this->fields[ self::FIELD_SITE_KEYWORDS ]) ?: [];
+
+		return array_filter( $keywords );
+	}
+
+	/**
+	 * Set the site keywords.
+	 *
+	 * @param string $keywords
+	 */
+	public function setSiteKeywords( $keywords ) {
+		$keywords = filter_var( $keywords, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $keywords === $this->getSiteKeywords() ) {
+			return;
+		}
+
+		$this->getData()->set( 'site_keywords', $keywords );
+
+		if ( update_option( 'site_keywords', $keywords ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_SITE_KEYWORDS => __( 'Unable to save the Site Keywords', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the goals.
+	 *
+	 * @return string
+	 */
+	public function getGoals() {
+		if ( empty( $this->fields[ self::FIELD_GOALS ] ) ) {
+			$this->fields[ self::FIELD_GOALS ] = get_option( 'site_goals', '' );
+		}
+
+		return $this->fields[ self::FIELD_GOALS ];
+	}
+
+	/**
+	 * Set the goals.
+	 *
+	 * @param string $goals
+	 */
+	public function setGoals( $goals ) {
+		$goals = filter_var( $goals, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $goals === $this->getGoals() ) {
+			return;
+		}
+
+		$this->getData()->set( 'site_goals', $goals );
+
+		if ( update_option( 'site_goals', $goals ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_GOALS => __( 'Unable to save the Site Goals', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the  template.
+	 *
+	 * @return string
+	 */
+	public function getTemplate() {
+		if ( empty( $this->fields[ self::FIELD_TEMPLATE ] ) ) {
+			$this->fields[ self::FIELD_TEMPLATE ] = get_option( 'site_template', '' );
+		}
+
+		return $this->fields[ self::FIELD_TEMPLATE ];
+	}
+
+	/**
+	 * Set the template.
+	 *
+	 * @param string $template
+	 */
+	public function setTemplate( $template ) {
+		$template = filter_var( $template, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $template === $this->getTemplate() ) {
+			return;
+		}
+
+		$this->getData()->set( 'site_template', $template );
+
+		if ( update_option( 'site_template', $template ) ) {
+			return;
+		}
+
+		$this->errors[] = [ self::FIELD_TEMPLATE => __( 'Unable to save the Site Template', 'wme-sitebuilder' ) ];
 	}
 
 	/**
