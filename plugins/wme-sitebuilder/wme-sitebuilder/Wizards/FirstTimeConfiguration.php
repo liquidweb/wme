@@ -525,7 +525,7 @@ class FirstTimeConfiguration extends Wizard {
 	 *
 	 * @return array
 	 */
-	public function getSiteKeywords() {
+	public function getSiteKeywords(): array {
 		if ( empty( $this->fields[ self::FIELD_SITE_KEYWORDS ] ) ) {
 			$this->fields[ self::FIELD_SITE_KEYWORDS ] = get_option( 'site_keywords', '' );
 		}
@@ -538,10 +538,11 @@ class FirstTimeConfiguration extends Wizard {
 	/**
 	 * Set the site keywords.
 	 *
-	 * @param string $keywords
+	 * @param array $keywords
 	 */
-	public function setSiteKeywords( $keywords ) {
-		$keywords = filter_var( $keywords, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+	public function setSiteKeywords( array $keywords ) {
+		$keywords = filter_var_array( $keywords, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$keywords = implode( ', ', $keywords );
 
 		if ( $keywords === $this->getSiteKeywords() ) {
 			return;
@@ -559,23 +560,26 @@ class FirstTimeConfiguration extends Wizard {
 	/**
 	 * Get the goals.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function getGoals() {
+	public function getGoals(): array {
 		if ( empty( $this->fields[ self::FIELD_GOALS ] ) ) {
 			$this->fields[ self::FIELD_GOALS ] = get_option( 'site_goals', '' );
 		}
 
-		return $this->fields[ self::FIELD_GOALS ];
+		$goals = explode( ', ', $this->fields[ self::FIELD_GOALS ]) ?: [];
+
+		return array_filter( $goals );
 	}
 
 	/**
 	 * Set the goals.
 	 *
-	 * @param string $goals
+	 * @param array $goals
 	 */
-	public function setGoals( $goals ) {
-		$goals = filter_var( $goals, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+	public function setGoals( array $goals ) {
+		$goals = filter_var_array( $goals, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$goals = implode( ', ', $goals );
 
 		if ( $goals === $this->getGoals() ) {
 			return;
