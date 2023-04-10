@@ -9,7 +9,7 @@ class GoLive extends Card {
 	/**
 	 * @var string
 	 */
-	protected $admin_page_slug = 'sitebuilder';
+	protected $admin_page_slug = 'site-settings';
 
 	/**
 	 * @var string
@@ -44,12 +44,6 @@ class GoLive extends Card {
 			'title'     => __( 'Your Domain', 'wme-sitebuilder' ),
 			'intro'     => __( 'Update your sites domain.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
-			'rows'      => [
-				[
-					'id'   => 'launch-domain-status',
-					'type' => 'launch-domain-status',
-				],
-			],
 		];
 
 		if ( ! $this->wizard->isComplete() ) {

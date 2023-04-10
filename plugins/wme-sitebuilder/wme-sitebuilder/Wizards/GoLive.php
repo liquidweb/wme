@@ -16,7 +16,7 @@ class GoLive extends Wizard {
 	/**
 	 * @var string
 	 */
-	protected $admin_page_slug = 'sitebuilder';
+	protected $admin_page_slug = 'site-settings';
 
 	/**
 	 * @var string

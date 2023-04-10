@@ -1,5 +1,5 @@
 import { sprintf, _n } from '@wordpress/i18n';
-import { GoLiveStringData } from '@sb/wizards/go-live/data/constants';
+import { SITE_DOMAIN_DATA }	from '@site/constants';
 
 type DomainListItem = {
 	name: string,
@@ -33,15 +33,15 @@ function getPrice(termFees: DomainTermFees | undefined, isAvailable: boolean) {
 
 function getChipLabel(domain: Domain, isSelected: boolean) {
 	if (! domain.package) {
-		return GoLiveStringData.domainItems.unavailable;
+		return SITE_DOMAIN_DATA.domainItems.unavailable;
 	}
 	if (! domain.is_available) {
-		return GoLiveStringData.domainItems.taken;
+		return SITE_DOMAIN_DATA.domainItems.taken;
 	}
 	if (isSelected) {
-		return GoLiveStringData.domainItems.selected;
+		return SITE_DOMAIN_DATA.domainItems.selected;
 	}
-	return GoLiveStringData.domainItems.available;
+	return SITE_DOMAIN_DATA.domainItems.available;
 }
 
 function getChipColor(isAvailable: boolean, isSelected: boolean): 'success' | undefined {

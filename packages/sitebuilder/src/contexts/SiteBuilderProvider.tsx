@@ -1,5 +1,4 @@
 import { createContext, useState } from 'react';
-import { GO_LIVE_PROPS } from '@sb/constants';
 
 export interface SiteBuilderStateInterface {
 	capturedDomain?: string;
@@ -16,17 +15,14 @@ export interface SiteBuilderContextInterface {
 export const SiteBuilderContext = createContext<SiteBuilderContextInterface | null>(null);
 
 const localData: SiteBuilderStateInterface = {
-	capturedDomain: '',
 	kadenceTemplate: '',
 	scrollPosition: 0
 };
 
 const siteBuilderData = (): SiteBuilderStateInterface => {
-	return Object.assign(
-		{},
-		localData,
-		{ capturedDomain: GO_LIVE_PROPS.verifyingUrl }
-	);
+	return {
+		...localData,
+	};
 };
 
 const SiteBuilderProvider = ({ children }: { children: React.ReactNode }) => {

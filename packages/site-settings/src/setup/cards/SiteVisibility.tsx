@@ -6,8 +6,7 @@ import {
 	Form,
 	FormField,
 	InputLabel,
-	PasswordInput,
-	SetupCardContent
+	PasswordInput
 } from '@moderntribe/wme-ui';
 import { Box, styled } from '@mui/material';
 import { getPasswordStrength } from '@site/utils';
@@ -43,64 +42,62 @@ const SiteVisibility = () => {
 	};
 
 	return (
-		<SetupCardContent>
-			<Form>
-				<FormField
-					field={
-						<InputLabel
-							control={
-								<CheckboxInput
-									checked={ visibilityValues.hideSearchEngines }
-									onChange={ handleChange }
-									name="hideSearchEngines"
-								/>
-							}
-							label={ __('Hide my sites from search engines, and whatever else.', 'moderntribe-sitebuilder') }
-						/>
-					}
-				/>
-				<FormField
-					field={
-						<InputLabel
-							control={
-								<CheckboxInput
-									checked={ visibilityValues.restrictAccess }
-									onChange={ handleChange }
-									name="restrictAccess"
-								/>
-							}
-							label={ __('Restrict access to visitors with the password.', 'moderntribe-sitebuilder') }
-							checked={ visibilityValues.restrictAccess }
-						/>
-					}
-				/>
-				{ visibilityValues.restrictAccess && (
-					<>
-						<PasswordWrapper mt={ 2 } mb={ 3 }>
-							<FormField
-								field={
-									<PasswordInput
-										name="password"
-										value={ visibilityValues.password }
-										chipColor={ passwordStrength?.color }
-										chipLabel={ passwordStrength?.label }
-										onChange={ handlePasswordChange }
-									/>
-								}
-								label={ __('Password', 'moderntribe-sitebuilder') }
-								helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-sitebuilder') }
+		<Form>
+			<FormField
+				field={
+					<InputLabel
+						control={
+							<CheckboxInput
+								checked={ visibilityValues.hideSearchEngines }
+								onChange={ handleChange }
+								name="hideSearchEngines"
 							/>
-						</PasswordWrapper>
+						}
+						label={ __('Hide my sites from search engines, and whatever else.', 'moderntribe-sitebuilder') }
+					/>
+				}
+			/>
+			<FormField
+				field={
+					<InputLabel
+						control={
+							<CheckboxInput
+								checked={ visibilityValues.restrictAccess }
+								onChange={ handleChange }
+								name="restrictAccess"
+							/>
+						}
+						label={ __('Restrict access to visitors with the password.', 'moderntribe-sitebuilder') }
+						checked={ visibilityValues.restrictAccess }
+					/>
+				}
+			/>
+			{ visibilityValues.restrictAccess && (
+				<>
+					<PasswordWrapper mt={ 2 } mb={ 3 }>
+						<FormField
+							field={
+								<PasswordInput
+									name="password"
+									value={ visibilityValues.password }
+									chipColor={ passwordStrength?.color }
+									chipLabel={ passwordStrength?.label }
+									onChange={ handlePasswordChange }
+								/>
+							}
+							label={ __('Password', 'moderntribe-sitebuilder') }
+							helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-sitebuilder') }
+						/>
+					</PasswordWrapper>
 
-						<Button
-							variant="contained"
-							color="secondary">
-							{ __('Save', 'moderntribe-sitebuilder') }
-						</Button>
-					</>
-				) }
-			</Form>
-		</SetupCardContent>
+					<Button
+						variant="contained"
+						color="secondary">
+						{ __('Save', 'moderntribe-sitebuilder') }
+					</Button>
+				</>
+			) }
+		</Form>
 	);
 };
 

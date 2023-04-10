@@ -1,4 +1,4 @@
-import { SetupCardTask } from '@sb/setup';
+import { SetupCardTask } from '@site/setup';
 
 export interface SetupCardTasksInterface {
 	rows: Array<SetupCardRowInterface>;
