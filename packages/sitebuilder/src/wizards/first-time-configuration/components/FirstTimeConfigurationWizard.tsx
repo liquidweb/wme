@@ -98,7 +98,7 @@ const FirstTimeConfigurationWizard = () => {
 						text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
 					/>
 				) }
-				{ true && <ErrorScreen logo={ <PlaceholderLogo /> } /> }
+				{ error && error.showError && <ErrorScreen logo={ <PlaceholderLogo /> } /> }
 				<ScreenWrapper>{ currentScreen.screen }</ScreenWrapper>
 			</Grid>
 			<WizardFooter
