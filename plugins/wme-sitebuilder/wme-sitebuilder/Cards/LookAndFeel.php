@@ -40,9 +40,9 @@ class LookAndFeel extends Card {
 	public function props() {
 		return [
 			'id'        => 'look-and-feel',
-			'navTitle'  => __( 'Design', 'wme-sitebuilder' ),
-			'title'     => __( 'Design', 'wme-sitebuilder' ),
-			'intro'     => __( 'It\'s all about appearances.', 'wme-sitebuilder' ),
+			'navTitle'  => __( 'Style', 'wme-sitebuilder' ),
+			'title'     => __( 'Style', 'wme-sitebuilder' ),
+			'intro'     => __( 'Fine tune your selected style choices.', 'wme-sitebuilder' ),
 			'completed' => $this->wizard->isComplete(),
 			'rows'      => $this->rows(),
 			'footers'   => $this->footer(),
