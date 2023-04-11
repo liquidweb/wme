@@ -1,23 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { useWizard } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
-import { WizardExitButton } from '@sb/components';
+import { NotificationOverlay, WizardExitButton } from '@sb/components';
 import { __ } from '@wordpress/i18n';
 import { Button } from '@moderntribe/wme-ui';
 const { errorScreen } = FtcStringData;
-
-const ErrorScreenWrapper = {
-	position: 'fixed',
-	top: '0',
-	left: '0',
-	width: '100vw',
-	height: '100vh',
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-	backgroundColor: '#fff',
-	zIndex: 15
-};
 
 export interface ErrorScreenProps {
 	logo?: React.ReactNode;
@@ -35,7 +22,7 @@ const Error = (props: ErrorScreenProps) => {
 	};
 
 	return (
-		<Box sx={ ErrorScreenWrapper }>
+		<NotificationOverlay>
 			<WizardExitButton
 				onExit={ handleClose }
 				text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
@@ -76,7 +63,7 @@ const Error = (props: ErrorScreenProps) => {
 					Exit
 				</Button>
 			</Box>
-		</Box>
+		</NotificationOverlay>
 	);
 };
 
