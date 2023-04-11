@@ -410,12 +410,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'industry', $industry );
-
-		if ( update_option( 'site_industry', $industry ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_INDUSTRY => __( 'Unable to save the Site Industry', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -444,12 +438,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'subindustry', $subindustry );
-
-		if ( update_option( 'site_sub_industry', $subindustry ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_SUBINDUSTRY => __( 'Unable to save the Site Sub-Industry', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -478,12 +466,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'site_description', $description );
-
-		if ( update_option( 'site_description', $description ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_SITE_DESCRIPTION => __( 'Unable to save the Site Description', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -512,12 +494,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'site_personality', $personality );
-
-		if ( update_option( 'site_personality', $personality ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_SITE_PERSONALITY => __( 'Unable to save the Site Personality', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -549,12 +525,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'site_keywords', $keywords );
-
-		if ( update_option( 'site_keywords', $keywords ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_SITE_KEYWORDS => __( 'Unable to save the Site Keywords', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -586,12 +556,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'site_goals', $goals );
-
-		if ( update_option( 'site_goals', $goals ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_GOALS => __( 'Unable to save the Site Goals', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -620,12 +584,6 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		$this->getData()->set( 'site_template', $template );
-
-		if ( update_option( 'site_template', $template ) ) {
-			return;
-		}
-
-		$this->errors[] = [ self::FIELD_TEMPLATE => __( 'Unable to save the Site Template', 'wme-sitebuilder' ) ];
 	}
 
 	/**
