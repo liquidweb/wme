@@ -58,6 +58,7 @@ class Container extends BaseContainer {
 			},
 			Cards\ManageProducts::class           => null,
 			Cards\PaymentGateways::class          => null,
+			Cards\SiteVisibility::class           => null,
 			Cards\Shipping::class                 => static function ( $app ) {
 				return new Cards\Shipping(
 					$app->make( Plugins\Shipping::class )
@@ -101,6 +102,7 @@ class Container extends BaseContainer {
 			Modules\SiteSettings::class => static function ($app) {
 				return new Modules\SiteSettings(
 					[
+						$app->make(Cards\SiteVisibility::class),
 						$app->make(Cards\GoogleAnalytics::class),
 						$app->make(Cards\GoLive::class),
 					]
