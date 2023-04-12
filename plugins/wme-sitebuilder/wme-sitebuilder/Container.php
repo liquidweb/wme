@@ -6,6 +6,7 @@ use PhpZip\ZipFile;
 use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
 use Symfony\Component\Filesystem\Filesystem;
+use Tribe\WME\Sitebuilder\Cards\Card;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
 use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
@@ -68,6 +69,9 @@ class Container extends BaseContainer {
 					$app->make( Wizards\StoreSetup::class )
 				);
 			},
+			Cards\ShareYourSite::class => static function () {
+				return new Cards\ShareYourSite();
+			},
 
 			// Default implementations of contracts.
 			Contracts\ManagesDomain::class        => Services\Domain::class,
@@ -94,6 +98,7 @@ class Container extends BaseContainer {
 					[
 						$app->make(Cards\FirstTimeConfiguration::class),
 						$app->make(Cards\LookAndFeel::class),
+						$app->make(Cards\ShareYourSite::class),
 					]
 				);
 			},
