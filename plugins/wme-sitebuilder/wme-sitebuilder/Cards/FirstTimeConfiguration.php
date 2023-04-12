@@ -2,7 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WME\Sitebuilder\Wizards\Wizard;
+use Tribe\WME\Sitebuilder\Wizards\FirstTimeConfiguration as Wizard;
 
 class FirstTimeConfiguration extends Card {
 
@@ -17,14 +17,14 @@ class FirstTimeConfiguration extends Card {
 	protected $card_slug = 'ftc';
 
 	/**
-	 * @var \Tribe\WME\Sitebuilder\Wizards\Wizard
+	 * @var Wizard
 	 */
 	protected $wizard;
 
 	/**
 	 * Construct.
 	 *
-	 * @param \Tribe\WME\Sitebuilder\Wizards\Wizard $wizard
+	 * @param Wizard $wizard
 	 */
 	public function __construct( Wizard $wizard ) {
 		$this->wizard = $wizard;
