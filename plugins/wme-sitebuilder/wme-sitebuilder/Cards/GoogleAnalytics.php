@@ -2,7 +2,18 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
+use Tribe\WME\Sitebuilder\Concerns\StoresData;
+
 class GoogleAnalytics extends Card {
+
+	use StoresData;
+
+	const DATA_STORE_NAME = 'wme_sitebuilder_google_analytics';
+
+	/**
+	 * @var string
+	 */
+	protected $ajax_action = 'sitebuilder-google-analytics';
 
 	/**
 	 * @var string
@@ -14,13 +25,14 @@ class GoogleAnalytics extends Card {
 	 */
 	protected $card_slug = 'google-analytics';
 
-
 	/**
 	 * Construct.
 	 *
 	 */
 	public function __construct() {
 		parent::__construct();
+
+		$this->add_ajax_action( 'save', [ $this, 'save' ] );
 	}
 
 	/**
@@ -37,5 +49,34 @@ class GoogleAnalytics extends Card {
 		];
 
 		return $details;
+	}
+
+	/**
+	 * Save the escape the code and save it to the database.
+	 *
+	 * @return array
+	 */
+	public function save() {
+		$code = $_REQUEST['code'] ?? '';
+
+		// Escape the code.
+		$code = esc_html( $code );
+
+		if ( empty( $code ) ) {
+			return wp_send_json_error(
+				[
+					'code' => $code,
+				]
+			);
+		}
+
+		// Save the code.
+		$this->getData()->set( 'code', $code )->save();
+
+		return wp_send_json_success(
+			[
+				'code' => $this->getData()->get( 'code' ),
+			]
+		);
 	}
 }
