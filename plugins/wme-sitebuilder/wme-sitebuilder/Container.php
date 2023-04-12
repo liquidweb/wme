@@ -6,7 +6,6 @@ use PhpZip\ZipFile;
 use Psr\Log\LoggerInterface;
 use StellarWP\Container\Container as BaseContainer;
 use Symfony\Component\Filesystem\Filesystem;
-use Tribe\WME\Sitebuilder\Cards\Card;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
 use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
