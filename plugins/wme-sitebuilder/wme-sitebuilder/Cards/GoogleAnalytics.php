@@ -52,7 +52,7 @@ class GoogleAnalytics extends Card {
 	}
 
 	/**
-	 * Save the escape the code and save it to the database.
+	 * Escape the code and save it to the database.
 	 *
 	 * @return array
 	 */
