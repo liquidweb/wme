@@ -46,6 +46,7 @@ class GoogleAnalytics extends Card {
 			'navTitle'     => __( 'Google Analytics', 'wme-sitebuilder' ),
 			'title'     => __( 'Google Analytics', 'wme-sitebuilder' ),
 			'intro'     => __( 'Google Analytics enables you to track the visitors to your site and generate reports.', 'wme-sitebuilder' ),
+			'code'      => html_entity_decode( $this->getData()->get( 'code' ) ?? '' ),
 		];
 
 		return $details;
