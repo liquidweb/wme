@@ -51,10 +51,8 @@ class Container extends BaseContainer {
 			Cards\GoogleAnalytics::class          => static function () {
 				return new Cards\GoogleAnalytics();
 			},
-			Cards\Goals::class                    => static function ($app) {
-				return new Cards\Goals(
-					$app->make(Wizards\FirstTimeConfiguration::class)
-				);
+			Cards\Goals::class                    => static function () {
+				return new Cards\Goals();
 			},
 			Cards\LookAndFeel::class              => static function ($app) {
 				return new Cards\LookAndFeel(
