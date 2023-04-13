@@ -56,9 +56,6 @@ class LookAndFeel extends Card {
 	 */
 	protected function rows() {
 		if ( $this->wizard->isComplete() ) {
-			$return_url     = add_query_arg( 'page', $this->admin_page_slug, admin_url( 'admin.php' ) );
-			$customizer_url = add_query_arg( 'return', rawurlencode( $return_url ), admin_url( 'customize.php' ) );
-
 			return [
 				[
 					'id'      => 'fonts-colors-wizard',
@@ -66,7 +63,7 @@ class LookAndFeel extends Card {
 					'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
 					'title'   => __( 'Fonts & Colors', 'wme-sitebuilder' ),
 					'intro'   => __( 'Further customize the look of your site.', 'wme-sitebuilder' ),
-					'url'     => $customizer_url,
+					'url'     => $this->get_wp_customize_url(),
 				],
 			];
 		}
@@ -81,6 +78,21 @@ class LookAndFeel extends Card {
 				'wizardHash' => '/wizard/look-and-feel',
 			],
 		];
+	}
+
+	/**
+	 * Get the URL for the WP Customizer including the section to focus on.
+	 *
+	 * @return string
+	 */
+	protected function get_wp_customize_url() {
+		return add_query_arg(
+			[
+				'autofocus[panel]' => 'kadence_customizer_design',
+				'return'             => admin_url( 'admin.php?page='.$this->admin_page_slug )
+			],
+			admin_url( 'customize.php' )
+		);
 	}
 
 	/**
