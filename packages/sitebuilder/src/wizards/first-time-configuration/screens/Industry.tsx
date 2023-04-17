@@ -44,9 +44,9 @@ const Industry = () => {
 			! form.siteDescription.value ||
 				! form.sitePersonality.value ||
 				! form.siteKeywords.value,
-			3
+			1
 		);
-	}, [form.siteDescription, form.sitePersonality, form.siteKeywords]);
+	}, [form]);
 
 	const verticalChange = useCallback((vertical: string | null) => {
 		setFormValue('industry', vertical || '');

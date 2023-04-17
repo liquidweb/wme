@@ -15,7 +15,7 @@ export const Frame = ({ children }: ChildrenProps) => {
 		boxShadow: currentStep === 1 ? 'none' : '0px 0px 32px 0px #0000001a',
 		alignSelf: 'center',
 		margin: '0px auto',
-		width: activeDevice === 'desktop' ? '100%' : 'auto',
+		width: activeDevice.breakpoint === 'desktop' ? '100%' : 'auto',
 		height: '100%',
 	};
 

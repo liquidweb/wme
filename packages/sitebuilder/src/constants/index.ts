@@ -1,4 +1,4 @@
-import { cards } from "./cards.temp";
+import { cards } from './cards.temp';
 
 export const SITEBUILDER = window.sitebuilder;
 
