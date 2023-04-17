@@ -125,7 +125,7 @@ class Shipping extends Card {
 				'id'          => 'usps',
 				'type'        => 'task',
 				'taskCta'     => __( 'USPS Settings', 'wme-sitebuilder' ),
-				'title'       => __( 'USPS', 'wme-sitebuilder' ),
+				'title'       => ! $this->plugins->isUspsActive() ? __( 'Add USPS Shipping', 'wme-sitebuilder' ) : __( 'USPS Shipping', 'wme-sitebuilder' ),
 				'intro'       => __( 'Shipping rates based on address and cart content through USPS.', 'wme-sitebuilder' ),
 				'disabled'    => false,
 				'disableText' => '',
