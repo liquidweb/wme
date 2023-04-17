@@ -166,11 +166,6 @@ class Container extends BaseContainer {
 					$app->make( PluginInstaller::class )
 				);
 			},
-			Wizards\Shipping::class               => static function ( $app ) {
-				return new Wizards\Shipping(
-					$app->make( Plugins\Shipping::class )
-				);
-			},
 			Wizards\StoreSetup::class             => null,
 
 			// Implementations of external interfaces.
