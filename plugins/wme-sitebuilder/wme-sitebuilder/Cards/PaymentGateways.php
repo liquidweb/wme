@@ -40,7 +40,7 @@ class PaymentGateways extends Card {
 	public function props() {
 		return [
 			'id'        => 'payment-gateways',
-			'title'     => __( 'Configure payments', 'wme-sitebuilder' ),
+			'title'     => __( 'Configure payment', 'wme-sitebuilder' ),
 			'intro'     => __( 'Don\'t leave money on the table.', 'wme-sitebuilder' ),
 			'completed' => false,
 			'chipText'  => __( '5 minutes', 'wme-sitebuilder' ),
