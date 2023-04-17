@@ -1,5 +1,15 @@
 # @moderntribe/wme-ui
 
+## 3.1.0
+
+### Minor Changes
+
+- 81f8d17: The FTC Wizard now can be completed and will gather all required data from the user
+
+### Patch Changes
+
+- b01e5af: Storebuilder now uses the updated themeing and data model
+
 ## 3.0.0
 
 ### Major Changes

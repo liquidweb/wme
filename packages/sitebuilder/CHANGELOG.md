@@ -1,5 +1,17 @@
 # @moderntribe/sitebuilder
 
+## 3.0.0
+
+### Major Changes
+
+- 81f8d17: The FTC Wizard now can be completed and will gather all required data from the user
+
+### Patch Changes
+
+- Updated dependencies [b01e5af]
+- Updated dependencies [81f8d17]
+  - @moderntribe/wme-ui@3.1.0
+
 ## 2.0.1
 
 ### Patch Changes

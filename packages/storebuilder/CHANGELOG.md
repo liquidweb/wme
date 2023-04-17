@@ -1,5 +1,17 @@
 # @moderntribe/storebuilder
 
+## 2.1.0
+
+### Minor Changes
+
+- b01e5af: Storebuilder now uses the updated themeing and data model
+
+### Patch Changes
+
+- Updated dependencies [b01e5af]
+- Updated dependencies [81f8d17]
+  - @moderntribe/wme-ui@3.1.0
+
 ## 2.0.0
 
 ### Major Changes
