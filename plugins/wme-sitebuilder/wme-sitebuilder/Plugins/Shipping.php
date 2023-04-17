@@ -24,6 +24,7 @@ class Shipping {
 		 */
 		$this->plugins['elex-usps-shipping-method'] = [
 			'active' => (bool) $this->isPluginActive( 'elex-usps-shipping-method/usps-woocommerce-shipping.php' ),
+			'activation_redirect' => admin_url( 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' ),
 		];
 	}
 
