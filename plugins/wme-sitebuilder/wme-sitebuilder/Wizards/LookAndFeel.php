@@ -3,6 +3,7 @@
 namespace Tribe\WME\Sitebuilder\Wizards;
 
 use Tribe\WME\Sitebuilder\Concerns\StoresData;
+use WP_Error;
 
 /**
  * After Kadence template import, the site logo may be reset.
@@ -36,6 +37,11 @@ class LookAndFeel extends Wizard {
 	protected $ajax_action = 'sitebuilder-wizard-lookandfeel';
 
 	/**
+	 * @var string
+	 */
+	protected $kadence_cloud_data_url = 'https://patterns.startertemplatecloud.com/wp-json/kadence-cloud/v1/pages/?key=section';
+
+	/**
 	 * @var array
 	 */
 	protected $fields = [];
@@ -50,6 +56,7 @@ class LookAndFeel extends Wizard {
 	 */
 	public function register_hooks() {
 		$this->add_ajax_action( 'wizard_started', [ $this, 'telemetryWizardStarted' ] );
+		$this->add_ajax_action( 'kadence_cloud_section_data', [ $this, 'requestKadenceCloudSectionData' ] );
 
 		add_filter( 'kadence_starter_get_templates_args', [ $this, 'filterKadenceStarterTemplateArgs' ] );
 
@@ -72,6 +79,44 @@ class LookAndFeel extends Wizard {
 		}
 
 		return $request_args;
+	}
+
+	/**
+	 * Proxy the request to Kadence Cloud Data Section Data.
+	 *
+	 * @return void
+	 */
+	public function requestKadenceCloudSectionData() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( new WP_Error(
+				'mapps-capabilities-failure',
+				__( 'You do not have permission to perform this action. Please contact a site administrator.', 'wme-sitebuilder' )
+			), 403 );
+		}
+
+		$response = wp_remote_get( $this->kadence_cloud_data_url );
+		// Early exit if there was an error.
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-kadence-cloud-response-error',
+				__( 'Unable to retrieve data from the Kadence Cloud Server.', 'wme-sitebuilder' )
+			), 500 );
+		}
+
+		// Get the CSS from our response.
+		$body_contents = wp_remote_retrieve_body( $response );
+
+		// Early exit if there was an error.
+		if ( is_wp_error( $body_contents ) ) {
+			wp_send_json_error( new WP_Error(
+				'wme-sitebuilder-kadence-cloud-response-error',
+				__( 'Unable to retrieve data from the Kadence Cloud Server.', 'wme-sitebuilder' )
+			), 500 );
+		}
+
+		$data = (array) json_decode( $body_contents, true );
+
+		wp_send_json_success( $data );
 	}
 
 	/**
