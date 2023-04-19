@@ -316,7 +316,7 @@ class FirstTimeConfiguration extends Wizard {
 			],
 		];
 
-		return apply_filters( 'WME_SITEBUILDER_FTC_WIZARD_GOALS', $goals );
+		return apply_filters( 'wme_sitebuilder_ftc_wizard_goals', $goals );
 	}
 
 	/**
