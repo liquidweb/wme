@@ -3,21 +3,15 @@ import { Routes, Route, Navigate, useNavigate, useLocation, useSearchParams } fr
 import { Wizard } from '@moderntribe/wme-ui';
 
 // Wizard Components.
-import WizardHeader from './WizardHeader';
-import WizardContent from './WizardContent';
+// import WizardHeader from './WizardHeader';
 import Loadable from '@sb/components/Loadable';
-
 import LookAndFeelProvider from '@sb/contexts/LookAndFeelProvider';
-import DomainPurchaseProvider from '@sb/contexts/DomainPurchaseProvider';
-import DomainConnectProvider from '@sb/contexts/DomainConnectProvider';
 
 import { getWizardCloseArgs } from '@sb/utils';
 import { useWizard } from '@sb/hooks/useWizard';
 
 // Lazy Wizards.
 const FtcWizard = Loadable(lazy(() => import('@ftc/FirstTimeConfiguration')));
-const DomainPurchaseWizard = Loadable(lazy(() => import('@go-live/domain-purchase/DomainPurchaseWizard')));
-const DomainConnectWizard = Loadable(lazy(() => import('@go-live/domain-connect/DomainConnectWizard')));
 const LookAndFeelWizard = Loadable(lazy(() => import('@look-and-feel/LookAndFeelWizard')));
 
 const WizardWrapper = () => {
@@ -48,16 +42,11 @@ const WizardWrapper = () => {
 				},
 			} }
 		>
-			<WizardHeader />
-			<WizardContent>
-				<Routes>
-					<Route path="/ftc" element={ <FtcWizard /> } />
-					<Route path="/look-and-feel" element={ <LookAndFeelProvider><LookAndFeelWizard /></LookAndFeelProvider> } />
-					<Route path="/go-live-purchase" element={ <DomainPurchaseProvider><DomainPurchaseWizard /></DomainPurchaseProvider> } />
-					<Route path="/go-live-connect" element={ <DomainConnectProvider><DomainConnectWizard /></DomainConnectProvider> } />
-					<Route path="*" element={ <Navigate to="/" /> } />
-				</Routes>
-			</WizardContent>
+			<Routes>
+				<Route path="/ftc" element={ <FtcWizard /> } />
+				<Route path="/look-and-feel" element={ <LookAndFeelProvider><LookAndFeelWizard /></LookAndFeelProvider> } />
+				<Route path="*" element={ <Navigate to="/" /> } />
+			</Routes>
 		</Wizard>
 	);
 };

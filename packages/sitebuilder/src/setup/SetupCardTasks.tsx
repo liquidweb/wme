@@ -1,7 +1,7 @@
-import { SetupCardTask, GoLiveStatus, GoLiveStatusRowInterface } from '@sb/setup';
+import { SetupCardTask } from '@sb/setup';
 
 export interface SetupCardTasksInterface {
-	rows: Array<SetupCardRowInterface | GoLiveStatusRowInterface>;
+	rows: Array<SetupCardRowInterface>;
 }
 
 const SetupCardTasks: React.FC<SetupCardTasksInterface> = (props) => {
@@ -11,12 +11,7 @@ const SetupCardTasks: React.FC<SetupCardTasksInterface> = (props) => {
 		<>
 			{
 				rows?.map((row) => {
-					switch (row.type) {
-					case 'launch-domain-status':
-						return <GoLiveStatus key={ row.id } completed={ row.completed } />;
-					default:
-						return <SetupCardTask key={ row.id } { ...row } />;
-					}
+					return <SetupCardTask key={ row.id } { ...row } />;
 				})
 			}
 		</>

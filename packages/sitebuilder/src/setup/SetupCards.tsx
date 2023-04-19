@@ -12,7 +12,7 @@ export interface SetupCardAccordionInterface extends SetupCardInterface {
 
 const ACCORDION_TIMEOUT = 150;
 
-const SetupCards = ({ showJumpNav } : { showJumpNav: boolean }) => {
+const SetupCards = ({ showJumpNav }: { showJumpNav: boolean }) => {
 	const listRef = useRef<HTMLElement | null>(null);
 	const [cardList, setCardList] = useState<SetupCardAccordionInterface[]>([]);
 
@@ -32,20 +32,31 @@ const SetupCards = ({ showJumpNav } : { showJumpNav: boolean }) => {
 				cardList.map((card) => {
 					// If toggle is fired from JumpNav and the accordion is already expanded, do not close it
 					if (card.id === id) {
-						return { ...card, expanded: (! scrollTo || ! card.expanded) ? ! card.expanded : true };
+						return {
+							...card,
+							expanded:
+								! scrollTo || ! card.expanded
+									? ! card.expanded
+									: true
+						};
 					}
 					return card;
 				})
 			);
 		});
 		if (scrollTo) {
-			setTimeout(() => scrollTo.scrollIntoView({ behavior: 'smooth' }), ACCORDION_TIMEOUT);
+			setTimeout(
+				() => scrollTo.scrollIntoView({ behavior: 'smooth' }),
+				ACCORDION_TIMEOUT
+			);
 		}
 	};
 
 	return (
 		<Box sx={ { maxWidth: '800px', margin: 'auto' } }>
-			{ showJumpNav && <JumpNav cards={ cardList } onItemClick={ scrollToAndOpen } /> }
+			{ showJumpNav && (
+				<JumpNav cards={ cardList } onItemClick={ scrollToAndOpen } />
+			) }
 			<Box mt={ 4 } ref={ listRef }>
 				{ cardList.map((card) => (
 					<SetupCardAccordion
@@ -57,13 +68,13 @@ const SetupCards = ({ showJumpNav } : { showJumpNav: boolean }) => {
 						header={ card.title }
 						subHeader={ card.intro }
 						isComplete={ card.completed }
-						chipText={ `${ card.rows?.filter((row) => row.type === 'task' && ! row.completed)?.length }` }
-						chipBackground="primary"
 					>
 						<SetupCardContent>
 							<SetupCardTasks rows={ card.rows } />
 						</SetupCardContent>
-						{ card.footer && <SetupCardFooter footer={ card.footer } /> }
+						{ card.footer && (
+							<SetupCardFooter footer={ card.footer } />
+						) }
 					</SetupCardAccordion>
 				)) }
 			</Box>

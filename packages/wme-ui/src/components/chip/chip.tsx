@@ -7,7 +7,6 @@ export type { ChipProps } from '@mui/material';
 const StyledChip = styled(MuiChip)<ChipProps>(({
   size, theme,
 }) => ({
-  flexDirection: 'row-reverse',
   backgroundColor: theme.palette.info.light,
   color: theme.palette.info.dark,
 
@@ -23,8 +22,8 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
   },
 
   '&.MuiChip-colorSuccess': {
-    backgroundColor: theme.palette.success.light,
-    color: theme.palette.success.dark,
+    backgroundColor: theme.palette.success.main,
+    color: theme.palette.text.white,
   },
   '&.MuiChip-colorPrimary': {
     backgroundColor: theme.palette.primary.dark,
@@ -35,8 +34,8 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
     color: theme.palette.warning.dark,
   },
   '&.MuiChip-colorError': {
-    backgroundColor: `${theme.palette.error.light}7d`,
-    color: theme.palette.error.dark,
+    backgroundColor: theme.palette.error.main,
+    color: theme.palette.text.white,
   },
   '&.MuiChip-colorSecondary': {
     backgroundColor: theme.palette.secondary.light,

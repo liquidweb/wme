@@ -11,7 +11,6 @@ use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\PayPal;
 use Tribe\WME\Sitebuilder\Plugins\PaymentGateways\Stripe;
 use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayPayPal;
 use Tribe\WME\Sitebuilder\Wizards\PaymentGatewayStripe;
-use Tribe\WME\Sitebuilder\Wizards\Shipping as ShippingWizard;
 use Tribe\WME\Sitebuilder\Wizards\StoreSetup as StoreSetupWizard;
 
 class StoreDetails extends Module implements LoadsConditionally {
@@ -77,7 +76,6 @@ class StoreDetails extends Module implements LoadsConditionally {
 
 		$this->wizards = [
 			$this->factory->make( StoreSetupWizard::class ),
-			$this->factory->make( ShippingWizard::class ),
 		];
 
 		$this->addPaymentCardsWizards();

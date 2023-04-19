@@ -1,6 +1,6 @@
 {
 	"name": "@moderntribe/wme-sitebuilder",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"description": "Easily build and configure a site.",
 	"author": "Modern Tribe Incubator Team",
 	"license": "MIT",
@@ -45,6 +45,7 @@
 		"@emotion/styled": "^11.10.5",
 		"@moderntribe/sitebuilder": "workspace:*",
 		"@moderntribe/storebuilder": "workspace:*",
+		"@moderntribe/site-settings": "workspace:*",
 		"@mui/icons-material": "^5.11.0",
 		"@mui/lab": "5.0.0-alpha.112",
 		"@mui/material": "^5.11.3",

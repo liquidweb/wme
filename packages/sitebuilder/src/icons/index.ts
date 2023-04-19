@@ -1,2 +1,9 @@
 export { default as UserIcon } from './User';
 export { default as EditIcon } from './Edit';
+export { default as GoalIcon } from './Goals';
+export { default as MessageIcon } from './Message';
+export { default as StyleIcon } from './Style';
+export { default as NewspaperIcon } from './Newspaper';
+export { default as TicketIcon } from './Ticket';
+export { default as ShoppingBagIcon } from './ShoppingBag';
+export { default as GraduationIcon } from './Graduation';

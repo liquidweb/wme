@@ -1,0 +1,112 @@
+import { ArgsTable, Story, Canvas, Meta } from "@storybook/addon-docs";
+import { Placeholder } from "@storybook/components";
+import InputAdornment from "@mui/material/InputAdornment";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { ChipInput } from "..";
+
+<Meta
+	title="Forms/ChipInput"
+	component={ChipInput}
+	argTypes={{
+		tags: {
+			control: "object",
+			description: "An array of strings that show as the Chips",
+		},
+		selectedTags: {
+			control: "function",
+			description:
+				"The callback function called when a chip is added or removed.",
+		},
+		name: {
+			control: "string",
+			defaultValue: "field-name",
+			description: "Name attribute of the input element.",
+		},
+		placeholder: {
+			control: "string",
+			description:
+				"The short hint displayed in the input before the user enters a value.",
+		},
+		required: {
+			control: "boolean",
+			defaultValue: false,
+			description:
+				"If true, the input element is required. The prop defaults to the value (false) inherited from the parent FormControl component.",
+		},
+	}}
+/>
+
+export const Template = (args) => {
+	const [tags, setTags] = React.useState(args.tags);
+	const handleSelect = (listOfChips) => {
+    	setTags(listOfChips);
+    }
+	return (
+		<div style={{ width: 350 }}>
+			<ChipInput {...args} tags={tags} selectedTags={ handleSelect } />
+		</div>
+		);
+};
+
+# Text Input
+
+A styled version of <a href="https://mui.com/material-ui/api/input-base/" target="_blank">MUI's InputBase</a>, so you can use any prop provided there.
+
+## Usage
+
+-   Always use a placholder in the input
+
+## Props
+
+<ArgsTable story="." />
+
+## Example
+
+```
+import React from 'react';
+import { ChipInput } from '@moderntribe/wme';
+
+export const MyChipInput = (props) => {
+	const [tags, setTags] = useState([]);
+
+	const handleSelect = (listOfChips) => {
+		console.log(listOfChips);
+		setTags(listOfChips);
+	}
+
+	return (
+		<ChipInput
+			selectedTags={ handleSelect }
+			placeholder="Type tags here..."
+			tags={ tags }
+		/>
+	);
+
+}
+
+export default MyChipInput;
+```
+
+## Canvas
+
+<Canvas>
+	<Story
+		name="Base"
+		args={{
+			selectedTags: (arg) => console.log(arg),
+			placeholder: "Type words...",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+	<Story
+		name="Default values"
+		args={{
+			selectedTags: (arg) => console.log(arg),
+			tags: ["tag 1", "tag 2"],
+			defaultValue: "Type words...",
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>

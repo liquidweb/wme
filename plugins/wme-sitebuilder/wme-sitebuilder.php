@@ -54,7 +54,8 @@ try {
 	$wme_sitebuilder->registerModules( [
 		Modules\SiteBuilder::class,
 		Modules\StoreDetails::class,
-	] );
+		Modules\SiteSettings::class,
+	]);
 
 	$wme_sitebuilder->init();
 } catch ( \Exception $e ) {

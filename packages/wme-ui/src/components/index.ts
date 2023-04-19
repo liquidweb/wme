@@ -1,3 +1,6 @@
+export { default as AutoComplete } from './autocomplete';
+export * from './autocomplete';
+
 export { default as Button } from './button';
 export * from './button';
 
@@ -135,6 +138,9 @@ export * from './input-error';
 
 export { default as TextInput } from './text-input';
 export * from './text-input';
+
+export { default as ChipInput } from './chips-input';
+export * from './chips-input';
 
 export { default as PasswordInput } from './password-input';
 export * from './password-input';

@@ -1,5 +1,5 @@
 /**
- * Check if sting is a valud URL
+ * Check if sting is a valid URL
  *
  * @param {string} url - String to check
  * @return {boolean} - Is url valid

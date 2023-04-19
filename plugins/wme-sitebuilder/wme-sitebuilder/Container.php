@@ -43,18 +43,22 @@ class Container extends BaseContainer {
 					$app->make( Wizards\FirstTimeConfiguration::class )
 				);
 			},
-			Cards\GoLive::class                   => static function ( $app ) {
+			Cards\GoLive::class => static function ($app) {
 				return new Cards\GoLive(
-					$app->make( Wizards\GoLive::class )
+					$app->make(Wizards\GoLive::class)
 				);
 			},
-			Cards\LookAndFeel::class              => static function ( $app ) {
+			Cards\GoogleAnalytics::class => static function () {
+				return new Cards\GoogleAnalytics();
+			},
+			Cards\LookAndFeel::class => static function ($app) {
 				return new Cards\LookAndFeel(
-					$app->make( Wizards\LookAndFeel::class )
+					$app->make(Wizards\LookAndFeel::class)
 				);
 			},
 			Cards\ManageProducts::class           => null,
 			Cards\PaymentGateways::class          => null,
+			Cards\SiteVisibility::class           => null,
 			Cards\Shipping::class                 => static function ( $app ) {
 				return new Cards\Shipping(
 					$app->make( Plugins\Shipping::class )
@@ -86,12 +90,21 @@ class Container extends BaseContainer {
 				);
 			},
 
-			Modules\SiteBuilder::class            => static function ( $app ) {
+			Modules\SiteBuilder::class => static function ($app) {
 				return new Modules\SiteBuilder(
 					[
-						$app->make( Cards\FirstTimeConfiguration::class ),
-						$app->make( Cards\LookAndFeel::class ),
-						$app->make( Cards\GoLive::class ),
+						$app->make(Cards\FirstTimeConfiguration::class),
+						$app->make(Cards\LookAndFeel::class),
+					]
+				);
+			},
+
+			Modules\SiteSettings::class => static function ($app) {
+				return new Modules\SiteSettings(
+					[
+						$app->make(Cards\SiteVisibility::class),
+						$app->make(Cards\GoogleAnalytics::class),
+						$app->make(Cards\GoLive::class),
 					]
 				);
 			},
@@ -151,11 +164,6 @@ class Container extends BaseContainer {
 				return new PaymentGatewayStripe(
 					$app->make( Stripe::class ),
 					$app->make( PluginInstaller::class )
-				);
-			},
-			Wizards\Shipping::class               => static function ( $app ) {
-				return new Wizards\Shipping(
-					$app->make( Plugins\Shipping::class )
 				);
 			},
 			Wizards\StoreSetup::class             => null,

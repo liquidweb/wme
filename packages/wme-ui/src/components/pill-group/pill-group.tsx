@@ -33,6 +33,9 @@ const StyledPillWrapper = styled(Stack, {
 })<StackProps>(() => ({
   display: 'flex',
   flexWrap: 'wrap',
+  '& > .MuiChip-root:last-of-type': {
+    marginLeft: 0,
+  },
 }));
 
 export default function PillGroup(props: WmePillGroupProps) {

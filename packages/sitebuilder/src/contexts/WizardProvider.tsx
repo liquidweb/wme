@@ -3,13 +3,23 @@ import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 import { handleTelemetryRequest } from '@sb/utils/handleTelemetryRequest';
 import { WIZARDS } from '@sb/constants';
 
+export interface ActiveDevice {
+	breakpoint: string;
+	width: string;
+}
+
 export interface WizardProviderStateInterface {
 	lastStep: number | null;
 	isLastStep: boolean;
 	hideExit: boolean;
 	showCloseWarning: boolean | null;
-	activeDevice: string;
+	activeDevice: ActiveDevice;
 	hasStepped: boolean;
+	error?: {
+		showError: boolean;
+		title?: string;
+		message?: string;
+	};
 }
 
 export interface WizardProviderContextInterface {
@@ -21,7 +31,12 @@ export interface WizardProviderContextInterface {
 	closeAll: () => void;
 	setShowCloseWarning: (showCloseWarning: boolean) => void;
 	setHideExit: (hideExit: boolean) => void;
-	setActiveDevice: (device: string) => void;
+	setActiveDevice: (device: ActiveDevice) => void;
+	setError: (
+		showErrorScreen: boolean,
+		title?: string,
+		message?: string
+	) => void;
 }
 
 const initialState: WizardProviderStateInterface = {
@@ -29,8 +44,8 @@ const initialState: WizardProviderStateInterface = {
 	isLastStep: false,
 	hideExit: false,
 	showCloseWarning: null,
-	activeDevice: 'desktop',
-	hasStepped: false,
+	activeDevice: { breakpoint: 'desktop', width: '100%' },
+	hasStepped: false
 };
 
 export const WizardContext =
@@ -117,11 +132,33 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const setActiveDevice = (device: string) => {
+	const setActiveDevice = (device: ActiveDevice) => {
 		setWizardState({
 			...wizardState,
 			activeDevice: device
 		});
+	};
+
+	const setError = (
+		showErrorScreen: boolean,
+		title?: string,
+		message?: string
+	) => {
+		if (! showErrorScreen) {
+			setWizardState({
+				...wizardState,
+				error: undefined
+			});
+		} else {
+			setWizardState({
+				...wizardState,
+				error: {
+					showError: true,
+					title,
+					message
+				}
+			});
+		}
 	};
 
 	return (
@@ -135,7 +172,8 @@ const WizardProvider = ({ children }: { children: React.ReactNode }) => {
 				closeAll,
 				setShowCloseWarning,
 				setHideExit,
-				setActiveDevice
+				setActiveDevice,
+				setError
 			} }
 		>
 			{ children }

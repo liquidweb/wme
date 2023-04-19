@@ -1,17 +1,20 @@
-import { WizardSectionTitle, FormField, TextInput, Form } from '@moderntribe/wme-ui';
-import { Stack } from '@mui/material';
-import FileUpload from '@ftc/FileUpload';
-import ScreenWrapper from '@ftc/ScreenWrapper';
+import { FormField, Form, TextInput } from '@moderntribe/wme-ui';
+import { Box, Stack } from '@mui/material';
+import FileUpload from '@sb/wizards/first-time-configuration/components/FileUpload';
 import { useFirstTimeConfiguration } from '@sb/hooks';
-import { FtcFormItemsInterface } from '@ftc/data/first-time-configuration-screen-data';
 import { FtcStringData } from '@ftc/data/constants';
+import { useEffect } from 'react';
+import { FtcFormItemsInterface } from '../data/first-time-configuration-screen-data';
 
-const { siteDetails } = FtcStringData;
+const { siteDetails, usernamePassword } = FtcStringData;
 
 const SiteDetails = () => {
-	const { ftcState: { form }, setFormValue } = useFirstTimeConfiguration();
-	const siteName = form.siteName.value;
-	const tagline = form.tagline.value;
+	const { ftcState: { form, isLoading }, setFormValue, shouldBlockNextStep } = useFirstTimeConfiguration();
+	useEffect(() => {
+		if (form && ! isLoading) {
+			shouldBlockNextStep(! form.industry.value && ! form.subIndustry.value, 1);
+		}
+	}, [form, isLoading]);
 
 	const handleChange = (prop: keyof FtcFormItemsInterface) => (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
 		setFormValue(prop, event.target.value);
@@ -22,37 +25,32 @@ const SiteDetails = () => {
 	};
 
 	return (
-		<ScreenWrapper sx={ { maxWidth: 425 } }>
-			<WizardSectionTitle
-				heading={ siteDetails.title }
-				headingVariant="h2"
-			/>
+		<Box sx={ { maxWidth: 425 } }>
 			<Form>
 				<Stack spacing={ 2 }>
 					<FormField
 						field={
 							<TextInput
 								fullWidth
-								onChange={ handleChange('siteName') }
-								placeholder={ siteDetails.siteNameLabelText }
+								placeholder={ usernamePassword.siteNameLabelText }
 								required
-								value={ siteName }
+								value={ form.siteName.value }
+								disabled
 							/>
 						}
-						helperText={ siteDetails.siteNameHelperText }
-						label={ siteDetails.siteNameLabelText }
+						label={ usernamePassword.siteNameLabelText }
+						helperText={ usernamePassword.siteNameHelpText }
 					/>
 					<FormField
 						field={
 							<TextInput
-								fullWidth
 								onChange={ handleChange('tagline') }
+								fullWidth
 								placeholder={ siteDetails.siteTagnamePlaceholderText }
 								required
-								value={ tagline }
+								value={ form.tagline.value }
 							/>
 						}
-						helperText={ siteDetails.siteTaglineHelperText }
 						label={ siteDetails.siteTagnameLabelText }
 					/>
 					<FormField
@@ -69,7 +67,7 @@ const SiteDetails = () => {
 					/>
 				</Stack>
 			</Form>
-		</ScreenWrapper>
+		</Box>
 	);
 };
 

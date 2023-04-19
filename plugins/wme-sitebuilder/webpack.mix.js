@@ -48,6 +48,7 @@ mix.webpackConfig({
 // Bundle JavaScript.
 mix.js('assets/js/sitebuilder.js', '/')
 	.js('assets/js/store-details.js', '/')
+	.js('assets/js/site-settings.js', '/')
 	.sourceMaps(false)
 	.eslint()
 	.react();
@@ -73,3 +74,4 @@ const copyAssets = (source, target) => {
 // Copy assets from packages.
 copyAssets('sitebuilder', 'sitebuilder');
 copyAssets('storebuilder', 'store-details');
+copyAssets('site-settings', 'site-settings');

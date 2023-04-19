@@ -1,0 +1,89 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@wordpress/eslint-plugin/recommended-with-formatting"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "requireConfigFile": false,
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+		"plugins": [
+			"@typescript-eslint"
+		],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+            "alias": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+								"map": [
+									["@site", "./src"],
+									["@go-live", "./src/wizards/go-live"]
+								]
+            }
+        },
+		"react": {
+			"version": "17.0.2"
+		}
+    },
+    "rules": {
+        "no-unused-vars": "off",
+				"@typescript-eslint/no-unused-vars": "error",
+				"@wordpress/i18n-text-domain": [ "warn", {
+					"allowedTextDomain": [ "moderntribe-sitebuilder" ]
+				} ],
+        "array-bracket-spacing": ["warn", "never"],
+        "block-spacing": ["warn", "always"],
+        "comma-dangle": ["warn", {
+            "arrays": "only-multiline",
+            "objects": "only-multiline",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }],
+        "comma-spacing": [ "warn",{
+            "before": false,
+            "after": true
+        }],
+        "eol-last": ["warn", "always"],
+        "indent": ["warn", "tab"],
+        "jsdoc/tag-lines": ["warn", "always", {
+            "count": 0
+        }],
+        "jsx-quotes": ["warn", "prefer-double"],
+        "linebreak-style": ["warn", "unix"],
+        "no-alert": "warn",
+        "no-console": "warn",
+        "no-eval": "warn",
+        "no-implied-eval":"warn",
+        "no-template-curly-in-string": "warn",
+        "no-useless-concat":"warn",
+        "object-curly-spacing": ["warn", "always"],
+        "quotes": ["warn", "single"],
+        "semi": ["warn", "always"],
+        "space-before-function-paren": ["warn", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "space-in-parens": ["warn", "never"],
+        "spaced-comment": ["warn", "always"],
+        "no-undef": "off"
+    },
+    "overrides": [
+        {
+            "files": ["webpack.mix.js"],
+            "env": {
+                "amd": true
+            }
+        }
+    ]
+}

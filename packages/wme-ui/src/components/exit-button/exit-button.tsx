@@ -3,6 +3,7 @@ import type { ReactElement } from 'react';
 import { Box, BoxProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Logout from '@mui/icons-material/Logout';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import { Button } from '..';
 
 interface ExitButtonProps extends BoxProps {
@@ -28,7 +29,7 @@ const ExitButton: React.FC<ExitButtonProps> = (props) => {
     <ExitButtonContainer className="WmeExitButton-root" {...rest}>
       <Button onClick={onClick}>
         {children}
-        <Logout sx={{ ml: 1 }} />
+        <ChevronRight sx={{ ml: 1 }} />
       </Button>
     </ExitButtonContainer>
   );
