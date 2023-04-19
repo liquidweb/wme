@@ -18,7 +18,7 @@ const Goals = () => {
 	};
 
 	return (
-		<Box sx={ { maxWidth: 560 } }>
+		<Box sx={ { maxWidth: 560, width: 560 } }>
 			<Stack spacing={ 2 }>
 				<Typography component="h3" sx={ { fontWeight: 500 } }>
 					{ siteDetails.goalsSelectText }

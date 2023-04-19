@@ -1,13 +1,13 @@
 import { ProgressBar } from '@moderntribe/wme-ui';
 import { Box, Stack, Typography } from '@mui/material';
-import { useFirstTimeConfiguration } from '@sb/hooks';
+import { useWizard } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { IMAGE_DIR } from '@sb/constants';
 import { useEffect, useState } from 'react';
 const { processing: processingStep } = FtcStringData;
 
 const Processing = () => {
-	const { submitForm } = useFirstTimeConfiguration();
+	const { goToNextStep } = useWizard();
 
 	const [percentDone, setPercentDone] = useState(0);
 
@@ -15,9 +15,9 @@ const Processing = () => {
 		if (percentDone < 100) {
 			setTimeout(() => {
 				setPercentDone(percentDone + 10);
-			}, 400);
+			}, 500);
 		} else {
-			submitForm();
+			goToNextStep();
 		}
 	};
 

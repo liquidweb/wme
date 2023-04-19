@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 const templateData = [
 	{
-		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview.png',
+		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview-2.png',
 		id: '1'
 	},
 	{
@@ -12,7 +12,7 @@ const templateData = [
 		id: '2'
 	},
 	{
-		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview.png',
+		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview-2.png',
 		id: '3'
 	},
 	{
@@ -20,7 +20,7 @@ const templateData = [
 		id: '4'
 	},
 	{
-		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview.png',
+		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview-2.png',
 		id: '5'
 	},
 	{
@@ -43,7 +43,7 @@ const StyleSelection = () => {
 
 	return (
 		// Padding/margin doesn't take effect here - using a percent width instead
-		<Box sx={ { width: '95%' } }>
+		<Box sx={ { width: '95%', height: '100%' } }>
 			<TemplateSelectGroup>
 				{ templateData.map((template) => (
 					<TemplateSelectItem

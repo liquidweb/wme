@@ -1,5 +1,19 @@
 # @moderntribe/wme-sitebuilder
 
+## 2.1.0
+
+### Minor Changes
+
+- f2aab5a: Refactor how we call wp-cli via the included composer package. Fixes Payment Gateway plugin versions/installation. Fix GitHub actions playwright installation.
+
+### Patch Changes
+
+- Updated dependencies [b01e5af]
+- Updated dependencies [81f8d17]
+  - @moderntribe/storebuilder@2.1.0
+  - @moderntribe/sitebuilder@3.0.0
+  - @moderntribe/site-settings@1.0.1
+
 ## 2.0.1
 
 ### Patch Changes

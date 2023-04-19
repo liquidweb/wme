@@ -71,5 +71,10 @@ export const FtcStringData = {
 	},
 	submitForm: {
 		errorMessage: __('There was an error saving the data.', 'moderntribe-sitebuilder'),
+	},
+	errorScreen: {
+		title: __('We\'ve ran into an error while doing the thing we were doing.', 'moderntribe-sitebuilder'),
+		message: __('To fix this issue you\'ll need to sound the horn of Gondor.', 'moderntribe-sitebuilder'),
+		subText: __('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'moderntribe-sitebuilder'),
 	}
 };
