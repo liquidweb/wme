@@ -159,7 +159,7 @@ class SiteVisibility extends Card {
 
 		$this->getData()->set( 'restrictAccess', $value );
 
-		do_action( 'wme_sitebuilder_site_visibility_set_restrict_access', $value, $this );
+		do_action( 'wme_sitebuilder_site_visibility_set_restrict_access', $value );
 	}
 
 	/**
