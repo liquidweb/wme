@@ -2,8 +2,11 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
+use Exception;
 use Tribe\WME\Sitebuilder\Concerns\InvokesCli;
 use Tribe\WME\Sitebuilder\Plugins\Shipping as ShippingPlugins;
+use Tribe\WME\Sitebuilder\Support\Downloader\PluginInstaller;
+use WP_Error;
 
 class Shipping extends Card {
 
@@ -25,12 +28,18 @@ class Shipping extends Card {
 	protected $plugins;
 
 	/**
+	 * @var PluginInstaller
+	 */
+	protected $pluginInstaller;
+
+	/**
 	 * Construct.
 	 *
 	 * @param ShippingPlugins $shipping_plugins
 	 */
-	public function __construct( ShippingPlugins $shipping_plugins ) {
+	public function __construct( ShippingPlugins $shipping_plugins, PluginInstaller $pluginInstaller ) {
 		$this->plugins = $shipping_plugins;
+		$this->pluginInstaller = $pluginInstaller;
 
 		parent::__construct();
 
@@ -76,20 +85,17 @@ class Shipping extends Card {
 			wp_die( __( 'The requested plugin is already installed and active.', 'wme-sitebuilder' ) );
 		}
 
-		$response = $this->makeCommand('wp plugin install', [
-			$requested_plugin,
-			'--activate',
-		])->execute();
-
-		if ( ! $response->wasSuccessful() ) {
-			wp_die(
+		try {
+			$this->pluginInstaller->install( $requested_plugin, $supported_plugins[ $requested_plugin ]['version'] );
+		} catch ( Exception $e ) {
+			wp_die( new WP_Error(
+				'mapps-wpcli-error',
 				sprintf(
-				/* Translators: %1$s is the exit code from WP CLI; %2$s is output from WP CLI. */
-					__( 'Encountered WP CLI exit code "%1$s" with output "%2$s".', 'wme-sitebuilder' ),
-					sanitize_text_field( $response->getExitCode() ),
-					sanitize_text_field( $response->getOutput() )
+				/* Translators: %1$s is the error message */
+					__( 'Encountered error installing plugin with output "%1$s".', 'wme-sitebuilder' ),
+					sanitize_text_field( $e->getMessage() )
 				)
-			);
+			) );
 		}
 
 		// Redirect user back to the shipping card.
