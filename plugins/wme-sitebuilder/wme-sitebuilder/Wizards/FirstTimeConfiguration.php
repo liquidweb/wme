@@ -15,7 +15,7 @@ class FirstTimeConfiguration extends Wizard {
 	const GOALS_BLOG          = 'blog';
 	const GOALS_CAREERS       = 'careers';
 	const GOALS_SERVICES      = 'services';
-	const GOALS_PRICING_PLANS = 'pricing_plans';
+	const GOALS_PRICING_PLANS = 'pricingPlans';
 
 	const FIELD_LOGO             = 'logo';
 	const FIELD_PASSWORD         = 'password';
