@@ -11,10 +11,13 @@ import {
 import { Box, styled } from '@mui/material';
 import { getPasswordStrength } from '@site/utils';
 
-const PasswordWrapper = styled(Box)(() => ({
+const PasswordWrapper = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'flex-start',
+	gap: theme.spacing(1),
 	'& .MuiInputBase-root': {
 		minWidth: '415px',
-	}
+	},
 }));
 
 const SiteVisibility = () => {
@@ -88,13 +91,13 @@ const SiteVisibility = () => {
 							label={ __('Password', 'moderntribe-sitebuilder') }
 							helperText={ __('Users will be asked for this password when accessing your site.', 'moderntribe-sitebuilder') }
 						/>
+						<Button
+							variant="contained"
+							sx={ { marginTop: '26px' } }
+						>
+							{ __('Save', 'moderntribe-sitebuilder') }
+						</Button>
 					</PasswordWrapper>
-
-					<Button
-						variant="contained"
-						color="secondary">
-						{ __('Save', 'moderntribe-sitebuilder') }
-					</Button>
 				</>
 			) }
 		</Form>
