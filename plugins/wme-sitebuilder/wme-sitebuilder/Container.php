@@ -62,7 +62,8 @@ class Container extends BaseContainer {
 			Cards\SiteVisibility::class               => null,
 			Cards\Shipping::class                     => static function ( $app ) {
 				return new Cards\Shipping(
-					$app->make( Plugins\Shipping::class )
+					$app->make( Plugins\Shipping::class ),
+					$app->make( PluginInstaller::class )
 				);
 			},
 			Cards\StoreSetup::class                   => static function ( $app ) {
