@@ -37,6 +37,11 @@
 			"targets": [
 				"v2"
 			]
+		},
+		"feature/SITE-279/ftc-wizard": {
+			"targets": [
+				"main"
+			]
 		}
 	}
 }
