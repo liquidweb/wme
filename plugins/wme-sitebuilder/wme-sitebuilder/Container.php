@@ -40,18 +40,19 @@ class Container extends BaseContainer {
 			// Cards.
 			Cards\FirstTimeConfiguration::class   => static function ( $app ) {
 				return new Cards\FirstTimeConfiguration(
-					$app->make( Wizards\FirstTimeConfiguration::class )
+					$app->make(Wizards\FirstTimeConfiguration::class)
 				);
 			},
-			Cards\GoLive::class => static function ($app) {
+			Cards\GoLive::class                   => static function ($app) {
 				return new Cards\GoLive(
 					$app->make(Wizards\GoLive::class)
 				);
 			},
-			Cards\GoogleAnalytics::class => static function () {
+			Cards\GoogleAnalytics::class          => static function () {
 				return new Cards\GoogleAnalytics();
 			},
-			Cards\LookAndFeel::class => static function ($app) {
+			Cards\Goals::class                    => null,
+			Cards\LookAndFeel::class              => static function ($app) {
 				return new Cards\LookAndFeel(
 					$app->make(Wizards\LookAndFeel::class)
 				);
@@ -95,6 +96,7 @@ class Container extends BaseContainer {
 					[
 						$app->make(Cards\FirstTimeConfiguration::class),
 						$app->make(Cards\LookAndFeel::class),
+						$app->make(Cards\Goals::class),
 					]
 				);
 			},
