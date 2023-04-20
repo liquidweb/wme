@@ -9,12 +9,6 @@ const IframeDisplay = () => {
 	const starterTemplateTitle = 'kadence-template-preview';
 	const refIframe = useRef<HTMLIFrameElement>(null);
 
-	const deviceWidths: { [key: string]: string } = {
-		desktop: '100%',
-		tablet: '768px',
-		mobile: '480px',
-	};
-
 	useEffect(() => {
 		if (refIframe) {
 			refIframe.current?.contentWindow?.postMessage({ font }, '*');
@@ -39,7 +33,7 @@ const IframeDisplay = () => {
 			src={ url }
 			style={ {
 				display: 'block',
-				width: deviceWidths[ activeDevice ],
+				width: activeDevice.width,
 				height: '100%',
 				margin: '0 auto',
 				borderRadius: '4px',

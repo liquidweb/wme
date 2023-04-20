@@ -20,6 +20,8 @@ const SetupCards = () => {
 							id={ card.id }
 							header={ card.title }
 							subHeader={ card.intro }
+							chipText={ card.chipText }
+							chipBackground={ card.chipBackground }
 						>
 							{
 								<SetupCardContent>

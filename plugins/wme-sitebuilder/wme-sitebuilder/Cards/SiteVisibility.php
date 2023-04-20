@@ -58,6 +58,8 @@ class SiteVisibility extends Card {
 			'hideFromSearch' => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ),
 			'restrictAccess' => $this->getData()->get( self::FIELD_RESTRICT_ACCESS, false ),
 			'password'       => $this->getData()->get( self::FIELD_PASSWORD, '' ),
+			'chipText'       => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ) == 1 ? __( 'Hidden', 'wme-sitebuilder' ) : __( 'Visible', 'wme-sitebuilder' ),
+			'chipBackground' => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ) == 1 ? 'danger' : 'success',
 		];
 
 		return $details;
@@ -176,4 +178,5 @@ class SiteVisibility extends Card {
 
 		$this->getData()->set( 'password', $value );
 	}
+
 }
