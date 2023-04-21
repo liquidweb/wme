@@ -59,6 +59,7 @@ class Container extends BaseContainer {
 			},
 			Cards\ManageProducts::class               => null,
 			Cards\PaymentGateways::class              => null,
+			Cards\SiteContent::class                  => null,
 			Cards\SiteVisibility::class               => null,
 			Cards\Shipping::class                     => static function ( $app ) {
 				return new Cards\Shipping(
@@ -98,8 +99,9 @@ class Container extends BaseContainer {
 					[
 						$app->make(Cards\FirstTimeConfiguration::class),
 						$app->make(Cards\LookAndFeel::class),
-						$app->make(Cards\ShareYourSite::class),
+						$app->make(Cards\SiteContent::class),
 						$app->make(Cards\Goals::class),
+						$app->make(Cards\ShareYourSite::class),
 					]
 				);
 			},

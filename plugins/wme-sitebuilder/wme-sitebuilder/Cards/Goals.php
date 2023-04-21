@@ -35,9 +35,9 @@ class Goals extends Card {
 	public function props() {
 		return [
 			'id'        => 'goals',
-			'navTitle'  => __( 'Your Goals', 'wme-sitebuilder' ),
-			'title'     => __( 'Your Goals', 'wme-sitebuilder' ),
-			'intro'     => __( 'Get started on your goals by completing a few tasks.', 'wme-sitebuilder' ),
+			'navTitle'  => __( 'Take It Further', 'wme-sitebuilder' ),
+			'title'     => __( 'Take It Further', 'wme-sitebuilder' ),
+			'intro'     => __( 'Explore advanced features and customization options curated just for your goals.', 'wme-sitebuilder' ),
 			'completed' => false,
 			'rows'      => apply_filters( 'wme_sitebuilder_goals_rows', [] )
 		];
@@ -59,9 +59,9 @@ class Goals extends Card {
 		$rows[] = [
 			'id'      => 'goals-woocommerce',
 			'type'    => 'task',
-			'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
-			'title'   => __( 'Set up your store', 'wme-sitebuilder' ),
-			'intro'   => __( 'Set up your store.', 'wme-sitebuilder' ),
+//			'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
+			'title'   => __( 'Configure Your Store', 'wme-sitebuilder' ),
+			'intro'   => __( 'We\'ll walk you through setting up your store,', 'wme-sitebuilder' ),
 			'url'     => admin_url( 'admin.php?page=sitebuilder-store-details' ),
 		];
 

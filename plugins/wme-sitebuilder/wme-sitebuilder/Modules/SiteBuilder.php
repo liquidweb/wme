@@ -11,12 +11,12 @@ class SiteBuilder extends Module {
 	/**
 	 * @var string
 	 */
-	protected $page_title = 'Site Details';
+	protected $page_title = 'Site Setup';
 
 	/**
 	 * @var string
 	 */
-	protected $menu_title = 'Set up';
+	protected $menu_title = 'Site Setup';
 
 	/**
 	 * @var string
@@ -42,7 +42,7 @@ class SiteBuilder extends Module {
 	 * Setup the Module.
 	 */
 	public function setup() {
-		$this->menu_title = __( 'Set up', 'wme-sitebuilder' );
+		$this->menu_title = __( 'Site Setup', 'wme-sitebuilder' );
 
 		parent::setup();
 	}
@@ -64,15 +64,10 @@ class SiteBuilder extends Module {
 	 */
 	public function actionPrintScripts() {
 		$props = [
-			'app_name'    => __( 'Site Details', 'wme-sitebuilder' ),
-			'logo'        => 'sitebuilder-logo.svg',
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
-			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
-			'logout_url'  => wp_logout_url(),
 			'assets_url'  => $this->getAssetSource( 'sitebuilder/' ),
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
-			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],
 			'wizards'     => (object) [],
 		];
