@@ -27,6 +27,13 @@
 			"user": "ae81723f_1",
 			"path": "~/jon.sitebuilder.crows.dev/html/wp-content/plugins",
 			"url": "https://jon.sitebuilder.crows.dev"
+		},
+		"brian": {
+			"type": "nexcess",
+			"host": "6ae1293117.nxcli.io",
+			"user": "ae81723f_1",
+			"path": "~/0020f93ddd.nxcli.io/html/wp-content/plugins",
+			"url": "https://0020f93ddd.nxcli.io"
 		}
 	},
 	"branches": {
@@ -48,6 +55,11 @@
 		"feature/SITE-279/ftc-wizard": {
 			"targets": [
 				"jon"
+			]
+		},
+		"feature/site-303/site-details": {
+			"targets": [
+				"brian"
 			]
 		}
 	}
