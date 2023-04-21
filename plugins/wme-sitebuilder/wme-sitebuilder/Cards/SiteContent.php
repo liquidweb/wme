@@ -28,7 +28,7 @@ class SiteContent extends Card {
 			'id'        => 'site-content',
 			'navTitle'  => __( 'Build Your Site', 'wme-sitebuilder' ),
 			'title'     => __( 'Build Your Site', 'wme-sitebuilder' ),
-			'intro'     => __( 'KadenceAI has made the pages, you just need to tweak the content.', 'wme-sitebuilder' ),
+			'intro'     => __( 'Get ready to launch with this content checklist.', 'wme-sitebuilder' ),
 			'rows'      => [
 				[
 					'id'      => 'about',
