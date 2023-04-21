@@ -20,6 +20,13 @@
 			"user": "ab47a470_2",
 			"path": "~/0d62e6603d.nxcli.io/html/wp-content/plugins",
 			"url": "https://v2.sitebuilder.crows.dev"
+		},
+		"jon": {
+			"type": "nexcess",
+			"host": "6ae1293117.nxcli.io",
+			"user": "ae81723f_1",
+			"path": "~/jon.sitebuilder.crows.dev/html/wp-content/plugins",
+			"url": "https://jon.sitebuilder.crows.dev"
 		}
 	},
 	"branches": {
@@ -40,7 +47,7 @@
 		},
 		"feature/SITE-279/ftc-wizard": {
 			"targets": [
-				"main"
+				"jon"
 			]
 		}
 	}
