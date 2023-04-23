@@ -21,12 +21,12 @@ class StoreDetails extends Module implements LoadsConditionally {
 	/**
 	 * @var string
 	 */
-	protected $page_title = 'Store Details';
+	protected $page_title = 'Store Setup';
 
 	/**
 	 * @var string
 	 */
-	protected $menu_title = 'Store Details';
+	protected $menu_title = 'Store Setup';
 
 	/**
 	 * @var string
@@ -72,13 +72,13 @@ class StoreDetails extends Module implements LoadsConditionally {
 	 * Set up the Module.
 	 */
 	public function setup() {
-		$this->menu_title = __( 'Store Details', 'wme-sitebuilder' );
+		$this->menu_title = __( 'Store Setup', 'wme-sitebuilder' );
 
 		$this->wizards = [
 			$this->factory->make( StoreSetupWizard::class ),
+			$this->factory->make( PaymentGatewayStripe::class ),
+			$this->factory->make( PaymentGatewayPayPal::class )
 		];
-
-		$this->addPaymentCardsWizards();
 
 		parent::setup();
 	}
@@ -91,32 +91,6 @@ class StoreDetails extends Module implements LoadsConditionally {
 
 		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts' ], 5 );
 		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts_15' ], 15 );
-	}
-
-	/**
-	 * Add payment cards and wizards.
-	 */
-	protected function addPaymentCardsWizards() {
-		$plugins = [];
-
-		$stripe = new Stripe();
-		$paypal = new PayPal();
-
-		if ( ! $stripe->isInstalled() || $stripe->isVersionSupported() ) {
-			$plugins['stripe'] = $stripe;
-			$this->wizards[]   = $this->factory->make( PaymentGatewayStripe::class );
-		}
-
-		if ( ! $paypal->isInstalled() || $paypal->isVersionSupported() ) {
-			$plugins['paypal'] = $paypal;
-			$this->wizards[]   = $this->factory->make( PaymentGatewayPayPal::class );
-		}
-
-		if ( empty( $plugins ) ) {
-			return;
-		}
-
-		$this->cards[] = new PaymentGatewaysCard( $plugins );
 	}
 
 	/**

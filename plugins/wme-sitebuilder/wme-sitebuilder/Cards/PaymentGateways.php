@@ -41,7 +41,7 @@ class PaymentGateways extends Card {
 		return [
 			'id'        => 'payment-gateways',
 			'title'     => __( 'Configure payment', 'wme-sitebuilder' ),
-			'intro'     => __( 'Don\'t leave money on the table.', 'wme-sitebuilder' ),
+			'intro'     => __( 'Set up a payment gateway so you can get paid! One is required, setting up both gives your customers more options.', 'wme-sitebuilder' ),
 			'completed' => false,
 			'chipText'  => __( '5 minutes', 'wme-sitebuilder' ),
 			'rows'      => $this->rows(),
