@@ -9,7 +9,7 @@ class Shipping {
 	use HasWordPressDependencies;
 
 	/**
-	 * @var array
+	 * @var array Supported shipping plugins.
 	 */
 	protected $plugins = [];
 
@@ -23,7 +23,9 @@ class Shipping {
 		 * @link https://wordpress.org/plugins/elex-usps-shipping-method/
 		 */
 		$this->plugins['elex-usps-shipping-method'] = [
-			'active' => (bool) $this->isPluginActive( 'elex-usps-shipping-method/usps-woocommerce-shipping.php' ),
+			'active'              => (bool) $this->isPluginActive( 'elex-usps-shipping-method/usps-woocommerce-shipping.php' ),
+			'activation_redirect' => admin_url( 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' ),
+			'version'             => 'latest'
 		];
 	}
 

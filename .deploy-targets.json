@@ -20,6 +20,20 @@
 			"user": "ab47a470_2",
 			"path": "~/0d62e6603d.nxcli.io/html/wp-content/plugins",
 			"url": "https://v2.sitebuilder.crows.dev"
+		},
+		"jon": {
+			"type": "nexcess",
+			"host": "6ae1293117.nxcli.io",
+			"user": "ae81723f_1",
+			"path": "~/jon.sitebuilder.crows.dev/html/wp-content/plugins",
+			"url": "https://jon.sitebuilder.crows.dev"
+		},
+		"brian": {
+			"type": "nexcess",
+			"host": "6ae1293117.nxcli.io",
+			"user": "ae81723f_1",
+			"path": "~/0020f93ddd.nxcli.io/html/wp-content/plugins",
+			"url": "https://0020f93ddd.nxcli.io"
 		}
 	},
 	"branches": {
@@ -36,6 +50,16 @@
 		"2.0-branch": {
 			"targets": [
 				"v2"
+			]
+		},
+		"feature/SITE-279/ftc-wizard": {
+			"targets": [
+				"jon"
+			]
+		},
+		"feature/site-303/site-details": {
+			"targets": [
+				"brian"
 			]
 		}
 	}

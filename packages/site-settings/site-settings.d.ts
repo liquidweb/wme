@@ -50,10 +50,14 @@ declare global {
 		wpApiSettings: any;
 	}
 
+	type BackgroundColorTypes = 'info' | 'primary' | 'secondary' | 'success' | 'warning' | 'error';
+
 	interface SetupCardAccordionInterface {
 		id: string;
 		title: string;
 		intro?: string;
+		chipText?: string;
+		chipBackground?: BackgroundColorTypes;
 		completed: boolean;
 		navTitle: string;
 		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
@@ -158,20 +162,6 @@ declare global {
 
 	interface DomainOrderableTerms {
 		[key: string]: string
-	}
-
-	interface DomainVerificationSuccessInterface {
-		domain: string;
-		is_registered: boolean;
-		is_pointed: boolean;
-		uses_local_nameservers: boolean;
-		can_setup: boolean;
-		nameservers: string[];
-	}
-
-	interface DomainVerificationErrorInterface {
-		code: string;
-		message: string;
 	}
 
 	interface StepInterface {
