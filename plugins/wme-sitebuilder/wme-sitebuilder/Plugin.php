@@ -3,9 +3,9 @@
 namespace Tribe\WME\Sitebuilder;
 
 use Psr\Log\LoggerInterface;
+use Tribe\WME\Sitebuilder\Admin\ColorScheme\ColorSchemeManager;
 use Tribe\WME\Sitebuilder\Contracts\LoadsConditionally;
 use Tribe\WME\Sitebuilder\Modules\Module;
-use Tribe\WME\Sitebuilder\Admin\AdminColorScheme;
 
 /**
  * The base plugin class.
@@ -67,10 +67,13 @@ class Plugin {
 		// Load all registered modules.
 		$this->loadModules();
 
+		// Get current user id
+		$user_id = get_current_user_id();
+
 		// Add admin color scheme.
-		$admin = new AdminColorScheme();
-		$admin->add_admin_color_scheme();
-		$admin->set_admin_color_scheme();
+		$color_scheme_manager = $this->container->get( ColorSchemeManager::class );
+		$color_scheme_manager->register_admin_color_scheme();
+		$color_scheme_manager->set_color_scheme($user_id);
 
 		return $this;
 	}
