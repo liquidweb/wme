@@ -111,30 +111,23 @@ class Shipping extends Card {
 		$usps_props = [
 			'id'          => 'usps',
 			'type'        => 'task',
+			'title'       => __('Manage USPS Shipping', 'wme-sitebuilder'),
+			'intro' => __('Get custom shipping rates based on package size and distance.', 'wme-sitebuilder'),
 			'disabled'    => false,
 			'disableText' => '',
 			'button'      => [
 				'backgroundColor' => '#004B87',
+				'label' => __('Manage USPS', 'wme-sitebuilder'),
+				'href' => admin_url('admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps')
 			],
 		];
 
-		if ( $this->plugins->isUspsActive() ) {
-			$usps_props = array_merge_recursive($usps_props, [
-				'title' => __('Manage USPS Shipping', 'wme-sitebuilder'),
-				'intro' => __('Get custom shipping rates based on package size and distance.', 'wme-sitebuilder'),
-				'button' => [
-					'label' => __('Manage USPS', 'wme-sitebuilder'),
-					'href' => admin_url('admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps')
-				]
-			]);
-		} else {
-			$usps_props = array_merge_recursive($usps_props, [
-				'title' => __('Add USPS Shipping', 'wme-sitebuilder'),
-				'intro' => __('Get custom shipping rates based on package size and distance.', 'wme-sitebuilder'),
-				'button' => [
-					'label' => __('Add USPS', 'wme-sitebuilder'),
-					'href' => admin_url('admin.php?page=sitebuilder-store-details&action=install-plugin&plugin=elex-usps-shipping-method')
-				]
+		if ( ! $this->plugins->isUspsActive() ) {
+			// Overwrite the title and button label / target if the plugin is not active.
+			$usps_props['title'] = __('Add USPS Shipping', 'wme-sitebuilder');
+			$usps_props['button'] = array_merge($usps_props['button'], [
+				'label' => __('Add USPS', 'wme-sitebuilder'),
+				'href' => admin_url('admin.php?page=sitebuilder-store-details&action=install-plugin&plugin=elex-usps-shipping-method')
 			]);
 		}
 
