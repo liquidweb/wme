@@ -6,9 +6,9 @@ import { useSearchParams } from 'react-router-dom';
 import { WizardExitButton, WizardSidebar } from '@sb/components';
 import { useWizard, useFirstTimeConfiguration } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
-import PlaceholderLogo from '@sb/logos/PlaceholderLogo';
+import { LOGO } from '@sb/constants';
 import ScreenWrapper from './ScreenWrapper';
 import { ErrorScreen } from '../screens';
 
@@ -81,10 +81,18 @@ const FirstTimeConfigurationWizard = () => {
 		return <div />;
 	}
 
+	const logo = <Box sx={ {
+		width: '52px',
+		height: '22px',
+		backgroundImage: `url(${ LOGO })`,
+		backgroundRepeat: 'no-repeat',
+		backgroundSize: 'contain',
+	} } />;
+
 	return (
 		<Grid container sx={ { position: 'absolute', inset: 0 } }>
 			<WizardSidebar
-				logo={ <PlaceholderLogo /> }
+				logo={ logo }
 				show={ ! currentScreen.hideSidebar }
 				label={ currentScreen.title }
 				description={ currentScreen.description }
@@ -98,7 +106,7 @@ const FirstTimeConfigurationWizard = () => {
 						text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
 					/>
 				) }
-				{ error && error.showError && <ErrorScreen logo={ <PlaceholderLogo /> } /> }
+				{ error && error.showError && <ErrorScreen logo={ logo } /> }
 				<ScreenWrapper>{ currentScreen.screen }</ScreenWrapper>
 			</Grid>
 			<WizardFooter

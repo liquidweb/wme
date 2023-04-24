@@ -18,7 +18,7 @@ class ColorSchemeServiceProvider extends ServiceProvider {
 			ColorSchemeManager::class => function ( $app ) {
 				return new ColorSchemeManager(
 					self::COLOR_SCHEME_KEY,
-					__( 'WME Sitebuilder', 'wme-sitebuilder' ),
+					__( 'WME Platform', 'wme-sitebuilder' ),
 					$app->make( LoginManager::class )
 				);
 			}

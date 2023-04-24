@@ -1,7 +1,7 @@
 import { WizardHeader as WmeWizardHeader, Logo, ExitButton } from '@moderntribe/wme-ui';
 import { __ } from '@wordpress/i18n';
 import { useWizard } from '@store/hooks';
-import { NexcessLogo } from '@store/logos';
+import { LOGO } from '@store/constants';
 import { Box } from '@mui/material';
 
 const EXIT_TEXT = __('Exit to Setup', 'moderntribe-storebuilder');
@@ -30,8 +30,8 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 				px: 3
 			} }>
 				<Logo
-					width="100"
-					logoSrc={ <NexcessLogo /> }
+					width="70px"
+					logoSrc={ LOGO }
 				/>
 				{
 					! hideExit &&
