@@ -43,7 +43,7 @@ const Error = (props: ErrorScreenProps) => {
 				<Typography
 					variant="h3"
 					align="center"
-					sx={ { fontWeight: 500 } }
+					sx={ { fontWeight: 500, fontSize: '32px' } }
 				>
 					{ error?.title || errorScreen.title }
 				</Typography>
