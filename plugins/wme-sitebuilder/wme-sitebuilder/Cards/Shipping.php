@@ -110,10 +110,9 @@ class Shipping extends Card {
 	public function props() {
 		$button_props = [
 			'usps'     => [
-				'label'           => __( 'Add USPS', 'wme-sitebuilder' ),
+				'label'           => __( $this->plugins->isUspsActive() ? 'Manage USPS' : 'Add USPS', 'wme-sitebuilder' ),
 				'backgroundColor' => '#004B87',
-				// TODO: Redirect user to an action that installs and activates the plugin.
-				'href'            => admin_url( 'admin.php?page=sitebuilder-store-details&action=install-plugin&plugin=elex-usps-shipping-method' ),
+				'href'            => admin_url( $this->plugins->isUspsActive() ? 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' : 'admin.php?page=sitebuilder-store-details&action=install-plugin&plugin=elex-usps-shipping-method' ),
 			]
 		];
 
@@ -135,8 +134,7 @@ class Shipping extends Card {
 				'intro'       => __( 'Shipping rates based on address and cart content through USPS.', 'wme-sitebuilder' ),
 				'disabled'    => false,
 				'disableText' => '',
-				'url'         => $this->plugins->isUspsActive() ? admin_url( 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' ) : null,
-				'button'      => ! $this->plugins->isUspsActive() ? $button_props['usps'] : null,
+				'button'      => $button_props['usps'],
 			],
 		];
 
@@ -174,8 +172,6 @@ class Shipping extends Card {
 	 * @return array[]
 	 */
 	protected function footer_messages() {
-		return [
-			$this->plugins->card_footer_props()
-		];
+		return $this->plugins->card_footer_props();
 	}
 }
