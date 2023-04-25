@@ -10,7 +10,11 @@ const FooterLinks = (props: SetupCardFooterRowLinks) => {
 			</Grid>
 			{ links.map((link) => (
 				<Grid item key={ link.href }>
-					<Link href={ link.href } variant="body1">
+					<Link
+						href={ link.href }
+						variant="body1"
+						{ ...(link?.target === '_blank' ? { target: '_blank', rel: 'noopener' } : {}) }
+					>
 						{ link.label }
 					</Link>
 				</Grid>
