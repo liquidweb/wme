@@ -65,7 +65,7 @@ class SiteSettings extends Module {
 	public function actionPrintScripts() {
 		$props = [
 			'app_name'    => __( 'Site Settings', 'wme-sitebuilder' ),
-			'logo'        => 'sitebuilder-logo.svg',
+			'logo'        => $this->get_logo(),
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
