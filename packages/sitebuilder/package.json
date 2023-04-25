@@ -21,7 +21,7 @@
 		"@moderntribe/wme-ui": "workspace:*",
 		"@moderntribe/wme-utils": "workspace:*",
 		"@tanstack/react-query": "^4.14.3",
-		"@wordpress/block-serialization-default-parser": "^3.9.1"
+		"react-shadow": "^20.0.0"
 	},
 	"peerDependencies": {
 		"@emotion/react": "^11.9.3",

@@ -91,7 +91,7 @@ const FirstTimeConfigurationWizard = () => {
 				icon={ currentScreen.icon }
 				subText={ currentScreen.footerHelpText }
 			/>
-			<Grid item xs={ currentScreen.hideSidebar ? 12 : 9.5 }>
+			<Grid item xs={ currentScreen.hideSidebar ? 12 : 9.5 } sx={{ position: 'relative'}}>
 				{ ! currentScreen.hideExit && (
 					<WizardExitButton
 						onExit={ handleExitClick }
@@ -108,7 +108,8 @@ const FirstTimeConfigurationWizard = () => {
 					left: currentScreen.hideSidebar ? 0 : '20.833333%',
 					right: 0,
 					marginInline: 0,
-					backgroundColor: 'white'
+					backgroundColor: 'white',
+					zIndex: 10
 				} }
 				steps={ steps }
 				activeStep={ stepIndex || 0 }

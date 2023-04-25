@@ -12,14 +12,12 @@ const ScreenWrapper: any = styled(Box, {
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
-	marginTop: screenTopMargin,
-	marginBottom: screenBottomMargin,
+	position: 'absolute',
+	top: screenTopMargin,
 	height: `calc(100vh - ${ screenTopMargin } - ${ screenBottomMargin })`,
 	minHeight: `calc(100vh - ${ screenTopMargin } - ${ screenBottomMargin })`,
-	'& .WmeFormRoot': {
-		marginTop: '16px'
-	},
-	position: 'relative'
+	width: '100%',
+	overflowY: 'scroll'
 }));
 
 export default ScreenWrapper;
