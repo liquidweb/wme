@@ -30,8 +30,8 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 				px: 3
 			} }>
 				<Logo
-					width="70px"
-					logoSrc={ LOGO }
+					width={ LOGO?.width }
+					logoSrc={ LOGO?.src }
 				/>
 				{
 					! hideExit &&

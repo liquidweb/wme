@@ -29,6 +29,11 @@ class SiteSettings extends Module {
 	protected $menu_slug = 'site-settings';
 
 	/**
+	 * @var string
+	 */
+	protected $icon_url = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuOTkxNjcgMTUuNDVMMy44NSAxMC42NzVMMi41IDExLjcyNUwxMCAxNy41NTg0TDE3LjUgMTEuNzI1TDE2LjE0MTcgMTAuNjY2N0w5Ljk5MTY3IDE1LjQ1Wk0xMCAxMy4zMzM0TDE2LjEzMzMgOC41NTgzNUwxNy41IDcuNTAwMDJMMTAgMS42NjY2OUwyLjUgNy41MDAwMkwzLjg1ODMzIDguNTU4MzVMMTAgMTMuMzMzNFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==';
+
+	/**
 	 * @var null|int
 	 */
 	protected $position = 3;

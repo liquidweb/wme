@@ -33,8 +33,8 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 				px: 3
 			} }>
 				<Logo
-					width="70px"
-					logoSrc={ LOGO }
+					width={ LOGO?.width }
+					logoSrc={ LOGO?.src }
 				/>
 				{ (location.pathname === '/wizard/look-and-feel') && (currentStep !== 1 && currentStep < 5) ? <ModalDeviceSelection /> : null }
 				{

@@ -29,8 +29,8 @@ const SimpleModal: React.FC<SimpleModalInterface> = (props) => {
 			<WizardHeader>
 				<>
 					<Logo
-						width="70px"
-						logoSrc={ LOGO }
+						width={ LOGO?.width }
+						logoSrc={ LOGO?.src }
 					/>
 					<ExitButton onClick={ onClose }>
 						<span>{ __('Exit to Setup', 'moderntribe-storebuilder') }</span>
