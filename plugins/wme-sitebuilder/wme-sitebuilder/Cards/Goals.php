@@ -59,7 +59,6 @@ class Goals extends Card {
 		$rows[] = [
 			'id'      => 'goals-woocommerce',
 			'type'    => 'task',
-//			'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
 			'title'   => __( 'Configure Your Store', 'wme-sitebuilder' ),
 			'intro'   => __( 'We\'ll walk you through setting up your store,', 'wme-sitebuilder' ),
 			'url'     => admin_url( 'admin.php?page=sitebuilder-store-details' ),
