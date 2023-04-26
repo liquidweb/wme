@@ -229,30 +229,6 @@ class FirstTimeConfiguration extends Wizard {
 				'requiredPlugins' => [],
 			],
 			[
-				'key'         => self::GOALS_PROJECT,
-				'value'       => __( 'Showcase our projects', 'wme-sitebuilder' ),
-				'description' => '',
-				'icon'        => 'Default',
-				'requiredPages' => [
-					'work' => [
-						'title' => __( 'Work', 'wme-sitebuilder' ),
-					],
-				],
-				'requiredPlugins' => [],
-			],
-			[
-				'key'         => self::GOALS_PORTFOLIO,
-				'value'       => __( 'Create an online portfolio for my creative works', 'wme-sitebuilder' ),
-				'description' => __( 'A showcase website that matches my creative perspective.', 'wme-sitebuilder' ),
-				'icon'        => 'Default',
-				'requiredPages' => [
-					'gallery' => [
-						'title' => __( 'Gallery', 'wme-sitebuilder' ),
-					],
-				],
-				'requiredPlugins' => [],
-			],
-			[
 				'key'         => self::GOALS_ECOMMERCE,
 				'value'       => __( 'Sell physical or digital goods online', 'wme-sitebuilder' ),
 				'description' => __( 'An ecommerce store to accept payment and manage customers.', 'wme-sitebuilder' ),
