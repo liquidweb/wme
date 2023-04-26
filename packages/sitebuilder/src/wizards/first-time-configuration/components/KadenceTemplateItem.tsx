@@ -1,11 +1,20 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useRef, useState } from 'react';
+import root from 'react-shadow';
 import { styled, Box, BoxProps, IconProps, Typography } from '@mui/material';
 import { StyleInterface } from '../data/styles';
-
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import editorStyles from './KadenceEditorStyles';
 
 const embedWidth = 1280;
+const shadowRootStyles = {
+	position: 'absolute',
+	width: embedWidth,
+	transform: 'scale(0.2)',
+	transformOrigin: '0 0',
+	border: 0,
+	overflow: 'hidden'
+};
 
 export interface TemplateSelectItemProps {
 	buttonLabel?: string;
@@ -15,6 +24,7 @@ export interface TemplateSelectItemProps {
 	name: string;
 	rows_html: string;
 	style: StyleInterface;
+	onClick: (slug: string) => void;
 }
 
 const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
@@ -24,7 +34,7 @@ const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
 	paddingBottom: '135%',
 	overflow: 'hidden',
 	borderRadius: 2,
-	border: '1px solid #f4f4f4',
+	border: '1px solid #ebebeb',
 	transition: 'all 0.3s ease-in-out',
 	cursor: 'pointer',
 	'&:hover, &:focus': {
@@ -50,16 +60,6 @@ const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
 	'.is-hovered &': {
 		opacity: 0.5,
 	},
-}));
-
-const TemplateItemEmbed = styled('div')(() => ({
-	position: 'absolute',
-	width: embedWidth,
-	// height: 2000,
-	transform: 'scale(0.2)',
-	transformOrigin: '0 0',
-	border: 0,
-	overflow: 'hidden',
 }));
 
 const TemplateItemButton = styled(Box)<BoxProps>(({ theme }) => ({
@@ -96,22 +96,56 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 		rows_html,
 		slug,
 		name,
-		// style,
+		style,
 	} = props;
 	const [embedScale, setEmbedScale] = useState(0.2);
 	const containerRef = useRef<HTMLElement>();
 
-	// const globalColors = `
-	// 	--global-palette1:${ style.base1 };
-	// 	--global-palette2:${ style.base2 };
-	// 	--global-palette3:${ style.base3 };
-	// 	--global-palette4:${ style.accent1 };
-	// 	--global-palette5:${ style.accent2 };
-	// 	--global-palette6:${ style.contrast1 };
-	// 	--global-palette7:${ style.contrast2 };
-	// 	--global-palette8:${ style.contrast3 };
-	// 	--global-palette9:${ style.contrast4 };
-	// `;
+	const globalColors = `:host {
+			--global-palette1: ${ style.accent1 };
+			--global-palette2: ${ style.accent2 };
+			--global-palette3: ${ style.contrast1 };
+			--global-palette4: ${ style.contrast2 };
+			--global-palette5: ${ style.contrast3 };
+			--global-palette6: ${ style.contrast4 };
+			--global-palette7: ${ style.base1 };
+			--global-palette8: ${ style.base2 };
+			--global-palette9: ${ style.base3 };
+		}
+		.has-theme-palette-1-color { color: var(--global-palette1); }
+		.has-theme-palette-2-color { color: var(--global-palette2); }
+		.has-theme-palette-3-color { color: var(--global-palette3); }
+		.has-theme-palette-4-color { color: var(--global-palette4); }
+		.has-theme-palette-5-color { color: var(--global-palette5); }
+		.has-theme-palette-6-color { color: var(--global-palette6); }
+		.has-theme-palette-7-color { color: var(--global-palette7); }
+		.has-theme-palette-8-color { color: var(--global-palette8); }
+		.has-theme-palette-9-color { color: var(--global-palette9); }
+		.has-theme-palette1-color { color: var(--global-palette1); }
+		.has-theme-palette2-color { color: var(--global-palette2); }
+		.has-theme-palette3-color { color: var(--global-palette3); }
+		.has-theme-palette4-color { color: var(--global-palette4); }
+		.has-theme-palette5-color { color: var(--global-palette5); }
+		.has-theme-palette6-color { color: var(--global-palette6); }
+		.has-theme-palette7-color { color: var(--global-palette7); }
+		.has-theme-palette8-color { color: var(--global-palette8); }
+		.has-theme-palette9-color { color: var(--global-palette9); }
+		.has-theme-palette1-background-color { background-color: var(--global-palette1); }
+		.has-theme-palette2-background-color { background-color: var(--global-palette2); }
+		.has-theme-palette3-background-color { background-color: var(--global-palette3); }
+		.has-theme-palette4-background-color { background-color: var(--global-palette4); }
+		.has-theme-palette5-background-color { background-color: var(--global-palette5); }
+		.has-theme-palette6-background-color { background-color: var(--global-palette6); }
+		.has-theme-palette7-background-color { background-color: var(--global-palette7); }
+		.has-theme-palette8-background-color { background-color: var(--global-palette8); }
+		.has-theme-palette9-background-color { background-color: var(--global-palette9); }
+		.wp-block-kadence-advancedbtn span.button.kb-button {
+			border-top-left-radius: ${ style.borderRadius };
+			border-top-right-radius: ${ style.borderRadius };
+			border-bottom-right-radius: ${ style.borderRadius };
+			border-bottom-left-radius: ${ style.borderRadius };
+		}
+	`;
 
 	useEffect(() => {
 		if (containerRef && containerRef.current) {
@@ -121,10 +155,12 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 
 	return (
 		<TemplateItemContainer className={ selected ? 'is-selected' : '' } id={ slug } aria-label={ name } ref={ containerRef }>
-			<TemplateItemEmbed
-				style={ { transform: `scale(${ embedScale })` } }
-				dangerouslySetInnerHTML={ { __html: rows_html } }
-			/>
+			{ /* @ts-ignore */ }
+			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
+				<style id={ `${ slug }-style-tag` } type="text/css">{ globalColors }</style>
+				<style type="text/css">{ editorStyles }</style>
+				<div dangerouslySetInnerHTML={ { __html: rows_html } } />
+			</root.div>
 			<TemplateItemButton>
 				<Typography color="common.white">
 					{ selected ? buttonSelectedLabel : buttonLabel }
