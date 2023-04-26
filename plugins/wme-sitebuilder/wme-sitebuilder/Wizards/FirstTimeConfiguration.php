@@ -214,7 +214,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_BUSINESS,
 				'value'       => __( 'Create a home for myself, my business or organization online', 'wme-sitebuilder' ),
 				'description' => __( 'A web presence that shares information about my services, and expertise and helps customers find and get in contact with me.', 'wme-sitebuilder' ),
-				'icon'        => 'GraduationIcon', // @todo SVG String
+				'icon'        => 'WebAsset',
 				'requiredPages' => [
 					'home' => [
 						'title' => __( 'Home', 'wme-sitebuilder' ),
@@ -232,7 +232,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_PROJECT,
 				'value'       => __( 'Showcase our projects', 'wme-sitebuilder' ),
 				'description' => '',
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'Default',
 				'requiredPages' => [
 					'work' => [
 						'title' => __( 'Work', 'wme-sitebuilder' ),
@@ -244,7 +244,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_PORTFOLIO,
 				'value'       => __( 'Create an online portfolio for my creative works', 'wme-sitebuilder' ),
 				'description' => __( 'A showcase website that matches my creative perspective.', 'wme-sitebuilder' ),
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'Default',
 				'requiredPages' => [
 					'gallery' => [
 						'title' => __( 'Gallery', 'wme-sitebuilder' ),
@@ -256,7 +256,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_ECOMMERCE,
 				'value'       => __( 'Sell physical or digital goods online', 'wme-sitebuilder' ),
 				'description' => __( 'An ecommerce store to accept payment and manage customers.', 'wme-sitebuilder' ),
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'ShoppingCart',
 				'requiredPages' => [
 					'shop' => [
 						'title' => __( 'Shop', 'wme-sitebuilder' ),
@@ -270,7 +270,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_BLOG,
 				'value'       => __( 'Share news or write blogs', 'wme-sitebuilder' ),
 				'description' => __( 'Posting content is the primary goal of my organization or a core component of my website.', 'wme-sitebuilder' ),
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'Article',
 				'requiredPages' => [
 					'news' => [
 						'title' => __( 'News', 'wme-sitebuilder' ),
@@ -282,7 +282,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_CAREERS,
 				'value'       => __( 'Share open positions to potential candidates', 'wme-sitebuilder' ),
 				'description' => '',
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'SupervisorAccount',
 				'requiredPages' => [
 					'careers' => [
 						'title' => __( 'Careers', 'wme-sitebuilder' ),
@@ -294,7 +294,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_SERVICES,
 				'value'       => __( 'Promote my services', 'wme-sitebuilder' ),
 				'description' => '',
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'ChatBubble',
 				'requiredPages' => [
 					'services' => [
 						'title' => __( 'Services', 'wme-sitebuilder' ),
@@ -306,7 +306,7 @@ class FirstTimeConfiguration extends Wizard {
 				'key'         => self::GOALS_PRICING_PLANS,
 				'value'       => __( 'Share my pricing plans', 'wme-sitebuilder' ),
 				'description' => __( 'A place to showcase each plan, with their benefits and prices.', 'wme-sitebuilder' ),
-				'icon'        => 'ShoppingCartIcon', // @todo SVG String
+				'icon'        => 'PriceChange',
 				'requiredPages' => [
 					'plans' => [
 						'title' => __( 'Plans (Pricing)', 'wme-sitebuilder' ),
