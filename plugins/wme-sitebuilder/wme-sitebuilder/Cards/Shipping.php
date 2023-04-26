@@ -108,36 +108,39 @@ class Shipping extends Card {
 	 * @return array
 	 */
 	public function props() {
-		$button_props = [
-			'usps'     => [
-				'label'           => __( 'Add USPS', 'wme-sitebuilder' ),
+		$usps_props = [
+			'id'          => 'usps',
+			'type'        => 'task',
+			'title'       => __('Manage USPS Shipping', 'wme-sitebuilder'),
+			'intro' => __('Get custom shipping rates based on package size and distance.', 'wme-sitebuilder'),
+			'disabled'    => false,
+			'disableText' => '',
+			'button'      => [
 				'backgroundColor' => '#004B87',
-				// TODO: Redirect user to an action that installs and activates the plugin.
-				'href'            => admin_url( 'admin.php?page=sitebuilder-store-details&action=install-plugin&plugin=elex-usps-shipping-method' ),
-			]
+				'label' => __('Manage USPS', 'wme-sitebuilder'),
+				'href' => admin_url('admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps')
+			],
 		];
+
+		if ( ! $this->plugins->isUspsActive() ) {
+			// Overwrite the title and button label / target if the plugin is not active.
+			$usps_props['title'] = __('Add USPS Shipping', 'wme-sitebuilder');
+			$usps_props['button'] = array_merge($usps_props['button'], [
+				'label' => __('Add USPS', 'wme-sitebuilder'),
+				'href' => admin_url('admin.php?page=sitebuilder-store-details&action=install-plugin&plugin=elex-usps-shipping-method')
+			]);
+		}
 
 		// Flat rate is built-in to WooCommerce.
 		$rows = [
 			[
 				'id'      => 'flat-rate',
 				'type'    => 'task',
-				'taskCta' => __( 'Flat Rate Settings', 'wme-sitebuilder' ),
 				'title'   => __( 'Flat Rate Shipping', 'wme-sitebuilder' ),
 				'intro'   => __( 'Charge a fixed rate of your choosing for shipping.', 'wme-sitebuilder' ),
 				'url'     => admin_url( 'admin.php?page=wc-settings&tab=shipping' ),
 			],
-			[
-				'id'          => 'usps',
-				'type'        => 'task',
-				'taskCta'     => __( 'USPS Settings', 'wme-sitebuilder' ),
-				'title'       => ! $this->plugins->isUspsActive() ? __( 'Add USPS Shipping', 'wme-sitebuilder' ) : __( 'USPS Shipping', 'wme-sitebuilder' ),
-				'intro'       => __( 'Shipping rates based on address and cart content through USPS.', 'wme-sitebuilder' ),
-				'disabled'    => false,
-				'disableText' => '',
-				'url'         => $this->plugins->isUspsActive() ? admin_url( 'admin.php?page=wc-settings&tab=shipping&section=elex_shipping_usps' ) : null,
-				'button'      => ! $this->plugins->isUspsActive() ? $button_props['usps'] : null,
-			],
+			$usps_props
 		];
 
 		// Check our supported shipping plugins.

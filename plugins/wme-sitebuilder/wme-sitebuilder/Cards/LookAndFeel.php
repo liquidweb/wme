@@ -40,10 +40,9 @@ class LookAndFeel extends Card {
 	public function props() {
 		return [
 			'id'        => 'look-and-feel',
-			'navTitle'  => __( 'Style', 'wme-sitebuilder' ),
-			'title'     => __( 'Style', 'wme-sitebuilder' ),
+			'navTitle'  => __( 'Styles', 'wme-sitebuilder' ),
+			'title'     => __( 'Update Site Style', 'wme-sitebuilder' ),
 			'intro'     => __( 'Fine tune your selected style choices.', 'wme-sitebuilder' ),
-			'completed' => $this->wizard->isComplete(),
 			'rows'      => $this->rows(),
 			'footers'   => $this->footer(),
 		];
@@ -55,44 +54,26 @@ class LookAndFeel extends Card {
 	 * @return array[] The card rows.
 	 */
 	protected function rows() {
-		if ( $this->wizard->isComplete() ) {
-			return [
-				[
-					'id'      => 'fonts-colors-wizard',
-					'type'    => 'task',
-					'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
-					'title'   => __( 'Fonts & Colors', 'wme-sitebuilder' ),
-					'intro'   => __( 'Further customize the look of your site.', 'wme-sitebuilder' ),
-					'url'     => $this->get_wp_customize_url(),
-				],
-			];
-		}
-
 		return [
 			[
-				'id'         => 'look-and-feel-wizard',
-				'type'       => 'task',
-				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-				'title'      => __( 'Change your font styles and colors', 'wme-sitebuilder' ),
-				'intro'      => __( 'Choose a design to start with and customize.', 'wme-sitebuilder' ),
-				'wizardHash' => '/wizard/look-and-feel',
+				'id'      => 'colors',
+				'type'    => 'task',
+				'title'   => __( 'Update your colors', 'wme-sitebuilder' ),
+				'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_colors'),
+			],
+			[
+				'id'      => 'buttons',
+				'type'    => 'task',
+				'title'   => __( 'Update your button styles', 'wme-sitebuilder' ),
+				'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_buttons'),
+			],
+			[
+				'id'      => 'typography',
+				'type'    => 'task',
+				'title'   => __( 'Update your typography', 'wme-sitebuilder' ),
+				'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_typography'),
 			],
 		];
-	}
-
-	/**
-	 * Get the URL for the WP Customizer including the section to focus on.
-	 *
-	 * @return string
-	 */
-	protected function get_wp_customize_url() {
-		return add_query_arg(
-			[
-				'autofocus[panel]' => 'kadence_customizer_design',
-				'return'             => admin_url( 'admin.php?page='.$this->admin_page_slug )
-			],
-			admin_url( 'customize.php' )
-		);
 	}
 
 	/**

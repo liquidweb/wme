@@ -23,7 +23,7 @@ class ManageProducts extends Card {
 		return [
 			'id'        => 'manage-products',
 			'title'     => __( 'Manage your products', 'wme-sitebuilder' ),
-			'intro'     => __( 'Give the people what they want.', 'wme-sitebuilder' ),
+			'intro'     => __( 'Get the most out of your store.', 'wme-sitebuilder' ),
 			'completed' => false,
 			'rows'      => [
 				[
@@ -34,13 +34,13 @@ class ManageProducts extends Card {
 							'title' => __( 'Add Products', 'wme-sitebuilder' ),
 							'links' => [
 								[
-									'icon'   => 'Add',
+									'icon'   => 'AddShoppingCart',
 									'title'  => __( 'Add a new Product', 'wme-sitebuilder' ),
 									'url'    => admin_url( 'post-new.php?post_type=product' ),
 									'target' => '_self',
 								],
 								[
-									'icon'   => 'LocalLibrary',
+									'icon'   => 'School',
 									'title'  => __( 'WooCommerce: Managing Products', 'wme-sitebuilder' ),
 									'url'    => 'https://woocommerce.com/document/managing-products/',
 									'target' => '_blank',
@@ -52,7 +52,7 @@ class ManageProducts extends Card {
 							'links' => [
 								[
 									'icon'   => 'Upload',
-									'title'  => __( 'Import products via CSV', 'wme-sitebuilder' ),
+									'title'  => __( 'Import products via .CSV', 'wme-sitebuilder' ),
 									'url'    => admin_url( 'edit.php?post_type=product&page=product_importer' ),
 									'target' => '_self',
 								],
@@ -74,15 +74,15 @@ class ManageProducts extends Card {
 							'title' => __( 'Setting Up Taxes', 'wme-sitebuilder' ),
 							'links' => [
 								[
-									'icon'   => 'Add',
+									'icon'   => 'AddShoppingCart',
 									'title'  => __( 'Set Up Tax Rates', 'wme-sitebuilder' ),
 									'url'    => admin_url( 'admin.php?page=wc-settings&tab=tax' ),
 									'target' => '_self',
 								],
 								[
 									'icon'   => 'School',
-									'title'  => __( 'WP 101: Tax Settings', 'wme-sitebuilder' ),
-									'url'    => 'wp101:woocommerce-tax-settings',
+									'title'  => __( 'WooCommece: Tax Settings', 'wme-sitebuilder' ),
+									'url'    => 'https://woocommerce.com/document/setting-up-taxes-in-woocommerce/',
 									'target' => '_self',
 								],
 								[
@@ -94,49 +94,7 @@ class ManageProducts extends Card {
 							],
 						],
 					],
-				],
-				[
-					'id'              => 'learn-types',
-					'type'            => 'learn-types',
-					'title'           => __( 'Learn more about Product Types', 'wme-sitebuilder' ),
-					'overline'        => __( '2 Minutes', 'wme-sitebuilder' ),
-					'headline'        => __( 'Types of Products and how to choose between them', 'wme-sitebuilder' ),
-					'videoData'       => [
-						'placeholderImage' => 'setup-product-types-poster.png',
-						'ariaLabel'        => __( 'Click to play video', 'wme-sitebuilder' ),
-						'src'              => 'https://www.youtube.com/embed/YwjYtoE5UMQ',
-						'description'      => __( 'There are 4 main types of products to choose from when adding products in StoreBuilder. This video describes each, and what each one is used for.', 'wme-sitebuilder' ),
-					],
-					'wp101'           => [
-						'header' => __( 'How To Set Up Products', 'wme-sitebuilder' ),
-						'links'  => [
-							[
-								'title'      => __( 'Simple', 'wme-sitebuilder' ),
-								'modalTitle' => __( 'Simple Product Overview', 'wme-sitebuilder' ),
-								'url'        => 'wp101:woocommerce-simple-product',
-							],
-							[
-								'title'      => __( 'Variable', 'wme-sitebuilder' ),
-								'modalTitle' => __( 'Variable Product Overview', 'wme-sitebuilder' ),
-								'url'        => 'wp101:woocommerce-variable-products',
-							],
-							[
-								'title'      => __( 'Grouped', 'wme-sitebuilder' ),
-								'modalTitle' => __( 'Grouped Product Overview', 'wme-sitebuilder' ),
-								'url'        => 'wp101:woocommerce-grouped-product',
-							],
-							[
-								'title'      => __( 'Downloadable', 'wme-sitebuilder' ),
-								'modalTitle' => __( 'Downloadable Product Overview', 'wme-sitebuilder' ),
-								'url'        => 'wp101:woocommerce-simple-product',
-							],
-						]
-					],
-					'exampleProducts' => [
-						'title'    => __( 'Examples in your store', 'wme-sitebuilder' ),
-						'products' => $this->get_example_products(),
-					]
-				],
+				]
 			],
 		];
 	}
