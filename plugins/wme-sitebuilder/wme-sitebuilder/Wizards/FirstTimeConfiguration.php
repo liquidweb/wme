@@ -8,12 +8,29 @@ class FirstTimeConfiguration extends Wizard {
 
 	use StoresData;
 
-	const FIELD_LOGO      = 'logo';
-	const FIELD_PASSWORD  = 'password';
-	const FIELD_SITENAME  = 'siteName';
-	const FIELD_TAGLINE   = 'tagLine';
-	const FIELD_USERNAME  = 'username';
-	const DATA_STORE_NAME = '_sitebuilder_ftc';
+	const GOALS_BUSINESS      = 'business';
+	const GOALS_PROJECT       = 'project';
+	const GOALS_PORTFOLIO     = 'portfolio';
+	const GOALS_ECOMMERCE     = 'eCommerce';
+	const GOALS_BLOG          = 'blog';
+	const GOALS_CAREERS       = 'careers';
+	const GOALS_SERVICES      = 'services';
+	const GOALS_PRICING_PLANS = 'pricingPlans';
+
+	const FIELD_LOGO             = 'logo';
+	const FIELD_PASSWORD         = 'password';
+	const FIELD_SITENAME         = 'siteName';
+	const FIELD_TAGLINE          = 'tagLine';
+	const FIELD_INDUSTRY         = 'industry';
+	const FIELD_SUBINDUSTRY      = 'subIndustry';
+	const FIELD_SITE_DESCRIPTION = 'siteDescription';
+	const FIELD_SITE_PERSONALITY = 'sitePersonality';
+	const FIELD_SITE_KEYWORDS    = 'siteKeywords';
+	const FIELD_GOALS            = 'goals';
+	const FIELD_TEMPLATE         = 'template';
+	const FIELD_USERNAME         = 'username';
+
+	const DATA_STORE_NAME        = '_sitebuilder_ftc';
 
 	/**
 	 * @var string
@@ -58,6 +75,7 @@ class FirstTimeConfiguration extends Wizard {
 
 		add_action( 'current_screen', [ $this, 'autoLaunch' ] );
 		add_action( 'kadence-starter-templates/after_all_import_execution', [ $this, 'restoreLogoAfterKadenceImport' ] );
+		add_action( 'wme_event_wizard_ftc_completed', [ $this, 'actionGoalSave' ] );
 	}
 
 	/**
@@ -76,18 +94,26 @@ class FirstTimeConfiguration extends Wizard {
 	 */
 	public function props() {
 		return [
-			'username'    => $this->getUsername(),
-			'completed'   => $this->isComplete(),
-			'autoLaunch'  => false,
-			'canBeClosed' => $this->isComplete(),
-			'adminUrl'    => admin_url(),
-			'site'        => [
-				'siteName' => $this->getSitename(),
-				'tagline'  => $this->getTagline(),
-				'logo'     => [
+			'username'     => $this->getUsername(),
+			'completed'    => $this->isComplete(),
+			'autoLaunch'   => false,
+			'canBeClosed'  => $this->isComplete(),
+			'adminUrl'     => admin_url(),
+			'goal_choices' => $this->getGoalsChoices(),
+			'site'         => [
+				'siteName'        => $this->getSitename(),
+				'tagline'         => $this->getTagline(),
+				'logo'            => [
 					'id'  => $this->getLogoId(),
 					'url' => $this->getLogoUrl(),
 				],
+				'industry'        => $this->getIndustry(),
+				'subIndustry'     => $this->getSubIndustry(),
+				'siteDescription' => $this->getSiteDescription(),
+				'sitePersonality' => $this->getSitePersonality(),
+				'siteKeywords'    => $this->getSiteKeywords(),
+				'goals'           => $this->getGoals(),
+				'template'        => $this->getTemplate(),
 			],
 		];
 	}
@@ -118,6 +144,13 @@ class FirstTimeConfiguration extends Wizard {
 			self::FIELD_LOGO,
 			self::FIELD_SITENAME,
 			self::FIELD_TAGLINE,
+			self::FIELD_INDUSTRY,
+			self::FIELD_SUBINDUSTRY,
+			self::FIELD_SITE_DESCRIPTION,
+			self::FIELD_SITE_PERSONALITY,
+			self::FIELD_SITE_KEYWORDS,
+			self::FIELD_GOALS,
+			self::FIELD_TEMPLATE,
 		];
 
 		foreach ( $fields as $field ) {
@@ -153,6 +186,7 @@ class FirstTimeConfiguration extends Wizard {
 
 		$this->getData()->set( 'complete', true )->save();
 
+		do_action( 'wme_event_wizard_ftc_completed', $this );
 		do_action( 'wme_event_wizard_completed', 'ftc' );
 
 		$this->setUserCredentials();
@@ -167,6 +201,122 @@ class FirstTimeConfiguration extends Wizard {
 	 */
 	public function isComplete() {
 		return (bool) $this->getData()->get( 'complete', false );
+	}
+
+	/**
+	 * Get the goal choices.
+	 *
+	 * @return array
+	 */
+	public function getGoalsChoices() {
+		$goals = [
+			[
+				'key'         => self::GOALS_BUSINESS,
+				'value'       => __( 'Create a home for myself, my business or organization online', 'wme-sitebuilder' ),
+				'description' => __( 'A web presence that shares information about my services, and expertise and helps customers find and get in contact with me.', 'wme-sitebuilder' ),
+				'icon'        => 'WebAsset',
+				'requiredPages' => [
+					'home' => [
+						'title' => __( 'Home', 'wme-sitebuilder' ),
+					],
+					'about' => [
+						'title' => __( 'About', 'wme-sitebuilder' ),
+					],
+					'contact' => [
+						'title' => __( 'Contact', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+			[
+				'key'         => self::GOALS_PROJECT,
+				'value'       => __( 'Showcase our projects', 'wme-sitebuilder' ),
+				'description' => '',
+				'icon'        => 'Default',
+				'requiredPages' => [
+					'work' => [
+						'title' => __( 'Work', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+			[
+				'key'         => self::GOALS_PORTFOLIO,
+				'value'       => __( 'Create an online portfolio for my creative works', 'wme-sitebuilder' ),
+				'description' => __( 'A showcase website that matches my creative perspective.', 'wme-sitebuilder' ),
+				'icon'        => 'Default',
+				'requiredPages' => [
+					'gallery' => [
+						'title' => __( 'Gallery', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+			[
+				'key'         => self::GOALS_ECOMMERCE,
+				'value'       => __( 'Sell physical or digital goods online', 'wme-sitebuilder' ),
+				'description' => __( 'An ecommerce store to accept payment and manage customers.', 'wme-sitebuilder' ),
+				'icon'        => 'ShoppingCart',
+				'requiredPages' => [
+					'shop' => [
+						'title' => __( 'Shop', 'wme-sitebuilder' ),
+					]
+				],
+				'requiredPlugins' => [
+					'woocommerce',
+				],
+			],
+			[
+				'key'         => self::GOALS_BLOG,
+				'value'       => __( 'Share news or write blogs', 'wme-sitebuilder' ),
+				'description' => __( 'Posting content is the primary goal of my organization or a core component of my website.', 'wme-sitebuilder' ),
+				'icon'        => 'Article',
+				'requiredPages' => [
+					'news' => [
+						'title' => __( 'News', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+			[
+				'key'         => self::GOALS_CAREERS,
+				'value'       => __( 'Share open positions to potential candidates', 'wme-sitebuilder' ),
+				'description' => '',
+				'icon'        => 'SupervisorAccount',
+				'requiredPages' => [
+					'careers' => [
+						'title' => __( 'Careers', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+			[
+				'key'         => self::GOALS_SERVICES,
+				'value'       => __( 'Promote my services', 'wme-sitebuilder' ),
+				'description' => '',
+				'icon'        => 'ChatBubble',
+				'requiredPages' => [
+					'services' => [
+						'title' => __( 'Services', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+			[
+				'key'         => self::GOALS_PRICING_PLANS,
+				'value'       => __( 'Share my pricing plans', 'wme-sitebuilder' ),
+				'description' => __( 'A place to showcase each plan, with their benefits and prices.', 'wme-sitebuilder' ),
+				'icon'        => 'PriceChange',
+				'requiredPages' => [
+					'plans' => [
+						'title' => __( 'Plans (Pricing)', 'wme-sitebuilder' ),
+					],
+				],
+				'requiredPlugins' => [],
+			],
+		];
+
+		return apply_filters( 'wme_sitebuilder_ftc_wizard_goals', $goals );
 	}
 
 	/**
@@ -320,9 +470,13 @@ class FirstTimeConfiguration extends Wizard {
 			return;
 		}
 
-		if ( ! update_option( 'blogname', $sitename ) ) {
-			$this->errors[] = [ self::FIELD_SITENAME => __( 'Invalid Sitename', 'wme-sitebuilder' ) ];
+		$this->getData()->set( 'blogname', $sitename );
+
+		if ( update_option( 'blogname', $sitename ) ) {
+			return;
 		}
+
+		$this->errors[] = [ self::FIELD_SITENAME => __( 'Unable to save the Site Name', 'wme-sitebuilder' ) ];
 	}
 
 	/**
@@ -332,7 +486,7 @@ class FirstTimeConfiguration extends Wizard {
 	 */
 	public function getTagline() {
 		if ( empty( $this->fields[ self::FIELD_TAGLINE ] ) ) {
-			$this->fields[ self::FIELD_TAGLINE ] = get_bloginfo( 'description' );
+			$this->fields[ self::FIELD_TAGLINE ] = get_bloginfo( 'blogdescription' );
 		}
 
 		return $this->fields[ self::FIELD_TAGLINE ];
@@ -350,9 +504,209 @@ class FirstTimeConfiguration extends Wizard {
 			return;
 		}
 
-		if ( ! update_option( 'blogdescription', $tagline ) ) {
-			$this->errors[] = [ self::FIELD_TAGLINE => __( 'Invalid Tagline', 'wme-sitebuilder' ) ];
+		$this->getData()->set( 'blogdescription', $tagline );
+
+		if ( update_option( 'blogdescription', $tagline ) ) {
+			return;
 		}
+
+		$this->errors[] = [ self::FIELD_TAGLINE => __( 'Unable to save the Site Description', 'wme-sitebuilder' ) ];
+	}
+
+	/**
+	 * Get the site industry.
+	 *
+	 * @return string
+	 */
+	public function getIndustry() {
+		if ( empty( $this->fields[ self::FIELD_INDUSTRY ] ) ) {
+			$this->fields[ self::FIELD_INDUSTRY ] = $this->getData()->get( self::FIELD_INDUSTRY );
+		}
+
+		return $this->fields[ self::FIELD_INDUSTRY ] ?? '';
+	}
+
+	/**
+	 * Set the site industry.
+	 *
+	 * @param string $industry
+	 */
+	public function setIndustry( $industry ) {
+		$industry = filter_var( $industry, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $industry === $this->getIndustry() ) {
+			return;
+		}
+
+		$this->getData()->set( self::FIELD_INDUSTRY, $industry );
+	}
+
+	/**
+	 * Get the site sub-industry.
+	 *
+	 * @return string
+	 */
+	public function getSubIndustry() {
+		if ( empty( $this->fields[ self::FIELD_SUBINDUSTRY ] ) ) {
+			$this->fields[ self::FIELD_SUBINDUSTRY ] = $this->getData()->get( self::FIELD_SUBINDUSTRY );
+		}
+
+		return $this->fields[ self::FIELD_SUBINDUSTRY ] ?? '';
+	}
+
+	/**
+	 * Set the site sub-industry.
+	 *
+	 * @param string $subindustry
+	 */
+	public function setSubIndustry( $subindustry ) {
+		$subindustry = filter_var( $subindustry, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $subindustry === $this->getSubindustry() ) {
+			return;
+		}
+
+		$this->getData()->set( self::FIELD_SUBINDUSTRY, $subindustry );
+	}
+
+	/**
+	 * Get the site description.
+	 *
+	 * @return string
+	 */
+	public function getSiteDescription() {
+		if ( empty( $this->fields[ self::FIELD_SITE_DESCRIPTION ] ) ) {
+			$this->fields[ self::FIELD_SITE_DESCRIPTION ] = $this->getData()->get( self::FIELD_SITE_DESCRIPTION );
+		}
+
+		return $this->fields[ self::FIELD_SITE_DESCRIPTION ] ?? '';
+	}
+
+	/**
+	 * Set the site description.
+	 *
+	 * @param string $description
+	 */
+	public function setSiteDescription( $description ) {
+		$description = filter_var( $description, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $description === $this->getSiteDescription() ) {
+			return;
+		}
+
+		$this->getData()->set( self::FIELD_SITE_DESCRIPTION, $description );
+	}
+
+	/**
+	 * Get the site personality.
+	 *
+	 * @return string
+	 */
+	public function getSitePersonality() {
+		if ( empty( $this->fields[ self::FIELD_SITE_PERSONALITY ] ) ) {
+			$this->fields[ self::FIELD_SITE_PERSONALITY ] = $this->getData()->get( self::FIELD_SITE_PERSONALITY );
+		}
+
+		return $this->fields[ self::FIELD_SITE_PERSONALITY ] ?? '';
+	}
+
+	/**
+	 * Set the site personality.
+	 *
+	 * @param string $personality
+	 */
+	public function setSitePersonality( $personality ) {
+		$personality = filter_var( $personality, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $personality === $this->getSitePersonality() ) {
+			return;
+		}
+
+		$this->getData()->set( self::FIELD_SITE_PERSONALITY, $personality );
+	}
+
+	/**
+	 * Get the site keywords.
+	 *
+	 * @return array
+	 */
+	public function getSiteKeywords(): array {
+		if ( empty( $this->fields[ self::FIELD_SITE_KEYWORDS ] ) ) {
+			$this->fields[ self::FIELD_SITE_KEYWORDS ] = $this->getData()->get( self::FIELD_SITE_KEYWORDS );
+		}
+
+		$keywords = $this->fields[ self::FIELD_SITE_KEYWORDS ] ?? '';
+		$keywords = explode( ', ', $keywords) ?? [];
+
+		return array_filter( $keywords );
+	}
+
+	/**
+	 * Set the site keywords.
+	 *
+	 * @param array $keywords
+	 */
+	public function setSiteKeywords( array $keywords ) {
+		$keywords = filter_var_array( $keywords, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$keywords = implode( ', ', $keywords );
+
+		$this->getData()->set( self::FIELD_SITE_KEYWORDS, $keywords );
+	}
+
+	/**
+	 * Get the goals.
+	 *
+	 * @return array
+	 */
+	public function getGoals(): array {
+		if ( empty( $this->fields[ self::FIELD_GOALS ] ) ) {
+			$this->fields[ self::FIELD_GOALS ] = $this->getData()->get( self::FIELD_GOALS );
+		}
+
+		$goals = $this->fields[ self::FIELD_GOALS ] ?? '';
+		$goals = explode( ', ', $goals) ?? [];
+
+		return array_filter( $goals );
+	}
+
+	/**
+	 * Set the goals.
+	 *
+	 * @param array $goals
+	 */
+	public function setGoals( array $goals ) {
+		$goals = filter_var_array( $goals, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$goals = implode( ', ', $goals );
+
+		$this->getData()->set( self::FIELD_GOALS, $goals );
+	}
+
+	/**
+	 * Get the  template.
+	 *
+	 * @return string
+	 */
+	public function getTemplate() {
+		if ( empty( $this->fields[ self::FIELD_TEMPLATE ] ) ) {
+			$this->fields[ self::FIELD_TEMPLATE ] = get_option( 'site_template', '' );
+		}
+
+		return $this->fields[ self::FIELD_TEMPLATE ];
+	}
+
+	/**
+	 * Set the template.
+	 *
+	 * @param string $template
+	 */
+	public function setTemplate( $template ) {
+		$template = filter_var( $template, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+		if ( $template === $this->getTemplate() ) {
+			return;
+		}
+
+		$this->getData()->set( 'site_template', $template );
 	}
 
 	/**
@@ -450,5 +804,62 @@ class FirstTimeConfiguration extends Wizard {
 		}
 
 		update_option( 'site_logo', $ftc_logo );
+	}
+
+	/**
+	 * On save, we should create some pages based on the goals.
+	 */
+	public function actionGoalSave() {
+		$goals = $this->getGoals();
+
+		if ( empty( $goals ) ) {
+			return;
+		}
+
+		$goalChoices = $this->getGoalsChoices();
+
+		foreach ( $goals as $selected ) {
+			$goal = array_filter( $goalChoices, function ( $choice ) use ( $selected ) {
+				return $choice['key'] === $selected;
+			} );
+
+			if ( empty( $goal ) ) {
+				continue;
+			}
+
+			$goal = array_shift( $goal );
+
+			if ( empty( $goal['requiredPages'] ) ) {
+				continue;
+			}
+
+			foreach ( $goal['requiredPages'] as $slug => $args ) {
+				$this->createPage( $slug, $args );
+			}
+		}
+	}
+
+	/**
+	 * Create a page if it doesn't exist.
+	 *
+	 * @param string $slug
+	 * @param array $args
+	 */
+	protected function createPage( string $slug, array $args ) {
+		$page = get_page_by_path( $slug );
+
+		if ( ! empty( $page ) ) {
+			return;
+		}
+
+		$page = [
+			'post_title'   => $args['title'],
+			'post_name'    => $slug,
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_content' => '',
+		];
+
+		wp_insert_post( $page );
 	}
 }
