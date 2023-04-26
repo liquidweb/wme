@@ -19,7 +19,7 @@ const WizardHeaderContainer = styled(Box, {
   justifyContent: 'space-between',
   alignItems: 'center',
   position: 'relative',
-  zIndex: 1,
+  zIndex: 3,
 }));
 
 const WizardHeader: React.FC<WizardHeaderProps> = (props) => {

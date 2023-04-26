@@ -64,6 +64,8 @@ class SiteBuilder extends Module {
 	 */
 	public function actionPrintScripts() {
 		$props = [
+			'app_name'    => __( 'Site Setup', 'wme-sitebuilder' ),
+			'logo'        => $this->get_logo(),
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
 			'assets_url'  => $this->getAssetSource( 'sitebuilder/' ),

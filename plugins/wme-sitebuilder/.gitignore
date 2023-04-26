@@ -6,6 +6,7 @@ node_modules
 # Artifacts.
 /dist
 /wme-sitebuilder/assets/*
+!/wme-sitebuilder/assets/admin
 /tests/coverage/
 
 # Local overrides.

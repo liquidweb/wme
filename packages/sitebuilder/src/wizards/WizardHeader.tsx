@@ -2,7 +2,7 @@ import { WizardHeader as WmeWizardHeader, Logo, ExitButton } from '@moderntribe/
 import { useLocation } from 'react-router-dom';
 import { __ } from '@wordpress/i18n';
 import { useWizard } from '@sb/hooks';
-import { StoreBuilderLogo } from '@sb/logos';
+import { LOGO } from '@sb/constants';
 import { ModalDeviceSelection } from '@sb/components';
 import { Box } from '@mui/material';
 
@@ -33,8 +33,8 @@ const WizardHeader: React.FC<WizardHeaderInterface> = () => {
 				px: 3
 			} }>
 				<Logo
-					width="100"
-					logoSrc={ <StoreBuilderLogo /> }
+					width={ LOGO?.width }
+					logoSrc={ LOGO?.src }
 				/>
 				{ (location.pathname === '/wizard/look-and-feel') && (currentStep !== 1 && currentStep < 5) ? <ModalDeviceSelection /> : null }
 				{

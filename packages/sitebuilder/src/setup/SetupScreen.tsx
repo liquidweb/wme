@@ -36,7 +36,7 @@ const SetupScreen = () => {
 			>
 				{ screen.title }
 			</Typography>
-			<SetupCards showJumpNav />
+			<SetupCards showJumpNav={ false } />
 		</Box>
 	);
 };

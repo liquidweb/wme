@@ -3,6 +3,15 @@ import { Box, Stack, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { FTC_PROPS } from '@sb/constants';
+import {
+	Article,
+	ChatBubbleOutline,
+	Info,
+	PriceChange,
+	ShoppingCart,
+	SupervisorAccount,
+	WebAsset
+} from '@mui/icons-material';
 
 const { siteDetails } = FtcStringData;
 const cards = FTC_PROPS.goal_choices;
@@ -15,6 +24,27 @@ const Goals = () => {
 
 	const handleSelect = (value: string[]) => {
 		setFormValue('goals', value);
+	};
+
+	const goalIcon = (icon: any) => {
+		switch (icon) {
+			case "Article":
+				return <Article />;
+			case "ChatBubble":
+				return <ChatBubbleOutline />;
+			case "Default":
+				return <Info />;
+			case "PriceChange":
+				return <PriceChange />;
+			case "ShoppingCart":
+				return <ShoppingCart />;
+			case "SupervisorAccount":
+				return <SupervisorAccount />;
+			case "WebAsset":
+				return <WebAsset />;
+			default:
+				return icon;
+		}
 	};
 
 	return (
@@ -34,7 +64,7 @@ const Goals = () => {
 							key={ item.key }
 							primary={ item.value }
 							secondary={ item.description }
-							icon={ item.icon }
+							icon={ goalIcon(item.icon ) }
 							value={ item.key }
 						/>
 					)) }
