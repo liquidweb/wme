@@ -14,7 +14,7 @@ class ShareYourSite extends Card {
 			'id'        => 'share-your-site',
 			'navTitle'  => __( 'Share Your Site', 'wme-sitebuilder' ),
 			'title'     => __( 'Share Your Site', 'wme-sitebuilder' ),
-			'intro'     => __( 'Get started on your goals by completing a few tasks.', 'wme-sitebuilder' ),
+			'intro'     => __( 'Make sure your site can be found.', 'wme-sitebuilder' ),
 			'completed' => false,
 			'rows'      => [
 				[

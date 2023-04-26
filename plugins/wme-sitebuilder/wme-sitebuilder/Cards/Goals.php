@@ -35,9 +35,9 @@ class Goals extends Card {
 	public function props() {
 		return [
 			'id'        => 'goals',
-			'navTitle'  => __( 'Your Goals', 'wme-sitebuilder' ),
-			'title'     => __( 'Your Goals', 'wme-sitebuilder' ),
-			'intro'     => __( 'Get started on your goals by completing a few tasks.', 'wme-sitebuilder' ),
+			'navTitle'  => __( 'Take It Further', 'wme-sitebuilder' ),
+			'title'     => __( 'Take It Further', 'wme-sitebuilder' ),
+			'intro'     => __( 'Explore advanced features and customization options curated just for your goals.', 'wme-sitebuilder' ),
 			'completed' => false,
 			'rows'      => apply_filters( 'wme_sitebuilder_goals_rows', [] )
 		];
