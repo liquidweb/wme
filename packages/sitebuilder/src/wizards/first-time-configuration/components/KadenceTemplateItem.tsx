@@ -4,7 +4,8 @@ import root from 'react-shadow';
 import { styled, Box, BoxProps, IconProps, Typography } from '@mui/material';
 import { StyleInterface } from '../data/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import editorStyles from './KadenceEditorStyles';
+import globalEditorInlineStyles from './kadence-blocks-global-editor-styles-inline-css';
+import { KADENCE_DYNAMIC_STYLES } from '@sb/constants';
 
 const embedWidth = 1280;
 const shadowRootStyles = {
@@ -100,8 +101,17 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	} = props;
 	const [embedScale, setEmbedScale] = useState(0.2);
 	const containerRef = useRef<HTMLElement>();
+	const dynamicStyles = KADENCE_DYNAMIC_STYLES.replace(/:root/g, ':host');
 
-	const globalColors = `:host {
+	const headingFontName = style.headingFont.replace(/ /g, '+');
+	const baseFontName = style.baseFont.replace(/ /g, '+');
+	const fontStyles = `//fonts.googleapis.com/css2?family=${ headingFontName }&family=${ baseFontName }&display=swap`;
+
+	const globalColors = `
+		:host {
+			--global-heading-font-family: '${ style.headingFont }', cursive;
+			--global-body-font-family: '${ style.baseFont }', cursive;
+
 			--global-palette1: ${ style.accent1 };
 			--global-palette2: ${ style.accent2 };
 			--global-palette3: ${ style.contrast1 };
@@ -111,39 +121,14 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 			--global-palette7: ${ style.base1 };
 			--global-palette8: ${ style.base2 };
 			--global-palette9: ${ style.base3 };
+			--global-content-edge-padding: 3rem;
 		}
-		.has-theme-palette-1-color { color: var(--global-palette1); }
-		.has-theme-palette-2-color { color: var(--global-palette2); }
-		.has-theme-palette-3-color { color: var(--global-palette3); }
-		.has-theme-palette-4-color { color: var(--global-palette4); }
-		.has-theme-palette-5-color { color: var(--global-palette5); }
-		.has-theme-palette-6-color { color: var(--global-palette6); }
-		.has-theme-palette-7-color { color: var(--global-palette7); }
-		.has-theme-palette-8-color { color: var(--global-palette8); }
-		.has-theme-palette-9-color { color: var(--global-palette9); }
-		.has-theme-palette1-color { color: var(--global-palette1); }
-		.has-theme-palette2-color { color: var(--global-palette2); }
-		.has-theme-palette3-color { color: var(--global-palette3); }
-		.has-theme-palette4-color { color: var(--global-palette4); }
-		.has-theme-palette5-color { color: var(--global-palette5); }
-		.has-theme-palette6-color { color: var(--global-palette6); }
-		.has-theme-palette7-color { color: var(--global-palette7); }
-		.has-theme-palette8-color { color: var(--global-palette8); }
-		.has-theme-palette9-color { color: var(--global-palette9); }
-		.has-theme-palette1-background-color { background-color: var(--global-palette1); }
-		.has-theme-palette2-background-color { background-color: var(--global-palette2); }
-		.has-theme-palette3-background-color { background-color: var(--global-palette3); }
-		.has-theme-palette4-background-color { background-color: var(--global-palette4); }
-		.has-theme-palette5-background-color { background-color: var(--global-palette5); }
-		.has-theme-palette6-background-color { background-color: var(--global-palette6); }
-		.has-theme-palette7-background-color { background-color: var(--global-palette7); }
-		.has-theme-palette8-background-color { background-color: var(--global-palette8); }
-		.has-theme-palette9-background-color { background-color: var(--global-palette9); }
 		.wp-block-kadence-advancedbtn span.button.kb-button {
 			border-top-left-radius: ${ style.borderRadius };
 			border-top-right-radius: ${ style.borderRadius };
 			border-bottom-right-radius: ${ style.borderRadius };
 			border-bottom-left-radius: ${ style.borderRadius };
+			border: 0;
 		}
 	`;
 
@@ -155,11 +140,17 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 
 	return (
 		<TemplateItemContainer className={ selected ? 'is-selected' : '' } id={ slug } aria-label={ name } ref={ containerRef }>
+			<link href={ fontStyles } rel="stylesheet" type="text/css"></link>
 			{ /* @ts-ignore */ }
 			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
+				<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>
+				<style type="text/css">{ dynamicStyles }</style>
+				<style id="global-editor-inline-styles">{ globalEditorInlineStyles }</style>
 				<style id={ `${ slug }-style-tag` } type="text/css">{ globalColors }</style>
-				<style type="text/css">{ editorStyles }</style>
-				<div dangerouslySetInnerHTML={ { __html: rows_html } } />
+
+				<div className="pattern-shadow-wrap editor-styles-wrapper">
+					<div className="single-iframe-content single-content" dangerouslySetInnerHTML={ { __html: rows_html } } />
+				</div>
 			</root.div>
 			<TemplateItemButton>
 				<Typography color="common.white">

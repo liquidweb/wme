@@ -22,7 +22,6 @@ const StyleSelection = () => {
 
 	useEffect(() => {
 		if (! loading && data) {
-			console.log('Kadence pages', data);
 			const homePageKeys = Object.keys(data).filter((key) => data[ key ].name.includes('Home'));
 			setPages(homePageKeys.map((key) => data[ key ]));
 		}

@@ -74,6 +74,7 @@ class SiteBuilder extends Module {
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],
+			'dynamic_css' => apply_filters( 'kadence_editor_dynamic_css', '' ),
 			'wizards'     => (object) [],
 		];
 
