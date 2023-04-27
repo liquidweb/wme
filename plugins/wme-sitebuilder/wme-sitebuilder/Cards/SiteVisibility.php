@@ -10,7 +10,7 @@ class SiteVisibility extends Card {
 
 	const DATA_STORE_NAME = 'wme_sitebuilder_site_visibility';
 
-	const FIELD_HIDE_FROM_SEARCH_ENGINES = 'hideFromSearchEngines';
+	const FIELD_HIDE_FROM_SEARCH_ENGINES = 'hideFromSearch';
 	const FIELD_RESTRICT_ACCESS          = 'restrictAccess';
 	const FIELD_PASSWORD                 = 'password';
 
@@ -50,16 +50,18 @@ class SiteVisibility extends Card {
 	 * @return array
 	 */
 	public function props() {
+		$hidden = $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) ? 0 : 1 );
+
 		$details = [
 			'id'             => 'site-visibility',
 			'navTitle'       => __( 'Site Visibility', 'wme-sitebuilder' ),
 			'title'          => __( 'Site Visibility', 'wme-sitebuilder' ),
 			'intro'          => __( 'Limit who can access your site online.', 'wme-sitebuilder' ),
-			'hideFromSearch' => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ),
+			'hideFromSearch' => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) ? 0 : 1 ),
 			'restrictAccess' => $this->getData()->get( self::FIELD_RESTRICT_ACCESS, false ),
 			'password'       => $this->getData()->get( self::FIELD_PASSWORD, '' ),
-			'chipText'       => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ) == 1 ? __( 'Hidden', 'wme-sitebuilder' ) : __( 'Visible', 'wme-sitebuilder' ),
-			'chipBackground' => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ) == 1 ? 'danger' : 'success',
+			'chipText'       => $hidden == 'true' ? __( 'Hidden', 'wme-sitebuilder' ) : __( 'Visible', 'wme-sitebuilder' ),
+			'chipBackground' => $hidden == 'true' ? 'error' : 'success',
 		];
 
 		return $details;
@@ -129,14 +131,14 @@ class SiteVisibility extends Card {
 	 *
 	 * @param string $value
 	 */
-	public function setHideFromSearchEngines( $value ) {
-		$current = $this->getData()->get( 'hideFromSearchEngines' );
+	public function setHideFromSearch( $value ) {
+		$current = $this->getData()->get( 'hideFromSearch' );
 
 		if ( $current === $value ) {
 			return;
 		}
 
-		$this->getData()->set( 'hideFromSearchEngines', $value );
+		$this->getData()->set( 'hideFromSearch', $value );
 
 		// Update the WordPress option.
 		update_option( 'blog_public', $value == 1 ? 0 : 1 );
