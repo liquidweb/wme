@@ -98,6 +98,7 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 		slug,
 		name,
 		style,
+		onClick
 	} = props;
 	const [embedScale, setEmbedScale] = useState(0.2);
 	const containerRef = useRef<HTMLElement>();
@@ -139,7 +140,7 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	}, [containerRef?.current?.clientWidth]);
 
 	return (
-		<TemplateItemContainer className={ selected ? 'is-selected' : '' } id={ slug } aria-label={ name } ref={ containerRef }>
+		<TemplateItemContainer className={ selected ? 'is-selected' : '' } id={ slug } aria-label={ name } ref={ containerRef } onClick={ () => onClick(slug) }>
 			<link href={ fontStyles } rel="stylesheet" type="text/css"></link>
 			{ /* @ts-ignore */ }
 			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>

@@ -7,6 +7,7 @@ import KadenceTemplateGroup from '../components/KadenceTemplateGroup';
 
 const StyleSelection = () => {
 	const {
+		ftcState: { form },
 		setFormValue,
 		shouldBlockNextStep
 	} = useFirstTimeConfiguration();
@@ -16,6 +17,7 @@ const StyleSelection = () => {
 	const styles = getTemplateStyles();
 
 	const handleTemplateChange = (value: string) => {
+		console.log('click', value);
 		setFormValue('template', value);
 		shouldBlockNextStep(false, 4);
 	};
@@ -32,7 +34,13 @@ const StyleSelection = () => {
 		<Box sx={ { width: '95%', minHeight: '100%' } }>
 			<KadenceTemplateGroup>
 				{ pages?.map((page, index) => (
-					<KadenceTemplateItem key={ page.slug } { ...page } style={ styles[ index ] } onClick={ handleTemplateChange } />
+					<KadenceTemplateItem
+						key={ page.slug }
+						{ ...page }
+						style={ styles[ index ] }
+						onClick={ handleTemplateChange }
+						selected={ page.slug === form.template.value }
+					/>
 				)) }
 			</KadenceTemplateGroup>
 		</Box>

@@ -166,5 +166,5 @@ export default function (): StyleInterface[] {
 			base3: '#FFFFFF',
 			starterTemplate: 'SEO Skills'
 		},
-	]
+	];
 }
