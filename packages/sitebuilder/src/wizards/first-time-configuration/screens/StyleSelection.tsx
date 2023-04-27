@@ -17,7 +17,6 @@ const StyleSelection = () => {
 	const styles = getTemplateStyles();
 
 	const handleTemplateChange = (value: string) => {
-		console.log('click', value);
 		setFormValue('template', value);
 		shouldBlockNextStep(false, 4);
 	};
