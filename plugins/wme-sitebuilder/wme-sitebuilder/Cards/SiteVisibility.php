@@ -77,6 +77,7 @@ class SiteVisibility extends Card {
 	 * @return array
 	 */
 	public function save() {
+		$save   = false;
 		$fields = [
 			self::FIELD_HIDE_FROM_SEARCH_ENGINES,
 			self::FIELD_RESTRICT_ACCESS,
@@ -112,10 +113,14 @@ class SiteVisibility extends Card {
 
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			call_user_func( $callable, $_REQUEST[ $field ] );
+
+			$save = true;
 		}
 
-		// Save the data.
-		$this->getData()->save();
+		if ( $save ) {
+			// Save the data.
+			$this->getData()->save();
+		}
 
 		if ( ! empty( $this->errors ) ) {
 			wp_send_json_error( [
