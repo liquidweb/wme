@@ -26,9 +26,9 @@ const SetupCards = () => {
 							{
 								<SetupCardContent>
 									{
-										((card.id === 'site-visibility') && <SiteVisibility />) ||
-										((card.id === 'google-analytics') && <GoogleAnalytics />) ||
-										((card.id === 'launch-domain') && <SiteDomain />) ||
+										((card.id === 'site-visibility') && <SiteVisibility key={ card.id } { ...card } />) ||
+										((card.id === 'google-analytics') && <GoogleAnalytics key={ card.id } { ...card } />) ||
+										((card.id === 'launch-domain') && <SiteDomain key={ card.id } { ...card } />) ||
 										<></>
 									}
 									<SetupCardTasks rows={ card.rows } />

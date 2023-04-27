@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element';
+import { useState, useReducer } from '@wordpress/element';
 import {
 	Button,
 	CheckboxInput,
@@ -10,6 +10,10 @@ import {
 } from '@moderntribe/wme-ui';
 import { Box, styled } from '@mui/material';
 import { getPasswordStrength } from '@site/utils';
+import {
+	removeNulls,
+	handleActionRequest
+} from '@moderntribe/wme-utils';
 
 const PasswordWrapper = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -20,19 +24,43 @@ const PasswordWrapper = styled(Box)(({ theme }) => ({
 	},
 }));
 
-const SiteVisibility = () => {
-	const [visibilityValues, setVisibilityValues] = useState({
-		hideSearchEngines: false,
-		restrictAccess: false,
+const SiteVisibility = (cardData:SetupCardAccordionInterface) => {
+	const { ajax, hideFromSearch, restrictAccess } = cardData;
+
+	const [visibility, updateVisibility] = useReducer((prev, next) => {
+		return { ...prev, ...next };
+	}, {
+		hideFromSearch: JSON.parse(hideFromSearch),
+		restrictAccess: JSON.parse(restrictAccess),
 		password: '',
 	});
 
 	const [passwordStrength, setPasswordStrength] = useState<PasswordStrengthType>();
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setVisibilityValues({
-			...visibilityValues,
-			[ event.target.name ]: event.target.type === 'checkbox' ? event.target.checked : event.target.value });
+	const handleSubmit = (visibilityData) => {
+		const data = removeNulls({
+			_wpnonce: ajax.nonce,
+			action: ajax.action,
+			sub_action: 'save',
+			hideFromSearch: visibilityData.hideFromSearch,
+			restrictAccess: visibilityData.restrictAccess,
+			password: visibilityData.password,
+		});
+
+		handleActionRequest(data)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => console.log(error));
+	};
+
+	const handleHideFromSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const updatedVisibility = {
+			...visibility,
+			[event.target.name]: event.target.checked,
+		};
+		updateVisibility(updatedVisibility);
+		handleSubmit(updatedVisibility);
 	};
 
 	const handlePasswordChange = (
@@ -41,7 +69,7 @@ const SiteVisibility = () => {
 		const strength = getPasswordStrength(event.target.value);
 
 		setPasswordStrength(strength as PasswordStrengthType);
-		setVisibilityValues({ ...visibilityValues, password: event.target.value });
+		updateVisibility({ password: event.target.value });
 	};
 
 	return (
@@ -51,9 +79,9 @@ const SiteVisibility = () => {
 					<InputLabel
 						control={
 							<CheckboxInput
-								checked={ visibilityValues.hideSearchEngines }
-								onChange={ handleChange }
-								name="hideSearchEngines"
+								checked={ visibility.hideFromSearch }
+								onChange={ handleHideFromSearchChange }
+								name="hideFromSearch"
 							/>
 						}
 						label={ __('Hide my sites from search engines, and whatever else.', 'moderntribe-sitebuilder') }
@@ -65,24 +93,24 @@ const SiteVisibility = () => {
 					<InputLabel
 						control={
 							<CheckboxInput
-								checked={ visibilityValues.restrictAccess }
-								onChange={ handleChange }
+								checked={ visibility.restrictAccess }
+								onChange={ (e) => updateVisibility({ restrictAccess: e.target.checked }) }
 								name="restrictAccess"
 							/>
 						}
 						label={ __('Restrict access to visitors with the password.', 'moderntribe-sitebuilder') }
-						checked={ visibilityValues.restrictAccess }
+						checked={ visibility.restrictAccess }
 					/>
 				}
 			/>
-			{ visibilityValues.restrictAccess && (
+			{ visibility.restrictAccess && (
 				<>
 					<PasswordWrapper mt={ 2 } mb={ 3 }>
 						<FormField
 							field={
 								<PasswordInput
 									name="password"
-									value={ visibilityValues.password }
+									value={ visibility.password }
 									chipColor={ passwordStrength?.color }
 									chipLabel={ passwordStrength?.label }
 									onChange={ handlePasswordChange }
@@ -94,6 +122,7 @@ const SiteVisibility = () => {
 						<Button
 							variant="contained"
 							sx={ { marginTop: '26px' } }
+							onClick={ handleSubmit }
 						>
 							{ __('Save', 'moderntribe-sitebuilder') }
 						</Button>
