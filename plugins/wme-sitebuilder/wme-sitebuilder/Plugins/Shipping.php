@@ -53,10 +53,17 @@ class Shipping {
 	 * @return array
 	 */
 	public function card_footer_props() {
-		// TODO: Temporary until we have the real links.
 		return [
-			'label' => __( 'Help with USPS', 'wme-sitebuilder' ),
-			'href'  => '#',
+			[
+				'label' => __('Help with Flat Rate Shipping', 'wme-sitebuilder'),
+				'href' => 'https://woocommerce.com/document/flat-rate-shipping/?quid=82cd3e1acfe149c4e92b227edc8761a1',
+				'target' => '_blank',
+			],
+			[
+				'label' => __('More info about the USPS Plugin', 'wme-sitebuilder'),
+				'href' => 'https://wordpress.org/plugins/elex-usps-shipping-method/#:~:text=ELEX%20USPS%20Shipping%20Method%20for,shipping%20address%20and%20cart%20content.',
+				'target' => '_blank',
+			]
 		];
 	}
 }
