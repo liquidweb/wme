@@ -2,7 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder\Cards;
 
-use Tribe\WME\Sitebuilder\Wizards\Wizard;
+use Tribe\WME\Sitebuilder\Wizards\FirstTimeConfiguration as Wizard;
 
 class FirstTimeConfiguration extends Card {
 
@@ -17,14 +17,14 @@ class FirstTimeConfiguration extends Card {
 	protected $card_slug = 'ftc';
 
 	/**
-	 * @var \Tribe\WME\Sitebuilder\Wizards\Wizard
+	 * @var Wizard
 	 */
 	protected $wizard;
 
 	/**
 	 * Construct.
 	 *
-	 * @param \Tribe\WME\Sitebuilder\Wizards\Wizard $wizard
+	 * @param Wizard $wizard
 	 */
 	public function __construct( Wizard $wizard ) {
 		$this->wizard = $wizard;
@@ -38,22 +38,34 @@ class FirstTimeConfiguration extends Card {
 	 * @return array
 	 */
 	public function props() {
-		return [
-			'id'        => 'ftc',
-			'navTitle'  => __( 'The Basics', 'wme-sitebuilder' ),
-			'title'     => __( 'Configure the Basics', 'wme-sitebuilder' ),
-			'intro'     => __( 'Set up the basics of your site and we\'ll get you started.', 'wme-sitebuilder' ),
-			'completed' => $this->wizard->isComplete(),
+		$props = [
+			'id'        => 'siteDetails',
+			'navTitle'  => __( 'Site Identity', 'wme-sitebuilder' ),
+			'title'     => __( 'Manage Site Identity', 'wme-sitebuilder' ),
+			'intro'     => __( 'Update your logo, company name and tagline.', 'wme-sitebuilder' ),
+			'completed' => false,
 			'rows'      => [
 				[
-					'id'         => 'ftc-wizard',
-					'type'       => 'task',
-					'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-					'title'      => __( 'Site Name, Logo & Details', 'wme-sitebuilder' ),
-					'intro'      => __( 'Tell us a little bit about your site.', 'wme-sitebuilder' ),
-					'wizardHash' => '/wizard/ftc',
+					'id'      => 'siteDetails-1',
+					'type'    => 'task',
+					'title'   => __( 'Edit Site Name, Tagline & Logo', 'wme-sitebuilder' ),
+					'url'     => $this->get_wp_customize_url('section', 'title_tagline'),
+				],
+				[
+					'id'      => 'siteDetails-2',
+					'type'    => 'task',
+					'title'   => __( 'Edit Site Icon', 'wme-sitebuilder' ),
+					'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_site_identity'),
+				],
+				[
+					'id'      => 'siteDetails-3',
+					'type'    => 'task',
+					'title'   => __( 'Update Social Links', 'wme-sitebuilder' ),
+					'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_social'),
 				],
 			],
 		];
+
+		return $props;
 	}
 }

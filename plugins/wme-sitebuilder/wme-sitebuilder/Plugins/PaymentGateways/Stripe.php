@@ -31,7 +31,7 @@ class Stripe extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $max_supported_version = '7.0.2';
+	protected $max_supported_version = '7.3.0';
 
 	/**
 	 * @var string
@@ -107,8 +107,8 @@ class Stripe extends Plugin {
 	 */
 	public function card_footer_props() {
 		return [
-			'label' => __( 'Help with Stripe', 'wme-sitebuilder' ),
-			'href'  => 'wp101:woocommerce-stripe',
+			'label' => __( 'Learn About Stripe', 'wme-sitebuilder' ),
+			'href'  => esc_url('https://woocommerce.com/document/stripe/'),
 		];
 	}
 

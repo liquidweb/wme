@@ -31,7 +31,7 @@ class PayPal extends Plugin {
 	/**
 	 * @var string
 	 */
-	protected $max_supported_version = '2.0.2';
+	protected $max_supported_version = '2.0.4';
 
 	/**
 	 * @var string
@@ -107,8 +107,8 @@ class PayPal extends Plugin {
 	 */
 	public function card_footer_props() {
 		return [
-			'label' => __( 'Help with Paypal', 'wme-sitebuilder' ),
-			'href'  => 'wp101:woocommerce-paypal-standard',
+			'label' => __( 'Learn About Paypal', 'wme-sitebuilder' ),
+			'href'  => esc_url('https://woocommerce.com/document/woocommerce-paypal-payments/'),
 		];
 	}
 
