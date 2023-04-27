@@ -1,37 +1,20 @@
 import { CardSelectGroup, CardSelectItem } from '@moderntribe/wme-ui';
 import { Box, Stack, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
-import {
-	NewspaperIcon,
-	GraduationIcon,
-	ShoppingBagIcon,
-	TicketIcon
-} from '@sb/icons';
 import { FtcStringData } from '@ftc/data/constants';
-const { siteDetails } = FtcStringData;
+import { FTC_PROPS } from '@sb/constants';
+import {
+	Article,
+	ChatBubbleOutline,
+	Info,
+	PriceChange,
+	ShoppingCart,
+	SupervisorAccount,
+	WebAsset
+} from '@mui/icons-material';
 
-const cards = [
-	{
-		value: 'I want to Book Digital or In-Person appointments',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		icon: <GraduationIcon />
-	},
-	{
-		value: 'I want to offer classes',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		icon: <NewspaperIcon />
-	},
-	{
-		value: 'I want to share news and write blogs',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		icon: <ShoppingBagIcon />
-	},
-	{
-		value: 'I want to sell retail goods',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-		icon: <TicketIcon />
-	}
-];
+const { siteDetails } = FtcStringData;
+const cards = FTC_PROPS.goal_choices;
 
 const Goals = () => {
 	const {
@@ -41,6 +24,27 @@ const Goals = () => {
 
 	const handleSelect = (value: string[]) => {
 		setFormValue('goals', value);
+	};
+
+	const goalIcon = (icon: any) => {
+		switch (icon) {
+			case "Article":
+				return <Article />;
+			case "ChatBubble":
+				return <ChatBubbleOutline />;
+			case "Default":
+				return <Info />;
+			case "PriceChange":
+				return <PriceChange />;
+			case "ShoppingCart":
+				return <ShoppingCart />;
+			case "SupervisorAccount":
+				return <SupervisorAccount />;
+			case "WebAsset":
+				return <WebAsset />;
+			default:
+				return icon;
+		}
 	};
 
 	return (
@@ -57,11 +61,11 @@ const Goals = () => {
 				>
 					{ cards.map((item) => (
 						<CardSelectItem
-							key={ item.value }
+							key={ item.key }
 							primary={ item.value }
 							secondary={ item.description }
-							icon={ item.icon }
-							value={ item.value }
+							icon={ goalIcon(item.icon ) }
+							value={ item.key }
 						/>
 					)) }
 				</CardSelectGroup>

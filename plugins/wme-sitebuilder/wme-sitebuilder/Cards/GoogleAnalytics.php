@@ -14,7 +14,6 @@ class GoogleAnalytics extends Card {
 	 */
 	protected $card_slug = 'google-analytics';
 
-
 	/**
 	 * Construct.
 	 *
