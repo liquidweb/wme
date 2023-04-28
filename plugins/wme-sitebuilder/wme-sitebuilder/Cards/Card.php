@@ -67,4 +67,20 @@ abstract class Card {
 		printf( '<script>window[%s]["cards"].push( %s )</script>%s', $admin_slug, $props, PHP_EOL );
 	}
 
+	/**
+	 * Get the URL for the WP Customizer including the section to focus on.
+	 *
+	 * @return string
+	 */
+	protected function get_wp_customize_url(string $focus, string $target) {
+		$return_url = add_query_arg( 'page', $this->admin_page_slug, admin_url( 'admin.php' ) );
+
+		return add_query_arg(
+			[
+				sprintf('autofocus[%s]', $focus) => $target,
+				'return'             => rawurlencode( $return_url )
+			],
+			admin_url( 'customize.php' )
+		);
+	}
 }

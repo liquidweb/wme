@@ -2,7 +2,9 @@
 
 namespace Tribe\WME\Sitebuilder\Modules;
 
+use Tribe\WME\Sitebuilder\Cards\SiteVisibility;
 use Tribe\WME\Sitebuilder\Concerns\HasAssets;
+use Tribe\WME\Sitebuilder\Container;
 
 class SiteSettings extends Module {
 
@@ -55,6 +57,9 @@ class SiteSettings extends Module {
 
 		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts' ], 5 );
 		add_action( sprintf( '%s/print_scripts', $this->menu_slug ), [ $this, 'actionPrintScripts_15' ], 15 );
+
+		add_action( 'admin_head', [ $this, 'actionSiteVisibilityBar' ] );
+		add_action( 'admin_head', [ $this, 'addSiteVisibilityStyles' ] );
 	}
 
 	/**
@@ -100,4 +105,42 @@ class SiteSettings extends Module {
 	public function actionPrintScripts_15() {
 		$this->enqueueScript( 'wme-site-settings', 'site-settings.js', [ 'wp-element', 'underscore', 'wp-api', 'wp-edit-post', 'password-strength-meter' ] );
 	}
+
+	/**
+	 * Add the site visibility bar to the admin bar.
+	 *
+	 * @return void
+	 */
+	public function actionSiteVisibilityBar() {
+		printf( '<div class="site-visibility-bar">%s</div>', $this->get_site_visibility() );
+	}
+
+	/**
+	 * Get the site visibility.
+	 *
+	 * @return string
+	 */
+	protected function get_site_visibility() {
+		$site_visibility = Container::getInstance()->get( SiteVisibility::class );
+
+		if ( $site_visibility->isHiddenFromSearchEngines() ) {
+			return '<span class="dashicons dashicons-search"></span>' . __( 'Your site is hidden from search engines', 'wme-sitebuilder' );
+		}
+
+		if ( $site_visibility->isPasswordProtected() ) {
+			return '<span class="dashicons dashicons-lock"></span>' . __( 'Your site is currently hidden with a password', 'wme-sitebuilder' );
+		}
+
+		return '<span class="dashicons dashicons-visibility"></span>' . __( 'Your site is visible to everyone', 'wme-sitebuilder' );
+	}
+
+	/**
+	 * Enqueue the site visibility styles.
+	 *
+	 * @return void
+	 */
+	public function addSiteVisibilityStyles() {
+		$this->enqueueStyle( 'site-visibility', 'admin/site-visibility-bar.css' );
+	}
+
 }

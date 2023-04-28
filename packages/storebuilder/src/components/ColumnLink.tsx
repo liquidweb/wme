@@ -8,6 +8,7 @@ import { getVideoSource } from '@store/utils';
 import { SimpleModal } from '@store/components';
 import SvgIcon from '@mui/material/SvgIcon';
 import Add from '@mui/icons-material/Add';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
 import LocalLibrary from '@mui/icons-material/LocalLibrary';
 import Upload from '@mui/icons-material/Upload';
 import School from '@mui/icons-material/School';
@@ -19,6 +20,7 @@ const icons: {
 	[key: string]: SvgIconComponent
 } = {
 	Add,
+	AddShoppingCart,
 	Downloading,
 	LocalLibrary,
 	School,
