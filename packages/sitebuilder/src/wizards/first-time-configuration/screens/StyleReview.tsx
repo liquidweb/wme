@@ -4,9 +4,10 @@ import { useFirstTimeConfiguration, useWizard } from '@sb/hooks';
 import { ModalDeviceSelection } from '@sb/components';
 
 const deviceWrapperSx = {
-	position: 'sticky',
-	zIndex: 2,
-	top: '15px',
+	position: 'fixed',
+	left: '50%',
+	zIndex: 999,
+	top: '58px',
 	width: '400px',
 	marginTop: '-42px',
 	paddingBottom: '18px',
