@@ -264,9 +264,6 @@ importers:
       '@types/react-dom':
         specifier: ^17.0.18
         version: 17.0.18
-      '@types/wordpress__block-serialization-default-parser':
-        specifier: ^3.2.1
-        version: 3.2.1
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.33.1
         version: 5.46.1(@typescript-eslint/parser@5.46.1)(eslint@8.29.0)(typescript@4.9.4)
@@ -9467,16 +9464,6 @@ packages:
       '@types/webpack-sources': 3.2.0
       anymatch: 3.1.3
       source-map: 0.6.1
-
-  /@types/wordpress__block-serialization-default-parser@3.2.1:
-    resolution: {integrity: sha512-qbeBeTFZUU/NnBLyowlxy6bu0/+bHbYNFdyr/EbvOoEQ0RK7pGyOrRw0OuPkgzPaoL/KHs8dp2eaSODHwxBkIQ==}
-    dependencies:
-      '@types/wordpress__block-serialization-spec-parser': 3.1.1
-    dev: true
-
-  /@types/wordpress__block-serialization-spec-parser@3.1.1:
-    resolution: {integrity: sha512-IyK0QrC4aDGhLlSkA80AK9CWsF/AHamUoigiP4ZpbfXcbX12eUTifYBQQg462HU5yPAdcqtMIMSWmXOjUH6H4A==}
-    dev: true
 
   /@types/ws@8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
