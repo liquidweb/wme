@@ -75,14 +75,14 @@ declare global {
 		intro?: string;
 		completed: boolean;
 		navTitle: string;
-		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
+		rows: (SetupCardRowInterface)[];
 		footer?: SetupCardFooter;
 	}
 
 	interface SetupCardFooter {
 		collapsible: boolean;
 		collapsibleLabel?: string;
-		rows: (SetupCardFooterRowColumns | SetupCardFooterRowLinks | SetupCardRowGoLIveInterface)[]
+		rows: (SetupCardFooterRowColumns | SetupCardFooterRowLinks)[]
 	}
 
 	interface SetupCardFooterRowColumns {

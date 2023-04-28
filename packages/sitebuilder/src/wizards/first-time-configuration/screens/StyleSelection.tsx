@@ -1,33 +1,9 @@
-import { useFirstTimeConfiguration } from '@sb/hooks';
-import { TemplateSelectGroup, TemplateSelectItem } from '@moderntribe/wme-ui';
+import { useFirstTimeConfiguration, useKadencePages } from '@sb/hooks';
 import { Box } from '@mui/material';
-
-const templateData = [
-	{
-		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview-2.png',
-		id: '1'
-	},
-	{
-		embed: 'https://tri.be/',
-		id: '2'
-	},
-	{
-		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview-2.png',
-		id: '3'
-	},
-	{
-		embed: 'https://tri.be/',
-		id: '4'
-	},
-	{
-		image: 'http://localhost:8888/wp-content/uploads/2023/03/template-preview-2.png',
-		id: '5'
-	},
-	{
-		embed: 'https://tri.be/',
-		id: '6'
-	}
-];
+import getTemplateStyles from '../data/styles';
+import { useEffect, useState } from 'react';
+import KadenceTemplateItem, { TemplateSelectItemProps } from '../components/KadenceTemplateItem';
+import KadenceTemplateGroup from '../components/KadenceTemplateGroup';
 
 const StyleSelection = () => {
 	const {
@@ -36,26 +12,35 @@ const StyleSelection = () => {
 		shouldBlockNextStep
 	} = useFirstTimeConfiguration();
 
+	const { data, loading } = useKadencePages();
+	const [pages, setPages] = useState<TemplateSelectItemProps[]>();
+	const styles = getTemplateStyles();
+
 	const handleTemplateChange = (value: string) => {
 		setFormValue('template', value);
 		shouldBlockNextStep(false, 4);
 	};
 
+	useEffect(() => {
+		if (! loading && data) {
+			const homePageKeys = Object.keys(data).filter((key) => data[ key ].name.includes('Home'));
+			setPages(homePageKeys.map((key) => data[ key ]));
+		}
+	}, [loading, data]);
+
 	return (
-		// Padding/margin doesn't take effect here - using a percent width instead
-		<Box sx={ { width: '95%', height: '100%' } }>
-			<TemplateSelectGroup>
-				{ templateData.map((template) => (
-					<TemplateSelectItem
-						key={ template.id }
-						imageSrc={ template.image }
-						imageAlt={ 'Theme preview image' }
-						websiteSrc={ template.embed }
-						selected={ form.template.value === template.id }
-						onClick={ () => handleTemplateChange(template.id) }
+		<Box sx={ { width: '95%', minHeight: '100%' } }>
+			<KadenceTemplateGroup>
+				{ pages?.map((page, index) => (
+					<KadenceTemplateItem
+						key={ page.slug }
+						{ ...page }
+						style={ styles[ index ] }
+						onClick={ handleTemplateChange }
+						selected={ page.slug === form.template.value }
 					/>
 				)) }
-			</TemplateSelectGroup>
+			</KadenceTemplateGroup>
 		</Box>
 	);
 };
