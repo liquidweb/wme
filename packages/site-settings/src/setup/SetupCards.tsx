@@ -12,7 +12,7 @@ const Container = styled(Box)<BoxProps>(({ theme }) => ({
 
 const SetupCards = () => {
 	const { siteSettingsState } = useSiteSettings();
-	const { cards } = siteSettingsState;
+	const { cards, siteVisibilityValues } = siteSettingsState;
 
 	return (
 		<Container>
@@ -24,8 +24,8 @@ const SetupCards = () => {
 							id={ card.id }
 							header={ card.title }
 							subHeader={ card.intro }
-							chipText={ card.chipText }
-							chipBackground={ card.chipBackground }
+							chipText={ card.id === 'site-visibility' ? siteVisibilityValues?.chipText : card.chipText }
+							chipBackground={ card.id === 'site-visibility' ? siteVisibilityValues?.chipBackground : card.chipBackground }
 						>
 							{
 								<SetupCardContent>

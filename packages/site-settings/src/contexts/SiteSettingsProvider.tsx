@@ -11,8 +11,8 @@ export interface SiteSettingsStateInterface {
 export interface SiteSettingsContextInterface {
 	siteSettingsState: SiteSettingsStateInterface;
 	setSiteSettingsState: (props: any) => void;
-	setSiteVisibilityValues: (props: any) => void;
-	submitSiteVisibilityForm: (props?: any) => void;
+	setSiteVisibilityValues: (props?: SiteVisibilityValuesInterface) => void;
+	submitSiteVisibilityForm: (formData?: SiteVisibilityValuesInterface, doOptimisticUpdate?: boolean) => void;
 }
 
 export type setSiteVisibilityValuesFn = (props: any) => void;
@@ -22,8 +22,8 @@ const localData: SiteSettingsStateInterface = {
 	cards: CARDS,
 	siteVisibilityValues: {
 		ajax: SITE_VISIBILITY?.ajax,
-		hideFromSearch: SITE_VISIBILITY?.hideFromSearch === 'true',
-		restrictAccess: SITE_VISIBILITY?.restrictAccess === 'true',
+		hideFromSearch: SITE_VISIBILITY?.hideFromSearch,
+		restrictAccess: SITE_VISIBILITY?.restrictAccess,
 		password: SITE_VISIBILITY?.password,
 		chipText: SITE_VISIBILITY?.chipText,
 		chipBackground: SITE_VISIBILITY?.chipBackground,
@@ -56,7 +56,7 @@ const SiteSettingsProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const submitSiteVisibilityForm = (formData: SiteVisibilityValuesInterface) => {
+	const submitSiteVisibilityForm = (formData: SiteVisibilityValuesInterface, doOptimisticUpdate: false) => {
 		const { siteVisibilityValues } = siteSettingsState;
 		const data = removeNulls({
 			_wpnonce: siteVisibilityValues?.ajax?.nonce || '',
@@ -64,30 +64,26 @@ const SiteSettingsProvider = ({ children }: { children: React.ReactNode }) => {
 			sub_action: 'save',
 			hideFromSearch: siteVisibilityValues?.hideFromSearch,
 			restrictAccess: siteVisibilityValues?.restrictAccess,
+			chipText: siteVisibilityValues?.hideFromSearch ? 'Visible' : 'Hidden',
+			chipBackground: siteVisibilityValues?.hideFromSearch ? 'success' : 'error',
 			password: siteVisibilityValues?.password,
 			...formData,
 		});
 
 		handleActionRequest(data)
 			.then((response: any) => {
-				if (response === 'success') {
-					// Find 'site-visibility' card and set it to 'completed'
-					const cards = siteSettingsState?.cards?.map((card) => {
-						if (card?.id === 'site-visibility') {
-							// eslint-disable-next-line no-unused-expressions
-							card.chipText = siteVisibilityValues?.hideFromSearch ? 'Hidden' : 'Visible';
-							card.chipBackground = siteVisibilityValues?.hideFromSearch ? 'error' : 'success';
-						}
-						return card;
-					});
-
-					setSiteSettingsState({
-						...siteSettingsState,
-						cards,
+				if (response === 'success' && doOptimisticUpdate) {
+					setSiteVisibilityValues({
+						...siteVisibilityValues,
+						...data,
 					});
 				}
 			})
-			.catch((error) => console.log(error));
+			.catch(() => {
+				setSiteVisibilityValues({
+					...siteVisibilityValues,
+				});
+			});
 	};
 
 	return (

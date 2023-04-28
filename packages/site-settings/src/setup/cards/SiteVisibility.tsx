@@ -39,7 +39,7 @@ const SiteVisibility = () => {
 		});
 		submitSiteVisibilityForm({
 			[ event.target.name ]: event.target.checked
-		});
+		}, true);
 	};
 
 	const handleRestrictAccessChange = (event: React.ChangeEvent<HTMLInputElement>) => {
