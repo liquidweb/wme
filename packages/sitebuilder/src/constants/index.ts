@@ -22,4 +22,6 @@ export const GO_LIVE_PROPS = SITEBUILDER.wizards.golive;
 
 export const NEXCESS_SUPPORT_URL = SITEBUILDER.support_url;
 
+export const KADENCE_DYNAMIC_STYLES = SITEBUILDER.dynamic_css;
+
 export * from './theme';
