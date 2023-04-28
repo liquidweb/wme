@@ -186,4 +186,22 @@ class SiteVisibility extends Card {
 		$this->getData()->set( 'password', $value );
 	}
 
+	/**
+	 * Check if the site is hidden from search engines.
+	 *
+	 * @return bool
+	 */
+	public function isHiddenFromSearchEngines() {
+		return $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ) == 1;
+	}
+
+	/**
+	 * Check if the site is password protected.
+	 *
+	 * @return bool
+	 */
+	public function isPasswordProtected() {
+		return $this->getData()->get( self::FIELD_RESTRICT_ACCESS, false );
+	}
+
 }
