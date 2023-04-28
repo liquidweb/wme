@@ -29,7 +29,6 @@ const StyleSelection = () => {
 	}, [loading, data]);
 
 	return (
-		// Padding/margin doesn't take effect here - using a percent width instead
 		<Box sx={ { width: '95%', minHeight: '100%' } }>
 			<KadenceTemplateGroup>
 				{ pages?.map((page, index) => (
