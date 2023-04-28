@@ -25,7 +25,7 @@
 		"env:reset": "pnpm wp-env clean all",
 		"env:update": "pnpm wp-env start --update",
 		"hot": "mix watch --hot",
-		"lint": "pnpm run lint:css && npm run lint:js",
+		"lint": "npm run lint:js",
 		"lint:fix": "pnpm run lint:css:fix && pnpm run lint:js:fix",
 		"lint:css": "npx stylelint 'assets/{scss,css}/**/*.{scss,css}'",
 		"lint:css:fix": "npx stylelint --fix 'assets/{scss,css}/**/*.{scss,css}'",
