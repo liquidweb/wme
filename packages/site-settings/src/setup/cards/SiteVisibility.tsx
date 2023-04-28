@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useReducer } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import {
 	Button,
 	CheckboxInput,
@@ -10,10 +10,7 @@ import {
 } from '@moderntribe/wme-ui';
 import { Box, styled } from '@mui/material';
 import { getPasswordStrength } from '@site/utils';
-import {
-	removeNulls,
-	handleActionRequest
-} from '@moderntribe/wme-utils';
+import { useSiteSettings } from '@site/hooks';
 
 const PasswordWrapper = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -24,43 +21,37 @@ const PasswordWrapper = styled(Box)(({ theme }) => ({
 	},
 }));
 
-const SiteVisibility = (cardData:SetupCardAccordionInterface) => {
-	const { ajax, hideFromSearch, restrictAccess } = cardData;
+const SiteVisibility = () => {
+	const {
+		siteSettingsState,
+		setSiteVisibilityValues,
+		submitSiteVisibilityForm,
+	} = useSiteSettings();
 
-	const [visibility, updateVisibility] = useReducer((prev, next) => {
-		return { ...prev, ...next };
-	}, {
-		hideFromSearch: JSON.parse(hideFromSearch),
-		restrictAccess: JSON.parse(restrictAccess),
-		password: '',
-	});
+	const { siteVisibilityValues } = siteSettingsState;
 
 	const [passwordStrength, setPasswordStrength] = useState<PasswordStrengthType>();
 
-	const handleSubmit = (visibilityData) => {
-		const data = removeNulls({
-			_wpnonce: ajax.nonce,
-			action: ajax.action,
-			sub_action: 'save',
-			hideFromSearch: visibilityData.hideFromSearch,
-			restrictAccess: visibilityData.restrictAccess,
-			password: visibilityData.password,
+	const handleHideFromSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSiteVisibilityValues({
+			...siteVisibilityValues,
+			[ event.target.name ]: event.target.checked,
 		});
-
-		handleActionRequest(data)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => console.log(error));
+		submitSiteVisibilityForm({
+			[ event.target.name ]: event.target.checked
+		});
 	};
 
-	const handleHideFromSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const updatedVisibility = {
-			...visibility,
-			[event.target.name]: event.target.checked,
-		};
-		updateVisibility(updatedVisibility);
-		handleSubmit(updatedVisibility);
+	const handleRestrictAccessChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSiteVisibilityValues({
+			...siteVisibilityValues,
+			[ event.target.name ]: event.target.checked,
+		});
+		if (! event.target.checked) {
+			submitSiteVisibilityForm({
+				[ event.target.name ]: event.target.checked
+			});
+		}
 	};
 
 	const handlePasswordChange = (
@@ -69,7 +60,10 @@ const SiteVisibility = (cardData:SetupCardAccordionInterface) => {
 		const strength = getPasswordStrength(event.target.value);
 
 		setPasswordStrength(strength as PasswordStrengthType);
-		updateVisibility({ password: event.target.value });
+		setSiteVisibilityValues({
+			...siteVisibilityValues,
+			[ event.target.name ]: event.target.value,
+		});
 	};
 
 	return (
@@ -79,7 +73,7 @@ const SiteVisibility = (cardData:SetupCardAccordionInterface) => {
 					<InputLabel
 						control={
 							<CheckboxInput
-								checked={ visibility.hideFromSearch }
+								checked={ siteVisibilityValues?.hideFromSearch }
 								onChange={ handleHideFromSearchChange }
 								name="hideFromSearch"
 							/>
@@ -93,24 +87,22 @@ const SiteVisibility = (cardData:SetupCardAccordionInterface) => {
 					<InputLabel
 						control={
 							<CheckboxInput
-								checked={ visibility.restrictAccess }
-								onChange={ (e) => updateVisibility({ restrictAccess: e.target.checked }) }
-								name="restrictAccess"
-							/>
+								checked={ siteVisibilityValues?.restrictAccess }
+								onChange={ handleRestrictAccessChange }
+								name="restrictAccess"></CheckboxInput>
 						}
 						label={ __('Restrict access to visitors with the password.', 'moderntribe-sitebuilder') }
-						checked={ visibility.restrictAccess }
 					/>
 				}
 			/>
-			{ visibility.restrictAccess && (
+			{ siteVisibilityValues?.restrictAccess && (
 				<>
 					<PasswordWrapper mt={ 2 } mb={ 3 }>
 						<FormField
 							field={
 								<PasswordInput
 									name="password"
-									value={ visibility.password }
+									value={ siteVisibilityValues?.password }
 									chipColor={ passwordStrength?.color }
 									chipLabel={ passwordStrength?.label }
 									onChange={ handlePasswordChange }
@@ -122,7 +114,9 @@ const SiteVisibility = (cardData:SetupCardAccordionInterface) => {
 						<Button
 							variant="contained"
 							sx={ { marginTop: '26px' } }
-							onClick={ handleSubmit }
+							onClick={ () => {
+								submitSiteVisibilityForm();
+							} }
 						>
 							{ __('Save', 'moderntribe-sitebuilder') }
 						</Button>

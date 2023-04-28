@@ -8,6 +8,8 @@ export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
 export const CARDS: SetupCardAccordionInterface[] = SITE_SETTINGS?.cards || [];
 
+export const SITE_VISIBILITY = CARDS?.find((card) => card.id === 'site-visibility');
+
 export const WIZARDS = SITE_SETTINGS?.wizards || {};
 
 export const GO_LIVE_PROPS = SITE_SETTINGS.wizards.golive;
