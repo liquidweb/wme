@@ -21,12 +21,12 @@ class StoreDetails extends Module implements LoadsConditionally {
 	/**
 	 * @var string
 	 */
-	protected $page_title = 'Store Details';
+	protected $page_title = 'Store Setup';
 
 	/**
 	 * @var string
 	 */
-	protected $menu_title = 'Store Details';
+	protected $menu_title = 'Store Setup';
 
 	/**
 	 * @var string
@@ -72,13 +72,13 @@ class StoreDetails extends Module implements LoadsConditionally {
 	 * Set up the Module.
 	 */
 	public function setup() {
-		$this->menu_title = __( 'Store Details', 'wme-sitebuilder' );
+		$this->menu_title = __( 'Store Setup', 'wme-sitebuilder' );
 
 		$this->wizards = [
 			$this->factory->make( StoreSetupWizard::class ),
+			$this->factory->make( PaymentGatewayStripe::class ),
+			$this->factory->make( PaymentGatewayPayPal::class )
 		];
-
-		$this->addPaymentCardsWizards();
 
 		parent::setup();
 	}
@@ -94,32 +94,6 @@ class StoreDetails extends Module implements LoadsConditionally {
 	}
 
 	/**
-	 * Add payment cards and wizards.
-	 */
-	protected function addPaymentCardsWizards() {
-		$plugins = [];
-
-		$stripe = new Stripe();
-		$paypal = new PayPal();
-
-		if ( ! $stripe->isInstalled() || $stripe->isVersionSupported() ) {
-			$plugins['stripe'] = $stripe;
-			$this->wizards[]   = $this->factory->make( PaymentGatewayStripe::class );
-		}
-
-		if ( ! $paypal->isInstalled() || $paypal->isVersionSupported() ) {
-			$plugins['paypal'] = $paypal;
-			$this->wizards[]   = $this->factory->make( PaymentGatewayPayPal::class );
-		}
-
-		if ( empty( $plugins ) ) {
-			return;
-		}
-
-		$this->cards[] = new PaymentGatewaysCard( $plugins );
-	}
-
-	/**
 	 * Action: toplevel_page_sitebuilder-store-details/print_scripts.
 	 *
 	 * Add properties for page headline and description.
@@ -127,7 +101,7 @@ class StoreDetails extends Module implements LoadsConditionally {
 	public function actionPrintScripts() {
 		$props = [
 			'app_name'    => __( 'Store', 'wme-sitebuilder' ),
-			'logo'        => 'sitebuilder-logo.svg',
+			'logo'        => $this->get_logo(),
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
 			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),

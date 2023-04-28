@@ -1,13 +1,12 @@
-import { cards } from './cards.temp';
-
 export const SITEBUILDER = window.sitebuilder;
 
 export const ASSETS_URL = SITEBUILDER.assets_url;
 
 export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
-// export const CARDS: SetupCardInterface[] = SITEBUILDER.cards || [];
-export const CARDS: SetupCardInterface[] = cards;
+export const LOGO = SITEBUILDER.logo;
+
+export const CARDS: SetupCardInterface[] = SITEBUILDER.cards || [];
 
 export const WIZARDS = SITEBUILDER.wizards || {};
 

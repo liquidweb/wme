@@ -11,12 +11,12 @@ class SiteBuilder extends Module {
 	/**
 	 * @var string
 	 */
-	protected $page_title = 'Site Details';
+	protected $page_title = 'Site Setup';
 
 	/**
 	 * @var string
 	 */
-	protected $menu_title = 'Set up';
+	protected $menu_title = 'Site Setup';
 
 	/**
 	 * @var string
@@ -31,7 +31,7 @@ class SiteBuilder extends Module {
 	/**
 	 * @var string
 	 */
-	protected $icon_url = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGZpbGw9IiNhN2FhYWQiIHZpZXdCb3g9Ii0zIC00IDEzIDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0zLjQ2MTYgMTUuMjU4aC0wLjgzMzMzbDAuODMzMzMtNS44MzMzaC0yLjkxNjdjLTAuNDgzMzMgMC0wLjQ3NS0wLjI2NjY3LTAuMzE2NjctMC41NSAwLjE1ODMzLTAuMjgzMzMgMC4wNDE2NjctMC4wNjY2NyAwLjA1ODMzNC0wLjEgMS4wNzUtMS45IDIuNjkxNy00LjczMzMgNC44NDE3LTguNTE2N2gwLjgzMzMzbC0wLjgzMzMzIDUuODMzM2gyLjkxNjdjMC40MDgzNCAwIDAuNDY2NjcgMC4yNzUgMC4zOTE2NyAwLjQyNWwtMC4wNTgzMyAwLjEyNWMtMy4yODMzIDUuNzQxNi00LjkxNjcgOC42MTY2LTQuOTE2NyA4LjYxNjZ6IiBmaWxsPSIjYTdhYWFkIi8+PC9zdmc+';
+	protected $icon_url = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxOCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuMDAwMDggOC44MzMzM0MyLjE2Njc1IDguODMzMzMgMC42NjY3NDggMTAuMzMzMyAwLjY2Njc0OCAxMi4xNjY3QzAuNjY2NzQ4IDE0IDIuMTY2NzUgMTUuNSA0LjAwMDA4IDE1LjVDNS44MzM0MSAxNS41IDcuMzMzNDIgMTQgNy4zMzM0MiAxMi4xNjY3QzcuMzMzNDIgMTAuMzMzMyA1LjgzMzQxIDguODMzMzMgNC4wMDAwOCA4LjgzMzMzWk05LjAwMDA4IDAuNUM3LjE2Njc1IDAuNSA1LjY2Njc1IDIgNS42NjY3NSAzLjgzMzMzQzUuNjY2NzUgNS42NjY2NyA3LjE2Njc1IDcuMTY2NjcgOS4wMDAwOCA3LjE2NjY3QzEwLjgzMzQgNy4xNjY2NyAxMi4zMzM0IDUuNjY2NjcgMTIuMzMzNCAzLjgzMzMzQzEyLjMzMzQgMiAxMC44MzM0IDAuNSA5LjAwMDA4IDAuNVpNMTQuMDAwMSA4LjgzMzMzQzEyLjE2NjcgOC44MzMzMyAxMC42NjY3IDEwLjMzMzMgMTAuNjY2NyAxMi4xNjY3QzEwLjY2NjcgMTQgMTIuMTY2NyAxNS41IDE0LjAwMDEgMTUuNUMxNS44MzM0IDE1LjUgMTcuMzMzNCAxNCAxNy4zMzM0IDEyLjE2NjdDMTcuMzMzNCAxMC4zMzMzIDE1LjgzMzQgOC44MzMzMyAxNC4wMDAxIDguODMzMzNaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K';
 
 	/**
 	 * @var null|int
@@ -42,7 +42,7 @@ class SiteBuilder extends Module {
 	 * Setup the Module.
 	 */
 	public function setup() {
-		$this->menu_title = __( 'Set up', 'wme-sitebuilder' );
+		$this->menu_title = __( 'Site Setup', 'wme-sitebuilder' );
 
 		parent::setup();
 	}
@@ -64,15 +64,12 @@ class SiteBuilder extends Module {
 	 */
 	public function actionPrintScripts() {
 		$props = [
-			'app_name'    => __( 'Site Details', 'wme-sitebuilder' ),
-			'logo'        => 'sitebuilder-logo.svg',
+			'app_name'    => __( 'Site Setup', 'wme-sitebuilder' ),
+			'logo'        => $this->get_logo(),
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
-			'intro'       => __( 'Our set up wizard will help you get the most out of your site.', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
-			'logout_url'  => wp_logout_url(),
 			'assets_url'  => $this->getAssetSource( 'sitebuilder/' ),
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
-			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],
 			'dynamic_css' => apply_filters( 'kadence_editor_dynamic_css', '' ),
 			'wizards'     => (object) [],

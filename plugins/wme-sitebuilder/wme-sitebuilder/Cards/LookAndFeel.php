@@ -40,10 +40,9 @@ class LookAndFeel extends Card {
 	public function props() {
 		return [
 			'id'        => 'look-and-feel',
-			'navTitle'  => __( 'Design', 'wme-sitebuilder' ),
-			'title'     => __( 'Design', 'wme-sitebuilder' ),
-			'intro'     => __( 'It\'s all about appearances.', 'wme-sitebuilder' ),
-			'completed' => $this->wizard->isComplete(),
+			'navTitle'  => __( 'Styles', 'wme-sitebuilder' ),
+			'title'     => __( 'Update Site Style', 'wme-sitebuilder' ),
+			'intro'     => __( 'Fine tune your selected style choices.', 'wme-sitebuilder' ),
 			'rows'      => $this->rows(),
 			'footers'   => $this->footer(),
 		];
@@ -55,30 +54,24 @@ class LookAndFeel extends Card {
 	 * @return array[] The card rows.
 	 */
 	protected function rows() {
-		if ( $this->wizard->isComplete() ) {
-			$return_url     = add_query_arg( 'page', $this->admin_page_slug, admin_url( 'admin.php' ) );
-			$customizer_url = add_query_arg( 'return', rawurlencode( $return_url ), admin_url( 'customize.php' ) );
-
-			return [
-				[
-					'id'      => 'fonts-colors-wizard',
-					'type'    => 'task',
-					'taskCta' => __( 'Get Started', 'wme-sitebuilder' ),
-					'title'   => __( 'Fonts & Colors', 'wme-sitebuilder' ),
-					'intro'   => __( 'Further customize the look of your site.', 'wme-sitebuilder' ),
-					'url'     => $customizer_url,
-				],
-			];
-		}
-
 		return [
 			[
-				'id'         => 'look-and-feel-wizard',
-				'type'       => 'task',
-				'taskCta'    => __( 'Get Started', 'wme-sitebuilder' ),
-				'title'      => __( 'Change your font styles and colors', 'wme-sitebuilder' ),
-				'intro'      => __( 'Choose a design to start with and customize.', 'wme-sitebuilder' ),
-				'wizardHash' => '/wizard/look-and-feel',
+				'id'      => 'colors',
+				'type'    => 'task',
+				'title'   => __( 'Update your colors', 'wme-sitebuilder' ),
+				'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_colors'),
+			],
+			[
+				'id'      => 'buttons',
+				'type'    => 'task',
+				'title'   => __( 'Update your button styles', 'wme-sitebuilder' ),
+				'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_buttons'),
+			],
+			[
+				'id'      => 'typography',
+				'type'    => 'task',
+				'title'   => __( 'Update your typography', 'wme-sitebuilder' ),
+				'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_typography'),
 			],
 		];
 	}

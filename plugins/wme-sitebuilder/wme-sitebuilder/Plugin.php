@@ -3,6 +3,7 @@
 namespace Tribe\WME\Sitebuilder;
 
 use Psr\Log\LoggerInterface;
+use Tribe\WME\Sitebuilder\Admin\ColorScheme\ColorSchemeManager;
 use Tribe\WME\Sitebuilder\Contracts\LoadsConditionally;
 use Tribe\WME\Sitebuilder\Modules\Module;
 
@@ -10,7 +11,6 @@ use Tribe\WME\Sitebuilder\Modules\Module;
  * The base plugin class.
  */
 class Plugin {
-
 	/**
 	 * The plugin's DI container instance.
 	 *
@@ -33,6 +33,13 @@ class Plugin {
 	protected $modules = [];
 
 	/**
+	 * An array of registered service providers.
+	 *
+	 * @var array<class-string<\Tribe\WME\Sitebuilder\Contracts\Providable>, \Tribe\WME\Sitebuilder\Contracts\Providable>
+	 */
+	protected $providers = [];
+
+	/**
 	 * Construct a new instance of the plugin.
 	 *
 	 * @param Container       $container The DI container instance.
@@ -49,10 +56,63 @@ class Plugin {
 	 * @return self
 	 */
 	public function init() {
+		// Boot all service providers.
+		$this->bootServiceProviders();
+
+		// Register the all service providers' WordPress hooks.
+		add_action( 'plugins_loaded', function () {
+			$this->loadServiceProviders();
+		}, 0 );
+
 		// Load all registered modules.
 		$this->loadModules();
 
+		// Get current user id
+		$user_id = get_current_user_id();
+
+		// Add admin color scheme.
+		$color_scheme_manager = $this->container->get( ColorSchemeManager::class );
+		$color_scheme_manager->register_admin_color_scheme();
+		$color_scheme_manager->set_color_scheme($user_id);
+
 		return $this;
+	}
+
+	/**
+	 * Register service providers.
+	 *
+	 * @param array<class-string<\Tribe\WME\Sitebuilder\Contracts\Providable[]>>  $providers
+	 *
+	 * @return void
+	 */
+	public function registerServiceProviders( array $providers ) {
+		foreach ( $providers as $provider ) {
+			$this->providers[ $provider ] = new $provider( $this->container );
+		}
+	}
+
+	/**
+	 * Boot all registered service providers.
+	 *
+	 * @return void
+	 */
+	protected function bootServiceProviders() {
+		foreach ( $this->providers as $provider ) {
+			$provider->boot();
+		}
+	}
+
+	/**
+	 * Load all registered subscribers.
+	 *
+	 * @action plugins_loaded
+	 *
+	 * @return void
+	 */
+	protected function loadServiceProviders() {
+		foreach ( $this->providers as $provider ) {
+			$provider->register();
+		}
 	}
 
 	/**
