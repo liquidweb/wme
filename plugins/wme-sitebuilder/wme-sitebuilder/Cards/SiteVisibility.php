@@ -50,18 +50,16 @@ class SiteVisibility extends Card {
 	 * @return array
 	 */
 	public function props() {
-		$hidden = $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) ? 0 : 1 );
-
 		$details = [
 			'id'             => 'site-visibility',
 			'navTitle'       => __( 'Site Visibility', 'wme-sitebuilder' ),
 			'title'          => __( 'Site Visibility', 'wme-sitebuilder' ),
 			'intro'          => __( 'Limit who can access your site online.', 'wme-sitebuilder' ),
-			'hideFromSearch' => $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) ? 0 : 1 ),
-			'restrictAccess' => $this->getData()->get( self::FIELD_RESTRICT_ACCESS, false ),
+			'hideFromSearch' => $this->isHiddenFromSearchEngines(),
+			'restrictAccess' => $this->isPasswordProtected(),
 			'password'       => $this->getData()->get( self::FIELD_PASSWORD, '' ),
-			'chipText'       => $hidden == 'true' ? __( 'Hidden', 'wme-sitebuilder' ) : __( 'Visible', 'wme-sitebuilder' ),
-			'chipBackground' => $hidden == 'true' ? 'error' : 'success',
+			'chipText'       => $this->isHiddenFromSearchEngines() ? __( 'Hidden', 'wme-sitebuilder' ) : __( 'Visible', 'wme-sitebuilder' ),
+			'chipBackground' => $this->isHiddenFromSearchEngines() ? 'error' : 'success',
 		];
 
 		return $details;
@@ -77,7 +75,6 @@ class SiteVisibility extends Card {
 	 * @return array
 	 */
 	public function save() {
-		$save   = false;
 		$fields = [
 			self::FIELD_HIDE_FROM_SEARCH_ENGINES,
 			self::FIELD_RESTRICT_ACCESS,
@@ -113,13 +110,6 @@ class SiteVisibility extends Card {
 
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			call_user_func( $callable, $_REQUEST[ $field ] );
-
-			$save = true;
-		}
-
-		if ( $save ) {
-			// Save the data.
-			$this->getData()->save();
 		}
 
 		if ( ! empty( $this->errors ) ) {
@@ -137,16 +127,17 @@ class SiteVisibility extends Card {
 	 * @param string $value
 	 */
 	public function setHideFromSearch( $value ) {
-		$current = $this->getData()->get( 'hideFromSearch' );
+		$current = $this->isHiddenFromSearchEngines();
+		$value   = filter_var( $value, FILTER_VALIDATE_BOOLEAN );
 
 		if ( $current === $value ) {
 			return;
 		}
 
-		$this->getData()->set( 'hideFromSearch', $value );
+		$this->getData()->set( 'hideFromSearch', $value )->save();
 
 		// Update the WordPress option.
-		update_option( 'blog_public', $value == 1 ? 0 : 1 );
+		update_option( 'blog_public', $value ? 0 : 1 );
 
 		// Error handling.
 		if ( $value != ( get_option( 'blog_public' ) == 1 ? 0 : 1 ) ) {
@@ -161,12 +152,13 @@ class SiteVisibility extends Card {
 	 */
 	public function setRestrictAccess( $value ) {
 		$current = $this->getData()->get( 'restrictAccess' );
+		$value   = filter_var( $value, FILTER_VALIDATE_BOOLEAN );
 
 		if ( $current === $value ) {
 			return;
 		}
 
-		$this->getData()->set( 'restrictAccess', $value );
+		$this->getData()->set( 'restrictAccess', $value )->save();
 
 		do_action( 'wme_sitebuilder_site_visibility_set_restrict_access', $value );
 	}
@@ -183,7 +175,7 @@ class SiteVisibility extends Card {
 			return;
 		}
 
-		$this->getData()->set( 'password', $value );
+		$this->getData()->set( 'password', $value )->save();
 	}
 
 	/**
@@ -191,8 +183,10 @@ class SiteVisibility extends Card {
 	 *
 	 * @return bool
 	 */
-	public function isHiddenFromSearchEngines() {
-		return $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, get_option( 'blog_public' ) == 1 ? 0 : 1 ) == 1;
+	public function isHiddenFromSearchEngines(): bool {
+		$default = get_option( 'blog_public' ) == 1 ? false : true;
+
+		return $this->getData()->get( self::FIELD_HIDE_FROM_SEARCH_ENGINES, $default );
 	}
 
 	/**
@@ -200,7 +194,7 @@ class SiteVisibility extends Card {
 	 *
 	 * @return bool
 	 */
-	public function isPasswordProtected() {
+	public function isPasswordProtected(): bool {
 		return $this->getData()->get( self::FIELD_RESTRICT_ACCESS, false );
 	}
 
