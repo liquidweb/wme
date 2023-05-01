@@ -1,6 +1,5 @@
 import { Box, BoxProps, styled } from '@mui/material';
 import { GoogleAnalytics, SiteDomain, SiteVisibility } from '@site/setup/cards';
-import { CARDS } from '@site/constants';
 import { SetupCardAccordion, SetupCardContent } from '@moderntribe/wme-ui';
 import { SetupCardTasks } from '@site/setup';
 import { useSiteSettings } from '@site/hooks';
