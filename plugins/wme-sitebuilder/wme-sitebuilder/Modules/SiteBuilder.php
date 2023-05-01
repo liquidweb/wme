@@ -71,6 +71,7 @@ class SiteBuilder extends Module {
 			'assets_url'  => $this->getAssetSource( 'sitebuilder/' ),
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'cards'       => [],
+			'dynamic_css' => apply_filters( 'kadence_editor_dynamic_css', '' ),
 			'wizards'     => (object) [],
 		];
 

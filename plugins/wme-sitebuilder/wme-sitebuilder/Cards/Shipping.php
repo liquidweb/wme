@@ -177,8 +177,6 @@ class Shipping extends Card {
 	 * @return array[]
 	 */
 	protected function footer_messages() {
-		return [
-			$this->plugins->card_footer_props()
-		];
+		return $this->plugins->card_footer_props();
 	}
 }
