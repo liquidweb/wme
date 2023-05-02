@@ -18,6 +18,11 @@
 	border-bottom: 1px solid #fff;
 }
 
+/* Case: Block editor is open */
+.block-editor-page .site-visibility-bar {
+	display: none;
+}
+
 @media screen and (min-width: 600px) {
 	html.wp-toolbar {
 		margin-top: 50px;
