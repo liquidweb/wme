@@ -104,6 +104,7 @@ const AutoCompleteInput: React.FC<AutocompleteInputProps> = (props) => {
         onChange(newValue as AutocompleteOption);
       },
       options,
+      value,
       disablePortal: true,
       renderInput: (params) => <TextField {...params} placeholder={placeholder} />,
       ...rest,
