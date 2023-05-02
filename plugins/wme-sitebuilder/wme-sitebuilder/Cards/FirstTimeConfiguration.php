@@ -60,7 +60,7 @@ class FirstTimeConfiguration extends Card {
 				[
 					'id'      => 'siteDetails-3',
 					'type'    => 'task',
-					'title'   => __( 'Update Social Links', 'wme-sitebuilder' ),
+					'title'   => __( 'Edit Social Links', 'wme-sitebuilder' ),
 					'url'     => $this->get_wp_customize_url('section', 'kadence_customizer_general_social'),
 				],
 			],

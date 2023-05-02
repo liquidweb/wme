@@ -34,12 +34,20 @@
 			"user": "ae81723f_1",
 			"path": "~/0020f93ddd.nxcli.io/html/wp-content/plugins",
 			"url": "https://0020f93ddd.nxcli.io"
+		},
+		"donaldo": {
+			"type": "nexcess",
+			"host": "6ae1293117.nxcli.io",
+			"user": "ae81723f_1",
+			"path": "~/d94d20bc96.nxcli.io/html/wp-content/plugins",
+			"url": "https://d94d20bc96.nxcli.io"
 		}
 	},
 	"branches": {
 		"main": {
 			"targets": [
-				"main"
+				"main",
+				"donaldo"
 			]
 		},
 		"1.0-branch": {
@@ -50,16 +58,6 @@
 		"2.0-branch": {
 			"targets": [
 				"v2"
-			]
-		},
-		"feature/SITE-279/ftc-wizard": {
-			"targets": [
-				"jon"
-			]
-		},
-		"feature/site-303/site-details": {
-			"targets": [
-				"brian"
 			]
 		}
 	}

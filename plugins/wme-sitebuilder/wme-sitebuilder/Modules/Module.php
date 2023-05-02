@@ -2,7 +2,10 @@
 
 namespace Tribe\WME\Sitebuilder\Modules;
 
+use Tribe\WME\Sitebuilder\Concerns\HasAssets;
+
 abstract class Module {
+	use HasAssets;
 
 	/**
 	 * @var string

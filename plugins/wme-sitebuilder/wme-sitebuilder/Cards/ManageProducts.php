@@ -81,7 +81,7 @@ class ManageProducts extends Card {
 								],
 								[
 									'icon'   => 'School',
-									'title'  => __( 'WooCommece: Tax Settings', 'wme-sitebuilder' ),
+									'title'  => __( 'More About Tax Settings', 'wme-sitebuilder' ),
 									'url'    => 'https://woocommerce.com/document/setting-up-taxes-in-woocommerce/',
 									'target' => '_self',
 								],
