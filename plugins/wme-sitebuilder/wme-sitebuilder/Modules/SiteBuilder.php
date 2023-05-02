@@ -68,6 +68,7 @@ class SiteBuilder extends Module {
 			'logo'        => $this->get_logo(),
 			'title'       => __( 'Setup your site', 'wme-sitebuilder' ),
 			'site_url'    => site_url(),
+			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'assets_url'  => $this->getAssetSource( 'sitebuilder/' ),
 			'support_url' => esc_url( 'https://www.nexcess.net/support/' ),
 			'cards'       => [],
