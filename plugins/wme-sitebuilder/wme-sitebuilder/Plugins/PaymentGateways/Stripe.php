@@ -109,6 +109,7 @@ class Stripe extends Plugin {
 		return [
 			'label' => __( 'Learn About Stripe', 'wme-sitebuilder' ),
 			'href'  => esc_url('https://woocommerce.com/document/stripe/'),
+			'target' => '_blank',
 		];
 	}
 
