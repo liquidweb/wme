@@ -28,22 +28,22 @@ const Goals = () => {
 
 	const goalIcon = (icon: any) => {
 		switch (icon) {
-			case "Article":
-				return <Article />;
-			case "ChatBubble":
-				return <ChatBubbleOutline />;
-			case "Default":
-				return <Info />;
-			case "PriceChange":
-				return <PriceChange />;
-			case "ShoppingCart":
-				return <ShoppingCart />;
-			case "SupervisorAccount":
-				return <SupervisorAccount />;
-			case "WebAsset":
-				return <WebAsset />;
-			default:
-				return icon;
+		case 'Article':
+			return <Article />;
+		case 'ChatBubble':
+			return <ChatBubbleOutline />;
+		case 'Default':
+			return <Info />;
+		case 'PriceChange':
+			return <PriceChange />;
+		case 'ShoppingCart':
+			return <ShoppingCart />;
+		case 'SupervisorAccount':
+			return <SupervisorAccount />;
+		case 'WebAsset':
+			return <WebAsset />;
+		default:
+			return icon;
 		}
 	};
 
@@ -59,12 +59,12 @@ const Goals = () => {
 					value={ form.goals.value }
 					onChange={ (e, value) => handleSelect(value) }
 				>
-					{ cards.map((item) => (
+					{ cards.map((item: any) => (
 						<CardSelectItem
 							key={ item.key }
 							primary={ item.value }
 							secondary={ item.description }
-							icon={ goalIcon(item.icon ) }
+							icon={ goalIcon(item.icon) }
 							value={ item.key }
 						/>
 					)) }

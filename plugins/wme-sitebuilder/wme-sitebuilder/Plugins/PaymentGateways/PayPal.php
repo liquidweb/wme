@@ -109,6 +109,7 @@ class PayPal extends Plugin {
 		return [
 			'label' => __( 'Learn About Paypal', 'wme-sitebuilder' ),
 			'href'  => esc_url('https://woocommerce.com/document/woocommerce-paypal-payments/'),
+			'target' => '_blank',
 		];
 	}
 
