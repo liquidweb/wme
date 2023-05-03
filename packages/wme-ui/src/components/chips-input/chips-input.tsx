@@ -59,7 +59,6 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
   };
 
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(evt);
     const trimmedInput = inputValue.trim();
     const isBackspace = evt.key === 'Backspace';
     const isEnter = evt.key === 'Enter';
