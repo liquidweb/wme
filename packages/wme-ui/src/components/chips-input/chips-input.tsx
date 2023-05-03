@@ -59,6 +59,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
   };
 
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log(evt);
     const trimmedInput = inputValue.trim();
     const isBackspace = evt.key === 'Backspace';
     const isEnter = evt.key === 'Enter';
@@ -94,7 +95,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
           <Chip size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
         )),
         value: inputValue,
-        onKeyUp: handleKeyDown,
+        onKeyDown: handleKeyDown,
         onChange: (e) => setInputValue(e.target.value),
         ...rest,
       }}
