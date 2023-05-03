@@ -13,6 +13,7 @@ export interface SiteSettingsContextInterface {
 	setSiteSettingsState: (props: any) => void;
 	setSiteVisibilityValues: (props?: SiteVisibilityValuesInterface) => void;
 	submitSiteVisibilityForm: (formData?: SiteVisibilityValuesInterface, doOptimisticUpdate?: boolean) => void;
+	isLoading?: boolean;
 }
 
 export type setSiteVisibilityValuesFn = (props: any) => void;
@@ -45,6 +46,7 @@ export const SiteSettingsContext = createContext<SiteSettingsContextInterface | 
 
 const SiteSettingsProvider = ({ children }: { children: React.ReactNode }) => {
 	const [siteSettingsState, setSiteSettingsState] = useState<SiteSettingsStateInterface>(siteSettingsData);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const setSiteVisibilityValues:setSiteVisibilityValuesFn = (props: any) => {
 		setSiteSettingsState({
@@ -70,6 +72,8 @@ const SiteSettingsProvider = ({ children }: { children: React.ReactNode }) => {
 			...formData,
 		});
 
+		setIsLoading(true);
+
 		handleActionRequest(data)
 			.then((response: any) => {
 				if (response === 'success' && doOptimisticUpdate) {
@@ -83,7 +87,8 @@ const SiteSettingsProvider = ({ children }: { children: React.ReactNode }) => {
 				setSiteVisibilityValues({
 					...siteVisibilityValues,
 				});
-			});
+			})
+			.finally(() => setIsLoading(false));
 	};
 
 	return (
@@ -93,6 +98,7 @@ const SiteSettingsProvider = ({ children }: { children: React.ReactNode }) => {
 				setSiteSettingsState,
 				setSiteVisibilityValues,
 				submitSiteVisibilityForm,
+				isLoading,
 			} }
 		>
 			{ children }

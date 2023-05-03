@@ -7,11 +7,13 @@ export function useSiteSettings() {
 		setSiteSettingsState,
 		setSiteVisibilityValues,
 		submitSiteVisibilityForm,
+		isLoading,
 	} = useContext(SiteSettingsContext) as SiteSettingsContextInterface;
 	return {
 		siteSettingsState,
 		setSiteSettingsState,
 		setSiteVisibilityValues,
 		submitSiteVisibilityForm,
+		isLoading,
 	};
 }
