@@ -177,3 +177,6 @@ export * from './template-select-item';
 
 export { default as JumpNav } from './jump-nav';
 export * from './jump-nav';
+
+export { default as Loader } from './loader';
+export * from './loader';

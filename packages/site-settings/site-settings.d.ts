@@ -62,6 +62,27 @@ declare global {
 		navTitle: string;
 		rows: (SetupCardRowInterface | SetupCardRowGoLIveInterface)[];
 		footer?: SetupCardFooter;
+		hideFromSearch?: boolean;
+		restrictAccess?: boolean;
+		password?: string;
+		ajax?: {
+			url: string;
+			nonce: string;
+			action: string;
+		}
+	}
+
+	interface SiteVisibilityValuesInterface {
+		hideFromSearch?: boolean;
+		restrictAccess?: boolean;
+		password?: string;
+		ajax?: {
+			url: string;
+			nonce: string;
+			action: string;
+		};
+		chipText?: string;
+		chipBackground?: BackgroundColorTypes;
 	}
 
 	interface SetupCardInterface {

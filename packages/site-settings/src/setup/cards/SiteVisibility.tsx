@@ -10,6 +10,7 @@ import {
 } from '@moderntribe/wme-ui';
 import { Box, styled } from '@mui/material';
 import { getPasswordStrength } from '@site/utils';
+import { useSiteSettings } from '@site/hooks';
 
 const PasswordWrapper = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -21,18 +22,36 @@ const PasswordWrapper = styled(Box)(({ theme }) => ({
 }));
 
 const SiteVisibility = () => {
-	const [visibilityValues, setVisibilityValues] = useState({
-		hideSearchEngines: false,
-		restrictAccess: false,
-		password: '',
-	});
+	const {
+		siteSettingsState,
+		setSiteVisibilityValues,
+		submitSiteVisibilityForm,
+	} = useSiteSettings();
+
+	const { siteVisibilityValues } = siteSettingsState;
 
 	const [passwordStrength, setPasswordStrength] = useState<PasswordStrengthType>();
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setVisibilityValues({
-			...visibilityValues,
-			[ event.target.name ]: event.target.type === 'checkbox' ? event.target.checked : event.target.value });
+	const handleHideFromSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSiteVisibilityValues({
+			...siteVisibilityValues,
+			[ event.target.name ]: event.target.checked,
+		});
+		submitSiteVisibilityForm({
+			[ event.target.name ]: event.target.checked
+		}, true);
+	};
+
+	const handleRestrictAccessChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSiteVisibilityValues({
+			...siteVisibilityValues,
+			[ event.target.name ]: event.target.checked,
+		});
+		if (! event.target.checked) {
+			submitSiteVisibilityForm({
+				[ event.target.name ]: event.target.checked
+			});
+		}
 	};
 
 	const handlePasswordChange = (
@@ -41,7 +60,10 @@ const SiteVisibility = () => {
 		const strength = getPasswordStrength(event.target.value);
 
 		setPasswordStrength(strength as PasswordStrengthType);
-		setVisibilityValues({ ...visibilityValues, password: event.target.value });
+		setSiteVisibilityValues({
+			...siteVisibilityValues,
+			[ event.target.name ]: event.target.value,
+		});
 	};
 
 	return (
@@ -51,9 +73,9 @@ const SiteVisibility = () => {
 					<InputLabel
 						control={
 							<CheckboxInput
-								checked={ visibilityValues.hideSearchEngines }
-								onChange={ handleChange }
-								name="hideSearchEngines"
+								checked={ siteVisibilityValues?.hideFromSearch }
+								onChange={ handleHideFromSearchChange }
+								name="hideFromSearch"
 							/>
 						}
 						label={ __('Hide my sites from search engines, and whatever else.', 'moderntribe-sitebuilder') }
@@ -65,24 +87,22 @@ const SiteVisibility = () => {
 					<InputLabel
 						control={
 							<CheckboxInput
-								checked={ visibilityValues.restrictAccess }
-								onChange={ handleChange }
-								name="restrictAccess"
-							/>
+								checked={ siteVisibilityValues?.restrictAccess }
+								onChange={ handleRestrictAccessChange }
+								name="restrictAccess"></CheckboxInput>
 						}
 						label={ __('Restrict access to visitors with the password.', 'moderntribe-sitebuilder') }
-						checked={ visibilityValues.restrictAccess }
 					/>
 				}
 			/>
-			{ visibilityValues.restrictAccess && (
+			{ siteVisibilityValues?.restrictAccess && (
 				<>
 					<PasswordWrapper mt={ 2 } mb={ 3 }>
 						<FormField
 							field={
 								<PasswordInput
 									name="password"
-									value={ visibilityValues.password }
+									value={ siteVisibilityValues?.password }
 									chipColor={ passwordStrength?.color }
 									chipLabel={ passwordStrength?.label }
 									onChange={ handlePasswordChange }
@@ -94,6 +114,9 @@ const SiteVisibility = () => {
 						<Button
 							variant="contained"
 							sx={ { marginTop: '26px' } }
+							onClick={ () => {
+								submitSiteVisibilityForm();
+							} }
 						>
 							{ __('Save', 'moderntribe-sitebuilder') }
 						</Button>
