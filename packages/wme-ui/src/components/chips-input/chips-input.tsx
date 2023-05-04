@@ -94,7 +94,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
           <Chip size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
         )),
         value: inputValue,
-        onKeyUp: handleKeyDown,
+        onKeyDown: handleKeyDown,
         onChange: (e) => setInputValue(e.target.value),
         ...rest,
       }}
