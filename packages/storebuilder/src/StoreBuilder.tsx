@@ -1,5 +1,8 @@
 import { lazy } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material';
+import {
+	Experimental_CssVarsProvider as CssVarsProvider,
+	experimental_extendTheme as extendTheme
+} from '@mui/material/styles';
 import { theme as WME_THEME } from '@moderntribe/wme-ui';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import StoreBuilderProvider from '@store/contexts/StoreBuilderProvider';
@@ -8,13 +11,12 @@ import WizardWrapper from '@store/wizards/WizardWrapper';
 import Loadable from '@store/components/Loadable';
 
 import { SB_THEME } from '@store/constants';
+const theme = extendTheme(WME_THEME, SB_THEME);
 
 const SetupScreen = Loadable(lazy(() => import('@store/setup/SetupScreen')));
 
-const storeBuilderTheme = createTheme(WME_THEME, SB_THEME);
-
 const StoreBuilder = () => (
-	<ThemeProvider theme={ storeBuilderTheme }>
+	<CssVarsProvider theme={ theme }>
 		<StoreBuilderProvider>
 			<HashRouter>
 				<Routes>
@@ -24,7 +26,7 @@ const StoreBuilder = () => (
 				</Routes>
 			</HashRouter>
 		</StoreBuilderProvider>
-	</ThemeProvider>
+	</CssVarsProvider>
 );
 
 export default StoreBuilder;

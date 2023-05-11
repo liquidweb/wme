@@ -5,12 +5,6 @@ import { pxToRem } from '@moderntribe/wme-utils';
 const defaultTheme = createTheme();
 
 declare module '@mui/material/styles/createPalette' {
-	interface PaletteColor {
-		white?: string;
-	}
-	interface SimplePaletteColorOptions {
-		white?: string;
-	}
 	interface TypeSidebar {
 		text?: string;
 		background?: string;
@@ -47,50 +41,8 @@ declare module '@mui/material/styles/createPalette' {
   }
 
 let theme = {
-	palette: {
-		text: {
-			primary: '#2A3353',
-			secondary: '#2A3353',
-			disabled: '#757575',
-			white: '#FFFFFF',
-			heading: '#293254',
-		},
-		sidebar: {
-			text: '#252D48',
-			background: '#FAFAFA',
-		},
-		todo: {
-			main: '#0071BC',
-			background: '#E9F5FE',
-		},
-		completed: {
-			main: '#204522',
-			background: '#EDF7ED',
-		},
-		error: {
-			main: '#F44336',
-		},
-		warning: {
-			main: '#FF9900',
-		},
-		success: {
-			main: '#4FB669',
-		},
-		brands: {
-			stripe: '#645FF3',
-			paypal: '#172C70',
-		},
-		border: {
-			ui: '#C4C4C4',
-			layout: '#C4C4C4',
-			dark: '#000000',
-		}
-	},
 	shadows: [...defaultTheme.shadows, '0 0 32px rgba(0, 0, 0, 0.1)'], // Additional shadow definition.
 	typography: {
-		allVariants: {
-			color: '#2A3353'
-		},
 		fontFamily: 'inherit',
 		h1: {
 			fontSize: pxToRem(32),
@@ -173,13 +125,8 @@ let theme = {
 		MuiFormLabel: {
 			styleOverrides: {
 				root: {
-					color: '#2A3353',
 					fontSize: pxToRem(14),
 					fontWeight: 600,
-
-					'&.Mui-focused': {
-						color: '#2A3353'
-					}
 				}
 			}
 		},
