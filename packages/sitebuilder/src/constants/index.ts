@@ -16,6 +16,8 @@ export const AJAX_URL = SITEBUILDER.site_url + '/wp-admin/admin-ajax.php';
 
 export const FTC_PROPS = SITEBUILDER.wizards.ftc;
 
+export const STORE_SETUP_PROPS = SITEBUILDER.wizards.store_setup;
+
 export const LOOK_AND_FEEL_PROPS = SITEBUILDER.wizards.look_and_feel;
 
 export const GO_LIVE_PROPS = SITEBUILDER.wizards.golive;

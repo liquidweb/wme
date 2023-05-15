@@ -83,6 +83,7 @@ class StoreSetup extends Wizard {
 			'states'         => $this->getWoocommerceStates(),
 			'locales'        => $this->getWoocommerceLocales(),
 			'completed'      => $this->isComplete(),
+			'steps'			 => $this->getSteps(),
 		];
 	}
 
@@ -556,5 +557,42 @@ class StoreSetup extends Wizard {
 	 */
 	public function isComplete() {
 		return (bool) $this->getData()->get( 'complete', false );
+	}
+
+	/**
+	 * Get wizard steps.
+	 *
+	 * @return array
+	 */
+	public function getSteps() {
+		return [
+			[
+				'id' => 0,
+				'label' => __('Location', 'wme-sitebuilder'),
+				'icon' => 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCA0MiA0MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWx0ZXI9InVybCgjZmlsdGVyMF9kXzU0MzBfMjQwOSkiPjxyZWN0IHg9IjEwIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9ImJsYWNrIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjwvcmVjdD48cGF0aCBkPSJNMjcuMzczNCAxNC42MjY3TDI2IDE0TDI3LjM3MzQgMTMuMzczM0wyOCAxMkwyOC42MjY3IDEzLjM3MzNMMzAgMTRMMjguNjI2NyAxNC42MjY3TDI4IDE2TDI3LjM3MzQgMTQuNjI2N1pNMjAuNjY2NyAxNy4zMzMzTDIxLjI5MzQgMTUuOTZMMjIuNjY2NyAxNS4zMzMzTDIxLjI5MzQgMTQuNzA2N0wyMC42NjY3IDEzLjMzMzNMMjAuMDQgMTQuNzA2N0wxOC42NjY3IDE1LjMzMzNMMjAuMDQgMTUuOTZMMjAuNjY2NyAxNy4zMzMzWk0yMy42NjY3IDE0TDI0LjM5MzQgMTIuMzkzM0wyNiAxMS42NjY3TDI0LjM5MzQgMTAuOTRMMjMuNjY2NyA5LjMzMzM0TDIyLjk0IDEwLjk0TDIxLjMzMzQgMTEuNjY2N0wyMi45NCAxMi4zOTMzTDIzLjY2NjcgMTRaTTIxIDIxLjY2NjdMMjUgMTcuNjZMMjcuNjY2NyAyMC4zMjY3TDMzLjMzMzQgMTMuOTUzM0wzMi4zOTM0IDEzLjAxMzNMMjcuNjY2NyAxOC4zMjY3TDI1IDE1LjY2TDIwIDIwLjY2NjdMMjEgMjEuNjY2N1oiIGZpbGw9IndoaXRlIj48L3BhdGg+PHJlY3QgeD0iMTAuNSIgeT0iMC41IiB3aWR0aD0iMzEiIGhlaWdodD0iMzEiIHN0cm9rZT0id2hpdGUiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyI+PC9yZWN0PjwvZz48ZGVmcz48ZmlsdGVyIGlkPSJmaWx0ZXIwX2RfNTQzMF8yNDA5IiB4PSIwIiB5PSIwIiB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9IkJhY2tncm91bmRJbWFnZUZpeCI+PC9mZUZsb29kPjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSI+PC9mZUNvbG9yTWF0cml4PjxmZU9mZnNldCBkeD0iLTEwIiBkeT0iMTAiPjwvZmVPZmZzZXQ+PGZlQ29tcG9zaXRlIGluMj0iaGFyZEFscGhhIiBvcGVyYXRvcj0ib3V0Ij48L2ZlQ29tcG9zaXRlPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAxIDAiPjwvZmVDb2xvck1hdHJpeD48ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiByZXN1bHQ9ImVmZmVjdDFfZHJvcFNoYWRvd181NDMwXzI0MDkiPjwvZmVCbGVuZD48ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImVmZmVjdDFfZHJvcFNoYWRvd181NDMwXzI0MDkiIHJlc3VsdD0ic2hhcGUiPjwvZmVCbGVuZD48L2ZpbHRlcj48L2RlZnM+PC9zdmc+',
+				'title' => __('Where\'s your store located?', 'wme-sitebuilder'),
+				'description' => __('We need this even if you don\'t have a physical store. Your store address is where you are. We use this to calculate taxes, and we need this for transaction-related emails. It\'s all about being a good store owner.', 'wme-sitebuilder'),
+				'hideBack' => true,
+				'nextText' => __('Next', 'wme-sitebuilder'),
+				'screen' => 'StoreLocation'
+			],
+			[
+				'id' => 1,
+				'label' => __('Your Store', 'wme-sitebuilder'),
+				'icon' => 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCA0MiA0MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWx0ZXI9InVybCgjZmlsdGVyMF9kXzU0MzBfMjQwOSkiPjxyZWN0IHg9IjEwIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9ImJsYWNrIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjwvcmVjdD48cGF0aCBkPSJNMjcuMzczNCAxNC42MjY3TDI2IDE0TDI3LjM3MzQgMTMuMzczM0wyOCAxMkwyOC42MjY3IDEzLjM3MzNMMzAgMTRMMjguNjI2NyAxNC42MjY3TDI4IDE2TDI3LjM3MzQgMTQuNjI2N1pNMjAuNjY2NyAxNy4zMzMzTDIxLjI5MzQgMTUuOTZMMjIuNjY2NyAxNS4zMzMzTDIxLjI5MzQgMTQuNzA2N0wyMC42NjY3IDEzLjMzMzNMMjAuMDQgMTQuNzA2N0wxOC42NjY3IDE1LjMzMzNMMjAuMDQgMTUuOTZMMjAuNjY2NyAxNy4zMzMzWk0yMy42NjY3IDE0TDI0LjM5MzQgMTIuMzkzM0wyNiAxMS42NjY3TDI0LjM5MzQgMTAuOTRMMjMuNjY2NyA5LjMzMzM0TDIyLjk0IDEwLjk0TDIxLjMzMzQgMTEuNjY2N0wyMi45NCAxMi4zOTMzTDIzLjY2NjcgMTRaTTIxIDIxLjY2NjdMMjUgMTcuNjZMMjcuNjY2NyAyMC4zMjY3TDMzLjMzMzQgMTMuOTUzM0wzMi4zOTM0IDEzLjAxMzNMMjcuNjY2NyAxOC4zMjY3TDI1IDE1LjY2TDIwIDIwLjY2NjdMMjEgMjEuNjY2N1oiIGZpbGw9IndoaXRlIj48L3BhdGg+PHJlY3QgeD0iMTAuNSIgeT0iMC41IiB3aWR0aD0iMzEiIGhlaWdodD0iMzEiIHN0cm9rZT0id2hpdGUiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyI+PC9yZWN0PjwvZz48ZGVmcz48ZmlsdGVyIGlkPSJmaWx0ZXIwX2RfNTQzMF8yNDA5IiB4PSIwIiB5PSIwIiB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9IkJhY2tncm91bmRJbWFnZUZpeCI+PC9mZUZsb29kPjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSI+PC9mZUNvbG9yTWF0cml4PjxmZU9mZnNldCBkeD0iLTEwIiBkeT0iMTAiPjwvZmVPZmZzZXQ+PGZlQ29tcG9zaXRlIGluMj0iaGFyZEFscGhhIiBvcGVyYXRvcj0ib3V0Ij48L2ZlQ29tcG9zaXRlPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAxIDAiPjwvZmVDb2xvck1hdHJpeD48ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiByZXN1bHQ9ImVmZmVjdDFfZHJvcFNoYWRvd181NDMwXzI0MDkiPjwvZmVCbGVuZD48ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImVmZmVjdDFfZHJvcFNoYWRvd181NDMwXzI0MDkiIHJlc3VsdD0ic2hhcGUiPjwvZmVCbGVuZD48L2ZpbHRlcj48L2RlZnM+PC9zdmc+',
+				'title' => __('About your store', 'wme-sitebuilder'),
+				'description' => __('Last step! A few more details about your store.', 'wme-sitebuilder'),
+				'nextText' => __('Next', 'wme-sitebuilder'),
+				'screen' => 'StoreDetails'
+			],
+			[
+				'id' => 2,
+				'label' => __('Complete', 'wme-sitebuilder'),
+				'hideSkip' => true,
+				'hidePagination' => true,
+				'nextText' => __('Save & Exit Setup', 'wme-sitebuilder'),
+				'screen' => 'Complete'
+			]
+		];
 	}
 }

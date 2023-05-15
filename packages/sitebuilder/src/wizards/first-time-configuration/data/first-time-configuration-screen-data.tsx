@@ -80,7 +80,7 @@ const stepsData: Array<StepInterface> = [
 			'Welcome to your site! Let\'s make it yours by getting you a username and password that\'s unique to you.',
 			'moderntribe-sitebuilder'
 		),
-		icon: <UserIcon />,
+		icon: <>Yo</>,
 		disableNext: true,
 		hideSkip: true,
 		hideBack: true,

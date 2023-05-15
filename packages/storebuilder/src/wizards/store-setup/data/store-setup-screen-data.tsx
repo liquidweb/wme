@@ -1,6 +1,5 @@
-import { __ } from '@wordpress/i18n';
 import { StoreLocation, StoreDetails, Complete } from '../screens';
-import { EditIcon } from '@store/icons';
+import { STORE_SETUP_PROPS } from '@store/constants';
 
 type KeysOfUnion<T> = T extends T ? keyof T: never;
 
@@ -95,35 +94,7 @@ export interface StoreSetupScreenDataInterface extends StoreSetupWizardObjectInt
 	form: StoreSetupFormItemsInterface;
 }
 
-const stepsData: Array<StepInterface> = [
-	{
-		id: 0,
-		label: __('Location', 'moderntribe-storebuilder'),
-		icon: <EditIcon />,
-		title: __('Where\'s your store located?', 'moderntribe-storebuilder'),
-		description: __('We need this even if you don\'t have a physical store. Your store address is where you are. We use this to calculate taxes, and we need this for transaction-related emails. It\'s all about being a good store owner.', 'moderntribe-storebuilder'),
-		hideBack: true,
-		nextText: __('Next', 'moderntribe-storebuilder'),
-		screen: <StoreLocation />
-	},
-	{
-		id: 1,
-		label: __('Your Store', 'moderntribe-storebuilder'),
-		icon: <EditIcon />,
-		title: __('About your store', 'moderntribe-storebuilder'),
-		description: __('Last step! A few more details about your store.', 'moderntribe-storebuilder'),
-		nextText: __('Next', 'moderntribe-storebuilder'),
-		screen: <StoreDetails />
-	},
-	{
-		id: 2,
-		label: __('Complete', 'moderntribe-storebuilder'),
-		hideSkip: true,
-		hidePagination: true,
-		nextText: __('Save & Exit Setup', 'moderntribe-storebuilder'),
-		screen: <Complete />
-	}
-];
+const stepsData: Array<StepInterface> = STORE_SETUP_PROPS?.steps;
 
 const formItemsData: StoreSetupFormItemsInterface = {
 	addressLineOne: {
@@ -176,7 +147,7 @@ const formItemsData: StoreSetupFormItemsInterface = {
 const localData: StoreSetupScreenDataInterface = {
 	isLoading: false,
 	lastStep: 3,
-	steps: stepsData,
+	steps: STORE_SETUP_PROPS?.steps,
 	form: formItemsData,
 	id: '',
 	completed: false,
@@ -221,6 +192,24 @@ const setInitialFormValues = (wizardData: StoreSetupWizardObjectInterface): Stor
 const getStepsData = (disable: boolean) => {
 	return stepsData.map((step) => {
 		step.disable = disable;
+		step.icon = (
+			<>
+				<img src={ step?.icon } alt={ step?.screen } width={ 42 } />
+			</>
+		);
+
+		switch (step.screen) {
+		case 'StoreLocation':
+			step.screen = <StoreLocation />;
+			break;
+		case 'StoreDetails':
+			step.screen = <StoreDetails />;
+			break;
+		case 'Complete':
+			step.screen = <Complete />;
+			break;
+		default:
+		}
 		return step;
 	});
 };
