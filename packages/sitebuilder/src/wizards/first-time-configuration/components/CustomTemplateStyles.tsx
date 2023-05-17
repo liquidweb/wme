@@ -38,32 +38,55 @@ export default function CustomTemplateStyles(props: CustomTemplateStylesProps) {
 			font-size: ${ style.baseFontStyles.size };
 			line-height: ${ style.baseFontStyles.lineHeight };
 			letter-spacing: ${ style.baseFontStyles.letterSpacing };
+			font-weight: ${ style.baseFontStyles.fontWeight };
 		}
 		.single-iframe-content.single-content h1 {
 			line-height: ${ style.h1.lineHeight } !important;
 			letter-spacing: ${ style.h1.letterSpacing };
+			text-transform: ${ style.textTransform || 'normal' };
+			font-weight: ${ style.h1.fontWeight };
+
 		}
 		.single-iframe-content.single-content h2 {
 			line-height: ${ style.h2.lineHeight } !important;
 			letter-spacing: ${ style.h2.letterSpacing };
+			text-transform: ${ style.textTransform || 'normal' };
+			font-weight: ${ style.h2.fontWeight };
 		}
 		.single-iframe-content.single-content h3 {
 			line-height: ${ style.h3.lineHeight } !important;
 			letter-spacing: ${ style.h3.letterSpacing };
+			text-transform: ${ style.textTransform || 'normal' };
+			font-weight: ${ style.h3.fontWeight };
 		}
 		.single-iframe-content.single-content h4 {
 			line-height: ${ style.h4.lineHeight } !important;
 			letter-spacing: ${ style.h4.letterSpacing };
+			text-transform: ${ style.textTransform || 'normal' };
+			font-weight: ${ style.h4.fontWeight };
 		}
 		.single-iframe-content.single-content h5 {
 			line-height: ${ style.h5.lineHeight } !important;
 			letter-spacing: ${ style.h5.letterSpacing };
+			text-transform: ${ style.textTransform || 'normal' };
+			font-weight: ${ style.h5.fontWeight };
+		}
+		.single-iframe-content.single-content h6 {
+			line-height: ${ style.h6.lineHeight } !important;
+			letter-spacing: ${ style.h6.letterSpacing };
+			text-transform: ${ style.textTransform || 'normal' };
+			font-weight: ${ style.h6.fontWeight } !important;
 		}
 		.wp-block-kadence-advancedbtn span.button.kb-button {
-			border-radius: ${ style.borderRadius };
-			border: 0;
-			padding: ${ style.buttonPadding };
-			font-size: ${ style.buttonFont };
+			border-radius: ${ style.buttonStyles.borderRadius };
+			border: ${ style.buttonStyles.border && ! style.buttonStyles.borderBottom ? `${ style.buttonStyles.border } solid ${ style.accent1 }` : 0 };
+			${ style.buttonStyles.borderBottom ? `border-bottom: ${ style.buttonStyles.border } solid ${ style.accent1 }` : null };
+			background-color: ${ style.buttonStyles.isOutline ? 'transparent' : style.accent1 };
+			color: ${ style.buttonStyles.border ? style.accent1 : '#fff' };
+			padding: ${ style.buttonStyles.padding };
+			font-size: ${ style.buttonStyles.fontSize };
+			text-transform: ${ style.textTransform || 'none' };
+			font-weight: ${ style.buttonStyles.fontWeight || style.baseFontStyles.fontWeight };
 		}
 	`;
 

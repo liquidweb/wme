@@ -89,14 +89,6 @@ const TemplateItemCheck = styled(CheckCircleIcon)<IconProps>(({ theme }) => ({
 	fontSize: theme.typography.htmlFontSize,
 }));
 
-const ShadowWrapper = styled(Box)(() => ({
-	position: 'relative',
-	width: '100%',
-	height: '100%',
-	transitionProperty: 'top',
-	transitionTimingFunction: 'cubic-bezier(0.32, 0.01, 0.58, 1)',
-}));
-
 export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	const {
 		buttonLabel = 'Start With This Style',
@@ -109,11 +101,8 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	} = props;
 
 	const [embedScale, setEmbedScale] = useState(0.2);
-	const [scrollHeight, setScrollHeight] = useState(0);
-	const [scrollToBottom, setScrollToBottom] = useState(false);
 
 	const containerRef = useRef<HTMLElement>();
-	const shadowWrapperRef = useRef<HTMLDivElement>(null);
 	const dynamicStyles = KADENCE_DYNAMIC_STYLES.replace(/:root/g, ':host');
 
 	const headingFontName = style.headingFont.replace(/ /g, '+');
@@ -126,13 +115,6 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 		}
 	}, [containerRef?.current?.clientWidth]);
 
-	useEffect(() => {
-		if (shadowWrapperRef && shadowWrapperRef.current) {
-			console.log(`${slug} scroll, height`,shadowWrapperRef.current.scrollHeight, shadowWrapperRef.current.parentElement?.clientHeight );
-			setScrollHeight(shadowWrapperRef.current.scrollHeight - (shadowWrapperRef.current.parentElement?.clientHeight || 0));
-		}
-	}, [shadowWrapperRef.current?.scrollHeight, shadowWrapperRef.current?.parentElement?.clientHeight]);
-
 	return (
 		<TemplateItemContainer
 			className={ selected ? 'is-selected' : '' }
@@ -141,24 +123,17 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 			ref={ containerRef }
 		>
 			<link href={ fontStyles } rel="stylesheet" type="text/css"></link>
-			<ShadowWrapper ref={ shadowWrapperRef }
-				style={ { top: `-${ scrollToBottom ? scrollHeight + 44 : 0 }px`, transitionDuration: `${ scrollHeight * 8 }ms` } }
-			>
-				{ /* @ts-ignore */ }
-				<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }
-					onMouseEnter={ () => setScrollToBottom(true) }
-					onMouseLeave={ () => setScrollToBottom(false) }
-				>
-					<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>
-					<style type="text/css">{ dynamicStyles }</style>
-					<style id="global-editor-inline-styles">{ globalEditorInlineStyles }</style>
-					<CustomTemplateStyles style={ style } templateSlug={ slug } />
+			{ /* @ts-ignore */ }
+			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
+				<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>
+				<style type="text/css">{ dynamicStyles }</style>
+				<style id="global-editor-inline-styles">{ globalEditorInlineStyles }</style>
+				<CustomTemplateStyles style={ style } templateSlug={ slug } />
 
-					<div className="pattern-shadow-wrap editor-styles-wrapper">
-						<div className="single-iframe-content single-content" dangerouslySetInnerHTML={ { __html: rows_html } } />
-					</div>
-				</root.div>
-			</ShadowWrapper>
+				<div className="pattern-shadow-wrap editor-styles-wrapper">
+					<div className="single-iframe-content single-content" dangerouslySetInnerHTML={ { __html: rows_html } } />
+				</div>
+			</root.div>
 			<TemplateItemButton>
 				<Typography color="common.white">
 					{ selected ? buttonSelectedLabel : buttonLabel }
