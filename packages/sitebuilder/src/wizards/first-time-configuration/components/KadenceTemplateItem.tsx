@@ -16,7 +16,6 @@ const shadowRootStyles = {
 	border: 0,
 	overflow: 'hidden'
 };
-// type OneOnly<Obj, Key extends keyof Obj> = { [key in Exclude<keyof Obj, Key>]: null } & Pick<Obj, Key>;
 
 export interface TemplateSelectItemProps {
 	buttonLabel?: string;
