@@ -1,15 +1,15 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useRef, useState } from 'react';
 import root from 'react-shadow';
-import { styled, Box, BoxProps, IconProps, Typography } from '@mui/material';
+import { styled, Box, IconProps, Typography } from '@mui/material';
 import { StyleInterface } from '../data/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import globalEditorInlineStyles from './kadence-blocks-global-editor-styles-inline-css';
+import globalEditorInlineStyles from '../data/kadence-blocks-global-editor-styles-inline-css';
 import { KADENCE_DYNAMIC_STYLES } from '@sb/constants';
+import CustomTemplateStyles from './CustomTemplateStyles';
 
 const embedWidth = 1280;
 const shadowRootStyles = {
-	position: 'absolute',
 	width: embedWidth,
 	transform: 'scale(0.2)',
 	transformOrigin: '0 0',
@@ -22,13 +22,12 @@ export interface TemplateSelectItemProps {
 	buttonSelectedLabel?: string;
 	selected: boolean;
 	slug: string;
-	name: string;
 	rows_html: string;
 	style: StyleInterface;
 	onClick: (slug: string) => void;
 }
 
-const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
+const TemplateItemContainer = styled(Box)(({ theme }) => ({
 	position: 'relative',
 	width: '100%',
 	height: 0,
@@ -63,7 +62,7 @@ const TemplateItemContainer = styled(Box)<BoxProps>(({ theme }) => ({
 	},
 }));
 
-const TemplateItemButton = styled(Box)<BoxProps>(({ theme }) => ({
+const TemplateItemButton = styled(Box)(({ theme }) => ({
 	position: 'absolute',
 	bottom: 0,
 	left: 0,
@@ -96,42 +95,18 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 		selected,
 		rows_html,
 		slug,
-		name,
 		style,
-		onClick
+		onClick,
 	} = props;
+
 	const [embedScale, setEmbedScale] = useState(0.2);
+
 	const containerRef = useRef<HTMLElement>();
 	const dynamicStyles = KADENCE_DYNAMIC_STYLES.replace(/:root/g, ':host');
 
 	const headingFontName = style.headingFont.replace(/ /g, '+');
 	const baseFontName = style.baseFont.replace(/ /g, '+');
 	const fontStyles = `//fonts.googleapis.com/css2?family=${ headingFontName }&family=${ baseFontName }&display=swap`;
-
-	const globalColors = `
-		:host {
-			--global-heading-font-family: '${ style.headingFont }', cursive;
-			--global-body-font-family: '${ style.baseFont }', cursive;
-
-			--global-palette1: ${ style.accent1 };
-			--global-palette2: ${ style.accent2 };
-			--global-palette3: ${ style.contrast1 };
-			--global-palette4: ${ style.contrast2 };
-			--global-palette5: ${ style.contrast3 };
-			--global-palette6: ${ style.contrast4 };
-			--global-palette7: ${ style.base1 };
-			--global-palette8: ${ style.base2 };
-			--global-palette9: ${ style.base3 };
-			--global-content-edge-padding: 3rem;
-		}
-		.wp-block-kadence-advancedbtn span.button.kb-button {
-			border-top-left-radius: ${ style.borderRadius };
-			border-top-right-radius: ${ style.borderRadius };
-			border-bottom-right-radius: ${ style.borderRadius };
-			border-bottom-left-radius: ${ style.borderRadius };
-			border: 0;
-		}
-	`;
 
 	useEffect(() => {
 		if (containerRef && containerRef.current) {
@@ -140,14 +115,19 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	}, [containerRef?.current?.clientWidth]);
 
 	return (
-		<TemplateItemContainer className={ selected ? 'is-selected' : '' } id={ slug } aria-label={ name } ref={ containerRef } onClick={ () => onClick(slug) }>
+		<TemplateItemContainer
+			className={ selected ? 'is-selected' : '' }
+			id={ slug }
+			onClick={ () => onClick(slug) }
+			ref={ containerRef }
+		>
 			<link href={ fontStyles } rel="stylesheet" type="text/css"></link>
 			{ /* @ts-ignore */ }
 			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
 				<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>
 				<style type="text/css">{ dynamicStyles }</style>
 				<style id="global-editor-inline-styles">{ globalEditorInlineStyles }</style>
-				<style id={ `${ slug }-style-tag` } type="text/css">{ globalColors }</style>
+				<CustomTemplateStyles style={ style } templateSlug={ slug } />
 
 				<div className="pattern-shadow-wrap editor-styles-wrapper">
 					<div className="single-iframe-content single-content" dangerouslySetInnerHTML={ { __html: rows_html } } />
