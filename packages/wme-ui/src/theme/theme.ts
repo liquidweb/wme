@@ -2,11 +2,13 @@
 import type React from 'react';
 import { createTheme } from '@mui/material/styles';
 import type { TypographyStyleOptions } from '@mui/material/styles/createTypography';
+import { pxToRem } from '../utils';
 
 declare module '@mui/material/styles/createPalette' {
   interface TypographyStyleOptionsExtended extends TypographyStyleOptions {
     pxToRem: (px: number) => number;
-  }
+}
+
   interface Theme {
     typography: TypographyStyleOptionsExtended;
   }
@@ -54,12 +56,11 @@ declare module '@mui/material/styles' {
     taskTitle: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     subtext?: React.CSSProperties;
     link?: React.CSSProperties;
     taskTitle?: React.CSSProperties;
-  }
+ }
 
   interface Theme {
     globalStyles: {
@@ -253,6 +254,122 @@ themeWME = createTheme(themeWME, {
         root: {
           color: themeWME.palette.text.link,
           textDecorationColor: themeWME.palette.text.link,
+        },
+      },
+    },
+    MuiModal: {
+      styleOverrides: {
+        root: {
+          /* Wizard Header */
+          '& .WmeExitButton-root .WmeButton-root': {
+            color: themeWME.palette.text.disabled,
+          },
+          '& .WmeCardSelectItem-icon': {
+            backgroundColor: 'transparent',
+            height: '56px',
+            width: '56px',
+            borderRadius: 0,
+
+            '& img, & svg': {
+              width: 'auto',
+              height: '100%',
+            },
+          },
+          '& .WmeCardSelectItem-root.MuiToggleButtonGroup-groupedVertical .WmeCardSelectItem-icon': {
+            marginBottom: 0,
+          },
+          '& .WmeWizardFooter-next': {
+            '& .WmeWizardFooterNextButton': {
+              transition: 'all ease .3s',
+              '& .MuiButton-endIcon': {
+                position: 'absolute',
+                transition: 'all ease .3s',
+                opacity: 0,
+                right: '16px',
+              },
+              '&:hover, &:active': {
+                transition: 'all ease .3s',
+                paddingRight: '32px',
+                '& .MuiButton-endIcon': {
+                  opacity: 1,
+                },
+              },
+            },
+          },
+          /* MenuItem */
+          '& .WmeMenuItem-root .WmeMenuItem-icon .MuiSvgIcon-root': {
+            fill: themeWME.palette.success.dark,
+          },
+          '& .WmeCardSelectItem-contentInner h4': {
+            fontSize: pxToRem(18),
+            fontWeight: 500,
+            lineHeight: 1.333,
+            letterSpacing: '-0.02em',
+          },
+          '& .WmeCardSelectItem-completeContainer > div': {
+            backgroundColor: themeWME.palette.success.light,
+
+            '& .MuiSvgIcon-root': {
+              color: themeWME.palette.success.dark,
+            },
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-input': {
+            padding: '4px 12px',
+            border: 'none',
+
+            '& ~ .MuiOutlinedInput-notchedOutline': {
+              borderWidth: '1px',
+            },
+
+            '&:focus, &:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+
+            '&:focus ~ .MuiOutlinedInput-notchedOutline, &:focus-visible ~ .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'primary.dark',
+            },
+
+            '&.Mui-disabled': {
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+
+              '& ~ .MuiOutlinedInput-notchedOutline': {
+                backgroundColor: 'rgba(63, 81, 181, 0.08)',
+                borderColor: 'transparent',
+              },
+            },
+          },
+          '& ~ .MuiFormHelperText-root.Mui-error': {
+            position: 'absolute',
+            top: '-25px',
+            right: 0,
+            marginTop: 0,
+          },
+          '& .MuiSelect-icon': {
+            backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDE2IDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xLjgwMDE2IDAuMDAzMjcyODRDMS45MDU0IDAuMDAyNjY0NCAyLjAwOTcyIDAuMDIyODM0NCAyLjEwNzE0IDAuMDYyNjI3MUMyLjIwNDU2IDAuMTAyNDIgMi4yOTMxNyAwLjE2MTA1MyAyLjM2Nzg5IDAuMjM1MTYzTDguMTk3MTEgNi4wNzIzN0wxNC4wMjYzIDAuMjM1MTYyQzE0LjE3NjkgMC4wODQ1OTA3IDE0LjM4MTEgMi44OTEyZS0wNyAxNC41OTQxIDIuNzA1MDVlLTA3QzE0LjgwNyAyLjUxODg5ZS0wNyAxNS4wMTEyIDAuMDg0NTkwNiAxNS4xNjE4IDAuMjM1MTYyQzE1LjMxMjQgMC4zODU3MzMgMTUuMzk2OSAwLjU4OTk1IDE1LjM5NjkgMC44MDI4OUMxNS4zOTY5IDEuMDE1ODMgMTUuMzEyNCAxLjIyMDA1IDE1LjE2MTggMS4zNzA2Mkw4Ljc2NDg0IDcuNzY3NTZDOC42OTA1IDcuODQyNTEgOC42MDIwNiA3LjkwMiA4LjUwNDYyIDcuOTQyNTlDOC40MDcxOCA3Ljk4MzE5IDguMzAyNjcgOC4wMDQwOSA4LjE5NzExIDguMDA0MDlDOC4wOTE1NSA4LjAwNDA5IDcuOTg3MDMgNy45ODMxOSA3Ljg4OTU5IDcuOTQyNTlDNy43OTIxNSA3LjkwMiA3LjcwMzcxIDcuODQyNTEgNy42MjkzOCA3Ljc2NzU2TDEuMjMyNDMgMS4zNzA2MkMxLjE1NzQ5IDEuMjk2MjggMS4wOTggMS4yMDc4NSAxLjA1NzQgMS4xMTA0MUMxLjAxNjgxIDEuMDEyOTYgMC45OTU5MDYgMC45MDg0NSAwLjk5NTkwNiAwLjgwMjg5MUMwLjk5NTkwNiAwLjY5NzMzMiAxLjAxNjgxIDAuNTkyODE3IDEuMDU3NCAwLjQ5NTM3NkMxLjA5OCAwLjM5NzkzNiAxLjE1NzQ5IDAuMzA5NDk4IDEuMjMyNDMgMC4yMzUxNjNDMS4zMDcxNSAwLjE2MTA1MyAxLjM5NTc2IDAuMTAyNDIgMS40OTMxOCAwLjA2MjYyNzFDMS41OTA2MSAwLjAyMjgzNDUgMS42OTQ5MyAwLjAwMjY2NDQyIDEuODAwMTYgMC4wMDMyNzI4NFoiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=")',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            right: '7px',
+            path: {
+              display: 'none',
+            },
+          },
+          '& .MuiSelect-icon, .MuiAutocomplete-endAdornment .MuiSvgIcon-root': {
+            backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDE2IDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xLjgwMDE2IDAuMDAzMjcyODRDMS45MDU0IDAuMDAyNjY0NCAyLjAwOTcyIDAuMDIyODM0NCAyLjEwNzE0IDAuMDYyNjI3MUMyLjIwNDU2IDAuMTAyNDIgMi4yOTMxNyAwLjE2MTA1MyAyLjM2Nzg5IDAuMjM1MTYzTDguMTk3MTEgNi4wNzIzN0wxNC4wMjYzIDAuMjM1MTYyQzE0LjE3NjkgMC4wODQ1OTA3IDE0LjM4MTEgMi44OTEyZS0wNyAxNC41OTQxIDIuNzA1MDVlLTA3QzE0LjgwNyAyLjUxODg5ZS0wNyAxNS4wMTEyIDAuMDg0NTkwNiAxNS4xNjE4IDAuMjM1MTYyQzE1LjMxMjQgMC4zODU3MzMgMTUuMzk2OSAwLjU4OTk1IDE1LjM5NjkgMC44MDI4OUMxNS4zOTY5IDEuMDE1ODMgMTUuMzEyNCAxLjIyMDA1IDE1LjE2MTggMS4zNzA2Mkw4Ljc2NDg0IDcuNzY3NTZDOC42OTA1IDcuODQyNTEgOC42MDIwNiA3LjkwMiA4LjUwNDYyIDcuOTQyNTlDOC40MDcxOCA3Ljk4MzE5IDguMzAyNjcgOC4wMDQwOSA4LjE5NzExIDguMDA0MDlDOC4wOTE1NSA4LjAwNDA5IDcuOTg3MDMgNy45ODMxOSA3Ljg4OTU5IDcuOTQyNTlDNy43OTIxNSA3LjkwMiA3LjcwMzcxIDcuODQyNTEgNy42MjkzOCA3Ljc2NzU2TDEuMjMyNDMgMS4zNzA2MkMxLjE1NzQ5IDEuMjk2MjggMS4wOTggMS4yMDc4NSAxLjA1NzQgMS4xMTA0MUMxLjAxNjgxIDEuMDEyOTYgMC45OTU5MDYgMC45MDg0NSAwLjk5NTkwNiAwLjgwMjg5MUMwLjk5NTkwNiAwLjY5NzMzMiAxLjAxNjgxIDAuNTkyODE3IDEuMDU3NCAwLjQ5NTM3NkMxLjA5OCAwLjM5NzkzNiAxLjE1NzQ5IDAuMzA5NDk4IDEuMjMyNDMgMC4yMzUxNjNDMS4zMDcxNSAwLjE2MTA1MyAxLjM5NTc2IDAuMTAyNDIgMS40OTMxOCAwLjA2MjYyNzFDMS41OTA2MSAwLjAyMjgzNDUgMS42OTQ5MyAwLjAwMjY2NDQyIDEuODAwMTYgMC4wMDMyNzI4NFoiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=")',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            right: '7px',
+            path: {
+              display: 'none',
+            },
+          },
         },
       },
     },

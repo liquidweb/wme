@@ -6,6 +6,8 @@ export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
 export const LOGO = SITEBUILDER.logo;
 
+export const UI_THEME = SITEBUILDER?.ui_theme;
+
 export const CARDS: SetupCardInterface[] = SITEBUILDER.cards || [];
 
 export const WIZARDS = SITEBUILDER.wizards || {};

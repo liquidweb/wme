@@ -41,6 +41,12 @@ declare module '@mui/material/styles/createPalette' {
   }
 
 let theme = {
+	palette: {
+		brands: {
+			give: '#69B86B',
+			stripe: '#635BFF',
+		}
+	},
 	shadows: [...defaultTheme.shadows, '0 0 32px rgba(0, 0, 0, 0.1)'], // Additional shadow definition.
 	typography: {
 		fontFamily: 'inherit',

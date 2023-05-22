@@ -156,4 +156,15 @@ abstract class Module {
 		];
 	}
 
+
+	/**
+	 * Get the active color theme for the plugin.
+	 *
+	 * @return string
+	 */
+	public function get_active_ui_theme() {
+		// TODO: Writing the logic that returns the active color theme for the plugin.
+		return '';
+	}
+
 }

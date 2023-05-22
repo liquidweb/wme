@@ -74,6 +74,7 @@ class SiteBuilder extends Module {
 			'cards'       => [],
 			'dynamic_css' => apply_filters( 'kadence_editor_dynamic_css', '' ),
 			'wizards'     => (object) [],
+			'ui_theme'	  => $this->get_active_ui_theme(),
 		];
 
 		if ( class_exists( \WP101\API::class ) ) {
