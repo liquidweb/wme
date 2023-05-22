@@ -1,16 +1,4 @@
 export default `
-.pattern-shadow-wrap {
-	--global-kb-font-size-sm: clamp(0.8rem, 0.719rem + 0.233vw, 0.9rem);
-	--global-kb-font-size-md: clamp(1.125rem, 0.82rem + 0.872vw, 1.5rem);
-	--global-kb-font-size-lg: clamp(1.75rem, 1.14rem + 1.744vw, 2.5rem);
-	--global-kb-font-size-xl: clamp(2.25rem, 1.728rem + 1.63vw, 3rem);
-	--global-kb-font-size-xxl: clamp(2.5rem, 1.456rem + 3.26vw, 4rem);
-	--global-kb-font-size-xxxl: clamp(
-		2.7rem,
-		1.4833333333333336rem + 6.083333333333333vw,
-		10rem
-	);
-}
 .editor-styles-wrapper {
 	--kb-global-content-width: 1202px;
 }
