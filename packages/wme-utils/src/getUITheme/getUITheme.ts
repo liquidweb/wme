@@ -3,17 +3,22 @@
  *
  * @param {string} themeVariation
  * @return {object | null} MUI theme object
+ * @see https://mui.com/material-ui/experimental-api/css-theme-variables/customization
  */
 
 const kadenceTheme = {
-  palette: {
-    primary: {
-      main: '#0073e6',
-      light: '#edeff7',
-      dark: '#005cb8',
-    },
-    background: {
-      dark: '#005cb8',
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#0073e6',
+          light: '#edeff7',
+          dark: '#005cb8',
+        },
+        background: {
+          dark: '#005cb8',
+        },
+      },
     },
   },
   components: {
@@ -47,14 +52,18 @@ const kadenceTheme = {
   },
 };
 const givewpTheme = {
-  palette: {
-    primary: {
-      main: '#11772A',
-      light: '#EDF7ED',
-      dark: '#083F15',
-    },
-    background: {
-      dark: '#083F15',
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#11772A',
+          light: '#EDF7ED',
+          dark: '#083F15',
+        },
+        background: {
+          dark: '#083F15',
+        },
+      },
     },
   },
   components: {

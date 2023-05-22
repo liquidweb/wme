@@ -1,6 +1,9 @@
 import { lazy } from 'react';
 import { UI_THEME, SB_THEME } from '@sb/constants';
-import { ThemeProvider, createTheme } from '@mui/material';
+import {
+	Experimental_CssVarsProvider as CssVarsProvider,
+	experimental_extendTheme as extendTheme
+} from '@mui/material/styles';
 import { theme as WME_THEME } from '@moderntribe/wme-ui';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {
@@ -15,11 +18,11 @@ import { getUITheme } from '@moderntribe/wme-utils';
 
 const SetupScreen: (props: any) => JSX.Element = Loadable(lazy(() => import('@sb/setup/SetupScreen')));
 const queryClient = new QueryClient();
-const defaultTheme = createTheme(WME_THEME, SB_THEME);
-const siteBuilderTheme = createTheme(defaultTheme, getUITheme(UI_THEME));
+const defaultTheme = extendTheme(WME_THEME, SB_THEME);
+const siteBuilderTheme = extendTheme(defaultTheme, getUITheme(UI_THEME));
 
 const SiteBuilder = () => (
-	<ThemeProvider theme={ siteBuilderTheme }>
+	<CssVarsProvider theme={ siteBuilderTheme }>
 		<QueryClientProvider client={ queryClient }>
 			<SiteBuilderProvider>
 				<HashRouter>
@@ -31,7 +34,7 @@ const SiteBuilder = () => (
 				</HashRouter>
 			</SiteBuilderProvider>
 		</QueryClientProvider>
-	</ThemeProvider>
+	</CssVarsProvider>
 );
 
 export default SiteBuilder;
