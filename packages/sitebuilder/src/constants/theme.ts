@@ -22,21 +22,11 @@ declare module '@mui/material/styles/createPalette' {
 		main?: string;
 		background?: string;
 	}
-	interface TypeCompleted {
-		main?: string;
-		background?: string;
-	}
 	interface Palette {
 		sidebar: TypeSidebar;
 		brands: TypeBrands;
 		border: TypeBorder;
 		todo: TypeTodo;
-	}
-	interface PaletteOptions {
-		sidebar?: TypeSidebar;
-		brands?: TypeBrands;
-		border?: TypeBorder;
-		completed?: TypeCompleted;
 	}
   }
 
