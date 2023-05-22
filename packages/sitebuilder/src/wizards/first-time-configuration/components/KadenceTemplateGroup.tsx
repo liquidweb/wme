@@ -6,10 +6,11 @@ const TemplateGroupContainer = styled(Box, {
 	slot: 'Root',
 })<BoxProps>(({ theme }) => ({
 	display: 'grid',
-	gap: theme.spacing(3),
+	gap: theme.spacing(6),
 	gridTemplateColumns: '1fr 1fr',
+	paddingBottom: '48px',
 	[ theme.breakpoints.up('sm') ]: {
-		gridTemplateColumns: '1fr 1fr 1fr',
+		gridTemplateColumns: '1fr 1fr',
 	},
 }));
 

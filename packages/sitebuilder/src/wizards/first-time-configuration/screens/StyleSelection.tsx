@@ -4,6 +4,7 @@ import getTemplateStyles from '../data/styles';
 import { useEffect, useState } from 'react';
 import KadenceTemplateItem, { TemplateSelectItemProps } from '../components/KadenceTemplateItem';
 import KadenceTemplateGroup from '../components/KadenceTemplateGroup';
+import TemplateItemSkeletonItem from '../components/TemplateItemSkeleton';
 
 const StyleSelection = () => {
 	const {
@@ -23,15 +24,16 @@ const StyleSelection = () => {
 
 	useEffect(() => {
 		if (! loading && data) {
-			const homePageKeys = Object.keys(data).filter((key) => data[ key ].name.includes('Home'));
-			setPages(homePageKeys.map((key) => data[ key ]));
+			const homePageKeys = Object.keys(data).filter((key) => data[ key ].categories.home);
+			const homePages = homePageKeys.map((key) => data[ key ]);
+			setPages(homePages.slice(0, 8));
 		}
 	}, [loading, data]);
 
 	return (
-		<Box sx={ { width: '95%', minHeight: '100%' } }>
+		<Box sx={ { width: '90%', minHeight: '100%', paddingTop: '48px' } }>
 			<KadenceTemplateGroup>
-				{ pages?.map((page, index) => (
+				{ pages ? pages.map((page, index) => (
 					<KadenceTemplateItem
 						key={ page.slug }
 						{ ...page }
@@ -39,7 +41,11 @@ const StyleSelection = () => {
 						onClick={ handleTemplateChange }
 						selected={ page.slug === form.template.value }
 					/>
-				)) }
+				)) : (
+					Array.from('123456').map((key) => (
+						<TemplateItemSkeletonItem key={ key } />
+					))
+				) }
 			</KadenceTemplateGroup>
 		</Box>
 	);

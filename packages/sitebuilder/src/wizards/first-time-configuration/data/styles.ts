@@ -1,7 +1,14 @@
+export type FontDetails = {
+	size: string;
+	lineHeight: string;
+	letterSpacing: string;
+	fontWeight: string;
+}
+
 export interface StyleInterface {
 	headingFont: string;
 	baseFont: string;
-	borderRadius: string;
+	baseFontStyles: FontDetails;
 	accent1: string;
 	accent2: string;
 	contrast1: string;
@@ -11,160 +18,522 @@ export interface StyleInterface {
 	base1: string;
 	base2: string;
 	base3: string;
-	starterTemplate: string;
+	textTransform?: string;
+	h1: FontDetails;
+	h2: FontDetails;
+	h3: FontDetails;
+	h4: FontDetails;
+	h5: FontDetails;
+	h6: FontDetails;
+	buttonStyles: {
+		fontSize: string;
+		padding: string;
+		borderRadius: string;
+		border?: string;
+		borderBottom?: boolean;
+		isOutline?: boolean;
+		fontWeight?: string;
+		textTransform?: string;
+	},
 }
 
 export default function (): StyleInterface[] {
 	return [
 		{
+			headingFont: 'Syne',
+			baseFont: 'Inter',
+			accent1: '#008080',
+			accent2: '#319993',
+			contrast1: '#000000',
+			contrast2: '#1F1B1C',
+			contrast3: '#3E3638',
+			contrast4: '#6B6365',
+			base1: '#C5E6CC',
+			base2: '#DDF2D5',
+			base3: '#F6FFDF',
+			buttonStyles: {
+				fontSize: '16px',
+				padding: '16px',
+				borderRadius: '0'
+			},
+			baseFontStyles: {
+				size: '18px',
+				lineHeight: '1.3',
+				letterSpacing: '0px',
+				fontWeight: '500',
+			},
+			h1: {
+				size: '80px',
+				lineHeight: '1',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h2: {
+				size: '72px',
+				lineHeight: '1.1',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h3: {
+				size: '56px',
+				lineHeight: '1.1',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h4: {
+				size: '48px',
+				lineHeight: '1.2',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h5: {
+				size: '40px',
+				lineHeight: '1.3',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h6: {
+				size: '32px',
+				lineHeight: '1',
+				letterSpacing: '0px',
+				fontWeight: '500',
+			},
+		},
+		{
+			headingFont: 'Lexend',
+			baseFont: 'Lexend',
+			accent1: '#480CA6',
+			accent2: '#5533B4',
+			contrast1: '#042048',
+			contrast2: '#113158',
+			contrast3: '#1E4369',
+			contrast4: '#2B5378',
+			base1: '#B7DBEC',
+			base2: '#D1ECF9',
+			base3: '#EDF9FE',
+			buttonStyles: {
+				fontSize: '16px',
+				padding: '26px 36px',
+				borderRadius: '20px'
+			},
+			baseFontStyles: {
+				size: '18px',
+				lineHeight: '1.3',
+				letterSpacing: '0px',
+				fontWeight: '300',
+			},
+			h1: {
+				size: '72px',
+				lineHeight: '1',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h2: {
+				size: '64px',
+				lineHeight: '1',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h3: {
+				size: '56px',
+				lineHeight: '1.2',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h4: {
+				size: '48px',
+				lineHeight: '1,2',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h5: {
+				size: '40px',
+				lineHeight: '1.3',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h6: {
+				size: '32px',
+				lineHeight: '1',
+				letterSpacing: '-1px',
+				fontWeight: '500',
+			},
+		},
+		{
+			headingFont: 'Bebas Neue',
+			baseFont: 'Work Sans',
+			accent1: '#E8312E',
+			accent2: '#D12C29',
+			contrast1: '#000000',
+			contrast2: '#170505',
+			contrast3: '#2E0A09',
+			contrast4: '#450F0E',
+			base1: '#FEFBF5',
+			base2: '#FEFBF5',
+			base3: '#FFFFFF',
+			textTransform: 'uppercase',
+			buttonStyles: {
+				fontSize: '20px',
+				padding: '20px 24px',
+				borderRadius: '16px',
+				border: '2px',
+				isOutline: true,
+			},
+			baseFontStyles: {
+				size: '20px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h1: {
+				size: '96px',
+				lineHeight: '1.1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h2: {
+				size: '80px',
+				lineHeight: '1.1',
+				letterSpacing: '0px',
+				fontWeight: '400',
+			},
+			h3: {
+				size: '72px',
+				lineHeight: '1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h4: {
+				size: '58px',
+				lineHeight: '1',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h5: {
+				size: '48px',
+				lineHeight: '1',
+				letterSpacing: '0px',
+				fontWeight: '400',
+			},
+			h6: {
+				size: '42px',
+				lineHeight: '.9',
+				letterSpacing: '0px',
+				fontWeight: '400',
+			},
+		},
+		{
+			// can't do the different colors on different backgrounds
+			headingFont: 'Poppins',
+			baseFont: 'Quicksand',
+			accent1: '#F07167',
+			accent2: '#00AFB9',
+			contrast1: '#203C50',
+			contrast2: '#284B63',
+			contrast3: '#356383',
+			contrast4: '#4EA6C1',
+			base1: '#EEF2F5',
+			base2: '#F8F9FD',
+			base3: '#FFFFFF',
+			buttonStyles: {
+				fontSize: '18px',
+				fontWeight: '700',
+				padding: '16px',
+				borderRadius: '0',
+				borderBottom: true,
+				border: '2px',
+				isOutline: true,
+			},
+			baseFontStyles: {
+				size: '18px',
+				lineHeight: '1.4',
+				letterSpacing: '0px',
+				fontWeight: '500',
+			},
+			h1: {
+				size: '72px',
+				lineHeight: '1.1',
+				letterSpacing: '-3px',
+				fontWeight: '700',
+			},
+			h2: {
+				size: '56px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '700',
+			},
+			h3: {
+				size: '48px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '700',
+			},
+			h4: {
+				size: '40px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '700',
+			},
+			h5: {
+				size: '32px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '700',
+			},
+			h6: {
+				size: '24px',
+				lineHeight: '1.1',
+				letterSpacing: '-1px',
+				fontWeight: '700',
+			},
+		},
+		{
+			// can't do the different colors on different backgrounds
+			headingFont: 'Libre Baskerville',
+			baseFont: 'Inter',
+			accent1: '#1E1E1E',
+			accent2: '#52565D',
+			contrast1: '#065045',
+			contrast2: '#0B7C6B',
+			contrast3: '#0CA38C',
+			contrast4: '#1CBCA4',
+			base1: '#E8D2BB',
+			base2: '#E8E2DB',
+			base3: '#F2E7DF',
+			buttonStyles: {
+				fontSize: '16px',
+				fontWeight: '400',
+				padding: '26px 36px',
+				borderRadius: '4px',
+				textTransform: 'uppercase'
+			},
+			baseFontStyles: {
+				size: '24px',
+				lineHeight: '1.3',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h1: {
+				size: '88px',
+				lineHeight: '88px',
+				letterSpacing: '-6px',
+				fontWeight: '400',
+			},
+			h2: {
+				size: '72px',
+				lineHeight: '1.1',
+				letterSpacing: '-3px',
+				fontWeight: '400',
+			},
+			h3: {
+				size: '64px',
+				lineHeight: '72px',
+				letterSpacing: '-3px',
+				fontWeight: '400',
+			},
+			h4: {
+				size: '53px',
+				lineHeight: '1.1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h5: {
+				size: '48px',
+				lineHeight: '1.1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h6: {
+				size: '40px',
+				lineHeight: '1.05',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+		},
+		{
+			// can't do the different colors on different backgrounds
 			headingFont: 'DM Serif Display',
 			baseFont: 'Roboto',
-			borderRadius: '0',
-			accent1: '#FDB200',
-			accent2: '#F8C038',
-			contrast1: '#1C1C1C',
-			contrast2: '#3A3A3A',
-			contrast3: '#626361',
-			contrast4: '#7B7B7B',
-			base1: '#DCD6B3',
-			base2: '#EEE9CF',
+			accent1: '#FFA500',
+			accent2: '#EB990E',
+			contrast1: '#36248D',
+			contrast2: '#4A307F',
+			contrast3: '#5E3E71',
+			contrast4: '#724A63',
+			base1: '#EEF2F5',
+			base2: '#F8F9FD',
 			base3: '#FFFFFF',
-			starterTemplate: 'Cooking Course (Pro)'
-		},
-		{
-			headingFont: 'Prompt',
-			baseFont: 'Roboto',
-			borderRadius: '0',
-			accent1: '#496858',
-			accent2: '#668876',
-			contrast1: '#262626',
-			contrast2: '#484848',
-			contrast3: '#d86813',
-			contrast4: '#878787',
-			base1: '#e3e8e5',
-			base2: '#f6f8f7',
-			base3: '#FFFFFF',
-			starterTemplate: 'Fall Festival'
-		},
-		{
-			headingFont: 'Montserrat',
-			baseFont: 'System Default',
-			borderRadius: '100px',
-			accent1: '#00b2d4',
-			accent2: '#0ecaee',
-			contrast1: '#003554',
-			contrast2: '#3a4952',
-			contrast3: '#5a6c76',
-			contrast4: '#75868f',
-			base1: '#dbedf2',
-			base2: '#ebfafc',
-			base3: '#FFFFFF',
-			starterTemplate: 'Cleaning Service'
-		},
-		{
-			headingFont: 'Barlow',
-			baseFont: 'Roboto',
-			borderRadius: '40px',
-			accent1: '#d2001c',
-			accent2: '#b1051c',
-			contrast1: '#000000',
-			contrast2: '#5a5a5a',
-			contrast3: '#808080',
-			contrast4: '#718096',
-			base1: '#ebe7df',
-			base2: '#f7f5ef',
-			base3: '#FFFFFF',
-			starterTemplate: 'Baking Course'
-		},
-		{
-			headingFont: 'Cormorant Garamond',
-			baseFont: 'Jost',
-			borderRadius: '0',
-			accent1: '#7f834e',
-			accent2: '#9a9e5d',
-			contrast1: '#262626',
-			contrast2: '#595a4a',
-			contrast3: '#707166',
-			contrast4: '#9a9b8e',
-			base1: '#ece8db',
-			base2: '#f5f2e7',
-			base3: '#FFFFFF',
-			starterTemplate: 'Meditation Course'
-		},
-		{
-			headingFont: 'Poppins',
-			baseFont: 'Open Sans',
-			borderRadius: '16px',
-			accent1: '#9b67e4',
-			accent2: '#00c9e8',
-			contrast1: '#0d172b',
-			contrast2: '#394158',
-			contrast3: '#4A5568',
-			contrast4: '#718096',
-			base1: '#f5f5f5',
-			base2: '#F7FAFC',
-			base3: '#FFFFFF',
-			starterTemplate: 'Podcast'
-		},
-		{
-			headingFont: 'Staatliches',
-			baseFont: 'Helvetica, Sans-Serif',
-			borderRadius: '16px',
-			accent1: '#f27a4c',
-			accent2: '#f7571a',
-			contrast1: '#01050e',
-			contrast2: '#3f4349',
-			contrast3: '#595b5f',
-			contrast4: '#747575',
-			base1: '#e6e1db',
-			base2: '#faf7f0',
-			base3: '#FFFFFF',
-			starterTemplate: 'BBQ Beer Fest'
-		},
-		{
-			headingFont: 'Raleway',
-			baseFont: 'Raleway',
-			borderRadius: '24px',
-			accent1: '#d71e49',
-			accent2: '#b91037',
-			contrast1: '#000000',
-			contrast2: '#323335',
-			contrast3: '#4a4b4d',
-			contrast4: '#8d8d8d',
-			base1: '#dcddde',
-			base2: '#F3F4F8',
-			base3: '#FFFFFF',
-			starterTemplate: 'Fitness Course'
+			buttonStyles: {
+				fontSize: '16px',
+				fontWeight: '700',
+				padding: '16px 32px',
+				borderRadius: '40px'
+			},
+			baseFontStyles: {
+				size: '18px',
+				lineHeight: '1.2',
+				letterSpacing: '0px',
+				fontWeight: '400',
+			},
+			h1: {
+				size: '74px',
+				lineHeight: '0.9',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h2: {
+				size: '64px',
+				lineHeight: '1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h3: {
+				size: '56px',
+				lineHeight: '1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h4: {
+				size: '48px',
+				lineHeight: '1.1',
+				letterSpacing: '-2px',
+				fontWeight: '400',
+			},
+			h5: {
+				size: '40px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h6: {
+				size: '32px',
+				lineHeight: '1',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
 		},
 		{
 			headingFont: 'Dela Gothic One',
-			baseFont: 'Roboto',
-			borderRadius: '24px',
-			accent1: '#3dfaff',
-			accent2: '#bb00ff',
-			contrast1: '#070538',
-			contrast2: '#282580',
-			contrast3: '#4A5568',
-			contrast4: '#696990',
-			base1: '#f2f2fa',
-			base2: '#f3f3f8',
-			base3: '#FFFFFF',
-			starterTemplate: 'UR Brand'
+			baseFont: 'Courier Prime',
+			accent1: '#FF0000',
+			accent2: '#E70101',
+			contrast1: '#0F0F0E',
+			contrast2: '#0F0F0E',
+			contrast3: '#270E0D',
+			contrast4: '#3F0C0B',
+			base1: '#E5E5E5',
+			base2: '#ECEBE8',
+			base3: '#F5F3EE',
+			buttonStyles: {
+				fontSize: '16px',
+				fontWeight: '400',
+				padding: '16px 26px',
+				borderRadius: '0px'
+			},
+			baseFontStyles: {
+				size: '18px',
+				lineHeight: '1.3',
+				letterSpacing: '0px',
+				fontWeight: '400',
+			},
+			h1: {
+				size: '72px',
+				lineHeight: '1',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h2: {
+				size: '64px',
+				lineHeight: '1',
+				letterSpacing: '-3px',
+				fontWeight: '400',
+			},
+			h3: {
+				size: '56px',
+				lineHeight: '1',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h4: {
+				size: '48px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h5: {
+				size: '40px',
+				lineHeight: '1.1',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
+			h6: {
+				size: '32px',
+				lineHeight: '1',
+				letterSpacing: '-1px',
+				fontWeight: '400',
+			},
 		},
 		{
-			headingFont: 'Krona One',
-			baseFont: 'IBM Plex Sans',
-			borderRadius: '0',
-			accent1: '#f8e60c',
-			accent2: '#e131ff',
-			contrast1: '#1a1a1a',
-			contrast2: '#3c3c3c',
-			contrast3: '#525252',
-			contrast4: '#777777',
-			base1: '#eeeeee',
-			base2: '#fcfcfc',
-			base3: '#FFFFFF',
-			starterTemplate: 'SEO Skills'
+			// can't do the different colors on different backgrounds
+			headingFont: 'Hepta Slab',
+			baseFont: 'Space Grotesk',
+			accent1: '#E56E2A',
+			accent2: '#C55B1E',
+			contrast1: '#040A19',
+			contrast2: '#0E1B3D',
+			contrast3: '#182B5B',
+			contrast4: '#284385',
+			base1: '#FFFFFF',
+			base2: '#FDFEFC',
+			base3: '#F1F5EE',
+			buttonStyles: {
+				fontSize: '16px',
+				fontWeight: '400',
+				padding: '26px 36px',
+				borderRadius: '8px'
+			},
+			baseFontStyles: {
+				size: '18px',
+				lineHeight: '1.3',
+				letterSpacing: '0px',
+				fontWeight: '400',
+			},
+			h1: {
+				size: '72px',
+				lineHeight: '1.2',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h2: {
+				size: '64px',
+				lineHeight: '1.3',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h3: {
+				size: '56px',
+				lineHeight: '1.4',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h4: {
+				size: '48px',
+				lineHeight: '1.3',
+				letterSpacing: '-3px',
+				fontWeight: '500',
+			},
+			h5: {
+				size: '40px',
+				lineHeight: '1.2',
+				letterSpacing: '-2px',
+				fontWeight: '500',
+			},
+			h6: {
+				size: '32px',
+				lineHeight: '1.2',
+				letterSpacing: '-1px',
+				fontWeight: '500',
+			},
 		},
 	];
 }
