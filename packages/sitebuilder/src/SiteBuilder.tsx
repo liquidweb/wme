@@ -18,8 +18,10 @@ import { getUITheme } from '@moderntribe/wme-utils';
 
 const SetupScreen: (props: any) => JSX.Element = Loadable(lazy(() => import('@sb/setup/SetupScreen')));
 const queryClient = new QueryClient();
-const defaultTheme = extendTheme(WME_THEME, SB_THEME);
+const defaultTheme = extendTheme(WME_THEME, { ...SB_THEME, cssVarPrefix: 'wme' });
 const siteBuilderTheme = extendTheme(defaultTheme, getUITheme(UI_THEME));
+// @ts-ignore
+delete siteBuilderTheme?.colorSchemes?.dark;
 
 const SiteBuilder = () => (
 	<CssVarsProvider theme={ siteBuilderTheme }>

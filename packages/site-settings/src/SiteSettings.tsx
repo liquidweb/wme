@@ -10,7 +10,9 @@ import Loadable from '@site/components/Loadable';
 import { getUITheme } from '@moderntribe/wme-utils';
 
 const SetupScreen = Loadable(lazy(() => import('@site/setup/SetupScreen')));
-const siteSettingsTheme = extendTheme(WME_THEME, getUITheme(UI_THEME));
+const siteSettingsTheme = extendTheme(WME_THEME, { ...getUITheme(UI_THEME), cssVarPrefix: 'wme' });
+// @ts-ignore
+delete siteSettingsTheme?.colorSchemes?.dark;
 
 const SiteSettings = () => (
 	<CssVarsProvider theme={ siteSettingsTheme }>

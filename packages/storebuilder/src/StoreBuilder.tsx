@@ -12,8 +12,10 @@ import WizardWrapper from '@store/wizards/WizardWrapper';
 import Loadable from '@store/components/Loadable';
 import { getUITheme } from '@moderntribe/wme-utils';
 
-const defaultTheme = extendTheme(WME_THEME, SB_THEME);
+const defaultTheme = extendTheme(WME_THEME, { ...SB_THEME, cssVarPrefix: 'wme' });
 const storeBuilderTheme = extendTheme(defaultTheme, getUITheme(UI_THEME));
+// @ts-ignore
+delete storeBuilderTheme?.colorSchemes?.dark;
 const SetupScreen = Loadable(lazy(() => import('@store/setup/SetupScreen')));
 
 const StoreBuilder = () => (
