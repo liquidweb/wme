@@ -8,6 +8,8 @@ export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
 export const LOGO = STOREBUILDER.logo;
 
+export const UI_THEME = STOREBUILDER?.ui_theme;
+
 export const CARDS: SetupCardInterface[] = STOREBUILDER.cards || [];
 
 export const WIZARDS = STOREBUILDER.wizards || {};

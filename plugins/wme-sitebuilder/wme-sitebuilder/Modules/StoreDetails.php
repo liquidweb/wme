@@ -111,6 +111,7 @@ class StoreDetails extends Module implements LoadsConditionally {
 			'page_url'    => add_query_arg( 'page', $this->menu_slug, admin_url( 'admin.php' ) ),
 			'cards'       => [],
 			'wizards'     => (object) [],
+			'ui_theme'	  => $this->get_active_ui_theme(),
 		];
 
 		if ( class_exists( \WP101\API::class ) ) {

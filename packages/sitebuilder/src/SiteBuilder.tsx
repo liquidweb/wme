@@ -1,5 +1,9 @@
 import { lazy } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { UI_THEME, SB_THEME } from '@sb/constants';
+import {
+	Experimental_CssVarsProvider as CssVarsProvider,
+	experimental_extendTheme as extendTheme
+} from '@mui/material/styles';
 import { theme as WME_THEME } from '@moderntribe/wme-ui';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {
@@ -10,15 +14,17 @@ import SiteBuilderProvider from '@sb/contexts/SiteBuilderProvider';
 import WizardProvider from '@sb/contexts/WizardProvider';
 import WizardWrapper from '@sb/wizards/WizardWrapper';
 import Loadable from '@sb/components/Loadable';
-import { SB_THEME } from '@sb/constants';
+import { getUITheme } from '@moderntribe/wme-utils';
 
 const SetupScreen: (props: any) => JSX.Element = Loadable(lazy(() => import('@sb/setup/SetupScreen')));
-
-const siteBuilderTheme = createTheme(WME_THEME, SB_THEME);
 const queryClient = new QueryClient();
+const defaultTheme = extendTheme(WME_THEME, { ...SB_THEME, cssVarPrefix: 'wme' });
+const siteBuilderTheme = extendTheme(defaultTheme, getUITheme(UI_THEME));
+// @ts-ignore
+delete siteBuilderTheme?.colorSchemes?.dark;
 
 const SiteBuilder = () => (
-	<ThemeProvider theme={ siteBuilderTheme }>
+	<CssVarsProvider theme={ siteBuilderTheme }>
 		<QueryClientProvider client={ queryClient }>
 			<SiteBuilderProvider>
 				<HashRouter>
@@ -30,7 +36,7 @@ const SiteBuilder = () => (
 				</HashRouter>
 			</SiteBuilderProvider>
 		</QueryClientProvider>
-	</ThemeProvider>
+	</CssVarsProvider>
 );
 
 export default SiteBuilder;

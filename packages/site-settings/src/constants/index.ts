@@ -6,6 +6,8 @@ export const ASSETS_URL = SITE_SETTINGS?.assets_url;
 
 export const IMAGE_DIR = `${ ASSETS_URL }images/`;
 
+export const UI_THEME = SITE_SETTINGS?.ui_theme;
+
 export const CARDS: SetupCardAccordionInterface[] = SITE_SETTINGS?.cards || [];
 
 export const SITE_VISIBILITY = CARDS?.find((card) => card.id === 'site-visibility');
