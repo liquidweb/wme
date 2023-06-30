@@ -212,7 +212,7 @@ let themeWME = createTheme({
       primary: '#FFFFFF',
       secondary: '#FAFAFA',
       hover: '#F5F5F5',
-      dark: '#000000',
+      dark: '#111010',
       grey: '#F5F5F5',
       disabled: '#F0F1F9',
     },

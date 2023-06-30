@@ -11,7 +11,7 @@ export interface WizardSidebarProps {
 }
 
 export const WizardSidebar = (props: WizardSidebarProps) => {
-	const { show = false, label = '', description = '', icon, subText, logo } = props;
+	const { show = false, label = '', description = '', subText, logo } = props;
 
 	if (! show) {
 		return null;
@@ -43,7 +43,6 @@ export const WizardSidebar = (props: WizardSidebarProps) => {
 					logo={ logo }
 					heading={ label }
 					body={ description }
-					icon={ icon }
 					subtext={ subText }
 				/>
 			</Grid>

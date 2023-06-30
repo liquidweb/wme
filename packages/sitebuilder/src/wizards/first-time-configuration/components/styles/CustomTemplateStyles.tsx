@@ -1,4 +1,4 @@
-import { StyleInterface } from '../data/styles';
+import { StyleInterface } from '../../data/styles';
 
 export interface CustomTemplateStylesProps {
 	style: StyleInterface;

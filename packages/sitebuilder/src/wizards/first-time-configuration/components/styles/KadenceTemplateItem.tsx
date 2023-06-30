@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import root from 'react-shadow';
 import { styled, Box, IconProps, Typography } from '@mui/material';
-import { StyleInterface } from '../data/styles';
+import { StyleInterface } from '../../data/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import globalEditorInlineStyles from '../data/kadence-blocks-global-editor-styles-inline-css';
+import globalEditorInlineStyles from '../../data/kadence-blocks-global-editor-styles-inline-css';
 import { KADENCE_DYNAMIC_STYLES } from '@sb/constants';
 import CustomTemplateStyles from './CustomTemplateStyles';
 
@@ -24,7 +24,9 @@ export interface TemplateSelectItemProps {
 	slug: string;
 	rows_html: string;
 	style: StyleInterface;
+	page_styles: Record<string, string>;
 	onClick: (slug: string) => void;
+	defaultStyleIndex?: number;
 }
 
 const TemplateItemContainer = styled(Box)(({ theme }) => ({

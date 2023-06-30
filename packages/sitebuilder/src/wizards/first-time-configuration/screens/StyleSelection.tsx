@@ -2,9 +2,10 @@ import { useFirstTimeConfiguration, useKadencePages } from '@sb/hooks';
 import { Box } from '@mui/material';
 import getTemplateStyles from '../data/styles';
 import { useEffect, useState } from 'react';
-import KadenceTemplateItem, { TemplateSelectItemProps } from '../components/KadenceTemplateItem';
-import KadenceTemplateGroup from '../components/KadenceTemplateGroup';
-import TemplateItemSkeletonItem from '../components/TemplateItemSkeleton';
+import KadenceTemplateItem, { TemplateSelectItemProps } from '../components/styles/KadenceTemplateItem';
+import KadenceTemplateGroup from '../components/styles/KadenceTemplateGroup';
+import TemplateItemSkeletonItem from '../components/styles/TemplateItemSkeleton';
+import TemplateFilter, { FilterOption } from '../components/styles/TemplateFilter';
 
 const StyleSelection = () => {
 	const {
@@ -15,6 +16,8 @@ const StyleSelection = () => {
 
 	const { data, loading } = useKadencePages();
 	const [pages, setPages] = useState<TemplateSelectItemProps[]>();
+	const [filteredPages, setFilteredPages] = useState<TemplateSelectItemProps[]>();
+	const [filterOptions, setFilterOptions] = useState<FilterOption[]>([]);
 	const styles = getTemplateStyles();
 
 	const handleTemplateChange = (value: string) => {
@@ -24,20 +27,61 @@ const StyleSelection = () => {
 
 	useEffect(() => {
 		if (! loading && data) {
+			console.log(data);
+
 			const homePageKeys = Object.keys(data).filter((key) => data[ key ].categories.home);
-			const homePages = homePageKeys.map((key) => data[ key ]);
-			setPages(homePages.slice(0, 8));
+			const homePages = homePageKeys.map((key, index) => {
+				return {
+					...data[ key ],
+					defaultStyleIndex: index % 8
+				}
+			});
+			setPages(homePages);
+			setFilteredPages(homePages);
+
+			const pageStyles = homePages.reduce((acc, page) => {
+				return {
+					...acc,
+					...page.page_styles
+				};
+			}, {});
+			const pageStylesArr = Object.keys(pageStyles).map((key) => ({ value: key, label: pageStyles[ key ] }));
+			setFilterOptions(pageStylesArr);
 		}
 	}, [loading, data]);
 
+	const filterTemplates = (targets: FilterOption[]) => {
+		if (targets.length > 0) {
+			setFilteredPages(pages?.filter((page) => {
+				for (const option of targets) {
+					if (page.page_styles[ option.value ]) {
+						return true;
+					}
+				}
+				return false;
+			}));
+		} else {
+			setFilteredPages(pages);
+		}
+	};
+
 	return (
 		<Box sx={ { width: '90%', minHeight: '100%', paddingTop: '48px' } }>
+			<Box sx={ { display: 'flex', justifyContent: 'space-between' } }>
+				<TemplateFilter
+					options={ filterOptions }
+					updateSelected={ filterTemplates }
+				/>
+				<div>
+					{ filteredPages?.length || 0 } templates
+				</div>
+			</Box>
 			<KadenceTemplateGroup>
-				{ pages ? pages.map((page, index) => (
+				{ filteredPages ? filteredPages.map((page) => (
 					<KadenceTemplateItem
 						key={ page.slug }
 						{ ...page }
-						style={ styles[ index ] }
+						style={ styles[ page.defaultStyleIndex || 0 ] }
 						onClick={ handleTemplateChange }
 						selected={ page.slug === form.template.value }
 					/>
