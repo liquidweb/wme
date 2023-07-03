@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+	import { __ } from '@wordpress/i18n';
 
 import {
 	UsernamePassword,
@@ -15,8 +15,8 @@ import {
 	EditIcon,
 	GoalIcon,
 	MessageIcon,
-	StyleIcon
 } from '@sb/icons';
+import ColorSelection from '@ftc/components/styles/ColorSelection';
 
 export interface FtcSiteLogoObjectInterface {
 	id: string;
@@ -33,6 +33,10 @@ export interface FtcSiteObject {
 	siteKeywords: string[];
 	goals: string[];
 	template: string;
+	colorPalette: string;
+	headingFont: string;
+	bodyFont: string;
+
 }
 
 export interface FtcWizardObjectInterface {
@@ -135,16 +139,16 @@ const stepsData: Array<StepInterface> = [
 	{
 		id: 4,
 		label: __('Style', 'moderntribe-sitebuilder'),
-		title: __('Lets talk style.', 'moderntribe-sitebuilder'),
-		description: __(
-			'Grab a starter template to get you going, but don\'t worry, you\'ll be able to update fonts, colors, imagery… You get the idea. We could keep listing things but let\'s keep moving.',
-			'moderntribe-sitebuilder'
-		),
+		title: __('Style Starter', 'moderntribe-sitebuilder'),
+		// description: __(
+		// 	'Grab a starter template to get you going, but don\'t worry, you\'ll be able to update fonts, colors, imagery… You get the idea. We could keep listing things but let\'s keep moving.',
+		// 	'moderntribe-sitebuilder'
+		// ),
 		footerHelpText: __(
 			'You\'ll be able to change all of this at any time down to the smallest detail (if you want).',
 			'moderntribe-sitebuilder'
 		),
-		icon: <StyleIcon />,
+		sidebarComponent: <ColorSelection />,
 		hideSkip: true,
 		disableNext: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
@@ -239,7 +243,22 @@ const formItemsData: FtcFormItemsInterface = {
 		value: '',
 		touched: false,
 		isValid: true
-	}
+	},
+	colorPalette: {
+		value: '',
+		touched: false,
+		isValid: true
+	},
+	headingFont: {
+		value: '',
+		touched: false,
+		isValid: true
+	},
+	bodyFont: {
+		value: '',
+		touched: false,
+		isValid: true
+	},
 };
 
 const industryVerticals: Record<string, string[]> = {
@@ -298,7 +317,10 @@ const localData: FtcScreenDataInterface = {
 		sitePersonality: '',
 		siteKeywords: [],
 		goals: [],
-		template: ''
+		template: '',
+		colorPalette: '',
+		headingFont: '',
+		bodyFont: ''
 	},
 	previewLogo: {
 		id: '',
@@ -330,7 +352,10 @@ const setInitialFormValues = (
 			sitePersonality = '',
 			siteKeywords = [],
 			goals = [],
-			template = ''
+			template = '',
+			colorPalette = '',
+			headingFont = '',
+			bodyFont = ''
 		}
 	} = wizardData;
 
@@ -347,6 +372,9 @@ const setInitialFormValues = (
 	form.siteKeywords.value = siteKeywords;
 	form.goals.value = goals;
 	form.template.value = template;
+	form.colorPalette.value = colorPalette;
+	form.headingFont.value = headingFont;
+	form.bodyFont.value = bodyFont;
 
 	return form;
 };

@@ -6,6 +6,7 @@ export type FontDetails = {
 }
 
 export interface StyleInterface {
+	id: string;
 	headingFont: string;
 	baseFont: string;
 	baseFontStyles: FontDetails;
@@ -40,6 +41,7 @@ export interface StyleInterface {
 export default function (): StyleInterface[] {
 	return [
 		{
+			id: 'mint',
 			headingFont: 'Syne',
 			baseFont: 'Inter',
 			accent1: '#008080',
@@ -100,6 +102,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
+			id: 'royal',
 			headingFont: 'Lexend',
 			baseFont: 'Lexend',
 			accent1: '#480CA6',
@@ -160,6 +163,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
+			id: 'reddish',
 			headingFont: 'Bebas Neue',
 			baseFont: 'Work Sans',
 			accent1: '#E8312E',
@@ -223,7 +227,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
-			// can't do the different colors on different backgrounds
+			id: 'grotesque',
 			headingFont: 'Poppins',
 			baseFont: 'Quicksand',
 			accent1: '#F07167',
@@ -288,7 +292,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
-			// can't do the different colors on different backgrounds
+			id: 'wintermint',
 			headingFont: 'Libre Baskerville',
 			baseFont: 'Inter',
 			accent1: '#1E1E1E',
@@ -351,7 +355,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
-			// can't do the different colors on different backgrounds
+			id: 'gloomy',
 			headingFont: 'DM Serif Display',
 			baseFont: 'Roboto',
 			accent1: '#FFA500',
@@ -413,6 +417,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
+			id: 'brightred',
 			headingFont: 'Dela Gothic One',
 			baseFont: 'Courier Prime',
 			accent1: '#FF0000',
@@ -474,7 +479,7 @@ export default function (): StyleInterface[] {
 			},
 		},
 		{
-			// can't do the different colors on different backgrounds
+			id: 'orange',
 			headingFont: 'Hepta Slab',
 			baseFont: 'Space Grotesk',
 			accent1: '#E56E2A',

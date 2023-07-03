@@ -158,6 +158,7 @@ declare global {
 		hideExit?: boolean;
 		hideSidebar?: boolean;
 		hideFooter?: boolean;
+		sidebarComponent?: React.ReactNode;
 	}
 
 	interface Window {

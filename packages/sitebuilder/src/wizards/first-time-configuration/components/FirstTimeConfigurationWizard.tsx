@@ -98,6 +98,7 @@ const FirstTimeConfigurationWizard = () => {
 				description={ currentScreen.description }
 				icon={ currentScreen.icon }
 				subText={ currentScreen.footerHelpText }
+				component={ currentScreen.sidebarComponent }
 			/>
 			<Grid item xs={ currentScreen.hideSidebar ? 12 : 9.5 } sx={ { position: 'relative' } }>
 				{ ! currentScreen.hideExit && (

@@ -1,4 +1,4 @@
-import { useFirstTimeConfiguration, useKadencePages } from '@sb/hooks';
+import { formatKadencePages, useFirstTimeConfiguration, useKadencePages } from '@sb/hooks';
 import { Box } from '@mui/material';
 import getTemplateStyles from '../data/styles';
 import { useEffect, useState } from 'react';
@@ -27,26 +27,10 @@ const StyleSelection = () => {
 
 	useEffect(() => {
 		if (! loading && data) {
-			console.log(data);
-
-			const homePageKeys = Object.keys(data).filter((key) => data[ key ].categories.home);
-			const homePages = homePageKeys.map((key, index) => {
-				return {
-					...data[ key ],
-					defaultStyleIndex: index % 8
-				}
-			});
-			setPages(homePages);
-			setFilteredPages(homePages);
-
-			const pageStyles = homePages.reduce((acc, page) => {
-				return {
-					...acc,
-					...page.page_styles
-				};
-			}, {});
-			const pageStylesArr = Object.keys(pageStyles).map((key) => ({ value: key, label: pageStyles[ key ] }));
-			setFilterOptions(pageStylesArr);
+			const parsed = formatKadencePages(data);
+			setPages(parsed.pages);
+			setFilteredPages(parsed.pages);
+			setFilterOptions(parsed.filterOptions);
 		}
 	}, [loading, data]);
 
