@@ -13,17 +13,17 @@ const StyleSelection = () => {
 		setFormValue,
 		shouldBlockNextStep
 	} = useFirstTimeConfiguration();
-
 	const { data, loading } = useKadencePages();
 	const [pages, setPages] = useState<TemplateSelectItemProps[]>();
 	const [filteredPages, setFilteredPages] = useState<TemplateSelectItemProps[]>();
 	const [filterOptions, setFilterOptions] = useState<FilterOption[]>([]);
+	const [selectedTemplate, setTemplate] = useState(form.template.value);
 	const styles = getTemplateStyles();
 
-	const handleTemplateChange = (value: string) => {
-		setFormValue('template', value);
+	useEffect(() => {
+		setFormValue('template', selectedTemplate);
 		shouldBlockNextStep(false, 4);
-	};
+	}, [selectedTemplate]);
 
 	useEffect(() => {
 		if (! loading && data) {
@@ -66,11 +66,11 @@ const StyleSelection = () => {
 						key={ page.slug }
 						{ ...page }
 						style={ styles[ page.defaultStyleIndex || 0 ] }
-						onClick={ handleTemplateChange }
-						selected={ page.slug === form.template.value }
+						onClick={ setTemplate }
+						selected={ page.slug === selectedTemplate }
 					/>
 				)) : (
-					Array.from('123456').map((key) => (
+					Array.from('1234').map((key) => (
 						<TemplateItemSkeletonItem key={ key } />
 					))
 				) }

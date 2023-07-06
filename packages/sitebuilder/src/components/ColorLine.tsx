@@ -28,7 +28,6 @@ const ColorSwatch = ({ color }: { color: string }) => {
 
 		const contrastRatio = backBrightness - foreBrightness;
 		setContrast(contrastRatio);
-		console.log('contrast', color, contrastRatio);
 	}, [color]);
 
 	const fromHexToRgb = (hexCode: string) => {
@@ -46,16 +45,16 @@ const ColorSwatch = ({ color }: { color: string }) => {
 
 	return (
 		<Box sx={ {
-			width: '18px',
-			height: '18px',
+			width: 'auto',
+			flex: 1,
+			height: '16px',
+			maxWidth: '16px',
 			background: color,
 			border: '1px solid',
 			borderColor: contrast < 30 ? darken(color, .1) : color,
 			borderRadius: '4px',
 			marginRight: '4px',
-		} }
-
-		/>
+		} } />
 	);
 };
 

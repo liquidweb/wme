@@ -11,6 +11,7 @@ import { ArrowForward } from '@mui/icons-material';
 import { LOGO } from '@sb/constants';
 import ScreenWrapper from './ScreenWrapper';
 import { ErrorScreen } from '../screens';
+import GoogleFonts from './styles/GoogleFonts';
 
 const FirstTimeConfigurationWizard = () => {
 	const {
@@ -91,6 +92,7 @@ const FirstTimeConfigurationWizard = () => {
 
 	return (
 		<Grid container sx={ { position: 'absolute', inset: 0 } }>
+			<GoogleFonts />
 			<WizardSidebar
 				logo={ logo }
 				show={ ! currentScreen.hideSidebar }

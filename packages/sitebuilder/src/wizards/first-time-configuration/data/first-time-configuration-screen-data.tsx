@@ -16,7 +16,7 @@ import {
 	GoalIcon,
 	MessageIcon,
 } from '@sb/icons';
-import ColorSelection from '@ftc/components/styles/ColorSelection';
+import TemplateStyleSidebar from '@ftc/components/styles/TemplateStyleSidebar';
 
 export interface FtcSiteLogoObjectInterface {
 	id: string;
@@ -34,8 +34,7 @@ export interface FtcSiteObject {
 	goals: string[];
 	template: string;
 	colorPalette: string;
-	headingFont: string;
-	bodyFont: string;
+	fontPairing: string;
 
 }
 
@@ -148,7 +147,7 @@ const stepsData: Array<StepInterface> = [
 			'You\'ll be able to change all of this at any time down to the smallest detail (if you want).',
 			'moderntribe-sitebuilder'
 		),
-		sidebarComponent: <ColorSelection />,
+		sidebarComponent: <TemplateStyleSidebar /> ,
 		hideSkip: true,
 		disableNext: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
@@ -249,16 +248,11 @@ const formItemsData: FtcFormItemsInterface = {
 		touched: false,
 		isValid: true
 	},
-	headingFont: {
+	fontPairing: {
 		value: '',
 		touched: false,
-		isValid: true
-	},
-	bodyFont: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
+		isValid: false
+	}
 };
 
 const industryVerticals: Record<string, string[]> = {
@@ -319,8 +313,7 @@ const localData: FtcScreenDataInterface = {
 		goals: [],
 		template: '',
 		colorPalette: '',
-		headingFont: '',
-		bodyFont: ''
+		fontPairing: ''
 	},
 	previewLogo: {
 		id: '',
@@ -354,8 +347,7 @@ const setInitialFormValues = (
 			goals = [],
 			template = '',
 			colorPalette = '',
-			headingFont = '',
-			bodyFont = ''
+			fontPairing = ''
 		}
 	} = wizardData;
 
@@ -373,8 +365,7 @@ const setInitialFormValues = (
 	form.goals.value = goals;
 	form.template.value = template;
 	form.colorPalette.value = colorPalette;
-	form.headingFont.value = headingFont;
-	form.bodyFont.value = bodyFont;
+	form.fontPairing.value = fontPairing;
 
 	return form;
 };

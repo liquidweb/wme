@@ -1,15 +1,26 @@
 import { Box, FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { ColorLine } from '@sb/components';
 import getTemplateStyles, { StyleInterface } from '@ftc/data/styles';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useFirstTimeConfiguration } from '@sb/hooks';
 
 const ColorSelection = () => {
+	const {
+		ftcState: { form },
+		setFormValue,
+	} = useFirstTimeConfiguration();
 	const styles = getTemplateStyles();
-	const [color, setColorValue] = useState('');
+	const [color, setColorValue] = useState(form.colorPalette.value);
 
-	const handleColorSel = useCallback((e: { target: { value: string } }) => {
+	const handleColorSel = useCallback((e) => {
 		const selected = e.target.value;
 		setColorValue(selected);
+	}, [color]);
+
+	useEffect(() => {
+		if (color) {
+			setFormValue('colorPalette', color);
+		}
 	}, [color]);
 
 	const getPalette = (theme: StyleInterface) => {
@@ -23,8 +34,8 @@ const ColorSelection = () => {
 			theme.base1,
 			theme.base2,
 			theme.base3,
-		]
-	}
+		];
+	};
 
 	return (
 
@@ -38,11 +49,12 @@ const ColorSelection = () => {
 					onChange={ handleColorSel }
 				>
 					{
-						styles?.map((theme, i) => (
+						styles?.map((theme) => (
 							<FormControlLabel
-								key={ i }
+								key={ theme.id }
 								value={ theme.id }
-								control={ <Radio /> } label={ <ColorLine colorList={ getPalette(theme) } /> }
+								control={ <Radio size="small" /> }
+								label={ <ColorLine colorList={ getPalette(theme) } /> }
 								sx={ {
 									backgroundColor: '#fff',
 									p: 0,
@@ -50,6 +62,9 @@ const ColorSelection = () => {
 									mb: '5px',
 									mr: 0,
 									ml: 0,
+									'.MuiFormControlLabel-label': {
+										width: '100%'
+									}
 								} }
 							/>
 						))

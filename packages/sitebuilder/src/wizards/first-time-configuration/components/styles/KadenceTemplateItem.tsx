@@ -92,7 +92,7 @@ const TemplateItemCheck = styled(CheckCircleIcon)<IconProps>(({ theme }) => ({
 
 export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	const {
-		buttonLabel = 'Start With This Style',
+		buttonLabel = 'Start With This Template',
 		buttonSelectedLabel = 'Selected',
 		selected,
 		rows_html,
@@ -105,10 +105,6 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 
 	const containerRef = useRef<HTMLElement>();
 	const dynamicStyles = KADENCE_DYNAMIC_STYLES.replace(/:root/g, ':host');
-
-	const headingFontName = style.headingFont.replace(/ /g, '+');
-	const baseFontName = style.baseFont.replace(/ /g, '+');
-	const fontStyles = `//fonts.googleapis.com/css2?family=${ headingFontName }&family=${ baseFontName }&display=swap`;
 
 	useEffect(() => {
 		if (containerRef && containerRef.current) {
@@ -123,7 +119,6 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 			onClick={ () => onClick(slug) }
 			ref={ containerRef }
 		>
-			<link href={ fontStyles } rel="stylesheet" type="text/css"></link>
 			{ /* @ts-ignore */ }
 			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
 				<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>

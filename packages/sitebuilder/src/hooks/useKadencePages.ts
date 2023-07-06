@@ -17,7 +17,9 @@ export function useKadencePages() {
 			sub_action: 'kadence_cloud_section_data',
 		};
 		handleActionRequest(request)
-			.then(setData)
+			.then((resp: any) => {
+				setData(resp);
+			})
 			.catch(setError)
 			.finally(() => setLoading(false));
 	}, []);

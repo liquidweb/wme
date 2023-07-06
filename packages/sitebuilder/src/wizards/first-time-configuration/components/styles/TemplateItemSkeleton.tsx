@@ -11,7 +11,7 @@ const pulse = keyframes`
 `
 
 const TemplateItemContainer = styled(Box)(() => ({
-	borderRadius: '20px',
+	borderRadius: '8px',
 	position: 'relative',
 	width: '100%',
 	height: 0,
