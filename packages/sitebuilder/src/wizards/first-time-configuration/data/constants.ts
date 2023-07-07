@@ -66,6 +66,10 @@ export const FtcStringData = {
 		description: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
 		statusMessage: __('Importing your colors…', 'moderntribe-sitebuilder'),
 	},
+	yourInformation: {
+		iAmPlaceholder: __('An Individual', 'moderntribe-sitebuilder'),
+		iAmLabel: __('I am', 'moderntribe-sitebuilder'),
+	},
 	usernameValidation: {
 		errorMessage: __('There was an error validating your username.', 'moderntribe-sitebuilder'),
 	},
