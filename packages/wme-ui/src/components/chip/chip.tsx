@@ -41,6 +41,10 @@ const StyledChip = styled(MuiChip)<ChipProps>(({
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.text.white,
   },
+  '&.MuiChip-colorInfo': {
+    backgroundColor: theme.palette.info.main,
+    color: theme.palette.text.white,
+  },
 
   ...(size === 'small'
   && {

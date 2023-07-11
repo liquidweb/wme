@@ -1,10 +1,11 @@
 import { FormField, Form, TextInput } from '@moderntribe/wme-ui';
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import FileUpload from '@sb/wizards/first-time-configuration/components/FileUpload';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { useEffect } from 'react';
-import { FtcFormItemsInterface } from '../data/first-time-configuration-screen-data';
+import { FtcFormItemsInterface } from '../data/ftc-form';
+import PageWrapper from '@ftc/components/PageWrapper';
 
 const { siteDetails, usernamePassword } = FtcStringData;
 
@@ -12,7 +13,7 @@ const SiteDetails = () => {
 	const { ftcState: { form, isLoading }, setFormValue, shouldBlockNextStep } = useFirstTimeConfiguration();
 	useEffect(() => {
 		if (form && ! isLoading) {
-			shouldBlockNextStep(! form.industry.value && ! form.subIndustry.value, 1);
+			shouldBlockNextStep(! form.siteName.value || ! form.tagline.value || ! form.logoId, 1);
 		}
 	}, [form, isLoading]);
 
@@ -25,7 +26,7 @@ const SiteDetails = () => {
 	};
 
 	return (
-		<Box sx={ { maxWidth: 425 } }>
+		<PageWrapper>
 			<Form>
 				<Stack spacing={ 2 }>
 					<FormField
@@ -67,7 +68,7 @@ const SiteDetails = () => {
 					/>
 				</Stack>
 			</Form>
-		</Box>
+		</PageWrapper>
 	);
 };
 

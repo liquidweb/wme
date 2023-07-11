@@ -1,5 +1,8 @@
 import formItemsData, { FtcFormItemsInterface } from './ftc-form';
 import stepsData from './ftc-steps';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import MapIcon from '@mui/icons-material/Map';
+import WebAssetIcon from '@mui/icons-material/WebAsset';
 
 export interface FtcSiteLogoObjectInterface {
 	id: string;
@@ -21,6 +24,7 @@ export interface FtcScreenDataInterface {
 	previewLogo: FtcSiteLogoObjectInterface;
 	ajax: SiteBuilderAjaxObject;
 	form: FtcFormItemsInterface;
+	businessLocationOptions: BusinessLocationInterface[];
 
 	industryVerticals: Record<string, string[]>;
 	personalityOptions: string[];
@@ -62,6 +66,29 @@ const personalityOptions: string[] = [
 	'Witty'
 ];
 
+export interface BusinessLocationInterface {
+	icon: React.ReactNode;
+	label: string;
+	value: string;
+}
+const businessLocationOptions: BusinessLocationInterface[] = [
+	{
+		icon: <OtherHousesIcon />,
+		label: 'Business Address',
+		value: 'address',
+	},
+	{
+		icon: <MapIcon />,
+		label: 'Service Area',
+		value: 'serviceArea',
+	},
+	{
+		icon: <WebAssetIcon />,
+		label: 'Online Only',
+		value: 'online',
+	}
+]
+
 const localData: Omit<FtcScreenDataInterface, 'form' | 'steps'> = {
 	isLoading: false,
 	lastStep: stepsData.length,
@@ -85,7 +112,8 @@ const localData: Omit<FtcScreenDataInterface, 'form' | 'steps'> = {
 		url: ''
 	},
 	industryVerticals,
-	personalityOptions
+	personalityOptions,
+	businessLocationOptions
 };
 
 const setInitialFormValues = (wizardData: any): Omit<FtcFormItemsInterface, 'password'> => {

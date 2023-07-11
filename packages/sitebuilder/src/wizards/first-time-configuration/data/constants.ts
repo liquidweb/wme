@@ -49,26 +49,57 @@ export const FtcStringData = {
 		goalsSelectText: __('Select all that apply', 'moderntribe-sitebuilder')
 	},
 	industryDetails: {
-		businessDescriptionLabel: __('What\'s your mission statement?', 'moderntribe-sitebuilder'),
-		businessDescriptionPlaceholder: __('My business is…', 'moderntribe-sitebuilder'),
-		siteIndustryText: __('What Industry are you in?', 'moderntribe-sitebuilder'),
-		siteIndustryPlaceholder: __('Category…', 'moderntribe-sitebuilder'),
 		siteSubIndustryText: __('Can you be more specific?', 'moderntribe-sitebuilder'),
 		siteSubIndustryPlaceholder: __('Subcategory…', 'moderntribe-sitebuilder'),
-		personalityLabel: __('Describe your personality', 'moderntribe-sitebuilder'),
-		personalityPlaceholder: __('Select an option…', 'moderntribe-sitebuilder'),
-		keywordsLabel: __('Keywords', 'moderntribe-sitebuilder'),
-		keywordsPlaceholder: __('Blog, tech…', 'moderntribe-sitebuilder'),
-		keywordsHelperText: __('Separate each keyword with a comma', 'moderntribe-sitebuilder'),
 	},
 	processing: {
 		title: __('Nice Choices.', 'moderntribe-sitebuilder'),
 		description: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
 		statusMessage: __('Importing your colors…', 'moderntribe-sitebuilder'),
 	},
-	yourInformation: {
-		iAmPlaceholder: __('An Individual', 'moderntribe-sitebuilder'),
-		iAmLabel: __('I am', 'moderntribe-sitebuilder'),
+	contentTone: {
+		title: __('Nice Choices.', 'moderntribe-sitebuilder'),
+		description: __(
+			'The tone allows the AI to reflect your personality in its communication style. Select a tone that closely aligns with your own.',
+			'moderntribe-sitebuilder'),
+	},
+	keywords: {
+		title: __('Add some keywords', 'moderntribe-sitebuilder'),
+		description: __('Keywords assist the AI in identifying the most relevant topics to write about.', 'moderntribe-sitebuilder'),
+		label: __('Choose your tone', 'moderntribe-sitebuilder'),
+		placeholder: __('Add Keywords…', 'moderntribe-sitebuilder'),
+		helperText: __('Separate with commas or the Enter key. Enter between 5 and 10 keywords', 'moderntribe-sitebuilder'),
+	},
+	iAm: {
+		placeholder: __('An Individual', 'moderntribe-sitebuilder'),
+		label: __('I am', 'moderntribe-sitebuilder'),
+	},
+	ownerName: {
+		label: __('Name', 'moderntribe-sitebuilder'),
+		placeholder: __('Your Name', 'moderntribe-sitebuilder'),
+	},
+	businessLocation: {
+		label: __('Where are you based?', 'moderntribe-sitebuilder'),
+	},
+	industry: {
+		text: __('What Industry are you in?', 'moderntribe-sitebuilder'),
+		placeholder: __('Industry', 'moderntribe-sitebuilder'),
+	},
+	siteDescription: {
+		label: __('The purpose of my website…', 'moderntribe-sitebuilder'),
+		placeholder: __('The purpose of my website is…', 'moderntribe-sitebuilder'),
+	},
+	customerDescription: {
+		label: __('Who are your primary customers or audience?', 'moderntribe-sitebuilder'),
+		placeholder: __('My primary audience is…', 'moderntribe-sitebuilder'),
+	},
+	valueProposition: {
+		label: __('What unique value does your business provide?', 'moderntribe-sitebuilder'),
+		placeholder: __('What makes this unique is…', 'moderntribe-sitebuilder'),
+	},
+	productsAndServices: {
+		label: __('What key products or services do you offer?', 'moderntribe-sitebuilder'),
+		placeholder: __('Your products & services…', 'moderntribe-sitebuilder'),
 	},
 	usernameValidation: {
 		errorMessage: __('There was an error validating your username.', 'moderntribe-sitebuilder'),

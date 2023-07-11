@@ -7,7 +7,7 @@ import { useFirstTimeConfiguration } from '@sb/hooks';
 const ColorSelection = () => {
 	const {
 		ftcState: { form },
-		setFormValue,
+		setFormValue
 	} = useFirstTimeConfiguration();
 	const styles = getTemplateStyles();
 	const [color, setColorValue] = useState(form.colorPalette.value);

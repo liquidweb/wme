@@ -3,17 +3,14 @@ import {
 	UsernamePassword,
 	SiteDetails,
 	Processing,
-	IndustryScreen,
 	GoalsScreen,
 	StyleScreen,
-	StyleReview
+	StyleReview,
+	Identity,
+	About,
 } from '../screens';
-import {
-	EditIcon,
-	GoalIcon,
-	MessageIcon,
-} from '@sb/icons';
 import TemplateStyleSidebar from '@ftc/components/styles/TemplateStyleSidebar';
+import ContentTone from '../screens/ContentTone';
 
 const stepsData: Array<StepInterface> = [
 	{
@@ -33,17 +30,48 @@ const stepsData: Array<StepInterface> = [
 	},
 	{
 		id: 1,
-		label: __('Industry', 'moderntribe-sitebuilder'),
-		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
-		icon: <MessageIcon />,
+		label: __('Identity', 'moderntribe-sitebuilder'),
+		title: __('Your Information', 'moderntribe-sitebuilder'),
+		description: __(
+			'Please provide detailed information about yourself, your company, or your organization to enhance the quality of our results.',
+			'moderntribe-sitebuilder'
+		),
 		disableNext: true,
 		hideSkip: true,
 		hideExit: false,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
-		screen: <IndustryScreen />
+		screen: <Identity />
 	},
 	{
 		id: 2,
+		label: __('About', 'moderntribe-sitebuilder'),
+		title: __('Tell us about your [self/business/org]', 'moderntribe-sitebuilder'),
+		description: __(
+			'We suggest drafting a few paragraphs that underscore your primary attributes or functions, and spotlight what differentiates you from the rest.',
+			'moderntribe-sitebuilder'
+		),
+		disableNext: true,
+		hideSkip: true,
+		hideExit: false,
+		nextText: __('Next', 'moderntribe-sitebuilder'),
+		screen: <About />
+	},
+	// {
+	// 	id: 3,
+	// 	label: __('Content', 'moderntribe-sitebuilder'),
+	// 	title: __('Make it yours', 'moderntribe-sitebuilder'),
+	// 	description: __(
+	// 		'We\'ll use Keywords and tone to provide copy guidance (if you want) as you create your site.',
+	// 		'moderntribe-sitebuilder'
+	// 	),
+	// 	disableNext: true,
+	// 	hideSkip: true,
+	// 	hideExit: false,
+	// 	nextText: __('Next', 'moderntribe-sitebuilder'),
+	// 	screen: <ContentTone />
+	// },
+	{
+		id: 3,
 		label: __('Goals', 'moderntribe-sitebuilder'),
 		title: __(
 			'What are the goals of this site?',
@@ -57,26 +85,24 @@ const stepsData: Array<StepInterface> = [
 			'Not sure what you need right now? That\'s okay! You can add and remove stuff like this at anytime.',
 			'moderntribe-sitebuilder'
 		),
-		icon: <GoalIcon />,
 		hideSkip: false,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <GoalsScreen />
 	},
 	{
-		id: 3,
+		id: 4,
 		label: __('Site', 'moderntribe-sitebuilder'),
 		title: __('Lets set up your site details.', 'moderntribe-sitebuilder'),
 		description: __(
 			'Tell us a bit about your site and we can start setting up everything you\'ll need.',
 			'moderntribe-sitebuilder'
 		),
-		icon: <EditIcon />,
 		disableNext: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),
 		screen: <SiteDetails />
 	},
 	{
-		id: 4,
+		id: 5,
 		label: __('Style', 'moderntribe-sitebuilder'),
 		title: __('Style Starter', 'moderntribe-sitebuilder'),
 		// description: __(

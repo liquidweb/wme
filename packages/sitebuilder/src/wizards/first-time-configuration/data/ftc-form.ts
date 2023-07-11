@@ -10,88 +10,53 @@ export interface FtcFormItemsInterface {
 	password: FtcFormValueInterface<string>;
 	logoId: FtcFormValueInterface<string>;
 	siteName: FtcFormValueInterface<string>;
-
-	tagline: FtcFormValueInterface<string>;
+	ownerIdentity: FtcFormValueInterface<string>
+	ownerName: FtcFormValueInterface<string>
+	businessLocation: FtcFormValueInterface<string>
 	industry: FtcFormValueInterface<string>;
-	subIndustry: FtcFormValueInterface<string>;
 	siteDescription: FtcFormValueInterface<string>;
+	customerDescription: FtcFormValueInterface<string>;
+	valueProposition: FtcFormValueInterface<string>;
+	productsAndServices: FtcFormValueInterface<string>;
+
+	fontPairing: FtcFormValueInterface<string>;
+	tagline: FtcFormValueInterface<string>;
+	subIndustry: FtcFormValueInterface<string>;
+
 	sitePersonality: FtcFormValueInterface<string>;
 	siteKeywords: FtcFormValueInterface<string[]>;
 	goals: FtcFormValueInterface<string[]>;
 	template: FtcFormValueInterface<string>;
 	colorPalette: FtcFormValueInterface<string>;
-	fontPairing: FtcFormValueInterface<string>;
 }
 
-export default {
-	username: {
-		value: '',
-		touched: false,
-		isValid: false
-	},
-	password: {
-		value: '',
-		touched: false,
-		isValid: false
-	},
-	logoId: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	siteName: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	tagline: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	industry: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	subIndustry: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	siteDescription: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	sitePersonality: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	siteKeywords: {
-		value: [],
-		touched: false,
-		isValid: true
-	},
-	goals: {
-		value: [],
-		touched: false,
-		isValid: true
-	},
-	template: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	colorPalette: {
-		value: '',
-		touched: false,
-		isValid: true
-	},
-	fontPairing: {
-		value: '',
+function addDefaults<T>(defaultValue: T): FtcFormValueInterface<T> {
+	return {
+		value: defaultValue,
 		touched: false,
 		isValid: false
 	}
+}
+
+export default {
+	username: addDefaults(''),
+	password: addDefaults(''),
+	logoId: addDefaults(''),
+	siteName: addDefaults(''),
+	tagline: addDefaults(''),
+	industry: addDefaults(''),
+	subIndustry: addDefaults(''),
+	siteDescription: addDefaults(''),
+	sitePersonality: addDefaults(''),
+	siteKeywords: addDefaults([]),
+	goals: addDefaults([]),
+	template: addDefaults(''),
+	colorPalette: addDefaults(''),
+	fontPairing: addDefaults(''),
+	ownerIdentity: addDefaults(''),
+	ownerName: addDefaults(''),
+	businessLocation: addDefaults(''),
+	customerDescription: addDefaults(''),
+	valueProposition: addDefaults(''),
+	productsAndServices: addDefaults(''),
 } as FtcFormItemsInterface;

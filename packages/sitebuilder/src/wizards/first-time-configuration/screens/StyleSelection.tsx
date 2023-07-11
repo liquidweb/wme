@@ -22,7 +22,7 @@ const StyleSelection = () => {
 
 	useEffect(() => {
 		setFormValue('template', selectedTemplate);
-		shouldBlockNextStep(false, 4);
+		shouldBlockNextStep(false, 5);
 	}, [selectedTemplate]);
 
 	useEffect(() => {
