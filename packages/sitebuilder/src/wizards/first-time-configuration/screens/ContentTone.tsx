@@ -1,14 +1,13 @@
 import {
 	FormField,
 	Form,
-	ChipInput,
-	SelectInput,
+	ChipInput
 } from '@moderntribe/wme-ui';
-import { Box, Stack, SelectChangeEvent, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { FtcStringData } from '@ftc/data/constants';
-import { FtcFormItemsInterface } from '../data/ftc-form';
+// import { FtcFormItemsInterface } from '../data/ftc-form';
 import PageWrapper from '@ftc/components/PageWrapper';
 
 const { keywords } = FtcStringData;
@@ -17,14 +16,13 @@ const ContentTone = () => {
 	const {
 		ftcState: { form },
 		setFormValue,
-		shouldBlockNextStep
 	} = useFirstTimeConfiguration();
 
-	const handleInputChange =
-		(prop: keyof FtcFormItemsInterface) =>
-			(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | SelectChangeEvent<unknown>) => {
-				setFormValue(prop, event.target.value as string);
-			};
+	// const handleInputChange =
+	// 	(prop: keyof FtcFormItemsInterface) =>
+	// 		(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | SelectChangeEvent<unknown>) => {
+	// 			setFormValue(prop, event.target.value as string);
+	// 		};
 
 	const updateKeywords = (tags: string[]) => {
 		setFormValue('siteKeywords', tags);
@@ -65,7 +63,7 @@ const ContentTone = () => {
 						}
 						helperText={ keywords.helperText }
 					/>
-					{/* <FormField
+					{ /* <FormField
 						field={
 							<SelectInput
 								fullWidth
@@ -83,7 +81,7 @@ const ContentTone = () => {
 							</SelectInput>
 						}
 						label={ industryDetails.personalityLabel }
-					/> */}
+					/> */ }
 				</Stack>
 			</Form>
 		</PageWrapper>

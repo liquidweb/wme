@@ -87,7 +87,7 @@ const businessLocationOptions: BusinessLocationInterface[] = [
 		label: 'Online Only',
 		value: 'online',
 	}
-]
+];
 
 const localData: Omit<FtcScreenDataInterface, 'form' | 'steps'> = {
 	isLoading: false,

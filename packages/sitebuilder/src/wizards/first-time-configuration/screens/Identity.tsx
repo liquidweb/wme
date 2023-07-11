@@ -4,7 +4,7 @@ import {
 	SelectInput,
 	TextInput,
 	Form,
-	AutoComplete,
+	AutoComplete
 } from '@moderntribe/wme-ui';
 import { Stack, SelectChangeEvent } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';

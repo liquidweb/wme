@@ -7,10 +7,10 @@ import {
 	StyleScreen,
 	StyleReview,
 	Identity,
-	About,
+	About
 } from '../screens';
 import TemplateStyleSidebar from '@ftc/components/styles/TemplateStyleSidebar';
-import ContentTone from '../screens/ContentTone';
+// import ContentTone from '../screens/ContentTone';
 
 const stepsData: Array<StepInterface> = [
 	{
@@ -113,7 +113,7 @@ const stepsData: Array<StepInterface> = [
 			'You\'ll be able to change all of this at any time down to the smallest detail (if you want).',
 			'moderntribe-sitebuilder'
 		),
-		sidebarComponent: <TemplateStyleSidebar /> ,
+		sidebarComponent: <TemplateStyleSidebar />,
 		hideSkip: true,
 		disableNext: true,
 		nextText: __('Next', 'moderntribe-sitebuilder'),

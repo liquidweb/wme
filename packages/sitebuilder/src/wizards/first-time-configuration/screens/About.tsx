@@ -1,7 +1,7 @@
 import {
 	FormField,
 	TextInput,
-	Form,
+	Form
 } from '@moderntribe/wme-ui';
 import { Stack } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';

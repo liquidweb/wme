@@ -62,7 +62,7 @@ const FontBlock = ({ fontFamily } : { fontFamily: string }) => {
 		} } id={ fontFamily }>
 			Aa
 		</Box>
-	)
-}
+	);
+};
 
 export default FontSelection;

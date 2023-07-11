@@ -116,7 +116,7 @@ const FirstTimeConfigurationWizard = () => {
 				sx={ {
 					position: 'fixed',
 					bottom: 0,
-					left: currentScreen.hideSidebar ? 0 : '20.833333%',
+					left: 0,
 					right: 0,
 					marginInline: 0,
 					backgroundColor: 'white',

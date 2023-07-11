@@ -22,14 +22,14 @@ const GoogleFonts = () => {
 
 	const onLinkLoad = () => {
 		setMediaType('all');
-	}
+	};
 
 	if (! fontsUrl) {
 		<span style={ { display: 'hidden' } }>Waiting to load template fonts...</span>;
 	}
 	return (
 		<link href={ fontsUrl } rel="stylesheet" type="text/css" media={ mediaType } onLoad={ onLinkLoad }></link>
-	)
+	);
 };
 
 export default GoogleFonts;

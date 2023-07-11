@@ -35,7 +35,7 @@ function addDefaults<T>(defaultValue: T): FtcFormValueInterface<T> {
 		value: defaultValue,
 		touched: false,
 		isValid: false
-	}
+	};
 }
 
 export default {

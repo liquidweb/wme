@@ -17,8 +17,8 @@ const StyledChipInput = styled(TextField, {
   border: `1px solid ${theme.palette.border.ui}`,
   padding: '8px 8px',
   position: 'relative',
+  minHeight: '80px',
   borderRadius: 4,
-  minHeight: '5rem',
   '& .MuiInputBase-root': {
     padding: 0,
     display: 'flex',

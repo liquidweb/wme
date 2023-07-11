@@ -8,7 +8,7 @@ const pulse = keyframes`
 	100% {
 		background-position: -135% 0%
 	}
-`
+`;
 
 const TemplateItemContainer = styled(Box)(() => ({
 	borderRadius: '8px',
