@@ -10,7 +10,7 @@ sub_action: string;
 export const handleTelemetryRequest = (
   nonce: string,
   action: string,
-  subAction: string = 'wizard_started'
+  subAction: string = 'wizard_started',
 ) => {
   const data: TelemetryDataPayloadInterface = {
     _wpnonce: nonce,

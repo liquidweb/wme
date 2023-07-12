@@ -2,9 +2,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import root from 'react-shadow';
 import { styled, Box, IconProps, Typography } from '@mui/material';
-import { StyleInterface } from '../data/styles';
+import { StyleInterface } from '../../data/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import globalEditorInlineStyles from '../data/kadence-blocks-global-editor-styles-inline-css';
+import globalEditorInlineStyles from '../../data/kadence-blocks-global-editor-styles-inline-css';
 import { KADENCE_DYNAMIC_STYLES } from '@sb/constants';
 import CustomTemplateStyles from './CustomTemplateStyles';
 
@@ -24,7 +24,9 @@ export interface TemplateSelectItemProps {
 	slug: string;
 	rows_html: string;
 	style: StyleInterface;
+	page_styles: Record<string, string>;
 	onClick: (slug: string) => void;
+	defaultStyleIndex?: number;
 }
 
 const TemplateItemContainer = styled(Box)(({ theme }) => ({
@@ -90,7 +92,7 @@ const TemplateItemCheck = styled(CheckCircleIcon)<IconProps>(({ theme }) => ({
 
 export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	const {
-		buttonLabel = 'Start With This Style',
+		buttonLabel = 'Start With This Template',
 		buttonSelectedLabel = 'Selected',
 		selected,
 		rows_html,
@@ -103,10 +105,6 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 
 	const containerRef = useRef<HTMLElement>();
 	const dynamicStyles = KADENCE_DYNAMIC_STYLES.replace(/:root/g, ':host');
-
-	const headingFontName = style.headingFont.replace(/ /g, '+');
-	const baseFontName = style.baseFont.replace(/ /g, '+');
-	const fontStyles = `//fonts.googleapis.com/css2?family=${ headingFontName }&family=${ baseFontName }&display=swap`;
 
 	useEffect(() => {
 		if (containerRef && containerRef.current) {
@@ -121,7 +119,6 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 			onClick={ () => onClick(slug) }
 			ref={ containerRef }
 		>
-			<link href={ fontStyles } rel="stylesheet" type="text/css"></link>
 			{ /* @ts-ignore */ }
 			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
 				<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>

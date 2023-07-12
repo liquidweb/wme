@@ -15,8 +15,9 @@ const StyledChipInput = styled(TextField, {
   width: '100%',
   boxSizing: 'border-box',
   border: `1px solid ${theme.palette.border.ui}`,
-  padding: '4px 12px',
+  padding: '8px 8px',
   position: 'relative',
+  minHeight: '80px',
   borderRadius: 4,
   '& .MuiInputBase-root': {
     padding: 0,
@@ -91,7 +92,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
         fullWidth: true,
         autoComplete: 'false',
         startAdornment: tags.map((item) => (
-          <Chip size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
+          <Chip color="info" size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
         )),
         value: inputValue,
         onKeyDown: handleKeyDown,

@@ -8,10 +8,11 @@ export interface WizardSidebarProps {
 	icon: React.ReactNode;
 	subText?: string;
 	logo: React.ReactNode;
+	component?: React.ReactNode;
 }
 
 export const WizardSidebar = (props: WizardSidebarProps) => {
-	const { show = false, label = '', description = '', icon, subText, logo } = props;
+	const { show = false, label = '', description = '', subText, logo, component } = props;
 
 	if (! show) {
 		return null;
@@ -43,9 +44,10 @@ export const WizardSidebar = (props: WizardSidebarProps) => {
 					logo={ logo }
 					heading={ label }
 					body={ description }
-					icon={ icon }
 					subtext={ subText }
-				/>
+				>
+					{ component ? component : null }
+				</Sidebar>
 			</Grid>
 		</Grid>
 	);

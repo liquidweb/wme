@@ -6,9 +6,9 @@ import {
 } from '@moderntribe/wme-utils';
 
 import FtcScreenData, {
-	FtcScreenDataInterface,
-	FtcFormItemsInterface
+	FtcScreenDataInterface
 } from '@ftc/data/first-time-configuration-screen-data';
+import { FtcFormItemsInterface } from '@ftc/data/ftc-form';
 
 import { SITEBUILDER_URL } from '@sb/constants';
 import { FtcStringData } from '@ftc/data/constants';
