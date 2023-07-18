@@ -66,7 +66,7 @@ const FirstTimeConfigurationProvider: React.FC<{ children: React.ReactNode }> = 
 			return formEntry.value;
 		}
 		return null;
-	}
+	};
 
 	const submitForm: submitFormFn = () => {
 		function handleError() {
@@ -169,7 +169,7 @@ const FirstTimeConfigurationProvider: React.FC<{ children: React.ReactNode }> = 
 
 	const cacheKadenceTemplates: cacheKadenceTemplatesFn = (templates) => {
 		setTemplates(templates);
-	}
+	};
 
 	return (
 		<FirstTimeConfigurationContext.Provider

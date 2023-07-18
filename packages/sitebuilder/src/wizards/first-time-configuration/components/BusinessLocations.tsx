@@ -6,7 +6,6 @@ import { FtcStringData } from '@ftc/data/constants';
 
 const { businessLocations: locations } = FtcStringData;
 
-
 export interface BusinessLocationProps {
 	value: string;
 	onChange: (value: string) => void;
@@ -36,7 +35,7 @@ const BusinessLocations = (props: BusinessLocationProps) => {
 		}
 
 		return 'text.primary';
-	}
+	};
 
 	return (
 		<div>

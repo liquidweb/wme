@@ -26,5 +26,5 @@ export default function Template({ slug, theme, fontPairing, rows_html }: Templa
 				<div className="single-iframe-content single-content" dangerouslySetInnerHTML={ { __html: rows_html } } />
 			</div>
 		</>
-	)
+	);
 }

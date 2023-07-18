@@ -15,7 +15,7 @@ export interface CustomSelectInterface {
 
 export default function CustomSelectInput(props: CustomSelectInterface) {
 	const { inputName, onChange, value, options } = props;
-	const [selectedOption, setSelected] = React.useState<TonePersonalityInterface>()
+	const [selectedOption, setSelected] = React.useState<TonePersonalityInterface>();
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 
@@ -85,7 +85,7 @@ export default function CustomSelectInput(props: CustomSelectInterface) {
 				} }
 			>
 				{ options.map((item) => (
-					<MenuItem key={ item.name } onClick={ () => handleClose( item.name ) }>
+					<MenuItem key={ item.name } onClick={ () => handleClose(item.name) }>
 						<span style={ { fontWeight: 700 } }>{ item.name }.</span>&nbsp;{ item.description }
 					</MenuItem>
 				)) }

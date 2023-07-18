@@ -55,7 +55,6 @@ const SiteDetails = () => {
 
 	const handleChange = (prop: keyof FtcFormItemsInterface) => (event: SelectChangeEvent<any>) => {
 		setFormValue(prop, event.target.value);
-		console.log('select change', prop, event.target.value);
 	};
 
 	return (

@@ -46,7 +46,6 @@ const YourInformation = () => {
 			};
 
 	const handleSimpleChange = (prop: keyof FtcFormItemsInterface) => (value: string) => {
-		console.log(prop, value);
 		setFormValue(prop, value);
 	};
 

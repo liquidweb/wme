@@ -14,7 +14,7 @@ const PageWrapper = ({ children, maxWidth, width }: PageWrapperInterface) => {
 			return 425;
 		}
 		return maxWidth;
-	}
+	};
 	return <Box sx={ { maxWidth: validMaxWidth(), width: width || 425 } }>{ children }</Box>;
 };
 

@@ -51,7 +51,7 @@ const StyleSelection = () => {
 		setFormValue('colorPalette', styleId);
 		setFormValue('fontPairing', styleId);
 		shouldBlockNextStep(false);
-	}
+	};
 
 	return (
 		<PageWrapper width="90%">
@@ -67,7 +67,7 @@ const StyleSelection = () => {
 						key={ page.slug }
 						{ ...page }
 						style={ styles[ page.defaultStyleIndex || 0 ] }
-						onClick={ (selected) =>  setStyles(selected, styles[ page.defaultStyleIndex || 0 ].id ) }
+						onClick={ (selected) => setStyles(selected, styles[ page.defaultStyleIndex || 0 ].id) }
 						selected={ page.slug === selectedTemplate }
 					/>
 				)) : (

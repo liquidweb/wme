@@ -7,17 +7,15 @@ import {
   useTheme,
   Paper,
   PaperProps,
-  InputAdornment,
 } from '@mui/material';
 import { createFilterOptions } from '@mui/material/Autocomplete';
-import SearchIcon from '@mui/icons-material/Search';
 
 export type AutocompleteOption =
   | string
   | {
       value: any;
       label: string;
-	  inputValue?: string;
+      inputValue?: string;
     };
 
 export type CustomAutoCompleteProps<T> = {

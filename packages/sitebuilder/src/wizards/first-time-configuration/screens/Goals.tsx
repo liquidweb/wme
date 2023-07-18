@@ -24,7 +24,6 @@ const Goals = () => {
 
 	const handleSelect = (value: string[]) => {
 		setFormValue('goals', value);
-		console.log('value', value);
 	};
 
 	const goalIcon = (icon: any) => {
