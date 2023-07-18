@@ -10,7 +10,7 @@ const ColorSelection = () => {
 		setFormValue
 	} = useFirstTimeConfiguration();
 	const styles = getTemplateStyles();
-	const [color, setColorValue] = useState(form.colorPalette.value);
+	const [color, setColorValue] = useState(form.colorPalette?.value);
 
 	const handleColorSel = useCallback((e) => {
 		const selected = e.target.value;

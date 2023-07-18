@@ -7,12 +7,18 @@ import {
   useTheme,
   Paper,
   PaperProps,
+  InputAdornment,
 } from '@mui/material';
+import { createFilterOptions } from '@mui/material/Autocomplete';
+import SearchIcon from '@mui/icons-material/Search';
 
-export type AutocompleteOption = string | {
-  value: any;
-  label: string;
-}
+export type AutocompleteOption =
+  | string
+  | {
+      value: any;
+      label: string;
+	  inputValue?: string;
+    };
 
 export type CustomAutoCompleteProps<T> = {
   autocompleteProps: AutocompleteProps<
@@ -21,11 +27,14 @@ export type CustomAutoCompleteProps<T> = {
     boolean | undefined,
     boolean | undefined
   >;
-}
+};
 
-export type AutocompleteInputProps = Omit<CustomAutoCompleteProps<AutocompleteOption>['autocompleteProps'], 'renderInput' | 'onChange'> & {
-    onChange: (arg: any) => void;
-    placeholder?: string;
+export type AutocompleteInputProps = Omit<
+  CustomAutoCompleteProps<AutocompleteOption>['autocompleteProps'],
+  'renderInput' | 'onChange'
+> & {
+  onChange: (arg: any) => void;
+  placeholder?: string;
 };
 
 const StyledAutocomplete = styled(Autocomplete, {
@@ -60,14 +69,15 @@ export const AutoCompletePaper: React.FC<PaperProps> = (props) => (
   <Paper
     {...props}
     sx={{
-      boxShadow: '0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)',
+      boxShadow:
+        '0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)',
     }}
   />
 );
 
-export const CustomAutoComplete = <T extends unknown>(
-  props: CustomAutoCompleteProps<T>,
-) => {
+const filter = createFilterOptions<AutocompleteOption>();
+
+export const CustomAutoComplete = <T extends unknown>(props: CustomAutoCompleteProps<T>) => {
   const { autocompleteProps } = props;
 
   // @ts-ignore - this weird error has no impact on functionality
@@ -100,23 +110,43 @@ const AutoCompleteInput: React.FC<AutocompleteInputProps> = (props) => {
       PaperComponent: AutoCompletePaper,
       //   @ts-ignore - this error is because we're on v5-alpha of MUI
       ListboxProps: MenuProps,
-      onChange: (_event: any, newValue: AutocompleteOption | AutocompleteOption[] | null) => {
-        onChange(newValue as AutocompleteOption);
+      onChange: (_event: any, newValue: any) => {
+        if (newValue && newValue.value) {
+          onChange(newValue.value);
+        } else {
+          onChange(newValue);
+        }
+      },
+      getOptionLabel: (option: AutocompleteOption) => {
+        if (typeof option === 'string') {
+          return option;
+        }
+
+        return option.label;
+      },
+      filterOptions: (_options, params) => {
+        const filtered = filter(_options, params);
+
+        const { inputValue } = params;
+        // Suggest the creation of a new value
+        const isExisting = options.some((option) => inputValue === option);
+        if (inputValue !== '' && !isExisting) {
+          filtered.push({
+            value: inputValue,
+            label: `Add "${inputValue}"`,
+          });
+        }
+
+        return filtered;
       },
       options,
       value,
-      disablePortal: true,
       renderInput: (params) => <TextField {...params} placeholder={placeholder} />,
       ...rest,
     },
   };
 
-  return (
-    <CustomAutoComplete
-      {...componentProps}
-    />
-
-  );
+  return <CustomAutoComplete {...componentProps} />;
 };
 
 export default AutoCompleteInput;

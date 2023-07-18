@@ -4,9 +4,7 @@ import root from 'react-shadow';
 import { styled, Box, IconProps, Typography } from '@mui/material';
 import { StyleInterface } from '../../data/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import globalEditorInlineStyles from '../../data/kadence-blocks-global-editor-styles-inline-css';
-import { KADENCE_DYNAMIC_STYLES } from '@sb/constants';
-import CustomTemplateStyles from './CustomTemplateStyles';
+import Template from './Template';
 
 const embedWidth = 1280;
 const shadowRootStyles = {
@@ -104,7 +102,6 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 	const [embedScale, setEmbedScale] = useState(0.2);
 
 	const containerRef = useRef<HTMLElement>();
-	const dynamicStyles = KADENCE_DYNAMIC_STYLES.replace(/:root/g, ':host');
 
 	useEffect(() => {
 		if (containerRef && containerRef.current) {
@@ -121,14 +118,7 @@ export default function KadenceTemplateItem(props: TemplateSelectItemProps) {
 		>
 			{ /* @ts-ignore */ }
 			<root.div style={ { ...shadowRootStyles, transform: `scale(${ embedScale })` } }>
-				<link rel="stylesheet" id="kadence-blocks-iframe-base" href="https://patterns.startertemplatecloud.com/wp-content/plugins/kadence-blocks/includes/assets/css/live-preview-base.min.css?ver=3.0.34.3" media="all"></link>
-				<style type="text/css">{ dynamicStyles }</style>
-				<style id="global-editor-inline-styles">{ globalEditorInlineStyles }</style>
-				<CustomTemplateStyles style={ style } templateSlug={ slug } />
-
-				<div className="pattern-shadow-wrap editor-styles-wrapper">
-					<div className="single-iframe-content single-content" dangerouslySetInnerHTML={ { __html: rows_html } } />
-				</div>
+				<Template slug={ slug } rows_html={ rows_html } theme={ style } />
 			</root.div>
 			<TemplateItemButton>
 				<Typography color="common.white">

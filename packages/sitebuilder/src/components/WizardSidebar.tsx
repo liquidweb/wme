@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import { WizardSidebar as Sidebar } from '@moderntribe/wme-ui';
+import { screenBottomMargin } from '@sb/wizards/first-time-configuration/components/ScreenWrapper';
 
 export interface WizardSidebarProps {
 	show: boolean;
@@ -36,7 +37,7 @@ export const WizardSidebar = (props: WizardSidebarProps) => {
 					position: 'fixed',
 					top: 0,
 					left: 0,
-					height: '100vh',
+					height: `calc(100vh - ${ screenBottomMargin } + 6px)`,
 					width: '100%'
 				} }
 			>

@@ -8,16 +8,17 @@ import {
 import FtcScreenData, {
 	FtcScreenDataInterface
 } from '@ftc/data/first-time-configuration-screen-data';
-import { FtcFormItemsInterface } from '@ftc/data/ftc-form';
+import { FtcFormItemsInterface, FtcFormValueInterface } from '@ftc/data/ftc-form';
 
 import { SITEBUILDER_URL } from '@sb/constants';
 import { FtcStringData } from '@ftc/data/constants';
+import { useWizard } from '@sb/hooks';
 
 export type setFormValueFn = (
 	prop: keyof FtcFormItemsInterface,
 	value: string | string[]
 ) => void;
-export type submitFormFn = (isNextLookAndFeel?: boolean) => void;
+export type submitFormFn = () => void;
 export type resetFormValueFn = (prop: keyof FtcFormItemsInterface) => void;
 export type setIsLoadingFn = (isLoading: boolean) => void;
 export type setLogoValueFn = (id: string, url: string) => void;
@@ -26,9 +27,9 @@ export type validateUsernamePasswordFn = (
 	passwordIsValid: boolean
 ) => void;
 export type shouldBlockNextStepFn = (
-	prop: any | any[],
-	activeStep: number
+	prop: any | any[]
 ) => void;
+export type cacheKadenceTemplatesFn = (templatesObj: any) => void;
 
 export interface FtcProviderContextInterface {
 	ftcState: FtcScreenDataInterface;
@@ -39,6 +40,8 @@ export interface FtcProviderContextInterface {
 	setLogoValue: setLogoValueFn;
 	validateUsernamePassword: validateUsernamePasswordFn;
 	shouldBlockNextStep: shouldBlockNextStepFn;
+	cacheKadenceTemplates: cacheKadenceTemplatesFn;
+	kadenceTemplates: any;
 }
 
 export interface FtcUsernamePasswordInterface {
@@ -53,64 +56,44 @@ export const FirstTimeConfigurationContext = createContext<
 	FtcProviderContextInterface | FtcScreenDataInterface | null
 >(ftcData);
 
-const FirstTimeConfigurationProvider: React.FC<{
-	children: React.ReactNode;
-}> = ({ children }) => {
+const FirstTimeConfigurationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	const [ftcState, setFtcState] = useState<FtcScreenDataInterface>(ftcData);
+	const { currentStep } = useWizard();
+	const [kadenceTemplates, setTemplates] = useState<any>();
 
-	const submitForm: submitFormFn = (isNextLookAndFeel = false) => {
+	const parseFormEntry = (formEntry: FtcFormValueInterface<string | string[]>) => {
+		if (formEntry.touched && formEntry.value !== undefined) {
+			return formEntry.value;
+		}
+		return null;
+	}
+
+	const submitForm: submitFormFn = () => {
 		function handleError() {
 			// eslint-disable-next-line no-alert
 			alert(submitFormContent.errorMessage);
 		}
 
-		const formValues = ftcState.form;
+		const valueObject = Object.keys(ftcState.form).reduce((acc, formItemKey: string) => {
+			const formItem: FtcFormValueInterface<string | string[]> = ftcState.form[ formItemKey as keyof FtcFormItemsInterface ];
+
+			return {
+				...acc,
+				[ formItemKey ]: parseFormEntry(formItem)
+			};
+		}, {});
+
 		const data = removeNulls({
 			_wpnonce: ftcState?.ajax?.nonce ? ftcState.ajax.nonce : '',
 			action: ftcState?.ajax?.action ? ftcState.ajax.action : '',
 			sub_action: 'finish',
-			logo: formValues.logoId.touched ? formValues.logoId.value : null,
-			siteName: formValues.siteName.touched
-				? formValues.siteName.value
-				: null,
-			tagLine: formValues.tagline.touched
-				? formValues.tagline.value
-				: null,
-			industry: formValues.industry.touched
-				? formValues.industry.value
-				: null,
-			subIndustry: formValues.subIndustry.touched
-				? formValues.subIndustry.value
-				: null,
-			username:
-				! ftcState.completed && formValues.username.touched
-					? formValues.username.value
-					: null,
-			password: formValues.password.touched
-				? formValues.password.value
-				: null,
-			siteDescription: formValues.siteDescription.touched
-				? formValues.siteDescription.value
-				: null,
-			sitePersonality: formValues.sitePersonality.touched
-				? formValues.sitePersonality.value
-				: null,
-			siteKeywords: formValues.siteKeywords.touched
-				? formValues.siteKeywords.value
-				: null,
-			goals: formValues.goals.touched ? formValues.goals.value : null,
-			template: formValues.template.touched
-				? formValues.template.value
-				: null
+			...valueObject
 		});
 
 		handleActionRequest(data)
 			.then(() => {
 				removeEventListener('beforeunload', beforeUnloadListener);
-				const navigateTo = isNextLookAndFeel
-					? '#/wizard/look-and-feel'
-					: '';
-				window.location.assign(`${ SITEBUILDER_URL }${ navigateTo }`);
+				window.location.assign(SITEBUILDER_URL);
 			})
 			.catch(() => handleError());
 	};
@@ -147,12 +130,10 @@ const FirstTimeConfigurationProvider: React.FC<{
 		});
 	};
 
-	const shouldBlockNextStep: shouldBlockNextStepFn = (
-		criteria,
-		activeStep
-	) => {
+	const shouldBlockNextStep: shouldBlockNextStepFn = (criteria) => {
 		const { steps } = { ...ftcState };
-		steps[ activeStep ].disableNext = Boolean(criteria);
+		const stepIndex = currentStep - 1;
+		steps[ stepIndex ].disableNext = Boolean(criteria);
 		setFtcState({
 			...ftcState,
 			steps
@@ -168,9 +149,9 @@ const FirstTimeConfigurationProvider: React.FC<{
 		form.password.isValid = passwordIsValid;
 
 		if (! completed) {
-			shouldBlockNextStep(! usernameIsValid || ! passwordIsValid, 0);
+			shouldBlockNextStep(! usernameIsValid || ! passwordIsValid);
 		} else {
-			shouldBlockNextStep(!! (form.password.value && ! passwordIsValid), 0);
+			shouldBlockNextStep(!! (form.password.value && ! passwordIsValid));
 		}
 	};
 
@@ -183,8 +164,12 @@ const FirstTimeConfigurationProvider: React.FC<{
 			...ftcState,
 			previewLogo
 		});
-		shouldBlockNextStep(false, 3);
+		shouldBlockNextStep(false);
 	};
+
+	const cacheKadenceTemplates: cacheKadenceTemplatesFn = (templates) => {
+		setTemplates(templates);
+	}
 
 	return (
 		<FirstTimeConfigurationContext.Provider
@@ -196,7 +181,9 @@ const FirstTimeConfigurationProvider: React.FC<{
 				setIsLoading,
 				setLogoValue,
 				validateUsernamePassword,
-				shouldBlockNextStep
+				shouldBlockNextStep,
+				cacheKadenceTemplates,
+				kadenceTemplates,
 			} }
 		>
 			{ children }

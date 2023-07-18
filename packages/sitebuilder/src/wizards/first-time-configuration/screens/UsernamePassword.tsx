@@ -57,6 +57,8 @@ const passwordStatus: PasswordStatusObjectInterface = {
 	}
 };
 
+// TODO: Start here with adding fields
+
 const UsernamePassword = () => {
 	const {
 		ftcState,

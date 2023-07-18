@@ -2,7 +2,9 @@ import { Box, Menu, Typography } from '@mui/material';
 import FilterIcon from '@sb/contexts/FilterIcon';
 import { useEffect, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { FormControlLabel, Switch } from '@moderntribe/wme-ui';
+import { FormFieldLabel } from '@moderntribe/wme-ui';
+import ToggleOnIcon from '@mui/icons-material/ToggleOn';
+import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 
 export interface FilterOption {
 	value: string;
@@ -26,6 +28,7 @@ const TemplateFilter = (props: TemplateFilterProps) => {
 	};
 
 	const handleSelect = (newItem?: FilterOption) => {
+		console.log('click', newItem);
 		if (! newItem) {
 			return;
 		}
@@ -90,20 +93,16 @@ const TemplateFilter = (props: TemplateFilterProps) => {
 					} } }
 				>
 					{ options.map((opt) => (
-						<Box key={ opt.value } sx={ { width: '100%' } }>
-							<FormControlLabel
-								sx={ { justifyContent: 'space-between', marginLeft: 0, width: '100%' } }
-								value="start"
-								control={
-									<Switch
-										checked={ Boolean(selected.find((item) => item.value === opt.value)) }
-										size="small"
-										onChange={ () => handleSelect(opt) }
-									/>
-								}
-								label={ opt.label }
-								labelPlacement="start"
-							/>
+						<Box key={ opt.value }
+							sx={ { width: '100%', display: 'flex', justifyContent: 'space-between', cursor: 'pointer' } }
+							onClick={ () => handleSelect(opt) }
+						>
+							<FormFieldLabel sx={ { marginBottom: 0 } }>{ opt.label }</FormFieldLabel>
+							{ selected.find((item) => item.value === opt.value) ? (
+								<ToggleOnIcon fontSize="medium" sx={ { color: 'primary.main' } } />
+							) : (
+								<ToggleOffIcon fontSize="medium" sx={ { color: 'text.disabled' } } />
+							) }
 						</Box>
 					)) }
 				</Menu>

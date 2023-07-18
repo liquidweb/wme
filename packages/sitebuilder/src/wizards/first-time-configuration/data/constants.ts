@@ -28,10 +28,7 @@ export const FtcStringData = {
 		}
 	},
 	siteDetails: {
-		title: __('Let\'s set up your store', 'moderntribe-sitebuilder'),
 		maxFileSize: '20 MB',
-		siteTagnameLabelText: __('Tagline', 'moderntribe-sitebuilder'),
-		siteTagnamePlaceholderText: __('Just another wordpress site…', 'moderntribe-sitebuilder'),
 		siteLogoLabelText: __('Your Logo', 'moderntribe-sitebuilder'),
 		siteLogoHelperText: __(
 			'Your logo will be displayed in the site header and the site icon. Square and landscape orientations work best.',
@@ -48,10 +45,6 @@ export const FtcStringData = {
 		),
 		goalsSelectText: __('Select all that apply', 'moderntribe-sitebuilder')
 	},
-	industryDetails: {
-		siteSubIndustryText: __('Can you be more specific?', 'moderntribe-sitebuilder'),
-		siteSubIndustryPlaceholder: __('Subcategory…', 'moderntribe-sitebuilder'),
-	},
 	processing: {
 		title: __('Nice Choices.', 'moderntribe-sitebuilder'),
 		description: __('A wizard is never late, nor are they early, they arrive precisely when they mean to. Give us just a moment as the Wizard summons your template.', 'moderntribe-sitebuilder'),
@@ -62,6 +55,13 @@ export const FtcStringData = {
 		description: __(
 			'The tone allows the AI to reflect your personality in its communication style. Select a tone that closely aligns with your own.',
 			'moderntribe-sitebuilder'),
+	},
+	contentPersonality: {
+		title: __('Choose your tone', 'moderntribe-sitebuilder'),
+		description: __(
+			'The tone allows the AI to reflect your personality in its communication style. Select a tone that closely aligns with your own.',
+			'moderntribe-sitebuilder'
+		),
 	},
 	keywords: {
 		title: __('Add some keywords', 'moderntribe-sitebuilder'),
@@ -86,20 +86,8 @@ export const FtcStringData = {
 		placeholder: __('Industry', 'moderntribe-sitebuilder'),
 	},
 	siteDescription: {
-		label: __('The purpose of my website…', 'moderntribe-sitebuilder'),
-		placeholder: __('The purpose of my website is…', 'moderntribe-sitebuilder'),
-	},
-	customerDescription: {
-		label: __('Who are your primary customers or audience?', 'moderntribe-sitebuilder'),
-		placeholder: __('My primary audience is…', 'moderntribe-sitebuilder'),
-	},
-	valueProposition: {
-		label: __('What unique value does your business provide?', 'moderntribe-sitebuilder'),
-		placeholder: __('What makes this unique is…', 'moderntribe-sitebuilder'),
-	},
-	productsAndServices: {
-		label: __('What key products or services do you offer?', 'moderntribe-sitebuilder'),
-		placeholder: __('Your products & services…', 'moderntribe-sitebuilder'),
+		label: __('Tell us about your', 'moderntribe-sitebuilder'),
+		placeholder: __('The purpose of my business is…', 'moderntribe-sitebuilder'),
 	},
 	usernameValidation: {
 		errorMessage: __('There was an error validating your username.', 'moderntribe-sitebuilder'),
@@ -107,9 +95,15 @@ export const FtcStringData = {
 	submitForm: {
 		errorMessage: __('There was an error saving the data.', 'moderntribe-sitebuilder'),
 	},
+	businessLocations: {
+		label: __('Location', 'moderntribe-sitebuilder'),
+	},
 	errorScreen: {
 		title: __('We\'ve ran into an error while doing the thing we were doing.', 'moderntribe-sitebuilder'),
 		message: __('To fix this issue you\'ll need to sound the horn of Gondor.', 'moderntribe-sitebuilder'),
 		subText: __('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'moderntribe-sitebuilder'),
+	},
+	imageCollection: {
+		label: __('Use images from:', 'moderntribe-sitebuilder'),
 	}
 };

@@ -12,6 +12,11 @@ export interface FtcSiteObject {
 	logo: FtcSiteLogoObjectInterface;
 }
 
+export interface TonePersonalityInterface {
+	name: string;
+	description: string;
+}
+
 export interface FtcScreenDataInterface {
 	isLoading: boolean;
 	lastStep: number;
@@ -27,7 +32,7 @@ export interface FtcScreenDataInterface {
 	businessLocationOptions: BusinessLocationInterface[];
 
 	industryVerticals: Record<string, string[]>;
-	personalityOptions: string[];
+	personalityOptions: TonePersonalityInterface[];
 }
 
 const industryVerticals: Record<string, string[]> = {
@@ -56,14 +61,55 @@ const industryVerticals: Record<string, string[]> = {
 	Other: []
 };
 
-const personalityOptions: string[] = [
-	'Quirky',
-	'Calm',
-	'Spicy',
-	'Classic',
-	'Elegant',
-	'Funny',
-	'Witty'
+const personalityOptions: TonePersonalityInterface[] = [
+	{
+		name: 'Neutral',
+		description: 'Provides balanced and unbiased information without any specific emotional tone.',
+	},
+	{
+		name: 'Inspirational',
+		description: 'Motivates and inspires the audience, encouraging them to pursue their goals and aspirations.',
+	},
+	{
+		name: 'Funny',
+		description: 'Adds humor and entertainment to the content, aiming to create a lighthearted and amusing experience for the audience.',
+	},
+	{
+		name: 'Upbeat',
+		description: 'Infuses content with positivity, energy, and enthusiasm, leaving a lasting impression on visitors.',
+	},
+	{
+		name: 'Persuasive',
+		description: 'Influences and convinces the audience to take action through compelling and convincing language.',
+	},
+	{
+		name: 'Persuasive',
+		description: 'Influences and convinces the audience to take action through compelling and convincing language.',
+	},
+	{
+		name: 'Conversational',
+		description: 'Mimics natural conversation, making the content relatable and easy to understand.',
+	},
+	{
+		name: 'Trustworthy',
+		description: 'Establishes credibility, reliability, and trust, essential for building strong relationships with customers.',
+	},
+	{
+		name: 'Engaging',
+		description: 'Captivates and holds the attention of the audience through compelling and interactive content.',
+	},
+	{
+		name: 'Informative',
+		description: 'Focuses on providing clear and helpful information about products, services, or topics of interest.',
+	},
+	{
+		name: 'Friendly',
+		description: 'Creates a warm and approachable atmosphere, fostering a personal connection with the audience.',
+	},
+	{
+		name: 'Professional',
+		description: 'Conveys expertise, reliability, and competence. Suitable for businesses and professional services.',
+	},
 ];
 
 export interface BusinessLocationInterface {
@@ -122,9 +168,7 @@ const setInitialFormValues = (wizardData: any): Omit<FtcFormItemsInterface, 'pas
 		site: {
 			logo: { id },
 			siteName = '',
-			tagline = '',
 			industry = '',
-			subIndustry = '',
 			siteDescription = '',
 			sitePersonality = '',
 			siteKeywords = [],
@@ -140,9 +184,7 @@ const setInitialFormValues = (wizardData: any): Omit<FtcFormItemsInterface, 'pas
 	form.username.value = username;
 	form.logoId.value = String(id);
 	form.siteName.value = siteName;
-	form.tagline.value = tagline;
 	form.industry.value = industry;
-	form.subIndustry.value = subIndustry;
 	form.siteDescription.value = siteDescription;
 	form.sitePersonality.value = sitePersonality;
 	form.siteKeywords.value = siteKeywords;

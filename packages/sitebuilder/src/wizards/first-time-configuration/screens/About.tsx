@@ -10,7 +10,7 @@ import { FtcStringData } from '@ftc/data/constants';
 import { FtcFormItemsInterface } from '../data/ftc-form';
 import PageWrapper from '@ftc/components/PageWrapper';
 
-const { siteDescription, customerDescription, valueProposition, productsAndServices } = FtcStringData;
+const { siteDescription } = FtcStringData;
 
 const About = () => {
 	const {
@@ -29,13 +29,7 @@ const About = () => {
 		if (! form) {
 			return;
 		}
-		shouldBlockNextStep(
-			! form.siteDescription.value ||
-				! form.customerDescription.value ||
-				! form.valueProposition.value ||
-				! form.productsAndServices.value,
-			2
-		);
+		shouldBlockNextStep(! form.siteDescription.value);
 	}, [form]);
 
 	return (
@@ -46,65 +40,15 @@ const About = () => {
 						field={
 							<TextInput
 								multiline
-								rows={ 3 }
+								rows={ 9 }
 								fullWidth
 								onChange={ handleInputChange('siteDescription') }
-								placeholder={
-									siteDescription.placeholder
-								}
+								placeholder={ siteDescription.placeholder }
 								required
 								value={ form.siteDescription.value }
 							/>
 						}
-						label={ siteDescription.label }
-					/>
-					<FormField
-						field={
-							<TextInput
-								multiline
-								rows={ 3 }
-								fullWidth
-								onChange={ handleInputChange('customerDescription') }
-								placeholder={
-									customerDescription.placeholder
-								}
-								required
-								value={ form.customerDescription.value }
-							/>
-						}
-						label={ customerDescription.label }
-					/>
-					<FormField
-						field={
-							<TextInput
-								multiline
-								rows={ 3 }
-								fullWidth
-								onChange={ handleInputChange('valueProposition') }
-								placeholder={
-									valueProposition.placeholder
-								}
-								required
-								value={ form.valueProposition.value }
-							/>
-						}
-						label={ valueProposition.label }
-					/>
-					<FormField
-						field={
-							<TextInput
-								multiline
-								rows={ 3 }
-								fullWidth
-								onChange={ handleInputChange('productsAndServices') }
-								placeholder={
-									productsAndServices.placeholder
-								}
-								required
-								value={ form.productsAndServices.value }
-							/>
-						}
-						label={ productsAndServices.label }
+						label={ `${ siteDescription.label } ${ form.ownerIdentity.value.split(' ')[ 1 ]?.toLowerCase() || 'business' }` }
 					/>
 				</Stack>
 			</Form>

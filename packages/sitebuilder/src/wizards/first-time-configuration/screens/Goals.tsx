@@ -24,6 +24,7 @@ const Goals = () => {
 
 	const handleSelect = (value: string[]) => {
 		setFormValue('goals', value);
+		console.log('value', value);
 	};
 
 	const goalIcon = (icon: any) => {
@@ -62,8 +63,7 @@ const Goals = () => {
 					{ cards.map((item: any) => (
 						<CardSelectItem
 							key={ item.key }
-							primary={ item.value }
-							secondary={ item.description }
+							secondary={ item.value }
 							icon={ goalIcon(item.icon) }
 							value={ item.key }
 						/>

@@ -15,7 +15,7 @@ const ExitButtonPanel: any = styled(Box, {
 	top: 0,
 	width: '100%',
 	textAlign: 'right',
-	background: 'white',
+	background: 'transparent',
 	padding: '10px 0',
 	zIndex: 1
 }));
@@ -23,7 +23,7 @@ const ExitButtonPanel: any = styled(Box, {
 export const WizardExitButton = ({ text, onExit }: ChildrenProps) => {
 	return (
 		<ExitButtonPanel>
-			<ExitButton onClick={ onExit }>
+			<ExitButton onClick={ onExit } sx={ { '& .MuiButtonBase-root': { background: '#fff' } } }>
 				<span>{ text }</span>
 			</ExitButton>
 		</ExitButtonPanel>
