@@ -28,7 +28,6 @@ const TemplateFilter = (props: TemplateFilterProps) => {
 	};
 
 	const handleSelect = (newItem?: FilterOption) => {
-		console.log('click', newItem);
 		if (! newItem) {
 			return;
 		}

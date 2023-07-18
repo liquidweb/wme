@@ -122,10 +122,6 @@ const stepsData: Array<StepInterface> = [
 		id: 6,
 		label: __('Style', 'moderntribe-sitebuilder'),
 		title: __('Style starter.', 'moderntribe-sitebuilder'),
-		// description: __(
-		// 	'Grab a starter template to get you going, but don\'t worry, you\'ll be able to update fonts, colors, imagery … You get the idea. We could keep listing things but let’s keep moving.',
-		// 	'moderntribe-sitebuilder'
-		// ),
 		footerHelpText: __(
 			'You\'ll be able to change all of this at any time down to the smallest detail (if you want).',
 			'moderntribe-sitebuilder'
