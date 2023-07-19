@@ -1,5 +1,5 @@
 import { formatKadencePages, useFirstTimeConfiguration } from '@sb/hooks';
-import { Box } from '@mui/material';
+import { Alert, Box } from '@mui/material';
 import getTemplateStyles from '../data/styles';
 import { useEffect, useState } from 'react';
 import KadenceTemplateItem, { TemplateSelectItemProps } from '../components/styles/KadenceTemplateItem';
@@ -19,10 +19,13 @@ const StyleSelection = () => {
 	const [filteredPages, setFilteredPages] = useState<TemplateSelectItemProps[]>();
 	const [filterOptions, setFilterOptions] = useState<FilterOption[]>([]);
 	const [selectedTemplate, setTemplate] = useState(form.template.value);
+	const [requestError, setRequestError] = useState('');
 	const styles = getTemplateStyles();
 
 	useEffect(() => {
-		if (kadenceTemplates) {
+		if (kadenceTemplates?.error) {
+			setRequestError(kadenceTemplates.error.message || 'There was an error getting templates.');
+		} else if (kadenceTemplates) {
 			const parsed = formatKadencePages(kadenceTemplates);
 			setPages(parsed.pages);
 			setFilteredPages(parsed.pages);
@@ -61,21 +64,25 @@ const StyleSelection = () => {
 					updateSelected={ filterTemplates }
 				/>
 			</Box>
-			<KadenceTemplateGroup>
-				{ filteredPages ? filteredPages.map((page) => (
-					<KadenceTemplateItem
-						key={ page.slug }
-						{ ...page }
-						style={ styles[ page.defaultStyleIndex || 0 ] }
-						onClick={ (selected) => setStyles(selected, styles[ page.defaultStyleIndex || 0 ].id) }
-						selected={ page.slug === selectedTemplate }
-					/>
-				)) : (
-					Array.from('1234').map((key) => (
-						<TemplateItemSkeletonItem key={ key } />
-					))
-				) }
-			</KadenceTemplateGroup>
+			{ requestError ? (
+				<Alert severity="error">{ requestError }</Alert>
+			) : (
+				<KadenceTemplateGroup>
+					{ filteredPages ? filteredPages.map((page) => (
+						<KadenceTemplateItem
+							key={ page.slug }
+							{ ...page }
+							style={ styles[ page.defaultStyleIndex || 0 ] }
+							onClick={ (selected) => setStyles(selected, styles[ page.defaultStyleIndex || 0 ].id) }
+							selected={ page.slug === selectedTemplate }
+						/>
+					)) : (
+						Array.from('1234').map((key) => (
+							<TemplateItemSkeletonItem key={ key } />
+						))
+					) }
+				</KadenceTemplateGroup>
+			)}
 		</PageWrapper>
 	);
 };

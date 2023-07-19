@@ -29,7 +29,7 @@ export type validateUsernamePasswordFn = (
 export type shouldBlockNextStepFn = (
 	prop: any | any[]
 ) => void;
-export type cacheKadenceTemplatesFn = (templatesObj: any) => void;
+export type cacheKadenceTemplatesFn = (templatesObj: any, error?: Error) => void;
 
 export interface FtcProviderContextInterface {
 	ftcState: FtcScreenDataInterface;
@@ -167,8 +167,13 @@ const FirstTimeConfigurationProvider: React.FC<{ children: React.ReactNode }> = 
 		shouldBlockNextStep(false);
 	};
 
-	const cacheKadenceTemplates: cacheKadenceTemplatesFn = (templates) => {
-		setTemplates(templates);
+	const cacheKadenceTemplates: cacheKadenceTemplatesFn = (templates, error) => {
+		if (error) {
+			console.log('error', error);
+			setTemplates({ error });
+		} else {
+			setTemplates(templates);
+		}
 	};
 
 	return (

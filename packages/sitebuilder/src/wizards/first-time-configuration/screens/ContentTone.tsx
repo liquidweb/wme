@@ -1,14 +1,16 @@
 import {
 	FormField,
 	Form,
-	ChipInput
+	ChipInput,
+	SelectInput
 } from '@moderntribe/wme-ui';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, MenuItem, SelectChangeEvent, Stack, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
 import { useEffect } from 'react';
 import { FtcStringData } from '@ftc/data/constants';
 import PageWrapper from '@ftc/components/PageWrapper';
 import CustomSelectInput from '../components/CustomSelectInput';
+import { FtcFormItemsInterface } from '../data/ftc-form';
 
 const { keywords, contentPersonality } = FtcStringData;
 
@@ -22,9 +24,11 @@ const ContentTone = () => {
 	const updateKeywords = (tags: string[]) => {
 		setFormValue('siteKeywords', tags);
 	};
-	const updatePersonality = (value: string) => {
-		setFormValue('sitePersonality', value);
+
+	const handleChange = (prop: keyof FtcFormItemsInterface) => (event: SelectChangeEvent<any>) => {
+		setFormValue(prop, event.target.value);
 	};
+
 
 	useEffect(() => {
 		if (! form) {
@@ -60,12 +64,18 @@ const ContentTone = () => {
 						<Typography variant="body2" sx={ { color: 'text.secondary', marginBottom: '8px' } }>{ contentPersonality.description }</Typography>
 						<FormField
 							field={
-								<CustomSelectInput
-									options={ personalityOptions }
-									value={ form.sitePersonality.value || personalityOptions[ 0 ].name }
-									onChange={ (val) => updatePersonality(val) }
-									inputName="sitePersonality"
-								/>
+								<SelectInput
+									fullWidth
+									sx={ { maxWidth: '400px' } }
+									onChange={ handleChange('sitePersonality') }
+									value={ form.sitePersonality.value }
+								>
+									{ personalityOptions.map((opt) => (
+										<MenuItem key={ opt.name } value={ opt.name }>
+											{ opt.name }
+										</MenuItem>
+									)) }
+								</SelectInput>
 							}
 						/>
 					</Box>

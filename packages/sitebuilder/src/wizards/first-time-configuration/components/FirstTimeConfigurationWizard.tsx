@@ -28,7 +28,7 @@ const FirstTimeConfigurationWizard = () => {
 		setShowCloseWarning,
 		closeAll
 	} = useWizard();
-	const { data: kadencePages, loading: pagesLoading } = useKadencePages();
+	const { data: kadencePages, loading: pagesLoading, error: kadenceError } = useKadencePages();
 
 	const [searchParams] = useSearchParams();
 	const [stepIndex, setStepIndex] = useState<number>();
@@ -36,10 +36,14 @@ const FirstTimeConfigurationWizard = () => {
 	const [currentScreen, setCurrentScreen] = useState<StepInterface>();
 
 	useEffect(() => {
-		if (! pagesLoading && kadencePages) {
+		if (! pagesLoading && kadencePages && ! kadenceError) {
 			cacheKadenceTemplates(kadencePages);
 		}
-	}, [pagesLoading, kadencePages]);
+
+		if (kadenceError) {
+			cacheKadenceTemplates([], kadenceError);
+		}
+	}, [pagesLoading, kadencePages, kadenceError]);
 
 	useEffect(() => {
 		if (searchParams.get('step')) {
