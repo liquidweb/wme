@@ -1,13 +1,15 @@
 import { ProgressBar } from '@moderntribe/wme-ui';
 import { Box, Stack, Typography } from '@mui/material';
-import { useWizard } from '@sb/hooks';
+import { useFirstTimeConfiguration } from '@sb/hooks';
 import { FtcStringData } from '@ftc/data/constants';
 import { IMAGE_DIR } from '@sb/constants';
 import { useEffect, useState } from 'react';
+import PageWrapper from '../components/PageWrapper';
 const { processing: processingStep } = FtcStringData;
 
 const Processing = () => {
-	const { goToNextStep } = useWizard();
+	// const { goToNextStep } = useWizard();
+	const { submitForm } = useFirstTimeConfiguration();
 
 	const [percentDone, setPercentDone] = useState(0);
 
@@ -17,7 +19,7 @@ const Processing = () => {
 				setPercentDone(percentDone + 10);
 			}, 500);
 		} else {
-			goToNextStep();
+			submitForm();
 		}
 	};
 
@@ -26,7 +28,7 @@ const Processing = () => {
 	}, [percentDone]);
 
 	return (
-		<Box sx={ { maxWidth: 560, width: 560 } }>
+		<PageWrapper>
 			<Stack spacing={ 3 }>
 				<Box
 					sx={ {
@@ -53,7 +55,7 @@ const Processing = () => {
 					</Typography>
 				</Box>
 			</Stack>
-		</Box>
+		</PageWrapper>
 	);
 };
 

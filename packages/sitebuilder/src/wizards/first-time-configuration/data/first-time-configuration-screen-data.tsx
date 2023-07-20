@@ -57,13 +57,17 @@ const industryVerticals: Record<string, string[]> = {
 };
 
 const personalityOptions: string[] = [
-	'Quirky',
-	'Calm',
-	'Spicy',
-	'Classic',
-	'Elegant',
+	'Conversational',
+	'Engaging',
+	'Friendly',
 	'Funny',
-	'Witty'
+	'Informative',
+	'Inspirational',
+	'Neutral',
+	'Persuasive',
+	'Professional',
+	'Trustworthy',
+	'Upbeat'
 ];
 
 export interface BusinessLocationInterface {
@@ -122,9 +126,7 @@ const setInitialFormValues = (wizardData: any): Omit<FtcFormItemsInterface, 'pas
 		site: {
 			logo: { id },
 			siteName = '',
-			tagline = '',
 			industry = '',
-			subIndustry = '',
 			siteDescription = '',
 			sitePersonality = '',
 			siteKeywords = [],
@@ -140,9 +142,7 @@ const setInitialFormValues = (wizardData: any): Omit<FtcFormItemsInterface, 'pas
 	form.username.value = username;
 	form.logoId.value = String(id);
 	form.siteName.value = siteName;
-	form.tagline.value = tagline;
 	form.industry.value = industry;
-	form.subIndustry.value = subIndustry;
 	form.siteDescription.value = siteDescription;
 	form.sitePersonality.value = sitePersonality;
 	form.siteKeywords.value = siteKeywords;

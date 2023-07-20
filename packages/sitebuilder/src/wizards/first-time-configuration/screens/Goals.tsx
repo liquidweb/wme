@@ -62,8 +62,7 @@ const Goals = () => {
 					{ cards.map((item: any) => (
 						<CardSelectItem
 							key={ item.key }
-							primary={ item.value }
-							secondary={ item.description }
+							secondary={ item.value }
 							icon={ goalIcon(item.icon) }
 							value={ item.key }
 						/>

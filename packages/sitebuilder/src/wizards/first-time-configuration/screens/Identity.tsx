@@ -8,7 +8,7 @@ import {
 } from '@moderntribe/wme-ui';
 import { Stack, SelectChangeEvent } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FtcStringData } from '@ftc/data/constants';
 import { FtcFormItemsInterface } from '../data/ftc-form';
 import BusinessLocations from '@ftc/components/BusinessLocations';
@@ -16,24 +16,34 @@ import PageWrapper from '@ftc/components/PageWrapper';
 
 const { iAm, businessLocation, industry, ownerName } = FtcStringData;
 
+export interface NameFieldMappingProps {
+	'An Individual': string;
+	'A Company': string;
+	'An Organization': string;
+}
+const nameFieldMapping: NameFieldMappingProps = {
+	'An Individual': 'Name',
+	'A Company': 'Company',
+	'An Organization': 'Organization'
+};
+
+const identityOptions = [
+	'An Individual', 'A Company', 'An Organization'
+];
+
 const YourInformation = () => {
 	const {
 		ftcState: { form, industryVerticals, businessLocationOptions },
 		setFormValue,
 		shouldBlockNextStep
 	} = useFirstTimeConfiguration();
+	const [nameFieldLabel, setNameFieldLabel] = useState('Name');
 
 	const handleInputChange =
 		(prop: keyof FtcFormItemsInterface) =>
-			(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-				setFormValue(prop, event.target.value);
+			(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | SelectChangeEvent<unknown>) => {
+				setFormValue(prop, event.target.value as string);
 			};
-
-	const handleSelectChange = (prop: keyof FtcFormItemsInterface) =>
-		(event: SelectChangeEvent<unknown>) => {
-			const value = event.target.value as string;
-			setFormValue(prop, value);
-		};
 
 	const handleSimpleChange = (prop: keyof FtcFormItemsInterface) => (value: string) => {
 		setFormValue(prop, value);
@@ -47,9 +57,10 @@ const YourInformation = () => {
 			! form.ownerIdentity.value ||
 				! form.ownerName.value ||
 				! form.businessLocation.value ||
-				! form.industry.value,
-			1
+				! form.industry.value
 		);
+
+		setNameFieldLabel(form.ownerIdentity.value ? nameFieldMapping[ form.ownerIdentity.value as keyof NameFieldMappingProps ] : identityOptions[ 0 ]);
 	}, [form]);
 
 	return (
@@ -60,20 +71,16 @@ const YourInformation = () => {
 						field={
 							<SelectInput
 								fullWidth
-								onChange={ handleSelectChange('ownerIdentity') }
+								onChange={ handleInputChange('ownerIdentity') }
 								placeholder={ iAm.placeholder }
 								required
 								value={ form.ownerIdentity.value }
 							>
-								<MenuItem key={ 1 } value="An Individual">
-									An Individual
-								</MenuItem>
-								<MenuItem key={ 2 } value="A Company">
-									A Company
-								</MenuItem>
-								<MenuItem key={ 2 } value="An Organization">
-									An Organization
-								</MenuItem>
+								{ identityOptions.map((opt) => (
+									<MenuItem key={ opt } value={ opt }>
+										{ opt }
+									</MenuItem>
+								)) }
 							</SelectInput>
 						}
 						label={ iAm.label }
@@ -84,7 +91,7 @@ const YourInformation = () => {
 								fullWidth
 								onChange={ handleInputChange('ownerName') }
 								placeholder={
-									ownerName.placeholder
+									`Your ${ nameFieldLabel }`
 								}
 								required
 								value={ form.ownerName.value }
@@ -109,6 +116,7 @@ const YourInformation = () => {
 								placeholder={
 									industry.placeholder
 								}
+								freeSolo
 							/>
 						}
 						label={ industry.text }

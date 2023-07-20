@@ -92,7 +92,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
         fullWidth: true,
         autoComplete: 'false',
         startAdornment: tags.map((item) => (
-          <Chip color="info" size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
+          <Chip color="primary" size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
         )),
         value: inputValue,
         onKeyDown: handleKeyDown,

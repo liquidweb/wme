@@ -9,11 +9,8 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ArrowBack from '@mui/icons-material/ArrowBack';
-import ChevronRight from '@mui/icons-material/ChevronRight';
 import { LoadingButton } from '@mui/lab';
-import SendIcon from '@mui/icons-material/Send';
 import { Button } from '..';
-import { useMaxActiveStep } from '../../hooks';
 
 export interface WizardFooterProps extends BoxProps {
   backText?: string;
@@ -80,7 +77,6 @@ const Nav = styled(Box, {
   slot: 'Nav',
 })(() => ({
   flex: 1,
-  maxWidth: '500px',
 }));
 
 const Skip = styled(Box, {
@@ -117,11 +113,17 @@ const StyledStepButton = styled(StepButton, {
         color: theme.palette.secondary.main,
         width: '18px',
         height: '18px',
+        '&.Mui-active': {
+          color: theme.palette.primary.main,
+        },
       },
     },
     '& .MuiStepLabel-labelContainer': {
       '& .MuiStepLabel-label': {
         fontWeight: 500,
+        '&.Mui-active': {
+          color: theme.palette.primary.main,
+        },
       },
     },
     '&.Mui-disabled': {
@@ -180,7 +182,6 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
     ...rest
   } = props;
 
-  const { maxActiveStep } = useMaxActiveStep(activeStep);
   const currStep = steps[activeStep];
   const disable = disableAll || currStep?.disableAll;
   let nextButtonClassName = 'WmeWizardFooterNextButton';
@@ -210,24 +211,22 @@ const WizardFooter: React.FC<WizardFooterProps> = (props) => {
         </Prev>
         <Nav className="WmeWizardFooter-nav">
           <StyledStepper
-            activeStep={maxActiveStep}
+            activeStep={activeStep}
             connector={null}
             className="WmeStepper-root"
           >
             {
-              steps?.map((step) => {
+              steps?.map((step, index) => {
                 if (step.id > steps.length || step.hidePagination) {
                   return null;
                 }
-                const isCurrentStep = step.id === activeStep;
-                const unlocked = step.id <= maxActiveStep;
+
                 return (
-                  <Step key={step.id} active={unlocked} completed={unlocked && !isCurrentStep}>
+                  <Step key={step.id} active={activeStep === index} completed={index < activeStep}>
                     <StyledStepButton
                       className="WmeStepButton-root"
                       disabled={disable || step.disable}
                       onClick={() => onClickStep?.(step)}
-                      sx={{ '&:hover': { textDecoration: unlocked ? 'underline' : 'none' } }}
                     >
                       { step.label }
                     </StyledStepButton>

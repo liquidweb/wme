@@ -4,7 +4,7 @@ import { beforeUnloadListener } from '@moderntribe/wme-utils';
 import { __ } from '@wordpress/i18n';
 import { useSearchParams } from 'react-router-dom';
 import { WizardExitButton, WizardSidebar } from '@sb/components';
-import { useWizard, useFirstTimeConfiguration } from '@sb/hooks';
+import { useWizard, useFirstTimeConfiguration, useKadencePages } from '@sb/hooks';
 import WizardCloseWarning from '@sb/wizards/WizardCloseWarning';
 import { Box, Grid } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
@@ -16,6 +16,7 @@ import GoogleFonts from './styles/GoogleFonts';
 const FirstTimeConfigurationWizard = () => {
 	const {
 		ftcState: { steps, isLoading, lastStep },
+		cacheKadenceTemplates,
 		submitForm
 	} = useFirstTimeConfiguration();
 
@@ -27,11 +28,22 @@ const FirstTimeConfigurationWizard = () => {
 		setShowCloseWarning,
 		closeAll
 	} = useWizard();
+	const { data: kadencePages, loading: pagesLoading, error: kadenceError } = useKadencePages();
 
 	const [searchParams] = useSearchParams();
 	const [stepIndex, setStepIndex] = useState<number>();
 	const [isLastStep, setIsLastStep] = useState(false);
 	const [currentScreen, setCurrentScreen] = useState<StepInterface>();
+
+	useEffect(() => {
+		if (! pagesLoading && kadencePages && ! kadenceError) {
+			cacheKadenceTemplates(kadencePages);
+		}
+
+		if (kadenceError) {
+			cacheKadenceTemplates([], kadenceError);
+		}
+	}, [pagesLoading, kadencePages, kadenceError]);
 
 	useEffect(() => {
 		if (searchParams.get('step')) {
@@ -102,18 +114,20 @@ const FirstTimeConfigurationWizard = () => {
 				subText={ currentScreen.footerHelpText }
 				component={ currentScreen.sidebarComponent }
 			/>
+			{ ! currentScreen.hideExit && (
+				<WizardExitButton
+					onExit={ handleExitClick }
+					text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
+				/>
+			) }
 			<Grid item xs={ currentScreen.hideSidebar ? 12 : 9.5 } sx={ { position: 'relative' } }>
-				{ ! currentScreen.hideExit && (
-					<WizardExitButton
-						onExit={ handleExitClick }
-						text={ __('Exit to Setup', 'moderntribe-sitebuilder') }
-					/>
-				) }
 				{ error && error.showError && <ErrorScreen logo={ logo } /> }
 				<ScreenWrapper>{ currentScreen.screen }</ScreenWrapper>
 			</Grid>
 			<WizardFooter
 				sx={ {
+					borderTop: '1px solid',
+					borderColor: 'border.ui',
 					position: 'fixed',
 					bottom: 0,
 					left: 0,

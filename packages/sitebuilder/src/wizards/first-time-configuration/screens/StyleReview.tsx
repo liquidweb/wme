@@ -1,42 +1,46 @@
-import { Box } from '@mui/material';
-import IframeEmbed from '@ftc/components/IframeEmbed';
-import { useFirstTimeConfiguration, useWizard } from '@sb/hooks';
-import { ModalDeviceSelection } from '@sb/components';
-
-const deviceWrapperSx = {
-	position: 'fixed',
-	left: '50%',
-	zIndex: 999,
-	top: '58px',
-	width: '400px',
-	marginTop: '-42px',
-	paddingBottom: '18px',
-	display: 'flex',
-	justifyContent: 'center',
-	marginLeft: 'auto',
-	marginRight: 'auto'
-};
+import { Typography } from '@mui/material';
+import { useFirstTimeConfiguration } from '@sb/hooks';
+import PageWrapper from '../components/PageWrapper';
+import { useEffect, useState } from 'react';
+import getTemplateStyles, { StyleInterface } from '@ftc/data/styles';
+import Template from '../components/styles/Template';
+import root from 'react-shadow';
 
 const StyleReview = () => {
 	const {
-		ftcState: { form }
+		ftcState: { form },
+		kadenceTemplates
 	} = useFirstTimeConfiguration();
-	const {
-		wizardState: { activeDevice }
-	} = useWizard();
+	const styles = getTemplateStyles();
+
+	const [template, setTemplate] = useState<any>();
+	const [theme, setTheme] = useState<StyleInterface>();
+	const [fonts, setFonts] = useState<StyleInterface>();
+
+	useEffect(() => {
+		if (form) {
+			const foundTemplate = kadenceTemplates?.[ form.template?.value ] || {};
+			setTemplate(foundTemplate);
+
+			const foundPalette = styles.find((style) => style.id === form.colorPalette?.value);
+			setTheme(foundPalette);
+
+			const foundFonts = styles.find((style) => style.id === form.fontPairing?.value);
+			setFonts(foundFonts || foundPalette);
+		}
+	}, [form]);
 
 	return (
-		// Padding/margin doesn't take effect here - using a percent width instead
-		<Box sx={ { width: '95%', height: '100%' } }>
-			<Box sx={ deviceWrapperSx }>
-				<ModalDeviceSelection />
-			</Box>
-			<IframeEmbed
-				src={ window.location.origin }
-				id={ form.template.value }
-				width={ activeDevice.width ? activeDevice.width : '100%' }
-			/>
-		</Box>
+		<PageWrapper width="90%">
+			{ ! theme || ! template ? (
+				<Typography variant="h4" textAlign="center" >No template found!</Typography>
+			) : (
+				// @ts-ignore
+				<root.div >
+					<Template slug="customization" rows_html={ template.rows_html } theme={ theme } fontPairing={ fonts } />
+				</root.div>
+			) }
+		</PageWrapper>
 	);
 };
 

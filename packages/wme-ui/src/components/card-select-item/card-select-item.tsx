@@ -1,6 +1,5 @@
 import type React from 'react';
 import {
-  alpha,
   styled,
   Box,
   ToggleButton,
@@ -84,12 +83,12 @@ const StyleCardSelectCompleteIcon = styled('div', {
   width: theme.spacing(2.75),
   height: theme.spacing(2.75),
   borderRadius: '50%',
-  backgroundColor: theme.palette.secondary.main,
+  backgroundColor: `${theme.palette.secondary.main} !important`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   '& .MuiSvgIcon-root': {
-    color: theme.palette.text.white,
+    color: `${theme.palette.text.white} !important`,
     fontSize: '1.4em',
   },
 }));
@@ -101,15 +100,15 @@ const StyleCardSelectIcon = styled('div', {
 })(({ theme }) => ({
   width: theme.spacing(7),
   height: theme.spacing(7),
-  borderRadius: '50%',
-  backgroundColor: theme.palette.grey[100],
+  borderRadius: '50px !important',
+  backgroundColor: `${theme.palette.background.grey} !important`,
   display: 'flex',
   flexShrink: 0,
   alignItems: 'center',
   justifyContent: 'center',
   overflow: 'hidden',
   '& img, & svg': {
-    width: theme.spacing(3),
+    width: `${theme.spacing(3)} !important`,
     height: 'auto',
   },
 }));
@@ -160,6 +159,9 @@ const SecondaryText = styled(Typography, {
 })<TypographyProps>(({ theme }) => ({
   display: 'block',
   color: theme.palette.text.primary,
+  marginBottom: 0,
+  fontSize: '14px',
+  fontWeight: 600,
 }));
 
 const CardSelectCompleteIcon = () => (

@@ -2,7 +2,7 @@
 export interface FtcFormValueInterface<T> {
 	value: T;
 	touched: boolean;
-	isValid: boolean;
+	isValid?: boolean;
 }
 
 export interface FtcFormItemsInterface {
@@ -15,17 +15,12 @@ export interface FtcFormItemsInterface {
 	businessLocation: FtcFormValueInterface<string>
 	industry: FtcFormValueInterface<string>;
 	siteDescription: FtcFormValueInterface<string>;
-	customerDescription: FtcFormValueInterface<string>;
-	valueProposition: FtcFormValueInterface<string>;
-	productsAndServices: FtcFormValueInterface<string>;
+	goals: FtcFormValueInterface<string[]>;
+	siteKeywords: FtcFormValueInterface<string[]>;
+	sitePersonality: FtcFormValueInterface<string>;
+	imageCollection: FtcFormValueInterface<string>;
 
 	fontPairing: FtcFormValueInterface<string>;
-	tagline: FtcFormValueInterface<string>;
-	subIndustry: FtcFormValueInterface<string>;
-
-	sitePersonality: FtcFormValueInterface<string>;
-	siteKeywords: FtcFormValueInterface<string[]>;
-	goals: FtcFormValueInterface<string[]>;
 	template: FtcFormValueInterface<string>;
 	colorPalette: FtcFormValueInterface<string>;
 }
@@ -56,7 +51,5 @@ export default {
 	ownerIdentity: addDefaults(''),
 	ownerName: addDefaults(''),
 	businessLocation: addDefaults(''),
-	customerDescription: addDefaults(''),
-	valueProposition: addDefaults(''),
-	productsAndServices: addDefaults(''),
+	imageCollection: addDefaults('')
 } as FtcFormItemsInterface;

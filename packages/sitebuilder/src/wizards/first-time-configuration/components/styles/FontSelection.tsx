@@ -9,7 +9,7 @@ const FontSelection = () => {
 		setFormValue,
 	} = useFirstTimeConfiguration();
 	const styles = getTemplateStyles();
-	const [font, setFontValue] = useState(form.fontPairing.value);
+	const [font, setFontValue] = useState(form.fontPairing?.value || form.colorPalette?.value);
 
 	useEffect(() => {
 		setFormValue('fontPairing', font);
@@ -20,31 +20,43 @@ const FontSelection = () => {
 		<Box sx={ {
 			display: 'grid',
 			gridTemplateColumns: '1fr 1fr 1fr',
-			gap: '10px',
+			gap: '4px',
 		} }>
 			{ styles?.map((theme) => (
 				<Box
 					key={ theme.id }
 					sx={ {
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
 						'&:hover': {
 							cursor: 'pointer',
 						},
-						gap: '4px',
 						border: '2px solid',
-						borderColor: font === theme.id ? 'success.main' : 'background.disabled',
+						borderColor: font === theme.id ? 'primary.main' : 'background.dark',
 						borderRadius: '4px',
-						backgroundColor: 'background.primary',
-						color: 'text.primary',
-						padding: '4px 0px'
+						backgroundColor: 'background.dark',
+						display: 'flex',
+						width: '100%',
+						height: '100%',
+						flexDirection: 'column'
 					} }
 					onClick={ () => setFontValue(theme.id) }
 				>
-					<FontBlock fontFamily={ theme.headingFont } />
-					<Box sx={ { height: '1px', backgroundColor: 'border.ui', width: '100%' } } />
-					<FontBlock fontFamily={ theme.baseFont } />
+					<Box sx={ {
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+						borderRadius: '2px',
+						margin: '4px',
+						color: 'text.primary',
+						gap: '4px',
+						height: '100%',
+						backgroundColor: 'background.primary',
+						padding: '4px 0'
+					} }>
+						<FontBlock fontFamily={ theme.headingFont } />
+						<Box sx={ { height: '1px', backgroundColor: 'border.ui', width: '100%' } } />
+						<FontBlock fontFamily={ theme.baseFont } />
+					</Box>
 				</Box>
 			)) }
 		</Box>
