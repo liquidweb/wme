@@ -9,7 +9,6 @@ import { useFirstTimeConfiguration } from '@sb/hooks';
 import { useEffect } from 'react';
 import { FtcStringData } from '@ftc/data/constants';
 import PageWrapper from '@ftc/components/PageWrapper';
-import CustomSelectInput from '../components/CustomSelectInput';
 import { FtcFormItemsInterface } from '../data/ftc-form';
 
 const { keywords, contentPersonality } = FtcStringData;
@@ -28,7 +27,6 @@ const ContentTone = () => {
 	const handleChange = (prop: keyof FtcFormItemsInterface) => (event: SelectChangeEvent<any>) => {
 		setFormValue(prop, event.target.value);
 	};
-
 
 	useEffect(() => {
 		if (! form) {
@@ -71,8 +69,8 @@ const ContentTone = () => {
 									value={ form.sitePersonality.value }
 								>
 									{ personalityOptions.map((opt) => (
-										<MenuItem key={ opt.name } value={ opt.name }>
-											{ opt.name }
+										<MenuItem key={ opt } value={ opt }>
+											{ opt }
 										</MenuItem>
 									)) }
 								</SelectInput>

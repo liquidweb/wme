@@ -82,7 +82,7 @@ const StyleSelection = () => {
 						))
 					) }
 				</KadenceTemplateGroup>
-			)}
+			) }
 		</PageWrapper>
 	);
 };

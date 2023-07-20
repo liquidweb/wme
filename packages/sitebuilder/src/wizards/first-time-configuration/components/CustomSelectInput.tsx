@@ -53,7 +53,7 @@ export default function CustomSelectInput(props: CustomSelectInterface) {
 			>
 				<Box sx={ { textAlign: 'left' } }>
 					<span style={ { fontWeight: 700 } }>{ selectedOption?.name }.</span>
-					{/* &nbsp;<span style={ { fontWeight: 400 } }>{ selectedOption?.description }</span> */}
+					&nbsp;<span style={ { fontWeight: 400 } }>{ selectedOption?.description }</span>
 				</Box>
 			</Button>
 			<Menu
@@ -87,7 +87,7 @@ export default function CustomSelectInput(props: CustomSelectInterface) {
 				{ options.map((item) => (
 					<MenuItem key={ item.name } onClick={ () => handleClose(item.name) }>
 						<span style={ { fontWeight: 700 } }>{ item.name }</span>
-						{/* &nbsp;{ item.description } */}
+						&nbsp;{ item.description }
 					</MenuItem>
 				)) }
 			</Menu>

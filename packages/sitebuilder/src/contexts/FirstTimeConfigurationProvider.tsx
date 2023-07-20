@@ -169,7 +169,6 @@ const FirstTimeConfigurationProvider: React.FC<{ children: React.ReactNode }> = 
 
 	const cacheKadenceTemplates: cacheKadenceTemplatesFn = (templates, error) => {
 		if (error) {
-			console.log('error', error);
 			setTemplates({ error });
 		} else {
 			setTemplates(templates);
