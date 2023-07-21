@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { InputBaseProps, styled, TextField } from '@mui/material';
 import { Chip } from '..';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface ChipsInputProps extends InputBaseProps {
   tags: string[];
@@ -92,7 +93,7 @@ const ChipsInput: React.FC<ChipsInputProps> = ({ tags = [], selectedTags, ...res
         fullWidth: true,
         autoComplete: 'false',
         startAdornment: tags.map((item) => (
-          <Chip color="primary" size="small" key={item} tabIndex={-1} label={item} onDelete={deleteChip(item)} />
+          <Chip color="primary" size="small" key={item} tabIndex={-1} label={item} deleteIcon={<ClearIcon />} onDelete={deleteChip(item)} />
         )),
         value: inputValue,
         onKeyDown: handleKeyDown,

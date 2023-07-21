@@ -6,7 +6,7 @@ import {
 } from '@moderntribe/wme-ui';
 import { Box, MenuItem, SelectChangeEvent, Stack, Typography } from '@mui/material';
 import { useFirstTimeConfiguration } from '@sb/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FtcStringData } from '@ftc/data/constants';
 import PageWrapper from '@ftc/components/PageWrapper';
 import { FtcFormItemsInterface } from '../data/ftc-form';
@@ -19,6 +19,7 @@ const ContentTone = () => {
 		setFormValue,
 		shouldBlockNextStep
 	} = useFirstTimeConfiguration();
+	const [keywordCount, setKeywordCount] = useState(0);
 
 	const updateKeywords = (tags: string[]) => {
 		setFormValue('siteKeywords', tags);
@@ -33,6 +34,7 @@ const ContentTone = () => {
 			return;
 		}
 		shouldBlockNextStep(! form.siteKeywords.value || ! form.sitePersonality.value);
+		setKeywordCount(form.siteKeywords.value?.length || 0);
 	}, [form]);
 
 	return (
@@ -54,7 +56,12 @@ const ContentTone = () => {
 									tags={ form.siteKeywords.value }
 								/>
 							}
-							helperText={ keywords.helperText }
+							helperText={
+								<Box sx={ { display: 'flex', justifyContent: 'space-between', width: '100%' } }>
+									<Typography variant="subtext" color="text.disabled">{ keywords.helperText }</Typography>
+									<Typography variant="subtext" color={ keywordCount >= 5 ? 'success.main' : 'error.main' }>{ keywordCount }/10</Typography>
+								</Box>
+							}
 						/>
 					</Box>
 					<Box sx={ { display: 'flex', flexDirection: 'column', gap: 1 } }>

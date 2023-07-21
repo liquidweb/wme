@@ -68,7 +68,7 @@ export const FtcStringData = {
 		description: __('Keywords assist the AI in identifying the most relevant topics to write about.', 'moderntribe-sitebuilder'),
 		label: __('Choose your tone', 'moderntribe-sitebuilder'),
 		placeholder: __('Add Keywords…', 'moderntribe-sitebuilder'),
-		helperText: __('Separate with commas or the Enter key. Enter between 5 and 10 keywords', 'moderntribe-sitebuilder'),
+		helperText: __('Separate with commas or the Enter key. Enter between 5 and 10 keywords.', 'moderntribe-sitebuilder'),
 	},
 	iAm: {
 		placeholder: __('An Individual', 'moderntribe-sitebuilder'),
