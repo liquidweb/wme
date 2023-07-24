@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { InputBaseProps, styled, TextField } from '@mui/material';
-import { Chip } from '..';
 import ClearIcon from '@mui/icons-material/Clear';
+import { Chip } from '..';
 
 interface ChipsInputProps extends InputBaseProps {
   tags: string[];
