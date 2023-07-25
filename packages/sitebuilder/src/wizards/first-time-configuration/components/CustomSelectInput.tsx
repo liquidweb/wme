@@ -1,13 +1,18 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { TonePersonalityInterface } from '../data/first-time-configuration-screen-data';
 import { Button } from '@moderntribe/wme-ui';
 import { Box } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
+export interface CustomSelectOptions {
+	label: string;
+	labelDescription?: string;
+	value: string;
+}
+
 export interface CustomSelectInterface {
-	options: TonePersonalityInterface[];
+	options: CustomSelectOptions[];
 	value: string;
 	onChange: (newValue: string) => void;
 	inputName: string;
@@ -15,13 +20,13 @@ export interface CustomSelectInterface {
 
 export default function CustomSelectInput(props: CustomSelectInterface) {
 	const { inputName, onChange, value, options } = props;
-	const [selectedOption, setSelected] = React.useState<TonePersonalityInterface>();
+	const [selectedOption, setSelected] = React.useState<CustomSelectOptions>();
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 
 	React.useEffect(() => {
 		if (value && options) {
-			const found = options.find((opt) => opt.name === value);
+			const found = options.find((opt) => opt.value === value);
 			setSelected(found);
 		} else {
 			setSelected(options[ 0 ]);
@@ -52,8 +57,8 @@ export default function CustomSelectInput(props: CustomSelectInterface) {
 				endIcon={ <KeyboardArrowDownIcon /> }
 			>
 				<Box sx={ { textAlign: 'left' } }>
-					<span style={ { fontWeight: 700 } }>{ selectedOption?.name }.</span>
-					&nbsp;<span style={ { fontWeight: 400 } }>{ selectedOption?.description }</span>
+					<span style={ { fontWeight: 700 } }>{ selectedOption?.label }.</span>
+					&nbsp;<span style={ { fontWeight: 400 } }>{ selectedOption?.labelDescription }</span>
 				</Box>
 			</Button>
 			<Menu
@@ -85,9 +90,9 @@ export default function CustomSelectInput(props: CustomSelectInterface) {
 				} }
 			>
 				{ options.map((item) => (
-					<MenuItem key={ item.name } onClick={ () => handleClose(item.name) }>
-						<span style={ { fontWeight: 700 } }>{ item.name }</span>
-						&nbsp;{ item.description }
+					<MenuItem key={ item.label } onClick={ () => handleClose(item.value) }>
+						<span style={ { fontWeight: 700 } }>{ item.label }</span>
+						&nbsp;{ item.labelDescription }
 					</MenuItem>
 				)) }
 			</Menu>

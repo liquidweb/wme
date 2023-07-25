@@ -139,7 +139,13 @@ const AutoCompleteInput: React.FC<AutocompleteInputProps> = (props) => {
       },
       options,
       value,
-      renderInput: (params) => <TextField {...params} placeholder={placeholder} />,
+
+      renderInput: (params) => (
+        <TextField
+          placeholder={placeholder}
+          {...params}
+        />
+      ),
       ...rest,
     },
   };
