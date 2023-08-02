@@ -16,8 +16,7 @@ const ScreenWrapper: any = styled(Box, {
 	marginTop: screenTopMargin,
 	paddingBottom: screenBottomMargin,
 	minHeight: `calc(100vh - ${ screenTopMargin } - ${ screenBottomMargin })`,
-	width: '100%',
-	overflowY: 'scroll'
+	width: '100%'
 }));
 
 export default ScreenWrapper;

@@ -39,7 +39,7 @@ class LookAndFeel extends Wizard {
 	/**
 	 * @var string
 	 */
-	protected $kadence_cloud_data_url = 'https://patterns.startertemplatecloud.com/wp-json/kadence-cloud/v1/pages/?key=section';
+	protected $kadence_cloud_data_url = 'https://ftc.startertemplatecloud.com/wp-json/kadence-cloud/v1/pages/?key=section';
 
 	/**
 	 * @var array
@@ -94,7 +94,7 @@ class LookAndFeel extends Wizard {
 			), 403 );
 		}
 
-		$response = wp_remote_get( $this->kadence_cloud_data_url );
+		$response = wp_remote_get( $this->kadence_cloud_data_url, [ 'timeout' => 60 ] );
 		// Early exit if there was an error.
 		if ( is_wp_error( $response ) ) {
 			wp_send_json_error( new WP_Error(
