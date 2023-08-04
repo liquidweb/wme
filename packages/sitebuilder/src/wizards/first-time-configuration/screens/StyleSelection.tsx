@@ -1,5 +1,5 @@
 import { formatKadencePages, useFirstTimeConfiguration } from '@sb/hooks';
-import { Alert, Box } from '@mui/material';
+import { Alert, Box, Typography } from '@mui/material';
 import getTemplateStyles from '../data/styles';
 import { useEffect, useState } from 'react';
 import KadenceTemplateItem, { TemplateSelectItemProps } from '../components/styles/KadenceTemplateItem';
@@ -63,6 +63,9 @@ const StyleSelection = () => {
 					options={ filterOptions }
 					updateSelected={ filterTemplates }
 				/>
+				<Box>
+					<Typography variant="body2">{ filteredPages?.length || 0 } templates</Typography>
+				</Box>
 			</Box>
 			{ requestError ? (
 				<Alert severity="error">{ requestError }</Alert>
