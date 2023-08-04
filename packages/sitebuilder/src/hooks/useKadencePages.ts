@@ -38,7 +38,7 @@ export function formatKadencePages(data: any): { pages: TemplateSelectItemProps[
 
 	if (data) {
 		const homePageKeys = Object.keys(data).filter((key) => data[ key ].categories.home);
-		const homePages = homePageKeys.map((key, index) => {
+		const homePages = homePageKeys.map((key) => {
 			return {
 				...data[ key ]
 			};
