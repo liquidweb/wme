@@ -3,7 +3,7 @@
  * Plugin Name: WME Sitebuilder
  * Plugin URI:  https://stellarwp.com
  * Description: Easily build and configure a site.
- * Version:     0.6.1
+ * Version:     0.6.2
  * Author:      Modern Tribe Incubator Team
  * Author URI:  https://tri.be/
  * Text Domain: wme-sitebuilder
