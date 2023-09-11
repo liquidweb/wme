@@ -159,7 +159,9 @@ class PayPal extends Plugin {
 			// Log to the same place WC PayPal Payments would.
 			$container->get( 'woocommerce.logger.woocommerce' )->error( $e->getMessage() );
 
-			error_log( "[WME] WC PayPal Payments Plugin threw an exception: {$e->getMessage()} {$e->getFile()}:{$e->getLine()}" );
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( "[WME] WC PayPal Payments Plugin threw an exception: {$e->getMessage()} {$e->getFile()}:{$e->getLine()}" );
+			}
 		}
 	}
 }
