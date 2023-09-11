@@ -3,7 +3,6 @@
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
 use Exception;
-use Psr\Log\LoggerInterface;
 use Tribe\WME\Sitebuilder\Plugins\Plugin;
 use WooCommerce\PayPalCommerce\Onboarding\Render\OnboardingRenderer;
 use WooCommerce\PayPalCommerce\WcGateway\Settings\Settings;
@@ -142,7 +141,7 @@ class PayPal extends Plugin {
 			/** @var OnboardingRenderer $onboarding */
 			$onboarding = $container->get( 'onboarding.render' );
 			/** @var Settings $settings */
-			$settings   = $container->get( 'wcgateway.settings' );
+			$settings = $container->get( 'wcgateway.settings' );
 
 			$this->connected = ( $settings->has( 'client_id' ) && ! empty( $settings->get( 'client_id' ) ) );
 
@@ -157,11 +156,10 @@ class PayPal extends Plugin {
 				'client_id'     => $settings->has( 'client_id_production' ) ? $settings->get( 'client_id_production' ) : '',
 			];
 		} catch ( Exception $e ) {
-			/** @var LoggerInterface $logger */
-			$logger = $container->get( 'woocommerce.logger.woocommerce' );
-			$logger->error( $e->getMessage() );
+			// Log to the same place WC PayPal Payments would.
+			$container->get( 'woocommerce.logger.woocommerce' )->error( $e->getMessage() );
 
-			error_log( 'WME - WooCommerce PayPal Payments threw an exception: ' . $e->getMessage() );
+			error_log( "[WME] WC PayPal Payments Plugin threw an exception: {$e->getMessage()} {$e->getFile()}:{$e->getLine()}" );
 		}
 	}
 }
