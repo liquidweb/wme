@@ -2,7 +2,10 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
+use Exception;
 use Tribe\WME\Sitebuilder\Plugins\Plugin;
+use WooCommerce\PayPalCommerce\Onboarding\Render\OnboardingRenderer;
+use WooCommerce\PayPalCommerce\WcGateway\Settings\Settings;
 
 /**
  * @property string[] $keys
@@ -134,20 +137,26 @@ class PayPal extends Plugin {
 			return;
 		}
 
-		$onboarding = $container->get( 'onboarding.render' );
-		$settings   = $container->get( 'wcgateway.settings' );
+		try {
+			/** @var OnboardingRenderer $onboarding */
+			$onboarding = $container->get( 'onboarding.render' );
+			/** @var Settings $settings */
+			$settings   = $container->get( 'wcgateway.settings' );
 
-		$this->connected = ( $settings->has( 'client_id' ) && ! empty( $settings->get( 'client_id' ) ) );
+			$this->connected = ( $settings->has( 'client_id' ) && ! empty( $settings->get( 'client_id' ) ) );
 
-		$this->oauth_urls = [
-			'advanced' => $onboarding->get_signup_link( true, [ 'PPCP' ] ),
-			'standard' => $onboarding->get_signup_link( true, [ 'EXPRESS_CHECKOUT' ] ),
-		];
+			$this->oauth_urls = [
+				'advanced' => $onboarding->get_signup_link( true, [ 'PPCP' ] ),
+				'standard' => $onboarding->get_signup_link( true, [ 'EXPRESS_CHECKOUT' ] ),
+			];
 
-		$this->keys = [
-			'email_address' => $settings->has( 'merchant_email_production' ) ? $settings->get( 'merchant_email_production' ) : '',
-			'merchant_id'   => $settings->has( 'merchant_id_production' ) ? $settings->get( 'merchant_id_production' ) : '',
-			'client_id'     => $settings->has( 'client_id_production' ) ? $settings->get( 'client_id_production' ) : '',
-		];
+			$this->keys = [
+				'email_address' => $settings->has( 'merchant_email_production' ) ? $settings->get( 'merchant_email_production' ) : '',
+				'merchant_id'   => $settings->has( 'merchant_id_production' ) ? $settings->get( 'merchant_id_production' ) : '',
+				'client_id'     => $settings->has( 'client_id_production' ) ? $settings->get( 'client_id_production' ) : '',
+			];
+		} catch ( Exception $e ) {
+			error_log( 'WooCommerce PayPal Payments threw an exception: ' . $e->getMessage() );
+		}
 	}
 }
