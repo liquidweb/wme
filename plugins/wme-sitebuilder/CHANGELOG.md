@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
-- 9853d99: Catch PayPal exceptions and log the error ourselves to prevent a fatal
+- 9853d99: Catch PayPal exceptions and log the error ourselves to prevent a fatal.
+- d7b84de: Fix Manage PayPal/Stripe buttons to go to their appropriate manage screens once connected.
 
 ## 0.6.1
 
