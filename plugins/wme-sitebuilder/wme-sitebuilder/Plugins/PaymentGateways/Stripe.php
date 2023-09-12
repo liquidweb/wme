@@ -80,6 +80,7 @@ class Stripe extends Plugin {
 			'icon'        => 'setup-icon-stripe.png',
 			'disableText' => __( 'Manage Stripe', 'wme-sitebuilder' ),
 			'adminUrl'    => $this->admin_url,
+			'url'         => $this->admin_url,
 			'connected'   => $this->connected,
 			'button'      => [
 				'label'           => __( 'Connect Stripe', 'wme-sitebuilder' ),

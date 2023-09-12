@@ -82,6 +82,7 @@ class PayPal extends Plugin {
 			'icon'        => 'setup-icon-paypal.png',
 			'disableText' => __( 'Manage PayPal', 'wme-sitebuilder' ),
 			'adminUrl'    => $this->admin_url,
+			'url'         => $this->admin_url,
 			'connected'   => $this->connected,
 			'button'      => [
 				'label'           => __( 'Connect PayPal', 'wme-sitebuilder' ),
