@@ -9,7 +9,7 @@ on:
       - '*'
 
 env:
-  GITHUB_TOKEN: ${{ secrets.SPLIT_ACCESS_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
 
 jobs:
   packages_split:
@@ -40,8 +40,8 @@ jobs:
           repository_name: '${{ matrix.package.split_repository }}'
                     
           # ↓ the user signed under the split commit
-          user_name: "bswatson"
-          user_email: "brian@tri.be"
+          user_name: "Tr1b0t"
+          user_email: "Tr1b0t@users.noreply.github.com"
           
           branch: '${{ github.ref_name }}'
       
@@ -60,5 +60,5 @@ jobs:
           repository_name: '${{ matrix.package.split_repository }}'
           
           # ↓ the user signed under the split commit
-          user_name: "bswatson"
-          user_email: "brian@tri.be"
+          user_name: "Tr1b0t"
+          user_email: "Tr1b0t@users.noreply.github.com"
