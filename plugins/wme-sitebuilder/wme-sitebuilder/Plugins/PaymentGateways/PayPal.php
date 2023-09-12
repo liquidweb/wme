@@ -2,6 +2,7 @@
 
 namespace Tribe\WME\Sitebuilder\Plugins\PaymentGateways;
 
+use Exception;
 use Tribe\WME\Sitebuilder\Plugins\Plugin;
 
 /**
@@ -137,28 +138,39 @@ class PayPal extends Plugin {
 	 *
 	 * @param \Psr\Container\ContainerInterface $container
 	 *
-	 * @see WooCommerce\PayPalCommerce\WcGateway\Settings\SettingsListener::listen_for_merchant_id()
-	 * @see WooCommerce\PayPalCommerce\WcGateway\Settings\SettingsListener::read_active_credentials_from_settings()
+	 * @see \WooCommerce\PayPalCommerce\WcGateway\Settings\SettingsListener::listen_for_merchant_id()
+	 * @see \WooCommerce\PayPalCommerce\WcGateway\Settings\SettingsListener::read_active_credentials_from_settings()
 	 */
 	public function action__woocommerce_paypal_payments_built_container( $container ) {
 		if ( 'woocommerce_paypal_payments_built_container' !== current_action() ) {
 			return;
 		}
 
-		$onboarding = $container->get( 'onboarding.render' );
-		$settings   = $container->get( 'wcgateway.settings' );
+		try {
+			/** @var \WooCommerce\PayPalCommerce\Onboarding\Render\OnboardingRenderer $onboarding */
+			$onboarding = $container->get( 'onboarding.render' );
+			/** @var \WooCommerce\PayPalCommerce\WcGateway\Settings\Settings $settings */
+			$settings = $container->get( 'wcgateway.settings' );
 
-		$this->connected = ( $settings->has( 'client_id' ) && ! empty( $settings->get( 'client_id' ) ) );
+			$this->connected = ( $settings->has( 'client_id' ) && ! empty( $settings->get( 'client_id' ) ) );
 
-		$this->oauth_urls = [
-			'advanced' => $onboarding->get_signup_link( true, [ 'PPCP' ] ),
-			'standard' => $onboarding->get_signup_link( true, [ 'EXPRESS_CHECKOUT' ] ),
-		];
+			$this->oauth_urls = [
+				'advanced' => $onboarding->get_signup_link( true, [ 'PPCP' ] ),
+				'standard' => $onboarding->get_signup_link( true, [ 'EXPRESS_CHECKOUT' ] ),
+			];
 
-		$this->keys = [
-			'email_address' => $settings->has( 'merchant_email_production' ) ? $settings->get( 'merchant_email_production' ) : '',
-			'merchant_id'   => $settings->has( 'merchant_id_production' ) ? $settings->get( 'merchant_id_production' ) : '',
-			'client_id'     => $settings->has( 'client_id_production' ) ? $settings->get( 'client_id_production' ) : '',
-		];
+			$this->keys = [
+				'email_address' => $settings->has( 'merchant_email_production' ) ? $settings->get( 'merchant_email_production' ) : '',
+				'merchant_id'   => $settings->has( 'merchant_id_production' ) ? $settings->get( 'merchant_id_production' ) : '',
+				'client_id'     => $settings->has( 'client_id_production' ) ? $settings->get( 'client_id_production' ) : '',
+			];
+		} catch ( Exception $e ) {
+			// Log to the same place WC PayPal Payments would.
+			$container->get( 'woocommerce.logger.woocommerce' )->error( $e->getMessage() );
+
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				error_log( "[WME] WC PayPal Payments Plugin threw an exception: {$e->getMessage()} {$e->getFile()}:{$e->getLine()}" );
+			}
+		}
 	}
 }
