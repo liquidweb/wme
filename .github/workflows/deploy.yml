@@ -18,7 +18,7 @@ jobs:
           ssh-private-key: ${{ secrets.ssh-key || secrets.SITEBUILDER_SSH_PRIVATE_KEY }}
             
       - name: Check Out Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
