@@ -51,7 +51,7 @@ jobs:
           
       - name: Prepare Node Modules Cache
         id: cache-node-modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -76,7 +76,7 @@ jobs:
           echo "composer-files-dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
           
       - name: Prepare Composer Dependencies Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ${{ steps.composer-cache.outputs.composer-files-dir }}
@@ -118,7 +118,7 @@ jobs:
           
       - name: Prepare Node Modules Cache
         id: cache-node-modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -137,7 +137,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
         
       - name: Prepare Composer Dependencies Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ${{needs.build.outputs.composer-files-dir}}
