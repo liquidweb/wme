@@ -49,7 +49,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@v11
         with:
           # 👇 Runs Chromatic CLI in ./packages/wme-ui
           workingDir: packages/wme-ui
